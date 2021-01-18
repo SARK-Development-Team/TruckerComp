@@ -35,18 +35,35 @@ nav {
     color: white;
     padding: 60px 30px;
     text-align: center;
+    font-size: 18px;
+    width: 150px;
+    height: 200px;
 }
 
 .btn-next {
     background: rgb(98, 132, 151);
     padding: 5px;
     text-align: center;
-    float: right;
 }
 
 .heading-area {
     margin: 1% 0;
+}
 
+.icon-area {
+    margin: 30px 0 20px 0;
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+    font-size: 18px;
+}
+
+#icons {
+    text-align: center;
+}
+
+.tile-area {
+    display: flex;
+    gap: 8%;
 }
 
 #hero {
