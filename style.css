@@ -1,4 +1,80 @@
+/* ----------
+  This style sheet will be indexed by the vertical position of elements
+  1. Whole page elements
+  2. Navbar elements
+  3. Hero elements
+  4. About section elements
+  5. Footer elements
+---------- */
+
+
+
+/* ----------
+  Whole page
+---------- */
+
 body {
     background: white;
-    font-family: 'Segoe UI';
+    font-family: 'Nunito';
+}
+
+/* ----------
+   Navbar
+---------- */
+
+nav {
+    padding: 2% 11%;
+}
+
+/* ----------
+    Hero
+---------- */
+
+.btn-blue {
+    background: rgb(73, 154, 201);
+    color: white;
+    padding: 60px 30px;
+    text-align: center;
+}
+
+.btn-next {
+    background: rgb(98, 132, 151);
+    padding: 5px;
+    text-align: center;
+    float: right;
+}
+
+.heading-area {
+    margin: 1% 0;
+
+}
+
+#hero {
+    min-height: 300px;
+    background: rgb(196, 204, 204);
+    padding: 2% 11%;
+}
+
+/* ----------
+    About
+---------- */
+
+#about {
+    padding: 2% 11%;
+    min-height: 300px;
+}
+
+/* ----------
+    Footer
+---------- */
+
+footer {
+    padding: 2% 11%;
+    background: rgb(71, 71, 71);
+    color: rgb(226, 225, 225)
+}
+
+footer a {
+    text-decoration: none;
+    color: inherit;
 }
