@@ -1,0 +1,116 @@
+/* ----------
+  This style sheet will be indexed by the vertical position of elements
+  1. Whole page elements
+  2. Navbar elements
+  3. Hero elements
+  4. About section elements
+  5. Footer elements
+---------- */
+
+
+
+/* ----------
+  Whole page
+---------- */
+
+body {
+    background: white;
+    font-family: 'Nunito';
+}
+
+/* ----------
+   Navbar
+---------- */
+
+nav {
+    padding: 2% 11%;
+}
+
+.logo {
+    height: 70px;
+}
+
+/* ----------
+    Hero
+---------- */
+
+input {
+    font-size: 18px;
+}
+
+.btn-blue {
+    background: rgb(73, 154, 201);
+    color: white;
+    padding: 60px 30px;
+    text-align: center;
+    font-size: 18px;
+    width: 150px;
+    height: 200px;
+}
+
+.btn-next {
+    background: rgb(98, 132, 151);
+    padding: 5px;
+    text-align: center;
+}
+
+.heading-area {
+    margin: 1% 0;
+}
+
+.heading-area h2 {
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.icon-area {
+    margin: 30px 0 20px 0;
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+    font-size: 18px;
+}
+
+.tile-area {
+    /* display: flex; */
+    gap: 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+#hero {
+    min-height: 300px;
+    background: rgb(196, 204, 204);
+    padding: 2% 11%;
+}
+
+#icons {
+    text-align: center;
+}
+
+::placeholder { 
+    font-style: italic;
+}
+
+/* ----------
+    About
+---------- */
+
+#about {
+    padding: 2% 11%;
+    min-height: 300px;
+}
+
+/* ----------
+    Footer
+---------- */
+
+footer {
+    padding: 2% 11%;
+    background: rgb(71, 71, 71);
+    color: rgb(226, 225, 225)
+}
+
+footer a {
+    text-decoration: none;
+    color: inherit;
+}
