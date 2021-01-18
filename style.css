@@ -50,6 +50,10 @@ input {
     font-size: 18px;
 }
 
+.active {
+    color: black!important;
+}
+
 .btn-blue {
     background: rgb(73, 154, 201);
     color: white;
@@ -64,6 +68,10 @@ input {
     background: rgb(98, 132, 151);
     padding: 5px;
     text-align: center;
+}
+
+.fa-circle {
+    color: lightgray;
 }
 
 .heading-area {

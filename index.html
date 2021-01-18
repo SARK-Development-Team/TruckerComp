@@ -10,6 +10,7 @@
     <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/793cc4a12c.js" crossorigin="anonymous"></script>
+    <!-- Note: There is another JS script tag at the end -->
 </head>
 <body>
     <!-- A navbar that is currently empty -->
@@ -68,19 +69,20 @@
                         <input type="number" id="zipcode" name="zipcode" placeholder="10001"><br>
                     </form>
                 </div>
+
+                <div class="icon-area">
+                    <!-- Todo: add progress icons -->
+                    <a class="btn-back" onclick="plusSlides(-1)">Back</a>
+                    <div id="icons">
+                        <i class="fas fa-circle"></i>
+                        <i class="fas fa-circle"></i>
+                        <i class="fas fa-circle"></i>
+                        <i class="fas fa-circle"></i>
+                    </div>
+                    <a class="btn-next" onclick="plusSlides(1)">Next <i class="fas fa-chevron-right"></i></a>
+                </div>
             </div>
 
-            <div class="icon-area">
-                <!-- Todo: add progress icons -->
-                <a href="#" class="btn-back">Back</a>
-                <div id="icons">
-                    <i class="fas fa-circle"></i>
-                    <i class="fas fa-circle"></i>
-                    <i class="fas fa-circle"></i>
-                    <i class="fas fa-circle"></i>
-                </div>
-                <a class="btn-next">Next <i class="fas fa-chevron-right"></i></a>
-            </div>
         </section>
 
         <!-- This section will contain further information about SARK -->
@@ -103,5 +105,6 @@
 
         <p><a href="https://www.policymela.com/">PolicyMela by SARK</a></p>
     </footer>
+    <script src="activity.js"></script>
 </body>
 </html>
