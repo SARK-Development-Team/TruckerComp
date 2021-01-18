@@ -26,9 +26,17 @@ nav {
     padding: 2% 11%;
 }
 
+.logo {
+    height: 70px;
+}
+
 /* ----------
     Hero
 ---------- */
+
+input {
+    font-size: 18px;
+}
 
 .btn-blue {
     background: rgb(73, 154, 201);
@@ -62,19 +70,25 @@ nav {
     font-size: 18px;
 }
 
-#icons {
-    text-align: center;
-}
-
 .tile-area {
-    display: flex;
-    gap: 8%;
+    /* display: flex; */
+    gap: 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 #hero {
     min-height: 300px;
     background: rgb(196, 204, 204);
     padding: 2% 11%;
+}
+
+#icons {
+    text-align: center;
+}
+
+::placeholder { 
+    font-style: italic;
 }
 
 /* ----------
