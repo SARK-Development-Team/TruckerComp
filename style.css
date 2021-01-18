@@ -50,6 +50,11 @@ nav {
     margin: 1% 0;
 }
 
+.heading-area h2 {
+    font-size: 30px;
+    font-weight: bolder;
+}
+
 .icon-area {
     margin: 30px 0 20px 0;
     display: grid;
