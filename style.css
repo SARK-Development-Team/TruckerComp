@@ -16,6 +16,12 @@
 body {
     background: white;
     font-family: 'Nunito';
+    padding: 0;
+    margin: 0;
+}
+
+button {
+    cursor: pointer;
 }
 
 h2 {
@@ -51,7 +57,7 @@ input {
 }
 
 .active {
-    color: black!important;
+    color: rgb(82, 82, 82)!important;
 }
 
 .btn-blue {
@@ -68,10 +74,12 @@ input {
     background: rgb(98, 132, 151);
     padding: 5px;
     text-align: center;
+    border-radius: 4px;
+    border: 1px solid white;
 }
 
 .fa-circle {
-    color: lightgray;
+    color: rgb(243, 243, 243);
 }
 
 .heading-area {
@@ -83,6 +91,12 @@ input {
     display: grid;
     grid-template-columns: 1fr 6fr 1fr;
     font-size: 18px;
+    /* vertical-align: middle; */
+    align-items: center;
+}
+
+.slide {
+    /* transition: ; */
 }
 
 .tile-area {
@@ -101,10 +115,12 @@ input {
 #hero a {
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
 }
 
 #icons {
     text-align: center;
+    transition: color 0.6s ease;
 }
 
 ::placeholder { 
