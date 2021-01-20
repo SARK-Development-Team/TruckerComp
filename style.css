@@ -74,6 +74,28 @@ input {
     border-radius: 0;
 }
 
+.btn-next {
+    cursor: unset;
+    background: #666;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid white;
+    color: white;
+    position: relative;
+    height: 26px;
+    transition: background-color 0.6s ease;
+}
+
+.btn-next span {
+    position: absolute;
+}
+
+.ctr {
+    text-align: center;
+    right: 0%;
+    left: 0%;
+}
+
 .fa-circle {
     color: #d8d8d8;
     margin: 0 4px;
@@ -86,9 +108,20 @@ input {
 .icon-area {
     margin: 30px 0 20px 0;
     display: grid;
-    grid-template-columns: 1fr 6fr 1fr;
+    grid-template-columns: 1fr 6fr 2fr 1fr;
     font-size: 18px;
     align-items: center;
+}
+
+.icons {
+    text-align: center;
+    transition: color 0.6s ease;
+}
+
+.rt-align {
+    text-align: right;
+    position: relative;
+    right: 4px;
 }
 
 .selected {
@@ -122,18 +155,6 @@ input {
     padding-bottom: 80px;
 }
 
-#btn-back {
-    visibility: hidden;
-}
-
-#btn-next {
-    background: #3499cc;
-    padding: 5px;
-    text-align: center;
-    border-radius: 4px;
-    border: 1px solid white;
-    color: white;
-}
 
 #carousel {
     display: flex;
@@ -152,11 +173,6 @@ input {
 #hero a {
     text-decoration: none;
     cursor: pointer;
-}
-
-#icons {
-    text-align: center;
-    transition: color 0.6s ease;
 }
 
 ::placeholder { 

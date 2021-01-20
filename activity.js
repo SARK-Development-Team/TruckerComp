@@ -1,10 +1,8 @@
 // This section handles changing the carousel's active slide and the color of the icons
-// Todo: add animation
 
 let slideIndex = 0;
 const slides = document.getElementsByClassName("slide");
 positionSlides();
-showSlide(slideIndex);
 
 // all slides but the first start off the screen on the right
 function positionSlides() {
@@ -14,60 +12,28 @@ function positionSlides() {
     }
 }
 
-// When the slides advance, the next slid moves in from the right and the old moves out to the left
-function plusSlides(n) {
-    showSlide(slideIndex += n);
-    if (n<0) {
-        for (let i = 0; i < slides.length; i++) {
-            let value = slides[i].style.transform;
-            let numValue = parseInt(value.replace("translateX(", "").replace("vw",""));
+// When the slides advance, the next slide moves in from the right and the old moves out to the left
+function changeSlide(n) {
+    for (let i = 0; i < slides.length; i++) {
+        let value = slides[i].style.transform;
+        let numValue = parseInt(value.replace("translateX(", "").replace("vw",""));
+        if (n<0) {
             numValue+=178;
-            let newValue = "translateX(" + numValue.toString() +"vw)";
-            console.log(newValue);
-            slides[i].style.transform= newValue;  
-        }
-    } else if (n>0) {
-        for (let i = 0; i < slides.length; i++) {
-            let value = slides[i].style.transform;
-            let numValue = parseInt(value.replace("translateX(", "").replace("vw",""));
+        } else if (n>0) {
             numValue-=178;
-            let newValue = "translateX(" + numValue.toString() +"vw)";
-            console.log(newValue);
-            slides[i].style.transform= newValue;  
         }
+        let newValue = "translateX(" + numValue.toString() +"vw)";
+        slides[i].style.transform= newValue;  
     }
-}
-
-// function currentSlide(n) {
-//   showSlides(slideIndex = n);
-// }
-
-function showSlide(n) {
-    const circles = document.getElementsByClassName("fa-circle");
-    const back = document.getElementById("btn-back");
-    const next = document.getElementById("btn-next");
-
-    //   when on the first slide, the Back button is not visible
-    if (n!=0) {
-        back.style.visibility="visible";
-    }
-
-    // when on the last slide, the Next button changes to Submit
-    if (n == slides.length-1) {
-        next.innerText = "Submit";
-        next.onclick = sendData;
-    }    
-
-    for (let i = 0; i < circles.length; i++) {
-        circles[i].className = circles[i].className.replace(" active", "");
-    }
-
-    circles[slideIndex].className += " active";
 }
 
 
 // Todo: only allow the user to progress if the content is valid.
-
+function nextSlide(slideIndex) {
+    const next = document.getElementById('next' + slideIndex);
+    next.style.background = "#3499cc";
+    next.onclick = () => changeSlide(1);
+}
 
 // Todo: determine if entered zip code is valid. If not, do not allow to move forward and add error message.
 zipCodeError = "Please enter a valid zip code."
@@ -76,14 +42,41 @@ zipCodeError = "Please enter a valid zip code."
 
 // Todo: when on slide 4, 'Next' button becomes 'Submit' and sends the form data object.
 function sendData() {
+    updateFormData();
     // some code
 }
 
 // Form data object
 // Based on the user's input, this object will be updated and passed 
 
-data = {
+// Each form element has a unique id, and clicking it changes the corresponding value in the object
+
+const affirmative = document.getElementById('slide1Yes');
+const negative = document.getElementById('slide1No');
+
+const employees = document.getElementById('slide2EmployeesNumber');
+
+const home = document.getElementById('slide3Home');
+const lease = document.getElementById('slide3Lease');
+const site = document.getElementById('slide3Site');
+const property = document.getElementById('slide3Property');
+const own = document.getElementById('slide3Own');
+
+const zip = document.getElementById('slide4Zipcode')
+
+// if a choice is made, the next button is activated
+
+formData = {
     employees: 0,
     businessLocation: 0,
     zipCode: 0
 }
+
+function updateFormData(key, value) {
+    formData.key = value;
+}
+
+formData.employees = employees.value;
+formData.businessLocation = '';
+formData.zipCode = zip.value;
+
