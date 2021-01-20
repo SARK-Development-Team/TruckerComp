@@ -13,7 +13,7 @@ function positionSlides() {
 }
 
 // When the slides advance, the next slide moves in from the right and the old moves out to the left
-function plusSlides(n) {
+function changeSlide(n) {
     for (let i = 0; i < slides.length; i++) {
         let value = slides[i].style.transform;
         let numValue = parseInt(value.replace("translateX(", "").replace("vw",""));

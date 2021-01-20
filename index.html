@@ -41,14 +41,17 @@
                         <button class ="btn-blue tile" id="slide1No">It's just me</button>
                     </div>
                     <div class="icon-area">
-                        <a>   </a>
+                        <a>   </a>  <!-- left blank to maintain spacing-->
                         <div id="icons">
-                            <i class="fas fa-circle"></i>
+                            <i class="fas fa-circle active"></i>
                             <i class="fas fa-circle"></i>
                             <i class="fas fa-circle"></i>
                             <i class="fas fa-circle"></i>
                         </div>
-                        <a id="btn-next" onclick="plusSlides(1)">Next <i class="fas fa-chevron-right"></i></a>
+                        <a id="btn-next" onclick="changeSlide(1)">
+                            <span class="ctr">Next</span> 
+                            <span class="rt-align"><i class="fas fa-chevron-right"></i></span>
+                        </a>
                     </div>
                 </div>
 
@@ -59,14 +62,17 @@
                         <input type="text" id="slide2EmployeesNumber" name="employeesNumber" placeholder="2"><br>
                     </form>
                     <div class="icon-area">
-                        <a id="btn-back" onclick="plusSlides(-1)"></a>
+                        <a id="btn-back" onclick="changeSlide(-1)">Back</a>
                         <div id="icons">
                             <i class="fas fa-circle"></i>
                             <i class="fas fa-circle active"></i>
                             <i class="fas fa-circle"></i>
                             <i class="fas fa-circle"></i>
                         </div>
-                        <a id="btn-next" onclick="plusSlides(1)">Next <i class="fas fa-chevron-right"></i></a>
+                        <a id="btn-next" onclick="changeSlide(1)">
+                            <span class="ctr">Next</span> 
+                            <span class="rt-align"><i class="fas fa-chevron-right"></i></span>
+                        </a>
                     </div>
                 </div>
 
@@ -81,14 +87,17 @@
                         <button class ="btn-blue tile" id="slide3Own">I Own a Property & Lease to Others</button>
                     </div>
                     <div class="icon-area">
-                        <a id="btn-back" onclick="plusSlides(-1)"></a>
+                        <a id="btn-back" onclick="changeSlide(-1)">Back</a>
                         <div id="icons">
                             <i class="fas fa-circle"></i>
                             <i class="fas fa-circle"></i>
                             <i class="fas fa-circle active"></i>
                             <i class="fas fa-circle"></i>
                         </div>
-                        <a id="btn-next" onclick="plusSlides(1)">Next <i class="fas fa-chevron-right"></i></a>
+                        <a id="btn-next" onclick="changeSlide(1)">
+                            <span class="ctr">Next</span> 
+                            <span class="rt-align"><i class="fas fa-chevron-right"></i></span>
+                        </a>                    
                     </div>
                 </div>
 
@@ -99,14 +108,17 @@
                         <input type="number" id="slide4Zipcode" name="zipcode" placeholder="10001"><br>
                     </form>
                     <div class="icon-area">
-                        <a id="btn-back" onclick="plusSlides(-1)"></a>
+                        <a id="btn-back" onclick="changeSlide(-1)">Back</a>
                         <div id="icons">
                             <i class="fas fa-circle"></i>
                             <i class="fas fa-circle"></i>
                             <i class="fas fa-circle"></i>
                             <i class="fas fa-circle active"></i>
                         </div>
-                        <a id="btn-next" onclick="sendData()">Submit</a>
+                        <a id="btn-next" onclick="changeSlide(1)">
+                            <span class="ctr">Next</span> 
+                            <span class="rt-align"><i class="fas fa-chevron-right"></i></span>
+                        </a>
                     </div>
                 </div>
             </div>
