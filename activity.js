@@ -14,24 +14,16 @@ function positionSlides() {
 
 // When the slides advance, the next slide moves in from the right and the old moves out to the left
 function plusSlides(n) {
-    if (n<0) {
-        for (let i = 0; i < slides.length; i++) {
-            let value = slides[i].style.transform;
-            let numValue = parseInt(value.replace("translateX(", "").replace("vw",""));
+    for (let i = 0; i < slides.length; i++) {
+        let value = slides[i].style.transform;
+        let numValue = parseInt(value.replace("translateX(", "").replace("vw",""));
+        if (n<0) {
             numValue+=178;
-            let newValue = "translateX(" + numValue.toString() +"vw)";
-            console.log(newValue);
-            slides[i].style.transform= newValue;  
-        }
-    } else if (n>0) {
-        for (let i = 0; i < slides.length; i++) {
-            let value = slides[i].style.transform;
-            let numValue = parseInt(value.replace("translateX(", "").replace("vw",""));
+        } else if (n>0) {
             numValue-=178;
-            let newValue = "translateX(" + numValue.toString() +"vw)";
-            console.log(newValue);
-            slides[i].style.transform= newValue;  
         }
+        let newValue = "translateX(" + numValue.toString() +"vw)";
+        slides[i].style.transform= newValue;  
     }
 }
 
@@ -70,7 +62,11 @@ const zip = document.getElementById('slide4Zipcode')
 
 // if a choice is made, the next button is activated
 
-
+formData = {
+    employees: 0,
+    businessLocation: 0,
+    zipCode: 0
+}
 
 function updateFormData(key, value) {
     formData.key = value;
@@ -80,8 +76,3 @@ formData.employees = employees.value;
 formData.businessLocation = '';
 formData.zipCode = zip.value;
 
-formData = {
-    employees: 0,
-    businessLocation: 0,
-    zipCode: 0
-}
