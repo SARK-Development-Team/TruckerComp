@@ -42,20 +42,20 @@ const aff = document.getElementById('slide1Yes');
 const neg = document.getElementById('slide1No');
 
 aff.onclick = () => nextSlide(1);
+// Todo: add a function to skip slide 2 if "neg" is active
 neg.onclick = () => nextSlide(1);
 
 //------Slide 2
+// For slides 2-4, the formData is updated based on the user's input.
 const employees = document.getElementById('slide2EmployeesNumber');
 
 employees.addEventListener('keyup', () => {
-    // const regex = /^[0-9]+$/;
     const input = parseInt(employees.value);
     if (input>0 && Number.isInteger(input)) {
-        console.log("it worked")
-
+        formData.employees = input;
         nextSlide(2);
     } else {
-        // input error message
+        // input error message here
     }
 });
 
@@ -66,15 +66,39 @@ const site = document.getElementById('slide3Site');
 const property = document.getElementById('slide3Property');
 const own = document.getElementById('slide3Own');
 
-home.onclick = () => nextSlide(3);
-lease.onclick = () => nextSlide(3);
-site.onclick = () => nextSlide(3);
-property.onclick = () => nextSlide(3);
-own.onclick = () => nextSlide(3);
+home.onclick = () => {
+    formData.businessLocation = 0;
+    nextSlide(3);
+}
+lease.onclick = () => {
+    formData.businessLocation = 1;
+    nextSlide(3);
+}
+site.onclick = () => {
+    formData.businessLocation = 2;
+    nextSlide(3);
+}
+property.onclick = () => {
+    formData.businessLocation = 3;
+    nextSlide(3);
+}
+own.onclick = () => {
+    formData.businessLocation = 4;
+    nextSlide(3);
+}
 
 //------Slide 4 
 const zip = document.getElementById('slide4Zipcode');
 
+zip.addEventListener('keyup', () => {
+    const input = parseInt(zip.value);
+    if (input>0 && Number.isInteger(input)) {
+        formData.zipCode = input;
+        // enable Submit button
+    } else {
+        // input error message here
+    }
+});
 // Todo: determine if entered zip code is valid. If not, do not allow to move forward and add error message.
 zipCodeError = "Please enter a valid zip code."
 // Consider this API: https://smartystreets.com/docs/cloud/us-zipcode-api
