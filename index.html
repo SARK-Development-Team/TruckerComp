@@ -40,6 +40,16 @@
                         <button class ="btn-blue tile" id="slide1Yes">My company has employees</button>
                         <button class ="btn-blue tile" id="slide1No">It's just me</button>
                     </div>
+                    <div class="icon-area">
+                        <a>   </a>
+                        <div id="icons">
+                            <i class="fas fa-circle"></i>
+                            <i class="fas fa-circle"></i>
+                            <i class="fas fa-circle"></i>
+                            <i class="fas fa-circle"></i>
+                        </div>
+                        <a id="btn-next" onclick="plusSlides(1)">Next <i class="fas fa-chevron-right"></i></a>
+                    </div>
                 </div>
 
                 <!-- This form is the next item in the carousel if the user selects "My company has employees", otherwise it skips to the third item -->
@@ -48,6 +58,16 @@
                     <form>
                         <input type="text" id="slide2EmployeesNumber" name="employeesNumber" placeholder="2"><br>
                     </form>
+                    <div class="icon-area">
+                        <a id="btn-back" onclick="plusSlides(-1)"></a>
+                        <div id="icons">
+                            <i class="fas fa-circle"></i>
+                            <i class="fas fa-circle active"></i>
+                            <i class="fas fa-circle"></i>
+                            <i class="fas fa-circle"></i>
+                        </div>
+                        <a id="btn-next" onclick="plusSlides(1)">Next <i class="fas fa-chevron-right"></i></a>
+                    </div>
                 </div>
 
                 <!-- This div is the third item in the carousel -->
@@ -58,7 +78,17 @@
                         <button class ="btn-blue tile" id="slide3Lease">I Lease a Space From Others</button>
                         <button class ="btn-blue tile" id="slide3Site">I Work at a Job Site</button>
                         <button class ="btn-blue tile" id="slide3Property">I Run My Business From Property I Own</button>
-                        <button class ="btn-blue tile" id="slide3Own&Lease">I Own a Property & Lease to Others</button>
+                        <button class ="btn-blue tile" id="slide3Own">I Own a Property & Lease to Others</button>
+                    </div>
+                    <div class="icon-area">
+                        <a id="btn-back" onclick="plusSlides(-1)"></a>
+                        <div id="icons">
+                            <i class="fas fa-circle"></i>
+                            <i class="fas fa-circle"></i>
+                            <i class="fas fa-circle active"></i>
+                            <i class="fas fa-circle"></i>
+                        </div>
+                        <a id="btn-next" onclick="plusSlides(1)">Next <i class="fas fa-chevron-right"></i></a>
                     </div>
                 </div>
 
@@ -68,19 +98,19 @@
                     <form>
                         <input type="number" id="slide4Zipcode" name="zipcode" placeholder="10001"><br>
                     </form>
+                    <div class="icon-area">
+                        <a id="btn-back" onclick="plusSlides(-1)"></a>
+                        <div id="icons">
+                            <i class="fas fa-circle"></i>
+                            <i class="fas fa-circle"></i>
+                            <i class="fas fa-circle"></i>
+                            <i class="fas fa-circle active"></i>
+                        </div>
+                        <a id="btn-next" onclick="sendData()">Submit</a>
+                    </div>
                 </div>
             </div>
-            <div class="icon-area">
-                <!-- Todo: add progress icons -->
-                <a id="btn-back" onclick="plusSlides(-1)">Back</a>
-                <div id="icons">
-                    <i class="fas fa-circle"></i>
-                    <i class="fas fa-circle"></i>
-                    <i class="fas fa-circle"></i>
-                    <i class="fas fa-circle"></i>
-                </div>
-                <a id="btn-next" onclick="plusSlides(1)">Next <i class="fas fa-chevron-right"></i></a>
-            </div>
+
 
         </section>
 

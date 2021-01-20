@@ -127,7 +127,8 @@ input {
 }
 
 #btn-next {
-    background: #3499cc;
+    /* background: #3499cc; */
+    background: #666;
     padding: 5px;
     text-align: center;
     border-radius: 4px;
