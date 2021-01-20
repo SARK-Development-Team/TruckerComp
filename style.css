@@ -74,6 +74,22 @@ input {
     border-radius: 0;
 }
 
+.btn-next {
+    cursor: unset;
+    background: #666;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid white;
+    color: white;
+    position: relative;
+    height: 26px;
+    transition: background-color 0.6s ease;
+}
+
+.btn-next span {
+    position: absolute;
+}
+
 .ctr {
     text-align: center;
     right: 0%;
@@ -95,6 +111,11 @@ input {
     grid-template-columns: 1fr 6fr 2fr 1fr;
     font-size: 18px;
     align-items: center;
+}
+
+.icons {
+    text-align: center;
+    transition: color 0.6s ease;
 }
 
 .rt-align {
@@ -134,20 +155,6 @@ input {
     padding-bottom: 80px;
 }
 
-#btn-next {
-    /* background: #3499cc; */
-    background: #666;
-    padding: 5px;
-    border-radius: 4px;
-    border: 1px solid white;
-    color: white;
-    position: relative;
-    height: 26px;
-}
-
-#btn-next span {
-    position: absolute;
-}
 
 #carousel {
     display: flex;
@@ -166,11 +173,6 @@ input {
 #hero a {
     text-decoration: none;
     cursor: pointer;
-}
-
-#icons {
-    text-align: center;
-    transition: color 0.6s ease;
 }
 
 ::placeholder { 

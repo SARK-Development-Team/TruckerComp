@@ -29,7 +29,11 @@ function changeSlide(n) {
 
 
 // Todo: only allow the user to progress if the content is valid.
-
+function nextSlide(slideIndex) {
+    const next = document.getElementById('next' + slideIndex);
+    next.style.background = "#3499cc";
+    next.onclick = () => changeSlide(1);
+}
 
 // Todo: determine if entered zip code is valid. If not, do not allow to move forward and add error message.
 zipCodeError = "Please enter a valid zip code."

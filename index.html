@@ -24,14 +24,13 @@
 <!-- xxxxxxxxxx -->
 
     <section>
-        <!-- This section will contain the form and call to action -->
+        <!-- This contains the form and call to action -->
         <section id="hero">
             <div class="heading-area">
                 <h2>We Make Worker's Compensation Insurance Easy</h2>
                 <!-- <h3>Tell us about your company</h3> -->
             </div>
 
-        <!-- Todo: build a carousel -->
             <div id="carousel">
                 <!-- This div is the first item in the carousel -->
                 <div class="slide" id="slide1">
@@ -42,14 +41,14 @@
                     </div>
                     <div class="icon-area">
                         <a>   </a>  <!-- left blank to maintain spacing-->
-                        <div id="icons">
+                        <div class="icons">
                             <i class="fas fa-circle active"></i>
                             <i class="fas fa-circle"></i>
                             <i class="fas fa-circle"></i>
                             <i class="fas fa-circle"></i>
                         </div>
-                        <a id="btn-next" onclick="changeSlide(1)">
-                            <span class="ctr">Next</span> 
+                        <a class="btn-next" id="next1">
+                            <span class="ctr"  >Next</span> 
                             <span class="rt-align"><i class="fas fa-chevron-right"></i></span>
                         </a>
                     </div>
@@ -62,14 +61,14 @@
                         <input type="text" id="slide2EmployeesNumber" name="employeesNumber" placeholder="2"><br>
                     </form>
                     <div class="icon-area">
-                        <a id="btn-back" onclick="changeSlide(-1)">Back</a>
-                        <div id="icons">
+                        <a class="btn-back" onclick="changeSlide(-1)">Back</a>
+                        <div class="icons">
                             <i class="fas fa-circle"></i>
                             <i class="fas fa-circle active"></i>
                             <i class="fas fa-circle"></i>
                             <i class="fas fa-circle"></i>
                         </div>
-                        <a id="btn-next" onclick="changeSlide(1)">
+                        <a class="btn-next" id="next2">
                             <span class="ctr">Next</span> 
                             <span class="rt-align"><i class="fas fa-chevron-right"></i></span>
                         </a>
@@ -88,13 +87,13 @@
                     </div>
                     <div class="icon-area">
                         <a id="btn-back" onclick="changeSlide(-1)">Back</a>
-                        <div id="icons">
+                        <div class="icons">
                             <i class="fas fa-circle"></i>
                             <i class="fas fa-circle"></i>
                             <i class="fas fa-circle active"></i>
                             <i class="fas fa-circle"></i>
                         </div>
-                        <a id="btn-next" onclick="changeSlide(1)">
+                        <a class="btn-next" id="next3">
                             <span class="ctr">Next</span> 
                             <span class="rt-align"><i class="fas fa-chevron-right"></i></span>
                         </a>                    
@@ -115,9 +114,8 @@
                             <i class="fas fa-circle"></i>
                             <i class="fas fa-circle active"></i>
                         </div>
-                        <a id="btn-next" onclick="changeSlide(1)">
-                            <span class="ctr">Next</span> 
-                            <span class="rt-align"><i class="fas fa-chevron-right"></i></span>
+                        <a class="btn-next" onclick="sendData()">
+                            <span class="ctr">Submit</span> 
                         </a>
                     </div>
                 </div>
