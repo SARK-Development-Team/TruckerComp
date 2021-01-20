@@ -16,7 +16,9 @@
 body {
     background: white;
     /* font-family: 'Nunito'; */
-    font-family: Arial;
+    /* font-family: Arial; */
+    /* font-family: 'Open Sans'; */
+    font-family: 'Sarabun';
     padding: 0;
     margin: 0;
 }
@@ -26,13 +28,13 @@ button {
 }
 
 h2 {
-    font-size: 30px;
-    font-weight: bolder;
+    font-size: 2.4rem;
+    font-weight: 700;
     padding: 10px 0;
 }
 
 h3 {
-    font-size: 24px;
+    font-size: 20px;
     padding: 5px 0;
     font-weight: 300;
 }
@@ -65,20 +67,11 @@ input {
 .btn-blue {
     background: #1f486a;
     color: white;
-    padding: 60px 30px;
     text-align: center;
     font-size: 18px;
     width: 150px;
     height: 200px;
-}
-
-.btn-next {
-    background: #3499cc;
-    padding: 5px;
-    text-align: center;
-    border-radius: 4px;
-    border: 1px solid white;
-    color: white;
+    border-radius: 0;
 }
 
 .fa-circle {
@@ -95,23 +88,62 @@ input {
     display: grid;
     grid-template-columns: 1fr 6fr 1fr;
     font-size: 18px;
-    /* vertical-align: middle; */
     align-items: center;
 }
 
+.selected {
+    background: #3499cc;
+}
+
 .slide {
-    /* transition: ; */
+    min-width: 78vw;
+    transition: transform 0.5s;
+}
+
+.tile {
+    border: none;
+    transition: all ease 250ms;
+    padding: 22px 25px;
+}
+
+.tile:hover {
+    background: #3499cc;
+}
+
+.tile:focus {
+    background: #3499cc;
+    border: none;
 }
 
 .tile-area {
-    /* display: flex; */
-    gap: 5%;
+    gap: 4%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding-bottom: 80px;
+}
+
+#btn-back {
+    visibility: hidden;
+}
+
+#btn-next {
+    background: #3499cc;
+    padding: 5px;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid white;
+    color: white;
+}
+
+#carousel {
+    display: flex;
+    position: relative;
+    scroll-snap-type: x mandatory;
+    overflow: hidden;
 }
 
 #hero {
-    min-height: 300px;
+    min-height: 600px;
     background: rgb(196, 204, 204);
     background: url('background-design.jpg');
     padding: 2% 11%;

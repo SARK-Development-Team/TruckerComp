@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
     <link href="style.css" rel="stylesheet">
     <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"> -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/793cc4a12c.js" crossorigin="anonymous"></script>
     <!-- Note: There is another JS script tag at the end -->
 </head>
@@ -28,13 +28,13 @@
         <section id="hero">
             <div class="heading-area">
                 <h2>We Make Worker's Compensation Insurance Easy</h2>
-                <h3>Tell us about your company</h3>
+                <!-- <h3>Tell us about your company</h3> -->
             </div>
 
         <!-- Todo: build a carousel -->
             <div id="carousel">
                 <!-- This div is the first item in the carousel -->
-                <div class="slide">
+                <div class="slide" id="slide1">
                     <h3>Does your company have more employees than just the owner?</h3>
                     <div class="tile-area">
                         <button class ="btn-blue tile">My company has employees</button>
@@ -43,7 +43,7 @@
                 </div>
 
                 <!-- This form is the next item in the carousel if the user selects "My company has employees", otherwise it skips to the third item -->
-                <div class="slide">
+                <div class="slide" id="slide2">
                     <h3>How many employees does your company have?</h3>
                     <form>
                         <input type="text" id="number" name="number" placeholder="2"><br>
@@ -51,7 +51,7 @@
                 </div>
 
                 <!-- This div is the third item in the carousel -->
-                <div class="slide">
+                <div class="slide" id="slide3">
                     <h3>Where does your business operate?</h3>
                     <div class="tile-area">
                         <button class ="btn-blue tile">I Run My Business Out of My Home</button>
@@ -63,24 +63,23 @@
                 </div>
 
                 <!-- This form is the last item in the carousel -->
-                <div class="slide">
+                <div class="slide" id="slide4">
                     <h3>Where is your business located?</h3>
                     <form>
                         <input type="number" id="zipcode" name="zipcode" placeholder="10001"><br>
                     </form>
                 </div>
-
-                <div class="icon-area">
-                    <!-- Todo: add progress icons -->
-                    <a class="btn-back" onclick="plusSlides(-1)">Back</a>
-                    <div id="icons">
-                        <i class="fas fa-circle"></i>
-                        <i class="fas fa-circle"></i>
-                        <i class="fas fa-circle"></i>
-                        <i class="fas fa-circle"></i>
-                    </div>
-                    <a class="btn-next" onclick="plusSlides(1)">Next <i class="fas fa-chevron-right"></i></a>
+            </div>
+            <div class="icon-area">
+                <!-- Todo: add progress icons -->
+                <a id="btn-back" onclick="plusSlides(-1)">Back</a>
+                <div id="icons">
+                    <i class="fas fa-circle"></i>
+                    <i class="fas fa-circle"></i>
+                    <i class="fas fa-circle"></i>
+                    <i class="fas fa-circle"></i>
                 </div>
+                <a id="btn-next" onclick="plusSlides(1)">Next <i class="fas fa-chevron-right"></i></a>
             </div>
 
         </section>
