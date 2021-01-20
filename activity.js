@@ -28,12 +28,52 @@ function changeSlide(n) {
 }
 
 
-// Todo: only allow the user to progress if the content is valid.
+// Only allow the user to progress if the content is valid.
+// If a choice is made, the next button is activated
+
 function nextSlide(slideIndex) {
     const next = document.getElementById('next' + slideIndex);
     next.style.background = "#3499cc";
     next.onclick = () => changeSlide(1);
 }
+
+//------Slide 1 
+const aff = document.getElementById('slide1Yes');
+const neg = document.getElementById('slide1No');
+
+aff.onclick = () => nextSlide(1);
+neg.onclick = () => nextSlide(1);
+
+//------Slide 2
+const employees = document.getElementById('slide2EmployeesNumber');
+
+employees.addEventListener('keyup', () => {
+    // const regex = /^[0-9]+$/;
+    const input = parseInt(employees.value);
+    if (input>0 && Number.isInteger(input)) {
+        console.log("it worked")
+
+        nextSlide(2);
+    } else {
+        // input error message
+    }
+});
+
+//------Slide 3 
+const home = document.getElementById('slide3Home');
+const lease = document.getElementById('slide3Lease');
+const site = document.getElementById('slide3Site');
+const property = document.getElementById('slide3Property');
+const own = document.getElementById('slide3Own');
+
+home.onclick = () => nextSlide(3);
+lease.onclick = () => nextSlide(3);
+site.onclick = () => nextSlide(3);
+property.onclick = () => nextSlide(3);
+own.onclick = () => nextSlide(3);
+
+//------Slide 4 
+const zip = document.getElementById('slide4Zipcode');
 
 // Todo: determine if entered zip code is valid. If not, do not allow to move forward and add error message.
 zipCodeError = "Please enter a valid zip code."
@@ -51,20 +91,6 @@ function sendData() {
 
 // Each form element has a unique id, and clicking it changes the corresponding value in the object
 
-const affirmative = document.getElementById('slide1Yes');
-const negative = document.getElementById('slide1No');
-
-const employees = document.getElementById('slide2EmployeesNumber');
-
-const home = document.getElementById('slide3Home');
-const lease = document.getElementById('slide3Lease');
-const site = document.getElementById('slide3Site');
-const property = document.getElementById('slide3Property');
-const own = document.getElementById('slide3Own');
-
-const zip = document.getElementById('slide4Zipcode')
-
-// if a choice is made, the next button is activated
 
 formData = {
     employees: 0,
