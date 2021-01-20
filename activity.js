@@ -50,13 +50,18 @@ function showSlide(n) {
     //   when on the first slide, the Back button is not visible
     if (n!=0) {
         back.style.visibility="visible";
+    } else {
+        back.style.visibility="hidden";
     }
 
     // when on the last slide, the Next button changes to Submit
     if (n == slides.length-1) {
         next.innerText = "Submit";
         next.onclick = sendData;
-    }    
+    } else {
+        next.innerText = "Next "
+        next.onclick = () => plusSlides(1);
+    }
 
     for (let i = 0; i < circles.length; i++) {
         circles[i].className = circles[i].className.replace(" active", "");
@@ -82,7 +87,11 @@ function sendData() {
 // Form data object
 // Based on the user's input, this object will be updated and passed 
 
-data = {
+// Each form element has a unique id, and clicking it changes the corresponding value in the object
+
+
+
+formData = {
     employees: 0,
     businessLocation: 0,
     zipCode: 0
