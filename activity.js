@@ -37,6 +37,12 @@ function nextSlide(slideIndex) {
     next.onclick = () => changeSlide(1);
 }
 
+function deactivateSlide(slideIndex) {
+    const next = document.getElementById('next' + slideIndex);
+    next.style.background = "#666";
+    next.onclick = '';
+}
+
 //------Slide 1 
 const aff = document.getElementById('slide1Yes');
 const neg = document.getElementById('slide1No');
@@ -58,7 +64,7 @@ employees.addEventListener('keyup', () => {
         nextSlide(2);
     } else {
         empError.style.display='block';
-        //Todo: deactivate next button
+        deactivateSlide(2)
     }
 });
 
@@ -108,12 +114,13 @@ zip.addEventListener('keyup', () => {
         zipError.style.display = 'block';
     }
 });
-// Todo: determine if entered zip code is valid. If not, do not allow to move forward and add error message.
+
+// Todo: determine if entered zip code is valid. 
 zipCodeError = "Please enter a valid zip code."
 // Consider this API: https://smartystreets.com/docs/cloud/us-zipcode-api
 
 
-// Todo: when on slide 4, 'Next' button becomes 'Submit' and sends the form data object.
+// Todo: determine action to take when Submit button is pressed.
 function sendData() {
     updateFormData();
     // some code
@@ -121,9 +128,7 @@ function sendData() {
 
 // Form data object
 // Based on the user's input, this object will be updated and passed 
-
 // Each form element has a unique id, and clicking it changes the corresponding value in the object
-
 
 formData = {
     employees: 0,
@@ -131,11 +136,4 @@ formData = {
     zipCode: 0
 }
 
-function updateFormData(key, value) {
-    formData.key = value;
-}
-
-formData.employees = employees.value;
-formData.businessLocation = '';
-formData.zipCode = zip.value;
 
