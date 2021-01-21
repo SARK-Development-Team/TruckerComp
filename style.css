@@ -163,6 +163,15 @@ input {
     overflow: hidden;
 }
 
+#empError, #zipError {
+    margin-top: 0;
+    padding: 0;
+    display: none;
+    font-style: italic;
+    font-size: 14px;
+    color: red;
+}
+
 #hero {
     min-height: 600px;
     background: rgb(196, 204, 204);

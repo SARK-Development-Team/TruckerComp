@@ -51,11 +51,14 @@ const employees = document.getElementById('slide2EmployeesNumber');
 
 employees.addEventListener('keyup', () => {
     const input = parseInt(employees.value);
+    const empError = document.getElementById('empError');
     if (input>0 && Number.isInteger(input)) {
         formData.employees = input;
+        empError.style.display='none';
         nextSlide(2);
     } else {
-        // input error message here
+        empError.style.display='block';
+        //Todo: deactivate next button
     }
 });
 
@@ -92,11 +95,17 @@ const zip = document.getElementById('slide4Zipcode');
 
 zip.addEventListener('keyup', () => {
     const input = parseInt(zip.value);
+    const zipError = document.getElementById('zipError');
+    const submit = document.getElementById('submit');
     if (input>0 && Number.isInteger(input)) {
         formData.zipCode = input;
-        // enable Submit button
+        zipError.style.display = 'none';
+        submit.style.background='#4ca846';
+        submit.onclick= () => sendData();
     } else {
-        // input error message here
+        submit.style.background='';
+        submit.onclick = '';
+        zipError.style.display = 'block';
     }
 });
 // Todo: determine if entered zip code is valid. If not, do not allow to move forward and add error message.
