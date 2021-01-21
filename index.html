@@ -59,6 +59,7 @@
                     <h3>How many employees does your company have?</h3>
                     <form>
                         <input type="text" id="slide2EmployeesNumber" name="employeesNumber" placeholder="2"><br>
+                        <p id='empError'>Please enter the number of employees</p>
                     </form>
                     <div class="icon-area">
                         <a class="btn-back" onclick="changeSlide(-1)">Back</a>
@@ -104,7 +105,8 @@
                 <div class="slide" id="slide4">
                     <h3>Where is your business located?</h3>
                     <form>
-                        <input type="number" id="slide4Zipcode" name="zipcode" placeholder="10001"><br>
+                        <input type="text" id="slide4Zipcode" name="zipcode" placeholder="10001"><br>
+                        <p id='zipError'>Please enter a valid 5-digit US ZIP Code</p>
                     </form>
                     <div class="icon-area">
                         <a id="btn-back" onclick="changeSlide(-1)">Back</a>
@@ -114,7 +116,7 @@
                             <i class="fas fa-circle"></i>
                             <i class="fas fa-circle active"></i>
                         </div>
-                        <a class="btn-next" onclick="sendData()">
+                        <a class="btn-next" id="submit">
                             <span class="ctr">Submit</span> 
                         </a>
                     </div>
