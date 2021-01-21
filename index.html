@@ -6,10 +6,14 @@
     <title>Trucker Comp by SARK</title>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
-    <link href="style.css" rel="stylesheet">
     <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+
     <script src="https://kit.fontawesome.com/793cc4a12c.js" crossorigin="anonymous"></script>
+
     <!-- Note: There is another JS script tag at the end -->
 </head>
 <body>
@@ -82,11 +86,11 @@
                 <div class="slide" id="slide3">
                     <h3>Where does your business operate?</h3>
                     <div class="tile-area">
-                        <button class ="btn-blue tile" id="slide3Home">I Run My Business Out of My Home</button>
-                        <button class ="btn-blue tile" id="slide3Lease">I Lease a Space From Others</button>
-                        <button class ="btn-blue tile" id="slide3Site">I Work at a Job Site</button>
-                        <button class ="btn-blue tile" id="slide3Property">I Run My Business From Property I Own</button>
-                        <button class ="btn-blue tile" id="slide3Own">I Own a Property & Lease to Others</button>
+                        <button class ="btn-blue tile" id="slide3Home"><i class="material-icons" >home</i><p>I Run My Business Out of My Home</p></button>
+                        <button class ="btn-blue tile" id="slide3Lease"><i class="material-icons" >meeting_room</i><p>I Lease a Space From Others</p></button>
+                        <button class ="btn-blue tile" id="slide3Site"><i class="material-icons" >workbuild</i><p>I Work at a Job Site</p></button>
+                        <button class ="btn-blue tile" id="slide3Property"><i class="material-icons" >business</i><p>I Run My Business From Property I Own</p></button>
+                        <button class ="btn-blue tile" id="slide3Own"><i class="material-icons" >store</i><p>I Own a Property & Lease to Others</p></button>
                     </div>
                     <a class="btn-reset" onclick="resetForm()">Reset Form</a>
                     <div class="icon-area">
@@ -114,7 +118,7 @@
                     <a class="btn-reset" onclick="resetForm()">Reset Form</a>
                     <div class="icon-area">
                         <a id="btn-back" onclick="changeSlide(-1)">Back</a>
-                        <div id="icons">
+                        <div class="icons">
                             <i class="fas fa-circle"></i>
                             <i class="fas fa-circle"></i>
                             <i class="fas fa-circle"></i>
