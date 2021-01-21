@@ -216,6 +216,15 @@ input {
 #about {
     padding: 2% 13%;
     min-height: 300px;
+    opacity: 0;
+    transition: opacity .6s ease;
+}
+
+#subline {
+    padding-top: 0;
+    margin-top: 0;
+    font-style: italic;
+    text-align: center;
 }
 
 /* ----------
