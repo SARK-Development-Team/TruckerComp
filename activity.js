@@ -2,10 +2,16 @@
 
 let slideIndex = 0;
 const slides = document.getElementsByClassName("slide");
-positionSlides();
+initializeCarousel();
 
-// all slides but the first start off the screen on the right
-function positionSlides() {
+// Sets all formData to initial values 
+// Arranges all slides but the first start off the screen on the right
+function initializeCarousel() {
+    formData = {
+        employees: 0,
+        businessLocation: 0,
+        zipCode: 0
+    }
     for (let i = 0; i < slides.length; i++) {
         let multiplier = i*100;
         slides[i].style.transform= "translateX(" + multiplier +"vw)";  
@@ -27,6 +33,10 @@ function changeSlide(n) {
     }
 }
 
+function resetForm() {
+    initializeCarousel();
+    deactivateSlide(1);
+}
 
 // Only allow the user to progress if the content is valid.
 // If a choice is made, the next button is activated
@@ -47,9 +57,25 @@ function deactivateSlide(slideIndex) {
 const aff = document.getElementById('slide1Yes');
 const neg = document.getElementById('slide1No');
 
-aff.onclick = () => nextSlide(1);
+aff.onclick = () => {
+    const slide2 = document.getElementById('slide2');
+    const slide3 = document.getElementById('slide3');
+    const slide4 = document.getElementById('slide4');
+    slide2.style.display='block';
+    slide3.style.transform = "translateX(200vw)";
+    slide4.style.transform = "translateX(300vw)";
+    nextSlide(1);
+}
 // Todo: add a function to skip slide 2 if "neg" is active
-neg.onclick = () => nextSlide(1);
+neg.onclick = () => {
+    const slide2 = document.getElementById('slide2');
+    const slide3 = document.getElementById('slide3');
+    const slide4 = document.getElementById('slide4');
+    slide2.style.display='none';
+    slide3.style.transform = "translateX(100vw)";
+    slide4.style.transform = "translateX(200vw)";
+    nextSlide(1)
+};
 
 //------Slide 2
 // For slides 2-4, the formData is updated based on the user's input.
@@ -122,7 +148,6 @@ zipCodeError = "Please enter a valid zip code."
 
 // Todo: determine action to take when Submit button is pressed.
 function sendData() {
-    updateFormData();
     // some code
 }
 
@@ -130,10 +155,6 @@ function sendData() {
 // Based on the user's input, this object will be updated and passed 
 // Each form element has a unique id, and clicking it changes the corresponding value in the object
 
-formData = {
-    employees: 0,
-    businessLocation: 0,
-    zipCode: 0
-}
+
 
 
