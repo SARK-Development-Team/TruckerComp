@@ -45,7 +45,7 @@ h3 {
 ---------- */
 
 nav {
-    padding: 2% 11%;
+    padding: 2% 13%;
 }
 
 .logo {
@@ -88,6 +88,17 @@ input {
 
 .btn-next span {
     position: absolute;
+}
+
+.btn-reset {
+    background: #c45f0d;
+    padding: 5px;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    width: 150px;
+    height: 200px;
+    border-radius: 0;
 }
 
 .ctr {
@@ -149,10 +160,10 @@ input {
 }
 
 .tile-area {
-    gap: 4%;
+    gap: 2%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    padding-bottom: 80px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    padding-bottom: 20px;
 }
 
 
@@ -176,7 +187,7 @@ input {
     min-height: 600px;
     background: rgb(196, 204, 204);
     background: url('background-design.jpg');
-    padding: 2% 11%;
+    padding: 2% 13%;
 }
 
 #hero a {
@@ -193,7 +204,7 @@ input {
 ---------- */
 
 #about {
-    padding: 2% 11%;
+    padding: 2% 13%;
     min-height: 300px;
 }
 
@@ -202,7 +213,7 @@ input {
 ---------- */
 
 footer {
-    padding: 2% 11%;
+    padding: 2% 13%;
     background: rgb(71, 71, 71);
     color: rgb(226, 225, 225)
 }

@@ -39,6 +39,7 @@
                         <button class ="btn-blue tile" id="slide1Yes">My company has employees</button>
                         <button class ="btn-blue tile" id="slide1No">It's just me</button>
                     </div>
+                    <a class="btn-reset" onclick="resetForm()">Reset Form</a>
                     <div class="icon-area">
                         <a>   </a>  <!-- left blank to maintain spacing-->
                         <div class="icons">
@@ -61,6 +62,7 @@
                         <input type="text" id="slide2EmployeesNumber" name="employeesNumber" placeholder="2"><br>
                         <p id='empError'>Please enter the number of employees</p>
                     </form>
+                    <a class="btn-reset" onclick="resetForm()">Reset Form</a>
                     <div class="icon-area">
                         <a class="btn-back" onclick="changeSlide(-1)">Back</a>
                         <div class="icons">
@@ -86,6 +88,7 @@
                         <button class ="btn-blue tile" id="slide3Property">I Run My Business From Property I Own</button>
                         <button class ="btn-blue tile" id="slide3Own">I Own a Property & Lease to Others</button>
                     </div>
+                    <a class="btn-reset" onclick="resetForm()">Reset Form</a>
                     <div class="icon-area">
                         <a id="btn-back" onclick="changeSlide(-1)">Back</a>
                         <div class="icons">
@@ -108,6 +111,7 @@
                         <input type="text" id="slide4Zipcode" name="zipcode" placeholder="10001"><br>
                         <p id='zipError'>Please enter a valid 5-digit US ZIP Code</p>
                     </form>
+                    <a class="btn-reset" onclick="resetForm()">Reset Form</a>
                     <div class="icon-area">
                         <a id="btn-back" onclick="changeSlide(-1)">Back</a>
                         <div id="icons">
@@ -116,6 +120,7 @@
                             <i class="fas fa-circle"></i>
                             <i class="fas fa-circle active"></i>
                         </div>
+
                         <a class="btn-next" id="submit">
                             <span class="ctr">Submit</span> 
                         </a>
