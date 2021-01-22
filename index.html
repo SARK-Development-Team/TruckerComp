@@ -11,14 +11,12 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <link href="style.css" rel="stylesheet">
-
     <script src="https://kit.fontawesome.com/793cc4a12c.js" crossorigin="anonymous"></script>
-
-    <!-- Note: There is another JS script tag at the end -->
+    <!-- Note: The JS scripts governing the functional elements on the page are at the bottom -->
 </head>
 <body>
     <!-- A navbar that is currently empty -->
-    <nav>
+    <nav class="indented">
         <a href="#"><img src="images/SARK-logo.jpg" class="logo"/></a>
 
         <!-- Nav elements can be added here -->
@@ -29,7 +27,7 @@
 
     <section>
         <!-- This contains the form and call to action -->
-        <section id="hero">
+        <section id="hero" class="indented">
             <div class="heading-area">
                 <h2>We Make Worker's Compensation Insurance Easy</h2>
                 <!-- <h3>Tell us about your company</h3> -->
@@ -136,7 +134,7 @@
         <p id="subline">SARK Insurance Services is the leading provider of Worker's Compensation Insurance in Northern California for over 25 years</p>
 
         <!-- This section will contain further information about SARK -->
-        <section id="about">
+        <section id="about" class="indented">
             <div class="rightImg">
                 <div>
                     <h2>Why choose SARK?</h2>
@@ -147,11 +145,25 @@
                 </div>
             </div>
         </section>
-        <section id="bottom">
-            <div>
-                <h2>Lorem</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A ad ipsum ea distinctio natus vitae voluptatum possimus fugit minima quae eligendi vel blanditiis labore sunt harum aliquid, eum quod illum.</p>
+        <section id="bottom" class="indented">
+            <div id="three-col">
+                <div class="col">
+                    <i class="material-icons" style="font-size: 80px;">thumb_up</i>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A ad ipsum ea distinctio natus vitae voluptatum possimus fugit minima quae eligendi vel blanditiis labore sunt harum aliquid, eum quod illum.</p>
+                </div>
+                <div class="col">
+                    <i class="material-icons" style="font-size: 80px;">assignment_turned_in</i>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A ad ipsum ea distinctio natus vitae voluptatum possimus fugit minima quae eligendi vel blanditiis labore sunt harum aliquid, eum quod illum.</p>
+                </div>
+                <div class="col">
+                    <i class="material-icons" style="font-size: 80px;">cached</i>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A ad ipsum ea distinctio natus vitae voluptatum possimus fugit minima quae eligendi vel blanditiis labore sunt harum aliquid, eum quod illum.</p>
+                </div>
             </div>
+        </section>
+        <section class="indented">
+            <h2>Maybe another section</h2>
+            <p>Not sure what I might put here yet</p>
         </section>
         <!-- Another section may follow -->
 
@@ -160,8 +172,8 @@
 <!-- xxxxxxxxxx -->
 
 <!-- Basic footer -->
-    <footer>
-        <div>&copy; SARK Insurance Services, INC.</div>
+    <footer class="indented">
+        <div>&copy;2021 SARK Insurance Services, INC.</div>
 
         <p><a href="https://www.policymela.com/">PolicyMela by SARK</a></p>
     </footer>

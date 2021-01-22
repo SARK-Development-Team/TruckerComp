@@ -39,14 +39,14 @@ h3 {
     font-weight: 300;
 }
 
+.indented {
+    padding: 2% 13%;
+}
 
 /* ----------
    Navbar
 ---------- */
 
-nav {
-    padding: 2% 13%;
-}
 
 .logo {
     height: 70px;
@@ -197,7 +197,6 @@ input {
     min-height: 600px;
     background: rgb(196, 204, 204);
     background: url('background-design.jpg');
-    padding: 2% 13%;
 }
 
 #hero a {
@@ -214,7 +213,6 @@ input {
 ---------- */
 
 #about {
-    padding: 3% 13%;
     min-height: 300px;
     opacity: 0;
     transition: opacity .6s ease;
@@ -225,7 +223,6 @@ input {
     grid-template-columns: 1fr 2fr;
     gap: 3%;
     background: linear-gradient(to right, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 0.8) 40%, rgba(255, 255, 255, 0) 70%);
-    /* display: flex; */
 }
 
 .rightOverflow {
@@ -234,7 +231,6 @@ input {
     margin-left: -200px;
     min-height: 400px;
     max-height: 500px; 
-
     z-index: -1;
 }
 
@@ -255,9 +251,24 @@ input {
     Bottom
 ---------- */
 
+.col {
+    border-left: 1px solid rgb(31, 42, 66);
+    border-top: 1px solid rgb(31, 42, 66);
+    color: rgb(31, 42, 66);
+    padding: 10px;
+    margin: 30px 0;
+}
+
 #bottom {
-    padding: 3% 13%;
     background: rgb(220, 228, 220);
+    opacity: 0;
+    transition: opacity .6s ease;
+}
+
+#three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5%;
 }
 
 
@@ -266,7 +277,6 @@ input {
 ---------- */
 
 footer {
-    padding: 2% 13%;
     background: rgb(71, 71, 71);
     color: rgb(226, 225, 225)
 }

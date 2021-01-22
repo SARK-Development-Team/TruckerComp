@@ -2,12 +2,15 @@
 
 const body=document.getElementsByTagName("body")[0];
 const about=document.getElementById("about");
+const bottom=document.getElementById("bottom");
 
 body.onscroll = function(){
-    console.log("scrollin")
-    if(document.documentElement.scrollTop>=600) {
-        // if (about.do
+    if (document.documentElement.scrollTop>=550) {
         about.style.opacity=1;
     }
+    if (document.documentElement.scrollTop>=900) {
+        bottom.style.opacity=1;
+    }
+
 };
 
