@@ -1,0 +1,60 @@
+button {
+    font-size: 16px;
+    padding: 10px;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid rgb(73, 73, 73);
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+h2 {
+    font-size: 52px;
+    color: rgb(73, 73, 73);
+    font-weight: 400;
+    margin: 5px 0;
+}
+
+input, select {
+    border-radius: 6px;
+    border: 1px solid rgb(73, 73, 73);
+    font-size: 20px;
+    padding: 5px 15px;
+}
+
+label {
+    display: block;
+    padding: 5px 0;
+    margin: 14px 0;
+}
+
+main {
+    font-size: 20px;
+}
+
+.logo {
+    height: 100px;
+}
+
+#btn-submit {
+    background: #1f486a;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    font-size: 1em;
+    padding: 14px;
+}
+
+#logobox {
+    text-align: center;
+}
+
+#navbar {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 3fr 1fr 1fr;
+}
