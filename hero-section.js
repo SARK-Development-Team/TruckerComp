@@ -86,10 +86,10 @@ employees.addEventListener('keyup', () => {
     const empError = document.getElementById('empError');
     if (input>0 && Number.isInteger(input)) {
         formData.employees = input;
-        empError.style.display='none';
+        empError.style.visibility='hidden';
         nextSlide(2);
     } else {
-        empError.style.display='block';
+        empError.style.visibility='visible';
         deactivateSlide(2)
     }
 });
@@ -131,13 +131,13 @@ zip.addEventListener('keyup', () => {
     const submit = document.getElementById('submit');
     if (input>0 && Number.isInteger(input)) {
         formData.zipCode = input;
-        zipError.style.display = 'none';
+        zipError.style.visibility = 'hidden';
         submit.style.background='#4ca846';
-        submit.onclick= () => sendData();
+        submit.href='main-form.html';
     } else {
         submit.style.background='';
-        submit.onclick = '';
-        zipError.style.display = 'block';
+        submit.href = '';
+        zipError.style.visibility = 'visible';
     }
 });
 
