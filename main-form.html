@@ -72,7 +72,10 @@
             </fieldset>
             <fieldset>
                 <label for="pay1099">Are there any drivers that drive trucks you own or lease but pay via 1099?</label>
-                <button>yes</button> <button>no</button>
+                <input id="toggle-pay1099-yes" name="pay1099" type="radio">
+                <label class="toggle left" for="toggle-pay1099-yes">Yes</label>
+                <input id="toggle-pay1099-no" name="pay1099" type="radio">
+                <label class="toggle right" for="toggle-pay1099-no">No</label>
             </fieldset>
             <fieldset>
                 <label for="numberOfMiles">How many miles at most do drivers go from their base location?</label>
@@ -93,15 +96,11 @@
             </fieldset>
             <fieldset>
                 <label for="transportFor">Do any owner operators or sub-haulers transport goods on your behalf?</label>
-                <button>yes</button> <button>no</button>
+                <input id="toggle-transportFor-yes" name="transportFor" type="radio">
+                <label class="toggle left" for="toggle-transportFor-yes">Yes</label>
+                <input id="toggle-transportFor-no" name="transportFor" type="radio">
+                <label class="toggle right" for="toggle-transportFor-no">No</label>
             </fieldset>
-            <!-- <fieldset>!!!!
-                <label for="transportFor">Do any owner operators or sub-haulers transport goods on your behalf?</label>
-                <input type="radio" id="yes" name="transportFor" value="yes">
-                <label for="yes">yes</label><br>
-                <input type="radio" id="no" name="transportFor" value="no">
-                <label for="no">No</label><br>
-            </fieldset> -->
             <fieldset>
                 <label for="reviewMVR">Do you review MVRs for all employees with a driving exposure?</label>
                 <select name="reviewMVR" id="reviewMVR" required>
@@ -114,23 +113,38 @@
             </fieldset>
             <fieldset>
                 <label for="tarping">Do you do manual tarping? </label>
-                <button>yes</button> <button>no</button>
+                <input id="toggle-tarping-yes" name="tarping" type="radio">
+                <label class="toggle left" for="toggle-tarping-yes">Yes</label>
+                <input id="toggle-tarping-no" name="tarping" type="radio">
+                <label class="toggle right" for="toggle-tarping-no">No</label>
             </fieldset>
             <fieldset>
                 <label for="hazmat">Do you transport any hazardous materials? </label>
-                <button>yes</button> <button>no</button>
+                <input id="toggle-hazmat-yes" name="hazmat" type="radio">
+                <label class="toggle left" for="toggle-hazmat-yes">Yes</label>
+                <input id="toggle-hazmat-no" name="hazmat" type="radio">
+                <label class="toggle right" for="toggle-hazmat-no">No</label>
             </fieldset>
             <fieldset>
                 <label for="loading">Do your drivers do any manual loading/unloading of materials?</label>
-                <button>yes</button> <button>no</button>
+                <input id="toggle-loading-yes" name="loading" type="radio">
+                <label class="toggle left" for="toggle-loading-yes">Yes</label>
+                <input id="toggle-loading-no" name="loading" type="radio">
+                <label class="toggle right" for="toggle-loading-no">No</label>
             </fieldset>
             <fieldset>
                 <label for="havePolicy">Do you currently have a Workers Compensation insurance policy in effect?</label>
-                <button>yes</button> <button>no</button>
+                <input id="toggle-havePolicy-yes" name="havePolicy" type="radio">
+                <label class="toggle left" for="toggle-havePolicy-yes">Yes</label>
+                <input id="toggle-havePolicy-no" name="havePolicy" type="radio">
+                <label class="toggle right" for="toggle-havePolicy-no">No</label>
             </fieldset>
             <fieldset>
                 <label for="multistate">Do you have multiple locations in more than one state?</label>
-                <button>yes</button> <button>no</button>
+                <input id="toggle-multistate-yes" name="multistate" type="radio">
+                <label class="toggle left" for="toggle-multistate-yes">Yes</label>
+                <input id="toggle-multistate-no" name="multistate" type="radio">
+                <label class="toggle right" for="toggle-multistate-no">No</label>
             </fieldset>
             <fieldset>
                 <label for="businessName">Business Name</label>

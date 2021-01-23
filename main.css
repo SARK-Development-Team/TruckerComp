@@ -24,6 +24,7 @@ input, select {
     border: 1px solid rgb(73, 73, 73);
     font-size: 20px;
     padding: 5px 15px;
+    margin: 0;
 }
 
 input[type="radio"] {
@@ -66,4 +67,37 @@ main {
     list-style: none;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 3fr 1fr 1fr;
+}
+
+
+
+
+input[type="radio"] {
+    display: none;
+}
+
+.toggle {
+  padding: 10px 20px;
+  background: white;
+  border: 1px solid gray;
+  margin: 0;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.left {
+    border-radius: 10px 0 0 10px;
+    margin-right: -3px;
+}
+
+.right {
+    border-radius: 0 10px 10px 0;
+    margin-left: -3px;
+}
+
+input[type="radio"]:checked + .toggle {
+    background-color: #19b5b1;
+    cursor: pointer;
+    border: 1px solid #19b5b1;
+    color: white;
 }
