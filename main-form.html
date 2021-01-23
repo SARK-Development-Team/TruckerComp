@@ -36,16 +36,16 @@
         <div id="logobox">
             <a href="#"><img src="images/SARK-logo.jpg" class="logo"/></a>
         </div>
-        <form >
+        <form action="" method="POST">
             <h2>Workers' Comp</h2>
             <fieldset>
-                <label for="">When do you want your policy to start?</label>
-                <input type="date">
+                <label for="startDate">When do you want your policy to start?</label>
+                <input name="startDate" id="startDate" type="date">
             </fieldset>
             <fieldset>
-                <label for="">When did you start your business?</label>
-                <select name="" id="">
-                    <option value="">please choose</option>
+                <label for="businessAge">When did you start your business?</label>
+                <select name="businessAge" id="businessAge" required>
+                    <option value="" disabled selected>please choose</option>
                     <option value="">Brand new venture or started earlier this year</option>
                     <option value="">Started last year</option>
                     <option value="">2 years ago</option>
@@ -60,9 +60,9 @@
                 </select>
             </fieldset>
             <fieldset>
-                <label for="">How is your business structured?</label>
-                <select name="" id="">
-                    <option value="">please choose</option>
+                <label for="structure">How is your business structured?</label>
+                <select name="structure" id="structure" required>
+                    <option value="" disabled selected>please choose</option>
                     <option value="">Corporation</option>
                     <option value="">Partnership</option>
                     <option value="">Individual/Sole Proprietor</option>
@@ -71,17 +71,20 @@
                 </select>
             </fieldset>
             <fieldset>
-                <label for="">Are there any drivers that drive trucks you own or lease but pay via 1099?</label>
-                <button>yes</button> <button>no</button>
+                <label for="pay1099">Are there any drivers that drive trucks you own or lease but pay via 1099?</label>
+                <input id="toggle-pay1099-yes" name="pay1099" type="radio">
+                <label class="toggle left" for="toggle-pay1099-yes">Yes</label>
+                <input id="toggle-pay1099-no" name="pay1099" type="radio">
+                <label class="toggle right" for="toggle-pay1099-no">No</label>
             </fieldset>
             <fieldset>
-                <label for="">How many miles at most do drivers go from their base location?</label>
-                <input type="number">
+                <label for="numberOfMiles">How many miles at most do drivers go from their base location?</label>
+                <input type="number" name="numberOfMiles" id="numberOfMiles">
             </fieldset>
             <fieldset>
-                <label for="">In the past 3 years how many Workers' Compensation claims were reported?</label>
-                <select name="" id="">
-                    <option value="">please choose</option>
+                <label for="claims">In the past 3 years how many Workers' Compensation claims were reported?</label>
+                <select name="claims" id="claims" required>
+                    <option value="" disabled selected>please choose</option>
                     <option value="">None</option>
                     <option value="">1</option>
                     <option value="">2</option>
@@ -92,13 +95,16 @@
                 </select>
             </fieldset>
             <fieldset>
-                <label for="">Do any owner operators or sub-haulers transport goods on your behalf?</label>
-                <button>yes</button> <button>no</button>
+                <label for="transportFor">Do any owner operators or sub-haulers transport goods on your behalf?</label>
+                <input id="toggle-transportFor-yes" name="transportFor" type="radio">
+                <label class="toggle left" for="toggle-transportFor-yes">Yes</label>
+                <input id="toggle-transportFor-no" name="transportFor" type="radio">
+                <label class="toggle right" for="toggle-transportFor-no">No</label>
             </fieldset>
             <fieldset>
-                <label for="">Do you review MVRs for all employees with a driving exposure?</label>
-                <select name="" id="">
-                    <option value="">please choose</option>
+                <label for="reviewMVR">Do you review MVRs for all employees with a driving exposure?</label>
+                <select name="reviewMVR" id="reviewMVR" required>
+                    <option value="" disabled selected>please choose</option>
                     <option value="">Yes at the time of hire and annually</option>
                     <option value="">Yes at the time of hire only</option>
                     <option value="">No</option>
@@ -106,72 +112,87 @@
                 </select>
             </fieldset>
             <fieldset>
-                <label for="">Do you do manual tarping? </label>
-                <button>yes</button> <button>no</button>
+                <label for="tarping">Do you do manual tarping? </label>
+                <input id="toggle-tarping-yes" name="tarping" type="radio">
+                <label class="toggle left" for="toggle-tarping-yes">Yes</label>
+                <input id="toggle-tarping-no" name="tarping" type="radio">
+                <label class="toggle right" for="toggle-tarping-no">No</label>
             </fieldset>
             <fieldset>
-                <label for="">Do you transport any hazardous materials? </label>
-                <button>yes</button> <button>no</button>
+                <label for="hazmat">Do you transport any hazardous materials? </label>
+                <input id="toggle-hazmat-yes" name="hazmat" type="radio">
+                <label class="toggle left" for="toggle-hazmat-yes">Yes</label>
+                <input id="toggle-hazmat-no" name="hazmat" type="radio">
+                <label class="toggle right" for="toggle-hazmat-no">No</label>
             </fieldset>
             <fieldset>
-                <label for="">Do your drivers do any manual loading/unloading of materials?</label>
-                <button>yes</button> <button>no</button>
+                <label for="loading">Do your drivers do any manual loading/unloading of materials?</label>
+                <input id="toggle-loading-yes" name="loading" type="radio">
+                <label class="toggle left" for="toggle-loading-yes">Yes</label>
+                <input id="toggle-loading-no" name="loading" type="radio">
+                <label class="toggle right" for="toggle-loading-no">No</label>
             </fieldset>
             <fieldset>
-                <label for="">Do you currently have a Workers Compensation insurance policy in effect?</label>
-                <button>yes</button> <button>no</button>
+                <label for="havePolicy">Do you currently have a Workers Compensation insurance policy in effect?</label>
+                <input id="toggle-havePolicy-yes" name="havePolicy" type="radio">
+                <label class="toggle left" for="toggle-havePolicy-yes">Yes</label>
+                <input id="toggle-havePolicy-no" name="havePolicy" type="radio">
+                <label class="toggle right" for="toggle-havePolicy-no">No</label>
             </fieldset>
             <fieldset>
-                <label for="">Do you have multiple locations in more than one state?</label>
-                <button>yes</button> <button>no</button>
+                <label for="multistate">Do you have multiple locations in more than one state?</label>
+                <input id="toggle-multistate-yes" name="multistate" type="radio">
+                <label class="toggle left" for="toggle-multistate-yes">Yes</label>
+                <input id="toggle-multistate-no" name="multistate" type="radio">
+                <label class="toggle right" for="toggle-multistate-no">No</label>
             </fieldset>
             <fieldset>
-                <label for="">Business Name</label>
-                <input type="text">
+                <label for="businessName">Business Name</label>
+                <input type="text" name="businessName" id="businessName" required>
             </fieldset>
             <fieldset>
-                <label for="">Doing business as (optional)</label>
-                <input type="text">
+                <label for="dba">Doing business as (optional)</label>
+                <input type="text" name="dba" id="dba">
             </fieldset>
             <fieldset>
-                <label for="">Business website (optional)</label>
-                <input type="text">
+                <label for="businessWebsite">Business website (optional)</label>
+                <input type="text" name="businessWebsite" id="businessWebsite">
             </fieldset>
             <fieldset>
-                <label for="">Business address line 1</label>
-                <input type="text">
+                <label for="address1">Business address line 1</label>
+                <input type="text" name="address1" id="address1" required>
             </fieldset>
             <fieldset>
-                <label for="">Business address line 2</label>
-                <input type="text">
+                <label for="address2">Business address line 2</label>
+                <input type="text" name="address2" id="address2">
             </fieldset>
             <fieldset>
-                <label for="">City</label>
-                <input type="text">
+                <label for="city">City</label>
+                <input type="text" name="city" id="city" required>
             </fieldset>
             <fieldset>
-                <label for="">State</label>
-                <input type="text">
+                <label for="state">State</label>
+                <input type="text" name="state" id="state" required>
             </fieldset>
             <fieldset>
-                <label for="">Zip Code</label>
-                <input type="text">
+                <label for="zip">Zip Code</label>
+                <input type="text" name="zip" id="zip" required>
             </fieldset>
             <fieldset>
-                <label for="">Contact first name</label>
-                <input type="text">
+                <label for="firstName">Contact first name</label>
+                <input type="text" name="firstName" id="firstName" required>
             </fieldset>
             <fieldset>
-                <label for="">Contact last name</label>
-                <input type="text">
+                <label for="lastName">Contact last name</label>
+                <input type="text" name="lastName" id="lastName" required>
             </fieldset>
             <fieldset>
-                <label for="">Contact email</label>
-                <input type="text">
+                <label for="email">Contact email</label>
+                <input type="email" name="email" id="email" required>
             </fieldset>
             <fieldset>
-                <label for="">Contact phone</label>
-                <input type="tel">
+                <label for="phone">Contact phone</label>
+                <input type="tel" name="phone" id="phone" required>
             </fieldset>
             <input id ="btn-submit" type="submit">
         </form>
@@ -185,6 +206,6 @@
 
         <p><a href="https://www.policymela.com/">PolicyMela by SARK</a></p>
     </footer>
-
+    <script src="form-submission.js"></script>
 </body>
 </html>
