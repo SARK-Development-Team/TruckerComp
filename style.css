@@ -42,7 +42,7 @@ h3 {
 }
 
 .indented {
-    padding: 2% 13%;
+    padding: 2% 16%;
 }
 
 /* ----------
@@ -133,7 +133,7 @@ input {
 .icon-area {
     margin: 30px 0 20px 0;
     display: grid;
-    grid-template-columns: 1fr 6fr 2fr 1fr;
+    grid-template-columns: 2fr 11fr 4fr 3fr;
     font-size: 18px;
     align-items: center;
 }
