@@ -26,14 +26,14 @@ function setCookie(name, value) {
 async function saveFormData (e) {
   e.preventDefault();
   const formData = new FormData(document.querySelector('form'));
-
+  
   const object = {};
   formData.forEach((value, key) => object[key] = value);
   var json = JSON.stringify(object);
 
-  // console.log(formData);
+  // console.log(json);
   
-  const cache = await caches.open('joid');
-  cache.add('/formsubmission.json');
-  // setCookie("clientData", formData);
+  // const cache = await caches.open('joid');
+  // cache.add('/formsubmission.json');
+  setCookie("clientData", formData);
 }
