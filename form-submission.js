@@ -25,12 +25,12 @@ function setCookie(name, value) {
 
 // This function creates and returns an object from the saved formData cookie
 function processCookie(cookieStr) {
-  const regex = /\%+/g
-  const formDataArray = cookieStr.split('%22').filter((e)=> !e.match(regex));
-  const formDataObj = {};
-  for (let i=0; i<formDataArray.length; i+=2) {
-    formDataObj[formDataArray[i]]=formDataArray[i+1]
-  }
+  // const regex = /\%+/g
+  // const formDataArray = cookieStr.split('%22').filter((e)=> !e.match(regex));
+  const formDataObj = JSON.parse(document.cookie.substring(11));
+  // for (let i=0; i<formDataArray.length; i+=2) {
+  //   formDataObj[formDataArray[i]]=formDataArray[i+1]
+  // }
   return formDataObj;
 }
 
