@@ -46,8 +46,8 @@
                 <label for="businessAge">When did you start your business?</label>
                 <select name="businessAge" id="businessAge" required>
                     <option value="" disabled selected>please choose</option>
-                    <option value="brand new">Brand new venture or started earlier this year</option>
-                    <option value="last year">Started last year</option>
+                    <option value="brandNew">Brand new venture or started earlier this year</option>
+                    <option value="lastYear">Started last year</option>
                     <option value="2">2 years ago</option>
                     <option value="3">3 years ago</option>
                     <option value="4">4 years ago</option>
@@ -65,8 +65,8 @@
                     <option value="" disabled selected>please choose</option>
                     <option value="corporation">Corporation</option>
                     <option value="partnership">Partnership</option>
-                    <option value="sole proprietor">Individual/Sole Proprietor</option>
-                    <option value="sub-chapter corp">Sub-Chapter Corp</option>
+                    <option value="soleProprietor">Individual/Sole Proprietor</option>
+                    <option value="sub-chapterCorp">Sub-Chapter Corp</option>
                     <option value="llc">Limited Liability Co. (LLC)</option>
                 </select>
             </fieldset>
@@ -94,7 +94,7 @@
                     <option value="6+">6 or more</option>
                 </select>
             </fieldset>
-            <!-- <fieldset>
+            <fieldset>
                 <label for="transportFor">Do any owner operators or sub-haulers transport goods on your behalf?</label>
                 <input id="toggle-transportFor-yes" name="transportFor" type="radio" value="true">
                 <label class="toggle left" for="toggle-transportFor-yes">Yes</label>
@@ -105,10 +105,10 @@
                 <label for="reviewMVR">Do you review MVRs for all employees with a driving exposure?</label>
                 <select name="reviewMVR" id="reviewMVR" required>
                     <option value="" disabled selected>please choose</option>
-                    <option value="yes and annually">Yes at the time of hire and annually</option>
+                    <option value="yesAnnually">Yes at the time of hire and annually</option>
                     <option value="yes">Yes at the time of hire only</option>
                     <option value="no">No</option>
-                    <option value="n/a">N/A - I am an independent contractor</option>
+                    <option value="NA">N/A - I am an independent contractor</option>
                 </select>
             </fieldset>
             <fieldset>
@@ -193,7 +193,7 @@
             <fieldset>
                 <label for="phone">Contact phone</label>
                 <input type="tel" name="phone" id="phone" required>
-            </fieldset> -->
+            </fieldset>
             <input type="submit" value="submit" id="btn-submit" onclick="saveFormData(event)">
             <!-- <button id ="btn-submit" type="submit" 
                 onclick="saveFormData(event)"
