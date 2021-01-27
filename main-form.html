@@ -36,7 +36,7 @@
         <div id="logobox">
             <a href="#"><img src="images/SARK-logo.jpg" class="logo"/></a>
         </div>
-        <form action="backend/Program.cs" method="POST">
+        <form action = "/formsubmission" method="POST">
             <h2>Workers' Comp</h2>
             <fieldset>
                 <label for="startDate">When do you want your policy to start?</label>
@@ -46,35 +46,35 @@
                 <label for="businessAge">When did you start your business?</label>
                 <select name="businessAge" id="businessAge" required>
                     <option value="" disabled selected>please choose</option>
-                    <option value="">Brand new venture or started earlier this year</option>
-                    <option value="">Started last year</option>
-                    <option value="">2 years ago</option>
-                    <option value="">3 years ago</option>
-                    <option value="">4 years ago</option>
-                    <option value="">5 years ago</option>
-                    <option value="">6 years ago</option>
-                    <option value="">7 years ago</option>
-                    <option value="">8 years ago</option>
-                    <option value="">9 years ago</option>
-                    <option value="">10+ years ago</option>
+                    <option value="brand new">Brand new venture or started earlier this year</option>
+                    <option value="last year">Started last year</option>
+                    <option value="2">2 years ago</option>
+                    <option value="3">3 years ago</option>
+                    <option value="4">4 years ago</option>
+                    <option value="5">5 years ago</option>
+                    <option value="6">6 years ago</option>
+                    <option value="7">7 years ago</option>
+                    <option value="8">8 years ago</option>
+                    <option value="9">9 years ago</option>
+                    <option value="10+">10+ years ago</option>
                 </select>
             </fieldset>
             <fieldset>
                 <label for="structure">How is your business structured?</label>
                 <select name="structure" id="structure" required>
                     <option value="" disabled selected>please choose</option>
-                    <option value="">Corporation</option>
-                    <option value="">Partnership</option>
-                    <option value="">Individual/Sole Proprietor</option>
-                    <option value="">Sub-Chapter Corp</option>
-                    <option value="">Limited Liability Co. (LLC)</option>
+                    <option value="corporation">Corporation</option>
+                    <option value="partnership">Partnership</option>
+                    <option value="sole proprietor">Individual/Sole Proprietor</option>
+                    <option value="sub-chapter corp">Sub-Chapter Corp</option>
+                    <option value="llc">Limited Liability Co. (LLC)</option>
                 </select>
             </fieldset>
             <fieldset>
                 <label for="pay1099">Are there any drivers that drive trucks you own or lease but pay via 1099?</label>
-                <input id="toggle-pay1099-yes" name="pay1099" type="radio">
+                <input id="toggle-pay1099-yes" name="pay1099" type="radio" value='true'>
                 <label class="toggle left" for="toggle-pay1099-yes">Yes</label>
-                <input id="toggle-pay1099-no" name="pay1099" type="radio">
+                <input id="toggle-pay1099-no" name="pay1099" type="radio" value='false'>
                 <label class="toggle right" for="toggle-pay1099-no">No</label>
             </fieldset>
             <fieldset>
@@ -85,65 +85,65 @@
                 <label for="claims">In the past 3 years how many Workers' Compensation claims were reported?</label>
                 <select name="claims" id="claims" required>
                     <option value="" disabled selected>please choose</option>
-                    <option value="">None</option>
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4</option>
-                    <option value="">5</option>
-                    <option value="">6 or more</option>
+                    <option value="0">None</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6+">6 or more</option>
                 </select>
             </fieldset>
-            <fieldset>
+            <!-- <fieldset>
                 <label for="transportFor">Do any owner operators or sub-haulers transport goods on your behalf?</label>
-                <input id="toggle-transportFor-yes" name="transportFor" type="radio">
+                <input id="toggle-transportFor-yes" name="transportFor" type="radio" value="true">
                 <label class="toggle left" for="toggle-transportFor-yes">Yes</label>
-                <input id="toggle-transportFor-no" name="transportFor" type="radio">
+                <input id="toggle-transportFor-no" name="transportFor" type="radio" value="false">
                 <label class="toggle right" for="toggle-transportFor-no">No</label>
             </fieldset>
             <fieldset>
                 <label for="reviewMVR">Do you review MVRs for all employees with a driving exposure?</label>
                 <select name="reviewMVR" id="reviewMVR" required>
                     <option value="" disabled selected>please choose</option>
-                    <option value="">Yes at the time of hire and annually</option>
-                    <option value="">Yes at the time of hire only</option>
-                    <option value="">No</option>
-                    <option value="">N/A - I am an independent contractor</option>
+                    <option value="yes and annually">Yes at the time of hire and annually</option>
+                    <option value="yes">Yes at the time of hire only</option>
+                    <option value="no">No</option>
+                    <option value="n/a">N/A - I am an independent contractor</option>
                 </select>
             </fieldset>
             <fieldset>
                 <label for="tarping">Do you do manual tarping? </label>
-                <input id="toggle-tarping-yes" name="tarping" type="radio">
+                <input id="toggle-tarping-yes" name="tarping" type="radio" value="true">
                 <label class="toggle left" for="toggle-tarping-yes">Yes</label>
-                <input id="toggle-tarping-no" name="tarping" type="radio">
+                <input id="toggle-tarping-no" name="tarping" type="radio" value="false">
                 <label class="toggle right" for="toggle-tarping-no">No</label>
             </fieldset>
             <fieldset>
                 <label for="hazmat">Do you transport any hazardous materials? </label>
-                <input id="toggle-hazmat-yes" name="hazmat" type="radio">
+                <input id="toggle-hazmat-yes" name="hazmat" type="radio" value="true">
                 <label class="toggle left" for="toggle-hazmat-yes">Yes</label>
-                <input id="toggle-hazmat-no" name="hazmat" type="radio">
+                <input id="toggle-hazmat-no" name="hazmat" type="radio" value="false">
                 <label class="toggle right" for="toggle-hazmat-no">No</label>
             </fieldset>
             <fieldset>
                 <label for="loading">Do your drivers do any manual loading/unloading of materials?</label>
-                <input id="toggle-loading-yes" name="loading" type="radio">
+                <input id="toggle-loading-yes" name="loading" type="radio" value="true">
                 <label class="toggle left" for="toggle-loading-yes">Yes</label>
-                <input id="toggle-loading-no" name="loading" type="radio">
+                <input id="toggle-loading-no" name="loading" type="radio" value="false">
                 <label class="toggle right" for="toggle-loading-no">No</label>
             </fieldset>
             <fieldset>
                 <label for="havePolicy">Do you currently have a Workers Compensation insurance policy in effect?</label>
-                <input id="toggle-havePolicy-yes" name="havePolicy" type="radio">
+                <input id="toggle-havePolicy-yes" name="havePolicy" type="radio" value="true">
                 <label class="toggle left" for="toggle-havePolicy-yes">Yes</label>
-                <input id="toggle-havePolicy-no" name="havePolicy" type="radio">
+                <input id="toggle-havePolicy-no" name="havePolicy" type="radio" value="false">
                 <label class="toggle right" for="toggle-havePolicy-no">No</label>
             </fieldset>
             <fieldset>
                 <label for="multistate">Do you have multiple locations in more than one state?</label>
-                <input id="toggle-multistate-yes" name="multistate" type="radio">
+                <input id="toggle-multistate-yes" name="multistate" type="radio" value="true">
                 <label class="toggle left" for="toggle-multistate-yes">Yes</label>
-                <input id="toggle-multistate-no" name="multistate" type="radio">
+                <input id="toggle-multistate-no" name="multistate" type="radio" value="false">
                 <label class="toggle right" for="toggle-multistate-no">No</label>
             </fieldset>
             <fieldset>
@@ -193,8 +193,11 @@
             <fieldset>
                 <label for="phone">Contact phone</label>
                 <input type="tel" name="phone" id="phone" required>
-            </fieldset>
-            <input id ="btn-submit" type="submit">
+            </fieldset> -->
+            <input type="submit" value="submit" id="btn-submit" onclick="saveFormData(event)">
+            <!-- <button id ="btn-submit" type="submit" 
+                onclick="saveFormData(event)"
+            >Submit</button> -->
         </form>
     </main>
 
