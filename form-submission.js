@@ -23,7 +23,7 @@ function setCookie(name, value) {
 //   console.log(pair[0] + ': ' + pair[1]);
 // }
 
-async function saveFormData (e) {
+function saveFormData (e) {
   e.preventDefault();
   const formData = new FormData(document.querySelector('form'));
   
@@ -32,6 +32,6 @@ async function saveFormData (e) {
   var json = JSON.stringify(object);
 
   // console.log(json);
-  alert('updated')
-  setCookie("clientData", formData);
+  alert('updated-2')
+  setCookie("clientData", json);
 }
