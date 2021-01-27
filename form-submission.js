@@ -20,7 +20,7 @@ const today = new Date();
 const expiry = new Date(today.getTime() + 24 * 3600000); // saves cookie for 24 hours
 
 function setCookie(name, value) {
-  document.cookie=name + "=" + encodeURIComponent(value) + "; path=/; expires=" + expiry.toGMTString();
+  document.cookie=name + "=" + value + "; path=/; expires=" + expiry.toGMTString();
 }
 
 // This function creates and returns an object from the saved formData cookie
