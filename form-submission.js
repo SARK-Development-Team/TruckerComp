@@ -26,11 +26,10 @@ function setCookie(name, value) {
 function saveFormData (e) {
   e.preventDefault();
   const formData = new FormData(document.querySelector('form'));
-  // const object = {};
-  // formData.forEach((value, key) => object[key] = value);
-  var json = JSON.stringify(formData);
+  const object = {};
+  formData.forEach((value, key) => object[key] = value);
+  var json = JSON.stringify(object);
 
-  // console.log(json);
   alert('updated-2')
-  setCookie("clientData", formData);
+  setCookie("clientData", json);
 }
