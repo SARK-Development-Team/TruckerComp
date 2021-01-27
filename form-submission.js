@@ -23,7 +23,7 @@ function saveFormData (e) {
   e.preventDefault();
   // const formData = new FormData(document.querySelector('form'));
   const submittedForm = e.target;
-  const formData = newFormData(submittedForm);
+  const formData = new FormData(submittedForm);
   const obj = {};
   for (var key of formData.keys()) {
 		obj[key] = formData.get(key);
