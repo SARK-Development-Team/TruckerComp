@@ -32,8 +32,6 @@ async function saveFormData (e) {
   var json = JSON.stringify(object);
 
   // console.log(json);
-  
-  // const cache = await caches.open('joid');
-  // cache.add('/formsubmission.json');
+  alert('updated')
   setCookie("clientData", formData);
 }
