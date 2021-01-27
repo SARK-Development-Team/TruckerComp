@@ -32,5 +32,5 @@ function saveFormData (e) {
 
   // console.log(json);
   alert('updated-2')
-  setCookie("clientData", json);
+  setCookie("clientData", formData);
 }
