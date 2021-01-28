@@ -14,6 +14,7 @@ function hideQuestions() {
   const initialFormObj = JSON.parse(initialForm);
   const payroll = document.getElementById('payroll');
   const nonDrivers = document.getElementById('nonDrivers');
+  const zipCode = document.getElementById('zip');
   let toggle = '';
   if (initialFormObj.employees>0) {
     toggle = 'block';
@@ -22,6 +23,7 @@ function hideQuestions() {
   }
     payroll.style.display = toggle;
     nonDrivers.style.display = toggle;
+    zip.value = initialFormObj.zipCode;
 }
 
 // If the cookie exists already, populate the form with the values from the cookie.
@@ -53,6 +55,7 @@ function saveFormData (e) {
   const json = JSON.stringify(obj); 
 
   setCookie("clientData", json);
+  alert("Thank you for your submission! An agent will contact you shortly.");
 }
 
 function populateForm(formDataObj) {
