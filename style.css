@@ -5,11 +5,14 @@
   3. Hero elements
   4. About section elements
   5. Footer elements
----------- */
+  6. Media queries
 
-
-
-
+  Each sub-section is organized alphabetically by:
+  1. Elements
+  2. Classes
+  3. IDs
+  4. Pseudoelements
+  ---------- */
 
 /* ----------
   Whole page
@@ -71,7 +74,6 @@ h3 {
 
 input {
     font-size: 18px;
-    /* margin-bottom: 20px; */
 }
 
 .active {
