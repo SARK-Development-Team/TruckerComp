@@ -14,10 +14,11 @@ function hideQuestions() {
   const initialFormObj = JSON.parse(initialForm);
   const payroll = document.getElementById('payroll');
   const nonDrivers = document.getElementById('nonDrivers');
+  let toggle = '';
   if (initialFormObj.employees>0) {
-    let toggle = 'block';
+    toggle = 'block';
   } else {
-    let toggle = 'none';
+    toggle = 'none';
   }
     payroll.style.display = toggle;
     nonDrivers.style.display = toggle;
