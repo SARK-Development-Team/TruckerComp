@@ -8,10 +8,13 @@ function defaultDate() {
 
 
 // Depending on input from the initial form, hide certain questions
-function hideQuestions(input) {
+function hideQuestions() {
+  const regex = /initialForm={(.*?)}/ //This finds only the initialForm string from document.cookie, which may have multiple others
+  const initialForm = document.cookie.match(regex)[0].substring(12); // This trims off the "initialForm=" portion
+  const initialFormObj = JSON.parse(initialForm);
   const payroll = document.getElementById('payroll');
   const nonDrivers = document.getElementById('nonDrivers');
-  if (input.employees>0) {
+  if (initialFormObj.employees>0) {
     let toggle = 'block';
   } else {
     let toggle = 'none';
@@ -22,7 +25,7 @@ function hideQuestions(input) {
 
 // If the cookie exists already, populate the form with the values from the cookie.
 function checkCookie() {
-  hideQuestions()  //<--------------
+  hideQuestions()  
   const regex = /clientData={(.*?)}/ //This finds only the clientData string from document.cookie, which may have multiple others
 
   if (document.cookie.match(regex)) {
@@ -32,20 +35,11 @@ function checkCookie() {
   }
 }
 
-// Establishes the current time, which is used in the setCookie function
-const today = new Date();
-const expiry = new Date(today.getTime() + 24 * 3600000); // saves cookie for 24 hours
-
 function setCookie(name, value) {
+  const today = new Date();
+  const expiry = new Date(today.getTime() + 24 * 3600000); // Establishes the current time + 24 hours
   document.cookie=name + "=" + value + "; path=/; expires=" + expiry.toGMTString();
 }
-
-// This function creates and returns an object from the saved formData cookie
-// function processCookie(clientData) {
-//   const formDataObj = JSON.parse(clientData);
-//   return formDataObj;
-// }
-
 
 // This function takes in the submitted form and saves it as a cookie
 function saveFormData (e) {
