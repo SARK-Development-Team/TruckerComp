@@ -146,15 +146,3 @@ zipCodeError = "Please enter a valid zip code."
 // Consider this API: https://smartystreets.com/docs/cloud/us-zipcode-api
 
 
-// Todo: determine action to take when Submit button is pressed.
-function sendData() {
-    // some code
-}
-
-// Form data object
-// Based on the user's input, this object will be updated and passed 
-// Each form element has a unique id, and clicking it changes the corresponding value in the object
-
-
-
-

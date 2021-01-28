@@ -2,17 +2,34 @@
 // This sets the date for the first question as today
 defaultDate();
 
+function defaultDate() {
+  document.getElementById("startDate").valueAsDate = new Date();
+}
+
+
+// Depending on input from the initial form, hide certain questions
+function hideQuestions(input) {
+  const payroll = document.getElementById('payroll');
+  const nonDrivers = document.getElementById('nonDrivers');
+  if (input.employees>0) {
+    let toggle = 'block';
+  } else {
+    let toggle = 'none';
+  }
+    payroll.style.display = toggle;
+    nonDrivers.style.display = toggle;
+}
 
 // If the cookie exists already, populate the form with the values from the cookie.
 function checkCookie() {
-  if (document.cookie.length) {
-    let formDataObj = processCookie(document.cookie)
+  hideQuestions()  //<--------------
+  const regex = /clientData={(.*?)}/ //This finds only the clientData string from document.cookie, which may have multiple others
+
+  if (document.cookie.match(regex)) {
+    let clientData= document.cookie.match(regex)[0].substring(11); // This trims off the "clientData=" portion 
+    let formDataObj = JSON.parse(clientData);
     populateForm(formDataObj);
   }
-}
-
-function defaultDate() {
-    document.getElementById("startDate").valueAsDate = new Date();
 }
 
 // Establishes the current time, which is used in the setCookie function
@@ -24,15 +41,10 @@ function setCookie(name, value) {
 }
 
 // This function creates and returns an object from the saved formData cookie
-function processCookie(cookieStr) {
-  // const regex = /\%+/g
-  // const formDataArray = cookieStr.split('%22').filter((e)=> !e.match(regex));
-  const formDataObj = JSON.parse(document.cookie.substring(11));
-  // for (let i=0; i<formDataArray.length; i+=2) {
-  //   formDataObj[formDataArray[i]]=formDataArray[i+1]
-  // }
-  return formDataObj;
-}
+// function processCookie(clientData) {
+//   const formDataObj = JSON.parse(clientData);
+//   return formDataObj;
+// }
 
 
 // This function takes in the submitted form and saves it as a cookie
