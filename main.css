@@ -76,6 +76,22 @@ input[type="radio"] {
     display: none;
 }
 
+.fa-usd {
+    /* float: left; */
+    position: absolute;
+    left:5px;
+    top:5px;
+}
+
+.currency {
+    width: 100px;
+    text-align: right;
+}
+
+.currency::placeholder {
+    text-align: right;
+}
+
 .toggle {
   padding: 10px 20px;
   background: white;

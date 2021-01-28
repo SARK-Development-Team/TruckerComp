@@ -4,10 +4,10 @@ let slideIndex = 0;
 const slides = document.getElementsByClassName("slide");
 initializeCarousel();
 
-// Sets all formData to initial values 
+// Sets all initialFormData to initial values 
 // Arranges all slides but the first start off the screen on the right
 function initializeCarousel() {
-    formData = {
+    initialFormData = {
         employees: 0,
         businessLocation: 0,
         zipCode: 0
@@ -78,14 +78,14 @@ neg.onclick = () => {
 };
 
 //------Slide 2
-// For slides 2-4, the formData is updated based on the user's input.
+// For slides 2-4, the initialFormData is updated based on the user's input.
 const employees = document.getElementById('slide2EmployeesNumber');
 
 employees.addEventListener('keyup', () => {
     const input = parseInt(employees.value);
     const empError = document.getElementById('empError');
     if (input>0 && Number.isInteger(input)) {
-        formData.employees = input;
+        initialFormData.employees = input;
         empError.style.visibility='hidden';
         nextSlide(2);
     } else {
@@ -102,23 +102,23 @@ const property = document.getElementById('slide3Property');
 const own = document.getElementById('slide3Own');
 
 home.onclick = () => {
-    formData.businessLocation = 0;
+    initialFormData.businessLocation = 0;
     nextSlide(3);
 }
 lease.onclick = () => {
-    formData.businessLocation = 1;
+    initialFormData.businessLocation = 1;
     nextSlide(3);
 }
 site.onclick = () => {
-    formData.businessLocation = 2;
+    initialFormData.businessLocation = 2;
     nextSlide(3);
 }
 property.onclick = () => {
-    formData.businessLocation = 3;
+    initialFormData.businessLocation = 3;
     nextSlide(3);
 }
 own.onclick = () => {
-    formData.businessLocation = 4;
+    initialFormData.businessLocation = 4;
     nextSlide(3);
 }
 
@@ -130,10 +130,11 @@ zip.addEventListener('keyup', () => {
     const zipError = document.getElementById('zipError');
     const submit = document.getElementById('submit');
     if (input>0 && Number.isInteger(input)) {
-        formData.zipCode = input;
+        initialFormData.zipCode = input;
         zipError.style.visibility = 'hidden';
         submit.style.background='#4ca846';
         submit.href='main-form.html';
+        setCookie("initialForm", JSON.stringify(initialFormData));
     } else {
         submit.style.background='';
         submit.href = '';
@@ -145,16 +146,9 @@ zip.addEventListener('keyup', () => {
 zipCodeError = "Please enter a valid zip code."
 // Consider this API: https://smartystreets.com/docs/cloud/us-zipcode-api
 
-
-// Todo: determine action to take when Submit button is pressed.
-function sendData() {
-    // some code
-}
-
-// Form data object
-// Based on the user's input, this object will be updated and passed 
-// Each form element has a unique id, and clicking it changes the corresponding value in the object
-
-
-
-
+// This is the same setCookie function as in form-submission.js
+function setCookie(name, value) {
+    const today = new Date();
+    const expiry = new Date(today.getTime() + 24 * 3600000); // saves cookie for 24 hours
+    document.cookie=name + "=" + value + "; path=/; expires=" + expiry.toGMTString();
+  }

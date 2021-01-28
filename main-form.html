@@ -70,6 +70,17 @@
                     <option value="llc">Limited Liability Co. (LLC)</option>
                 </select>
             </fieldset>
+            <fieldset id="payroll">
+                <label for="payroll">What is the total annual payroll for W-2 employees? (exclude business owners/officers)</label>
+                <span style="position: relative"><input name="payroll" type="number" class="currency" placeholder="0.00"><i class="fa fa-usd"></i></span>
+            </fieldset>
+            <fieldset id="nonDrivers">
+                <label for="nonDrivers">Are there any employees that do not drive and do not load/unload goods?</label>
+                <input id="toggle-nonDrivers-yes" name="nonDrivers" type="radio" value='true'>
+                <label class="toggle left" for="toggle-nonDrivers-yes">Yes</label>
+                <input id="toggle-nonDrivers-no" name="nonDrivers" type="radio" value='false'>
+                <label class="toggle right" for="toggle-nonDrivers-no">No</label>
+            </fieldset>
             <fieldset>
                 <label for="pay1099">Are there any drivers that drive trucks you own or lease but pay via 1099?</label>
                 <input id="toggle-pay1099-yes" name="pay1099" type="radio" value='true'>
@@ -195,9 +206,6 @@
                 <input type="tel" name="phone" id="phone" required>
             </fieldset>
             <input type="submit" value="submit" id="btn-submit" onclick="saveFormData(event)">
-            <!-- <button id ="btn-submit" type="submit" 
-                onclick="saveFormData(event)"
-            >Submit</button> -->
         </form>
     </main>
 
