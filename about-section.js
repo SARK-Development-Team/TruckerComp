@@ -1,14 +1,20 @@
 // This causes the about section to fade in when the user scrolls down
 
 const body=document.getElementsByTagName("body")[0];
-const about=document.getElementById("about");
+// const about=document.getElementById("about");
+
+const float1 = document.getElementById('floating-tile1')
+const float2 = document.getElementById('floating-tile2')
+const float3 = document.getElementById('floating-tile3')
 const info=document.getElementById("info");
 
 body.onscroll = function(){
     if (document.documentElement.scrollTop>=550) {
-        about.style.opacity=1;
+        float1.style.top = 0;
+        float2.style.top = 0;
+        float3.style.top = 0;
     }
-    if (document.documentElement.scrollTop>=1300) {
+    if (document.documentElement.scrollTop>=1000) {
         info.style.opacity=1;
     }
 
