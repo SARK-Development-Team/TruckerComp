@@ -235,11 +235,11 @@ input {
 .floating-tile {
     flex-basis: 100%;
     height: 400px;
-    /* max-height: 500px; */
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
 }
 
 .floating-tile-img {
-    margin: -3px 0;
+    margin: -4px 0;
     object-fit: cover;
     height: 100px;
     width: 100%;
@@ -248,36 +248,23 @@ input {
 
 .floating-tile-text {
     padding: 20px;
-    line-height: 1.5rem;
+}
+
+.floating-tile-text h4 {
+    font-weight: 400;
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.floating-tile-text p {
+    font-size: 17px;
+    line-height: 1.8rem;
 }
 
 .lt-blue {
     color: white;
     background: #3499cc;
 }
-
-/* .rightImg {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 3%;
-    background: linear-gradient(to right, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 0.8) 40%, rgba(255, 255, 255, 0) 70%);
-}
-
-.rightOverflow {
-    background: url(images/truck1.jpg);
-    background-repeat: no-repeat;
-    margin-left: -200px;
-    min-height: 400px;
-    max-height: 500px; 
-    z-index: -1;
-}
-
-.rightImg li {
-    text-indent: -1.5em; 
-    margin-left: 1.5em; 
-    margin-bottom: 10px;
-    text-align: justify;
-} */
 
 .silver {
     color: black;
@@ -300,7 +287,7 @@ input {
 }
 
 #about-headline h6 {
-    font-size: 18px;
+    font-size: 21px;
     font-weight: 400;
 }
 
@@ -328,6 +315,28 @@ input {
     min-height: 40px;
 } */
 
+.chevron {
+    opacity: .5;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.chevron:hover {
+    opacity: .8;
+}
+
+.fa-chevron-left {
+    position: absolute;
+    left: -26px;
+    top: 50%;
+}
+
+.fa-chevron-right {
+    position: absolute;
+    right: -26px;
+    top: 50%;
+}
+
 #blurb1 {
     display: block;
     opacity: 1;
@@ -348,10 +357,15 @@ input {
     transition: opacity .6s ease;
 }
 
+#info-carousel {
+    position: relative;
+}
+
 #info-container {
     padding: 40px 16%;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
 }
 
 #info-img {
