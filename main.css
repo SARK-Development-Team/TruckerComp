@@ -62,11 +62,6 @@ main {
     font-size: 20px;
 }
 
-.fa-usd {
-    position: absolute;
-    left:5px;
-    top:5px;
-}
 
 .currency {
     width: 100px;
@@ -77,6 +72,12 @@ main {
     text-align: right;
 }
 
+.fa-usd {
+    position: absolute;
+    left:5px;
+    top:5px;
+}
+
 .left {
     border-radius: 10px 0 0 10px;
     margin-right: -3px;
@@ -84,6 +85,12 @@ main {
 
 .logo {
     height: 100px;
+}
+
+.nav-element {
+    list-style: none;
+    text-decoration: none;
+    color: inherit;
 }
 
 .right {

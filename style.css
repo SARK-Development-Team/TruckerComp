@@ -45,7 +45,7 @@ h3 {
 }
 
 .indented {
-    padding: 2% 16%;
+    padding: 1% 16%;
 }
 
 /* ----------
@@ -227,11 +227,23 @@ input {
     About
 ---------- */
 
-#about {
-    min-height: 300px;
-    opacity: 0;
-    transition: opacity .6s ease;
-    margin-bottom: 40px;
+.dk-blue {
+    color: white;
+    background: #1F486A;
+}
+
+.floating-tile {
+
+}
+
+.floating-tile-text {
+    padding: 20px;
+    line-height: 1.5rem;
+}
+
+.lt-blue {
+    color: white;
+    background: #3499cc;
 }
 
 .rightImg {
@@ -255,6 +267,33 @@ input {
     margin-left: 1.5em; 
     margin-bottom: 10px;
     text-align: justify;
+}
+
+.silver {
+    color: black;
+    background: #edecec;
+}
+
+#about {
+    min-height: 300px;
+    opacity: 0;
+    transition: opacity .6s ease;
+    margin-bottom: 40px;
+}
+
+#about-headline {
+    text-align: center;
+}
+
+#floating-tile-area {
+    display: flex;
+    column-gap: 22px;
+}
+
+#info {
+    display: flex;
+    background: #1F486A;
+    color: white;
 }
 
 #subline {
