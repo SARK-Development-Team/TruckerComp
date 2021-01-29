@@ -233,7 +233,17 @@ input {
 }
 
 .floating-tile {
+    flex-basis: 100%;
+    height: 400px;
+    /* max-height: 500px; */
+}
 
+.floating-tile-img {
+    margin: -3px 0;
+    object-fit: cover;
+    height: 100px;
+    width: 100%;
+    padding: 0;
 }
 
 .floating-tile-text {
@@ -246,7 +256,7 @@ input {
     background: #3499cc;
 }
 
-.rightImg {
+/* .rightImg {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 3%;
@@ -267,7 +277,7 @@ input {
     margin-left: 1.5em; 
     margin-bottom: 10px;
     text-align: justify;
-}
+} */
 
 .silver {
     color: black;
@@ -283,6 +293,15 @@ input {
 
 #about-headline {
     text-align: center;
+}
+
+#about-headline h2 {
+    font-size: 38px;
+}
+
+#about-headline h6 {
+    font-size: 18px;
+    font-weight: 400;
 }
 
 #floating-tile-area {
@@ -304,37 +323,10 @@ input {
 }
 
 /* ----------
-    Bottom
----------- */
-
-.col {
-    border-left: 1px solid rgb(31, 42, 66);
-    border-top: 1px solid rgb(31, 42, 66);
-    color: rgb(31, 42, 66);
-    padding: 10px;
-    margin: 30px 0;
-    text-align: justify;
-}
-
-#bottom {
-    background: rgb(220, 228, 220);
-    opacity: 0;
-    transition: opacity .6s ease;
-}
-
-#three-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 5%;
-}
-
-
-/* ----------
     Footer
 ---------- */
 
 footer {
-    background: rgb(71, 71, 71);
     color: rgb(226, 225, 225)
 }
 
@@ -342,6 +334,19 @@ footer a {
     text-decoration: none;
     color: inherit;
 }
+
+footer a:hover {
+    color: #3499cc;   
+}
+
+#legal {
+    background: #2b2b2a;
+}
+
+#sitemap {
+    background: rgb(71, 71, 71);
+}
+
 
 @media only screen and (max-width: 1100px) {
     #hero {
