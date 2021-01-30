@@ -466,6 +466,12 @@ footer ul {
     background: rgb(71, 71, 71);
 }
 
+#social {
+    font-size: 24px;
+    padding: 5px;
+    text-align: right;
+}
+
 
 @media only screen and (max-width: 1100px) {
 
