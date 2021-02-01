@@ -300,20 +300,24 @@ input {
 
 #floating-tile1 {
     /* position: absolute; */
+    position: relative;
     top: 600px;
     transition: top 1s ease-in;
 }
 
 #floating-tile2 {
     /* position: absolute; */
-    top: 700px;
-    transition: top 1s ease-in;
+    position: relative;
+    
+    top: 1200px;
+    transition: top 1.5s ease-in;
 }
 
 #floating-tile3 {
     /* position: absolute; */
-    top: 800px;
-    transition: top 1s ease-in;
+    position: relative;
+    top: 1800px;
+    transition: top 2s ease-in;
 }
 
 #floating-tile-area {
@@ -450,6 +454,7 @@ footer li {
 
 footer ul {
     font-weight: 700;
+    padding-inline-start: 0;
 }
 
 #four-col{
