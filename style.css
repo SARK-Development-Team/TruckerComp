@@ -375,7 +375,6 @@ input {
 }
 
 #blurb1 {
-    /* display: block;  */
     position: absolute;
     overflow: hidden;
     opacity: 1;
@@ -383,7 +382,6 @@ input {
 }
 
 #blurb2 {
-    /* display: none; */
     position: absolute;
     overflow: hidden;
     opacity: 0;

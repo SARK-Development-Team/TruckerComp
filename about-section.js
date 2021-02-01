@@ -8,6 +8,13 @@ const float2 = document.getElementById('floating-tile2')
 const float3 = document.getElementById('floating-tile3')
 const info=document.getElementById("info");
 
+
+// I overtly set these values at the beginning in order to guarantee that toggleBlurb functions on the first click 
+const blurb1 = document.getElementById('blurb1');
+const blurb2 = document.getElementById('blurb2');
+blurb1.style.opacity=1;
+blurb2.style.opacity=0;
+
 body.onscroll = function(){
     if (document.documentElement.scrollTop>=550) {
         setTimeout(function () {
@@ -31,19 +38,17 @@ body.onscroll = function(){
 
 // This toggles the display of the two-item info blurb
 function toggleBlurb() {
-    const blurb1 = document.getElementById('blurb1');
-    const blurb2 = document.getElementById('blurb2');
-    if (blurb1.style.opacity==1) {
-        console.log('trigger1');
-        // blurb1.style.display='none';
-        blurb1.style.opacity=0;
-        // blurb2.style.display='block';
-        blurb2.style.opacity=1;
-    } else {
-        console.log('trigger2');
-        // blurb1.style.display='block';
-        blurb1.style.opacity=1;
-        // blurb2.style.display='none';
+
+    if (blurb1.style.opacity!=1) {
         blurb2.style.opacity=0;
+        setTimeout(() => {
+            blurb1.style.opacity=1;
+        }, 300);
+
+    } else {
+        blurb1.style.opacity=0;
+        setTimeout(() => {
+            blurb2.style.opacity=1;
+        }, 300);
     }
 }
