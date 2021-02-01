@@ -10,12 +10,18 @@ const info=document.getElementById("info");
 
 body.onscroll = function(){
     if (document.documentElement.scrollTop>=550) {
-        float1.style.top = 0;
-        float1.style.opacity =1;
-        float2.style.top = 0;
-        float2.style.opacity =1;
-        float3.style.top = 0;
-        float3.style.opacity =1;
+        setTimeout(function () {
+            float1.style.top = 0;
+            float1.style.opacity =1;
+        }, 200);
+        setTimeout(function () {
+            float2.style.top = 0;
+            float2.style.opacity =1;
+        }, 1400);
+        setTimeout(function () {
+            float3.style.top = 0;
+            float3.style.opacity =1;
+        }, 2600);
     }
     if (document.documentElement.scrollTop>=1000) {
         info.style.opacity=1;
