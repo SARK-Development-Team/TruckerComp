@@ -6,11 +6,12 @@
     <title>Trucker Comp by SARK</title>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
+    <!-- The two following lines allow the use of the AOS (Animation on Scroll) library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://kit.fontawesome.com/793cc4a12c.js" crossorigin="anonymous"></script>
     <!-- Note: The JS scripts governing the functional elements on the page are at the bottom -->
 </head>
@@ -178,13 +179,13 @@
 
         <section id="info">
             <div id="info-container">
-                <div class="circle" id="outer-circle">
+                <div data-aos="fade-right" class="circle" id="outer-circle">
                     <div class="circle" id="inner-circle">
                         <img class="circle" id="info-img" src="images/maid-wc.jpg"></img>
                     </div>
                 </div>
 
-                <div id="info-carousel">
+                <div data-aos="fade-left" id="info-carousel">
                     <i class="fas fa-chevron-left chevron" onclick="toggleBlurb()"></i>
                     <i class="fas fa-chevron-right chevron" onclick="toggleBlurb()"></i>
                     <div id="blurb1">
@@ -239,8 +240,8 @@
         </div>
         <p><a href="https://www.policymela.com/">PolicyMela by SARK</a></p>
         <div id="social">        
-            <a href=""><i class="fab fa-facebook-square"></i></a>
-            <a href=""><i class="fa fa-linkedin-square"></i></a>
+            <a href="https://www.facebook.com/SARKInsurance"><i class="fab fa-facebook-square"></i></a>
+            <a href="https://www.linkedin.com/company/sark-insurance-services-inc"><i class="fa fa-linkedin-square"></i></a>
         </div>
 
     </footer>
@@ -248,6 +249,9 @@
         <p>Most policies issued through biBERK.com will be underwritten by Wellfleet Insurance Company ("WIC"), Berkshire Hathaway Direct Insurance Company ("BHDIC"), National Liability and Fire Insurance Company ("NLF"), or Wellfleet New York Insurance Company ("WNYIC"), which are AM Best rated A++ insurers.</p>
         <div>&copy;2021 SARK Insurance Services, INC.</div>
     </footer>
+    <!-- The following line initiates Animation on Scroll functionality -->
+    <script>AOS.init();</script>
+
     <script src="hero-section.js"></script>
     <script src="about-section.js"></script>
 </body>
