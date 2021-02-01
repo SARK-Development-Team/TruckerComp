@@ -11,8 +11,11 @@ const info=document.getElementById("info");
 body.onscroll = function(){
     if (document.documentElement.scrollTop>=550) {
         float1.style.top = 0;
+        float1.style.opacity =1;
         float2.style.top = 0;
+        float2.style.opacity =1;
         float3.style.top = 0;
+        float3.style.opacity =1;
     }
     if (document.documentElement.scrollTop>=1000) {
         info.style.opacity=1;
@@ -24,17 +27,17 @@ body.onscroll = function(){
 function toggleBlurb() {
     const blurb1 = document.getElementById('blurb1');
     const blurb2 = document.getElementById('blurb2');
-    if (blurb1.style.display=='block') {
+    if (blurb1.style.opacity==1) {
         console.log('trigger1');
-        blurb1.style.display='none';
+        // blurb1.style.display='none';
         blurb1.style.opacity=0;
-        blurb2.style.display='block';
+        // blurb2.style.display='block';
         blurb2.style.opacity=1;
     } else {
         console.log('trigger2');
-        blurb1.style.display='block';
+        // blurb1.style.display='block';
         blurb1.style.opacity=1;
-        blurb2.style.display='none';
+        // blurb2.style.display='none';
         blurb2.style.opacity=0;
     }
 }

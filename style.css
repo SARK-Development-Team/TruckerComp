@@ -48,6 +48,16 @@ h3 {
     padding: 1% 16%;
 }
 
+.logo {
+    height: 70px;
+    vertical-align: top;
+}
+
+.title {
+    height: 64px;
+    vertical-align: top;
+}
+
 /* ----------
    Navbar
 ---------- */
@@ -64,9 +74,7 @@ h3 {
     text-decoration: none;
 }
 
-.logo {
-    height: 70px;
-}
+
 
 /* ----------
     Hero
@@ -299,25 +307,24 @@ input {
 }
 
 #floating-tile1 {
-    /* position: absolute; */
     position: relative;
+    opacity: 0;
     top: 600px;
-    transition: top 1s ease-in;
+    transition: all 1s cubic-bezier(0, 1, 1, 1);
 }
 
 #floating-tile2 {
-    /* position: absolute; */
     position: relative;
-    
-    top: 1200px;
-    transition: top 1.5s ease-in;
+    opacity: 0;
+    top: 600px;
+    transition: all 4s cubic-bezier(0, 1, 1, 1);
 }
 
 #floating-tile3 {
-    /* position: absolute; */
     position: relative;
-    top: 1800px;
-    transition: top 2s ease-in;
+    opacity: 0;
+    top: 600px;
+    transition: all 7s cubic-bezier(0, 1, 1, 1);
 }
 
 #floating-tile-area {
@@ -368,13 +375,17 @@ input {
 }
 
 #blurb1 {
-    display: block;
+    /* display: block;  */
+    position: absolute;
+    overflow: hidden;
     opacity: 1;
     transition: opacity 1s ease;
 }
 
 #blurb2 {
-    display: none;
+    /* display: none; */
+    position: absolute;
+    overflow: hidden;
     opacity: 0;
     transition: opacity 1s ease;
 }
@@ -400,6 +411,7 @@ input {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 30px;
+    min-height: 500px;
 }
 
 #info-img {
