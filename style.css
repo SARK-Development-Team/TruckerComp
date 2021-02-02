@@ -5,11 +5,14 @@
   3. Hero elements
   4. About section elements
   5. Footer elements
----------- */
+  6. Media queries
 
-
-
-
+  Each sub-section is organized alphabetically by:
+  1. Elements
+  2. Classes
+  3. IDs
+  4. Pseudoelements
+  ---------- */
 
 /* ----------
   Whole page
@@ -42,7 +45,17 @@ h3 {
 }
 
 .indented {
-    padding: 2% 16%;
+    padding: 1% 16%;
+}
+
+.logo {
+    height: 70px;
+    vertical-align: top;
+}
+
+.title {
+    height: 64px;
+    vertical-align: top;
 }
 
 /* ----------
@@ -61,9 +74,7 @@ h3 {
     text-decoration: none;
 }
 
-.logo {
-    height: 70px;
-}
+
 
 /* ----------
     Hero
@@ -71,7 +82,6 @@ h3 {
 
 input {
     font-size: 18px;
-    /* margin-bottom: 20px; */
 }
 
 .active {
@@ -225,34 +235,102 @@ input {
     About
 ---------- */
 
+.dk-blue {
+    color: white;
+    background: #1F486A;
+}
+
+.floating-tile {
+    flex-basis: 100%;
+    height: 400px;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
+}
+
+.floating-tile-img {
+    margin: -4px 0;
+    object-fit: cover;
+    height: 100px;
+    width: 100%;
+    padding: 0;
+}
+
+.floating-tile-img-med {
+    object-fit: contain;
+    height: 100%;
+    width: 40px;
+    padding: 0;
+    display: none;
+}
+
+.floating-tile-text {
+    padding: 20px;
+    display: flex;
+}
+
+.floating-tile-text h4 {
+    font-weight: 400;
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.floating-tile-text p {
+    font-size: 17px;
+    line-height: 1.8rem;
+}
+
+.lt-blue {
+    color: white;
+    background: #3499cc;
+}
+
+.silver {
+    color: black;
+    background: #edecec;
+}
+
 #about {
     min-height: 300px;
-    opacity: 0;
-    transition: opacity .6s ease;
     margin-bottom: 40px;
 }
 
-.rightImg {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 3%;
-    background: linear-gradient(to right, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 0.8) 40%, rgba(255, 255, 255, 0) 70%);
+#about-headline {
+    text-align: center;
 }
 
-.rightOverflow {
-    background: url(images/truck1.jpg);
-    background-repeat: no-repeat;
-    margin-left: -200px;
-    min-height: 400px;
-    max-height: 500px; 
-    z-index: -1;
+#about-headline h2 {
+    font-size: 38px;
 }
 
-.rightImg li {
-    text-indent: -1.5em; 
-    margin-left: 1.5em; 
-    margin-bottom: 10px;
-    text-align: justify;
+#about-headline h6 {
+    font-size: 21px;
+    font-weight: 400;
+}
+
+#floating-tile1 {
+    position: relative;
+    opacity: 0;
+    top: 600px;
+    transition: all 1s cubic-bezier(0, .9, 1, 1);
+}
+
+#floating-tile2 {
+    position: relative;
+    opacity: 0;
+    top: 600px;
+    transition: all 1s cubic-bezier(0, .9, 1, 1);
+}
+
+#floating-tile3 {
+    position: relative;
+    opacity: 0;
+    top: 600px;
+    transition: all 1s cubic-bezier(0, .9, 1, 1);
+}
+
+#floating-tile-area {
+    position: relative;
+    display: flex;
+    column-gap: 22px;
 }
 
 #subline {
@@ -263,29 +341,104 @@ input {
 }
 
 /* ----------
-    Bottom
+    About
 ---------- */
 
-.col {
-    border-left: 1px solid rgb(31, 42, 66);
-    border-top: 1px solid rgb(31, 42, 66);
-    color: rgb(31, 42, 66);
-    padding: 10px;
-    margin: 30px 0;
-    text-align: justify;
+.circle {
+    border-radius: 100%;
 }
 
-#bottom {
-    background: rgb(220, 228, 220);
+/* .spacer {
+    min-height: 40px;
+} */
+
+.chevron {
+    opacity: .5;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.chevron:hover {
+    opacity: .8;
+}
+
+.fa-chevron-left {
+    position: absolute;
+    left: -26px;
+    top: 150px
+}
+
+.fa-chevron-right {
+    position: absolute;
+    right: -26px;
+    top: 100px;
+}
+
+#blurb1 {
+    position: absolute;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+#blurb2 {
+    position: absolute;
+    overflow: hidden;
     opacity: 0;
-    transition: opacity .6s ease;
+    transition: opacity 1s ease;
 }
 
-#three-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 5%;
+#info {
+    opacity: 0;
+    display: flex;
+    background: #1F486A;
+    color: white;
+    transition: opacity .6s ease;
+    min-height: 500px;
+    justify-content: center;
 }
+
+#info-carousel {
+    position: relative;
+    width: 100%;
+}
+
+#info-carousel p {
+    line-height: 1.85;
+}
+
+#info-container {
+    padding: 40px 16%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
+}
+
+#info-img {
+    width: 17em;
+    height: 17em;
+}
+
+#inner-circle {
+    background: #255884;
+    width: 20.6em;
+    height: 20.6em;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#outer-circle {
+    background: #225078;
+    width: 24em;
+    height: 24em;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 
 /* ----------
@@ -293,7 +446,6 @@ input {
 ---------- */
 
 footer {
-    background: rgb(71, 71, 71);
     color: rgb(226, 225, 225)
 }
 
@@ -302,13 +454,76 @@ footer a {
     color: inherit;
 }
 
+footer a:hover {
+    color: #3499cc;   
+}
+
+footer li {
+    list-style: none;
+    padding: 10px 0;
+    font-weight: 400;
+}
+
+footer ul {
+    font-weight: 700;
+    padding-inline-start: 0;
+}
+
+#four-col{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 20px;
+}
+
+#legal {
+    background: #2b2b2a;
+}
+
+#sitemap {
+    background: rgb(71, 71, 71);
+}
+
+#social {
+    font-size: 24px;
+    padding: 5px;
+    text-align: right;
+}
+
+
 @media only screen and (max-width: 1100px) {
-    #hero {
-        padding: 2% 6%;
-    }
+
     .tile-area {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    #about-headline {
+        text-align: left;
+    }
+
+    #floating-tile-area {
+        display: block;
+    }
+
+    .floating-tile {
+        margin-bottom: 30px;
+        height: 100%;
+    }
+
+    .floating-tile-img {
+        display: none;
+    }
+    .floating-tile-img-med {
+        display: inline-block;
+    }
+    #hero {
+        padding: 2% 6%;
+    }
+    #info {
+        min-height: 1000px;
+        display: block;
+    }
+    #info-container {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -317,13 +532,21 @@ footer a {
         display: grid;
         grid-template-columns: 1fr;
     }
+
     .btn-blue {
         width: 100%;
         height: 28px;
         padding: 5px;
         margin-bottom: 10px;
     }
+
+    .floating-tile-img, .floating-tile-img-med {
+        display: none;
+    }
+
     .material-icons{
         display: none
     }
+
+
 }

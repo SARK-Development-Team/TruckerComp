@@ -6,18 +6,19 @@
     <title>Trucker Comp by SARK</title>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
+    <!-- The two following lines allow the use of the AOS (Animation on Scroll) library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://kit.fontawesome.com/793cc4a12c.js" crossorigin="anonymous"></script>
     <!-- Note: The JS scripts governing the functional elements on the page are at the bottom -->
 </head>
 <body>
     <!-- A navbar that is currently empty -->
     <nav class="indented">
-        <a href="#"><img src="images/SARK-logo.jpg" class="logo"/></a>
+        <a href="#" ><img src="images/logorecolored.png" class="logo"/><img src="images/sarkjusttitle.png" class="title"/></a>
 
         <!-- Nav elements can be added here -->
         <a href="main-form.html" class="btn-test">Skip to main form (for development)</a>
@@ -135,48 +136,122 @@
 
         <!-- This section will contain further information about SARK -->
         <section id="about" class="indented">
-            <div class="rightImg">
-                <div>
-                    <h2>Why choose SARK?</h2>
-                    <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A ad ipsum ea distinctio natus vitae voluptatum possimus fugit minima quae eligendi vel blanditiis labore sunt harum aliquid, eum quod illum.</li>
-                    <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A ad ipsum ea distinctio natus vitae voluptatum possimus fugit minima quae eligendi vel blanditiis labore sunt harum aliquid, eum quod illum.</li>
-                </div>
-                <div class="rightOverflow">
-                </div>
+            <div id="about-headline">
+                <h2>Get the Insurance Your Business Needs</h2>
+                <h6>We’re the experts when it comes to insuring small businesses.</h6>
             </div>
-        </section>
-        <section id="bottom" class="indented">
-            <div id="three-col">
-                <div class="col">
-                    <i class="material-icons" style="font-size: 80px;">thumb_up</i>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A ad ipsum ea distinctio natus vitae voluptatum possimus fugit minima quae eligendi vel blanditiis labore sunt harum aliquid, eum quod illum.</p>
+            <div id="floating-tile-area">
+
+                <div class="floating-tile lt-blue" id="floating-tile1">
+                    <img class="floating-tile-img" src="images/owner.jpg"></img>
+                    <div class="floating-tile-text ">
+                        <img class="floating-tile-img-med" src="images/owner-med.jpg"></img>
+                        <div>
+                            <h4>Save Time</h4>
+                            <p>Get a quote entirely online or speak with one of our insurance experts right away for help getting a quote, buying a policy, or answering any questions you may have.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col">
-                    <i class="material-icons" style="font-size: 80px;">assignment_turned_in</i>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A ad ipsum ea distinctio natus vitae voluptatum possimus fugit minima quae eligendi vel blanditiis labore sunt harum aliquid, eum quod illum.</p>
+
+                <div class="floating-tile dk-blue" id="floating-tile2">
+                    <img class="floating-tile-img" src="images/2owners.jpg"></img>
+                    <div class="floating-tile-text ">
+                        <img class="floating-tile-img-med" src="images/2owners-med.jpg"></img>
+                        <div>
+                            <h4>Save Money</h4>
+                            <p>We insure your small business directly, without a middleman or insurance broker, so we pass that savings along to you - up to 20% less than policies with other insurance companies.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col">
-                    <i class="material-icons" style="font-size: 80px;">cached</i>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A ad ipsum ea distinctio natus vitae voluptatum possimus fugit minima quae eligendi vel blanditiis labore sunt harum aliquid, eum quod illum.</p>
+
+                <div class="floating-tile silver" id="floating-tile3">
+                    <img class="floating-tile-img" src="images/warren.jpg"></img>
+                    <div class="floating-tile-text ">
+                        <img class="floating-tile-img-med" src="images/warren-med.jpg"></img>   
+                        <div>
+                            <h4>Experienced</h4>
+                            <p>We're part of Warren Buffett's Berkshire Hathaway Insurance Group with more than 40 years of insurance experience and over 100,000 satisfied customers.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="indented">
-            <h2>Maybe another section</h2>
-            <p>Not sure what I might put here yet</p>
-        </section>
+        <section id="info">
+            <div id="info-container">
+                <div data-aos="fade-right" data-aos-duration="1200" class="circle" id="outer-circle">
+                    <div class="circle" id="inner-circle">
+                        <img class="circle" id="info-img" src="images/maid-wc.jpg"></img>
+                    </div>
+                </div>
+
+                <div data-aos="fade-left" data-aos-duration="1200" id="info-carousel">
+                    <i class="fas fa-chevron-left chevron" onclick="toggleBlurb()"></i>
+                    <i class="fas fa-chevron-right chevron" onclick="toggleBlurb()"></i>
+                    <div id="blurb1">
+                        <h2>Save up to 20% on small business insurance</h2>
+                        <p>We offer top-rated insurance products at prices up to 20% less than the competition. We also offer fast-and-easy claims and unrivaled customer service. You can call and speak with a small business insurance expert, or you can do everything—including purchasing a plan and submitting claims—entirely online. Our processes are all designed with efficiency in mind so you can spend less time dealing with insurance and more time focused on your business.</p>
+                    </div>
+                    <div id="blurb2">
+                        <h2>Help Paying Work-Related Injury Bills</h2>
+                        <p>Workers’ compensation insurance helps pay bills associated with a work-related injury, including medical care and lost wages. It’s useful in many industries, including apartment and property management, auto services and dealers, cleaning, janitorial, condominiums, hotels, construction, contracting, health care, lawn care, landscaping, professional services, restaurants, bars, retail stores, transportation, and more.</p>    
+                    </div>
+               </div>
+            </div>
+        </section> 
 
     </section>
 
 <!-- xxxxxxxxxx -->
 
 <!-- Basic footer -->
-    <footer class="indented">
-        <div>&copy;2021 SARK Insurance Services, INC.</div>
-
+    <footer id="sitemap" class="indented">
+        <a href="#"><img src=""></a>
+        <div id="four-col">
+            <ul><a href="">INSURANCE COVERAGE</a>
+                <li><a href="">Workers’ Compensation</a></li>
+                <li><a href="">Professional Liability (E&O)</a></li>
+                <li><a href="">General Liability</a></li>
+                <li><a href="">Property & Liability (BOP)</a></li>
+                <li><a href="">Commercial Auto</a></li>
+                <li><a href="">Umbrella</a></li>
+            </ul>
+            <ul><a href="">POLICYHOLDERS</a>
+                <li><a href="">Get a Certificate</a></li>
+                <li><a href="">Make a Claim</a></li>
+                <li><a href="">Make a Payment</a></li>
+                <li></li>
+                <li><a href="">SMALL BUSINESS</a></li>
+            </ul>
+            <ul><a href="">ABOUT</a>
+                <li><a href="">Careers</a></li>
+                <li></li>
+                <li><a href="">RESOURCES</a></li>
+                <li><a href="">FAQs</a></li>
+                <li><a href="">Balance Sheets</a></li>
+                <li><a href="">Loss Control</a></li>
+            </ul>
+            <ul><a href="">CONTACT</a>
+                <li><a href="">{phone number}</a></li>
+                <li><a href="">Get a Quote</a></li>
+                <li></li>
+                <li><a href="">Reviews</a></li>
+            </ul>
+        </div>
         <p><a href="https://www.policymela.com/">PolicyMela by SARK</a></p>
+        <div id="social">        
+            <a href="https://www.facebook.com/SARKInsurance"><i class="fab fa-facebook-square"></i></a>
+            <a href="https://www.linkedin.com/company/sark-insurance-services-inc"><i class="fa fa-linkedin-square"></i></a>
+        </div>
+
     </footer>
+    <footer id="legal" class="indented">
+        <p>Most policies issued through biBERK.com will be underwritten by Wellfleet Insurance Company ("WIC"), Berkshire Hathaway Direct Insurance Company ("BHDIC"), National Liability and Fire Insurance Company ("NLF"), or Wellfleet New York Insurance Company ("WNYIC"), which are AM Best rated A++ insurers.</p>
+        <div>&copy;2021 SARK Insurance Services, INC.</div>
+    </footer>
+    <!-- The following line initiates Animation on Scroll functionality -->
+    <script>AOS.init();</script>
+
     <script src="hero-section.js"></script>
     <script src="about-section.js"></script>
 </body>

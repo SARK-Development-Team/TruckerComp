@@ -1,3 +1,12 @@
+/* ----------
+  This style sheet arranges styles alphabetically by 
+  1. Elements
+  2. Classes
+  3. IDs
+  4. Pseudoelements
+---------- */
+
+
 button {
     font-size: 16px;
     padding: 10px;
@@ -28,11 +37,19 @@ input, select {
 }
 
 input[type="radio"] {
+    display: none;
     font-size: 16px;
     padding: 10px;
     background: white;
     border-radius: 6px;
     border: 1px solid rgb(73, 73, 73);
+}
+
+input[type="radio"]:checked + .toggle {
+    background-color: #19b5b1;
+    cursor: pointer;
+    border: 1px solid #19b5b1;
+    color: white;
 }
 
 label {
@@ -45,8 +62,49 @@ main {
     font-size: 20px;
 }
 
+
+.currency {
+    width: 100px;
+    text-align: right;
+}
+
+.currency::placeholder {
+    text-align: right;
+}
+
+.fa-usd {
+    position: absolute;
+    left:5px;
+    top:5px;
+}
+
+.left {
+    border-radius: 10px 0 0 10px;
+    margin-right: -3px;
+}
+
 .logo {
     height: 100px;
+}
+
+.nav-element {
+    list-style: none;
+    text-decoration: none;
+    color: inherit;
+}
+
+.right {
+    border-radius: 0 10px 10px 0;
+    margin-left: -3px;
+}
+
+.toggle {
+    padding: 10px 20px;
+    background: white;
+    border: 1px solid gray;
+    margin: 0;
+    display: inline-block;
+    font-size: 16px;
 }
 
 #btn-submit {
@@ -72,48 +130,3 @@ main {
 
 
 
-input[type="radio"] {
-    display: none;
-}
-
-.fa-usd {
-    /* float: left; */
-    position: absolute;
-    left:5px;
-    top:5px;
-}
-
-.currency {
-    width: 100px;
-    text-align: right;
-}
-
-.currency::placeholder {
-    text-align: right;
-}
-
-.toggle {
-  padding: 10px 20px;
-  background: white;
-  border: 1px solid gray;
-  margin: 0;
-  display: inline-block;
-  font-size: 16px;
-}
-
-.left {
-    border-radius: 10px 0 0 10px;
-    margin-right: -3px;
-}
-
-.right {
-    border-radius: 0 10px 10px 0;
-    margin-left: -3px;
-}
-
-input[type="radio"]:checked + .toggle {
-    background-color: #19b5b1;
-    cursor: pointer;
-    border: 1px solid #19b5b1;
-    color: white;
-}
