@@ -23,7 +23,8 @@ body {
     /* font-family: 'Nunito'; */
     /* font-family: Arial; */
     /* font-family: 'Open Sans'; */
-    font-family: 'Sarabun';
+    /* font-family: 'Sarabun'; */
+    font-family: 'Raleway';
     padding: 0;
     margin: 0;
 }
@@ -36,6 +37,7 @@ h2 {
     font-size: 2.4rem;
     font-weight: 700;
     padding: 10px 0;
+    margin-bottom: 0; 
 }
 
 h3 {
@@ -80,25 +82,41 @@ h3 {
     Hero
 ---------- */
 
+form {
+    text-align: center;
+}
+
 input {
-    font-size: 18px;
+    font-size: 24px;
+    width: 100px;
 }
 
 .active {
     color: #666!important;
 }
 
-.btn-blue {
+/* .btn-blue {
     background: #1f486a;
     color: white;
     text-align: center;
     font-size: 18px;
-    width: 150px;
+    width: 250px;
     height: 200px;
     border-radius: 0;
+} */
+
+.btn-orange {
+    background: rgb(231, 231, 231);
+    color: black;
+    text-align: center;
+    font-size: 22px;
+    width: 250px;
+    min-height: 150px;
+    /* border: 4px solid black; */
+    border: none;
 }
 
-.btn-next {
+/* .btn-next {
     cursor: unset;
     background: #666;
     padding: 5px;
@@ -108,21 +126,35 @@ input {
     position: relative;
     height: 26px;
     transition: background-color 0.6s ease;
+} */
+
+.btn-submit {
+    display: flex;
+    cursor: unset;
+    background: #666;
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid white;
+    color: white;
+    transition: background-color 0.6s ease;
+    font-size: 28px;
+    margin: 40px auto;
 }
 
-.btn-next span {
+.slide span {
     position: absolute;
 }
 
 .btn-reset {
-    background: #c45f0d;
+    background: #426b13;
     padding: 5px;
     color: white;
-    text-align: center;
+    text-align: right;
     font-size: 18px;
     width: 150px;
     height: 200px;
     border-radius: 0;
+    right: 0;
 }
 
 .ctr {
@@ -138,13 +170,15 @@ input {
 
 .heading-area {
     margin: 1% 0;
+    text-align: center;
 }
 
 .icon-area {
     margin: 30px 0 20px 0;
-    display: grid;
+    display: flex;
     grid-template-columns: 2fr 11fr 4fr 3fr;
-    font-size: 18px;
+    justify-content: center;
+    font-size: 26px;
     align-items: center;
 }
 
@@ -156,7 +190,30 @@ input {
 .material-icons {
     display: inline-block;
     font-size: 56px;
-    padding-bottom: 0;
+    padding: 0;
+}
+
+.back-icon {
+    position: absolute;
+    font-size: 80px;
+    color: white;
+    left: 12px;
+    top: 45%;
+    transition: all .5s ease;
+}
+
+.next-icon {
+    position: absolute;
+    font-size: 80px;
+    color: white;
+    right: 12px;
+    top: 45%;
+    opacity: 0;
+    transition: all .5s ease;
+}
+
+.next-icon:hover, .back-icon:hover {
+    transform: scale(1.2);
 }
 
 .rt-align {
@@ -164,20 +221,30 @@ input {
     position: relative;
     right: 4px;
 }
-
+/* 
 .selected {
     background: #3499cc;
-}
+    color: white;
+} */
 
 .slide {
-    min-width: 78vw;
+    min-width: 68vw;
     transition: transform 0.5s;
 }
 
+.slide h3 {
+    text-align: center;
+}
+
+.slide p {
+    margin: 0;
+}
+
 .tile {
-    border: none;
+    /* border: none; */
     transition: all ease 250ms;
     padding: 22px 25px;
+    border-radius: 10%;
 }
 
 .tile:hover {
@@ -189,15 +256,26 @@ input {
     border: none;
 }
 
-.tile-area {
-    gap: 26px;
+.tiles-two {
+    gap: 10%;
     display: flex;
-    grid-template-columns: 3fr 3fr 3fr 3fr 3fr 1fr;
+    justify-content: center;
     padding-bottom: 20px;
+    position: relative;
 }
 
-.tile-area p {
+.tiles-two p {
     margin-top: 0;
+}
+
+.tiles-five {
+    gap: 3%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+    position: relative;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 #carousel {
@@ -218,14 +296,22 @@ input {
 
 #hero {
     min-height: 600px;
-    background: rgb(196, 204, 204);
-    background: url('background-design.jpg');
+    background: url('roadbackground.jpg');
+    background-size: cover;
+    /* opacity: 0.8; */
 }
 
 #hero a {
     text-decoration: none;
     cursor: pointer;
 }
+
+/* #slide1 {
+    background: url(images/employees.png);
+    background-size: 60%;
+    background-position: right bottom;
+    background-repeat: no-repeat;
+} */
 
 ::placeholder { 
     font-style: italic;
@@ -348,10 +434,6 @@ input {
     border-radius: 100%;
 }
 
-/* .spacer {
-    min-height: 40px;
-} */
-
 .chevron {
     opacity: .5;
     font-size: 2rem;
@@ -362,13 +444,13 @@ input {
     opacity: .8;
 }
 
-.fa-chevron-left {
+.left-arrow {
     position: absolute;
     left: -26px;
     top: 150px
 }
 
-.fa-chevron-right {
+.right-arrow {
     position: absolute;
     right: -26px;
     top: 100px;

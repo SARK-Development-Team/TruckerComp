@@ -24,9 +24,9 @@ function changeSlide(n) {
         let value = slides[i].style.transform;
         let numValue = parseInt(value.replace("translateX(", "").replace("vw",""));
         if (n<0) {
-            numValue+=178;
+            numValue+=168;
         } else if (n>0) {
-            numValue-=178;
+            numValue-=168;
         }
         let newValue = "translateX(" + numValue.toString() +"vw)";
         slides[i].style.transform= newValue;  
@@ -43,13 +43,17 @@ function resetForm() {
 
 function nextSlide(slideIndex) {
     const next = document.getElementById('next' + slideIndex);
-    next.style.background = "#3499cc";
+    next.style.opacity=1;
+    next.style.cursor="pointer"
+    // next.style.background = "#3499cc";
     next.onclick = () => changeSlide(1);
 }
 
 function deactivateSlide(slideIndex) {
     const next = document.getElementById('next' + slideIndex);
-    next.style.background = "#666";
+    next.style.opacity=0;
+    // next.style.background = "#666";
+    next.style.cursor=""
     next.onclick = '';
 }
 
