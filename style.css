@@ -365,13 +365,13 @@ input {
 .fa-chevron-left {
     position: absolute;
     left: -26px;
-    top: 50%;
+    top: 150px
 }
 
 .fa-chevron-right {
     position: absolute;
     right: -26px;
-    top: 50%;
+    top: 100px;
 }
 
 #blurb1 {
@@ -394,10 +394,13 @@ input {
     background: #1F486A;
     color: white;
     transition: opacity .6s ease;
+    min-height: 500px;
+    justify-content: center;
 }
 
 #info-carousel {
     position: relative;
+    width: 100%;
 }
 
 #info-carousel p {
@@ -409,7 +412,6 @@ input {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 30px;
-    min-height: 500px;
 }
 
 #info-img {
@@ -431,7 +433,7 @@ input {
     background: #225078;
     width: 24em;
     height: 24em;
-    margin: auto;
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -516,7 +518,10 @@ footer ul {
     #hero {
         padding: 2% 6%;
     }
-
+    #info {
+        min-height: 1000px;
+        display: block;
+    }
     #info-container {
         grid-template-columns: 1fr;
     }
