@@ -592,6 +592,15 @@ footer ul {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
+
+    .two-tile, .five-tile {
+        width: 160px;
+        height: 220px;
+        padding: 0 5px;
+        margin-bottom: 10px;
+        font-size: 2vw;
+    }
+
     #about-headline {
         text-align: left;
     }
