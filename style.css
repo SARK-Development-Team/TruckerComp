@@ -262,7 +262,7 @@ input {
 }
 
 .tiles-two {
-    gap: 10%;
+    /* gap: 10%; */
     display: flex;
     justify-content: space-evenly;
     padding: 40px 5px;
@@ -300,6 +300,7 @@ input {
 }
 
 #container {
+    width: 68vw;
     /* background-color: rgb(34, 34, 34); */
     /* background: white; */
     background: rgb(221, 221, 221);
@@ -611,6 +612,10 @@ footer ul {
     .floating-tile-img-med {
         display: inline-block;
     }
+    #container {
+        width: 88%
+    }
+
     #hero {
         padding: 2% 6%;
     }
