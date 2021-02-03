@@ -245,7 +245,7 @@ input {
 
 .tile {
     transition: all ease 250ms;
-    padding: 22px 25px;
+    padding: 1.2vw;
     border-radius: 6%;
 }
 
