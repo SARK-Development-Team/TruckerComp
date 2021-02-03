@@ -34,14 +34,14 @@ button {
 }
 
 h2 {
-    font-size: 2.4rem;
+    font-size: 3.8vw;
     font-weight: 700;
     padding: 10px 0;
     margin-bottom: 0; 
 }
 
 h3 {
-    font-size: 26px;
+    font-size: 2vw;
     padding: 5px 0;
     font-weight: 300;
 }
@@ -87,33 +87,31 @@ form {
 }
 
 input {
-    font-size: 24px;
-    width: 100px;
+    font-size: 3vw;
+    margin: 5vw 0;
+    width: 12vw;
 }
 
 .active {
     color: rgb(27, 27, 27)!important;
 }
 
-.btn-blue {
+.two-tile {
     background: #1f486a;
     color: white;
     text-align: center;
-    font-size: 18px;
-    width: 150px;
-    height: 200px;
-    border-radius: 0;
+    font-size: 30px;
+    width: 260px;
+    height: 340px;
 }
 
-.btn-orange {
-    background: rgb(231, 231, 231);
-    color: black;
+.five-tile {
+    background: #1f486a;
+    color: white;
     text-align: center;
-    font-size: 22px;
-    width: 250px;
-    min-height: 150px;
-    /* border: 4px solid black; */
-    border: none;
+    font-size: 24px;
+    width: 160px;
+    height: 340px;
 }
 
 /* .btn-next {
@@ -138,29 +136,22 @@ input {
     border: 1px solid white;
     color: white;
     transition: background-color 0.6s ease;
-    font-size: 28px;
-    margin: 40px auto;
-}
-
-.slide h3 {
-    padding: 30px 0;
-}
-
-.slide span {
-    position: absolute;
+    font-size: 2.6vw;
+    margin: 0 auto 10vw auto;
 }
 
 .btn-reset {
     background: #426b13;
-    padding: 5px;
+    padding: 25px;
     color: white;
     text-align: right;
-    font-size: 18px;
+    font-size: 1.6vw;
     width: 150px;
     height: 200px;
     border-radius: 0;
     right: 0;
     cursor: pointer;
+    z-index: 3;
 }
 
 .ctr {
@@ -180,10 +171,10 @@ input {
 }
 
 .icon-area {
-    margin: 30px 0 50px 0;
+    margin: 30px 0 70px 0;
     display: flex;
     justify-content: center;
-    font-size: 26px;
+    font-size: 2.4vw;
     align-items: center;
 }
 
@@ -200,19 +191,20 @@ input {
 
 .back-icon {
     position: absolute;
-    font-size: 80px;
-    color: rgb(248, 149, 149);
+    font-size: 8vw;
+    color: rgb(219, 166, 166);
     left: 12px;
-    top: 70%;
+    top: 45%;
     transition: all .5s ease;
+    z-index: 3;
 }
 
 .next-icon {
     position: absolute;
-    font-size: 80px;
-    color: rgb(248, 149, 149);
+    font-size: 8vw;
+    color: rgb(219, 166, 166);
     right: 12px;
-    top: 70%;
+    top: 45%;
     opacity: 0;
     transition: all .5s ease;
     z-index: 3;
@@ -240,16 +232,21 @@ input {
 
 .slide h3 {
     text-align: center;
+    padding: 30px 0;
 }
 
-.slide p {
-    margin: 0;
+.slide span {
+    position: absolute;
 }
+/* .slide p {
+    font-size: 3vw;
+    margin: 0;
+} */
 
 .tile {
     transition: all ease 250ms;
     padding: 22px 25px;
-    border-radius: 10%;
+    border-radius: 6%;
 }
 
 .tile:hover {
@@ -284,6 +281,7 @@ input {
 }
 
 #bottom-line {
+    font-size: 1.1vw;
     position: absolute;
     bottom: 0;
     margin-bottom: 2px;
@@ -303,8 +301,8 @@ input {
 #container {
     width: 68vw;
     /* background-color: rgb(34, 34, 34); */
-    /* background: white; */
-    background: rgb(221, 221, 221);
+    background: white;
+    /* background: rgb(221, 221, 221); */
     /* background: radial-gradient(rgba(36, 43, 41, .98) 60%, rgba(36, 43, 41, .7)); */
     opacity: .9;
     /* color: white; */
@@ -315,13 +313,13 @@ input {
     padding: 0;
     visibility: hidden;
     font-style: italic;
-    font-size: 14px;
+    font-size: 1.2vw;
     color: red;
 }
 
 #hero {
     min-height: 600px;
-    background: url('truckbackground.jpg');
+    background: url('images/truckbgd.jpeg');
     /* background: #d8d8d8; */
     background-size: cover;
     background-position: bottom 80px;
