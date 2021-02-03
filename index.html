@@ -29,114 +29,117 @@
     <section>
         <!-- This contains the form and call to action -->
         <section id="hero" class="indented">
-            <div class="heading-area">
-                <h2>We Make Worker's Compensation Insurance Easy</h2>
-            </div>
-            <div style="text-align: right;">
-                <a class="btn-reset" onclick="resetForm()">Reset Form</a>
-            </div>
-            <div id="carousel">
-                <!-- This div is the first item in the carousel -->
-                <div class="slide" id="slide1">
-                    <h3>Does your company have employees?</h3>
-                    <div class="tiles-two">
-                        <button class ="btn-orange tile" id="slide1Yes">My company has employees</button>
-                        <button class ="btn-orange tile" id="slide1No">Just the owners</button>
+            <div id="container">
+                <div class="heading-area">
+                    <h2>We Make Worker's Compensation Insurance Easy</h2>
+                </div>
+                <div style="position: absolute; right: 18%;">
+                    <a class="btn-reset" onclick="resetForm()">Reset Form</a>
+                </div>
+                <div id="carousel">
+                    <!-- This div is the first item in the carousel -->
+                    <div class="slide" id="slide1">
+                        <h3>Does your company have employees?</h3>
                         <div class="next-icon" id="next1">
                             <i class="fas fa-chevron-right "></i>
                         </div>
-                    </div>
-                    <div class="icon-area">
-                        <div class="icons">
-                            <i class="fas fa-circle active"></i>
-                            <i class="fas fa-circle"></i>
-                            <i class="fas fa-circle"></i>
-                            <i class="fas fa-circle"></i>
+                        <div class="tiles-two" style="clear: right">
+                            <button class ="btn-blue tile" id="slide1Yes">My company has employees</button>
+                            <button class ="btn-blue tile" id="slide1No">Just the owners</button>
+
+                        </div>
+                        <div class="icon-area">
+                            <div class="icons">
+                                <i class="fas fa-circle active"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- This form is the next item in the carousel if the user selects "My company has employees", otherwise it skips to the third item -->
-                <div class="slide" id="slide2">
-                    <h3>How many employees does your company have?</h3>
-                    <form>
-                        <input type="text" id="slide2EmployeesNumber" name="employeesNumber" placeholder="2"><br>
-                        <p id='empError'>Please enter the number of employees</p>
+                    <!-- This form is the next item in the carousel if the user selects "My company has employees", otherwise it skips to the third item -->
+                    <div class="slide" id="slide2">
+                        <h3>How many employees does your company have?</h3>
+                        <form>
+                            <input type="text" id="slide2EmployeesNumber" name="employeesNumber" placeholder="2"><br>
+                            <p id='empError'>Please enter the number of employees</p>
+                            <div class="back-icon" onclick="changeSlide(-1)">
+                                <i class="fas fa-chevron-left "></i>
+                            </div>
+                            <div class="next-icon" id="next2">
+                                <i class="fas fa-chevron-right "></i>
+                            </div>
+                        </form>
+                        <div class="icon-area">
+                            <div class="icons">
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle active"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- This div is the third item in the carousel -->
+                    <div class="slide" id="slide3">
+                        <h3>Where does your business operate?</h3>
                         <div class="back-icon" onclick="changeSlide(-1)">
                             <i class="fas fa-chevron-left "></i>
                         </div>
-                        <div class="next-icon" id="next2">
-                            <i class="fas fa-chevron-right "></i>
-                        </div>
-                    </form>
-                    <div class="icon-area">
-                        <div class="icons">
-                            <i class="fas fa-circle"></i>
-                            <i class="fas fa-circle active"></i>
-                            <i class="fas fa-circle"></i>
-                            <i class="fas fa-circle"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- This div is the third item in the carousel -->
-                <div class="slide" id="slide3">
-                    <h3>Where does your business operate?</h3>
-                    <div class="tiles-five">
-                        <div class="back-icon" onclick="changeSlide(-1)">
-                            <i class="fas fa-chevron-left "></i>
-                        </div>
-                        <button class ="btn-orange tile" id="slide3Home">
-                            <!-- <i class="material-icons" >home</i> -->
-                            <p>I Run My Business Out of My Home</p></button>
-                        <button class ="btn-orange tile" id="slide3Lease">
-                            <!-- <i class="material-icons" >meeting_room</i> -->
-                            <p>I Lease a Space From Others</p></button>
-                        <button class ="btn-orange tile" id="slide3Site">
-                            <!-- <i class="material-icons" >workbuild</i> -->
-                            <p>I Work at a Job Site</p></button>
-                        <button class ="btn-orange tile" id="slide3Property">
-                            <!-- <i class="material-icons" >business</i> -->
-                            <p>I Run My Business From Property I Own</p></button>
-                        <button class ="btn-orange tile" id="slide3Own">
-                            <!-- <i class="material-icons" >store</i> -->
-                            <p>I Own a Property & Lease to Others</p></button>
                         <div class="next-icon" id="next3">
                             <i class="fas fa-chevron-right "></i>
                         </div>
-                    </div>
-                    <div class="icon-area">
-                        <div class="icons">
-                            <i class="fas fa-circle"></i>
-                            <i class="fas fa-circle"></i>
-                            <i class="fas fa-circle active"></i>
-                            <i class="fas fa-circle"></i>
-                        </div>               
-                    </div>
-                </div>
-
-                <!-- This form is the last item in the carousel -->
-                <div class="slide" id="slide4">
-                    <h3>Where is your business located?</h3>
-                    <div class="back-icon" onclick="changeSlide(-1)">
-                        <i class="fas fa-chevron-left "></i>
-                    </div>
-                    <form>
-                        <input type="text" id="slide4Zipcode" name="zipcode" placeholder="10001"><br>
-                        <p id='zipError'>Please enter a valid 5-digit US ZIP Code</p>
-                    </form>
-                    <div class="icon-area">
-                        <div class="icons">
-                            <i class="fas fa-circle"></i>
-                            <i class="fas fa-circle"></i>
-                            <i class="fas fa-circle"></i>
-                            <i class="fas fa-circle active"></i>
+                        <div class="tiles-five">
+                            <button class ="btn-blue tile" id="slide3Home">
+                                <!-- <i class="material-icons" >home</i> -->
+                                <p>I Run My Business Out of My Home</p></button>
+                            <button class ="btn-blue tile" id="slide3Lease">
+                                <!-- <i class="material-icons" >meeting_room</i> -->
+                                <p>I Lease a Space From Others</p></button>
+                            <button class ="btn-blue tile" id="slide3Site">
+                                <!-- <i class="material-icons" >workbuild</i> -->
+                                <p>I Work at a Job Site</p></button>
+                            <button class ="btn-blue tile" id="slide3Property">
+                                <!-- <i class="material-icons" >business</i> -->
+                                <p>I Run My Business From Property I Own</p></button>
+                            <button class ="btn-blue tile" id="slide3Own">
+                                <!-- <i class="material-icons" >store</i> -->
+                                <p>I Own a Property & Lease to Others</p></button>
+                        </div>
+                        <div class="icon-area">
+                            <div class="icons">
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle active"></i>
+                                <i class="fas fa-circle"></i>
+                            </div>               
                         </div>
                     </div>
-                    <button class="btn-submit" id="submit">Submit</button>
+
+                    <!-- This form is the last item in the carousel -->
+                    <div class="slide" id="slide4">
+                        <h3>Where is your business located?</h3>
+                        <div class="back-icon" onclick="changeSlide(-1)">
+                            <i class="fas fa-chevron-left "></i>
+                        </div>
+                        <form>
+                            <input type="text" id="slide4Zipcode" name="zipcode" placeholder="10001"><br>
+                            <p id='zipError'>Please enter a valid 5-digit US ZIP Code</p>
+                        </form>
+                        <div class="icon-area">
+                            <div class="icons">
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle active"></i>
+                            </div>
+                        </div>
+                        <div style="display: flex;"><a class="btn-submit" id="submit">Submit</a></div>
+                        
+                    </div>
                 </div>
             </div>
-
         </section>
         <p id="subline">SARK Insurance Services is the leading provider of Worker's Compensation Insurance in Northern California for over 25 years</p>
 

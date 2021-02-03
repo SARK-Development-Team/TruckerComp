@@ -140,7 +140,7 @@ zip.addEventListener('keyup', () => {
         submit.href='main-form.html';
         setCookie("initialForm", JSON.stringify(initialFormData));
     } else {
-        submit.style.background='';
+        submit.style.background='red';
         submit.href = '';
         zipError.style.visibility = 'visible';
     }
