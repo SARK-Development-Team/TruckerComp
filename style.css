@@ -69,8 +69,8 @@ h3 {
     padding: 10px;
     color: white;
     background: red;
-    height: 24px;
-    font-size: 20px;
+    height: 3vw;
+    font-size: 1.6vw;
     border: 1px solid black;
     border-radius: 5px;
     text-decoration: none;
@@ -100,18 +100,18 @@ input {
     background: #1f486a;
     color: white;
     text-align: center;
-    font-size: 30px;
-    width: 260px;
-    height: 340px;
+    font-size: 2vw;
+    width: 15vw;
+    height: 23vw;
 }
 
 .five-tile {
     background: #1f486a;
     color: white;
     text-align: center;
-    font-size: 24px;
-    width: 160px;
-    height: 340px;
+    font-size: 2vw;
+    width: 12vw;
+    height: 23vw;
 }
 
 /* .btn-next {
@@ -131,7 +131,7 @@ input {
     align-self: center;
     cursor: unset;
     background: #666;
-    padding: 15px;
+    padding: 1.2vw;
     border-radius: 4px;
     border: 1px solid white;
     color: white;
@@ -142,16 +142,16 @@ input {
 
 .btn-reset {
     background: #426b13;
-    padding: 25px;
+    padding: 1.6vw;
     color: white;
     text-align: right;
     font-size: 1.6vw;
-    width: 150px;
-    height: 200px;
+    width: 10vw;
+    height: 13vw;
     border-radius: 0;
     right: 0;
     cursor: pointer;
-    z-index: 3;
+    z-index: 5;
 }
 
 .ctr {
@@ -588,19 +588,6 @@ footer ul {
 
 @media only screen and (max-width: 1100px) {
 
-    .tile-area {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
-
-    .two-tile, .five-tile {
-        width: 160px;
-        height: 220px;
-        padding: 0 5px;
-        margin-bottom: 10px;
-        font-size: 2vw;
-    }
-
     #about-headline {
         text-align: left;
     }
@@ -620,13 +607,7 @@ footer ul {
     .floating-tile-img-med {
         display: inline-block;
     }
-    #container {
-        width: 88%
-    }
 
-    #hero {
-        padding: 2% 6%;
-    }
     #info {
         min-height: 1000px;
         display: block;
@@ -646,10 +627,6 @@ footer ul {
 
     .tiles-five {
         margin-top: 0;
-    }
-
-    #container {
-        height: 80vw;
     }
 
     .two-tile, .five-tile {
