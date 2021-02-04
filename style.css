@@ -66,10 +66,10 @@ h3 {
     padding: 10px;
     color: white;
     background: red;
-    height: 3vw;
-    font-size: 1.6vw;
+    height: 2.5vw;
+    font-size: 1.4vw;
     border: 1px solid black;
-    border-radius: 5px;
+    border-radius: 5%;
     text-decoration: none;
 }
 
@@ -82,9 +82,9 @@ form {
 }
 
 input {
-    font-size: 2.2vw;
-    margin: 5vw 0 0 0;
-    width: 12vw;
+    font-size: 2.1vw;
+    margin: 4.5vw 0 0 0;
+    width: 11vw;
     text-align: center;
 }
 
@@ -96,18 +96,18 @@ input {
     background: #1f486a;
     color: white;
     text-align: center;
-    font-size: 1.3vw;
-    width: 10vw;
-    height: 12vw;
+    font-size: 1.2vw;
+    width: 9.6vw;
+    height: 11.5vw;
 }
 
 .five-tile {
     background: #1f486a;
     color: white;
     text-align: center;
-    font-size: 1.3vw;
-    width: 8vw;
-    height: 12vw;
+    font-size: 1.2vw;
+    width: 7.7vw;
+    height: 11.5vw;
 }
 
 .btn-submit {
@@ -115,23 +115,21 @@ input {
     align-self: center;
     cursor: unset;
     background-color: #666;
-    padding: 1.2vw;
-    border-radius: 4px;
+    padding: 1.1vw;
+    border-radius: 4%;
     border: 1px solid white;
     color: white;
     transition: all 0.6s ease;
-    font-size: 1.4vw;
+    font-size: 1.3vw;
     margin: 0 auto;
 }
 
 .btn-reset {
     background: #426b13;
-    padding: 1.2vw;
+    padding: 1.1vw;
     color: white;
     text-align: right;
-    font-size: .9vw;
-    /* width: 8vw;
-    height: 10vw; */
+    font-size: 1vw;
     border-radius: 2000px;
     right: 0;
     cursor: pointer;
@@ -155,7 +153,7 @@ input {
     left: 32.8vw;
     display: flex;
     justify-content: center;
-    font-size: 2.3vw;
+    font-size: 2.2vw;
     align-items: center;
 }
 
@@ -166,7 +164,7 @@ input {
 
 .back-icon {
     position: absolute;
-    font-size: 6vw;
+    font-size: 5.7vw;
     color: rgb(219, 166, 166);
     left: 2vw;
     top: 42%;
@@ -177,7 +175,7 @@ input {
 
 .next-icon {
     position: absolute;
-    font-size: 6vw;
+    font-size: 5.7vw;
     color: rgb(219, 166, 166);
     right: 2vw;
     top: 42%;
@@ -190,11 +188,6 @@ input {
     transform: scale(1.2);
 }
 
-.rt-align {
-    text-align: right;
-    position: relative;
-    right: 4px;
-}
 /* 
 .selected {
     background: #3499cc;
@@ -203,7 +196,7 @@ input {
 
 .slide {
     min-width: 78vw;
-    height: 23vw;
+    height: 22vw;
     transition: transform 0.5s;
     z-index: 1;
 }
@@ -229,7 +222,7 @@ input {
 .tiles-two {
     display: flex;
     justify-content: center;
-    column-gap: 3.5vw;
+    column-gap: 3.3vw;
     padding: 2.4vw .8vw;
     position: relative;
 }
@@ -256,12 +249,12 @@ input {
     position: relative;
     scroll-snap-type: x mandatory;
     overflow: hidden;
-    height: 24vw;
+    height: 23.5vw;
 }
 
 #container {
     width: 78vw;
-    height: 33vw;
+    height: 32.5vw;
     /* padding: 1% 5%; */
     background: white;
     opacity: .9;
