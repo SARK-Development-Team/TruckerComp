@@ -136,7 +136,7 @@ input {
     font-size: 1.6vw;
     width: 10vw;
     height: 13vw;
-    border-radius: 0;
+    border-radius: 2000px;
     right: 0;
     cursor: pointer;
     z-index: 5;
