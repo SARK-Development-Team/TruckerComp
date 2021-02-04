@@ -365,9 +365,9 @@ svg {
      Map
 ---------- */
 
-.narrow-indent {
-    /* padding: 1% 12%; */
-}
+/* .narrow-indent {
+    padding: 1% 12%;
+} */
 
 .two-column {
     padding: 1% 12%;
@@ -382,11 +382,49 @@ svg {
     height: 20vw;
 }
 
+/* ----------
+  Why-SARK
+---------- */
+
+.bullet-icon {
+    height: 5vw;
+    width: 5vw;
+    margin: auto;
+    border: .4vw solid black;
+    border-radius: 100%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.bullet-icon img {
+    height: 4vw;
+    width: 4vw;
+    padding: 1.2vw;
+}
+
+.bullet-icon p {
+    text-align: center;
+    font-size: 4.2vw;
+    font-weight: bold;
+}
+
+.bullets {
+    display: grid;
+    grid-template-columns: 1fr 9fr;
+    align-items: center;
+}
+
+#why-sark {
+
+}
+
 
 /* ----------
     Info
 ---------- */
-
+/* 
 .circle {
     border-radius: 100%;
 }
@@ -477,7 +515,7 @@ svg {
     justify-content: center;
     align-items: center;
 }
-
+ */
 
 
 /* ----------
