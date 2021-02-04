@@ -97,18 +97,18 @@ input {
     background: #1f486a;
     color: white;
     text-align: center;
-    font-size: 1.8vw;
+    font-size: 1.5vw;
     width: 11vw;
-    height: 16vw;
+    height: 14vw;
 }
 
 .five-tile {
     background: #1f486a;
     color: white;
     text-align: center;
-    font-size: 1.8vw;
+    font-size: 1.5vw;
     width: 10vw;
-    height: 16vw;
+    height: 14vw;
 }
 
 .btn-submit {
@@ -130,9 +130,9 @@ input {
     padding: 1.6vw;
     color: white;
     text-align: right;
-    font-size: 1.6vw;
-    width: 10vw;
-    height: 13vw;
+    font-size: 1.4vw;
+    width: 8vw;
+    height: 10vw;
     border-radius: 2000px;
     right: 0;
     cursor: pointer;
@@ -175,7 +175,7 @@ input {
     position: absolute;
     font-size: 8vw;
     color: rgb(219, 166, 166);
-    left: 0vw;
+    left: 2vw;
     top: 42%;
     transition: all .5s ease;
     z-index: 3;
@@ -186,7 +186,7 @@ input {
     position: absolute;
     font-size: 8vw;
     color: rgb(219, 166, 166);
-    right: 0vw;
+    right: 2vw;
     top: 42%;
     opacity: 0;
     transition: all .5s ease;
@@ -210,7 +210,7 @@ input {
 
 .slide {
     min-width: 78vw;
-    height: 32vw;
+    height: 28vw;
     transition: transform 0.5s;
     z-index: 1;
 }
@@ -240,18 +240,16 @@ input {
 
 .tiles-two {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    column-gap: 3.5vw;
     padding: 3vw .8vw;
     position: relative;
 }
 
-.tiles-two p {
-    margin-top: 0;
-}
-
 .tiles-five {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    column-gap: 2vw;
     padding: 3vw 1.8vw;
     position: relative;
     flex-direction: row;
@@ -268,7 +266,6 @@ input {
 
 #carousel {
     display: flex;
-    
     position: relative;
     scroll-snap-type: x mandatory;
     overflow: hidden;
@@ -276,7 +273,7 @@ input {
 
 #container {
     width: 78vw;
-    height: 42vw;
+    height: 38vw;
     /* padding: 1% 5%; */
     /* background-color: rgb(34, 34, 34); */
     background: white;
