@@ -32,14 +32,14 @@ button {
 }
 
 h2 {
-    font-size: 2.4vw;
+    font-size: 2.1vw;
     font-weight: 700;
     padding: 1vw 0;
     margin-bottom: 0; 
 }
 
 h3 {
-    font-size: 1.7vw;
+    font-size: 1.5vw;
     font-weight: 300;
 }
 
@@ -82,9 +82,10 @@ form {
 }
 
 input {
-    font-size: 3vw;
+    font-size: 2.2vw;
     margin: 5vw 0 0 0;
     width: 12vw;
+    text-align: center;
 }
 
 .active {
@@ -95,7 +96,7 @@ input {
     background: #1f486a;
     color: white;
     text-align: center;
-    font-size: 1.5vw;
+    font-size: 1.3vw;
     width: 10vw;
     height: 12vw;
 }
@@ -104,7 +105,7 @@ input {
     background: #1f486a;
     color: white;
     text-align: center;
-    font-size: 1.5vw;
+    font-size: 1.3vw;
     width: 8vw;
     height: 12vw;
 }
@@ -119,7 +120,7 @@ input {
     border: 1px solid white;
     color: white;
     transition: all 0.6s ease;
-    font-size: 1.6vw;
+    font-size: 1.4vw;
     margin: 0 auto;
 }
 
@@ -128,7 +129,7 @@ input {
     padding: 1.2vw;
     color: white;
     text-align: right;
-    font-size: 1vw;
+    font-size: .9vw;
     /* width: 8vw;
     height: 10vw; */
     border-radius: 2000px;
@@ -165,7 +166,7 @@ input {
 
 .back-icon {
     position: absolute;
-    font-size: 7vw;
+    font-size: 6vw;
     color: rgb(219, 166, 166);
     left: 2vw;
     top: 42%;
@@ -176,7 +177,7 @@ input {
 
 .next-icon {
     position: absolute;
-    font-size: 7vw;
+    font-size: 6vw;
     color: rgb(219, 166, 166);
     right: 2vw;
     top: 42%;
@@ -213,7 +214,6 @@ input {
 
 .tile {
     transition: all ease 250ms;
-    /* padding: 1.2vw; */
     border-radius: 6%;
 }
 
@@ -245,7 +245,7 @@ input {
 }
 
 #bottom-line {
-    font-size: 1.1vw;
+    font-size: .9vw;
     font-style: italic;
     text-align: center;
     width: 100%;
