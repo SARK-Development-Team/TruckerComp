@@ -336,12 +336,16 @@ svg {
 .about-text {
     /* color: rgb(27, 165, 219); */
     font-size: 1.4vw;
+    font-weight: 600;
 }
 
+.wide-indent {
+    padding: 1% 22%;
+}
 
 #about {
-    min-height: 300px;
-    margin-bottom: 40px;
+    /* min-height: 300px; */
+    margin: 2vw;
 }
 
 #about-container {
@@ -369,6 +373,14 @@ svg {
     padding: 1% 12%;
 } */
 
+.map-side {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.text-side h3 {
+    font-weight: 700;
+}
+
 .two-column {
     padding: 1% 12%;
     background: rgb(235, 239, 255);
@@ -390,6 +402,7 @@ hr {
     height: .6vw;
     background: black;
     border-radius: 2000px;
+    margin: 0 2.4vw;
 }
 
 .btn-contact {
@@ -400,7 +413,8 @@ hr {
     font-size: 1.6vw;
     padding: .7vw;
     text-align: center;
-    margin: auto;
+    margin: 2vw auto;
+    cursor: pointer;
 }
 
 .bullet-icon {
@@ -427,7 +441,12 @@ hr {
     font-weight: bold;
 }
 
-.bullets {
+.bullet-text {
+    font-weight: 600;
+    margin: .8vw 0;
+}
+
+.bullet-area {
     display: grid;
     grid-template-columns: 1fr 9fr;
     align-items: center;
@@ -435,6 +454,7 @@ hr {
 
 #cta {
     text-align: center;
+    margin: 2.4vw 0 2vw
 }
 
 
@@ -583,28 +603,8 @@ footer ul {
     text-align: right;
 }
 
-
+/* 
 @media only screen and (max-width: 1100px) {
-
-    #about-headline {
-        text-align: left;
-    }
-
-    #floating-tile-area {
-        display: block;
-    }
-
-    .floating-tile {
-        margin-bottom: 30px;
-        height: 100%;
-    }
-
-    .floating-tile-img {
-        display: none;
-    }
-    .floating-tile-img-med {
-        display: inline-block;
-    }
 
     #info {
         min-height: 1000px;
@@ -613,7 +613,9 @@ footer ul {
     #info-container {
         grid-template-columns: 1fr;
     }
-}
+} */
+
+/* Consider doing away with media queries in favor of viewport width */
 
 @media only screen and (max-width: 700px) {
     .tiles-two, .tiles-five {
@@ -635,14 +637,8 @@ footer ul {
         font-size: 2vw;
     }
 
-    .floating-tile-img, .floating-tile-img-med {
-        display: none;
-    }
-
-    .material-icons{
+    /* .material-icons{
         display: none
-    }
-
-
+    } */
 }
 
