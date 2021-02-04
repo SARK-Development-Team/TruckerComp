@@ -34,15 +34,14 @@ button {
 }
 
 h2 {
-    font-size: 3.8vw;
+    font-size: 2.5vw;
     font-weight: 700;
-    padding: 10px 0;
+    padding: 1vw 0;
     margin-bottom: 0; 
 }
 
 h3 {
-    font-size: 2vw;
-    padding: 5px 0;
+    font-size: 1.7vw;
     font-weight: 300;
 }
 
@@ -76,8 +75,6 @@ h3 {
     text-decoration: none;
 }
 
-
-
 /* ----------
     Hero
 ---------- */
@@ -88,7 +85,7 @@ form {
 
 input {
     font-size: 3vw;
-    margin: 5vw 0;
+    margin: 5vw 0 0 0;
     width: 12vw;
 }
 
@@ -100,32 +97,32 @@ input {
     background: #1f486a;
     color: white;
     text-align: center;
-    font-size: 2vw;
-    width: 15vw;
-    height: 23vw;
+    font-size: 1.8vw;
+    width: 11vw;
+    height: 16vw;
 }
 
 .five-tile {
     background: #1f486a;
     color: white;
     text-align: center;
-    font-size: 2vw;
-    width: 12vw;
-    height: 23vw;
+    font-size: 1.8vw;
+    width: 10vw;
+    height: 16vw;
 }
 
 .btn-submit {
     text-align: center;
     align-self: center;
     cursor: unset;
-    background: #666;
+    background-color: #666;
     padding: 1.2vw;
     border-radius: 4px;
     border: 1px solid white;
     color: white;
-    transition: background-color 0.6s ease;
+    transition: all 0.6s ease;
     font-size: 2.6vw;
-    margin: 0 auto 10vw auto;
+    margin: 2vw auto;
 }
 
 .btn-reset {
@@ -154,7 +151,9 @@ input {
 }
 
 .icon-area {
-    margin: 30px 0 70px 0;
+    position: absolute;
+    bottom: 0;
+    left: 41%;
     display: flex;
     justify-content: center;
     font-size: 2.4vw;
@@ -177,9 +176,10 @@ input {
     font-size: 8vw;
     color: rgb(219, 166, 166);
     left: 0vw;
-    top: 45%;
+    top: 42%;
     transition: all .5s ease;
     z-index: 3;
+    cursor: pointer;
 }
 
 .next-icon {
@@ -187,7 +187,7 @@ input {
     font-size: 8vw;
     color: rgb(219, 166, 166);
     right: 0vw;
-    top: 45%;
+    top: 42%;
     opacity: 0;
     transition: all .5s ease;
     z-index: 3;
@@ -210,12 +210,13 @@ input {
 
 .slide {
     min-width: 78vw;
+    height: 32vw;
     transition: transform 0.5s;
+    z-index: 1;
 }
 
 .slide h3 {
     text-align: center;
-    padding: 1.5vw 0;
 }
 
 .slide span {
@@ -259,8 +260,6 @@ input {
 
 #bottom-line {
     font-size: 1.1vw;
-    position: absolute;
-    bottom: 0;
     margin-bottom: 2px;
     font-style: italic;
     text-align: center;
@@ -277,7 +276,8 @@ input {
 
 #container {
     width: 78vw;
-    padding: 1% 5%;
+    height: 42vw;
+    /* padding: 1% 5%; */
     /* background-color: rgb(34, 34, 34); */
     background: white;
     /* background: rgb(221, 221, 221); */
@@ -296,8 +296,7 @@ input {
 }
 
 #hero {
-    padding: 1% 11%;
-    min-height: 600px;
+    padding: 1vw 10vw;
     background: url('images/truckbgd.jpeg');
     /* background: #d8d8d8; */
     background-size: cover;
