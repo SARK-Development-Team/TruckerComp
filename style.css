@@ -121,7 +121,7 @@ input {
     border: 1px solid white;
     color: white;
     transition: all 0.6s ease;
-    font-size: 2.6vw;
+    font-size: 2.2vw;
     margin: 2vw auto;
 }
 
@@ -275,12 +275,8 @@ input {
     width: 78vw;
     height: 38vw;
     /* padding: 1% 5%; */
-    /* background-color: rgb(34, 34, 34); */
     background: white;
-    /* background: rgb(221, 221, 221); */
-    /* background: radial-gradient(rgba(36, 43, 41, .98) 60%, rgba(36, 43, 41, .7)); */
     opacity: .9;
-    /* color: white; */
 }
 
 #empError, #zipError {
@@ -297,9 +293,7 @@ input {
     background: url('images/truckbgd.jpeg');
     /* background: #d8d8d8; */
     background-size: cover;
-    /* background-position: bottom 80px; */
     /* background-repeat: no-repeat; */
-    /* opacity: 0.8; */
 }
 
 #hero a {
@@ -315,62 +309,47 @@ input {
     About
 ---------- */
 
-.dk-blue {
-    color: white;
-    background: #1F486A;
+svg {
+    height: 4vw;
+    width: 4vw;
+    padding: 1.2vw;
 }
 
-.floating-tile {
-    flex-basis: 100%;
-    height: 400px;
-    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
+.about-box {
+    border: .6vw solid rgb(0, 0, 0);
+    border-radius: 3%;
+    flex: 1 1 0;
+    text-align: center;
 }
 
-.floating-tile-img {
-    margin: -4px 0;
-    object-fit: cover;
-    height: 100px;
-    width: 100%;
-    padding: 0;
-}
-
-.floating-tile-img-med {
-    object-fit: contain;
-    height: 100%;
-    width: 40px;
-    padding: 0;
-    display: none;
-}
-
-.floating-tile-text {
-    padding: 20px;
+.about-icon {
+    height: 5vw;
+    width: 5vw;
+    margin: auto;
+    border: .4vw solid black;
+    border-radius: 100%;
+    text-align: center;
+    align-items: center;
     display: flex;
 }
 
-.floating-tile-text h4 {
-    font-weight: 400;
-    font-size: 24px;
-    margin: 10px 0;
+.about-text {
+    /* color: rgb(27, 165, 219); */
+    font-size: 1.4vw;
 }
 
-.floating-tile-text p {
-    font-size: 17px;
-    line-height: 1.8rem;
-}
-
-.lt-blue {
-    color: white;
-    background: #3499cc;
-}
-
-.silver {
-    color: black;
-    background: #edecec;
-}
 
 #about {
     min-height: 300px;
     margin-bottom: 40px;
+}
+
+#about-container {
+    display: flex;
+    justify-content: center;
+    column-gap: 3.5vw;
+    padding: 3vw .8vw;
+    position: relative;
 }
 
 #about-headline {
@@ -381,38 +360,27 @@ input {
     font-size: 38px;
 }
 
-#about-headline h6 {
-    font-size: 21px;
-    font-weight: 400;
+
+/* ----------
+     Map
+---------- */
+
+.narrow-indent {
+    /* padding: 1% 12%; */
 }
 
-#floating-tile1 {
-    position: relative;
-    opacity: 0;
-    top: 600px;
-    transition: all 1s cubic-bezier(0, .9, 1, 1);
-}
-
-#floating-tile2 {
-    position: relative;
-    opacity: 0;
-    top: 600px;
-    transition: all 1s cubic-bezier(0, .9, 1, 1);
-}
-
-#floating-tile3 {
-    position: relative;
-    opacity: 0;
-    top: 600px;
-    transition: all 1s cubic-bezier(0, .9, 1, 1);
-}
-
-#floating-tile-area {
-    position: relative;
+.two-column {
+    padding: 1% 12%;
+    background: rgb(235, 239, 255);
     display: flex;
-    column-gap: 22px;
+    justify-content: center;
+    column-gap: 3%;
+    align-items: center;
 }
 
+#US-map {
+    height: 20vw;
+}
 
 
 /* ----------
