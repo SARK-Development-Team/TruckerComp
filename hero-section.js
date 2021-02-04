@@ -24,9 +24,9 @@ function changeSlide(n) {
         let value = slides[i].style.transform;
         let numValue = parseInt(value.replace("translateX(", "").replace("vw",""));
         if (n<0) {
-            numValue+=168;
+            numValue+=178;
         } else if (n>0) {
-            numValue-=168;
+            numValue-=178;
         }
         let newValue = "translateX(" + numValue.toString() +"vw)";
         slides[i].style.transform= newValue;  
