@@ -20,8 +20,6 @@
 
 body {
     background: white;
-    /* font-family: 'Nunito'; */
-    /* font-family: Arial; */
     /* font-family: 'Open Sans'; */
     /* font-family: 'Sarabun'; */
     font-family: 'Raleway';
@@ -34,7 +32,7 @@ button {
 }
 
 h2 {
-    font-size: 2.5vw;
+    font-size: 2.4vw;
     font-weight: 700;
     padding: 1vw 0;
     margin-bottom: 0; 
@@ -98,8 +96,8 @@ input {
     color: white;
     text-align: center;
     font-size: 1.5vw;
-    width: 11vw;
-    height: 14vw;
+    width: 10vw;
+    height: 12vw;
 }
 
 .five-tile {
@@ -107,8 +105,8 @@ input {
     color: white;
     text-align: center;
     font-size: 1.5vw;
-    width: 10vw;
-    height: 14vw;
+    width: 8vw;
+    height: 12vw;
 }
 
 .btn-submit {
@@ -121,18 +119,18 @@ input {
     border: 1px solid white;
     color: white;
     transition: all 0.6s ease;
-    font-size: 2.2vw;
-    margin: 2vw auto;
+    font-size: 1.6vw;
+    margin: 0 auto;
 }
 
 .btn-reset {
     background: #426b13;
-    padding: 1.6vw;
+    padding: 1.2vw;
     color: white;
     text-align: right;
-    font-size: 1.4vw;
-    width: 8vw;
-    height: 10vw;
+    font-size: 1vw;
+    /* width: 8vw;
+    height: 10vw; */
     border-radius: 2000px;
     right: 0;
     cursor: pointer;
@@ -141,7 +139,7 @@ input {
 
 .fa-circle {
     color: #585858;
-    margin: 0 4px;
+    margin: 0 .2vw;
 }
 
 .heading-area {
@@ -152,11 +150,11 @@ input {
 
 .icon-area {
     position: absolute;
-    bottom: 0;
-    left: 41%;
+    bottom: -1.2vw;
+    left: 32.8vw;
     display: flex;
     justify-content: center;
-    font-size: 2.4vw;
+    font-size: 2.3vw;
     align-items: center;
 }
 
@@ -165,15 +163,9 @@ input {
     transition: color 0.6s ease;
 }
 
-.material-icons {
-    display: inline-block;
-    font-size: 56px;
-    padding: 0;
-}
-
 .back-icon {
     position: absolute;
-    font-size: 8vw;
+    font-size: 7vw;
     color: rgb(219, 166, 166);
     left: 2vw;
     top: 42%;
@@ -184,7 +176,7 @@ input {
 
 .next-icon {
     position: absolute;
-    font-size: 8vw;
+    font-size: 7vw;
     color: rgb(219, 166, 166);
     right: 2vw;
     top: 42%;
@@ -210,7 +202,7 @@ input {
 
 .slide {
     min-width: 78vw;
-    height: 28vw;
+    height: 23vw;
     transition: transform 0.5s;
     z-index: 1;
 }
@@ -219,13 +211,9 @@ input {
     text-align: center;
 }
 
-.slide span {
-    position: absolute;
-}
-
 .tile {
     transition: all ease 250ms;
-    padding: 1.2vw;
+    /* padding: 1.2vw; */
     border-radius: 6%;
 }
 
@@ -242,7 +230,7 @@ input {
     display: flex;
     justify-content: center;
     column-gap: 3.5vw;
-    padding: 3vw .8vw;
+    padding: 2.4vw .8vw;
     position: relative;
 }
 
@@ -250,7 +238,7 @@ input {
     display: flex;
     justify-content: center;
     column-gap: 2vw;
-    padding: 3vw 1.8vw;
+    padding: 2.4vw .8vw;
     position: relative;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -258,7 +246,6 @@ input {
 
 #bottom-line {
     font-size: 1.1vw;
-    margin-bottom: 2px;
     font-style: italic;
     text-align: center;
     width: 100%;
@@ -269,22 +256,23 @@ input {
     position: relative;
     scroll-snap-type: x mandatory;
     overflow: hidden;
+    height: 24vw;
 }
 
 #container {
     width: 78vw;
-    height: 38vw;
+    height: 33vw;
     /* padding: 1% 5%; */
     background: white;
     opacity: .9;
 }
 
 #empError, #zipError {
-    margin-top: 0;
+    margin: 0;
     padding: 0;
     visibility: hidden;
     font-style: italic;
-    font-size: 1.2vw;
+    font-size: 1vw;
     color: red;
 }
 
