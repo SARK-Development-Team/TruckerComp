@@ -9,8 +9,8 @@ function defaultDate() {
 
 // Depending on input from the initial form, hide certain questions
 function hideQuestions() {
+  const regex = /initialForm={(.*?)}/ //This finds only the initialForm string from document.cookie, which may have multiple others
   if (document.cookie.match(regex)) {
-    const regex = /initialForm={(.*?)}/ //This finds only the initialForm string from document.cookie, which may have multiple others
     const initialForm = document.cookie.match(regex)[0].substring(12); // This trims off the "initialForm=" portion
     const initialFormObj = JSON.parse(initialForm);
     const payroll = document.getElementById('payroll');
