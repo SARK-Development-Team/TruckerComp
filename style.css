@@ -353,15 +353,33 @@ svg {
 } */
 
 .map-side {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 20vw;
+    position: relative;
+    background: url('images/mapp.png');
 }
+
+/* .map-side::before {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: -1;
+    height: 20vw; 
+    width: 30vw; 
+    border-radius: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: 0 0 15px 10px #555;
+  } */
+
 
 .text-side h3 {
     font-weight: 700;
 }
 
 .two-column {
-    padding: 1% 12%;
+    padding: 1% 16%;
     background: rgb(235, 239, 255);
     display: flex;
     justify-content: center;
@@ -371,18 +389,15 @@ svg {
 
 #US-map {
     height: 20vw;
+    background: white;
+    box-shadow: 0 0 15px -2px rgba(50, 50, 50, .2);
 }
 
 /* ----------
   Why-SARK
 ---------- */
 
-#why-SARK hr {
-    height: .6vw;
-    background: black;
-    border-radius: 2000px;
-    margin: 0 2.4vw;
-}
+
 
 .btn-contact {
     border-radius: 2000px;
@@ -390,17 +405,17 @@ svg {
     background: rgb(6, 12, 94);
     color: white;
     font-size: 1.6vw;
-    padding: .7vw;
+    padding: .7vw 5vw;
     text-align: center;
     margin: 2vw auto;
     cursor: pointer;
 }
 
 .bullet-icon {
-    height: 5vw;
-    width: 5vw;
+    height: 3.5vw;
+    width: 3.5vw;
     margin: auto;
-    border: .4vw solid black;
+    border: .3vw solid black;
     border-radius: 100%;
     text-align: center;
     align-items: center;
@@ -409,14 +424,14 @@ svg {
 }
 
 .bullet-icon img {
-    height: 4vw;
-    width: 4vw;
+    height: 2.4vw;
+    width: 2.4vw;
     padding: 1.2vw;
 }
 
 .bullet-icon p {
     text-align: center;
-    font-size: 4.2vw;
+    font-size: 2.9vw;
     font-weight: bold;
 }
 
@@ -426,16 +441,30 @@ svg {
 }
 
 .bullet-area {
+    padding: 0 2%;
     display: grid;
-    grid-template-columns: 1fr 9fr;
+    grid-template-columns: 1fr 7fr;
     align-items: center;
 }
 
 #cta {
     text-align: center;
-    margin: 2.4vw 0 2vw
+    margin: 3vw 0;
 }
 
+#cta h2 {
+    font-size: 2.5vw;
+}
+
+#why-SARK {
+    padding: 0 20%;
+}
+
+#why-SARK hr {
+    height: .6vw;
+    background: black;
+    border-radius: 2000px;
+}
 
 /* ----------
     Info
@@ -570,7 +599,7 @@ footer ul {
     height: 7vw;
 }
 
-#four-col{
+#four-col {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     column-gap: 20px;

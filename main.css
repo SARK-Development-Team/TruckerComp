@@ -8,8 +8,8 @@
 
 
 button {
-    font-size: 16px;
-    padding: 10px;
+    font-size: 1.2vw;
+    padding: 10vw;
     background: white;
     border-radius: 6px;
     border: 1px solid rgb(73, 73, 73);
@@ -21,8 +21,28 @@ fieldset {
     margin: 0;
 }
 
+footer {
+    background: #2b2b2a;
+    color: rgb(226, 225, 225);
+    font-size: 1.4vw;
+}
+
+footer a {
+    text-decoration: none;
+    color: inherit;
+}
+
+footer a:hover {
+    color: #3499cc;   
+}
+
+footer hr {
+    color: rgb(226, 225, 225);
+    margin: 2vw 0;
+}
+
 h2 {
-    font-size: 52px;
+    font-size: 4vw;
     color: rgb(73, 73, 73);
     font-weight: 400;
     margin: 5px 0;
@@ -31,15 +51,15 @@ h2 {
 input, select {
     border-radius: 6px;
     border: 1px solid rgb(73, 73, 73);
-    font-size: 20px;
-    padding: 5px 15px;
+    font-size: 1.6vw;
+    padding: .4vw 1.1vw;
     margin: 0;
 }
 
 input[type="radio"] {
     display: none;
-    font-size: 16px;
-    padding: 10px;
+    font-size: 1.2vw;
+    padding: 1vw;
     background: white;
     border-radius: 6px;
     border: 1px solid rgb(73, 73, 73);
@@ -54,17 +74,17 @@ input[type="radio"]:checked + .toggle {
 
 label {
     display: block;
-    padding: 5px 0;
-    margin: 14px 0;
+    padding: .4vw 0;
+    margin: 1.1vw 0;
 }
 
 main {
-    font-size: 20px;
+    font-size: 1.6vw;
 }
 
 
 .currency {
-    width: 100px;
+    width: 8vw;
     text-align: right;
 }
 
@@ -74,17 +94,21 @@ main {
 
 .fa-usd {
     position: absolute;
-    left:5px;
-    top:5px;
+    left: .4vw;
+    top: .1vw;
+}
+
+.indented {
+    padding: 1% 16%;
 }
 
 .left {
     border-radius: 10px 0 0 10px;
-    margin-right: -3px;
+    margin-right: -.5vw;
 }
 
 .logo {
-    height: 100px;
+    height: 8vw;
 }
 
 .nav-element {
@@ -95,16 +119,15 @@ main {
 
 .right {
     border-radius: 0 10px 10px 0;
-    margin-left: -3px;
+    margin-left: -.5vw;
 }
 
 .toggle {
-    padding: 10px 20px;
+    padding: .8vw 1.6vw;
     background: white;
     border: 1px solid gray;
-    margin: 0;
     display: inline-block;
-    font-size: 16px;
+    font-size: 1.6vw;
 }
 
 #btn-submit {
@@ -112,10 +135,12 @@ main {
     border: none;
     color: white;
     border-radius: 4px;
-    font-size: 1em;
-    padding: 14px;
-    margin: 30px 0;
+    font-size: 1.4vw;
+    padding: 1.1vw;
+    margin: 2.3vw 0;
 }
+
+
 
 #logobox {
     text-align: center;
@@ -127,6 +152,8 @@ main {
     grid-template-columns: 1fr 1fr 1fr 3fr 1fr 1fr;
 }
 
-
+#navbar li {
+    font-size: 1.4vw;
+}
 
 
