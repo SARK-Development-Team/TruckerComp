@@ -10,20 +10,22 @@ function defaultDate() {
 // Depending on input from the initial form, hide certain questions
 function hideQuestions() {
   const regex = /initialForm={(.*?)}/ //This finds only the initialForm string from document.cookie, which may have multiple others
-  const initialForm = document.cookie.match(regex)[0].substring(12); // This trims off the "initialForm=" portion
-  const initialFormObj = JSON.parse(initialForm);
-  const payroll = document.getElementById('payroll');
-  const nonDrivers = document.getElementById('nonDrivers');
-  const zipCode = document.getElementById('zip');
-  let toggle = '';
-  if (initialFormObj.employees>0) {
-    toggle = 'block';
-  } else {
-    toggle = 'none';
+  if (document.cookie.match(regex)) {
+    const initialForm = document.cookie.match(regex)[0].substring(12); // This trims off the "initialForm=" portion
+    const initialFormObj = JSON.parse(initialForm);
+    const payroll = document.getElementById('payroll');
+    const nonDrivers = document.getElementById('nonDrivers');
+    const zip = document.getElementById('zip');
+    let toggle = 'block';
+    if (initialFormObj) {
+      if (initialFormObj.employees=0) {
+        toggle = 'none';
+      }
+      zip.value = initialFormObj.zipCode;
+    }
+      payroll.style.display = toggle;
+      nonDrivers.style.display = toggle;
   }
-    payroll.style.display = toggle;
-    nonDrivers.style.display = toggle;
-    zip.value = initialFormObj.zipCode;
 }
 
 // If the cookie exists already, populate the form with the values from the cookie.
