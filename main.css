@@ -128,6 +128,7 @@ main {
     border: 1px solid gray;
     display: inline-block;
     font-size: 1.6vw;
+    margin: 0;
 }
 
 #btn-submit {
