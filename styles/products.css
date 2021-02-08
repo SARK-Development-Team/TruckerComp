@@ -1,3 +1,68 @@
+
+
+.buttons {
+    display: flex;
+    position: relative;
+    font-size: .8vw;
+    margin: 1vw auto;
+    align-items: center;
+    justify-content: center;
+    /* flex-grow: 0; */
+}
+
+.left-button {
+    background: rgb(254, 97, 97);
+    color: white;
+    border-radius: 10px 0 0 10px;
+    padding: .5vw;
+    margin: .1vw
+}
+
+.right-button {
+    background: blue;
+    color: white;
+    border-radius: 0 10px 10px 0;
+    padding: .5vw;
+    margin: .1vw
+}
+
+.left-button:hover, .right-button:hover {
+    background: black;
+}
+
+.text-portion {
+    flex-grow: 1;
+}
+
+.tile {
+    background: white;
+    color: blue;
+    padding: 1.6vw;
+    transition: transform .6s ease-in-out;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.tile h4 {
+    font-size: 1.4vw;
+}
+
+.tile p {
+    font-size: 1.2vw;
+    color: black;
+}
+
+.tile:hover {
+    transform: scale(1.1);
+}
+
+#also {
+    font-size: 1.8vw;
+    margin: 0;
+    padding-bottom: 0;
+}
+
 #banner {
     background: blue;
     color: white;
@@ -11,60 +76,10 @@
     font-size: 2vw;
 }
 
-#products {
-    padding: 1% 34%;
-
-}
-
-
-
-#products-page {
-    background: rgb(235,239,254);
-    text-align: center;
-    margin: 0;
-}
-
-#products-page h3 {
+#choose {
     font-size: 1.8vw;
     margin: 0;
     padding: 2.5vw;
-}
-
-.buttons {
-    display: flex;
-    position: absolute;
-    bottom: 1.5vw;
-    font-size: .8vw;
-}
-
-.left-button {
-    background: rgb(254, 97, 97);
-    color: white;
-    border-radius: 10px 0 0 10px;
-    padding: .5vw;
-}
-
-.right-button {
-    background: blue;
-    color: white;
-    border-radius: 0 10px 10px 0;
-    padding: .5vw;
-}
-
-.left-button:hover, .right-button:hover {
-    background: black;
-}
-
-.tile {
-    background: white;
-    color: blue;
-    padding: 1.6vw;
-    transition: transform .6s ease-in-out;
-    position: relative;
-}
-
-.tile:hover {
-    transform: scale(1.1);
 }
 
 #four-square {
@@ -74,7 +89,7 @@
     gap: 1vw;
 }
 #four-square .tile {
-    flex: 0 12.1vw;
+    flex: 0 0 13vw;
     /* width: 46vw; */
 }
 
@@ -83,25 +98,33 @@
     background: blue;
     color: white;
     font-size: 1.3vw;
-    margin: 2vw 7vw;
+    margin: 2vw 34vw;
     padding: .8vw;
 }
 
 #product-stack {
     display: grid;
-    width: 100%;
     color: blue;
     gap: 1vw;
     text-align: center;
+    padding: 1% 20%;
 }
 
-#product-stack a {
+#product-stack h5 {
     background: white;
+    font-size: 1.4vw;
+    margin: .4vw 0;
+}
+
+#products {
+    padding: 1% 32vw;
+
+}
+
+#products-page {
+    background: rgb(235,239,254);
+    text-align: center;
+    margin: 0;
 }
 
 
-
-
-/* .wide-tile {
-
-} */
