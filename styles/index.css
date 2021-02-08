@@ -23,8 +23,6 @@ body {
     /* font-family: 'Open Sans'; */
     /* font-family: 'Sarabun'; */
     font-family: 'Raleway';
-    padding: 0;
-    margin: 0;
 }
 
 button {
@@ -41,10 +39,6 @@ h2 {
 h3 {
     font-size: 1.5vw;
     font-weight: 300;
-}
-
-.indented {
-    padding: 1% 16%;
 }
 
 .logo {
@@ -566,34 +560,6 @@ svg {
 /* ----------
     Footer
 ---------- */
-
-footer {
-    color: rgb(226, 225, 225);
-}
-
-footer a {
-    text-decoration: none;
-    color: inherit;
-}
-
-footer a:hover {
-    color: #3499cc;   
-}
-
-footer hr {
-    color: rgb(226, 225, 225);
-    margin: 2vw 0;
-}
-/* footer li {
-    list-style: none;
-    padding: 1vw 0;
-    font-weight: 400;
-}
-
-footer ul {
-    font-weight: 700;
-    padding-inline-start: 0;
-} */
 
 #footer-logo {
     height: 7vw;

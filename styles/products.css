@@ -1,0 +1,68 @@
+#banner {
+    background: blue;
+    color: white;
+    text-align: center;
+    margin: 0;
+}
+
+#products {
+    padding: 1% 34%;
+    background: rgb(204, 232, 250);
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+}
+
+.left-button {
+    background: orange;
+    color: white;
+}
+
+.right-button {
+    background: blue;
+    color: white;
+}
+
+.tile {
+    background: white;
+    color: blue;
+    padding: 1.6vw;
+    transition: transform .6s ease-in-out;
+}
+
+.tile:hover {
+    transform: scale(1.1);
+}
+
+#four-square {
+    margin: 2vw 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1vw;
+}
+#four-square .tile {
+    flex: 0 12.1vw;
+    /* width: 46vw; */
+}
+
+
+#product-stack {
+    display: grid;
+    width: 100%;
+    color: blue;
+    gap: 1vw;
+    text-align: center;
+}
+
+#product-stack a {
+    background: white;
+}
+
+
+
+
+/* .wide-tile {
+
+} */
