@@ -86,22 +86,16 @@ input {
     color: rgb(27, 27, 27)!important;
 }
 
-.two-tile {
-    background: #1f486a;
+.btn-reset {
+    background: #426b13;
+    padding: 1.1vw;
     color: white;
-    text-align: center;
-    font-size: 1.2vw;
-    width: 9.6vw;
-    height: 11.5vw;
-}
-
-.five-tile {
-    background: #1f486a;
-    color: white;
-    text-align: center;
-    font-size: 1.2vw;
-    width: 7.7vw;
-    height: 11.5vw;
+    text-align: right;
+    font-size: 1vw;
+    border-radius: 2000px;
+    right: 0;
+    cursor: pointer;
+    z-index: 5;
 }
 
 .btn-submit {
@@ -118,16 +112,14 @@ input {
     margin: 0 auto;
 }
 
-.btn-reset {
-    background: #426b13;
-    padding: 1.1vw;
+
+.five-tile {
+    background: #1f486a;
     color: white;
-    text-align: right;
-    font-size: 1vw;
-    border-radius: 2000px;
-    right: 0;
-    cursor: pointer;
-    z-index: 5;
+    text-align: center;
+    font-size: 1.2vw;
+    width: 7.7vw;
+    height: 11.5vw;
 }
 
 .fa-circle {
@@ -143,7 +135,7 @@ input {
 
 .icon-area {
     position: absolute;
-    bottom: -1.2vw;
+    bottom: 1vw;
     left: 32.8vw;
     display: flex;
     justify-content: center;
@@ -190,7 +182,7 @@ input {
 
 .slide {
     min-width: 78vw;
-    height: 22vw;
+    /* height: 22vw; */
     transition: transform 0.5s;
     z-index: 1;
 }
@@ -215,6 +207,7 @@ input {
 
 .tiles-two {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     column-gap: 3.3vw;
     padding: 2.4vw .8vw;
@@ -223,12 +216,22 @@ input {
 
 .tiles-five {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     column-gap: 2vw;
     padding: 2.4vw .8vw;
     position: relative;
     flex-direction: row;
     flex-wrap: nowrap;
+}
+
+.two-tile {
+    background: #1f486a;
+    color: white;
+    text-align: center;
+    font-size: 1.2vw;
+    width: 9.6vw;
+    height: 11.5vw;
 }
 
 #bottom-line {
@@ -243,12 +246,12 @@ input {
     position: relative;
     scroll-snap-type: x mandatory;
     overflow: hidden;
-    height: 23.5vw;
+    /* height: 23.5vw; */
 }
 
 #container {
     width: 78vw;
-    height: 32.5vw;
+    /* height: 32.5vw; */
     /* padding: 1% 5%; */
     background: white;
     opacity: .9;
@@ -265,7 +268,7 @@ input {
 
 #hero {
     padding: 1vw 10vw;
-    background: url('images/truckbgd.jpeg');
+    background: url('../images/truckbgd.jpeg');
     /* background: #d8d8d8; */
     background-size: cover;
     /* background-repeat: no-repeat; */
@@ -305,6 +308,7 @@ svg {
     border-radius: 100%;
     text-align: center;
     align-items: center;
+    justify-content: center;
     display: flex;
 }
 
@@ -346,10 +350,20 @@ svg {
     padding: 1% 12%;
 } */
 
-.map-side {
+.map-side-lg {
+    display: block;
     height: 20vw;
     position: relative;
-    background: url('images/mapp.png');
+    /* background: url('../images/mapp.png');
+    background-size: cover; */
+}
+
+.map-side-sm {
+    display: none;
+    height: 42vw;
+    position: relative;
+    /* background: url('../images/mapp.png');
+    background-size: cover; */
 }
 
 /* .map-side::before {
@@ -381,8 +395,14 @@ svg {
     align-items: center;
 }
 
-#US-map {
+#US-map-lg {
     height: 20vw;
+    background: white;
+    box-shadow: 0 0 15px -2px rgba(50, 50, 50, .2);
+}
+
+#US-map-sm {
+    height: 42vw;
     background: white;
     box-shadow: 0 0 15px -2px rgba(50, 50, 50, .2);
 }
@@ -601,28 +621,99 @@ svg {
     }
 } */
 
-/* Consider doing away with media queries in favor of viewport width */
 
 @media only screen and (max-width: 700px) {
+
+    h2, #cta h2 {
+        font-size: 4vw;
+    }
+    h3 {
+        font-size: 3.5vw;
+    }
+
+    input {
+        font-size: 7vw;
+        width: 30vw;
+    }
+
+    .indented {
+        padding: 1% 10%;
+    }
+    .wide-indent {
+        padding: 1% 10%;
+    }
+
+    .about-text {
+        font-size: 3.5vw;
+    }
+
+    .about-icon {
+        height: 10vw;
+        width: 10vw;
+    }
+
+    .map-side-sm {
+        display: block;
+    }
+
+    .map-side-lg {
+        display: none;
+    }
+
+    .slide {
+        /* height: 46vw; */
+    }
+
     .tiles-two, .tiles-five {
-        display: grid;
-        grid-template-columns: 1fr;
+        font-size: 5vw;
+        align-items: center;
+        flex-direction: column;
         margin: 0;
         padding: 0;
     }
 
-    .tiles-five {
-        margin-top: 0;
-    }
-
     .two-tile, .five-tile {
-        width: 100%;
-        height: 28px;
-        padding: 0 5px;
+        width: 90%;
+        height: unset;
+        padding: 2vw;
         margin-bottom: 10px;
-        font-size: 2vw;
+        font-size: 5vw;
     }
 
+    .btn-contact {
+        font-size: 5vw;
+        padding: 1vw 10vw;
+    }
+
+    #about-container {
+        display: grid;
+        gap: 8vw;
+        padding: 1% 20%;
+    }
+
+    #bottom-line {
+        font-size: 4vw;
+    }   
+
+    #carousel {
+        /* height: 48vw; */
+    }
+
+    #container {
+        /* height: 65vw; */
+    }
+
+    #hero {
+        padding: 1% 8%;
+    }
+
+    #empError, #zipError {
+        font-size: 3.5vw;
+    }
+
+    #why-SARK {
+        padding: 1% 12%;
+    }
     /* .material-icons{
         display: none
     } */

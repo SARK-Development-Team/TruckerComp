@@ -4,17 +4,16 @@
     display: flex;
     position: relative;
     font-size: .8vw;
-    margin: 1vw auto;
+    margin: 0 auto;
     align-items: center;
     justify-content: center;
-    /* flex-grow: 0; */
 }
 
 .left-button {
     background: rgb(254, 97, 97);
     color: white;
     border-radius: 10px 0 0 10px;
-    padding: .5vw;
+    padding: .7vw;
     margin: .1vw
 }
 
@@ -22,12 +21,17 @@
     background: blue;
     color: white;
     border-radius: 0 10px 10px 0;
-    padding: .5vw;
+    padding: .7vw;
     margin: .1vw
 }
 
 .left-button:hover, .right-button:hover {
     background: black;
+}
+
+.spaced {
+    justify-content: space-between;
+    width: 100%;
 }
 
 .text-portion {
@@ -89,8 +93,7 @@
     gap: 1vw;
 }
 #four-square .tile {
-    flex: 0 0 13vw;
-    /* width: 46vw; */
+    flex: 25%;
 }
 
 #quote-button {
@@ -98,7 +101,7 @@
     background: blue;
     color: white;
     font-size: 1.3vw;
-    margin: 2vw 34vw;
+    margin: 0vw 34vw;
     padding: .8vw;
 }
 
@@ -125,6 +128,7 @@
     background: rgb(235,239,254);
     text-align: center;
     margin: 0;
+    padding-bottom: 3%;
 }
 
 
