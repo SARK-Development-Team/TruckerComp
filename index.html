@@ -72,6 +72,10 @@
                             <input type="text" id="slide2EmployeesNumber" name="employeesNumber" placeholder="2"><br>
                             <p id='empError'>Please enter the number of employees</p>
 
+                            <h3>What was your payroll for fiscal year 2020?</h3>
+                            <input type="text" id="slide2Payroll" name="payroll" placeholder="$50,000"><br>
+                            <p id='payrollError'>Please enter the payroll for fiscal year 2020</p>
+
                         </form>
                         <div class="icon-area">
                             <div class="icons">
@@ -85,29 +89,26 @@
 
                     <!-- This div is the third item in the carousel -->
                     <div class="slide" id="slide3">
-                        <h3>Where does your business operate?</h3>
+                        <h3>What type of trucking service do you provide?</h3>
                         <div class="back-icon" onclick="changeSlide(-1)">
                             <i class="fas fa-chevron-left "></i>
                         </div>
                         <div class="next-icon" id="next3">
                             <i class="fas fa-chevron-right "></i>
                         </div>
-                        <div class="tiles-five">
-                            <button class ="five-tile tile" id="slide3Home">
-                                <!-- <i class="material-icons" >home</i> -->
-                            I Run My Business Out of My Home</button>
-                            <button class ="five-tile tile" id="slide3Lease">
-                                <!-- <i class="material-icons" >meeting_room</i> -->
-                                I Lease a Space From Others</button>
-                            <button class ="five-tile tile" id="slide3Site">
-                                <!-- <i class="material-icons" >workbuild</i> -->
-                                I Work at a Job Site</button>
-                            <button class ="five-tile tile" id="slide3Property">
-                                <!-- <i class="material-icons" >business</i> -->
-                                I Run My Business From Property I Own</button>
-                            <button class ="five-tile tile" id="slide3Own">
-                                <!-- <i class="material-icons" >store</i> -->
-                                I Own a Property & Lease to Others</button>
+                        <div class="tiles-multi">
+                            <button class ="four-tile tile" id="slide3LongHaul">
+                                <i class="material-icons" >room</i><br>
+                                Long Haul Trucking</button>
+                            <button class ="four-tile tile" id="slide3Sand">
+                                <i class="material-icons" >landscape</i><br>
+                                Sand & Gravel Trucking</button>
+                            <button class ="four-tile tile" id="slide3Local">
+                                <i class="material-icons" >local_shipping</i><br>
+                                Local Trucking (&lt;500 miles)</button>
+                            <button class ="four-tile tile" id="slide3Towing">
+                                <i class="material-icons" >car_repair</i><br>
+                                Towing Services</button>
                         </div>
                         <div class="icon-area">
                             <div class="icons">
@@ -121,15 +122,23 @@
 
                     <!-- This form is the last item in the carousel -->
                     <div class="slide" id="slide4">
-                        <h3>Where is your business located?</h3>
                         <div class="back-icon" onclick="changeSlide(-1)">
                             <i class="fas fa-chevron-left "></i>
                         </div>
-                        <form>
+                        <form class="hero-form">
+                            <h3>Where is your business located?</h3>
                             <input type="text" id="slide4Zipcode" name="zipcode" placeholder="10001"><br>
                             <p id='zipError'>Please enter a valid 5-digit US ZIP Code</p>
+
+                            <h3>How many miles did you (and any employees) drive in 2020?</h3>
+                            <input type="text" id="slide4Mileage" name="miles" placeholder="50000"><br>
+                            <p id='milesError'>Please enter the number of miles</p>
+
+                            <h3>What is your email address?</h3>
+                            <input type="email" name="email" id="slide4Email">
+                            <p id='emailError'>Please enter a valid email address</p>
                         </form>
-                        <div style="display: flex;"><a class="btn-submit" id="submit">Submit</a></div>
+                        <div class="btn-submit" id="submit">Submit</div>
 
                         <div class="icon-area">
                             <div class="icons">

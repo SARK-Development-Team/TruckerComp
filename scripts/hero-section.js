@@ -62,6 +62,8 @@ const aff = document.getElementById('slide1Yes');
 const neg = document.getElementById('slide1No');
 
 aff.onclick = () => {
+    aff.classList.add('selected');
+    neg.classList.remove('selected');
     const slide2 = document.getElementById('slide2');
     const slide3 = document.getElementById('slide3');
     const slide4 = document.getElementById('slide4');
@@ -72,6 +74,8 @@ aff.onclick = () => {
 }
 // Todo: add a function to skip slide 2 if "neg" is active
 neg.onclick = () => {
+    neg.classList.add('selected');
+    aff.classList.remove('selected');
     const slide2 = document.getElementById('slide2');
     const slide3 = document.getElementById('slide3');
     const slide4 = document.getElementById('slide4');
@@ -84,6 +88,7 @@ neg.onclick = () => {
 //------Slide 2
 // For slides 2-4, the initialFormData is updated based on the user's input.
 const employees = document.getElementById('slide2EmployeesNumber');
+const payroll = document.getElementById('slide2Payroll');
 
 employees.addEventListener('keyup', () => {
     const input = parseInt(employees.value);
@@ -99,45 +104,45 @@ employees.addEventListener('keyup', () => {
 });
 
 //------Slide 3 
-const home = document.getElementById('slide3Home');
-const lease = document.getElementById('slide3Lease');
-const site = document.getElementById('slide3Site');
-const property = document.getElementById('slide3Property');
-const own = document.getElementById('slide3Own');
+const longhaul = document.getElementById('slide3LongHaul');
+const sand = document.getElementById('slide3Sand');
+const local = document.getElementById('slide3Local');
+const towing = document.getElementById('slide3Towing');
 
-home.onclick = () => {
-    initialFormData.businessLocation = 0;
-    nextSlide(3);
-}
-lease.onclick = () => {
+longhaul.onclick = () => {
+    // longhaul.add
     initialFormData.businessLocation = 1;
     nextSlide(3);
 }
-site.onclick = () => {
+sand.onclick = () => {
     initialFormData.businessLocation = 2;
     nextSlide(3);
 }
-property.onclick = () => {
+local.onclick = () => {
     initialFormData.businessLocation = 3;
     nextSlide(3);
 }
-own.onclick = () => {
+towing.onclick = () => {
     initialFormData.businessLocation = 4;
     nextSlide(3);
 }
 
 //------Slide 4 
 const zip = document.getElementById('slide4Zipcode');
+const email = document.getElementById('slide4Email');
+const miles = document.getElementById('slide4Mileage');
 
 zip.addEventListener('keyup', () => {
     const input = parseInt(zip.value);
     const zipError = document.getElementById('zipError');
+    const milesError = document.getElementById('milesError');
+    const emailError = document.getElementById('emailError');
     const submit = document.getElementById('submit');
     if (input>0 && Number.isInteger(input)) {
         initialFormData.zipCode = input;
         zipError.style.visibility = 'hidden';
         submit.style.background='#4ca846';
-        submit.href='main-form.html';
+        submit.onclick=requestQuote;
         setCookie("initialForm", JSON.stringify(initialFormData));
     } else {
         submit.style.background='red';
@@ -145,6 +150,14 @@ zip.addEventListener('keyup', () => {
         zipError.style.visibility = 'visible';
     }
 });
+
+//This is the call for the quote
+
+function requestQuote() {
+    alert('Quote requested!');
+}
+
+
 
 // Todo: determine if entered zip code is valid. 
 zipCodeError = "Please enter a valid zip code."
