@@ -133,13 +133,20 @@ input {
     padding: 0 3%;
 }
 
+.hero-form {
+    grid-column-start: center;
+    grid-row-start: centerline; 
+}
+
 .icon-area {
-    flex-grow: 0;
+    /* flex-grow: 0; */
     /* align-self: flex-end; */
     display: flex;
     justify-content: center;
     font-size: 2.2vw;
     align-items: center;
+    grid-column-start: center;
+    grid-row-start: bottom;
 }
 
 .icons {
@@ -148,25 +155,29 @@ input {
 }
 
 .back-icon {
-    position: absolute;
+    /* position: absolute; */
     font-size: 5.7vw;
     color: rgb(219, 166, 166);
-    left: 2vw;
-    top: 42%;
+    /* left: 2vw;
+    top: 42%; */
     transition: all .5s ease;
     z-index: 3;
     cursor: pointer;
+    grid-column-start: lside;
+    grid-row-start: centerline;
 }
 
 .next-icon {
-    position: absolute;
+    /* position: absolute; */
     font-size: 5.7vw;
     color: rgb(219, 166, 166);
-    right: 2vw;
-    top: 42%;
+    /* right: 2vw; */
+    /* top: 42%; */
     opacity: 0;
     transition: all .5s ease;
     z-index: 3;
+    grid-column-start: rside;
+    grid-row-start: centerline;
 }
 
 .next-icon:hover, .back-icon:hover {
@@ -181,22 +192,19 @@ input {
 
 .slide {
     min-width: 78vw;
+    display: grid;  
+    grid-template-columns: [lside] 5% [center] 90% [rside] 5%;
+    /* grid-template-rows: [top] 5% [topmid] 35% [bottommid] 40% [bottom] 10%; */
+    grid-template-rows: [top] 5vh [topmid] 1fr [centerline] 5vh [bottommid] 1fr [bottom] 5vh;
     /* height: 22vw; */
     transition: transform 0.5s;
-    z-index: 1;
+    /* z-index: 1; */
 }
 
 .slide h3 {
     text-align: center;
-}
-
-.spacer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-    height: 100%;
-
+    grid-column-start: center;
+    grid-row-start: top;
 }
 
 .tile {
@@ -214,17 +222,20 @@ input {
 }
 
 .tiles-two {
-    flex-grow: 8;
+    /* flex-grow: 8; */
     display: flex;
     flex-direction: row;
     justify-content: center;
     column-gap: 3.3vw;
     padding: 2.4vw .8vw;
     position: relative;
+    grid-column-start: center;
+    grid-row-start: topmid;
+    grid-row-end: bottommid;
 }
 
 .tiles-five {
-    flex-grow: 8;
+    /* flex-grow: 8; */
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -233,6 +244,9 @@ input {
     position: relative;
     flex-direction: row;
     flex-wrap: nowrap;
+    grid-column-start: center;
+    grid-row-start: topmid;
+    grid-row-end: bottommid;
 }
 
 .two-tile {
@@ -274,6 +288,8 @@ input {
     font-style: italic;
     font-size: 1vw;
     color: red;
+    grid-column-start: center;
+    grid-row-start: bottommid;
 }
 
 #hero {

@@ -44,35 +44,34 @@
                         <div class="next-icon" id="next1">
                             <i class="fas fa-chevron-right "></i>
                         </div>
-                        <div class="spacer">
-                            <div class="tiles-two" style="clear: right">
-                                <button class ="two-tile tile" id="slide1Yes">My company has employees</button>
-                                <button class ="two-tile tile" id="slide1No">Just the owners</button>
+                        <div class="tiles-two" style="clear: right">
+                            <button class ="two-tile tile" id="slide1Yes">My company has employees</button>
+                            <button class ="two-tile tile" id="slide1No">Just the owners</button>
 
+                        </div>
+                        <div class="icon-area">
+                            <div class="icons">
+                                <i class="fas fa-circle active"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
                             </div>
-                            <div class="icon-area">
-                                <div class="icons">
-                                    <i class="fas fa-circle active"></i>
-                                    <i class="fas fa-circle"></i>
-                                    <i class="fas fa-circle"></i>
-                                    <i class="fas fa-circle"></i>
-                                </div>
-                            </div>
-                    </div>
+                        </div>
                     </div>
 
                     <!-- This form is the next item in the carousel if the user selects "My company has employees", otherwise it skips to the third item -->
                     <div class="slide" id="slide2">
                         <h3>How many employees does your company have?</h3>
-                        <form>
+                        <div class="back-icon" onclick="changeSlide(-1)">
+                            <i class="fas fa-chevron-left "></i>
+                        </div>
+                        <div class="next-icon" id="next2">
+                            <i class="fas fa-chevron-right "></i>
+                        </div>
+                        <form class="hero-form">
                             <input type="text" id="slide2EmployeesNumber" name="employeesNumber" placeholder="2"><br>
                             <p id='empError'>Please enter the number of employees</p>
-                            <div class="back-icon" onclick="changeSlide(-1)">
-                                <i class="fas fa-chevron-left "></i>
-                            </div>
-                            <div class="next-icon" id="next2">
-                                <i class="fas fa-chevron-right "></i>
-                            </div>
+
                         </form>
                         <div class="icon-area">
                             <div class="icons">
@@ -93,32 +92,30 @@
                         <div class="next-icon" id="next3">
                             <i class="fas fa-chevron-right "></i>
                         </div>
-                        <div class ="spacer">
-                            <div class="tiles-five">
-                                <button class ="five-tile tile" id="slide3Home">
-                                    <!-- <i class="material-icons" >home</i> -->
-                                I Run My Business Out of My Home</button>
-                                <button class ="five-tile tile" id="slide3Lease">
-                                    <!-- <i class="material-icons" >meeting_room</i> -->
-                                    I Lease a Space From Others</button>
-                                <button class ="five-tile tile" id="slide3Site">
-                                    <!-- <i class="material-icons" >workbuild</i> -->
-                                    I Work at a Job Site</button>
-                                <button class ="five-tile tile" id="slide3Property">
-                                    <!-- <i class="material-icons" >business</i> -->
-                                    I Run My Business From Property I Own</button>
-                                <button class ="five-tile tile" id="slide3Own">
-                                    <!-- <i class="material-icons" >store</i> -->
-                                    I Own a Property & Lease to Others</button>
-                            </div>
-                            <div class="icon-area">
-                                <div class="icons">
-                                    <i class="fas fa-circle"></i>
-                                    <i class="fas fa-circle"></i>
-                                    <i class="fas fa-circle active"></i>
-                                    <i class="fas fa-circle"></i>
-                                </div>               
-                            </div>
+                        <div class="tiles-five">
+                            <button class ="five-tile tile" id="slide3Home">
+                                <!-- <i class="material-icons" >home</i> -->
+                            I Run My Business Out of My Home</button>
+                            <button class ="five-tile tile" id="slide3Lease">
+                                <!-- <i class="material-icons" >meeting_room</i> -->
+                                I Lease a Space From Others</button>
+                            <button class ="five-tile tile" id="slide3Site">
+                                <!-- <i class="material-icons" >workbuild</i> -->
+                                I Work at a Job Site</button>
+                            <button class ="five-tile tile" id="slide3Property">
+                                <!-- <i class="material-icons" >business</i> -->
+                                I Run My Business From Property I Own</button>
+                            <button class ="five-tile tile" id="slide3Own">
+                                <!-- <i class="material-icons" >store</i> -->
+                                I Own a Property & Lease to Others</button>
+                        </div>
+                        <div class="icon-area">
+                            <div class="icons">
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle active"></i>
+                                <i class="fas fa-circle"></i>
+                            </div>               
                         </div>
                     </div>
 

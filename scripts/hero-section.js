@@ -65,7 +65,7 @@ aff.onclick = () => {
     const slide2 = document.getElementById('slide2');
     const slide3 = document.getElementById('slide3');
     const slide4 = document.getElementById('slide4');
-    slide2.style.display='block';
+    slide2.style.display='grid';
     slide3.style.transform = "translateX(200vw)";
     slide4.style.transform = "translateX(300vw)";
     nextSlide(1);
