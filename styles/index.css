@@ -109,7 +109,7 @@ input {
     color: white;
     transition: all 0.6s ease;
     font-size: 1.3vw;
-    margin: 0 auto;
+    margin: 0 30vw;
     grid-column-start: center;
     grid-row-start: bottommid;
 }
@@ -296,7 +296,7 @@ input {
     opacity: .9;
 }
 
-#empError, #milesError, #payrollError, #zipError {
+#empError, #milesError, #payrollError, #zipError, #emailError {
     margin: 0;
     padding: 0;
     visibility: hidden;

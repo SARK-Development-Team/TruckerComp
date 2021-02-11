@@ -9,8 +9,11 @@ initializeCarousel();
 function initializeCarousel() {
     initialFormData = {
         employees: 0,
-        businessLocation: 0,
-        zipCode: 0
+        payroll: 0,
+        businessType: 0,
+        zipCode: 0,
+        mileage: 0,
+        email: ''
     }
     for (let i = 0; i < slides.length; i++) {
         let multiplier = i*100;
@@ -45,14 +48,12 @@ function nextSlide(slideIndex) {
     const next = document.getElementById('next' + slideIndex);
     next.style.opacity=1;
     next.style.cursor="pointer"
-    // next.style.background = "#3499cc";
     next.onclick = () => changeSlide(1);
 }
 
 function deactivateSlide(slideIndex) {
     const next = document.getElementById('next' + slideIndex);
     next.style.opacity=0;
-    // next.style.background = "#666";
     next.style.cursor=""
     next.onclick = '';
 }
@@ -96,12 +97,32 @@ employees.addEventListener('keyup', () => {
     if (input>0 && Number.isInteger(input)) {
         initialFormData.employees = input;
         empError.style.visibility='hidden';
-        nextSlide(2);
+        checkSlide2();
     } else {
         empError.style.visibility='visible';
         deactivateSlide(2)
     }
 });
+
+payroll.addEventListener('keyup', () => {
+    const input = parseInt(payroll.value);
+    const payrollError = document.getElementById('payrollError');
+    if (input>0 && Number.isInteger(input)) {
+        initialFormData.employees = input;
+        payrollError.style.visibility='hidden';
+        checkSlide2();
+    } else {
+        payrollError.style.visibility='visible';
+        deactivateSlide(2)
+    }
+});
+
+// Checks to see if values have been entered for slide 2; if so, allows progress to next slide
+function checkSlide2() {
+    if (initialFormData.employees>0&&initialFormData.payroll>0){
+        nextSlide(2);
+    }
+}
 
 //------Slide 3 
 const longhaul = document.getElementById('slide3LongHaul');
@@ -110,19 +131,34 @@ const local = document.getElementById('slide3Local');
 const towing = document.getElementById('slide3Towing');
 
 longhaul.onclick = () => {
-    // longhaul.add
+    longhaul.classList.add('selected');
+    sand.classList.remove('selected');
+    local.classList.remove('selected');
+    towing.classList.remove('selected');
     initialFormData.businessLocation = 1;
     nextSlide(3);
 }
 sand.onclick = () => {
+    longhaul.classList.remove('selected');
+    sand.classList.add('selected');
+    local.classList.remove('selected');
+    towing.classList.remove('selected');
     initialFormData.businessLocation = 2;
     nextSlide(3);
 }
 local.onclick = () => {
+    longhaul.classList.remove('selected');
+    sand.classList.remove('selected');
+    local.classList.add('selected');
+    towing.classList.remove('selected');
     initialFormData.businessLocation = 3;
     nextSlide(3);
 }
 towing.onclick = () => {
+    longhaul.classList.remove('selected');
+    sand.classList.remove('selected');
+    local.classList.remove('selected');
+    towing.classList.add('selected');
     initialFormData.businessLocation = 4;
     nextSlide(3);
 }
@@ -135,21 +171,51 @@ const miles = document.getElementById('slide4Mileage');
 zip.addEventListener('keyup', () => {
     const input = parseInt(zip.value);
     const zipError = document.getElementById('zipError');
-    const milesError = document.getElementById('milesError');
-    const emailError = document.getElementById('emailError');
-    const submit = document.getElementById('submit');
     if (input>0 && Number.isInteger(input)) {
         initialFormData.zipCode = input;
         zipError.style.visibility = 'hidden';
+        checkSlide4();
+    } else {
+        zipError.style.visibility = 'visible';
+    }
+});
+
+miles.addEventListener('keyup', () => {
+    const input = parseInt(miles.value);
+    const milesError = document.getElementById('milesError');
+    if (input>0 && Number.isInteger(input)) {
+        initialFormData.zipCode = input;
+        milesError.style.visibility = 'hidden';
+        checkSlide4();
+    } else {
+        milesError.style.visibility = 'visible';
+    }
+});
+
+email.addEventListener('keyup', () => {
+    const input = parseInt(miles.value);
+    const emailError = document.getElementById('emailError');
+    if (input>0 && Number.isInteger(input)) {
+        initialFormData.zipCode = input;
+        emailError.style.visibility = 'hidden';
+        checkSlide4();
+    } else {
+        emailError.style.visibility = 'visible';
+    }
+});
+
+// Checks to see if values have been entered for slide 2; if so, allows progress to next slide
+function checkSlide4() {
+    const submit = document.getElementById('submit');
+    if (initialFormData.zip>0&&initialFormData.miles>0&&initialFormData.email!=''){
         submit.style.background='#4ca846';
         submit.onclick=requestQuote;
         setCookie("initialForm", JSON.stringify(initialFormData));
     } else {
         submit.style.background='red';
         submit.href = '';
-        zipError.style.visibility = 'visible';
     }
-});
+}
 
 //This is the call for the quote
 
