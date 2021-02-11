@@ -110,7 +110,7 @@ input {
     color: white;
     transition: all 0.6s ease;
     font-size: 1.3vw;
-    margin: 0 30vw;
+    margin: 0 27vw;
     grid-column-start: center;
     grid-row-start: bottommid;
 }
@@ -149,6 +149,7 @@ input {
     grid-column-start: center;
     grid-row-start: topmid; 
     grid-row-end: bottom;
+    padding: 0 4vw;
 }
 
 .hero-form p {
@@ -156,8 +157,8 @@ input {
     margin: 0;
 }
 
-.hero-form span {
-    display: inline-block;
+.hero-form h3 {
+    margin: 3vw 0 0 0;
 }
 
 .icon-area {
@@ -710,7 +711,7 @@ svg {
         grid-template-rows: [top] 5vh [topmid] 17vh [centerline] 1vh [bottommid] 17vh [bottom] 4vh;
     }
 
-    .tile br {
+    .tile > br {
         display: none;
     }
 
@@ -739,7 +740,7 @@ svg {
     .btn-submit {
         font-size: 5vw;
         padding: 1vw 6vw;
-        margin: 0 20vw;
+        margin: 0 18vw;
     }
 
     #about-container {
@@ -749,7 +750,7 @@ svg {
     }
 
     #bottom-line {
-        font-size: 4vw;
+        font-size: 2.8vw;
     }   
 
     #hero {
