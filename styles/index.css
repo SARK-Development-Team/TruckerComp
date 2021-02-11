@@ -30,14 +30,14 @@ button {
 }
 
 h2 {
-    font-size: 2.1vw;
+    font-size: 1.8vw;
     font-weight: 700;
     padding: 1vw 0;
     margin-bottom: 0; 
 }
 
 h3 {
-    font-size: 1.5vw;
+    font-size: 1.3vw;
     font-weight: 300;
 }
 
@@ -104,13 +104,13 @@ input {
     align-self: center;
     cursor: unset;
     background-color: #666;
-    padding: 1.1vw;
+    padding: 1vw;
     border-radius: 4%;
     border: 1px solid white;
     color: white;
     transition: all 0.6s ease;
-    font-size: 1.3vw;
-    margin: 0 27vw;
+    font-size: 1.1vw;
+    margin: 0 40%;
     grid-column-start: center;
     grid-row-start: bottommid;
 }
@@ -129,9 +129,9 @@ input {
     background: #6699B9;
     color: white;
     text-align: center;
-    font-size: 1.2vw;
-    width: 7.7vw;
-    height: 11.5vw;
+    font-size: 1vw;
+    width: 7.1vw;
+    height: 10.5vw;
 }
 
 .fa-circle {
@@ -158,13 +158,13 @@ input {
 }
 
 .hero-form h3 {
-    margin: 3vw 0 0 0;
+    margin: 2.4vw 0 0 0;
 }
 
 .icon-area {
     display: flex;
     justify-content: center;
-    font-size: 2.2vw;
+    font-size: 1.7vw;
     align-items: center;
     grid-column-start: center;
     grid-row-start: bottom;
@@ -176,17 +176,18 @@ input {
 }
 
 .back-icon {
-    font-size: 5.7vw;
+    font-size: 5.1vw;
     color: rgb(219, 166, 166);
     transition: all .5s ease;
     z-index: 3;
     cursor: pointer;
     grid-column-start: lside;
     grid-row-start: centerline;
+    justify-self: end;
 }
 
 .next-icon {
-    font-size: 5.7vw;
+    font-size: 5.1vw;
     color: rgb(219, 166, 166);
     opacity: 0;
     transition: all .5s ease;
@@ -200,7 +201,7 @@ input {
 }
 
 .material-icons {
-    font-size: 4vw;
+    font-size: 3.5vw;
 }
 
 
@@ -212,8 +213,8 @@ input {
 .slide {
     min-width: 78vw;
     display: grid;  
-    grid-template-columns: [lside] 5% [center] 90% [rside] 5%;
-    grid-template-rows: [top] 5vh [topmid] 15vh [centerline] 4vh [bottommid] 20vh [bottom] 5vh;
+    grid-template-columns: [lside] 10% [center] 80% [rside] 10%;
+    grid-template-rows: [top] 5vh [topmid] 14vh [centerline] 4vh [bottommid] 17vh [bottom] 5vh;
     transition: transform 0.5s;
     /* z-index: 1; */
 }
@@ -282,9 +283,9 @@ input {
     background: #6699B9;
     color: white;
     text-align: center;
-    font-size: 1.2vw;
-    width: 9.6vw;
-    height: 11.5vw;
+    font-size: 1vw;
+    width: 9vw;
+    height: 10.5vw;
 }
 
 #bottom-line {
@@ -331,10 +332,6 @@ input {
 #hero a {
     text-decoration: none;
     cursor: pointer;
-}
-
-#slide5 input {
-    /* width: 34vw; */
 }
 
 ::placeholder { 
@@ -694,6 +691,10 @@ svg {
         width: 10vw;
     }
 
+    .back-icon, .next-icon {
+        font-size: 10vw;
+    }
+
     .hero-form p, input {
         font-size: 3.2vw;
     }
@@ -708,7 +709,7 @@ svg {
     }
 
     .slide{
-        grid-template-rows: [top] 5vh [topmid] 17vh [centerline] 1vh [bottommid] 17vh [bottom] 4vh;
+        grid-template-rows: [top] 5vh [topmid] 14vh [centerline] 1vh [bottommid] 15vh [bottom] 4vh;
     }
 
     .tile > br {
@@ -740,7 +741,7 @@ svg {
     .btn-submit {
         font-size: 5vw;
         padding: 1vw 6vw;
-        margin: 0 18vw;
+        margin: 0 18%;
     }
 
     #about-container {
