@@ -108,7 +108,7 @@ payroll.addEventListener('keyup', () => {
     const input = parseInt(payroll.value);
     const payrollError = document.getElementById('payrollError');
     if (input>0 && Number.isInteger(input)) {
-        initialFormData.employees = input;
+        initialFormData.payroll = input;
         payrollError.style.visibility='hidden';
         checkSlide2();
     } else {
@@ -135,7 +135,7 @@ longhaul.onclick = () => {
     sand.classList.remove('selected');
     local.classList.remove('selected');
     towing.classList.remove('selected');
-    initialFormData.businessLocation = 1;
+    initialFormData.businessType  = 1;
     nextSlide(3);
 }
 sand.onclick = () => {
@@ -143,7 +143,7 @@ sand.onclick = () => {
     sand.classList.add('selected');
     local.classList.remove('selected');
     towing.classList.remove('selected');
-    initialFormData.businessLocation = 2;
+    initialFormData.businessType  = 2;
     nextSlide(3);
 }
 local.onclick = () => {
@@ -151,7 +151,7 @@ local.onclick = () => {
     sand.classList.remove('selected');
     local.classList.add('selected');
     towing.classList.remove('selected');
-    initialFormData.businessLocation = 3;
+    initialFormData.businessType  = 3;
     nextSlide(3);
 }
 towing.onclick = () => {
@@ -159,7 +159,7 @@ towing.onclick = () => {
     sand.classList.remove('selected');
     local.classList.remove('selected');
     towing.classList.add('selected');
-    initialFormData.businessLocation = 4;
+    initialFormData.businessType = 4;
     nextSlide(3);
 }
 
@@ -184,7 +184,7 @@ miles.addEventListener('keyup', () => {
     const input = parseInt(miles.value);
     const milesError = document.getElementById('milesError');
     if (input>0 && Number.isInteger(input)) {
-        initialFormData.zipCode = input;
+        initialFormData.mileage = input;
         milesError.style.visibility = 'hidden';
         checkSlide4();
     } else {
@@ -193,10 +193,12 @@ miles.addEventListener('keyup', () => {
 });
 
 email.addEventListener('keyup', () => {
-    const input = parseInt(miles.value);
+    const input = email.value;
+    // this regex tests for an email address
+    const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     const emailError = document.getElementById('emailError');
-    if (input>0 && Number.isInteger(input)) {
-        initialFormData.zipCode = input;
+    if (input!='' && regex.test(input)) {
+        initialFormData.email = input;
         emailError.style.visibility = 'hidden';
         checkSlide4();
     } else {
@@ -207,7 +209,7 @@ email.addEventListener('keyup', () => {
 // Checks to see if values have been entered for slide 2; if so, allows progress to next slide
 function checkSlide4() {
     const submit = document.getElementById('submit');
-    if (initialFormData.zip>0&&initialFormData.miles>0&&initialFormData.email!=''){
+    if (initialFormData.zipCode>0&&initialFormData.mileage>0&&initialFormData.email!=''){
         submit.style.background='#4ca846';
         submit.onclick=requestQuote;
         setCookie("initialForm", JSON.stringify(initialFormData));

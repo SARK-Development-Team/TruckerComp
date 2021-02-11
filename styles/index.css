@@ -77,8 +77,8 @@ form {
 
 input {
     font-size: 2.1vw;
-    margin: 2vw 0 0 0;
-    width: 11vw;
+    margin: .5vw 0 0 0;
+    width: 14vw;
     text-align: center;
 }
 
@@ -125,7 +125,7 @@ input {
 } */
 
 .four-tile {
-    background: #1f486a;
+    background: #6699B9;
     color: white;
     text-align: center;
     font-size: 1.2vw;
@@ -194,7 +194,7 @@ input {
 
 
 .selected {
-    background: #3499cc!important;
+    background: #1e8ee9!important;
     color: white;
 }
 
@@ -202,7 +202,7 @@ input {
     min-width: 78vw;
     display: grid;  
     grid-template-columns: [lside] 5% [center] 90% [rside] 5%;
-    grid-template-rows: [top] 5vh [topmid] 1fr [centerline] 5vh [bottommid] 1fr [bottom] 5vh;
+    grid-template-rows: [top] 4vh [topmid] 15vh [centerline] 4vh [bottommid] 20vh [bottom] 4vh;
     transition: transform 0.5s;
     /* z-index: 1; */
 }
@@ -268,7 +268,7 @@ input {
 }
 
 .two-tile {
-    background: #1f486a;
+    background: #6699B9;
     color: white;
     text-align: center;
     font-size: 1.2vw;
@@ -662,8 +662,9 @@ svg {
     }
 
     input {
-        font-size: 7vw;
-        width: 30vw;
+        font-size: 5vw;
+        width: 34vw;
+        margin: 1vw 0 0 0;
     }
 
     .indented {
@@ -688,6 +689,10 @@ svg {
 
     .map-side-lg {
         display: none;
+    }
+
+    .slide{
+        grid-template-rows: [top] 4vh [topmid] 17vh [centerline] 1vh [bottommid] 17vh [bottom] 4vh;
     }
 
     .tile br {
@@ -718,7 +723,8 @@ svg {
 
     .btn-submit {
         font-size: 5vw;
-        padding: 1vw 10vw;
+        padding: 1vw 6vw;
+        margin: 0 20vw;
     }
 
     #about-container {
@@ -735,7 +741,7 @@ svg {
         padding: 1% 8%;
     }
 
-    #empError, #zipError {
+    #empError, #payrollError, #zipError, #milesError, #emailError {
         font-size: 3.5vw;
     }
 
