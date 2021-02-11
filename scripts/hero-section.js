@@ -65,12 +65,12 @@ const neg = document.getElementById('slide1No');
 aff.onclick = () => {
     aff.classList.add('selected');
     neg.classList.remove('selected');
-    const slide2 = document.getElementById('slide2');
+    const empOrSelf = document.getElementById('empOrSelf');
+    empOrSelf.innerText = 'my employees';
     const slide3 = document.getElementById('slide3');
     const slide4 = document.getElementById('slide4');
     const slide5 = document.getElementById('slide5');
-    slide2.style.display='grid';
-    slide3.style.transform = "translateX(200vw)";
+    slide3.style.display='grid';
     slide4.style.transform = "translateX(300vw)";
     slide5.style.transform = "translateX(400vw)";
     nextSlide(1);
@@ -79,12 +79,12 @@ aff.onclick = () => {
 neg.onclick = () => {
     neg.classList.add('selected');
     aff.classList.remove('selected');
-    const slide2 = document.getElementById('slide2');
+    const empOrSelf = document.getElementById('empOrSelf');
+    empOrSelf.innerText = 'I';
     const slide3 = document.getElementById('slide3');
     const slide4 = document.getElementById('slide4');
     const slide5 = document.getElementById('slide5');
-    slide2.style.display='none';
-    slide3.style.transform = "translateX(100vw)";
+    slide3.style.display='none';
     slide4.style.transform = "translateX(200vw)";
     slide5.style.transform = "translateX(300vw)";
     nextSlide(1)
@@ -92,8 +92,47 @@ neg.onclick = () => {
 
 //------Slide 2
 // For slides 2-4, the initialFormData is updated based on the user's input.
-const employees = document.getElementById('slide2EmployeesNumber');
-const payroll = document.getElementById('slide2Payroll');
+const longhaul = document.getElementById('slide2LongHaul');
+const sand = document.getElementById('slide2Sand');
+const local = document.getElementById('slide2Local');
+const towing = document.getElementById('slide2Towing');
+
+longhaul.onclick = () => {
+    longhaul.classList.add('selected');
+    sand.classList.remove('selected');
+    local.classList.remove('selected');
+    towing.classList.remove('selected');
+    initialFormData.businessType = 1;
+    nextSlide(2);
+}
+sand.onclick = () => {
+    longhaul.classList.remove('selected');
+    sand.classList.add('selected');
+    local.classList.remove('selected');
+    towing.classList.remove('selected');
+    initialFormData.businessType = 2;
+    nextSlide(2);
+}
+local.onclick = () => {
+    longhaul.classList.remove('selected');
+    sand.classList.remove('selected');
+    local.classList.add('selected');
+    towing.classList.remove('selected');
+    initialFormData.businessType = 3;
+    nextSlide(2);
+}
+towing.onclick = () => {
+    longhaul.classList.remove('selected');
+    sand.classList.remove('selected');
+    local.classList.remove('selected');
+    towing.classList.add('selected');
+    initialFormData.businessType = 4;
+    nextSlide(2);
+}
+
+//------Slide 3 
+const employees = document.getElementById('slide3EmployeesNumber');
+const payroll = document.getElementById('slide3Payroll');
 
 employees.addEventListener('keyup', () => {
     const input = parseInt(employees.value);
@@ -101,10 +140,10 @@ employees.addEventListener('keyup', () => {
     if (input>0 && Number.isInteger(input)) {
         initialFormData.employees = input;
         empError.style.visibility='hidden';
-        checkSlide2();
+        checkSlide3();
     } else {
         empError.style.visibility='visible';
-        deactivateSlide(2)
+        deactivateSlide(3)
     }
 });
 
@@ -114,57 +153,18 @@ payroll.addEventListener('keyup', () => {
     if (input>0 && Number.isInteger(input)) {
         initialFormData.payroll = input;
         payrollError.style.visibility='hidden';
-        checkSlide2();
+        checkSlide3();
     } else {
         payrollError.style.visibility='visible';
-        deactivateSlide(2)
+        deactivateSlide(3)
     }
 });
 
-// Checks to see if values have been entered for slide 2; if so, allows progress to next slide
-function checkSlide2() {
+// Checks to see if values have been entered for slide 3; if so, allows progress to next slide
+function checkSlide3() {
     if (initialFormData.employees>0&&initialFormData.payroll>0){
-        nextSlide(2);
+        nextSlide(3);
     }
-}
-
-//------Slide 3 
-const longhaul = document.getElementById('slide3LongHaul');
-const sand = document.getElementById('slide3Sand');
-const local = document.getElementById('slide3Local');
-const towing = document.getElementById('slide3Towing');
-
-longhaul.onclick = () => {
-    longhaul.classList.add('selected');
-    sand.classList.remove('selected');
-    local.classList.remove('selected');
-    towing.classList.remove('selected');
-    initialFormData.businessType  = 1;
-    nextSlide(3);
-}
-sand.onclick = () => {
-    longhaul.classList.remove('selected');
-    sand.classList.add('selected');
-    local.classList.remove('selected');
-    towing.classList.remove('selected');
-    initialFormData.businessType  = 2;
-    nextSlide(3);
-}
-local.onclick = () => {
-    longhaul.classList.remove('selected');
-    sand.classList.remove('selected');
-    local.classList.add('selected');
-    towing.classList.remove('selected');
-    initialFormData.businessType  = 3;
-    nextSlide(3);
-}
-towing.onclick = () => {
-    longhaul.classList.remove('selected');
-    sand.classList.remove('selected');
-    local.classList.remove('selected');
-    towing.classList.add('selected');
-    initialFormData.businessType = 4;
-    nextSlide(3);
 }
 
 //------Slide 4 

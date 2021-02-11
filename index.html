@@ -62,22 +62,27 @@
 
                     <!-- This form is the next item in the carousel if the user selects "My company has employees", otherwise it skips to the third item -->
                     <div class="slide" id="slide2">
-                        <h3>How many employees does your company have?</h3>
+                        <h3>What type of trucking service do you provide?</h3>
                         <div class="back-icon" onclick="changeSlide(-1)">
                             <i class="fas fa-chevron-left "></i>
                         </div>
                         <div class="next-icon" id="next2">
                             <i class="fas fa-chevron-right "></i>
                         </div>
-                        <form class="hero-form">
-                            <input type="text" id="slide2EmployeesNumber" name="employeesNumber" placeholder="2"><br>
-                            <p id='empError'>Please enter the number of employees</p>
-
-                            <h3>What was your payroll for fiscal year 2020?</h3>
-                            <input type="text" id="slide2Payroll" name="payroll" placeholder="$50,000"><br>
-                            <p id='payrollError'>Please enter the payroll for fiscal year 2020</p>
-
-                        </form>
+                        <div class="tiles-multi">
+                            <button class ="four-tile tile" id="slide2LongHaul">
+                                <i class="material-icons" >room</i><br>
+                                Long Haul Trucking</button>
+                            <button class ="four-tile tile" id="slide2Sand">
+                                <i class="material-icons" >landscape</i><br>
+                                Sand & Gravel Trucking</button>
+                            <button class ="four-tile tile" id="slide2Local">
+                                <i class="material-icons" >local_shipping</i><br>
+                                Local Trucking (&lt;500 miles)</button>
+                            <button class ="four-tile tile" id="slide2Towing">
+                                <i class="material-icons" >car_repair</i><br>
+                                Towing Services</button>
+                        </div>
                         <div class="icon-area">
                             <div class="icons">
                                 <i class="fas fa-circle"></i>
@@ -91,27 +96,22 @@
 
                     <!-- This div is the third item in the carousel -->
                     <div class="slide" id="slide3">
-                        <h3>What type of trucking service do you provide?</h3>
+                        <h3>Please enter the following:</h3>
                         <div class="back-icon" onclick="changeSlide(-1)">
                             <i class="fas fa-chevron-left "></i>
                         </div>
                         <div class="next-icon" id="next3">
                             <i class="fas fa-chevron-right "></i>
                         </div>
-                        <div class="tiles-multi">
-                            <button class ="four-tile tile" id="slide3LongHaul">
-                                <i class="material-icons" >room</i><br>
-                                Long Haul Trucking</button>
-                            <button class ="four-tile tile" id="slide3Sand">
-                                <i class="material-icons" >landscape</i><br>
-                                Sand & Gravel Trucking</button>
-                            <button class ="four-tile tile" id="slide3Local">
-                                <i class="material-icons" >local_shipping</i><br>
-                                Local Trucking (&lt;500 miles)</button>
-                            <button class ="four-tile tile" id="slide3Towing">
-                                <i class="material-icons" >car_repair</i><br>
-                                Towing Services</button>
-                        </div>
+                        <form class="hero-form">
+                            <h3>My company has <input type="text" id="slide3EmployeesNumber" name="employeesNumber" style="width: 5vw"> employees.</h3>
+                            <p id='empError'>Please enter the number of employees</p>
+                            <br>
+                            <h3>My company's payroll for fiscal year 2020 was $<input type="text" id="slide3Payroll" name="payroll" style="width: 10vw">.</h3>
+                            <p id='payrollError'>Please enter the payroll for fiscal year 2020</p>
+
+                        </form>
+
                         <div class="icon-area">
                             <div class="icons">
                                 <i class="fas fa-circle"></i>
@@ -131,14 +131,15 @@
                         <div class="next-icon" id="next4">
                             <i class="fas fa-chevron-right "></i>
                         </div>
-                        <h3>Where is your business located?</h3>
+                        <h3>Please enter the following:</h3>
 
                         <form class="hero-form">
-                            <input type="text" id="slide4Zipcode" name="zipcode" placeholder="10001"><br>
+                            <h3>My zipcode is <input type="text" id="slide4Zipcode" name="zipcode" style="width:5vw">.</h3>
                             <p id='zipError'>Please enter a valid 5-digit US ZIP Code</p>
-
-                            <h3>How many miles did you (and any employees) drive in 2020?</h3>
-                            <input type="text" id="slide4Mileage" name="miles" placeholder="50000"><br>
+                            <br>
+                            <!-- This fills in the sentence based on the input from slide 1 -->
+                            <h3>In 2020, <span id="empOrSelf"></span> drove <input type="text" id="slide4Mileage" name="miles" style="width: 10vw"> miles.</h3>
+                            
                             <p id='milesError'>Please enter the number of miles</p>
 
                         </form>

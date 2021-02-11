@@ -72,14 +72,15 @@ h3 {
 ---------- */
 
 form {
-    text-align: center;
+    /* text-align: center; */
 }
 
 input {
-    font-size: 2.1vw;
-    margin: .5vw 0 0 0;
-    width: 14vw;
-    text-align: center;
+    background: inherit;
+    border: none;
+    border-bottom: 1px solid #585858;
+    font-size: 1.5vw;
+    /* text-align: center; */
 }
 
 .active {
@@ -155,6 +156,10 @@ input {
     margin: 0;
 }
 
+.hero-form span {
+    display: inline-block;
+}
+
 .icon-area {
     display: flex;
     justify-content: center;
@@ -212,7 +217,7 @@ input {
     /* z-index: 1; */
 }
 
-.slide h3 {
+.slide > h3 {
     text-align: center;
     grid-column-start: center;
     grid-row-start: top;
@@ -285,6 +290,8 @@ input {
     font-size: .9vw;
     font-style: italic;
     text-align: center;
+    padding-bottom: .1vw;
+    color: #585858;
     width: 100%;
 }
 
@@ -326,7 +333,7 @@ input {
 }
 
 #slide5 input {
-    width: 34vw;
+    /* width: 34vw; */
 }
 
 ::placeholder { 
@@ -670,12 +677,6 @@ svg {
         font-size: 3.5vw;
     }
 
-    input {
-        font-size: 5vw;
-        width: 34vw;
-        margin: 1vw 0 0 0;
-    }
-
     .indented {
         padding: 1% 10%;
     }
@@ -692,9 +693,11 @@ svg {
         width: 10vw;
     }
 
-    .hero-form p {
+    .hero-form p, input {
         font-size: 3.2vw;
     }
+
+
     .map-side-sm {
         display: block;
     }
