@@ -5,7 +5,7 @@ const slides = document.getElementsByClassName("slide");
 initializeCarousel();
 
 // Sets all initialFormData to initial values 
-// Arranges all slides but the first start off the screen on the right
+// Arranges slides so that all but the first start off screen on the right
 function initializeCarousel() {
     initialFormData = {
         employees: 0,
@@ -68,9 +68,11 @@ aff.onclick = () => {
     const slide2 = document.getElementById('slide2');
     const slide3 = document.getElementById('slide3');
     const slide4 = document.getElementById('slide4');
+    const slide5 = document.getElementById('slide5');
     slide2.style.display='grid';
     slide3.style.transform = "translateX(200vw)";
     slide4.style.transform = "translateX(300vw)";
+    slide5.style.transform = "translateX(400vw)";
     nextSlide(1);
 }
 // Todo: add a function to skip slide 2 if "neg" is active
@@ -80,9 +82,11 @@ neg.onclick = () => {
     const slide2 = document.getElementById('slide2');
     const slide3 = document.getElementById('slide3');
     const slide4 = document.getElementById('slide4');
+    const slide5 = document.getElementById('slide5');
     slide2.style.display='none';
     slide3.style.transform = "translateX(100vw)";
     slide4.style.transform = "translateX(200vw)";
+    slide5.style.transform = "translateX(300vw)";
     nextSlide(1)
 };
 
@@ -165,7 +169,6 @@ towing.onclick = () => {
 
 //------Slide 4 
 const zip = document.getElementById('slide4Zipcode');
-const email = document.getElementById('slide4Email');
 const miles = document.getElementById('slide4Mileage');
 
 zip.addEventListener('keyup', () => {
@@ -192,32 +195,79 @@ miles.addEventListener('keyup', () => {
     }
 });
 
+
+
+// Checks to see if values have been entered for slide 4; if so, allows progress to next slide
+function checkSlide4() {
+    if (initialFormData.zipCode>0&&initialFormData.mileage>0){
+        nextSlide(4);
+        fillInfo(initialFormData);
+    } else {
+        deactivateSlide(4);
+    }
+}
+
+// Fills in the data area on slide 5 for confirmation
+function fillInfo(data) {
+    const q1 = document.getElementById('q1');
+    const q2 = document.getElementById('q2');
+    const q3 = document.getElementById('q3');
+    const q4 = document.getElementById('q4');
+    if (initialFormData.employees>0) {
+        q1.innerText='Number of employees: ' + data.employees;
+        q2.innerText='Annual payroll: ' + data.payroll;
+    } else {
+        q1.innerText = 'No employees'
+    }
+    switch (data.businessType) {
+        case 1:
+            q3.innerText='Type of business: Long-Haul Trucking';
+            break;
+        case 2:
+            q3.innerText='Type of business: Sand & Gravel Trucking';
+            break;
+        case 3:
+            q3.innerText='Type of business: Local Trucking';
+            break;
+        case 4:
+            q3.innerText='Type of business: Towing Services';
+            break;
+        default:
+            q3.innerText='Error';
+            break;
+    }
+    q4.innerText='Zip code: '+ data.zipCode + '\n Number of miles driven: ' + data.mileage;
+}
+
+
+//------Slide 5
+
+const email = document.getElementById('slide5Email');
+
+
+
+
+q1.innerText= 'Number of employees: '
+
 email.addEventListener('keyup', () => {
     const input = email.value;
+    const submit = document.getElementById('submit');
     // this regex tests for an email address
     const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     const emailError = document.getElementById('emailError');
     if (input!='' && regex.test(input)) {
         initialFormData.email = input;
         emailError.style.visibility = 'hidden';
-        checkSlide4();
-    } else {
-        emailError.style.visibility = 'visible';
-    }
-});
-
-// Checks to see if values have been entered for slide 2; if so, allows progress to next slide
-function checkSlide4() {
-    const submit = document.getElementById('submit');
-    if (initialFormData.zipCode>0&&initialFormData.mileage>0&&initialFormData.email!=''){
         submit.style.background='#4ca846';
         submit.onclick=requestQuote;
         setCookie("initialForm", JSON.stringify(initialFormData));
     } else {
         submit.style.background='red';
         submit.href = '';
+        emailError.style.visibility = 'visible';
     }
-}
+});
+
 
 //This is the call for the quote
 

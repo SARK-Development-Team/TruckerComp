@@ -150,6 +150,11 @@ input {
     grid-row-end: bottom;
 }
 
+.hero-form p {
+    font-size: 1.2vw;
+    margin: 0;
+}
+
 .icon-area {
     display: flex;
     justify-content: center;
@@ -202,7 +207,7 @@ input {
     min-width: 78vw;
     display: grid;  
     grid-template-columns: [lside] 5% [center] 90% [rside] 5%;
-    grid-template-rows: [top] 4vh [topmid] 15vh [centerline] 4vh [bottommid] 20vh [bottom] 4vh;
+    grid-template-rows: [top] 5vh [topmid] 15vh [centerline] 4vh [bottommid] 20vh [bottom] 5vh;
     transition: transform 0.5s;
     /* z-index: 1; */
 }
@@ -318,6 +323,10 @@ input {
 #hero a {
     text-decoration: none;
     cursor: pointer;
+}
+
+#slide5 input {
+    width: 34vw;
 }
 
 ::placeholder { 
@@ -683,6 +692,9 @@ svg {
         width: 10vw;
     }
 
+    .hero-form p {
+        font-size: 3.2vw;
+    }
     .map-side-sm {
         display: block;
     }
@@ -692,7 +704,7 @@ svg {
     }
 
     .slide{
-        grid-template-rows: [top] 4vh [topmid] 17vh [centerline] 1vh [bottommid] 17vh [bottom] 4vh;
+        grid-template-rows: [top] 5vh [topmid] 17vh [centerline] 1vh [bottommid] 17vh [bottom] 4vh;
     }
 
     .tile br {
