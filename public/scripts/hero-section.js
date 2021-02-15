@@ -1,7 +1,5 @@
 
-
-
-// This section handles changing the carousel's active slide and the color of the icons
+// This section handles changing the carousel's active slide
 
 let slideIndex = 0;
 const slides = document.getElementsByClassName("slide");
@@ -73,12 +71,14 @@ aff.onclick = () => {
     const slide3 = document.getElementById('slide3');
     const slide4 = document.getElementById('slide4');
     const slide5 = document.getElementById('slide5');
+    const slide6 = document.getElementById('slide6');
     slide3.style.display='grid';
     slide4.style.transform = "translateX(300vw)";
     slide5.style.transform = "translateX(400vw)";
+    slide6.style.transform = "translateX(500vw)";
     nextSlide(1);
 }
-// Todo: add a function to skip slide 2 if "neg" is active
+// Todo: add a function to skip slide 3 if "neg" is active
 neg.onclick = () => {
     neg.classList.add('selected');
     aff.classList.remove('selected');
@@ -87,9 +87,11 @@ neg.onclick = () => {
     const slide3 = document.getElementById('slide3');
     const slide4 = document.getElementById('slide4');
     const slide5 = document.getElementById('slide5');
+    const slide6 = document.getElementById('slide6');
     slide3.style.display='none';
     slide4.style.transform = "translateX(200vw)";
     slide5.style.transform = "translateX(300vw)";
+    slide6.style.transform = "translateX(400vw)";
     nextSlide(1)
 };
 
@@ -247,9 +249,6 @@ function fillInfo(data) {
 
 const email = document.getElementById('slide5Email');
 
-
-
-
 email.addEventListener('keyup', () => {
     const loc = window.location.pathname;
     const dir = loc.substring(0, loc.lastIndexOf('/'));
@@ -262,7 +261,8 @@ email.addEventListener('keyup', () => {
         initialFormData.email = input;
         emailError.style.visibility = 'hidden';
         submit.style.background='#4ca846';
-        submit.onclick=function () {requestQuote(dir + '/send', initialFormData)};
+        // submit.onclick=function () {requestQuote(dir + '/send', initialFormData)};
+        submit.onclick=function() {requestQuoteSlide(initialFormData)};
         setCookie("initialForm", JSON.stringify(initialFormData));
     } else {
         submit.style.background='red';
@@ -272,13 +272,25 @@ email.addEventListener('keyup', () => {
 });
 
 
+// This function performs a generic calculation based on form data
+function calculateQuote(data) {
+    return ((data.payroll *0.2 + data.mileage * 0.05) * (data.employees+1));
+}
+
 //This is the call for the quote
+function requestQuoteSlide(data) {
+    const lowEnd = document.getElementById("low-end");
+    const highEnd = document.getElementById("high-end");
+    const emailAdd = document.getElementById("email");
+    lowEnd.innerText=(calculateQuote(data) *0.8).toFixed(2);
+    highEnd.innerText=(calculateQuote(data) *1.2).toFixed(2);
+    emailAdd.innerText=data.email;
+    changeSlide(1);
+    // add 
+}
 
-// function requestQuote(data) {
-//     alert('Quote requested!');
 
-// }
-
+// This function gives the submit button the standard form submission behavior
 function requestQuote (path, params, method='post') {
 
     const form = document.createElement('form');

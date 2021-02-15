@@ -88,7 +88,6 @@ input {
     background: #426b13;
     padding: 1.1vw;
     color: white;
-    text-align: right;
     font-size: 1vw;
     border-radius: 2000px;
     right: 0;
@@ -285,6 +284,14 @@ input {
     height: 10.5vw;
 }
 
+#bgd-icons {
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+    position: absolute;
+    color: rgba(255, 255, 255, 0.3);
+    bottom: 0;
+}
+
 #bottom-line {
     font-size: .9vw;
     font-style: italic;
@@ -329,6 +336,24 @@ input {
 #hero a {
     text-decoration: none;
     cursor: pointer;
+}
+
+#icon-spacer {
+    width:60%;
+}
+
+#quote-area {
+    margin: 1vw;
+    padding: 2vw;
+    background: rgb(23, 122, 114);
+    color: white;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: fit-content;
+    grid-column-start: center;
+    grid-row-start: topmid;
 }
 
 ::placeholder { 
@@ -732,6 +757,10 @@ svg {
     .btn-contact {
         font-size: 5vw;
         padding: 1vw 10vw;
+    }
+
+    .btn-reset {
+        font-size: 2vh;
     }
 
     .btn-submit {
