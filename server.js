@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const handle = require('express-handlebars');
 
 const nodemail = require('nodemailer');
+// const { getMaxListeners } = require('process');
 
 const app = express();
 
@@ -23,28 +24,36 @@ app.get('/', (req, res) => {
     res.render('contact');    
 });
 
+function calculateQuote(data) {
+    return ((data.payroll *0.2 + data.mileage * 0.05) * (data.employees+1));
+};
+
+app.post('/quote', (req, res) => {
+    const result = calculateQuote(req.body);
+    console.log('+++'+result)
+    return res.json({ result });
+})
+
+
 // This post request is not currently in use
 app.post('/send', (req, res) => {
     console.log(req.body);
-    const output = `
-        <p>Your Requested Quote</p>
-        <p>$150/month</p>
-    `;
+    const output = '';
     // res.send(output);
     // // async..await is not allowed in global scope, must use a wrapper
     async function main() {
         // Generate test SMTP service account from ethereal.email
         // Only needed if you don't have a real mail account for testing
-        let testAccount = await nodemail.createTestAccount();
+        // let testAccount = await nodemail.createTestAccount();
     
         // create reusable transporter object using the default SMTP transport
         let transporter = nodemail.createTransport({
-            host: "smtp.ethereal.email",  //<------replace
+            host: "gmail",  //<------replace
             port: 587,
             secure: false, // true for 465, false for other ports
             auth: {
-                user: testAccount.user, // generated ethereal user
-                pass: testAccount.pass, // generated ethereal password
+                user: 'truckcomptest@gmail.com', // generated ethereal user
+                pass: 'Truck1234', // generated ethereal password
             },
             tls: {
                 rejectUnauthorized:false
@@ -53,7 +62,7 @@ app.post('/send', (req, res) => {
     
         // send mail with defined transport object
         let info = await transporter.sendMail({
-            from: '"Nodemailer Contact" <foo@example.com>', // sender address
+            from: '"Trucker comp" <truckcomptest@gmail.com>', // sender address
             to: "leiqien28@hotmail.com", // list of receivers
             subject: "Node test", // Subject line
             text: output, // plain text body

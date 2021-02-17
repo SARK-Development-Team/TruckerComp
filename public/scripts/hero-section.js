@@ -1,6 +1,7 @@
 
 // This section handles changing the carousel's active slide
 
+
 let slideIndex = 0;
 const slides = document.getElementsByClassName("slide");
 initializeCarousel();
@@ -203,10 +204,12 @@ miles.addEventListener('keyup', () => {
 
 
 // Checks to see if values have been entered for slide 4; if so, allows progress to next slide
+// Also populates the quote on slide 6.
 function checkSlide4() {
     if (initialFormData.zipCode>0&&initialFormData.mileage>0){
         nextSlide(4);
         fillInfo(initialFormData);
+        requestQuoteSlide(initialFormData);
     } else {
         deactivateSlide(4);
     }
@@ -250,8 +253,7 @@ function fillInfo(data) {
 const email = document.getElementById('slide5Email');
 
 email.addEventListener('keyup', () => {
-    const loc = window.location.pathname;
-    const dir = loc.substring(0, loc.lastIndexOf('/'));
+
     const input = email.value;
     const submit = document.getElementById('submit');
     // this regex tests for an email address
@@ -262,7 +264,7 @@ email.addEventListener('keyup', () => {
         emailError.style.visibility = 'hidden';
         submit.style.background='#4ca846';
         // submit.onclick=function () {requestQuote(dir + '/send', initialFormData)};
-        submit.onclick=function() {requestQuoteSlide(initialFormData)};
+        submit.onclick=function() {changeSlide(1)};
         setCookie("initialForm", JSON.stringify(initialFormData));
     } else {
         submit.style.background='red';
@@ -272,21 +274,30 @@ email.addEventListener('keyup', () => {
 });
 
 
-// This function performs a generic calculation based on form data
-function calculateQuote(data) {
-    return ((data.payroll *0.2 + data.mileage * 0.05) * (data.employees+1));
+function fetchResult(data) {
+    const result = fetch('http://localhost:5001/quote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    }).then(response => response.json());
+
+    let number = result;
+    return number;
 }
 
+
+
 //This is the call for the quote
-function requestQuoteSlide(data) {
+async function requestQuoteSlide(data) {
     const lowEnd = document.getElementById("low-end");
     const highEnd = document.getElementById("high-end");
     const emailAdd = document.getElementById("email");
-    lowEnd.innerText=(calculateQuote(data) *0.8).toFixed(2);
-    highEnd.innerText=(calculateQuote(data) *1.2).toFixed(2);
+
+    let response = await fetchResult(data);
+    let number = response.result;
+    lowEnd.innerText=(number *0.8).toFixed(2);
+    highEnd.innerText=(number *1.2).toFixed(2);
     emailAdd.innerText=data.email;
-    changeSlide(1);
-    // add 
 }
 
 
