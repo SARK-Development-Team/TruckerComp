@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- NAME: WIDE -->
+    <!--[if gte mso 15]>
+    <xml>
+        <o:OfficeDocumentSettings>
+        <o:AllowPNG/>
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{subject.Text}}</title>
+    <style>
+        * {
+            margin: 0;
+            font-family: Helvetica, sans-serif;
+            color: #2b2b2b;
+            box-sizing: border-box;
+        }
+        .mcnPreviewText{
+			display:none !important;
+		}
+        .email-wrapper {
+            margin: 40px auto;
+            width: 730px;
+            background: white;
+            border: 1px solid lightgray;
+        }
+        .header-img {
+            height: 200px;
+            overflow: hidden;
+            width: 100%;
+            background: linear-gradient(to right, white, white, pink, red, red);
+            border-radius: 2px;
+            position: relative;
+            -webkit-box-shadow: 0 8px 6px -6px #777;
+            -moz-box-shadow: 0 8px 6px -6px #777;
+            box-shadow: 0 6px 8px -6px #777;
+        }
+        .header-img img {
+            width: 100%;
+            opacity: .8;
+            margin: -230px 0;
+        }
+        .header-img:after{
+            display: block;
+            height: 100%;
+            width: 49%;
+            margin-top: -272px;
+            margin-left: -50px;
+            position: absolute;
+            content: '';
+            background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.85),rgba(255, 255, 255, 0.65));
+            transform: skew(-25deg);
+        }
+        .header-logo {
+            position: absolute;
+            top: 39px;
+            left: 30px;
+            z-index: 2;
+        }
+        .header-logo * {
+            color: #2b2b2b;
+            text-transform: uppercase;
+        }
+        .logo-img {
+            position: absolute;
+            max-width:65px;
+            max-height:70px;
+            width: auto;
+            height: auto;
+            transform: translateX(-65px) translateY(235px);
+        }
+        .header-logo-top {
+            font-size: 70px;
+            text-align: right;
+            letter-spacing: -.07em;
+            border-bottom: 1px solid #2b2b2b;
+            margin: 0 0 10px 0;
+        }
+        .header-logo-bottom {
+            font-size: 20px;
+        }
+        .body-note {
+            margin: 60px;
+            line-height: 30px;
+            letter-spacing: .02em;
+            font-weight: 400;
+        }
+        .body-message {
+            margin: 20px 0;
+            line-height: 25px;
+        }
+        .body-sincere {
+            margin: 20px 0;
+        }
+        .header-headline {
+            text-align: center;
+            font-size: 30px;
+            margin: 40px;
+            color: #062C92;
+            letter-spacing: .02em;
+            font-weight: 600;
+        }
+        .header-body {
+            margin: 0 50px;
+            text-align: center;
+            line-height: 30px;
+            letter-spacing: .02em;
+            font-weight: 400;
+        }
+        .line-break {
+            width: 80%;
+            height: 1px;
+            margin: 40px auto;
+            background: lightgray;
+        }
+        .body {
+            height: 220px;
+        }
+        .body-headline {
+            text-align: center;
+            font-size: 25px;
+            margin: 40px;
+            color: #1C2352;
+            letter-spacing: .02em;
+            font-weight: 600;
+        }
+        .progress-info {
+            position: relative;
+            height: 150px;
+        }
+        .progress-bar {
+            padding: 0;
+            list-style-type: none;
+            font-family: arial;
+            font-size: 12px;
+            clear: both;
+            line-height: 1em;
+            margin: 0 120px;
+            text-align: center;
+        }
+        .progress-bar li {
+            float: left;
+            padding: 10px 30px 10px 35px;
+            background: #a3a3a3;
+            color: rgb(255, 255, 255);
+            position: relative;
+            width: 120px;
+            margin: 0px 1px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+        .progress-bar li:before {
+            content: '';
+            border-left: 16px solid white;
+            border-top: 16px solid transparent;
+            border-bottom: 16px solid transparent;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .progress-bar li:after {
+            content: '';
+            border-left: 16px solid #a3a3a3;
+            border-top: 16px solid transparent;
+            border-bottom: 16px solid transparent;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            z-index: 20;
+        }
+        .progress-bar-active {
+            background: #71db59 !important;
+        }
+        .progress-bar-active:after {
+            border-left: 16px solid #71db59 !important;
+        }
+        .progress-paragraph {
+            margin: 50px 100px 50px 100px;
+            font-size: 18px;
+            font-weight: 400;
+            position: absolute;
+        }
+        .progress-paragraph a {
+            color: #FF2C63;
+        }
+        .progress-paragraph a:hover {
+            color: #b80c3a;
+        }
+        .bottom-button {
+            background: #FF2C63;
+            color: white;
+            line-height: 40px;
+            text-align: center;
+            width: 200px;
+            display: block;
+            border-radius: 40px;
+            margin: -30px 50%;
+            transform: translateX(-50%);
+            border: 1px solid #f5f5f5;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: .02em;
+        }
+        .bottom-button:hover {
+            border: 1px solid #FF2C63;
+            font-weight: 400;
+            color: #FF2C63;
+            background: white;
+        }
+        .partners {
+            margin: 0 auto;
+            width: 600px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+        .partner-headline {
+            text-align: center;
+            color: #003375bb;
+            font-size: 20px;
+            margin: 40px 0 20px 0;
+            letter-spacing: .02em;
+            font-weight: 400;
+        }
+        .partner {
+            margin: 1px;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .partner img {
+            max-width: 120px;
+            max-height: 70px;
+        }
+        .footer {
+            text-align: center;
+            font-weight: 300;
+            margin-top: 50px;
+            font-size: 10px;
+            padding: 0 0 20px 0;
+        }
+        .mailing-address p:first-child {
+            margin: 10px 0 2px 0;
+            font-weight: bold;
+        }
+        .clientName, #csrName{
+            font-weight: 600;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <!--*|IF:MC_PREVIEW_TEXT|*-->
+    <!--[if !gte mso 9]><!----><span class="mcnPreviewText" style="display:none; font-size:0px; line-height:0px; max-height:0px; max-width:0px; opacity:0; overflow:hidden; visibility:hidden; mso-hide:all;">{{preview.Text}}</span><!--<![endif]-->
+    <!--*|END:IF|*-->
+    <div class="email-wrapper">
+        <div class="header">
+            <div class="header-img">
+                <img src="https://c.pxhere.com/photos/58/97/accident_truck_bridge_vehicle_transportation_danger_problem_tow-785693.jpg!d" alt="Truck Accident">
+                <div class="header-logo">
+                    <div class="header-logo-top"><img class='logo-img' src="./sark_logo.png" alt="SARK Logo">Sark</div>
+                    <div class="header-logo-bottom">Insurance Services</div>
+                </div>
+            </div>
+            <div class="body-note">
+                <div class="body-welcome">Hello <span class="clientName">{{client.Name}}</span>,</div>
+                <div class="body-message">Hey, it's <span id="csrName">{{CSR.Name}}</span>! We just spoke on the phone earlier today. I just wanted to talk to you about SARK's Worker's Comp product. Worker's Compensation Insurance is a MANDATORY insurance plan required by the state of California. Worker's Compensation will save you thousands of dollars by paying ALL the costs of worker injury, including medical, therapy, PTO and lawsuits!</div>
+                <div class="body-signoff">Thank you again for taking the time to talk with me, I look forward to hearing from you!</div>
+                <div class="body-sincere">Sincerely,</div>
+                <div class="body-csr"><span class="clientName">{{client.Name}}</span></div>
+            </div>
+        </div>
+        <div class="line-break"></div>
+        <div class="body">
+            <div class="body-headline">How does it work?</div>
+            <div class="progress-info">
+                <ul class="progress-bar">
+                    <li class="progress-bar-active">Checklist</li>
+                    <li>Quote</li>
+                    <li>Process</li>
+                    <li>Purchase</li>
+                </ul>
+                <div class="progress-paragraph">
+                    <strong>Step One: </strong>Click the link below to fill out a short survey and we will get back to you with the best prices for your trucking business! 
+                </div>
+            </div>
+            <a class="bottom-button" href='#'>Get Started Now!</a>
+        </div>
+        <div class="line-break"></div>
+        <div class="partner-headline">Our Partners</div>
+        <div class="partners">
+            <div class="partner">
+                    <img src="https://clearspringhealthcare.com/img/logo.png" alt="Clear Spring Insurance Logo">
+            </div>
+            <div class="partner">
+                    <img src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/112013/aig.png?itok=7x_CX6jQ" alt="AIG Logo">
+            </div>
+            <div class="partner">
+                    <img src="https://www.calrest.org/sites/main/files/imagecache/bundled-partner/main-images/partners-15.jpg?1576747668" alt="Employers Logo">
+            </div>
+            <div class="partner">
+                    <img src="https://findlogovector.com/wp-content/uploads/2018/09/great-american-insurance-group-logo-vector.png" alt="Great American Logo">
+            </div>
+            <div class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/7/72/Markel_Corporation_logo.jpg" alt="Markel Logo">
+            </div>
+            <div class="partner">
+                    <img src="https://media.glassdoor.com/sqll/8650/state-compensation-insurance-fund-squarelogo-1468529290264.png" alt="State Fund Logo">
+            </div>
+            <div class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Zurich_Logo_new.svg/1200px-Zurich_Logo_new.svg.png" alt="Zurich Logo">
+            </div>
+            <div class="partner">
+                    <img src="https://pieinsurance.com/wp-content/uploads/Pie_H_Full_Color_RGB.png" alt="PIE Insurance Logo">
+            </div>
+        </div>
+        <div class="line-break"></div>
+        <div class="footer">
+            <div class="copyright-info">
+                <p>Copyright &#169; <span class="custom-data" id="date-time">{{DateTime.Year}}</span>, SARK INSURANCE SERVICES, INC, All rights reserved.</p>
+            </div>
+            <div class="mailing-address">
+                <p>Our mailing address is:</p>
+                <p>wc@sarkinsurance.com</p>
+                <p>Want to change how you receive these emails?</p>
+                <p>You can <a class="custom-data" id="client-preferences" href="">update your preferences</a> or <a class="custom-data" id="client-subscription" href="">unsubscribe from this list</a>.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

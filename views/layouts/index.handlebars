@@ -14,6 +14,8 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://kit.fontawesome.com/793cc4a12c.js" crossorigin="anonymous"></script>
+    <script src="https://apis.google.com/js/api.js?onload=handleClientLoad"></script>
+
     <!-- Note: The JS scripts governing the functional elements on the page are at the bottom -->
 </head>
 <body>
@@ -403,13 +405,14 @@
         <div>&copy;2021 SARK Insurance Services, INC.</div>
 
     </footer>
-    <!-- <footer id="legal" class="indented">
 
-    </footer> -->
     <!-- The following line initiates Animation on Scroll functionality -->
     <script>AOS.init();</script>
+    
+    {{!-- This script doesn't appear to be working correctly --}}
+    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
 
     <script src="public/scripts/hero-section.js"></script>
-    <!-- <script src="scripts/about-section.js"></script> -->
+   
 </body>
 </html>

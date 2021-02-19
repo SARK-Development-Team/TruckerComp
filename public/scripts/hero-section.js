@@ -263,8 +263,11 @@ email.addEventListener('keyup', () => {
         initialFormData.email = input;
         emailError.style.visibility = 'hidden';
         submit.style.background='#4ca846';
-        // submit.onclick=function () {requestQuote(dir + '/send', initialFormData)};
-        submit.onclick=function() {changeSlide(1)};
+        submit.onclick=function() {
+            changeSlide(1); 
+            // This function is intended to send the email; currently doesn't work
+            sendQuote(initialFormData);
+        };
         setCookie("initialForm", JSON.stringify(initialFormData));
     } else {
         submit.style.background='red';
@@ -274,8 +277,11 @@ email.addEventListener('keyup', () => {
 });
 
 
+// This sends the data to the backend and returns with a number for the quote
 function fetchResult(data) {
-    const result = fetch('http://localhost:5001/quote', {
+    const uri = 'http://localhost:5001/quote' ///<---needs to be changed for production
+
+    const result = fetch(uri, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -284,7 +290,6 @@ function fetchResult(data) {
     let number = result;
     return number;
 }
-
 
 
 //This is the call for the quote
@@ -298,6 +303,16 @@ async function requestQuoteSlide(data) {
     lowEnd.innerText=(number *0.8).toFixed(2);
     highEnd.innerText=(number *1.2).toFixed(2);
     emailAdd.innerText=data.email;
+}
+
+function sendQuote (data) {
+    const uri = 'http://localhost:5001/send' ///<---needs to be changed for production
+
+    const rerr = fetch(uri, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    }).then(response => response.json());
 }
 
 

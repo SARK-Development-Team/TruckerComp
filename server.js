@@ -4,8 +4,10 @@ const bodyParser = require('body-parser');
 
 const handle = require('express-handlebars');
 
-const nodemail = require('nodemailer');
-// const { getMaxListeners } = require('process');
+const nodemailer = require('nodemailer');
+const {google, GoogleApis} = require('googleapis');
+const { GoogleAuth } = require('google-auth-library');
+
 
 const app = express();
 
@@ -19,72 +21,114 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// This get request is not used and is only in place for future potential build-out
-app.get('/', (req, res) => {
-    res.render('contact');    
-});
 
+// For the sendMail() function
+// const CLIENT_ID= '286794930812-kbin7a9lhj8hed8pe2qsmpufa78gdrg0.apps.googleusercontent.com';
+// const CLIENT_SECRET = 'xxx';
+// const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
+// const REFRESH_TOKEN = '1//04dWZtXpdFfINCgYIARAAGAQSNwF-L9IrmaE-TY0tmUWQiyieukBGhLtjjSAm3pEPGE35TdiJiL_dueD7E9KWdMm8Y7sBj2kWLFA';
+
+// const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+// oAuth2Client.setCredentials({refresh_token: REFRESH_TOKEN});
+
+// async function sendMail() {
+//     try {
+//       const accessToken = await oAuth2Client.getAccessToken();
+//       const transport = nodemailer.createTransport({
+//         service: 'gmail',
+//         auth: {
+//           type: 'OAuth2',
+//           user: 'truckcomptest@gmail.com',
+//           clientID: CLIENT_ID,
+//           clientSecret: CLIENT_SECRET,
+//           refreshToken: REFRESH_TOKEN,
+//           accessToken: accessToken
+//         }
+//       })
+//       const mailOptions = {
+//         from: 'SARK Insurance <truckcomptest@gmail.com>',
+//         to: 'leiqien28@hotmail.com',
+//         subject: "Hello ",
+//         text: 'Hello text version',
+//         html: '<h1>Hello html version</h1>'
+//       };
+  
+//       const result = await transport.sendMail(mailOptions);
+//       return result;
+  
+//     } catch (error){
+//       return error;
+//     }
+//   }
+const clientId= '286794930812-kbin7a9lhj8hed8pe2qsmpufa78gdrg0.apps.googleusercontent.com';
+
+var apiKey = 'xxx';
+var scopes =
+'https://www.googleapis.com/auth/gmail.readonly '+
+'https://www.googleapis.com/auth/gmail.send';
+
+// This is meant to be called by the script tag at the end of index.handlebars, but it isn't being called.
+function handleClientLoad() {
+    google.gapi.client.setApiKey(apiKey);
+    window.setTimeout(checkAuth, 1);
+}
+
+function checkAuth() {
+    gapi.auth.authorize({
+        client_id: clientId,
+        scope: scopes,
+        immediate: true
+    }, console.log('success!'));
+}
+
+function sendEmail() {
+    sendMessage(
+        {
+            'To': 'leiqien28@hotmail.com',
+            'Subject': 'TComp message'
+        },
+        'This is the email body.'
+    );
+
+    return false;
+}
+
+function sendMessage(headers_obj, message) {
+    var email = '';
+
+    for(var header in headers_obj)
+        email += header += ": "+headers_obj[header]+"\r\n";
+
+    email += "\r\n" + message;
+
+    // Error occurs here -- 'gapi' undefined       <<<------
+    var sendRequest = gapi.client.gmail.users.messages.send({
+        'userId': 'me',
+        'resource': {
+        'raw': window.btoa(email).replace(/\+/g, '-').replace(/\//g, '_')
+        }
+    });
+
+    return sendRequest.execute(console.log('SENT!'));
+}
+
+
+// This function is the basic quote calculation formula
 function calculateQuote(data) {
     return ((data.payroll *0.2 + data.mileage * 0.05) * (data.employees+1));
 };
 
+// This function receives the request from the client side with the initialFormData, runs it through the formula, and returns a number
 app.post('/quote', (req, res) => {
     const result = calculateQuote(req.body);
-    console.log('+++'+result)
     return res.json({ result });
 })
 
 
-// This post request is not currently in use
+// This request is intended to send the email, but it encounters an error in that 'gapi' is not defined.
 app.post('/send', (req, res) => {
-    console.log(req.body);
-    const output = '';
-    // res.send(output);
-    // // async..await is not allowed in global scope, must use a wrapper
-    async function main() {
-        // Generate test SMTP service account from ethereal.email
-        // Only needed if you don't have a real mail account for testing
-        // let testAccount = await nodemail.createTestAccount();
-    
-        // create reusable transporter object using the default SMTP transport
-        let transporter = nodemail.createTransport({
-            host: "gmail",  //<------replace
-            port: 587,
-            secure: false, // true for 465, false for other ports
-            auth: {
-                user: 'truckcomptest@gmail.com', // generated ethereal user
-                pass: 'Truck1234', // generated ethereal password
-            },
-            tls: {
-                rejectUnauthorized:false
-            }
-        });
-    
-        // send mail with defined transport object
-        let info = await transporter.sendMail({
-            from: '"Trucker comp" <truckcomptest@gmail.com>', // sender address
-            to: "leiqien28@hotmail.com", // list of receivers
-            subject: "Node test", // Subject line
-            text: output, // plain text body
-            html: output, // html body
-        });
-    
-        console.log("Message sent: %s", info.messageId);
-        // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-    
-        // Preview only available when sending through an Ethereal account
-        console.log("Preview URL: %s", nodemail.getTestMessageUrl(info));
-        // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-
-        res.send();
-    }
-    
-    main().catch(console.error);
-
+    sendEmail().then((result)=> console.log('Email sent...', result)).catch((error) => console.log(error.message));
 });
-
-
-
 
 
 app.listen(5001, () => console.log("It's working."));
