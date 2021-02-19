@@ -6,8 +6,7 @@ const handle = require('express-handlebars');
 
 const nodemailer = require('nodemailer');
 const {google, GoogleApis} = require('googleapis');
-const { GoogleAuth } = require('google-auth-library');
-
+const gmail = google.gmail('v1');
 
 const app = express();
 
@@ -117,6 +116,12 @@ function sendMessage(headers_obj, message) {
 function calculateQuote(data) {
     return ((data.payroll *0.2 + data.mileage * 0.05) * (data.employees+1));
 };
+
+
+//  This get request is necessary for the correct page to be served up. It doesn't serve contact.handlebars, but if I change it it no longer functions
+app.get('/', (req, res) => {
+    res.render('contact');
+})
 
 // This function receives the request from the client side with the initialFormData, runs it through the formula, and returns a number
 app.post('/quote', (req, res) => {
