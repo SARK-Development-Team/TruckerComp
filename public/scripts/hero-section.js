@@ -311,10 +311,10 @@ email.addEventListener('keyup', () => {
 
 // This sends the data to the backend and returns with a number for the quote
 function fetchResult(data) {
-    const uri = 'http://localhost:5001/quote'
-    const herokuUri = 'https://truckcompv1.herokuapp.com/quote' ///<---needs to be changed for production
+    const uri = 'http://localhost:5001/quote' || 'https://truckcompv1.herokuapp.com/quote';
+    // const herokuUri = 'https://truckcompv1.herokuapp.com/quote' ///<---needs to be changed for production
 
-    const result = fetch(uri || herokuUri, {
+    const result = fetch(uri, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
