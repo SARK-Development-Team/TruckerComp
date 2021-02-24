@@ -798,13 +798,17 @@ svg {
     .btn-save {
         font-size: 5vw;
         padding: 1vw 6vw;
-        margin: 0 14%;
+        margin: 0;
     }
     
     .btn-submit {
         font-size: 5vw;
         padding: 1vw 6vw;
         margin: 0 18%;
+    }
+
+    .formline select, .formline input {
+        margin: 0 0.5vw 0 0;
     }
 
     #about-container {
@@ -819,6 +823,7 @@ svg {
 
     #employeeInfoTableHeadings p{
         font-size: 3vw;
+        margin: 0 0.5vw 0 0;
     }
 
     #hero {
