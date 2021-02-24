@@ -311,9 +311,10 @@ email.addEventListener('keyup', () => {
 
 // This sends the data to the backend and returns with a number for the quote
 function fetchResult(data) {
-    const uri = 'http://localhost:5001/quote' ///<---needs to be changed for production
+    const uri = 'http://localhost:5001/quote'
+    const herokuUri = 'https://truckcompv1.herokuapp.com/quote' ///<---needs to be changed for production
 
-    const result = fetch(uri, {
+    const result = fetch(uri || herokuUri, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -339,37 +340,14 @@ async function requestQuoteSlide(data) {
 
 function sendQuote (data) {
     const uri = 'http://localhost:5001/send' ///<---needs to be changed for production
+    const herokuUri = 'https://truckcompv1.herokuapp.com/send' ///<---needs to be changed for production
 
-    fetch(uri, {
+    fetch(uri || herokuUri, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     }).then(response => response.json());
 }
-
-
-// This function gives the submit button the standard form submission behavior
-// function requestQuote (path, params, method='post') {
-
-//     const form = document.createElement('form');
-//     form.method = method;
-//     form.action = path;
-
-  
-//     for (const key in params) {
-//       if (params.hasOwnProperty(key)) {
-//         const hiddenField = document.createElement('input');
-//         hiddenField.type = 'hidden';
-//         hiddenField.name = key;
-//         hiddenField.value = params[key];
-  
-//         form.appendChild(hiddenField);
-//       }
-//     }
-  
-//     document.body.appendChild(form);
-//     form.submit();
-//   }
 
 
 // Todo: determine if entered zip code is valid. 
