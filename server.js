@@ -70,13 +70,12 @@ async function sendEmail(data) {
         const quote = calculateQuote(data)
         const htmlBody = `
         <h1>Hello ${data.email},<h1>
-        <p>Based on the information you've provided, we estimate that we can provide a monthly worker's comp premium of ${quote *0.8} &mdash; ${quote *1.2} </p>
+        <p>Based on the information you've provided, we estimate that we can provide a monthly worker's comp premium of ${(quote *0.8).toFixed(2)} &mdash; ${(quote *1.2).toFixed(2)} </p>
         <h1>Please call 415 xxx xxxx to purchase a policy now!</h1>
         `
 
         const mailOptions = {
             from: "wc@sarkinsurance.com",
-            // to: 'leiqien28@hotmail.com',
             to: data.email,
             subject: "Your workers' compensation insurance quote from Trucker Comp ",
             text: 'Hello text version',
@@ -94,7 +93,23 @@ async function sendEmail(data) {
 
 // This function is the basic quote calculation formula
 function calculateQuote(data) {
-    return ((data.payroll *0.2 + data.mileage * 0.05) * (data.employees+1));
+    let empArray = data.employees;
+    // 'typeTotal' will increase by a given amount based on the number and type of employees   
+    let typeTotal = 0;
+    // 'payRollTotal' will increase based on the total combined payroll
+    let payrollTotal = 0;
+    for (let i =0; i<empArray.length; i++) {
+        if (empArray[i].type =='driver') {
+            // 2.5 for every driver
+            typeTotal+= empArray[i].number*2.5;
+        } else {
+            // 1.5 for all other employee types
+            typeTotal+= empArray[i].number*1.5;
+        }
+        payrollTotal+=empArray[i].payroll;
+    }
+
+    return (payrollTotal *0.2 + typeTotal * 0.85 + data.mileage * 0.05);
 };
 
 

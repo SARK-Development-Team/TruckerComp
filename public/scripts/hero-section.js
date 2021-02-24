@@ -148,7 +148,7 @@ function saveEmployeeData(){
         let number = document.getElementById('empNumber'+i).value;
         let payroll = document.getElementById('empPayroll'+i).value;
         if (type && number && payroll) {
-            formData.employees.push({'type: ': type, 'number: ': number, 'payroll: ': payroll});
+            formData.employees.push({'type': type, 'number': number, 'payroll': payroll});
         }
     }
     if (formData.employees.length) {
@@ -189,20 +189,13 @@ function addRow(e) {
         <input class="empPayroll" name="empPayroll${formlines}" type="number" id="empPayroll${formlines}">
     </p>
     `
-    // const line = document.getElementById("employeeInfoTable").firstElementChild;
 
     let lineElement = document.createElement('div');
     lineElement.innerHTML=line;
-    // lineElement = lineElement.firstChild;
     document.getElementById("employeeInfoTable").appendChild(lineElement);
 }
 
-// Checks to see if values have been entered for slide 3; if so, allows progress to next slide
-// function checkSlide3() {
-//     if (formData.employees>0&&formData.payroll>0){
-//         nextSlide(3);
-//     }
-// }
+
 
 //------Slide 4 
 const zip = document.getElementById('slide4Zipcode');
