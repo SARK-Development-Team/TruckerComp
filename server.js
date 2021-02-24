@@ -30,7 +30,6 @@ const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
 
 
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-console.log(oAuth2Client);
 // Mental note: Auth object is VERY sensitive. Exact route of objects goes like this.
 // 1) inject oAuth2Client with refresh_token using setCredentials({ refresh_token: REFRESH_TOKEN }),
 // 2) nodemailer.createTransport: use the SMTP transport object, which uses host, port, secure, + auth.

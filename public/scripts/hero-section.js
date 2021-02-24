@@ -307,7 +307,14 @@ email.addEventListener('keyup', () => {
     }
 });
 
-const uriRoot = window.location.href;
+// This is a method of determining the correct uriRoot for api calls
+const lhPattern = /localhost/;
+let uriRoot = '';
+if (lhPattern.test(window.location.href)) {
+    uriRoot = 'http://localhost:5001/'
+} else {
+    uriRoot = window.location.href;
+}
 
 
 // This sends the data to the backend and returns with a number for the quote
