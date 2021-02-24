@@ -14,7 +14,6 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://kit.fontawesome.com/793cc4a12c.js" crossorigin="anonymous"></script>
-    <script src="https://apis.google.com/js/api.js?onload=handleClientLoad"></script>
 
     <!-- Note: The JS scripts governing the functional elements on the page are at the bottom -->
 </head>
@@ -36,7 +35,7 @@
                 <div class="heading-area">
                     <h2>We Make Worker's Compensation Insurance Easy</h2>
                 </div>
-                <div style="position: absolute; right: 14vw; z-index: 5">
+                <div id="reset-container">
                     <a class="btn-reset" onclick="resetForm()">Reset Form</a>
                 </div>
                 <div id="carousel">
@@ -106,13 +105,45 @@
                             <i class="fas fa-chevron-right "></i>
                         </div>
                         <form class="hero-form">
-                            <!-- <div class="spacer" style="height: 5vw"></div> -->
-                            <h3>My company has <input type="text" id="slide3EmployeesNumber" name="employeesNumber" style="width: 7vw"> employees.</h3>
+                            <div id="employeeInfoTable">
+                                <div id="employeeInfoTableHeadings">
+                                    <p>Employee Type</p>
+                                    <p>How many of this type of employee do you have on your payroll?</p>  
+                                    <p>What is the total combined payroll for these employees?</p></div>
+                                <p class="formline">
+                                    <select class="empType" id="empType0">
+                                        <option value="" disabled selected>Employee Type</option>
+                                        <option value="driver">Driver</option>
+                                        <option value="maintenance">Maintenance</option>
+                                        <option value="accounting">Accounting</option>
+                                        <option value="custodial">Custodial</option>
+                                        <option value="clerical">Clerical</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    <input class="empNumber" name="empNumber0" type="number" id="empNumber0">
+                                    <input class="empPayroll" name="empPayroll0" type="number" id="empPayroll0">
+                                </p>
+                                <p class="formline">
+                                    <select class="empType" id="empType1">
+                                        <option value="" disabled selected>Employee Type</option>
+                                        <option value="driver">Driver</option>
+                                        <option value="maintenance">Maintenance</option>
+                                        <option value="accounting">Accounting</option>
+                                        <option value="custodial">Custodial</option>
+                                        <option value="clerical">Clerical</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    <input class="empNumber" name="empNumber1" type="number" id="empNumber1">
+                                    <input class="empPayroll" name="empPayroll1" type="number" id="empPayroll1">
+                                </p>
+                            </div>
+                            <button id="newRow" onclick="addRow(event)"><i class="fas fa-plus" ></i></button>
+                            {{!-- <h3>My company has <input type="text" id="slide3EmployeesNumber" name="employeesNumber" style="width: 7vw"> employees.</h3>
                             <p id='empError'>Please enter the number of employees</p>
                             <br>
                             <h3>My company's payroll for fiscal year 2020 was $<input type="text" id="slide3Payroll" name="payroll" style="width: 12vw">.</h3>
-                            <p id='payrollError'>Please enter the payroll for fiscal year 2020</p>
-
+                            <p id='payrollError'>Please enter the payroll for fiscal year 2020</p> --}}
+                            <div class="btn-save" id="saveEmployeeData" onclick="saveEmployeeData()">Save Employee Data</div>
                         </form>
 
                         <div class="icon-area">
@@ -137,7 +168,6 @@
                         <h3>Please enter the following:</h3>
 
                         <form class="hero-form">
-                            <!-- <div class="spacer" style="height: 10vw"></div> -->
                             <h3>My zipcode is <input type="text" id="slide4Zipcode" name="zipcode" style="width:10vw">.</h3>
                             <p id='zipError'>Please enter a valid 5-digit US ZIP Code</p>
                             <br>
@@ -190,7 +220,7 @@
                         </div>
                         
                     </div>
-
+                    {{!-- This slide appears after the submit button has been pressed. It contains the quote --}}
                     <div class="slide" id="slide6">
                         <!-- <div class="back-icon" onclick="changeSlide(-1)">
                             <i class="fas fa-chevron-left "></i>
@@ -401,7 +431,7 @@
 
         <hr/>
 
-        <p>Most policies issued through biBERK.com will be underwritten by Wellfleet Insurance Company ("WIC"), Berkshire Hathaway Direct Insurance Company ("BHDIC"), National Liability and Fire Insurance Company ("NLF"), or Wellfleet New York Insurance Company ("WNYIC"), which are AM Best rated A++ insurers.</p>
+        <p>Most policies issued through TruckerComp.com will be underwritten by Wellfleet Insurance Company ("WIC"), Berkshire Hathaway Direct Insurance Company ("BHDIC"), National Liability and Fire Insurance Company ("NLF"), or Wellfleet New York Insurance Company ("WNYIC"), which are AM Best rated A++ insurers.</p>
         <div>&copy;2021 SARK Insurance Services, INC.</div>
 
     </footer>
@@ -409,9 +439,6 @@
     <!-- The following line initiates Animation on Scroll functionality -->
     <script>AOS.init();</script>
     
-    {{!-- This script doesn't appear to be working correctly --}}
-    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
-
     <script src="public/scripts/hero-section.js"></script>
    
 </body>

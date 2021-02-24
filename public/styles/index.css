@@ -95,6 +95,22 @@ input {
     z-index: 5;
 }
 
+.btn-save {
+    text-align: center;
+    align-self: center;
+    cursor: pointer;
+    background-color: green;
+    padding: 1vw;
+    border-radius: 4%;
+    border: 1px solid white;
+    color: white;
+    transition: all 0.6s ease;
+    font-size: 1.1vw;
+    margin: 0 34%;
+    grid-column-start: center;
+    grid-row-start: bottommid;
+}
+
 .btn-submit {
     text-align: center;
     align-self: center;
@@ -110,16 +126,29 @@ input {
     grid-column-start: center;
     grid-row-start: bottommid;
 }
-/* 
 
-.five-tile {
-    background: #1f486a;
-    color: white;
-    text-align: center;
-    font-size: 1.2vw;
-    width: 7.7vw;
-    height: 11.5vw;
-} */
+#employeeInfoTableHeadings {
+    display: flex;
+    flex-direction: row;
+}
+
+#employeeInfoTableHeadings p{
+    margin: 0 5vw 0 0;
+    width: 33%;
+    font-size: 1vw;
+}
+
+.formline {
+    margin: .5vw 0!important;
+    display: flex;
+    flex-direction: row;
+}
+
+.formline select, .formline input {
+    margin: 0 5vw 0 0;
+    width: 33%;
+}
+
 
 .four-tile {
     background: #6699B9;
@@ -356,8 +385,10 @@ input {
     grid-row-start: topmid;
 }
 
-::placeholder { 
-    font-style: italic;
+#reset-container {
+    position: absolute; 
+    right: 14vw; 
+    z-index: 5
 }
 
 /* ----------
@@ -764,6 +795,12 @@ svg {
         
     }
 
+    .btn-save {
+        font-size: 5vw;
+        padding: 1vw 6vw;
+        margin: 0 14%;
+    }
+    
     .btn-submit {
         font-size: 5vw;
         padding: 1vw 6vw;
@@ -780,12 +817,20 @@ svg {
         font-size: 2.8vw;
     }   
 
+    #employeeInfoTableHeadings p{
+        font-size: 3vw;
+    }
+
     #hero {
         padding: 1% 8%;
     }
 
     #empError, #payrollError, #zipError, #milesError, #emailError {
         font-size: 3.5vw;
+    }
+
+    #reset-container {
+        top: 12vw;
     }
 
     #why-SARK {

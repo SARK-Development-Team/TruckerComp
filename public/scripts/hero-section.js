@@ -6,11 +6,11 @@ let slideIndex = 0;
 const slides = document.getElementsByClassName("slide");
 initializeCarousel();
 
-// Sets all initialFormData to initial values 
+// Sets all formData to initial values 
 // Arranges slides so that all but the first start off screen on the right
 function initializeCarousel() {
-    initialFormData = {
-        employees: 0,
+    formData = {
+        employees: [],
         payroll: 0,
         businessType: 0,
         zipCode: 0,
@@ -97,7 +97,7 @@ neg.onclick = () => {
 };
 
 //------Slide 2
-// For slides 2-4, the initialFormData is updated based on the user's input.
+// For slides 2-4, the formData is updated based on the user's input.
 const longhaul = document.getElementById('slide2LongHaul');
 const sand = document.getElementById('slide2Sand');
 const local = document.getElementById('slide2Local');
@@ -108,7 +108,7 @@ longhaul.onclick = () => {
     sand.classList.remove('selected');
     local.classList.remove('selected');
     towing.classList.remove('selected');
-    initialFormData.businessType = 1;
+    formData.businessType = 1;
     nextSlide(2);
 }
 sand.onclick = () => {
@@ -116,7 +116,7 @@ sand.onclick = () => {
     sand.classList.add('selected');
     local.classList.remove('selected');
     towing.classList.remove('selected');
-    initialFormData.businessType = 2;
+    formData.businessType = 2;
     nextSlide(2);
 }
 local.onclick = () => {
@@ -124,7 +124,7 @@ local.onclick = () => {
     sand.classList.remove('selected');
     local.classList.add('selected');
     towing.classList.remove('selected');
-    initialFormData.businessType = 3;
+    formData.businessType = 3;
     nextSlide(2);
 }
 towing.onclick = () => {
@@ -132,46 +132,78 @@ towing.onclick = () => {
     sand.classList.remove('selected');
     local.classList.remove('selected');
     towing.classList.add('selected');
-    initialFormData.businessType = 4;
+    formData.businessType = 4;
     nextSlide(2);
 }
 
 //------Slide 3 
-const employees = document.getElementById('slide3EmployeesNumber');
-const payroll = document.getElementById('slide3Payroll');
+const employeesField = document.getElementById('empNumber0');
+const payrollField = document.getElementById('empPayroll0');
+const newRow = document.getElementById('newRow');
 
-employees.addEventListener('keyup', () => {
-    const input = parseInt(employees.value);
-    const empError = document.getElementById('empError');
-    if (input>0 && Number.isInteger(input)) {
-        initialFormData.employees = input;
-        empError.style.visibility='hidden';
-        checkSlide3();
-    } else {
-        empError.style.visibility='visible';
-        deactivateSlide(3)
+function saveEmployeeData(){
+    formData.employees = [];
+    const formlines = document.getElementsByClassName('formline');
+    for (let i=0; i<formlines.length; i++) {
+        let type = document.getElementById('empType'+i).value;
+        let number = document.getElementById('empNumber'+i).value;
+        let payroll = document.getElementById('empPayroll'+i).value;
+        if (type && number && payroll) {
+            formData.employees.push({'type: ': type, 'number: ': number, 'payroll: ': payroll});
+        }
     }
-});
-
-payroll.addEventListener('keyup', () => {
-    const input = parseInt(payroll.value);
-    const payrollError = document.getElementById('payrollError');
-    if (input>0 && Number.isInteger(input)) {
-        initialFormData.payroll = input;
-        payrollError.style.visibility='hidden';
-        checkSlide3();
-    } else {
-        payrollError.style.visibility='visible';
-        deactivateSlide(3)
-    }
-});
-
-// Checks to see if values have been entered for slide 3; if so, allows progress to next slide
-function checkSlide3() {
-    if (initialFormData.employees>0&&initialFormData.payroll>0){
+    if (formData.employees.length) {
         nextSlide(3);
+    } else {
+        deactivateSlide(3);
     }
 }
+
+// employeesField.addEventListener('keyup', () => {
+//     const input = parseInt(employees.value);
+//     const empError = document.getElementById('empError');
+//     if (input>0 && Number.isInteger(input)) {
+//         formData.employees = input;
+//         empError.style.visibility='hidden';
+//         checkSlide3();
+//     } else {
+//         empError.style.visibility='visible';
+//         deactivateSlide(3)
+//     }
+// });
+
+function addRow(e) {
+    e.preventDefault()
+    const formlines = document.getElementsByClassName('formline').length;
+    const line = `                                
+    <p class="formline">
+        <select class="empType" id="empType${formlines}">
+            <option value="" disabled selected>Employee Type</option>
+            <option value="driver">Driver</option>
+            <option value="maintenance">Maintenance</option>
+            <option value="accounting">Accounting</option>
+            <option value="custodial">Custodial</option>
+            <option value="clerical">Clerical</option>
+            <option value="other">Other</option>
+        </select>
+        <input class="empNumber" name="empNumber${formlines}" type="number" id="empNumber${formlines}">
+        <input class="empPayroll" name="empPayroll${formlines}" type="number" id="empPayroll${formlines}">
+    </p>
+    `
+    // const line = document.getElementById("employeeInfoTable").firstElementChild;
+
+    let lineElement = document.createElement('div');
+    lineElement.innerHTML=line;
+    // lineElement = lineElement.firstChild;
+    document.getElementById("employeeInfoTable").appendChild(lineElement);
+}
+
+// Checks to see if values have been entered for slide 3; if so, allows progress to next slide
+// function checkSlide3() {
+//     if (formData.employees>0&&formData.payroll>0){
+//         nextSlide(3);
+//     }
+// }
 
 //------Slide 4 
 const zip = document.getElementById('slide4Zipcode');
@@ -181,7 +213,7 @@ zip.addEventListener('keyup', () => {
     const input = parseInt(zip.value);
     const zipError = document.getElementById('zipError');
     if (input>0 && Number.isInteger(input)) {
-        initialFormData.zipCode = input;
+        formData.zipCode = input;
         zipError.style.visibility = 'hidden';
         checkSlide4();
     } else {
@@ -193,7 +225,7 @@ miles.addEventListener('keyup', () => {
     const input = parseInt(miles.value);
     const milesError = document.getElementById('milesError');
     if (input>0 && Number.isInteger(input)) {
-        initialFormData.mileage = input;
+        formData.mileage = input;
         milesError.style.visibility = 'hidden';
         checkSlide4();
     } else {
@@ -206,10 +238,10 @@ miles.addEventListener('keyup', () => {
 // Checks to see if values have been entered for slide 4; if so, allows progress to next slide
 // Also populates the quote on slide 6.
 function checkSlide4() {
-    if (initialFormData.zipCode>0&&initialFormData.mileage>0){
+    if (formData.zipCode>0&&formData.mileage>0){
         nextSlide(4);
-        fillInfo(initialFormData);
-        requestQuoteSlide(initialFormData);
+        fillInfo(formData);
+        requestQuoteSlide(formData);
     } else {
         deactivateSlide(4);
     }
@@ -221,7 +253,7 @@ function fillInfo(data) {
     const q2 = document.getElementById('q2');
     const q3 = document.getElementById('q3');
     const q4 = document.getElementById('q4');
-    if (initialFormData.employees>0) {
+    if (formData.employees>0) {
         q1.innerText='Number of employees: ' + data.employees;
         q2.innerText='Annual payroll: ' + data.payroll;
     } else {
@@ -260,15 +292,15 @@ email.addEventListener('keyup', () => {
     const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     const emailError = document.getElementById('emailError');
     if (input!='' && regex.test(input)) {
-        initialFormData.email = input;
+        formData.email = input;
         emailError.style.visibility = 'hidden';
         submit.style.background='#4ca846';
         submit.onclick=function() {
             changeSlide(1); 
-            // This function is intended to send the email; currently doesn't work
-            sendQuote(initialFormData);
+            // this function sends the email
+            sendQuote(formData);
         };
-        setCookie("initialForm", JSON.stringify(initialFormData));
+        setCookie("Form", JSON.stringify(formData));
     } else {
         submit.style.background='red';
         submit.href = '';
@@ -308,7 +340,7 @@ async function requestQuoteSlide(data) {
 function sendQuote (data) {
     const uri = 'http://localhost:5001/send' ///<---needs to be changed for production
 
-    const rerr = fetch(uri, {
+    fetch(uri, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -317,27 +349,27 @@ function sendQuote (data) {
 
 
 // This function gives the submit button the standard form submission behavior
-function requestQuote (path, params, method='post') {
+// function requestQuote (path, params, method='post') {
 
-    const form = document.createElement('form');
-    form.method = method;
-    form.action = path;
+//     const form = document.createElement('form');
+//     form.method = method;
+//     form.action = path;
 
   
-    for (const key in params) {
-      if (params.hasOwnProperty(key)) {
-        const hiddenField = document.createElement('input');
-        hiddenField.type = 'hidden';
-        hiddenField.name = key;
-        hiddenField.value = params[key];
+//     for (const key in params) {
+//       if (params.hasOwnProperty(key)) {
+//         const hiddenField = document.createElement('input');
+//         hiddenField.type = 'hidden';
+//         hiddenField.name = key;
+//         hiddenField.value = params[key];
   
-        form.appendChild(hiddenField);
-      }
-    }
+//         form.appendChild(hiddenField);
+//       }
+//     }
   
-    document.body.appendChild(form);
-    form.submit();
-  }
+//     document.body.appendChild(form);
+//     form.submit();
+//   }
 
 
 // Todo: determine if entered zip code is valid. 
