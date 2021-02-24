@@ -1,7 +1,6 @@
 
 // This section handles changing the carousel's active slide
 
-
 let slideIndex = 0;
 const slides = document.getElementsByClassName("slide");
 initializeCarousel();
@@ -308,11 +307,12 @@ email.addEventListener('keyup', () => {
     }
 });
 
+const uriRoot = window.location.href;
+
 
 // This sends the data to the backend and returns with a number for the quote
 function fetchResult(data) {
-    const uri = 'http://localhost:5001/quote' || 'https://truckcompv1.herokuapp.com/quote';
-    // const herokuUri = 'https://truckcompv1.herokuapp.com/quote' ///<---needs to be changed for production
+    const uri = uriRoot+'quote';
 
     const result = fetch(uri, {
         method: 'POST',
@@ -339,10 +339,9 @@ async function requestQuoteSlide(data) {
 }
 
 function sendQuote (data) {
-    const uri = 'http://localhost:5001/send' ///<---needs to be changed for production
-    const herokuUri = 'https://truckcompv1.herokuapp.com/send' ///<---needs to be changed for production
+    const uri = uriRoot+'send';
 
-    fetch(uri || herokuUri, {
+    fetch(uri, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
