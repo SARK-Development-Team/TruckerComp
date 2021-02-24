@@ -1,1 +1,1 @@
-<?php header( 'Location: /views/layouts/index.handlebars' ) ;  ?>
+<?php header( 'Location: server.js' ) ;  ?>
