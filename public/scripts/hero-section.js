@@ -1,6 +1,5 @@
 
 // This section handles changing the carousel's active slide
-
 let slideIndex = 0;
 const slides = document.getElementsByClassName("slide");
 initializeCarousel();
@@ -10,7 +9,7 @@ initializeCarousel();
 function initializeCarousel() {
     formData = {
         employees: [],
-        payroll: 0,
+        totalPayroll: 0,
         businessType: 0,
         zipCode: 0,
         mileage: 0,
@@ -44,7 +43,6 @@ function resetForm() {
 
 // Only allow the user to progress if the content is valid.
 // If a choice is made, the next button is activated
-
 function nextSlide(slideIndex) {
     const next = document.getElementById('next' + slideIndex);
     next.style.opacity=1;
@@ -52,6 +50,7 @@ function nextSlide(slideIndex) {
     next.onclick = () => changeSlide(1);
 }
 
+// If the conditions are no longer met, the button for the next slide is deactivated
 function deactivateSlide(slideIndex) {
     const next = document.getElementById('next' + slideIndex);
     next.style.opacity=0;
@@ -60,14 +59,15 @@ function deactivateSlide(slideIndex) {
 }
 
 //------Slide 1 
-const aff = document.getElementById('slide1Yes');
-const neg = document.getElementById('slide1No');
+const yes = document.getElementById('slide1Yes');
+const no = document.getElementById('slide1No');
 
-aff.onclick = () => {
-    aff.classList.add('selected');
-    neg.classList.remove('selected');
-    const empOrSelf = document.getElementById('empOrSelf');
-    empOrSelf.innerText = 'my employees';
+// If the user has employees
+yes.onclick = () => {
+    yes.classList.add('selected');
+    no.classList.remove('selected');
+    const employeesOrSelf = document.getElementById('empOrSelf');
+    employeesOrSelf.innerText = 'my employees';
     const slide3 = document.getElementById('slide3');
     const slide4 = document.getElementById('slide4');
     const slide5 = document.getElementById('slide5');
@@ -78,12 +78,13 @@ aff.onclick = () => {
     slide6.style.transform = "translateX(500vw)";
     nextSlide(1);
 }
-// Todo: add a function to skip slide 3 if "neg" is active
-neg.onclick = () => {
-    neg.classList.add('selected');
-    aff.classList.remove('selected');
-    const empOrSelf = document.getElementById('empOrSelf');
-    empOrSelf.innerText = 'I';
+
+// If the user does not have employees
+no.onclick = () => {
+    no.classList.add('selected');
+    yes.classList.remove('selected');
+    const employeesOrSelf = document.getElementById('empOrSelf');
+    employeesOrSelf.innerText = 'I';
     const slide3 = document.getElementById('slide3');
     const slide4 = document.getElementById('slide4');
     const slide5 = document.getElementById('slide5');
@@ -96,7 +97,7 @@ neg.onclick = () => {
 };
 
 //------Slide 2
-// For slides 2-4, the formData is updated based on the user's input.
+// For slides 2-5, the formData is updated based on the user's input.
 const longhaul = document.getElementById('slide2LongHaul');
 const sand = document.getElementById('slide2Sand');
 const local = document.getElementById('slide2Local');
@@ -136,41 +137,11 @@ towing.onclick = () => {
 }
 
 //------Slide 3 
-const employeesField = document.getElementById('empNumber0');
-const payrollField = document.getElementById('empPayroll0');
+
+// This is the plus icon that sits beneath the employee information table
 const newRow = document.getElementById('newRow');
 
-function saveEmployeeData(){
-    formData.employees = [];
-    const formlines = document.getElementsByClassName('formline');
-    for (let i=0; i<formlines.length; i++) {
-        let type = document.getElementById('empType'+i).value;
-        let number = document.getElementById('empNumber'+i).value;
-        let payroll = document.getElementById('empPayroll'+i).value;
-        if (type && number && payroll) {
-            formData.employees.push({'type': type, 'number': number, 'payroll': payroll});
-        }
-    }
-    if (formData.employees.length) {
-        nextSlide(3);
-    } else {
-        deactivateSlide(3);
-    }
-}
-
-// employeesField.addEventListener('keyup', () => {
-//     const input = parseInt(employees.value);
-//     const empError = document.getElementById('empError');
-//     if (input>0 && Number.isInteger(input)) {
-//         formData.employees = input;
-//         empError.style.visibility='hidden';
-//         checkSlide3();
-//     } else {
-//         empError.style.visibility='visible';
-//         deactivateSlide(3)
-//     }
-// });
-
+// This function adds another row to the employee info table when the plus icon is pressed
 function addRow(e) {
     e.preventDefault()
     const formlines = document.getElementsByClassName('formline').length;
@@ -195,6 +166,27 @@ function addRow(e) {
     document.getElementById("employeeInfoTable").appendChild(lineElement);
 }
 
+// This function is called when the user is finished inputting data into the employee information table and presses the save button
+// It ignores lines that are not complete
+function saveEmployeeData(){
+    formData.employees = [];
+    formData.totalPayroll = 0;
+    const formlines = document.getElementsByClassName('formline');
+    for (let i=0; i<formlines.length; i++) {
+        let type = document.getElementById('empType'+i).value;
+        let number = document.getElementById('empNumber'+i).value;
+        let payroll = document.getElementById('empPayroll'+i).value;
+        if (type && number && payroll) {
+            formData.employees.push({'type': type, 'number': number, 'payroll': payroll});
+        }
+        formData.totalPayroll+=parseInt(payroll);
+    }
+    if (formData.employees.length) {
+        nextSlide(3);
+    } else {
+        deactivateSlide(3);
+    }
+}
 
 
 //------Slide 4 
@@ -285,6 +277,7 @@ email.addEventListener('keyup', () => {
     const emailError = document.getElementById('emailError');
     if (input!='' && regex.test(input)) {
         formData.email = input;
+        setCookie('clientData', JSON.stringify(formData));
         emailError.style.visibility = 'hidden';
         submit.style.background='#4ca846';
         submit.onclick=function() {
@@ -292,7 +285,6 @@ email.addEventListener('keyup', () => {
             // this function sends the email
             sendQuote(formData);
         };
-        setCookie("Form", JSON.stringify(formData));
     } else {
         submit.style.background='red';
         submit.href = '';
@@ -300,7 +292,8 @@ email.addEventListener('keyup', () => {
     }
 });
 
-// This is a method of determining the correct uriRoot for api calls
+// This is a method of determining the correct uriRoot for api calls.
+// If it's serving on localhost, the test will trigger. Otherwise, the uriRoot will be the root address the site is served at
 const lhPattern = /localhost/;
 let uriRoot = '';
 if (lhPattern.test(window.location.href)) {
@@ -353,7 +346,7 @@ function sendQuote (data) {
 zipCodeError = "Please enter a valid zip code."
 // Consider this API: https://smartystreets.com/docs/cloud/us-zipcode-api
 
-// This is the same setCookie function as in form-submission.js
+
 function setCookie(name, value) {
     const today = new Date();
     const expiry = new Date(today.getTime() + 24 * 3600000); // saves cookie for 24 hours

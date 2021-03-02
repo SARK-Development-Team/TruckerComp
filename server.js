@@ -1,19 +1,46 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 
-const handle = require('express-handlebars');
+// for environment variables
 require('dotenv').config()
+
+// for email function
 const nodemailer = require('nodemailer');
 const {google, GoogleApis} = require('googleapis');
-// const gmail = google.gmail('v1');
+
+const mongoose = require('mongoose');
+const passport = require('passport');
+
 
 
 const app = express();
 
+require('./config/passport')(passport);
+
+
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
 app.set('views', path.join(__dirname, 'views'));
 
-app.engine('handlebars', handle({defaultLayout: 'index'}));
+// handlebars is the template engine for the site
+const hbars = require('handlebars');
+const handle = require('express-handlebars');
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
+app.engine('handlebars', handle({
+    defaultLayout: 'dashboard', 
+    handlebars: allowInsecurePrototypeAccess(hbars)
+}));
 app.set('view engine', 'handlebars');
 
 app.use('/public', express.static(path.join(__dirname, '/public')));
@@ -69,9 +96,9 @@ async function sendEmail(data) {
 
         const quote = calculateQuote(data)
         const htmlBody = `
-        <h1>Hello ${data.email},<h1>
-        <p>Based on the information you've provided, we estimate that we can provide a monthly worker's comp premium of ${(quote *0.8).toFixed(2)} &mdash; ${(quote *1.2).toFixed(2)} </p>
-        <h1>Please call 415 xxx xxxx to purchase a policy now!</h1>
+            <h1>Hello ${data.email},<h1>
+            <p>Based on the information you've provided, we estimate that we can provide a monthly worker's comp premium of ${(quote *0.8).toFixed(2)} &mdash; ${(quote *1.2).toFixed(2)} </p>
+            <h1>Please call 415 xxx xxxx to purchase a policy now!</h1>
         `
 
         const mailOptions = {
@@ -100,22 +127,29 @@ function calculateQuote(data) {
     let payrollTotal = 0;
     for (let i =0; i<empArray.length; i++) {
         if (empArray[i].type =='driver') {
-            // 2.5 for every driver
-            typeTotal+= empArray[i].number*2.5;
-        } else {
-            // 1.5 for all other employee types
+            // 1.5 for every driver
             typeTotal+= empArray[i].number*1.5;
+        } else {
+            // 1 for all other employee types
+            typeTotal+= empArray[i].number;
         }
         payrollTotal+=empArray[i].payroll;
     }
 
-    return (payrollTotal *0.2 + typeTotal * 0.85 + data.mileage * 0.05);
+    return (payrollTotal *0.000002 + typeTotal * 0.85 + data.mileage * 0.000005);
 };
 
 
-//  This get request is necessary for the correct page to be served up. It doesn't serve contact.handlebars, but if I change it it no longer functions
+
+/* --------------------------
+         API ROUTES
+-------------------------- */
+
+
+// Routes
+
 app.get('/', (req, res) => {
-    res.render('contact');
+    res.render('main',  {layout: "index"},);
 })
 
 // This function receives the request from the client side with the initialFormData, runs it through the formula, and returns a number
@@ -124,12 +158,13 @@ app.post('/quote', (req, res) => {
     return res.json({ result });
 })
 
-
 // This route is responsible for sending the email.
 app.post('/send', (req, res) => {
     sendEmail(req.body);
     // .then((result)=> console.log('Email sent...', result)).catch((error) => console.log(error.message));
 });
 
+app.use('/users', require('./routes/users.js'));
 
-app.listen(process.env.PORT || 5001, () => console.log("It's working."));
+// This listens at port 5001, unless there is a Configuration variable (as on heroku).
+app.listen(process.env.PORT || 5001, () => console.log("Server running."));

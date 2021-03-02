@@ -4,31 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trucker Comp by SARK</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="public/favicon_io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="public/favicon_io/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../public/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../public/favicon_io/favicon-16x16.png">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="public/styles/common.css" rel="stylesheet">
+    <link href="../../../public/styles/common.css" rel="stylesheet">
 
     <!-- The two following lines allow the use of the AOS (Animation on Scroll) library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://kit.fontawesome.com/793cc4a12c.js" crossorigin="anonymous"></script>
-    
-    <link href="public/styles/index.css" rel="stylesheet">
-    <script defer src="public/scripts/hero-section.js"></script>
+    <link href="../../../public/styles/users.css" rel="stylesheet">
+    <script defer src="../../../public/scripts/dashboard.js"></script>
 </head>
 <body>
+    <!-- A navbar that is currently empty -->
+    <nav class="indented">
+        <a href="#" ><img src="../../public/images/logorecolored.png" class="logo"/><img src="../../public/images/sarkjusttitle.png" class="title"/></a>
+
+        <!-- Nav elements can be added here -->
+        <!-- <a href="main-form.html" class="btn-test">Skip to main form (for development)</a> -->
+    </nav>
+
 <!-- xxxxxxxxxx -->
+    {{>errorMessage errors = errors}}
 
     {{{body}}}
-
 <!-- xxxxxxxxxx -->
+
+
+
 
 <!-- Basic footer -->
     <footer id="sitemap" class="indented">
         <div style="display: flex; justify-content: space-between;">
-            <a href="#"><img src="public/images/logorecolored.png" id="footer-logo"></a>
+            <a href="#"><img src="../public/images/logorecolored.png" id="footer-logo"></a>
             <div id="social">        
                 <a href="https://www.facebook.com/SARKInsurance"><i class="fab fa-facebook-square"></i></a>
                 <a href="https://www.linkedin.com/company/sark-insurance-services-inc"><i class="fa fa-linkedin-square"></i></a>

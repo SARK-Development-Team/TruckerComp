@@ -1,0 +1,59 @@
+
+    <link href="../public/styles/users.css" rel="stylesheet">
+    <script defer src="../public/scripts/dashboard.js"></script>
+</head>
+<body>
+
+    <main class="indented">
+        <h1>Trucker Comp Dashboard</h1>
+
+        <a href='/users/logout' class="btn-logout" >Logout</a>
+        <div>
+            <h2>My info</h2>
+            <p>Name: {{user.name}}</p>
+            <p>Email: {{user.email}}</p>
+            <p>My employees: {{user.employees}}</p>
+            <p>Total Payroll: {{user.totalPayroll}}</p>
+            <p>Annual mileage: {{user.mileage}}</p>
+            <p>ZIP Code: {{user.zipCode}}</p>
+
+        </div>
+        <h2>
+            Additional info
+        </h2>
+            <form>
+                <label for="DOT">DOT Number</label>
+                <input type="number">
+                <label for="companyName">Company Name</label>
+                <input type="text">
+                <label for="MC">MC Number</label>
+                <input type="number">
+                <label for="address">Address</label>
+                <input type="text">
+                <label for="phoneNumber">Phone Number</label>
+                <input type="tel">
+                <label for="powerUnits">Power Units</label>
+                <input type="number">
+                <label for="mAddress">Mailing Address</label>
+                <input type="text">
+                <input type="submit">
+            </form>
+          {{!-- { "DOT Number", "DOTNumber" },
+            { "Company Name", "Name" },
+            { "MC Number", "MCNumber" },
+            { "Address", "Address" },
+            { "Phone", "Phone" },
+            { "Email", "Email" },
+            { "Power Units", "PowerUnits" },
+            { "Drivers", "Drivers" },
+            { "Authorized", "Authorized" },
+            { "Mailing Address", "MailingAddress" },
+            { "Type", "Type" },
+            { "Date Added", "DateAdded" },
+            { "Comments", "Comments" },
+            { "User", "ID" },
+            { "Status", "Status" },
+            { "Client History", "ClientHistory" },
+            { "Client Type", "Client_Type" } --}}
+
+    </main>

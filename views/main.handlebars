@@ -1,32 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trucker Comp by SARK</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="styles/common.css" rel="stylesheet">
-    <link href="styles/index.css" rel="stylesheet">
-    <!-- The two following lines allow the use of the AOS (Animation on Scroll) library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://kit.fontawesome.com/793cc4a12c.js" crossorigin="anonymous"></script>
-    <!-- Note: The JS scripts governing the functional elements on the page are at the bottom -->
-</head>
-<body>
+
     <!-- A navbar that is currently empty -->
     <nav class="indented">
-        <a href="#" ><img src="images/logorecolored.png" class="logo"/><img src="images/sarkjusttitle.png" class="title"/></a>
+        <a href="#" ><img src="public/images/logorecolored.png" class="logo"/><img src="public/images/sarkjusttitle.png" class="title"/></a>
 
         <!-- Nav elements can be added here -->
         <!-- <a href="main-form.html" class="btn-test">Skip to main form (for development)</a> -->
     </nav>
-
-<!-- xxxxxxxxxx -->
-
     <section>
         <!-- This contains the form and call to action -->
         <section id="hero" >
@@ -34,7 +13,7 @@
                 <div class="heading-area">
                     <h2>We Make Worker's Compensation Insurance Easy</h2>
                 </div>
-                <div style="position: absolute; right: 14vw; top: 17vw; z-index: 5">
+                <div id="reset-container">
                     <a class="btn-reset" onclick="resetForm()">Reset Form</a>
                 </div>
                 <div id="carousel">
@@ -104,13 +83,43 @@
                             <i class="fas fa-chevron-right "></i>
                         </div>
                         <form class="hero-form">
-                            <!-- <div class="spacer" style="height: 5vw"></div> -->
-                            <h3>My company has <input type="text" id="slide3EmployeesNumber" name="employeesNumber" style="width: 7vw"> employees.</h3>
-                            <p id='empError'>Please enter the number of employees</p>
-                            <br>
-                            <h3>My company's payroll for fiscal year 2020 was $<input type="text" id="slide3Payroll" name="payroll" style="width: 12vw">.</h3>
-                            <p id='payrollError'>Please enter the payroll for fiscal year 2020</p>
+                            <div id="employeeInfoTable">
+                                <div id="employeeInfoTableHeadings">
+                                    <p>Employee Type</p>
+                                    <p>How many of this type of employee do you have on your payroll?</p>  
+                                    <p>What is the total combined payroll for these employees?</p></div>
+                                <p class="formline">
+                                    {{!-- This is the dropdown menu for employee type --}}
+                                    {{!-- If it is changed, the function addRow() will also need to be updated --}}
+                                    <select class="empType" id="empType0">
+                                        <option value="" disabled selected>Employee Type</option>
+                                        <option value="driver">Driver</option>
+                                        <option value="maintenance">Maintenance</option>
+                                        <option value="accounting">Accounting</option>
+                                        <option value="custodial">Custodial</option>
+                                        <option value="clerical">Clerical</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    <input class="empNumber" name="empNumber0" type="number" id="empNumber0">
+                                    <input class="empPayroll" name="empPayroll0" type="number" id="empPayroll0">
+                                </p>
+                                <p class="formline">
+                                    <select class="empType" id="empType1">
+                                        <option value="" disabled selected>Employee Type</option>
+                                        <option value="driver">Driver</option>
+                                        <option value="maintenance">Maintenance</option>
+                                        <option value="accounting">Accounting</option>
+                                        <option value="custodial">Custodial</option>
+                                        <option value="clerical">Clerical</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    <input class="empNumber" name="empNumber1" type="number" id="empNumber1">
+                                    <input class="empPayroll" name="empPayroll1" type="number" id="empPayroll1">
+                                </p>
+                            </div>
+                            <button id="newRow" onclick="addRow(event)"><i class="fas fa-plus" ></i></button>
 
+                            <div class="btn-save" id="saveEmployeeData" onclick="saveEmployeeData()">Save Employee Data</div>
                         </form>
 
                         <div class="icon-area">
@@ -135,7 +144,6 @@
                         <h3>Please enter the following:</h3>
 
                         <form class="hero-form">
-                            <!-- <div class="spacer" style="height: 10vw"></div> -->
                             <h3>My zipcode is <input type="text" id="slide4Zipcode" name="zipcode" style="width:10vw">.</h3>
                             <p id='zipError'>Please enter a valid 5-digit US ZIP Code</p>
                             <br>
@@ -174,7 +182,7 @@
                             <h3>Enter your email address to receive a quote immediately!  <input type="email" name="email" id="slide5Email"></h3>
                             <p id='emailError'>Please enter a valid email address</p>
 
-                            <div class="btn-submit" id="submit">Submit</div>
+                            <div class="btn-submit" id="submit" >Submit</div>
                         </form>
 
                         <div class="icon-area">
@@ -188,8 +196,20 @@
                         </div>
                         
                     </div>
-
-
+                    {{!-- This slide appears after the submit button has been pressed. It contains the quote --}}
+                    <div class="slide" id="slide6">
+                        <!-- <div class="back-icon" onclick="changeSlide(-1)">
+                            <i class="fas fa-chevron-left "></i>
+                        </div> -->
+                        <div id="quote-area">
+                            <h3>Based on the information you've provided, we estimate a monthly worker's comp premium of</h3>
+                            <h1>$<span id="low-end"></span> &mdash; $<span id="high-end"></span>/month</h1>
+                            <h3>We've also sent an email to <span id="email"></span> with further information.</h3>
+                            <h1>Please call 415 xxx xxxx to purchase a policy now!</h1>
+                            <a class ='btn-purchase' href='users/register' >Click here to purchase!</a>
+                            <p id = "bgd-icons"><i class="material-icons" style="font-size: 16vw; left: 0; bottom: 0" >source</i> <i></i> <i class="material-icons" style="font-size: 13vw; right: 0; bottom: 0" >verified</i></p>
+                        </div>
+                    </div>
 
                 </div>
                 <div id="bottom-line">
@@ -266,7 +286,7 @@
                     <h2>Do I need Workers’ Comp?</h2>
                     <h3>If you live in any of these states, <span style="color: #FF4040">yes.</span></h3>
                     <div class="map-side-sm" >
-                        <img src="images/mapp.png" id="US-map-sm">
+                        <img src="public/images/mapp.png" id="US-map-sm">
                     </div>
                     <!-- For small screens, the map appears here -->
                         <p>Worker's Compensation insurance is <b>MANDATORY in nearly every state in the country.</b> In CA, if you don't buy Worker's Comp, you face up to $100,000 and a year in jail with penalties!</p>                        
@@ -274,7 +294,7 @@
                 </div>
                 <!-- On larger screens, the map appears here -->
                 <div class="map-side-lg">
-                    <img src="images/mapp.png" id="US-map-lg">
+                    <img src="public/images/mapp.png" id="US-map-lg">
                 </div>
             </div>
             
@@ -338,67 +358,3 @@
         </section>
 
     </section>
-
-<!-- xxxxxxxxxx -->
-
-<!-- Basic footer -->
-    <footer id="sitemap" class="indented">
-        <div style="display: flex; justify-content: space-between;">
-            <a href="#"><img src="images/logorecolored.png" id="footer-logo"></a>
-            <div id="social">        
-                <a href="https://www.facebook.com/SARKInsurance"><i class="fab fa-facebook-square"></i></a>
-                <a href="https://www.linkedin.com/company/sark-insurance-services-inc"><i class="fa fa-linkedin-square"></i></a>
-            </div>
-        </div>
-        <div id="four-col">
-            <div><a href="about-us.html">About us</a></div>
-            <div><a href="products.html">Products</a></div>
-            <div><a href="contact.html">Contact</a></div>
-            <div><a href="https://www.policymela.com/">PolicyMela by SARK</a></div>
-            <!-- <ul><a href="">INSURANCE COVERAGE</a>
-                <li><a href="">Workers’ Compensation</a></li>
-                <li><a href="">Professional Liability (E&O)</a></li>
-                <li><a href="">General Liability</a></li>
-                <li><a href="">Property & Liability (BOP)</a></li>
-                <li><a href="">Commercial Auto</a></li>
-                <li><a href="">Umbrella</a></li>
-            </ul>
-            <ul><a href="">POLICYHOLDERS</a>
-                <li><a href="">Get a Certificate</a></li>
-                <li><a href="">Make a Claim</a></li>
-                <li><a href="">Make a Payment</a></li>
-                <li></li>
-                <li><a href="">SMALL BUSINESS</a></li>
-            </ul>
-            <ul><a href="">ABOUT</a>
-                <li><a href="">Careers</a></li>
-                <li></li>
-                <li><a href="">RESOURCES</a></li>
-                <li><a href="">FAQs</a></li>
-                <li><a href="">Balance Sheets</a></li>
-                <li><a href="">Loss Control</a></li>
-            </ul>
-            <ul><a href="">CONTACT</a>
-                <li><a href="">{phone number}</a></li>
-                <li><a href="">Get a Quote</a></li>
-                <li></li>
-                <li><a href="">Reviews</a></li>
-            </ul> -->
-        </div>
-
-        <hr/>
-
-        <p>Most policies issued through biBERK.com will be underwritten by Wellfleet Insurance Company ("WIC"), Berkshire Hathaway Direct Insurance Company ("BHDIC"), National Liability and Fire Insurance Company ("NLF"), or Wellfleet New York Insurance Company ("WNYIC"), which are AM Best rated A++ insurers.</p>
-        <div>&copy;2021 SARK Insurance Services, INC.</div>
-
-    </footer>
-    <!-- <footer id="legal" class="indented">
-
-    </footer> -->
-    <!-- The following line initiates Animation on Scroll functionality -->
-    <script>AOS.init();</script>
-
-    <script src="scripts/hero-section.js"></script>
-    <!-- <script src="scripts/about-section.js"></script> -->
-</body>
-</html>

@@ -14,42 +14,7 @@
   4. Pseudoelements
   ---------- */
 
-/* ----------
-  Whole page
----------- */
 
-body {
-    background: white;
-    /* font-family: 'Open Sans'; */
-    /* font-family: 'Sarabun'; */
-    font-family: 'Raleway';
-}
-
-button {
-    cursor: pointer;
-}
-
-h2 {
-    font-size: 1.8vw;
-    font-weight: 700;
-    padding: 1vw 0;
-    margin-bottom: 0; 
-}
-
-h3 {
-    font-size: 1.3vw;
-    font-weight: 300;
-}
-
-.logo {
-    height: 70px;
-    vertical-align: top;
-}
-
-.title {
-    height: 64px;
-    vertical-align: top;
-}
 
 /* ----------
    Navbar
@@ -82,6 +47,23 @@ input {
 
 .active {
     color: rgb(27, 27, 27)!important;
+}
+
+.btn-purchase {
+    text-align: center;
+    align-self: center;
+    cursor: pointer;
+    background-color: rgb(0, 81, 128);
+    padding: 1vw;
+    border-radius: 4%;
+    border: 1px solid white;
+    color: white;
+    transition: all 0.6s ease;
+    font-size: 1.1vw;
+    margin: 0 34%;
+    grid-column-start: center;
+    grid-row-start: bottommid;
+    z-index: 5;
 }
 
 .btn-reset {
@@ -125,17 +107,6 @@ input {
     margin: 0 40%;
     grid-column-start: center;
     grid-row-start: bottommid;
-}
-
-#employeeInfoTableHeadings {
-    display: flex;
-    flex-direction: row;
-}
-
-#employeeInfoTableHeadings p{
-    margin: 0 5vw 0 0;
-    width: 33%;
-    font-size: 1vw;
 }
 
 .formline {
@@ -229,7 +200,6 @@ input {
     font-size: 3.5vw;
 }
 
-
 .selected {
     background: #1e8ee9!important;
     color: white;
@@ -241,7 +211,6 @@ input {
     grid-template-columns: [lside] 10% [center] 80% [rside] 10%;
     grid-template-rows: [top] 5vh [topmid] 14vh [centerline] 4vh [bottommid] 17vh [bottom] 5vh;
     transition: transform 0.5s;
-    /* z-index: 1; */
 }
 
 .slide > h3 {
@@ -276,20 +245,6 @@ input {
     grid-row-end: bottom;
 }
 
-/* .tiles-five {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    column-gap: 2vw;
-    padding: 2.4vw .8vw;
-    position: relative;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    grid-column-start: center;
-    grid-row-start: topmid;
-    grid-row-end: bottommid;
-} */
-
 .tiles-multi {
     display: flex;
     flex-direction: row;
@@ -319,6 +274,7 @@ input {
     position: absolute;
     color: rgba(255, 255, 255, 0.3);
     bottom: 0;
+    z-index: 0;
 }
 
 #bottom-line {
@@ -341,6 +297,17 @@ input {
     width: 78vw;
     background: white;
     opacity: .9;
+}
+
+#employeeInfoTableHeadings {
+    display: flex;
+    flex-direction: row;
+}
+
+#employeeInfoTableHeadings p{
+    margin: 0 5vw 0 0;
+    width: 33%;
+    font-size: 1vw;
 }
 
 #empError, #milesError, #payrollError, #zipError, #emailError {
@@ -421,7 +388,6 @@ svg {
 }
 
 .about-text {
-    /* color: rgb(27, 165, 219); */
     font-size: 1.4vw;
     font-weight: 600;
 }
@@ -462,33 +428,13 @@ svg {
     display: block;
     height: 20vw;
     position: relative;
-    /* background: url('../images/mapp.png');
-    background-size: cover; */
 }
 
 .map-side-sm {
     display: none;
     height: 42vw;
     position: relative;
-    /* background: url('../images/mapp.png');
-    background-size: cover; */
 }
-
-/* .map-side::before {
-    content: '';
-    display: block;
-    position: absolute;
-    z-index: -1;
-    height: 20vw; 
-    width: 30vw; 
-    border-radius: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    box-shadow: 0 0 15px 10px #555;
-  } */
-
 
 .text-side h3 {
     font-weight: 700;
