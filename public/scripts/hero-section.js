@@ -237,9 +237,13 @@ function fillInfo(data) {
     const q2 = document.getElementById('q2');
     const q3 = document.getElementById('q3');
     const q4 = document.getElementById('q4');
-    if (formData.employees>0) {
-        q1.innerText='Number of employees: ' + data.employees;
-        q2.innerText='Annual payroll: ' + data.payroll;
+    if (data.employees.length) {
+        let empNum = 0;
+        for (let i=0; i<data.employees.length; i++) {
+            empNum+=parseInt(data.employees[i].number);
+        }
+        q1.innerText='Number of employees: ' + empNum;
+        q2.innerText='Annual payroll: ' + data.totalPayroll;
     } else {
         q1.innerText = 'No employees'
     }
