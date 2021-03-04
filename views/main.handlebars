@@ -1,0 +1,360 @@
+
+    <!-- A navbar that is currently empty -->
+    <nav class="indented">
+        <a href="#" ><img src="public/images/logorecolored.png" class="logo"/><img src="public/images/sarkjusttitle.png" class="title"/></a>
+
+        <!-- Nav elements can be added here -->
+        <!-- <a href="main-form.html" class="btn-test">Skip to main form (for development)</a> -->
+    </nav>
+    <section>
+        <!-- This contains the form and call to action -->
+        <section id="hero" >
+            <div id="container">
+                <div class="heading-area">
+                    <h2>We Make Worker's Compensation Insurance Easy</h2>
+                </div>
+                <div id="reset-container">
+                    <a class="btn-reset" onclick="resetForm()">Reset Form</a>
+                </div>
+                <div id="carousel">
+                    <!-- This div is the first item in the carousel -->
+                    <div class="slide" id="slide1">
+                        <h3>Does your company have employees?</h3>
+                        <div class="next-icon" id="next1">
+                            <i class="fas fa-chevron-right "></i>
+                        </div>
+                        <div class="tiles-two" style="clear: right">
+                            <button class ="two-tile tile" id="slide1Yes">My company has employees</button>
+                            <button class ="two-tile tile" id="slide1No">Just the owners</button>
+
+                        </div>
+                        <div class="icon-area">
+                            <div class="icons">
+                                <i class="fas fa-circle active"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- This form is the next item in the carousel if the user selects "My company has employees", otherwise it skips to the third item -->
+                    <div class="slide" id="slide2">
+                        <h3>What type of trucking service do you provide?</h3>
+                        <div class="back-icon" onclick="changeSlide(-1)">
+                            <i class="fas fa-chevron-left "></i>
+                        </div>
+                        <div class="next-icon" id="next2">
+                            <i class="fas fa-chevron-right "></i>
+                        </div>
+                        <div class="tiles-multi">
+                            <button class ="four-tile tile" id="slide2LongHaul">
+                                <i class="material-icons" >room</i><br>
+                                Long Haul Trucking</button>
+                            <button class ="four-tile tile" id="slide2Sand">
+                                <i class="material-icons" >landscape</i><br>
+                                Sand & Gravel Trucking</button>
+                            <button class ="four-tile tile" id="slide2Local">
+                                <i class="material-icons" >local_shipping</i><br>
+                                Local Trucking (&lt;500 miles)</button>
+                            <button class ="four-tile tile" id="slide2Towing">
+                                <i class="material-icons" >car_repair</i><br>
+                                Towing Services</button>
+                        </div>
+                        <div class="icon-area">
+                            <div class="icons">
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle active"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- This div is the third item in the carousel -->
+                    <div class="slide" id="slide3">
+                        <h3>Please enter the following:</h3>
+                        <div class="back-icon" onclick="changeSlide(-1)">
+                            <i class="fas fa-chevron-left "></i>
+                        </div>
+                        <div class="next-icon" id="next3">
+                            <i class="fas fa-chevron-right "></i>
+                        </div>
+                        <form class="hero-form">
+                            <div id="employeeInfoTable">
+                                <div id="employeeInfoTableHeadings">
+                                    <p>Employee Type</p>
+                                    <p>How many of this type of employee do you have on your payroll?</p>  
+                                    <p>What is the total combined payroll for these employees?</p></div>
+                                <p class="formline">
+                                    {{!-- This is the dropdown menu for employee type --}}
+                                    {{!-- If it is changed, the function addRow() will also need to be updated --}}
+                                    <select class="empType" id="empType0">
+                                        <option value="" disabled selected>Employee Type</option>
+                                        <option value="driver">Driver</option>
+                                        <option value="maintenance">Maintenance</option>
+                                        <option value="accounting">Accounting</option>
+                                        <option value="custodial">Custodial</option>
+                                        <option value="clerical">Clerical</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    <input class="empNumber" name="empNumber0" type="number" id="empNumber0">
+                                    <input class="empPayroll" name="empPayroll0" type="number" id="empPayroll0">
+                                </p>
+                                <p class="formline">
+                                    <select class="empType" id="empType1">
+                                        <option value="" disabled selected>Employee Type</option>
+                                        <option value="driver">Driver</option>
+                                        <option value="maintenance">Maintenance</option>
+                                        <option value="accounting">Accounting</option>
+                                        <option value="custodial">Custodial</option>
+                                        <option value="clerical">Clerical</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    <input class="empNumber" name="empNumber1" type="number" id="empNumber1">
+                                    <input class="empPayroll" name="empPayroll1" type="number" id="empPayroll1">
+                                </p>
+                            </div>
+                            <button id="newRow" onclick="addRow(event)"><i class="fas fa-plus" ></i></button>
+
+                            <div class="btn-save" id="saveEmployeeData" onclick="saveEmployeeData()">Save Employee Data</div>
+                        </form>
+
+                        <div class="icon-area">
+                            <div class="icons">
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle active"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                            </div>               
+                        </div>
+                    </div>
+
+                    <!-- This form is the fourth item in the carousel -->
+                    <div class="slide" id="slide4">
+                        <div class="back-icon" onclick="changeSlide(-1)">
+                            <i class="fas fa-chevron-left "></i>
+                        </div>
+                        <div class="next-icon" id="next4">
+                            <i class="fas fa-chevron-right "></i>
+                        </div>
+                        <h3>Please enter the following:</h3>
+
+                        <form class="hero-form">
+                            <h3>My zipcode is <input type="text" id="slide4Zipcode" name="zipcode" style="width:10vw">.</h3>
+                            <p id='zipError'>Please enter a valid 5-digit US ZIP Code</p>
+                            <br>
+                            <!-- This fills in the sentence based on the input from slide 1 -->
+                            <h3>In 2020, <span id="empOrSelf"></span> drove <input type="text" id="slide4Mileage" name="miles" style="width: 12vw"> miles.</h3>
+                            
+                            <p id='milesError'>Please enter the number of miles</p>
+
+                        </form>
+
+
+                        <div class="icon-area">
+                            <div class="icons">
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle active"></i>
+                                <i class="fas fa-circle"></i>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <!-- This form is the last item in the carousel -->
+                    <div class="slide" id="slide5">
+                        <div class="back-icon" onclick="changeSlide(-1)">
+                            <i class="fas fa-chevron-left "></i>
+                        </div>
+                        <h3>Is this information correct?</h3>
+                        <form class="hero-form">
+                            <p id = "q1"></p>
+                            <p id = "q2"></p>
+                            <p id = "q3"></p>
+                            <p id = "q4"></p>
+
+                            <h3>Enter your email address to receive a quote immediately!  <input type="email" name="email" id="slide5Email"></h3>
+                            <p id='emailError'>Please enter a valid email address</p>
+
+                            <div class="btn-submit" id="submit" >Submit</div>
+                        </form>
+
+                        <div class="icon-area">
+                            <div class="icons">
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle active"></i>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    {{!-- This slide appears after the submit button has been pressed. It contains the quote --}}
+                    <div class="slide" id="slide6">
+                        <!-- <div class="back-icon" onclick="changeSlide(-1)">
+                            <i class="fas fa-chevron-left "></i>
+                        </div> -->
+                        <div id="quote-area">
+                            <h3>Based on the information you've provided, we estimate a monthly worker's comp premium of</h3>
+                            <h1>$<span id="low-end"></span> &mdash; $<span id="high-end"></span>/month</h1>
+                            <h3>We've also sent an email to <span id="email"></span> with further information.</h3>
+                            <h1>Please call 415 xxx xxxx to purchase a policy now!</h1>
+                            <a class ='btn-purchase' href='users/register' >Click here to purchase!</a>
+                            <p id = "bgd-icons"><i class="material-icons" style="font-size: 16vw; left: 0; bottom: 0" >source</i> <i></i> <i class="material-icons" style="font-size: 13vw; right: 0; bottom: 0" >verified</i></p>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="bottom-line">
+                    <p>SARK Insurance Services is the leading provider of Worker's Compensation Insurance in Northern California for over 25 years</p>
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <!-- This section will contain further information about SARK -->
+        <section id="about" class="wide-indent">
+            <div id="about-headline">
+                <h2>What's worker's compensation insurance?</h2>
+                <p>An insurance policy that protects your employees in case they ever get sick or injured because of work. The policy pays out to cover your employee’s medical expenses and lost wages—and it might even cover ongoing financial and medical support if the injury is serious.</p>
+            </div>
+            <div id="about-container">
+
+                <div data-aos="fade-zoom-in" ata-aos-easing="ease-in-back" data-aos-duration="700" data-aos-delay="200" class="about-box" >
+                    <div class="about-icon">
+                        <svg preserveAspectRatio="xMidYMid meet" data-bbox="51.695 54.534 96.61 90.933" viewBox="51.695 54.534 96.61 90.933" height="200" width="200" xmlns="http://www.w3.org/2000/svg" data-type="color" role="img"><defs><style>#comp-kit82ps7 svg [data-color="1"] {fill: #000000;}
+                            #comp-kit82ps7 svg [data-color="2"] {fill: #000000;}</style></defs>
+                            <g>
+                                <path d="M126.57 100.277h10.48v1.996h-10.48v-1.996zm0 33.763h10.48v-1.996h-10.48v1.996zm21.735-57.221v62.625a6.03 6.03 0 0 1-6.023 6.023H57.718a6.03 6.03 0 0 1-6.023-6.023V76.819a6.03 6.03 0 0 1 6.023-6.023h27.818v-9.922a6.347 6.347 0 0 1 6.34-6.34h16.248a6.347 6.347 0 0 1 6.34 6.34v2.472h-1.996v-2.472a4.349 4.349 0 0 0-4.344-4.344H91.876a4.349 4.349 0 0 0-4.344 4.344v9.922h54.75a6.03 6.03 0 0 1 6.023 6.023zm-1.996 0a4.032 4.032 0 0 0-4.027-4.027H57.718a4.032 4.032 0 0 0-4.027 4.027v10.889h84.101v1.996H53.691v49.74a4.032 4.032 0 0 0 4.027 4.027h84.565a4.032 4.032 0 0 0 4.027-4.027V76.819zM64.036 134.04h10.478v-1.996H64.036v1.996zm0-31.766h10.478v-1.996H64.036v1.996zm49.874 8.088v9.478a.998.998 0 0 1-.998.998h-7.176v7.176a.998.998 0 0 1-.998.998H95.26a.998.998 0 0 1-.998-.998v-7.176h-7.175a.998.998 0 0 1-.998-.998v-9.478c0-.551.447-.998.998-.998h7.175v-7.175c0-.551.447-.998.998-.998h9.478c.551 0 .998.447.998.998v7.175h7.176c.551 0 .998.447.998.998zm-1.996.998h-7.176a.998.998 0 0 1-.998-.998v-7.175h-7.481v7.175a.998.998 0 0 1-.998.998h-7.175v7.481h7.175c.551 0 .998.447.998.998v7.176h7.481v-7.176c0-.551.447-.998.998-.998h7.176v-7.481z" fill="#000010" data-color="1"></path>
+                                <path d="M103.74 110.362v-7.175h-7.481v7.175a.998.998 0 0 1-.998.998h-7.175v7.481h7.175c.551 0 .998.447.998.998v7.176h7.481v-7.176c0-.551.447-.998.998-.998h7.176v-7.481h-7.176a.998.998 0 0 1-.998-.998z" fill="#000000" data-color="2"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="about-text">
+                        <div>
+                            <p>Pay medical expenses for workers who get hurt on the job.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-duration="900" data-aos-delay="400" class="about-box">
+                    <div class="about-icon">
+                        <svg preserveAspectRatio="xMidYMid meet" data-bbox="35.5 45 129.001 110" viewBox="35.5 45 129.001 110" height="200" width="200" xmlns="http://www.w3.org/2000/svg" data-type="color" role="img"><defs><style>#comp-kit71dgk svg [data-color="1"] {fill: #000000;}</style></defs>
+                            <g>
+                                <path d="M160.95 59.058a2.24 2.24 0 0 0-2.009.61l-11.555 11.545-7.195-1.926-1.927-7.189 11.555-11.545a2.229 2.229 0 0 0 .611-2.007 2.227 2.227 0 0 0-1.331-1.623c-9.379-3.889-20.078-1.774-27.254 5.396-7.566 7.559-9.251 18.8-5.064 28.004l-14.993 13.205-15.182-13.351a16.362 16.362 0 0 0 2.979-7.424c1.199-8.844 5.706-14.768 12.056-15.844 2.579-.438 4.564-2.685 4.621-5.349.057-2.662-1.887-4.985-4.521-5.407-6.649-1.058-19.774-.874-33.008 12.264l-14.645 14.54a5.331 5.331 0 0 0-1.586 3.791 5.329 5.329 0 0 0 1.561 3.801.916.916 0 0 1-.005 1.296L52.895 83a.915.915 0 0 1-1.296-.003 5.331 5.331 0 0 0-3.794-1.585h-.017a5.345 5.345 0 0 0-3.786 1.559l-6.384 6.338a7.063 7.063 0 0 0-.987 8.877 40.175 40.175 0 0 0 5.336 6.696 40.213 40.213 0 0 0 6.669 5.375 7.122 7.122 0 0 0 3.877 1.155 7.099 7.099 0 0 0 5.013-2.084l6.384-6.337a5.331 5.331 0 0 0 1.586-3.791 5.329 5.329 0 0 0-1.561-3.801.914.914 0 0 1 .004-1.294l1.165-1.156a.917.917 0 0 1 1.297.004 5.383 5.383 0 0 0 7.597.025l.254-.252 12.44 14.101L59.017 131.2a13.46 13.46 0 0 0-4.604 9.773 13.46 13.46 0 0 0 3.98 10.044C60.974 153.594 64.371 155 68 155a13.487 13.487 0 0 0 10.228-4.608l23.432-26.597 23.44 26.568A13.576 13.576 0 0 0 135.395 155c3.655 0 7.075-1.414 9.672-4.01a13.554 13.554 0 0 0 4.006-10.11c-.12-3.818-1.767-7.313-4.635-9.841l-27.7-24.362c.015-.016.032-.031.047-.048l12.312-13.973a25.064 25.064 0 0 0 10.413 2.262c6.397 0 12.795-2.433 17.665-7.299 7.176-7.169 9.295-17.859 5.401-27.231a2.23 2.23 0 0 0-1.626-1.33zM69.559 89.814a5.386 5.386 0 0 0-7.597-.025l-1.165 1.158a5.37 5.37 0 0 0-.023 7.59.905.905 0 0 1 .266.648.907.907 0 0 1-.27.646l-6.384 6.338a2.653 2.653 0 0 1-3.328.351 35.6 35.6 0 0 1-5.93-4.778c-1.737-1.745-3.332-3.749-4.742-5.954a2.644 2.644 0 0 1 .372-3.323l6.384-6.337a.912.912 0 0 1 .647-.267h.002c.142 0 .414.036.648.271a5.379 5.379 0 0 0 7.597.023L57.199 85a5.331 5.331 0 0 0 1.586-3.791 5.329 5.329 0 0 0-1.561-3.801.905.905 0 0 1-.266-.648c0-.142.036-.414.27-.646l14.645-14.54C83.712 49.825 95.23 49.62 101.039 50.55c.455.072.778.458.766 1.036-.009.41-.442.855-.909.935-8.248 1.397-14.274 8.922-15.726 19.635-.349 2.572-1.525 4.966-3.312 6.74L70.855 89.819a.916.916 0 0 1-1.296-.005zm5.326 57.635a9.065 9.065 0 0 1-6.58 3.094c-2.568.1-4.956-.868-6.762-2.674a9.06 9.06 0 0 1-2.677-6.756 9.066 9.066 0 0 1 3.096-6.575l27.673-24.374 9.055 10.263-23.805 27.022zm69.733-6.43a9.15 9.15 0 0 1-2.702 6.824c-1.826 1.823-4.252 2.807-6.829 2.7a9.16 9.16 0 0 1-6.645-3.124L77.416 89.582l6.173-6.128 57.903 50.926a9.143 9.143 0 0 1 3.126 6.639zm-31.178-37.331c-.015.017-.025.037-.039.055l-8.242-7.249 13.881-12.225a24.953 24.953 0 0 0 2.805 3.351 25.066 25.066 0 0 0 3.31 2.773l-11.715 13.295zm40.584-19.216c-8.003 7.996-21.027 7.996-29.03 0s-8.003-21.009 0-29.005a20.473 20.473 0 0 1 19.099-5.488l-9.888 9.88a2.222 2.222 0 0 0-.577 2.149l2.593 9.671a2.226 2.226 0 0 0 1.576 1.575l9.679 2.591a2.231 2.231 0 0 0 2.151-.577l9.888-9.88a20.424 20.424 0 0 1-5.491 19.084z" fill="#000000" data-color="1"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="about-text">
+                        <div>
+                            <p>Pay for the missing wages of employees when they get injured.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="fade-zoom-in" ata-aos-easing="ease-in-back" data-aos-duration="2000" data-aos-delay="400" class="about-box">
+                    <div class="about-icon">
+                        <svg preserveAspectRatio="xMidYMid meet" data-bbox="17 17.1 165.988 165.8" viewBox="17 17.1 165.988 165.8" height="200" width="200" xmlns="http://www.w3.org/2000/svg" data-type="color" role="img"><defs><style>#comp-kiuv5ik3 svg [data-color="1"] {fill: #000000;}</style></defs>
+                            <g>
+                                <path d="M178.8 158.6s0-.1 0 0l-59.3-54s-.1-.1-.1-.2l-9.8-9.8 6-6c1 .5 2.1.7 3.2.7 2 0 3.9-.8 5.4-2.3 3-3 3-7.9 0-10.9L98.1 50c-1.4-1.4-3.4-2.2-5.4-2.2s-4 .8-5.4 2.2c-2.7 2.7-3 6.9-.8 9.9L59.9 86.4c-3-2.1-7.2-1.9-9.9.8-1.4 1.4-2.2 3.4-2.2 5.4 0 2.1.8 4 2.2 5.4l26.2 26.2c1.4 1.4 3.4 2.2 5.4 2.2 2.1 0 4-.8 5.4-2.2 2.3-2.3 2.9-5.8 1.5-8.7l6-6 9.4 9.4.2.2 54.3 59.5.1.1c2.8 2.8 6.5 4.2 10.1 4.2 3.7 0 7.3-1.4 10.1-4.2 5.7-5.5 5.7-14.5.1-20.1zm-93.4-46.9L63.5 89.9l26.3-26.3 21.9 21.9-26.3 26.2zm5.4-58.1c.5-.5 1.2-.8 1.9-.8s1.4.3 1.9.8l26.2 26.2c1 1 1 2.7 0 3.8-1 1-2.7 1-3.8 0L90.8 57.4c-1.1-1.1-1.1-2.8 0-3.8zm-7.3 67.1c-1 1-2.8 1-3.8 0L53.6 94.5c-.5-.5-.8-1.2-.8-1.9a2.732 2.732 0 0 1 2.7-2.7c.7 0 1.4.3 1.9.8L83.5 117c1.1 1 1.1 2.7 0 3.7zm22.6-22.5l8 8-7.9 7.9-8-8 7.9-7.9zm69.2 77.1c-3.6 3.6-9.5 3.6-13.1 0l-52.5-57.5 8.1-8.1 57.6 52.5c3.5 3.6 3.5 9.5-.1 13.1z" fill="#000000" data-color="1"></path>
+                                <path d="M134.7 116.2c1.2.7 2.7.2 3.4-1 4.6-8.4 7-17.9 7-27.4 0-31.6-25.7-57.3-57.3-57.3-31.6 0-57.3 25.7-57.3 57.3s25.7 57.3 57.3 57.3c8.8 0 17.3-2 25.3-5.9 1.2-.6 1.8-2.1 1.1-3.4-.6-1.2-2.1-1.8-3.4-1.1-7.2 3.6-15 5.4-23 5.4-28.8 0-52.3-23.5-52.3-52.3S59 35.5 87.8 35.5c28.8 0 52.3 23.5 52.3 52.3 0 8.7-2.2 17.4-6.4 25-.6 1.3-.2 2.8 1 3.4z" fill="#000000" data-color="1"></path>
+                                <path d="M120 145.2c-9.8 5.5-20.9 8.4-32.2 8.4-36.3 0-65.8-29.5-65.8-65.8 0-17.6 6.8-34.1 19.3-46.5S70.2 22 87.8 22c36.3 0 65.8 29.5 65.8 65.8 0 12.1-3.3 23.9-9.6 34.2-.7 1.2-.3 2.7.8 3.5 1.2.7 2.7.4 3.5-.8 6.8-11.1 10.3-23.8 10.3-36.8 0-39-31.8-70.8-70.8-70.8-18.9 0-36.7 7.4-50.1 20.7C24.4 51.1 17 68.9 17 87.8c0 39 31.8 70.8 70.8 70.8 12.2 0 24.2-3.1 34.7-9.1.2-.1.4-.3.6-.4 1-1 1-2.5.1-3.5-.9-.9-2.2-1-3.2-.4z" fill="#000000" data-color="1"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="about-text">
+                        <div>
+                            <p>Protect yourself against lawsuits and legal fees.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="map-container" class="narrow-indent">
+            <div class="two-column">
+                <div class="text-side">
+                    <h2>Do I need Workers’ Comp?</h2>
+                    <h3>If you live in any of these states, <span style="color: #FF4040">yes.</span></h3>
+                    <div class="map-side-sm" >
+                        <img src="public/images/mapp.png" id="US-map-sm">
+                    </div>
+                    <!-- For small screens, the map appears here -->
+                        <p>Worker's Compensation insurance is <b>MANDATORY in nearly every state in the country.</b> In CA, if you don't buy Worker's Comp, you face up to $100,000 and a year in jail with penalties!</p>                        
+                        <p><b>Even if you are an independent contractor, you will likely need Worker's Comp. As per CA's ABC ruling and new state laws, many states will consider contractors as employees for the sake of Worker's Comp.</b></p>
+                </div>
+                <!-- On larger screens, the map appears here -->
+                <div class="map-side-lg">
+                    <img src="public/images/mapp.png" id="US-map-lg">
+                </div>
+            </div>
+            
+        </section>
+
+
+        <!-- <section id="info">
+            <div id="info-container">
+                <div data-aos="fade-right" data-aos-duration="1200" class="circle" id="outer-circle">
+                    <div class="circle" id="inner-circle">
+                        <img class="circle" id="info-img" src="images/maid-wc.jpg"></img>
+                    </div>
+                </div>
+
+                <div data-aos="fade-left" data-aos-duration="1200" id="info-carousel">
+                    <i class="fas fa-chevron-left chevron left-arrow" onclick="toggleBlurb()"></i>
+                    <i class="fas fa-chevron-right chevron right-arrow" onclick="toggleBlurb()"></i>
+                    <div id="blurb1">
+                        <h2>Save up to 20% on small business insurance</h2>
+                        <p>We offer top-rated insurance products at prices up to 20% less than the competition. We also offer fast-and-easy claims and unrivaled customer service. You can call and speak with a small business insurance expert, or you can do everything—including purchasing a plan and submitting claims—entirely online. Our processes are all designed with efficiency in mind so you can spend less time dealing with insurance and more time focused on your business.</p>
+                    </div>
+                    <div id="blurb2">
+                        <h2>Help Paying Work-Related Injury Bills</h2>
+                        <p>Workers’ compensation insurance helps pay bills associated with a work-related injury, including medical care and lost wages. It’s useful in many industries, including apartment and property management, auto services and dealers, cleaning, janitorial, condominiums, hotels, construction, contracting, health care, lawn care, landscaping, professional services, restaurants, bars, retail stores, transportation, and more.</p>    
+                    </div>
+               </div>
+            </div>
+        </section>  -->
+
+        <section id="why-SARK" class="indented">
+            <h2>But why SARK?</h2>
+            <p>Great question! If you manage an office or sale rep station, then you'll probably find your worker's comp policy wrapped up with your Business Owner's Insurance policy, and won't need to worry about it. <b>However, if you work in a high-risk business, SARK Insurance Services is the best company for your insurance policy.</b></p>
+            <div class= "bullet-area">
+                <div class="bullet-icon">
+                    <p>$</p>
+                </div>
+                <div class="bullet-text">
+                    <p>We have over $8 million in premium from both small and large vendors. We specializing in trucking insurance, and can get a phone call back in as little as 5 minutes.</p>
+                </div>
+
+                <div class="bullet-icon">
+                    <img src="https://static.wixstatic.com/media/1f34bf_3f882c01983a4a0c83462f0f6aff4167~mv2.png/v1/fill/w_30,h_30,al_c,q_85,usm_0.66_1.00_0.01/1f34bf_3f882c01983a4a0c83462f0f6aff4167~mv2.webp" alt="" >
+                </div>
+                <div class="bullet-text">
+                    <p>We have over 10+ years of experience in Worker's Compensation, and over 8+ years of experience in Trucking Worker's Comp.</p>
+                </div>
+
+                <div class="bullet-icon">
+                    <img src="https://static.wixstatic.com/media/1f34bf_e9c4526edb494696ac807061b52aa73a~mv2.png/v1/fill/w_38,h_38,al_c,q_85,usm_0.66_1.00_0.01/1f34bf_e9c4526edb494696ac807061b52aa73a~mv2.webp" alt="" >
+                </div>
+                <div class="bullet-text">
+                    <p>We work closely with 20+ companies to find you the highest quality deal in Worker's Compensation.</p>
+                </div>
+
+            </div>
+            <hr/>
+            <div id="cta">
+                <h2 style="margin-bottom: 2vw;">Want quality insurance at a great price? Choose SARK today.</h2>
+                <a class="btn-contact">Get a quote</a>
+            </div>
+        </section>
+
+    </section>
