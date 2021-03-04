@@ -1,3 +1,5 @@
+// This is the Mongo connection version
+
 
 const mongoose = require('mongoose');
 
@@ -40,3 +42,8 @@ const UserSchema = new mongoose.Schema({
 const User = mongoose.model('User', UserSchema);
 
 module.exports = User;
+
+
+// This is the SQL connection version
+
+// const mssql = require('mssql');

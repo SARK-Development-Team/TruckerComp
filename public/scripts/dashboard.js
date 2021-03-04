@@ -1,4 +1,38 @@
+const localPattern = /localhost/;
+let uriRoot = '';
+if (localPattern.test(window.location.href)) {
+    uriRoot = 'http://localhost:5001/'
+} else {
+    uriRoot = window.location.href;
+}
 
+const searchButton = document.getElementById('btn-search')
+searchButton.onclick = () => searchDOT();
+
+
+async function searchDOT() {
+    let resultField = document.getElementById('result');
+    let dot = {'dot': document.getElementById('DOT').value};
+    console.log("searchDot is working");
+    const result = await fetchDOT(dot);
+    console.log(result.result)
+    for (let i in result.result) {
+        resultField.innerHTML += `<p>${i}: ${result.result[i]}</p>`;
+    }
+}
+
+async function fetchDOT(dotObject) {
+    const uri = uriRoot+'dot';
+    console.log("fetchhDot is working");
+
+    const result = fetch(uri, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dotObject)
+    }).then(response => response.json()).catch(err=>console.log(err));
+
+    return result;
+}
 
 let emailField = document.getElementById('email');
 const employeesField = document.getElementById('employees');

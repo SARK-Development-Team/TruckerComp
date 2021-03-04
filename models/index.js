@@ -1,3 +1,6 @@
+// Mongo connection path
+
+
 const mongoose = require('mongoose')
 require('dotenv').config()
 
@@ -8,7 +11,6 @@ const configOptions = {
     useUnifiedTopology: true,
     useFindAndModify: false
 }
-console.log("--->", connectionString);
 mongoose.connect(connectionString, configOptions)
     .then(() => console.log('MongoDB successfully connected...'))
     .catch(err => console.log(`MongoDB connection error: ${err}`))
@@ -16,3 +18,6 @@ mongoose.connect(connectionString, configOptions)
 module.exports = {
     User: require('./user')
 }
+
+
+// SQL connection path

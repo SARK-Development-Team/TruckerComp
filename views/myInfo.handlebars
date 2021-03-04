@@ -21,7 +21,11 @@
         <h2>
             Additional info
         </h2>
-            <form>
+        <label for="DOT">Input your DOT Number</label>
+        <input name="DOT" id="DOT" type="number">
+        <button id="btn-search">Search</button>
+        <div id ="result"></div>
+            {{!-- <form>
                 <label for="DOT">DOT Number</label>
                 <input type="number">
                 <label for="companyName">Company Name</label>
@@ -37,7 +41,7 @@
                 <label for="mAddress">Mailing Address</label>
                 <input type="text">
                 <input type="submit">
-            </form>
+            </form> --}}
           {{!-- { "DOT Number", "DOTNumber" },
             { "Company Name", "Name" },
             { "MC Number", "MCNumber" },

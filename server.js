@@ -10,9 +10,12 @@ require('dotenv').config()
 const nodemailer = require('nodemailer');
 const {google, GoogleApis} = require('googleapis');
 
-const mongoose = require('mongoose');
+
+
+// const mongoose = require('mongoose');
 const passport = require('passport');
 
+const sql = require('mssql')
 
 
 const app = express();
@@ -140,6 +143,17 @@ function calculateQuote(data) {
 };
 
 
+async function sqlSearch(number) {
+    console.log(`searching for ${number}`)
+    try {
+        let pool = await sql.connect(process.env.SQL_CONNSTRING)
+        let result1 = await pool.request()
+            .query(`SELECT * FROM sark.Client WHERE [DOT Number] = ${number}`)
+        return (result1.recordset[0])
+    } catch (err) {
+       console.log(err)
+    }
+}
 
 /* --------------------------
          API ROUTES
@@ -163,6 +177,11 @@ app.post('/send', (req, res) => {
     sendEmail(req.body);
     // .then((result)=> console.log('Email sent...', result)).catch((error) => console.log(error.message));
 });
+
+app.post('/dot', async (req, res) => {
+    const result = await sqlSearch(req.body.dot);   
+    return res.json({ result });
+})
 
 app.use('/users', require('./routes/users.js'));
 
