@@ -58,13 +58,13 @@
                 <input id="mailingAddress" name="mailingAddress" type="text" >
                 <input type="submit">
             </form>
-        </div>
+        </div>  
         <fieldset id = "confirmation">
             <label for="confirmation">Is this information correct?</label>
             <input id="toggle-confirmation-yes" name="confirmation" type="radio" value='true'>
-            <label class="toggle left" for="toggle-confirmation-yes">Yes</label>
+            <label class="toggle left" for="toggle-confirmation-yes" onclick="confirm(true)">Yes</label>
             <input id="toggle-confirmation-no" name="confirmation" type="radio" value='false'>
-            <label class="toggle right" for="toggle-confirmation-no">No</label>
+            <label class="toggle right" for="toggle-confirmation-no" onclick="confirm(false)">No</label>
             <input type="submit" onclick="saveLead(event)">
         </fieldset>
     </main>

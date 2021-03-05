@@ -14,7 +14,7 @@ searchButton.onclick = () => searchDOT();
 
 // When the button for the DOT search field is pressed
 async function searchDOT() {
-    document.getElementById('manualInput').style.display = 'block';
+    document.getElementById('manualInput').style.display = 'none';
     let dot = {'dot': document.getElementById('DOT').value};
     // Only searches if a value is entered
     if (dot['dot']) {
@@ -23,6 +23,7 @@ async function searchDOT() {
         // If a client is not found
         if (!client.result) {
             resultField.innerHTML = `<p>No result found for ${dot['dot']}.</p>`
+            document.getElementById('confirmation').style.display='none';
         // If a client is found
         } else {
             resultField.innerHTML = '';
@@ -56,9 +57,10 @@ async function fetchDOT(dotObject) {
 function saveLead(e) {
     e.preventDefault();
     // If the user indicates the information is correct
-    if (document.getElementById('confirmation').value){
+    if (confirmed){
         resultField.innerHTML=`<p>Thank you for confirming! We will contact you shortly!</p>`
         const uri = uriRoot+'lead';
+        const leadData = document.getElementById('');
         const result = fetch(uri, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -72,6 +74,14 @@ function saveLead(e) {
         
     }
 }
+
+let confirmed = false;
+
+function confirm(boolean){
+    confirmed = boolean;
+    console.log(confirmed);
+    return;
+}   
 
 let emailField = document.getElementById('email');
 const employeesField = document.getElementById('employees');
@@ -88,7 +98,7 @@ function checkCookie() {
     // This only gets called if:
     // a). a cookie that matches the regex is found
     // b). the current url slug is 'register'
-    if (document.cookie.match(regex)&&window.location.pathname.split("/").pop()=='register') {
+    // if (document.cookie.match(regex)&&window.location.pathname.split("/").pop()=='register') {
         let clientData= document.cookie.match(regex).input.substring(11); // This trims off the "clientData=" portion 
         let clientDataObj = JSON.parse(clientData);
         // Here the values get assigned from the cookie
@@ -100,7 +110,7 @@ function checkCookie() {
         zipField.value=clientDataObj.zipCode;
 
         return clientDataObj;
-    }
-    return {};
+    // }
+    // return {};
 }
 checkCookie();

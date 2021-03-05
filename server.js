@@ -26,13 +26,7 @@ const sql = require('mssql')
 // Azure is where the completed client lead is stored
 const azure = require('azure-storage');
 const tableSvc = azure.createTableService(process.env.AZURE_STORAGE_ACCOUNT, process.env.AZURE_STORAGE_ACCESS_KEY);
-// tableSvc.createTableIfNotExists('sark_leads', function(error, result, response){
-//     if(!error){
-//       // Table exists or created
-//     } else {
-//         console.log(err)
-//     }
-//   });
+
 
 const app = express();
 
@@ -159,7 +153,6 @@ function calculateQuote(data) {
 
 
 async function sqlSearch(number) {
-    console.log(`searching for ${number}`)
     try {
         let pool = await sql.connect(process.env.SQL_CONNSTRING)
         let result1 = await pool.request()
@@ -168,6 +161,38 @@ async function sqlSearch(number) {
     } catch (err) {
        console.log(err)
     }
+}
+
+function azureSave(object) {
+    const lead = {
+        PartitionKey: {'_':'leads'},
+        RowKey: {'_': '1'},
+        name: {'_': object.name},
+        email: {'_': object.email},
+        DOT: {'_': object.DOT},
+        MCP: {'_': object.MCP},
+        totalPayroll: {'_': object.totalPayroll},
+        mileage: {'_': object.mileage},
+        companyName: {'_': object.companyName},
+        address: {'_': object.address},
+        mailingAddress: {'_': object.mailingAddress},
+        phoneNumber: {'_': object.phone},
+        drivers: {'_': object.drivers},
+        powerUnits: {'_': object.powerUnits},
+      };
+    tableSvc.createTableIfNotExists('sarkleads', function(err, result, response){
+    if(!err){
+      tableSvc.insertEntity('sarkleads',lead, function (err, result, response) {
+        if(!err){
+            return
+        } else {
+            console.log(err)
+        }
+      });
+    } else {
+        console.log(err)
+    }
+  });
 }
 
 /* --------------------------
