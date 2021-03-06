@@ -7,6 +7,12 @@ initializeCarousel();
 // Sets all formData to initial values 
 // Arranges slides so that all but the first start off screen on the right
 function initializeCarousel() {
+    // Tabbing through the carousel breaks it, so this makes the carousel items untabbable
+    let carouselContents = document.getElementById("carousel").querySelectorAll("*");
+    for (let i =0; i<carouselContents.length; i++){
+        carouselContents[i].setAttribute("tabindex", "-1");
+        
+    }
     formData = {
         employees: [],
         totalPayroll: 0,
@@ -20,6 +26,7 @@ function initializeCarousel() {
         slides[i].style.transform= "translateX(" + multiplier +"vw)";  
     }
 }
+
 
 // When the slides advance, the next slide moves in from the right and the old moves out to the left
 function changeSlide(n) {

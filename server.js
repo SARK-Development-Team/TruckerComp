@@ -164,6 +164,7 @@ async function sqlSearch(number) {
 }
 
 function azureSave(object) {
+    // Build the "lead" object from the data passed in
     const lead = {
         PartitionKey: {'_':'leads'},
         RowKey: {'_': '1'},
@@ -180,15 +181,18 @@ function azureSave(object) {
         drivers: {'_': object.drivers},
         powerUnits: {'_': object.powerUnits},
       };
+    //   Create the table if it does not exist already
     tableSvc.createTableIfNotExists('sarkleads', function(err, result, response){
+    // If there is no error
     if(!err){
-      tableSvc.insertEntity('sarkleads',lead, function (err, result, response) {
-        if(!err){
-            return
-        } else {
-            console.log(err)
-        }
-      });
+        // insert the "lead" object into the table
+        tableSvc.insertEntity('sarkleads',lead, function (err, result, response) {
+            if(!err){
+                return
+            } else {
+                console.log(err)
+            }
+        });
     } else {
         console.log(err)
     }
@@ -218,15 +222,19 @@ app.post('/send', (req, res) => {
     // .then((result)=> console.log('Email sent...', result)).catch((error) => console.log(error.message));
 });
 
+// This route performs a search through the sark client DB for the DOT number entered
+// Returns an object that is partially displayed in the "result" box
 app.post('/dot', async (req, res) => {
     const result = await sqlSearch(req.body.dot);   
     return res.json({ result });
 });
 
+// This route saves the user input into the Azure Storage DB
 app.post('/lead', (req, res) => {
     azureSave(req.body);
 });
 
+// The "users" routes are for authorization purposes
 app.use('/users', require('./routes/users.js'));
 
 // This listens at port 5001, unless there is a Configuration variable (as on heroku).

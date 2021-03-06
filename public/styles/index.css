@@ -293,6 +293,10 @@ input {
     overflow: hidden;
 }
 
+#carousel *:not(button, input):focus {
+    outline: none;
+}
+
 #container {
     width: 78vw;
     background: white;
