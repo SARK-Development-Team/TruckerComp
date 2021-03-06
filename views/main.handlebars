@@ -100,8 +100,8 @@
                                         <option value="clerical">Clerical</option>
                                         <option value="other">Other</option>
                                     </select>
-                                    <input class="empNumber" name="empNumber0" type="number" id="empNumber0">
-                                    <input class="empPayroll" name="empPayroll0" type="number" id="empPayroll0">
+                                    <input class="empNumber" name="empNumber0" type="number" min="1" id="empNumber0">
+                                    <input class="empPayroll" name="empPayroll0" type="number" min="0.01" id="empPayroll0">
                                 </p>
                                 <p class="formline">
                                     <select class="empType" id="empType1">
@@ -113,8 +113,8 @@
                                         <option value="clerical">Clerical</option>
                                         <option value="other">Other</option>
                                     </select>
-                                    <input class="empNumber" name="empNumber1" type="number" id="empNumber1">
-                                    <input class="empPayroll" name="empPayroll1" type="number" id="empPayroll1">
+                                    <input class="empNumber" name="empNumber1" type="number" min="1" id="empNumber1">
+                                    <input class="empPayroll" name="empPayroll1" type="number" min="0.01" id="empPayroll1">
                                 </p>
                             </div>
                             <button id="newRow" onclick="addRow(event)"><i class="fas fa-plus" ></i></button>
@@ -144,11 +144,11 @@
                         <h3>Please enter the following:</h3>
 
                         <form class="hero-form">
-                            <h3>My zipcode is <input type="text" id="slide4Zipcode" name="zipcode" style="width:10vw">.</h3>
+                            <h3>My zipcode is <input type="number" id="slide4Zipcode" name="zipcode" min="0" style="width:10vw">.</h3>
                             <p id='zipError'>Please enter a valid 5-digit US ZIP Code</p>
                             <br>
-                            <!-- This fills in the sentence based on the input from slide 1 -->
-                            <h3>In 2020, <span id="empOrSelf"></span> drove <input type="text" id="slide4Mileage" name="miles" style="width: 12vw"> miles.</h3>
+                            <!-- This fills in the sentence based on the input from slide 1 and last year -->
+                            <h3>In <span id="dynamicSpan"></span> drove <input type="number" min="0.1" id="slide4Mileage" name="miles" style="width: 12vw"> miles.</h3>
                             
                             <p id='milesError'>Please enter the number of miles</p>
 

@@ -22,7 +22,7 @@
             Additional info
         </h2>
         <label for="DOT">Input your DOT Number</label>
-        <input name="DOT" id="DOT" type="number">
+        <input name="DOT" id="DOT" type="number" min="0">
         <button id="btn-search">Search</button>
         {{!-- This div is hidden until the search is conducted --}}
         <div id="result"></div>
@@ -35,23 +35,23 @@
                 <label for="email">Email</label>
                 <input id="email" name="email" type="text" value={{user.email}}>
                 <label for="totalPayroll">Total Payroll</label>
-                <input id="totalPayroll" name="totalPayroll" type="number" value={{user.totalPayroll}}>
+                <input id="totalPayroll" name="totalPayroll" type="number" min="0.01" value={{user.totalPayroll}}>
                 <label for="mileage">Mileage</label>
                 <input id="mileage" name="mileage" type="number" value={{user.mileage}}>
                 <label for="DOT">DOT Number</label>
-                <input id="DOT" name="DOT" type="number" >
+                <input id="DOT" name="DOT" type="number" min="0">
                 <label for="companyName">Company Name</label>
                 <input id="companyName" name="companyName" type="text" >
                 <label for="MCP">MCP Number</label>
-                <input id="MCP" name="MCP" type="number" >
+                <input id="MCP" name="MCP" type="number" min="0">
                 <label for="address">Address</label>
                 <input id="address" name="address" type="text" >
                 <label for="phone">Phone Number</label>
                 <input id="phone" name="phone" type="tel" >
                 <label for="powerUnits">Power Units</label>
-                <input id="powerUnits" name="powerUnits" type="number" >
+                <input id="powerUnits" name="powerUnits" type="number" min="0">
                 <label for="drivers">Drivers</label>
-                <input id="drivers" name="drivers" type="number" >
+                <input id="drivers" name="drivers" type="number" min="0">
                 {{!-- <label for="authorized">Authorized</label>
                 <input id="authorized" name="authorized" type="text" value={{}}> --}}
                 <label for="mailingAddress">Mailing Address</label>

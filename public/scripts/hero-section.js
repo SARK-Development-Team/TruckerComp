@@ -73,8 +73,9 @@ const no = document.getElementById('slide1No');
 yes.onclick = () => {
     yes.classList.add('selected');
     no.classList.remove('selected');
-    const employeesOrSelf = document.getElementById('empOrSelf');
-    employeesOrSelf.innerText = 'my employees';
+    const lastYear = new Date().getFullYear()-1;
+    const dSpan = document.getElementById('dynamicSpan');
+    dSpan.innerText = `${lastYear}, my employees`;
     const slide3 = document.getElementById('slide3');
     const slide4 = document.getElementById('slide4');
     const slide5 = document.getElementById('slide5');
@@ -90,8 +91,9 @@ yes.onclick = () => {
 no.onclick = () => {
     no.classList.add('selected');
     yes.classList.remove('selected');
-    const employeesOrSelf = document.getElementById('empOrSelf');
-    employeesOrSelf.innerText = 'I';
+    const lastYear = new Date().getFullYear()-1;
+    const dSpan = document.getElementById('dynamicSpan');
+    dSpan.innerText = `${lastYear}, I`;
     const slide3 = document.getElementById('slide3');
     const slide4 = document.getElementById('slide4');
     const slide5 = document.getElementById('slide5');
@@ -163,8 +165,8 @@ function addRow(e) {
             <option value="clerical">Clerical</option>
             <option value="other">Other</option>
         </select>
-        <input class="empNumber" name="empNumber${formlines}" type="number" id="empNumber${formlines}">
-        <input class="empPayroll" name="empPayroll${formlines}" type="number" id="empPayroll${formlines}">
+        <input class="empNumber" name="empNumber${formlines}" type="number" min="1" id="empNumber${formlines}" >
+        <input class="empPayroll" name="empPayroll${formlines}" type="number" min="0.01" id="empPayroll${formlines}">
     </p>
     `
 
