@@ -15,17 +15,6 @@ const {google, GoogleApis} = require('googleapis');
 const passport = require('passport');
 require('./config/passport')(passport);
 
-const flash = require('connect-flash');
-
-
-
-
-
-
-// Azure is where the completed client lead is stored
-const azure = require('azure-storage');
-const tableSvc = azure.createTableService(process.env.AZURE_STORAGE_ACCOUNT, process.env.AZURE_STORAGE_ACCESS_KEY);
-
 
 const app = express();
 
@@ -165,44 +154,6 @@ function calculateQuote(data) {
 
 
 
-
-function azureSave(object) {
-    // Build the "lead" object from the data passed in
-    const rowKey = object.DOT.toString();
-    const lead = {
-        PartitionKey: {'_':'leads'},
-        RowKey: {'_': rowKey},
-        name: {'_': object.name},
-        email: {'_': object.email},
-        DOT: {'_': object.DOT},
-        MCP: {'_': object.MCP},
-        totalPayroll: {'_': object.totalPayroll},
-        mileage: {'_': object.mileage},
-        companyName: {'_': object.companyName},
-        address: {'_': object.address},
-        mailingAddress: {'_': object.mailingAddress},
-        phoneNumber: {'_': object.phoneNumber},
-        drivers: {'_': object.drivers},
-        powerUnits: {'_': object.powerUnits},
-      };
-    //   Create the table if it does not exist already
-    tableSvc.createTableIfNotExists('sarkleads', function(err, result, response){
-    // If there is no error
-    if(!err){
-        // insert the "lead" object into the table
-        tableSvc.insertEntity('sarkleads',lead, function (err, result, response) {
-            if(!err){
-                return
-            } else {
-                console.log(err)
-            }
-        });
-    } else {
-        console.log(err)
-    }
-  });
-}
-
 /* --------------------------
          API ROUTES
 -------------------------- */
@@ -226,13 +177,6 @@ app.post('/send', (req, res) => {
     // .then((result)=> console.log('Email sent...', result)).catch((error) => console.log(error.message));
 });
 
-
-
-// This route saves the user input into the Azure Storage DB
-app.post('/lead', (req, res) => {
-    azureSave(req.body);
-    res.send(`<p>Thank you for confirming! We will contact you shortly!</p>`);
-});
 
 // The "users" routes are for authorization purposes
 app.use('/users', require('./routes/users.js'));

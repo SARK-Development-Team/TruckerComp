@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const passport = require('passport');
+const flash = require('connect-flash');
 
 // for environment variables
 require('dotenv').config()
@@ -18,7 +19,17 @@ const db = require('../models');
 const azure = require('azure-storage');
 const tableSvc = azure.createTableService(process.env.AZURE_STORAGE_ACCOUNT, process.env.AZURE_STORAGE_ACCESS_KEY);
 
+app.use('/public', express.static(path.join(__dirname, '/public')));
 
+
+// handlebars is the template engine for the site
+const hbars = require('handlebars');
+const handle = require('express-handlebars');
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
+app.engine('handlebars', handle({
+    defaultLayout: 'dashboard', 
+    handlebars: allowInsecurePrototypeAccess(hbars)
+}));
 
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
