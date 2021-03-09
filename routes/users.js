@@ -19,16 +19,6 @@ const db = require('../models');
 const azure = require('azure-storage');
 const tableSvc = azure.createTableService(process.env.AZURE_STORAGE_ACCOUNT, process.env.AZURE_STORAGE_ACCESS_KEY);
 
-
-// // handlebars is the template engine for the site
-// const hbars = require('handlebars');
-// const handle = require('express-handlebars');
-// const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
-// app.engine('handlebars', handle({
-//     defaultLayout: 'dashboard', 
-//     handlebars: allowInsecurePrototypeAccess(hbars)
-// }));
-
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
 // This function searches the sark DB for a client based on the DOT entered
@@ -83,14 +73,12 @@ function azureSave(object) {
 }
 
 
-
-
-
 // Login Page
-router.get('/login', forwardAuthenticated, (req, res) => res.render('login', {layout: "dashboard"}));
+router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
 
 // Register Page
-router.get('/register', forwardAuthenticated, (req, res) => res.render('register', {layout: "dashboard"}));
+// router.get('/register', forwardAuthenticated, (req, res) => res.render('register', {layout: "dashboard"}));
+router.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
 
 // Register
 router.post('/register', (req, res) => {
