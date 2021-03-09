@@ -14,7 +14,7 @@ const db = require('../models');
 
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
-
+// This function searches the sark DB for a client based on the DOT entered
 async function sqlSearch(number) {
   try {
       let pool = await sql.connect(process.env.SQL_CONNSTRING)
@@ -25,6 +25,47 @@ async function sqlSearch(number) {
      console.log(err)
   }
 }
+
+
+// This function saves the new "lead" object in the Azure DB, using the DOT as the row key
+function azureSave(object) {
+  // Build the "lead" object from the data passed in
+  const rowKey = object.DOT.toString();
+  const lead = {
+      PartitionKey: {'_':'leads'},
+      RowKey: {'_': rowKey},
+      name: {'_': object.name},
+      email: {'_': object.email},
+      DOT: {'_': object.DOT},
+      MCP: {'_': object.MCP},
+      totalPayroll: {'_': object.totalPayroll},
+      mileage: {'_': object.mileage},
+      companyName: {'_': object.companyName},
+      address: {'_': object.address},
+      mailingAddress: {'_': object.mailingAddress},
+      phoneNumber: {'_': object.phoneNumber},
+      drivers: {'_': object.drivers},
+      powerUnits: {'_': object.powerUnits},
+    };
+  //   Create the table if it does not exist already
+  tableSvc.createTableIfNotExists('sarkleads', function(err, result, response){
+  // If there is no error
+  if(!err){
+      // insert the "lead" object into the table
+      tableSvc.insertEntity('sarkleads',lead, function (err, result, response) {
+          if(!err){
+              return
+          } else {
+              console.log(err)
+          }
+      });
+  } else {
+      console.log(err)
+  }
+});
+}
+
+
 
 
 
@@ -134,5 +175,13 @@ router.post('/dot', async (req, res) => {
   const result = await sqlSearch(req.body.dot);   
   return res.json({ result });
 });
+
+
+// This route saves the user input into the Azure Storage DB
+router.post('/lead', (req, res) => {
+  azureSave(req.body);
+  res.send(`<p>Thank you for confirming! We will contact you shortly!</p>`);
+});
+
 
 module.exports = router;
