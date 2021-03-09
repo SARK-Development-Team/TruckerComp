@@ -18,7 +18,6 @@ router.get('/register', forwardAuthenticated, (req, res) => res.render('register
 
 // Register
 router.post('/register', (req, res) => {
-  console.log(req.body);
   const { name, email, password, password2, businessType, employees, zipCode, mileage, totalPayroll } = req.body;
   let errors = [];
 

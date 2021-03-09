@@ -33,39 +33,43 @@ async function searchDOT() {
     let dot = {'dot': document.getElementById('DOTsearch').value};
     // Only searches if a value is entered
     if (dot['dot']) {
-        const client = await fetchDOT(dot);
-        resultField.style.display='block';
-        // If a client is not found
-        if (!client.result) {
-            resultField.innerHTML = `<p>No result found for ${dot['dot']}.</p>`
-            document.getElementById('confirmation').style.display='none';
-        // If a client is found
-        } else {
+        try {
+            const client = await fetchDOT(dot);
+            resultField.style.display='block';
+            // If a client is not found
+            if (!client.result) {
+                resultField.innerHTML = `<p>No result found for ${dot['dot']}.</p>`
+                document.getElementById('confirmation').style.display='none';
+            // If a client is found
+            } else {
 
-            dotResult.name = document.getElementById('userName').innerText;
-            dotResult.email = document.getElementById('userEmail').innerText;
-            dotResult.totalPayroll = document.getElementById('userTotalPayroll').innerText;
-            dotResult.mileage = document.getElementById('userMileage').innerText;
-            dotResult.DOT = client.result['DOT Number'];
-            dotResult.companyName = client.result['Company Name'];
-            dotResult.MCP = client.result['MCP Number'];
-            dotResult.address = client.result['Address'];
-            dotResult.mailingAddress = client.result['Mailing Address'];
-            dotResult.phoneNumber = client.result['Phone'];
-            dotResult.drivers = client.result['Drivers'];
-            dotResult.powerUnits = client.result['Power Units'];
-            resultField.innerHTML = '';
-            resultField.innerHTML += `<p>DOT Number: ${client.result['DOT Number']}</p>`;
-            resultField.innerHTML += `<p>Company Name: ${client.result['Company Name']}</p>`;
-            resultField.innerHTML += `<p>MCP Number: ${client.result['MCP Number']}</p>`;
-            resultField.innerHTML += `<p>Address: ${client.result['Address']}</p>`;
-            resultField.innerHTML += `<p>Phone Number: ${client.result['Phone']}</p>`;
-            resultField.innerHTML += `<p>Power Units: ${client.result['Power Units']}</p>`;
-            resultField.innerHTML += `<p>Drivers: ${client.result['Drivers']}</p>`;
-            // resultField.innerHTML += `<p>Authorized: ${client.result['Authorized']}</p>`;
-            resultField.innerHTML += `<p>Mailing Address: ${client.result['Mailing Address']}</p>`;
-            document.getElementById('confirmation').style.display='block';
-        }
+                dotResult.name = document.getElementById('userName').innerText;
+                dotResult.email = document.getElementById('userEmail').innerText;
+                dotResult.totalPayroll = document.getElementById('userTotalPayroll').innerText;
+                dotResult.mileage = document.getElementById('userMileage').innerText;
+                dotResult.DOT = client.result['DOT Number'];
+                dotResult.companyName = client.result['Company Name'];
+                dotResult.MCP = client.result['MCP Number'];
+                dotResult.address = client.result['Address'];
+                dotResult.mailingAddress = client.result['Mailing Address'];
+                dotResult.phoneNumber = client.result['Phone'];
+                dotResult.drivers = client.result['Drivers'];
+                dotResult.powerUnits = client.result['Power Units'];
+                resultField.innerHTML = '';
+                resultField.innerHTML += `<p>DOT Number: ${client.result['DOT Number']}</p>`;
+                resultField.innerHTML += `<p>Company Name: ${client.result['Company Name']}</p>`;
+                resultField.innerHTML += `<p>MCP Number: ${client.result['MCP Number']}</p>`;
+                resultField.innerHTML += `<p>Address: ${client.result['Address']}</p>`;
+                resultField.innerHTML += `<p>Phone Number: ${client.result['Phone']}</p>`;
+                resultField.innerHTML += `<p>Power Units: ${client.result['Power Units']}</p>`;
+                resultField.innerHTML += `<p>Drivers: ${client.result['Drivers']}</p>`;
+                // resultField.innerHTML += `<p>Authorized: ${client.result['Authorized']}</p>`;
+                resultField.innerHTML += `<p>Mailing Address: ${client.result['Mailing Address']}</p>`;
+                document.getElementById('confirmation').style.display='block';
+            }
+        } catch (err) {
+            console.log(err);
+        }           
     }
 }
 
