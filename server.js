@@ -11,12 +11,13 @@ const nodemailer = require('nodemailer');
 const {google, GoogleApis} = require('googleapis');
 
 
-
-// const mongoose = require('mongoose');
-
 // Passport is responsible for the user's login/logout behavior
 const passport = require('passport');
 require('./config/passport')(passport);
+
+const flash = require('connect-flash');
+
+
 
 
 // SQl Server is accessed to search the DOT on the dashboard page
@@ -41,6 +42,19 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(flash());
+
+app.use(function(req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
+});
+
+
+
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -165,9 +179,10 @@ async function sqlSearch(number) {
 
 function azureSave(object) {
     // Build the "lead" object from the data passed in
+    const rowKey = object.DOT.toString();
     const lead = {
         PartitionKey: {'_':'leads'},
-        RowKey: {'_': '1'},
+        RowKey: {'_': rowKey},
         name: {'_': object.name},
         email: {'_': object.email},
         DOT: {'_': object.DOT},
@@ -177,7 +192,7 @@ function azureSave(object) {
         companyName: {'_': object.companyName},
         address: {'_': object.address},
         mailingAddress: {'_': object.mailingAddress},
-        phoneNumber: {'_': object.phone},
+        phoneNumber: {'_': object.phoneNumber},
         drivers: {'_': object.drivers},
         powerUnits: {'_': object.powerUnits},
       };
@@ -232,6 +247,7 @@ app.post('/dot', async (req, res) => {
 // This route saves the user input into the Azure Storage DB
 app.post('/lead', (req, res) => {
     azureSave(req.body);
+    res.send(`<p>Thank you for confirming! We will contact you shortly!</p>`);
 });
 
 // The "users" routes are for authorization purposes

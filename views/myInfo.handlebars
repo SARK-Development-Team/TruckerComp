@@ -1,8 +1,5 @@
 
-    <link href="../public/styles/users.css" rel="stylesheet">
-    <script defer src="../public/scripts/dashboard.js"></script>
-</head>
-<body>
+    <script defer src="../../../public/scripts/myInfo.js"></script>
 
     <main class="indented">
         <h1>Trucker Comp Dashboard</h1>
@@ -10,19 +7,19 @@
         <a href='/users/logout' id="btn-logout" >Logout</a>
         <div>
             <h2>My info</h2>
-            <p>Name: {{user.name}}</p>
-            <p>Email: {{user.email}}</p>
+            <p>Name: <span id= 'userName'>{{user.name}}</span></p>
+            <p>Email: <span id= 'userEmail'>{{user.email}}</span></p>
             <p>My employees: {{user.employees}}</p>
-            <p>Total Payroll: {{user.totalPayroll}}</p>
-            <p>Annual mileage: {{user.mileage}}</p>
+            <p>Total Payroll: <span id= 'userTotalPayroll'>{{user.totalPayroll}}</span></p>
+            <p>Annual mileage: <span id= 'userMileage'>{{user.mileage}}</span></p>
             <p>ZIP Code: {{user.zipCode}}</p>
 
         </div>
         <h2>
             Additional info
         </h2>
-        <label for="DOT">Input your DOT Number</label>
-        <input name="DOT" id="DOT" type="number" min="0">
+        <label for="DOTsearch">Input your DOT Number</label>
+        <input name="DOTsearch" id="DOTsearch" type="number" min="0">
         <button id="btn-search">Search</button>
         {{!-- This div is hidden until the search is conducted --}}
         <div id="result"></div>
@@ -35,28 +32,28 @@
                 <label for="email">Email</label>
                 <input id="email" name="email" type="text" value={{user.email}}>
                 <label for="totalPayroll">Total Payroll</label>
-                <input id="totalPayroll" name="totalPayroll" type="number" min="0.01" value={{user.totalPayroll}}>
+                <input id="totalPayroll" name="totalPayroll" type="number" value={{user.totalPayroll}}>
                 <label for="mileage">Mileage</label>
                 <input id="mileage" name="mileage" type="number" value={{user.mileage}}>
                 <label for="DOT">DOT Number</label>
-                <input id="DOT" name="DOT" type="number" min="0">
+                <input id="DOT" name="DOT" type="number">
                 <label for="companyName">Company Name</label>
                 <input id="companyName" name="companyName" type="text" >
                 <label for="MCP">MCP Number</label>
-                <input id="MCP" name="MCP" type="number" min="0">
+                <input id="MCP" name="MCP" type="number" >
                 <label for="address">Address</label>
                 <input id="address" name="address" type="text" >
                 <label for="phone">Phone Number</label>
                 <input id="phone" name="phone" type="tel" >
                 <label for="powerUnits">Power Units</label>
-                <input id="powerUnits" name="powerUnits" type="number" min="0">
+                <input id="powerUnits" name="powerUnits" type="number" >
                 <label for="drivers">Drivers</label>
-                <input id="drivers" name="drivers" type="number" min="0">
+                <input id="drivers" name="drivers" type="number" >
                 {{!-- <label for="authorized">Authorized</label>
                 <input id="authorized" name="authorized" type="text" value={{}}> --}}
                 <label for="mailingAddress">Mailing Address</label>
                 <input id="mailingAddress" name="mailingAddress" type="text" >
-                <input type="submit">
+                <input type="submit" id="save2" class="btn-save" onclick="saveSecondLead(event)">
             </form>
         </div>  
         <fieldset id = "confirmation">
@@ -65,6 +62,6 @@
             <label class="toggle left" for="toggle-confirmation-yes" onclick="confirm(true)">Yes</label>
             <input id="toggle-confirmation-no" name="confirmation" type="radio" value='false'>
             <label class="toggle right" for="toggle-confirmation-no" onclick="confirm(false)">No</label>
-            <input type="submit" onclick="saveLead(event)">
+            <input type="submit" id="save1" class="btn-save" onclick="saveInitialLead(event)">
         </fieldset>
     </main>

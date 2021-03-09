@@ -10,7 +10,7 @@ input, label {
 
 input {
     margin: .5vw 0 1.2vw 0;
-    width: 40%;
+    width: 98%;
 }
 
 input[type="radio"] {
@@ -27,6 +27,17 @@ input[type="radio"]:checked + .toggle {
     cursor: pointer;
     border: 1px solid #19b5b1;
     color: white;
+}
+
+.btn-save {
+    padding: 0.6vw;
+    background: grey;
+    border-radius: 4%;
+    color: white;
+    transition: all 0.6s ease;
+    font-size: 1.4vw;
+    width: 98%;
+    text-align: center;
 }
 
 .card-heading {
@@ -67,7 +78,6 @@ input[type="radio"]:checked + .toggle {
     cursor: pointer;
 }
 
-
 #bottom-line {
     margin: 1vw 30vw 6vw 30vw;
     padding: 0 1vw;
@@ -102,9 +112,7 @@ input[type="radio"]:checked + .toggle {
 
 #manualInput {
     display: none;
-
 }
-
 
 #result {
     margin: 2vw 0;
