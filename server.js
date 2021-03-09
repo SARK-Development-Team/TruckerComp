@@ -20,8 +20,6 @@ const flash = require('connect-flash');
 
 
 
-// SQl Server is accessed to search the DOT on the dashboard page
-const sql = require('mssql')
 
 
 // Azure is where the completed client lead is stored
@@ -166,16 +164,7 @@ function calculateQuote(data) {
 };
 
 
-async function sqlSearch(number) {
-    try {
-        let pool = await sql.connect(process.env.SQL_CONNSTRING)
-        let result1 = await pool.request()
-            .query(`SELECT * FROM sark.Client WHERE [DOT Number] = ${number}`)
-        return (result1.recordset[0])
-    } catch (err) {
-       console.log(err)
-    }
-}
+
 
 function azureSave(object) {
     // Build the "lead" object from the data passed in
@@ -237,12 +226,7 @@ app.post('/send', (req, res) => {
     // .then((result)=> console.log('Email sent...', result)).catch((error) => console.log(error.message));
 });
 
-// This route performs a search through the sark client DB for the DOT number entered
-// Returns an object that is partially displayed in the "result" box
-app.post('/dot', async (req, res) => {
-    const result = await sqlSearch(req.body.dot);   
-    return res.json({ result });
-});
+
 
 // This route saves the user input into the Azure Storage DB
 app.post('/lead', (req, res) => {

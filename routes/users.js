@@ -5,10 +5,28 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 
 
+// SQl Server is accessed to search the DOT on the dashboard page
+const sql = require('mssql')
+
+
 // const User = require('../../models/User');
 const db = require('../models');
 
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
+
+
+async function sqlSearch(number) {
+  try {
+      let pool = await sql.connect(process.env.SQL_CONNSTRING)
+      let result1 = await pool.request()
+          .query(`SELECT * FROM sark.Client WHERE [DOT Number] = ${number}`)
+      return (result1.recordset[0])
+  } catch (err) {
+     console.log(err)
+  }
+}
+
+
 
 // Login Page
 router.get('/login', forwardAuthenticated, (req, res) => res.render('login', {layout: "dashboard"}));
@@ -109,5 +127,12 @@ router.get('/myInfo', ensureAuthenticated, (req, res) =>
   })
 );
 
+
+// This route performs a search through the sark client DB for the DOT number entered
+// Returns an object that is partially displayed in the "result" box
+router.post('/dot', async (req, res) => {
+  const result = await sqlSearch(req.body.dot);   
+  return res.json({ result });
+});
 
 module.exports = router;
