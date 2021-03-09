@@ -152,7 +152,7 @@ router.post('/register', (req, res) => {
                   'You are now registered and can log in'
                 );
                 // res.redirect('/users/login', {email: email});
-                res.render('/users/login', {email: email});
+                res.render('login', {email: email});
               })
               .catch(err => console.log(err));
           });
@@ -165,8 +165,8 @@ router.post('/register', (req, res) => {
 // Login
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
-    successRedirect: '/users/myInfo',
-    failureRedirect: '/users/login',
+    successRedirect: 'myInfo',
+    failureRedirect: 'login',
     failureFlash: true
   })(req, res, next);
 });
@@ -175,7 +175,7 @@ router.post('/login', (req, res, next) => {
 router.get('/logout', (req, res) => {
   req.logout();
   req.flash('success_msg', 'You are logged out');
-  res.redirect('/users/login');
+  res.redirect('login');
 });
 
 // Dashboard
