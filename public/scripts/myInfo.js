@@ -1,10 +1,10 @@
 const localPattern = /localhost/;
 let uriRoot = '';
-if (localPattern.test(window.location.href)) {
-    uriRoot = 'http://localhost:5001/'
-} else {
-    uriRoot = window.location.hostname+"/";
-}
+// if (localPattern.test(window.location.href)) {
+//     uriRoot = 'http://localhost:5001/'
+// } else {
+//     uriRoot = window.location.hostname+"/";
+// }
 
 const resultField = document.getElementById('result');
 
