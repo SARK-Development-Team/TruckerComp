@@ -76,7 +76,8 @@ router.post('/register', (req, res) => {
                   'success_msg',
                   'You are now registered and can log in'
                 );
-                res.redirect('/users/login', {email: email});
+                // res.redirect('/users/login', {email: email});
+                res.render('/users/login', {email: email});
               })
               .catch(err => console.log(err));
           });
