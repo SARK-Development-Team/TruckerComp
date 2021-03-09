@@ -3,7 +3,7 @@ let uriRoot = '';
 if (localPattern.test(window.location.href)) {
     uriRoot = 'http://localhost:5001/'
 } else {
-    uriRoot = window.location.href;
+    uriRoot = window.location.href+"/";
 }
 
 const resultField = document.getElementById('result');
