@@ -4,6 +4,8 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 
+// for environment variables
+require('dotenv').config()
 
 // SQl Server is accessed to search the DOT on the dashboard page
 const sql = require('mssql')
@@ -11,6 +13,12 @@ const sql = require('mssql')
 
 // const User = require('../../models/User');
 const db = require('../models');
+
+// Azure is where the completed client lead is stored
+const azure = require('azure-storage');
+const tableSvc = azure.createTableService(process.env.AZURE_STORAGE_ACCOUNT, process.env.AZURE_STORAGE_ACCESS_KEY);
+
+
 
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
