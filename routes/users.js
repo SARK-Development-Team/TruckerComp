@@ -20,14 +20,14 @@ const azure = require('azure-storage');
 const tableSvc = azure.createTableService(process.env.AZURE_STORAGE_ACCOUNT, process.env.AZURE_STORAGE_ACCESS_KEY);
 
 
-// handlebars is the template engine for the site
-const hbars = require('handlebars');
-const handle = require('express-handlebars');
-const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
-app.engine('handlebars', handle({
-    defaultLayout: 'dashboard', 
-    handlebars: allowInsecurePrototypeAccess(hbars)
-}));
+// // handlebars is the template engine for the site
+// const hbars = require('handlebars');
+// const handle = require('express-handlebars');
+// const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
+// app.engine('handlebars', handle({
+//     defaultLayout: 'dashboard', 
+//     handlebars: allowInsecurePrototypeAccess(hbars)
+// }));
 
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
