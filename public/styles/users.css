@@ -32,7 +32,6 @@ input[type="radio"]:checked + .toggle {
 .btn-save {
     padding: 0.6vw;
     background: grey;
-    border-radius: 4%;
     color: white;
     transition: all 0.6s ease;
     font-size: 1.4vw;
