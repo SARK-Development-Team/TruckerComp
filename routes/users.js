@@ -19,8 +19,6 @@ const db = require('../models');
 const azure = require('azure-storage');
 const tableSvc = azure.createTableService(process.env.AZURE_STORAGE_ACCOUNT, process.env.AZURE_STORAGE_ACCESS_KEY);
 
-app.use('/public', express.static(path.join(__dirname, '/public')));
-
 
 // handlebars is the template engine for the site
 const hbars = require('handlebars');
