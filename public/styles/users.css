@@ -11,6 +11,7 @@ input, label {
 input {
     margin: .5vw 0 1.2vw 0;
     width: 98%;
+    color: rgb(65, 65, 65)
 }
 
 input[type="radio"] {
@@ -52,7 +53,14 @@ td {
 
 .card-body {
     padding: 1vw;
+}
 
+.dark {
+    background: rgb(225,236,242);
+}
+
+.dark *:not(input, button, label) {
+    color: rgb(17, 61, 102);
 }
 
 .fa-chevron-down {
@@ -83,6 +91,7 @@ td {
     font-size: 1.6vw;
     margin: 1vw 0;
     cursor: pointer;
+    color:rgb(73, 73, 73)
 }
 
 #bottom-line {
@@ -129,18 +138,17 @@ td {
 }
 
 #manualInput fieldset{
-    width: 44%;
+    width: 98%;
 }
 
-#manualInput label {
+/* #manualInput label {
     background: rgb(219, 219, 219);
-}
+} */
 
 #manualInputForm {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    margin: 1vw 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 #result {
@@ -150,4 +158,9 @@ td {
     background: rgb(233, 233, 233);
     border: 1.5px solid black;
     border-radius: 4px;
+}
+
+#result p {
+    color:rgb(73, 73, 73)
+
 }
