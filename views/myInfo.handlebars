@@ -5,11 +5,18 @@
         <h1>Trucker Comp Dashboard</h1>
 
         <a href='/users/logout' id="btn-logout" >Logout</a>
-        <div>
+        <div id="my-info">
             <h2>My info</h2>
             <p>Name: <span id= 'userName'>{{user.name}}</span></p>
             <p>Email: <span id= 'userEmail'>{{user.email}}</span></p>
-            <p>My employees: {{user.employees}}</p>
+            <p>My employees: <i class="fas fa-chevron-down" onclick="employeeDisplay()"></i></p>
+            <table id="empTable">
+                <th>
+                    <td><b>Type</b></td>
+                    <td><b>Number</b></td>
+                    <td><b>Payroll</b></td>
+                </th>
+            </table>
             <p>Total Payroll: <span id= 'userTotalPayroll'>{{user.totalPayroll}}</span></p>
             <p>Annual mileage: <span id= 'userMileage'>{{user.mileage}}</span></p>
             <p>ZIP Code: {{user.zipCode}}</p>
@@ -25,35 +32,56 @@
         <div id="result"></div>
         {{!-- This div is hidden unless the user indicates the information displayed is incorrect --}}
         <div id="manualInput">
-            <h2>Please check the following and correct if necessary</h2>
-            <form action="/lead" method="POST">
-                <label for="name">Name</label>
-                <input id="name" name="name" type="text" value={{user.name}}>
-                <label for="email">Email</label>
-                <input id="email" name="email" type="text" value={{user.email}}>
-                <label for="totalPayroll">Total Payroll</label>
-                <input id="totalPayroll" name="totalPayroll" type="number" value={{user.totalPayroll}}>
-                <label for="mileage">Mileage</label>
-                <input id="mileage" name="mileage" type="number" value={{user.mileage}}>
-                <label for="DOT">DOT Number</label>
-                <input id="DOT" name="DOT" type="number">
-                <label for="companyName">Company Name</label>
-                <input id="companyName" name="companyName" type="text" >
-                <label for="MCP">MCP Number</label>
-                <input id="MCP" name="MCP" type="number" >
-                <label for="address">Address</label>
-                <input id="address" name="address" type="text" >
-                <label for="phone">Phone Number</label>
-                <input id="phone" name="phone" type="tel" >
-                <label for="powerUnits">Power Units</label>
-                <input id="powerUnits" name="powerUnits" type="number" >
-                <label for="drivers">Drivers</label>
-                <input id="drivers" name="drivers" type="number" >
-                {{!-- <label for="authorized">Authorized</label>
-                <input id="authorized" name="authorized" type="text" value={{}}> --}}
-                <label for="mailingAddress">Mailing Address</label>
-                <input id="mailingAddress" name="mailingAddress" type="text" >
-                <input type="submit" id="save2" class="btn-save" onclick="saveSecondLead(event)">
+            <h2>Please check the following and correct as necessary</h2>
+            <form action="/lead" method="POST" id="manualInputForm">
+            
+                <fieldset>
+                    <label for="name">Name</label>
+                    <input id="name" name="name" type="text" value={{user.name}}>
+                </fieldset>
+                <fieldset>
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="text" value={{user.email}}>
+                </fieldset>
+                <fieldset>
+                    <label for="totalPayroll">Total Payroll</label>
+                    <input id="totalPayroll" name="totalPayroll" type="number" value={{user.totalPayroll}}>
+                </fieldset>
+                <fieldset>
+                    <label for="mileage">Mileage</label>
+                    <input id="mileage" name="mileage" type="number" value={{user.mileage}}>
+                </fieldset>
+                <fieldset>
+                    <label for="DOT">DOT Number</label>
+                    <input id="DOT" name="DOT" type="number">
+                </fieldset>
+                <fieldset>
+                    <label for="companyName">Company Name</label>
+                    <input id="companyName" name="companyName" type="text" >
+                </fieldset>
+                <fieldset>
+                    <label for="MCP">MCP Number</label>
+                    <input id="MCP" name="MCP" type="number" >
+                </fieldset>
+                <fieldset>
+                    <label for="address">Address</label>
+                    <input id="address" name="address" type="text" >
+                </fieldset>
+                <fieldset>
+                    <label for="phone">Phone Number</label>
+                    <input id="phone" name="phone" type="tel" >
+                </fieldset>
+                <fieldset>
+                    <label for="powerUnits">Power Units</label>
+                    <input id="powerUnits" name="powerUnits" type="number" >
+                    {{!-- <label for="drivers">Drivers</label>
+                    <input id="drivers" name="drivers" type="number" > --}}
+                </fieldset>
+                <fieldset>
+                    <label for="mailingAddress">Mailing Address</label>
+                    <input id="mailingAddress" name="mailingAddress" type="text" >
+                </fieldset>
+                    <input type="submit" id="save2" class="btn-save" onclick="saveSecondLead(event)">
             </form>
         </div>  
         <fieldset id = "confirmation">

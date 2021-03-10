@@ -29,6 +29,10 @@ input[type="radio"]:checked + .toggle {
     color: white;
 }
 
+td {
+    width: 35%;
+}
+
 .btn-save {
     padding: 0.6vw;
     background: grey;
@@ -49,6 +53,10 @@ input[type="radio"]:checked + .toggle {
 .card-body {
     padding: 1vw;
 
+}
+
+.fa-chevron-down {
+    cursor: pointer;
 }
 
 .left {
@@ -109,8 +117,30 @@ input[type="radio"]:checked + .toggle {
     display: none;
 }
 
+#empTable {
+    display: none;
+}
+
 #manualInput {
     display: none;
+    border: 0.5px solid grey;
+    border-radius: 5px; 
+    padding: 1vw;
+}
+
+#manualInput fieldset{
+    width: 44%;
+}
+
+#manualInput label {
+    background: rgb(219, 219, 219);
+}
+
+#manualInputForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
 #result {

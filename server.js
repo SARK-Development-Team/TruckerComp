@@ -55,7 +55,9 @@ const hbars = require('handlebars');
 const handle = require('express-handlebars');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 app.engine('handlebars', handle({
-    defaultLayout: 'dashboard', 
+    defaultLayout: 'dashboard',
+    // layoutsDir: path.join(__dirname, "views/layouts"),
+    // partialsDir: path.join(__dirname, "views/partials"), 
     handlebars: allowInsecurePrototypeAccess(hbars)
 }));
 app.set('view engine', 'handlebars');

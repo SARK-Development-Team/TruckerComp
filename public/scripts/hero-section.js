@@ -7,6 +7,7 @@ initializeCarousel();
 // Sets all formData to initial values 
 // Arranges slides so that all but the first start off screen on the right
 function initializeCarousel() {
+    document.cookie = "clientData=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     // Tabbing through the carousel breaks it, so this makes the carousel items untabbable
     let carouselContents = document.getElementById("carousel").querySelectorAll("*");
     for (let i =0; i<carouselContents.length; i++){

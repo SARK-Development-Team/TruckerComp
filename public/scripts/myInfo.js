@@ -6,6 +6,39 @@ let uriRoot = '';
 //     uriRoot = window.location.hostname+"/";
 // }
 
+var empTable = document.getElementById('empTable')
+
+function employeeTableFill() {
+    const regex = /clientData={(.*?)}/ //This finds only the clientData string from document.cookie, which may have multiple others
+    let clientData= document.cookie.match(regex).input.substring(11); // This trims off the "clientData=" portion 
+    let clientDataObj = JSON.parse(clientData);
+    const employees = clientDataObj.employees;
+
+    for (let employee of employees) {
+        const row = document.createElement("TR");
+        row.innerHTML = `
+            <tr>
+            <th scope="row"></th>
+            <td>${employee.type}</td>
+            <td>${employee.number}</td>
+            <td>${employee.payroll}</td>
+            </tr>`
+        empTable.appendChild(row)
+    }
+}
+
+employeeTableFill();
+
+function employeeDisplay() {
+    if (empTable.style.display=='none') {
+        empTable.style.display='block';
+    } else {
+        empTable.style.display='none';
+    }
+}
+
+
+
 const resultField = document.getElementById('result');
 
 const searchButton = document.getElementById('btn-search')
@@ -113,7 +146,7 @@ function saveInitialLead(e) {
         document.getElementById('address').value=dotResult.address;
         document.getElementById('phone').value=dotResult.phoneNumber;
         document.getElementById('powerUnits').value=dotResult.powerUnits;
-        document.getElementById('drivers').value=dotResult.drivers;
+        // document.getElementById('drivers').value=dotResult.drivers;
         document.getElementById('mailingAddress').value=dotResult.mailingAddress;
 
         resultField.style.display = 'none';
