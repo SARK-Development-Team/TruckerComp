@@ -123,7 +123,7 @@ h2, h3 {
 
 #footer {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 2fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     align-items: center;
 }
 
@@ -142,7 +142,7 @@ h2, h3 {
 #footer-area {
     background: #0b0125;
     color: rgb(226, 225, 225);
-    font-size: 1.4vw;
+    font-size: 1.2vw;
     margin: 0;
     padding: 1% 3%;
 }
