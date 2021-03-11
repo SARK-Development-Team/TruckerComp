@@ -159,12 +159,12 @@ function addRow(e) {
     <p class="formline">
         <select class="empType" id="empType${formlines}">
             <option value="" disabled selected>Employee Type</option>
-            <option value="driver">Driver</option>
-            <option value="maintenance">Maintenance</option>
-            <option value="accounting">Accounting</option>
-            <option value="custodial">Custodial</option>
-            <option value="clerical">Clerical</option>
-            <option value="other">Other</option>
+            <option value="Driver">Driver</option>
+            <option value="Maintenance">Maintenance</option>
+            <option value="Accounting">Accounting</option>
+            <option value="Custodial">Custodial</option>
+            <option value="Clerical">Clerical</option>
+            <option value="Other">Other</option>
         </select>
         <input class="empNumber" name="empNumber${formlines}" type="number" min="1" id="empNumber${formlines}" >
         <input class="empPayroll" name="empPayroll${formlines}" type="number" min="0.01" id="empPayroll${formlines}">

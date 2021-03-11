@@ -1,10 +1,17 @@
 
     <!-- A navbar that is currently empty -->
-    <nav class="indented">
-        <a href="#" ><img src="public/images/logorecolored.png" class="logo"/><img src="public/images/sarkjusttitle.png" class="title"/></a>
+    <nav id="navbar">
+            <a href="#" class="logo"><img src="public/images/logorecolored.png" />
+                <div>
+                    <p id="truckercomp">trucker<span id="comp">comp</span></p><p>by SARK Insurance Services</p>
+                </div>
+            </a>
+            <a href="#" >Home</a>
+            <a href="#" >About Us</a>
+            <a href="#" >Become an Agent</a>
+            <a href="#" class="btn-nav">For Agents</a>
+            <a href="#" class="btn-nav">Log in</a>
 
-        <!-- Nav elements can be added here -->
-        <!-- <a href="main-form.html" class="btn-test">Skip to main form (for development)</a> -->
     </nav>
     <section>
         <!-- This contains the form and call to action -->
@@ -93,12 +100,12 @@
                                     {{!-- If it is changed, the function addRow() will also need to be updated --}}
                                     <select class="empType" id="empType0">
                                         <option value="" disabled selected>Employee Type</option>
-                                        <option value="driver">Driver</option>
-                                        <option value="maintenance">Maintenance</option>
-                                        <option value="accounting">Accounting</option>
-                                        <option value="custodial">Custodial</option>
-                                        <option value="clerical">Clerical</option>
-                                        <option value="other">Other</option>
+                                        <option value="Driver">Driver</option>
+                                        <option value="Maintenance">Maintenance</option>
+                                        <option value="Accounting">Accounting</option>
+                                        <option value="Custodial">Custodial</option>
+                                        <option value="Clerical">Clerical</option>
+                                        <option value="Other">Other</option>
                                     </select>
                                     <input class="empNumber" name="empNumber0" type="number" min="1" id="empNumber0">
                                     <input class="empPayroll" name="empPayroll0" type="number" id="empPayroll0">
@@ -106,12 +113,12 @@
                                 <p class="formline">
                                     <select class="empType" id="empType1">
                                         <option value="" disabled selected>Employee Type</option>
-                                        <option value="driver">Driver</option>
-                                        <option value="maintenance">Maintenance</option>
-                                        <option value="accounting">Accounting</option>
-                                        <option value="custodial">Custodial</option>
-                                        <option value="clerical">Clerical</option>
-                                        <option value="other">Other</option>
+                                        <option value="Driver">Driver</option>
+                                        <option value="Maintenance">Maintenance</option>
+                                        <option value="Accounting">Accounting</option>
+                                        <option value="Custodial">Custodial</option>
+                                        <option value="Clerical">Clerical</option>
+                                        <option value="Other">Other</option>
                                     </select>
                                     <input class="empNumber" name="empNumber1" type="number" min="1" id="empNumber1">
                                     <input class="empPayroll" name="empPayroll1" type="number" id="empPayroll1">

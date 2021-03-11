@@ -72,6 +72,7 @@ async function searchDOT() {
             // If a client is not found
             if (!client.result) {
                 resultField.innerHTML = `<p>No result found for ${dot['dot']}.</p>`
+
                 document.getElementById('confirmation').style.display='none';
             // If a client is found
             } else {
@@ -191,9 +192,9 @@ let confirmed = {
 function confirm(boolean){
     confirmed.value = boolean;
     confirmed.pressed++;
-    document.getElementById('save1').style.backgroundColor="green";
+    document.getElementById('save1').style.backgroundColor="rgb(17, 61, 102)";
     document.getElementById('save1').style.cursor="pointer";
-    document.getElementById('save2').style.backgroundColor="green";
+    document.getElementById('save2').style.backgroundColor="rgb(17, 61, 102)";
     document.getElementById('save2').style.cursor="pointer";
     return confirmed;
 }   
