@@ -34,15 +34,20 @@ h2, h3 {
     margin-block-end: 0;
 }
 
+.indented {
+    padding: 1% 16%;
+}
+
+/* ----------
+    Navbar
+---------- */
+
 .btn-nav {
     background: rgb(245, 166, 20);
     text-align: center;
     padding: 1vw .2vw;
 }
 
-.indented {
-    padding: 1% 16%;
-}
 
 .logo {
     display: flex;
@@ -63,7 +68,7 @@ h2, h3 {
 }
 
 #navbar {
-    background: rgb(248, 213, 208);
+    background: rgb(255, 240, 230);
     list-style: none;
     display: grid;
     grid-template-columns: 6fr 1fr 1fr 1.5fr 1.2fr 1.2fr;
@@ -141,7 +146,7 @@ h2, h3 {
 }
 
 #footer-area {
-    background: #000000;
+    background: #0b0125;
     color: rgb(226, 225, 225);
     font-size: 1.4vw;
     margin: 0;
