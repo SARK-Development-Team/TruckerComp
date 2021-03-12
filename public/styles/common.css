@@ -45,7 +45,7 @@ h2, h3 {
 .btn-nav {
     background: rgb(245, 166, 20);
     text-align: center;
-    padding: 1vw .2vw;
+    padding: 1vw;
 }
 
 .logo {
@@ -61,42 +61,84 @@ h2, h3 {
     margin-block-end: 0;
 }
 
+#by-sark {
+    font-size: 10px;
+}
+
+#menu-items {
+    align-self: center;
+    display: flex;
+    justify-content: flex-end;
+}
+
 #navbar {
     background: rgb(255, 240, 230);
     list-style: none;
     display: grid;
-    grid-template-columns: 6fr 1fr 1fr 1.5fr 1.2fr 1.2fr;
+    grid-template-columns: 3fr 3fr ;
     justify-content: center;
-    padding: 0 3%;
+    padding: .7vw 8%;
     text-align: center;
 }
 
 #navbar a {
-    font-size: 1vw;
+    font-size: 0.8vw;
     text-decoration: none;
     align-items: center;
-    margin: .4vw;
+    margin: .4vw 1vw;
     color: rgb(3, 7, 48);
     align-self: center;
 
+}
+
+#nav-toggle, #hamburger-icon {
+    display: none;
 }
 
 #comp {
     color: rgb(33, 115, 209);
 }
 
+#hamburger-icon {
+    font-size: 40px;
+    float: right;
+    cursor: pointer;
+    position: absolute;
+    right: 7vw;
+    top: 1.5vw;
+}
+
 #truckercomp {
-    font-size: 2vw;
+    font-size: 21px;
     font-weight: 800;
     color: red;
-    line-height: 2vw;
+    line-height: 21px;
+}
+
+@media only screen and (max-width: 700px) {
+    #hamburger-icon {
+      display: inline-block;
+    }
+
+    #menu-items {
+      display: none;
+    }
+
+    #nav-toggle:checked ~ #menu-items {
+        display: grid;
+        grid-row: 2;
+        justify-content: stretch;
+    }
+    #navbar a {
+        font-size: 3vw;
+    }
 }
 
 /* ----------
     Footer
 ---------- */
 
-.header-logo-top {
+.footer-logo-top {
     font-size: 4.4vw;
     letter-spacing: -.07em;
     border-bottom: 1px solid #e2e2e2;
@@ -104,7 +146,7 @@ h2, h3 {
     line-height: 4.1vw;
     padding-top: .8vw;
 }
-.header-logo-bottom {
+.footer-logo-bottom {
     font-size: .99vw;
     letter-spacing: -0.4px;
     margin: 0;
@@ -123,7 +165,7 @@ h2, h3 {
 
 #footer {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 0fr 1fr;
     align-items: center;
 }
 
@@ -144,7 +186,7 @@ h2, h3 {
     color: rgb(226, 225, 225);
     font-size: 1.2vw;
     margin: 0;
-    padding: 1% 3%;
+    padding: 1% 8%;
 }
 
 #footer-logo {
@@ -157,18 +199,16 @@ h2, h3 {
 }
 
 
-#social {
-    font-size: 2.2vw;
-    padding: .6vw;
-    text-align: right;
-    margin-right: 3vw;
-    align-self: flex-end;
-}
-
-
 
 @media only screen and (max-width: 700px) {
-    footer {
+    .social {
+        font-size: 4vw;
+    }
+    
+    #footer {
+        grid-template-columns: 1fr 1fr;
+    }
+    #footer-area {
         font-size: 3.5vw;
     }
 }
