@@ -62,7 +62,7 @@ h2, h3 {
 }
 
 #by-sark {
-    font-size: 10px;
+    font-size: 13px;
 }
 
 #menu-items {
@@ -82,7 +82,8 @@ h2, h3 {
 }
 
 #navbar a {
-    font-size: 0.8vw;
+    font-size: 0.6vw;
+    font-weight: 800;
     text-decoration: none;
     align-items: center;
     margin: .4vw 1vw;
@@ -109,10 +110,10 @@ h2, h3 {
 }
 
 #truckercomp {
-    font-size: 21px;
+    font-size: 26px;
     font-weight: 800;
     color: red;
-    line-height: 21px;
+    line-height: 26px;
 }
 
 @media only screen and (max-width: 700px) {

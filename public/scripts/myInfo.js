@@ -10,20 +10,24 @@ var empTable = document.getElementById('empTable')
 
 function employeeTableFill() {
     const regex = /clientData={(.*?)}/ //This finds only the clientData string from document.cookie, which may have multiple others
-    let clientData= document.cookie.match(regex).input.substring(11); // This trims off the "clientData=" portion 
-    let clientDataObj = JSON.parse(clientData);
-    const employees = clientDataObj.employees;
+    try {
+        let clientData= document.cookie.match(regex).input.substring(11); // This trims off the "clientData=" portion 
+        let clientDataObj = JSON.parse(clientData);
+        const employees = clientDataObj.employees;
 
-    for (let employee of employees) {
-        const row = document.createElement("TR");
-        row.innerHTML = `
-            <tr>
-            <th scope="row"></th>
-            <td>${employee.type}</td>
-            <td>${employee.number}</td>
-            <td>${employee.payroll}</td>
-            </tr>`
-        empTable.appendChild(row)
+        for (let employee of employees) {
+            const row = document.createElement("TR");
+            row.innerHTML = `
+                <tr>
+                <th scope="row"></th>
+                <td>${employee.type}</td>
+                <td>${employee.number}</td>
+                <td>${employee.payroll}</td>
+                </tr>`
+            empTable.appendChild(row)
+        }
+    } catch (err) {
+        console.log(err);
     }
 }
 

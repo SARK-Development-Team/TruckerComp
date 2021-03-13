@@ -21,6 +21,10 @@ const tableSvc = azure.createTableService(process.env.AZURE_STORAGE_ACCOUNT, pro
 
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
+router.use(flash());
+
+
+
 // This function searches the sark DB for a client based on the DOT entered
 async function sqlSearch(number) {
   try {
@@ -152,6 +156,7 @@ router.post('/register', (req, res) => {
 
 // Login
 router.post('/login', (req, res, next) => {
+  errors = [];
   passport.authenticate('local', {
     successRedirect: 'myInfo',
     failureRedirect: 'login',

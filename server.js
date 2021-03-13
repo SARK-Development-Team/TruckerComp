@@ -33,16 +33,28 @@ app.use(passport.session());
 
 app.use(flash());
 
-app.use(function(req, res, next) {
-  res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  res.locals.error = req.flash('error');
-  next();
+// app.use(function(req, res, next) {
+//   res.locals.success_msg = req.flash('success_msg');
+//   res.locals.error_msg = req.flash('error_msg');
+//   res.locals.error = req.flash('error');
+//   next();
+// });
+
+app.use(function(req, res, next){
+    var err = req.session.error,
+        msg = req.session.notice,
+        success = req.session.success;
+  
+    delete req.session.error;
+    delete req.session.success;
+    delete req.session.notice;
+  
+    if (err) res.locals.error = err;
+    if (msg) res.locals.notice = msg;
+    if (success) res.locals.success = success;
+  
+    next();
 });
-
-
-
-
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -55,13 +67,27 @@ const hbars = require('handlebars');
 const handle = require('express-handlebars');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 app.engine('handlebars', handle({
-    defaultLayout: 'dashboard',
-    // layoutsDir: path.join(__dirname, "views/layouts"),
-    // partialsDir: path.join(__dirname, "views/partials"), 
+    defaultLayout: 'index',
     handlebars: allowInsecurePrototypeAccess(hbars)
 }));
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
+
+
+
+// SQl Server is accessed to search the DOT on the dashboard page
+const sql = require('mssql')
+
+
+const db = require('./models');
+
+// Azure is where the completed client lead is stored
+const azure = require('azure-storage');
+const tableSvc = azure.createTableService(process.env.AZURE_STORAGE_ACCOUNT, process.env.AZURE_STORAGE_ACCESS_KEY);
+
+const { ensureAuthenticated, forwardAuthenticated } = require('./config/auth');
+
+
 
 
 
@@ -89,8 +115,6 @@ const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_U
     Do not use refresh token in the auth object unless you know that you can get a successful authentication response. If the auth.refresh_token is filled in,
     nodeemailer WILL TRY TO AUTHENTICATE, even if the access_token exists. Get the access token before hand.
 */
-
-
 
 async function sendEmail(data) {
     try {
@@ -156,6 +180,60 @@ function calculateQuote(data) {
 };
 
 
+// This function searches the sark DB for a client based on the DOT entered
+async function sqlSearch(number) {
+    try {
+        let pool = await sql.connect(process.env.SQL_CONNSTRING)
+        let result1 = await pool.request()
+            .query(`SELECT * FROM sark.Client WHERE [DOT Number] = ${number}`)
+        return (result1.recordset[0])
+    } catch (err) {
+       console.log(err)
+    }
+  }
+  
+
+
+
+// This function saves the new "lead" object in the Azure DB, using the DOT as the row key
+function azureSave(object) {
+    // Build the "lead" object from the data passed in
+    const rowKey = object.DOT.toString();
+    const lead = {
+        PartitionKey: {'_':'leads'},
+        RowKey: {'_': rowKey},
+        name: {'_': object.name},
+        email: {'_': object.email},
+        DOT: {'_': object.DOT},
+        MCP: {'_': object.MCP},
+        totalPayroll: {'_': object.totalPayroll},
+        mileage: {'_': object.mileage},
+        companyName: {'_': object.companyName},
+        address: {'_': object.address},
+        mailingAddress: {'_': object.mailingAddress},
+        phoneNumber: {'_': object.phoneNumber},
+        drivers: {'_': object.drivers},
+        powerUnits: {'_': object.powerUnits},
+      };
+    //   Create the table if it does not exist already
+    tableSvc.createTableIfNotExists('sarkleads', function(err, result, response){
+    // If there is no error
+    if(!err){
+        // insert the "lead" object into the table
+        tableSvc.insertEntity('sarkleads',lead, function (err, result, response) {
+            if(!err){
+                return
+            } else {
+                console.log(err)
+            }
+        });
+    } else {
+        console.log(err)
+    }
+  });
+}
+  
+
 
 /* --------------------------
          API ROUTES
@@ -181,8 +259,118 @@ app.post('/send', (req, res) => {
 });
 
 
-// The "users" routes are for authorization purposes
-app.use('/users', require('./routes/users.js'));
+// Login Page
+app.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
+
+// Register Page
+app.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
+
+// Register
+app.post('/register', (req, res) => {
+  const { name, email, password, password2, businessType, employees, zipCode, mileage, totalPayroll } = req.body;
+  let errors = [];
+
+  if (!name || !email || !password || !password2) {
+    errors.push({ msg: 'Please enter all fields' });
+  }
+
+  if (password != password2) {
+    errors.push({ msg: 'Passwords do not match' });
+  }
+
+  if (password.length < 6) {
+    errors.push({ msg: 'Password must be at least 6 characters' });
+  }
+
+  if (errors.length > 0) {
+    res.render('register', {
+      errors,
+      name,
+      email,
+      password,
+      password2
+    });
+  } else {
+    db.User.findOne({ email: email }).then(user => {
+      if (user) {
+        errors.push({ msg: 'Email already exists' });
+        res.render('register', {
+          errors,
+          name,
+          email,
+          password,
+          password2
+        });
+      } else {
+        const newUser = new db.User({
+          name,
+          email,
+          password,
+          businessType,
+          employees,
+          totalPayroll,
+          mileage,
+          zipCode
+        });
+
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+            newUser.password = hash;
+            newUser
+              .save()
+              .then(user => {
+                req.flash(
+                  'success_msg',
+                  'You are now registered and can log in'
+                );
+                res.render('login', {email: email});
+              })
+              .catch(err => console.log(err));
+          });
+        });
+      }
+    }).catch(err => console.log(err));
+  }
+});
+
+// Login
+app.post('/login', (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: 'myInfo',
+    failureRedirect: 'login',
+    failureFlash: true
+  })(req, res, next);
+});
+
+// Logout
+app.get('/logout', (req, res) => {
+  req.logout();
+  req.flash('success_msg', 'You are logged out');
+  res.redirect('login');
+});
+
+// Dashboard
+app.get('/myInfo', ensureAuthenticated, (req, res) =>
+  res.render('myInfo', {
+    user: req.user
+  })
+);
+
+
+// This route performs a search through the sark client DB for the DOT number entered
+// Returns an object that is partially displayed in the "result" box
+app.post('/dot', async (req, res) => {
+  const result = await sqlSearch(req.body.dot);   
+  return res.json({ result });
+});
+
+
+// This route saves the user input into the Azure Storage DB
+app.post('/lead', (req, res) => {
+  azureSave(req.body);
+  res.send(`<p>Thank you for confirming! We will contact you shortly!</p>`);
+});
 
 // This listens at port 5001, unless there is a Configuration variable (as on heroku).
 app.listen(process.env.PORT || 5001, () => console.log("Server running."));
