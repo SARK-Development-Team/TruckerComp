@@ -42,7 +42,6 @@ input {
     border: none;
     border-bottom: 1px solid #585858;
     font-size: 1.3vw;
-    /* text-align: center; */
 }
 
 .active {
@@ -68,11 +67,10 @@ input {
 
 .btn-reset {
     background: #426b13;
-    padding: 1.1vw;
+    padding: 0.6vw 1.4vw;
     color: white;
     font-size: 1vw;
     border-radius: 2000px;
-    right: 0;
     cursor: pointer;
     z-index: 5;
 }
@@ -293,6 +291,10 @@ input {
     overflow: hidden;
 }
 
+#carousel *:not(button, input):focus {
+    outline: none;
+}
+
 #container {
     width: 78vw;
     background: white;
@@ -353,8 +355,7 @@ input {
 }
 
 #reset-container {
-    position: absolute; 
-    right: 14vw; 
+    text-align: center;
     z-index: 5
 }
 
@@ -780,9 +781,9 @@ svg {
         font-size: 3.5vw;
     }
 
-    #reset-container {
+    /* #reset-container {
         top: 12vw;
-    }
+    } */
 
     #why-SARK {
         padding: 1% 12%;

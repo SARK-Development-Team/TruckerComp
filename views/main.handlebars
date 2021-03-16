@@ -1,21 +1,15 @@
 
-    <!-- A navbar that is currently empty -->
-    <nav class="indented">
-        <a href="#" ><img src="public/images/logorecolored.png" class="logo"/><img src="public/images/sarkjusttitle.png" class="title"/></a>
+    <link href="public/styles/index.css" rel="stylesheet">
+    <script defer src="public/scripts/hero-section.js"></script>
 
-        <!-- Nav elements can be added here -->
-        <!-- <a href="main-form.html" class="btn-test">Skip to main form (for development)</a> -->
-    </nav>
     <section>
         <!-- This contains the form and call to action -->
         <section id="hero" >
-            <div id="container">
+            <div id="container" tabindex="-1">
                 <div class="heading-area">
                     <h2>We Make Worker's Compensation Insurance Easy</h2>
                 </div>
-                <div id="reset-container">
-                    <a class="btn-reset" onclick="resetForm()">Reset Form</a>
-                </div>
+
                 <div id="carousel">
                     <!-- This div is the first item in the carousel -->
                     <div class="slide" id="slide1">
@@ -36,7 +30,9 @@
                                 <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle"></i>
                             </div>
+                            
                         </div>
+                        
                     </div>
 
                     <!-- This form is the next item in the carousel if the user selects "My company has employees", otherwise it skips to the third item -->
@@ -93,27 +89,27 @@
                                     {{!-- If it is changed, the function addRow() will also need to be updated --}}
                                     <select class="empType" id="empType0">
                                         <option value="" disabled selected>Employee Type</option>
-                                        <option value="driver">Driver</option>
-                                        <option value="maintenance">Maintenance</option>
-                                        <option value="accounting">Accounting</option>
-                                        <option value="custodial">Custodial</option>
-                                        <option value="clerical">Clerical</option>
-                                        <option value="other">Other</option>
+                                        <option value="Driver">Driver</option>
+                                        <option value="Maintenance">Maintenance</option>
+                                        <option value="Accounting">Accounting</option>
+                                        <option value="Custodial">Custodial</option>
+                                        <option value="Clerical">Clerical</option>
+                                        <option value="Other">Other</option>
                                     </select>
-                                    <input class="empNumber" name="empNumber0" type="number" id="empNumber0">
+                                    <input class="empNumber" name="empNumber0" type="number" min="1" id="empNumber0">
                                     <input class="empPayroll" name="empPayroll0" type="number" id="empPayroll0">
                                 </p>
                                 <p class="formline">
                                     <select class="empType" id="empType1">
                                         <option value="" disabled selected>Employee Type</option>
-                                        <option value="driver">Driver</option>
-                                        <option value="maintenance">Maintenance</option>
-                                        <option value="accounting">Accounting</option>
-                                        <option value="custodial">Custodial</option>
-                                        <option value="clerical">Clerical</option>
-                                        <option value="other">Other</option>
+                                        <option value="Driver">Driver</option>
+                                        <option value="Maintenance">Maintenance</option>
+                                        <option value="Accounting">Accounting</option>
+                                        <option value="Custodial">Custodial</option>
+                                        <option value="Clerical">Clerical</option>
+                                        <option value="Other">Other</option>
                                     </select>
-                                    <input class="empNumber" name="empNumber1" type="number" id="empNumber1">
+                                    <input class="empNumber" name="empNumber1" type="number" min="1" id="empNumber1">
                                     <input class="empPayroll" name="empPayroll1" type="number" id="empPayroll1">
                                 </p>
                             </div>
@@ -144,11 +140,11 @@
                         <h3>Please enter the following:</h3>
 
                         <form class="hero-form">
-                            <h3>My zipcode is <input type="text" id="slide4Zipcode" name="zipcode" style="width:10vw">.</h3>
+                            <h3>My zipcode is <input type="number" id="slide4Zipcode" name="zipcode" min="0" style="width:10vw">.</h3>
                             <p id='zipError'>Please enter a valid 5-digit US ZIP Code</p>
                             <br>
-                            <!-- This fills in the sentence based on the input from slide 1 -->
-                            <h3>In 2020, <span id="empOrSelf"></span> drove <input type="text" id="slide4Mileage" name="miles" style="width: 12vw"> miles.</h3>
+                            <!-- This fills in the sentence based on the input from slide 1 and last year -->
+                            <h3>In <span id="dynamicSpan"></span> drove <input type="number" min="0.1" id="slide4Mileage" name="miles" style="width: 12vw"> miles.</h3>
                             
                             <p id='milesError'>Please enter the number of miles</p>
 
@@ -206,15 +202,19 @@
                             <h1>$<span id="low-end"></span> &mdash; $<span id="high-end"></span>/month</h1>
                             <h3>We've also sent an email to <span id="email"></span> with further information.</h3>
                             <h1>Please call 415 xxx xxxx to purchase a policy now!</h1>
-                            <a class ='btn-purchase' href='users/register' >Click here to purchase!</a>
+                            <a class ='btn-purchase' href='register' >Click here to purchase!</a>
                             <p id = "bgd-icons"><i class="material-icons" style="font-size: 16vw; left: 0; bottom: 0" >source</i> <i></i> <i class="material-icons" style="font-size: 13vw; right: 0; bottom: 0" >verified</i></p>
                         </div>
                     </div>
 
                 </div>
+                <div id="reset-container">
+                    <a class="btn-reset" onclick="resetForm()">Reset Form</a>
+                </div>
                 <div id="bottom-line">
                     <p>SARK Insurance Services is the leading provider of Worker's Compensation Insurance in Northern California for over 25 years</p>
                 </div>
+
             </div>
         </section>
 

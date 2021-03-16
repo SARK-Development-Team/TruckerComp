@@ -7,6 +7,13 @@ initializeCarousel();
 // Sets all formData to initial values 
 // Arranges slides so that all but the first start off screen on the right
 function initializeCarousel() {
+    document.cookie = "clientData=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    // Tabbing through the carousel breaks it, so this makes the carousel items untabbable
+    let carouselContents = document.getElementById("carousel").querySelectorAll("*");
+    for (let i =0; i<carouselContents.length; i++){
+        carouselContents[i].setAttribute("tabindex", "-1");
+        
+    }
     formData = {
         employees: [],
         totalPayroll: 0,
@@ -20,6 +27,7 @@ function initializeCarousel() {
         slides[i].style.transform= "translateX(" + multiplier +"vw)";  
     }
 }
+
 
 // When the slides advance, the next slide moves in from the right and the old moves out to the left
 function changeSlide(n) {
@@ -66,8 +74,9 @@ const no = document.getElementById('slide1No');
 yes.onclick = () => {
     yes.classList.add('selected');
     no.classList.remove('selected');
-    const employeesOrSelf = document.getElementById('empOrSelf');
-    employeesOrSelf.innerText = 'my employees';
+    const lastYear = new Date().getFullYear()-1;
+    const dSpan = document.getElementById('dynamicSpan');
+    dSpan.innerText = `${lastYear}, my employees`;
     const slide3 = document.getElementById('slide3');
     const slide4 = document.getElementById('slide4');
     const slide5 = document.getElementById('slide5');
@@ -83,8 +92,9 @@ yes.onclick = () => {
 no.onclick = () => {
     no.classList.add('selected');
     yes.classList.remove('selected');
-    const employeesOrSelf = document.getElementById('empOrSelf');
-    employeesOrSelf.innerText = 'I';
+    const lastYear = new Date().getFullYear()-1;
+    const dSpan = document.getElementById('dynamicSpan');
+    dSpan.innerText = `${lastYear}, I`;
     const slide3 = document.getElementById('slide3');
     const slide4 = document.getElementById('slide4');
     const slide5 = document.getElementById('slide5');
@@ -149,15 +159,15 @@ function addRow(e) {
     <p class="formline">
         <select class="empType" id="empType${formlines}">
             <option value="" disabled selected>Employee Type</option>
-            <option value="driver">Driver</option>
-            <option value="maintenance">Maintenance</option>
-            <option value="accounting">Accounting</option>
-            <option value="custodial">Custodial</option>
-            <option value="clerical">Clerical</option>
-            <option value="other">Other</option>
+            <option value="Driver">Driver</option>
+            <option value="Maintenance">Maintenance</option>
+            <option value="Accounting">Accounting</option>
+            <option value="Custodial">Custodial</option>
+            <option value="Clerical">Clerical</option>
+            <option value="Other">Other</option>
         </select>
-        <input class="empNumber" name="empNumber${formlines}" type="number" id="empNumber${formlines}">
-        <input class="empPayroll" name="empPayroll${formlines}" type="number" id="empPayroll${formlines}">
+        <input class="empNumber" name="empNumber${formlines}" type="number" min="1" id="empNumber${formlines}" >
+        <input class="empPayroll" name="empPayroll${formlines}" type="number" min="0.01" id="empPayroll${formlines}">
     </p>
     `
 

@@ -3,19 +3,89 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const passport = require('passport');
+const flash = require('connect-flash');
+
+// for environment variables
+require('dotenv').config()
+
+// SQl Server is accessed to search the DOT on the dashboard page
+const sql = require('mssql')
+
 
 // const User = require('../../models/User');
 const db = require('../models');
 
+// Azure is where the completed client lead is stored
+const azure = require('azure-storage');
+const tableSvc = azure.createTableService(process.env.AZURE_STORAGE_ACCOUNT, process.env.AZURE_STORAGE_ACCESS_KEY);
+
+const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
+
+router.use(flash());
+
+
+
+// This function searches the sark DB for a client based on the DOT entered
+async function sqlSearch(number) {
+  try {
+      let pool = await sql.connect(process.env.SQL_CONNSTRING)
+      let result1 = await pool.request()
+          .query(`SELECT * FROM sark.Client WHERE [DOT Number] = ${number}`)
+      return (result1.recordset[0])
+  } catch (err) {
+     console.log(err)
+  }
+}
+
+
+// This function saves the new "lead" object in the Azure DB, using the DOT as the row key
+function azureSave(object) {
+  // Build the "lead" object from the data passed in
+  const rowKey = object.DOT.toString();
+  const lead = {
+      PartitionKey: {'_':'leads'},
+      RowKey: {'_': rowKey},
+      name: {'_': object.name},
+      email: {'_': object.email},
+      DOT: {'_': object.DOT},
+      MCP: {'_': object.MCP},
+      totalPayroll: {'_': object.totalPayroll},
+      mileage: {'_': object.mileage},
+      companyName: {'_': object.companyName},
+      address: {'_': object.address},
+      mailingAddress: {'_': object.mailingAddress},
+      phoneNumber: {'_': object.phoneNumber},
+      drivers: {'_': object.drivers},
+      powerUnits: {'_': object.powerUnits},
+    };
+  //   Create the table if it does not exist already
+  tableSvc.createTableIfNotExists('sarkleads', function(err, result, response){
+  // If there is no error
+  if(!err){
+      // insert the "lead" object into the table
+      tableSvc.insertEntity('sarkleads',lead, function (err, result, response) {
+          if(!err){
+              return
+          } else {
+              console.log(err)
+          }
+      });
+  } else {
+      console.log(err)
+  }
+});
+}
+
+
 // Login Page
-router.get('/login', (req, res) => res.render('login', {layout: "dashboard"}));
+router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
 
 // Register Page
-router.get('/register', (req, res) => res.render('register', {layout: "dashboard"}));
+// router.get('/register', forwardAuthenticated, (req, res) => res.render('register', {layout: "dashboard"}));
+router.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
 
 // Register
 router.post('/register', (req, res) => {
-  console.log(req.body);
   const { name, email, password, password2, businessType, employees, zipCode, mileage, totalPayroll } = req.body;
   let errors = [];
 
@@ -32,7 +102,6 @@ router.post('/register', (req, res) => {
   }
 
   if (errors.length > 0) {
-      console.log(errors);
     res.render('register', {
       errors,
       name,
@@ -70,7 +139,12 @@ router.post('/register', (req, res) => {
             newUser
               .save()
               .then(user => {
-                res.redirect('/users/login');
+                req.flash(
+                  'success_msg',
+                  'You are now registered and can log in'
+                );
+                // res.redirect('/users/login', {email: email});
+                res.render('login', {email: email});
               })
               .catch(err => console.log(err));
           });
@@ -82,25 +156,42 @@ router.post('/register', (req, res) => {
 
 // Login
 router.post('/login', (req, res, next) => {
+  errors = [];
   passport.authenticate('local', {
-    successRedirect: '/users/myInfo',
-    failureRedirect: '/users/login',
-    // failureFlash: true
+    successRedirect: 'myInfo',
+    failureRedirect: 'login',
+    failureFlash: true
   })(req, res, next);
 });
 
 // Logout
 router.get('/logout', (req, res) => {
   req.logout();
-  res.redirect('/users/login');
+  req.flash('success_msg', 'You are logged out');
+  res.redirect('login');
 });
 
 // Dashboard
-router.get('/myInfo', (req, res) =>
+router.get('/myInfo', ensureAuthenticated, (req, res) =>
   res.render('myInfo', {
     user: req.user
   })
 );
+
+
+// This route performs a search through the sark client DB for the DOT number entered
+// Returns an object that is partially displayed in the "result" box
+router.post('/dot', async (req, res) => {
+  const result = await sqlSearch(req.body.dot);   
+  return res.json({ result });
+});
+
+
+// This route saves the user input into the Azure Storage DB
+router.post('/lead', (req, res) => {
+  azureSave(req.body);
+  res.send(`<p>Thank you for confirming! We will contact you shortly!</p>`);
+});
 
 
 module.exports = router;
