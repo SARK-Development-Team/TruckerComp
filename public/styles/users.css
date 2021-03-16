@@ -57,6 +57,7 @@ td {
 
 .dark {
     background: rgb(225,236,242);
+    /* background: linear-gradient(to right, white 10%, rgb(225,236,242) 20%, rgb(225,236,242) 80%, white 90% ); */
 }
 
 .dark *:not(input, button, label) {
@@ -65,6 +66,17 @@ td {
 
 .fa-chevron-down {
     cursor: pointer;
+}
+
+.formline {
+    margin: .5vw 0!important;
+    display: flex;
+    flex-direction: row;
+}
+
+.formline select, .formline input {
+    margin: 0 .1vw 0 0;
+    width: 33%;
 }
 
 .left {
@@ -126,8 +138,16 @@ td {
     display: none;
 }
 
-#empTable {
-    display: none;
+#editForm {
+    text-decoration: underline;
+    color: rgb(87, 11, 68);
+    cursor: pointer;
+}
+
+#employeeInfoTableHeadings p{
+    min-width: 32%;
+    display: inline-block;
+    margin: 0;
 }
 
 #manualInput {

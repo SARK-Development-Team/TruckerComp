@@ -1,0 +1,39 @@
+
+    <script type="module" defer src="../../../public/scripts/dashboard.mjs"></script>
+    <link href="../../../public/styles/users2.css" rel="stylesheet">
+
+
+    <main class="indented dark">
+        <h1>Trucker Comp Dashboard<span><a href='/logout' id="btn-logout" >Logout</a></span></h1>
+
+        <div id="two-column">
+            <div class="left column">
+                <div id="progress">
+                    <h2>Progress</h2>
+                    <canvas id="myChart" width="400" height="400"></canvas>
+                </div>
+                <div id="status">
+                    <h2>Calculated Workers' Comp Quote</h2>
+                    <p>some info will be displayed here</p>
+                </div>
+                <div id="furtherInfo">
+                    <h2>Further Info</h2>
+                    <p>something else will be displayed here</p>
+                </div>
+            </div>
+            <div class="right column">
+                <div id="nextStep" >
+                    <h2 class="blue-bg">Next Step</h2>
+                    <p>We are processing your request</p>
+                </div>
+                <div id="upcomingStep" >
+                    <h2 class="blue-bg">Upcoming Steps</h2>
+                    <p>We are processing your request</p>
+                </div>
+                <div id="completedStep" >
+                    <h2 class="blue-bg">Completed Steps</h2>
+                    <p>You have input all the necessary data</p>
+                </div>
+            </div>
+        </div>
+    </main>

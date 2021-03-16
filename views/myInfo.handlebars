@@ -4,33 +4,40 @@
 
 
     <main class="indented dark">
-        <h1>Trucker Comp Dashboard</h1>
+        <h1>Trucker Comp Dashboard<span><a href='/logout' id="btn-logout" >Logout</a></span></h1>
 
-        <a href='/users/logout' id="btn-logout" >Logout</a>
-        <div id="my-info">
+        <div id="infoDisplay">
             <h2>My info</h2>
             <img src="../public/images/truck2.jpg" style="float: right; height: 24vw;">
-
             <p>Name: <span id= 'userName'>{{user.name}}</span></p>
             <p>Email: <span id= 'userEmail'>{{user.email}}</span></p>
-            <p>My employees: <i class="fas fa-chevron-down" onclick="employeeDisplay()"></i></p>
-            <table id="empTable">
-                <th>
-                    <td><b>Type</b></td>
-                    <td><b>Number</b></td>
-                    <td><b>Payroll</b></td>
-                </th>
-            </table>
+            <p>Employees:</p> 
+                <table id="empTable">
+                    <th>
+                        <td><b>Type</b></td>
+                        <td><b>Number</b></td>
+                        <td><b>Payroll</b></td>
+                    </th>
+                    {{#each user.employees as |item|}}
+                    <tr>
+                        <td></td>
+                        <td>{{item.type}}</td>
+                        <td>{{item.number}}</td>
+                        <td>{{item.payroll}}</td>
+                    </tr>
+                    {{/each}}
+                </table>
             <p>Total Payroll: <span id= 'userTotalPayroll'>{{user.totalPayroll}}</span></p>
             <p>Annual mileage: <span id= 'userMileage'>{{user.mileage}}</span></p>
             <p>ZIP Code: {{user.zipCode}}</p>
         </div>
-        <h2>
-            Additional info
-        </h2>
-        <label for="DOTsearch">Input your DOT Number</label>
-        <input name="DOTsearch" id="DOTsearch" type="number" min="0">
-        <button id="btn-search">Search</button>
+
+        <div id="searchArea">
+            <h2>Additional info</h2>
+            <label for="DOTsearch">Input your DOT Number or click <span id="editForm" onclick="editForm()">here</span> to edit your profile directly</label>
+            <input name="DOTsearch" id="DOTsearch" type="number" min="0">
+            <button id="btn-search">Search</button>
+        </div>
         {{!-- This div is hidden until the search is conducted --}}
         <div id="result"></div>
         {{!-- This div is hidden unless the user indicates the information displayed is incorrect --}}
@@ -84,12 +91,36 @@
                     <fieldset>
                         <label for="powerUnits">Power Units</label>
                         <input id="powerUnits" name="powerUnits" type="number" >
-                        {{!-- <label for="drivers">Drivers</label>
-                        <input id="drivers" name="drivers" type="number" > --}}
                     </fieldset>
+                    <fieldset></fieldset>
+                    <div class="hero-form">
+                        <div id="employeeInfoTable">
+
+                            <div id="empTable">
+                                <div id="employeeInfoTableHeadings">
+                                    <p>Type</p>
+                                    <p>Number</p>  
+                                    <p>Payroll</p>
+                                </div>
+                                <p class="formline">
+                                    <select class="empType" id="empType0">
+                                        <option value="" disabled selected>Employee Type</option>
+                                        <option value="Driver">Driver</option>
+                                        <option value="Maintenance">Maintenance</option>
+                                        <option value="Accounting">Accounting</option>
+                                        <option value="Custodial">Custodial</option>
+                                        <option value="Clerical">Clerical</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <input class="empNumber" name="empNumber0" type="number" min="1" id="empNumber0">
+                                    <input class="empPayroll" name="empPayroll0" type="number" id="empPayroll0">
+                                </p>
+                            </div>
+                    </div>
+                    <button id="newRow" onclick="addRow(event)"><i class="fas fa-plus" ></i></button>
+                    <input type="submit" id="save2" class="btn-save" onclick="saveSecondLead(event)">
 
                 </div>
-                    <input type="submit" id="save2" class="btn-save" onclick="saveSecondLead(event)">
             </form>
         </div>  
         <fieldset id = "confirmation">

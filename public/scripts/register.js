@@ -14,7 +14,7 @@ function checkCookie() {
         let clientDataObj = JSON.parse(clientData);
         // Here the values get assigned from the cookie
         emailField.value=clientDataObj.email;
-        employeesField.value=clientDataObj.employees;
+        employeesField.value=JSON.stringify(clientDataObj.employees);
         businessField.value=clientDataObj.businessType;
         payrollField.value=clientDataObj.totalPayroll;
         mileageField.value=clientDataObj.mileage;

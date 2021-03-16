@@ -34,6 +34,27 @@ const UserSchema = new mongoose.Schema({
   },
   zipCode: {
     type: Number
+  },
+  DOT: {
+    type: Number,
+  },
+  MCP: {
+    type: Number,
+  },
+  companyName: {
+    type: String, 
+  },
+  address: {
+    type: String,
+  },
+  mailingAddress: {
+    type: String,
+  },
+  phoneNumber: {
+    type: String, 
+  },
+  powerUnits: {
+    type: Number,
   }
 
 

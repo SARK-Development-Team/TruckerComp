@@ -6,46 +6,49 @@ let uriRoot = '';
 //     uriRoot = window.location.hostname+"/";
 // }
 
-var empTable = document.getElementById('empTable')
 
-function employeeTableFill() {
-    const regex = /clientData={(.*?)}/ //This finds only the clientData string from document.cookie, which may have multiple others
-    try {
-        let clientData= document.cookie.match(regex).input.substring(11); // This trims off the "clientData=" portion 
-        let clientDataObj = JSON.parse(clientData);
-        const employees = clientDataObj.employees;
-
-        for (let employee of employees) {
-            const row = document.createElement("TR");
-            row.innerHTML = `
-                <tr>
-                <th scope="row"></th>
-                <td>${employee.type}</td>
-                <td>${employee.number}</td>
-                <td>${employee.payroll}</td>
-                </tr>`
-            empTable.appendChild(row)
-        }
-    } catch (err) {
-        console.log(err);
-    }
+function hideElement(...elements) {
+    elements.forEach((e)=> document.getElementById(e).style.display='none')
 }
 
-employeeTableFill();
-
-function employeeDisplay() {
-    if (empTable.style.display=='none') {
-        empTable.style.display='block';
-    } else {
-        empTable.style.display='none';
-    }
+function showElement(...elements) {
+    elements.forEach((e)=> document.getElementById(e).style.display='block')
 }
 
+function editForm() {
+    hideElement('searchArea', 'result', 'confirmation', 'infoDisplay');
+    showElement('manualInput');
+    document.getElementById('save2').style.backgroundColor="rgb(17, 61, 102)";
+    document.getElementById('save2').style.cursor="pointer";
+}
 
+// This function adds another row to the employee info table when the plus icon is pressed
+function addRow(e) {
+    e.preventDefault()
+    const formlines = document.getElementsByClassName('formline').length;
+    const line = `                                
+    <p class="formline">
+        <select class="empType" id="empType${formlines}">
+            <option value="" disabled selected>Employee Type</option>
+            <option value="Driver">Driver</option>
+            <option value="Maintenance">Maintenance</option>
+            <option value="Accounting">Accounting</option>
+            <option value="Custodial">Custodial</option>
+            <option value="Clerical">Clerical</option>
+            <option value="Other">Other</option>
+        </select>
+        <input class="empNumber" name="empNumber${formlines}" type="number" min="1" id="empNumber${formlines}" >
+        <input class="empPayroll" name="empPayroll${formlines}" type="number" min="0.01" id="empPayroll${formlines}">
+    </p>
+    `
+    let lineElement = document.createElement('div');
+    lineElement.innerHTML=line;
+    document.getElementById("employeeInfoTable").appendChild(lineElement);
+}
 
 const resultField = document.getElementById('result');
 
-const searchButton = document.getElementById('btn-search')
+const searchButton = document.getElementById('btn-search');
 
 searchButton.onclick = () => searchDOT();
 
@@ -60,24 +63,25 @@ var dotResult = {
     address: '',
     mailingAddress: '',
     phoneNumber: '',
-    drivers: '',
+    employees: '',
     powerUnits: '',
 }
 
 // When the button for the DOT search field is pressed
 async function searchDOT() {
-    document.getElementById('manualInput').style.display = 'none';
+    hideElement('manualInput');
     let dot = {'dot': document.getElementById('DOTsearch').value};
     // Only searches if a value is entered
     if (dot['dot']) {
         try {
             const client = await fetchDOT(dot);
-            resultField.style.display='block';
+            showElement('result');
+
             // If a client is not found
             if (!client.result) {
                 resultField.innerHTML = `<p>No result found for ${dot['dot']}.</p>`
 
-                document.getElementById('confirmation').style.display='none';
+                hideElement('confirmation');
             // If a client is found
             } else {
 
@@ -91,7 +95,6 @@ async function searchDOT() {
                 dotResult.address = client.result['Address'];
                 dotResult.mailingAddress = client.result['Mailing Address'];
                 dotResult.phoneNumber = client.result['Phone'];
-                dotResult.drivers = client.result['Drivers'];
                 dotResult.powerUnits = client.result['Power Units'];
                 resultField.innerHTML = '';
                 resultField.innerHTML += `<p>DOT Number: ${client.result['DOT Number']}</p>`;
@@ -100,10 +103,8 @@ async function searchDOT() {
                 resultField.innerHTML += `<p>Address: ${client.result['Address']}</p>`;
                 resultField.innerHTML += `<p>Phone Number: ${client.result['Phone']}</p>`;
                 resultField.innerHTML += `<p>Power Units: ${client.result['Power Units']}</p>`;
-                resultField.innerHTML += `<p>Drivers: ${client.result['Drivers']}</p>`;
-                // resultField.innerHTML += `<p>Authorized: ${client.result['Authorized']}</p>`;
                 resultField.innerHTML += `<p>Mailing Address: ${client.result['Mailing Address']}</p>`;
-                document.getElementById('confirmation').style.display='block';
+                showElement('confirmation');
             }
         } catch (err) {
             console.log(err);
@@ -128,7 +129,7 @@ async function fetchDOT(dotObject) {
 // It only works if the user has pressed either 'yes' or 'no' when prompted to confirm the result of the DOT search
 function saveInitialLead(e) {
     e.preventDefault();
-    document.getElementById('confirmation').style.display = 'none';
+    hideElement('confirmation');
     // If the user indicates the information is correct
     if (confirmed.value&&confirmed.pressed){
 
@@ -144,19 +145,32 @@ function saveInitialLead(e) {
         .catch(err=>console.log(err));
     // If the user indicates it is not correct, they are given the chance to amend the fields 
     } else if (confirmed.pressed){
-        document.getElementById('manualInput').style.display = 'block';
+        showElement('manualInput');
         document.getElementById('DOT').value=dotResult.DOT;
         document.getElementById('companyName').value=dotResult.companyName;
         document.getElementById('MCP').value=dotResult.MCP;
         document.getElementById('address').value=dotResult.address;
         document.getElementById('phone').value=dotResult.phoneNumber;
         document.getElementById('powerUnits').value=dotResult.powerUnits;
-        // document.getElementById('drivers').value=dotResult.drivers;
         document.getElementById('mailingAddress').value=dotResult.mailingAddress;
 
-        resultField.style.display = 'none';
+        hideElement('result');
 
     }
+}
+
+function saveEmployeeData(){
+    let empArray = [];
+    const formlines = document.getElementsByClassName('formline');
+    for (let i=0; i<formlines.length; i++) {
+        let type = document.getElementById('empType'+i).value;
+        let number = document.getElementById('empNumber'+i).value;
+        let payroll = document.getElementById('empPayroll'+i).value;
+        if (type && number && payroll) {
+            empArray.push({'type': type, 'number': number, 'payroll': payroll});
+        }
+    }
+    return empArray;
 }
 
 // This function runs when the user indicates that the information returned from the DOTsearch is not correct and is given the chance to edit the fields.
@@ -172,8 +186,8 @@ function saveSecondLead(e) {
     dotResult.address = document.getElementById('address').value;
     dotResult.mailingAddress = document.getElementById('mailingAddress').value;
     dotResult.phoneNumber = document.getElementById('phone').value;
-    dotResult.drivers = document.getElementById('drivers').value;
     dotResult.powerUnits = document.getElementById('powerUnits').value;
+    dotResult.employees = saveEmployeeData();
     const uri = uriRoot+'lead';
     const result = fetch(uri, {
         method: 'POST',
@@ -181,8 +195,8 @@ function saveSecondLead(e) {
         body: JSON.stringify(dotResult)
     }).then(
         // response => response.json()
-        document.getElementById('manualInput').style.display = 'none',
-        resultField.style.display = 'block',
+        hideElement('manualInput'),
+        showElement('result'),
         resultField.innerHTML=`<p>Thank you for confirming! We will contact you shortly!</p>`
         )
     .catch(err=>console.log(err));

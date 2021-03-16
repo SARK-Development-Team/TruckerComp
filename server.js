@@ -2,7 +2,10 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const bcrypt = require('bcrypt');
 const flash = require('connect-flash');
+
+const Chart = require('chart.js');
 
 // for environment variables
 require('dotenv').config()
@@ -199,6 +202,7 @@ async function sqlSearch(number) {
 function azureSave(object) {
     // Build the "lead" object from the data passed in
     const rowKey = object.DOT.toString();
+    const empString = JSON.stringify(object.employees);
     const lead = {
         PartitionKey: {'_':'leads'},
         RowKey: {'_': rowKey},
@@ -212,7 +216,7 @@ function azureSave(object) {
         address: {'_': object.address},
         mailingAddress: {'_': object.mailingAddress},
         phoneNumber: {'_': object.phoneNumber},
-        drivers: {'_': object.drivers},
+        employees: {'_': empString},
         powerUnits: {'_': object.powerUnits},
       };
     //   Create the table if it does not exist already
@@ -232,7 +236,46 @@ function azureSave(object) {
     }
   });
 }
-  
+
+function generateChart() {
+    const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+    });
+    return myChart;
+}
 
 
 /* --------------------------
@@ -265,9 +308,17 @@ app.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
 // Register Page
 app.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
 
+
+
+
+app.get('/dashboard', (req, res) => res.render('dashboard'));
+
+
 // Register
 app.post('/register', (req, res) => {
-  const { name, email, password, password2, businessType, employees, zipCode, mileage, totalPayroll } = req.body;
+  const { name, email, password, password2, businessType, zipCode, mileage, totalPayroll } = req.body;
+  employees = JSON.parse(req.body.employees);
+
   let errors = [];
 
   if (!name || !email || !password || !password2) {
@@ -368,9 +419,21 @@ app.post('/dot', async (req, res) => {
 
 // This route saves the user input into the Azure Storage DB
 app.post('/lead', (req, res) => {
+  console.log(req.body);
+  try {
+    db.User.updateOne({ email: email }); 
+  } catch (err) {
+    console.log(err);
+  }
   azureSave(req.body);
   res.send(`<p>Thank you for confirming! We will contact you shortly!</p>`);
 });
+
+app.get('/chart', (req, res) => {
+  console.log("hit the API", req.body);
+  generateChart(req.body);
+});
+
 
 // This listens at port 5001, unless there is a Configuration variable (as on heroku).
 app.listen(process.env.PORT || 5001, () => console.log("Server running."));
