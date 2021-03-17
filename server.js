@@ -416,12 +416,10 @@ app.post('/register', (req, res) => {
 
 // Login
 app.post('/login', (req, res, next) => {
-  console.log(req);
   passport.authenticate('local', {
     successRedirect: 'dashboard',
     failureRedirect: 'login',
     failureFlash: true,
-    state: 'woob'
   })(req, res, next);
 });
 
