@@ -88,6 +88,12 @@ input[type="radio"]:checked + .toggle {
     text-decoration: none;
 }
 
+#editForm {
+    text-decoration: underline;
+    color: rgb(87, 11, 68);
+    cursor: pointer;
+}
+
 #employeeInfoTableHeadings p{
     min-width: 32%;
     display: inline-block;

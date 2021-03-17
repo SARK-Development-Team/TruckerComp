@@ -34,6 +34,7 @@
             <div class="left column">
                 <div id="progress">
                     <h2>Progress</h2>
+                    Progress chart to go here
                     <canvas id="myChart" width="100" height="100"></canvas>
                 </div>
                 <div id="status">
@@ -42,8 +43,8 @@
                 </div>
                 <div id="myInfo">
                     <h2>My Information&nbsp;<i class="fas fa-expand" onclick="showInfo()"></i><i class="fa fa-pencil-square-o" onclick="editInfo()"></i></h2>
-                    <p>Name: {{user.name}}</p>
-                    <p>Email: {{user.email}}</p>
+                    <p>Name: <span id= 'userName2'>{{user.name}}</span></p>
+                    <p>Email: <span id= 'userEmail2'>{{user.email}}</span></p>
                     {{!-- etc. --}}
                 </div>
 
@@ -86,8 +87,14 @@
                 </div>
             </div>
         </div>
-        <div id="manualInput">
-            <h2>Please check the following and correct as necessary&nbsp;<i class="far fa-save"></i></h2>
+        <div id="manualInput">        
+            <div id="searchArea">
+                <h2>Additional info</h2>
+                <label for="DOTsearch">Input your DOT Number to search our database or edit your profile directly</label>
+                <input name="DOTsearch" id="DOTsearch" type="number" min="0">
+                <button id="btn-search" onclick="searchDOT()">Search</button>
+            </div>
+            <h2>Please confirm the following&nbsp;<i class="far fa-save"></i></h2>
             <form action="/lead" method="POST" >
                 <div id="manualInputForm">
                     <fieldset>
@@ -100,30 +107,27 @@
                     </fieldset>
                     <fieldset>
                         <label for="DOT">DOT Number</label>
-                        <input id="DOT" name="DOT" type="number">
+                        <input id="DOT" name="DOT" type="number" value={{user.DOT}}>
                     </fieldset>
                     <fieldset>
                         <label for="MCP">MCP Number</label>
-                        <input id="MCP" name="MCP" type="number" >
+                        <input id="MCP" name="MCP" type="number" value={{user.MC}}>
                     </fieldset>
-
-
                     <fieldset>
                         <label for="companyName">Company Name</label>
-                        <input id="companyName" name="companyName" type="text" >
+                        <input id="companyName" name="companyName" type="text" value={{user.companyName}}>
                     </fieldset>
-
                     <fieldset>
                         <label for="address">Address</label>
-                        <input id="address" name="address" type="text" >
+                        <input id="address" name="address" type="text" value={{user.address}}>
                     </fieldset>
                     <fieldset>
                         <label for="phone">Phone Number</label>
-                        <input id="phone" name="phone" type="tel" >
+                        <input id="phone" name="phone" type="tel" value={{user.phone}}>
                     </fieldset>
                     <fieldset>
                         <label for="mailingAddress">Mailing Address</label>
-                        <input id="mailingAddress" name="mailingAddress" type="text" >
+                        <input id="mailingAddress" name="mailingAddress" type="text" value={{user.mailingAddress}}>
                     </fieldset>
                     <fieldset>
                         <label for="totalPayroll">Total Payroll</label>
@@ -135,12 +139,12 @@
                     </fieldset>
                     <fieldset>
                         <label for="powerUnits">Power Units</label>
-                        <input id="powerUnits" name="powerUnits" type="number" >
+                        <input id="powerUnits" name="powerUnits" type="number" value={{user.powerUnits}}>
                     </fieldset>
                     <fieldset></fieldset>
-                    <div class="hero-form">
+                    <fieldset>
                         <div id="employeeInfoTable">
-
+                            <p>Employees</p>
                             <div id="empTable">
                                 <div id="employeeInfoTableHeadings">
                                     <p>Type</p>
@@ -161,11 +165,12 @@
                                     <input class="empPayroll" name="empPayroll0" type="number" id="empPayroll0">
                                 </p>
                             </div>
-                    </div>
-                    <button id="newRow" onclick="addRow(event)"><i class="fas fa-plus" ></i></button>
-                    <input type="submit" id="save2" class="btn-save" onclick="saveSecondLead(event)">
+                    </fieldset>
+
 
                 </div>
+                <button id="newRow" onclick="addRow(event)"><i class="fas fa-plus" ></i></button>
+                <input type="submit" id="save" class="btn-save" onclick="saveLead(event)">
             </form>
         </div>  
     </main>

@@ -309,11 +309,6 @@ app.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
 app.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
 
 
-
-
-app.get('/dashboard', (req, res) => res.render('dashboard'));
-
-
 // Register
 app.post('/register', (req, res) => {
   const { name, email, password, password2, businessType, zipCode, mileage, totalPayroll } = req.body;
@@ -361,7 +356,14 @@ app.post('/register', (req, res) => {
           employees,
           totalPayroll,
           mileage,
-          zipCode
+          zipCode,
+          DOT,
+          MCP,
+          companyName,
+          address,
+          mailingAddress,
+          phoneNumber,
+          powerUnits
         });
 
         bcrypt.genSalt(10, (err, salt) => {
@@ -387,10 +389,12 @@ app.post('/register', (req, res) => {
 
 // Login
 app.post('/login', (req, res, next) => {
+  console.log(req);
   passport.authenticate('local', {
-    successRedirect: 'myInfo',
+    successRedirect: 'dashboard',
     failureRedirect: 'login',
-    failureFlash: true
+    failureFlash: true,
+    state: 'woob'
   })(req, res, next);
 });
 
@@ -402,11 +406,11 @@ app.get('/logout', (req, res) => {
 });
 
 // Dashboard
-app.get('/myInfo', ensureAuthenticated, (req, res) =>
-  res.render('myInfo', {
+app.get('/dashboard', ensureAuthenticated, (req, res) => {
+  res.render('dashboard', {
     user: req.user
   })
-);
+});
 
 
 // This route performs a search through the sark client DB for the DOT number entered
@@ -421,7 +425,7 @@ app.post('/dot', async (req, res) => {
 app.post('/lead', (req, res) => {
   console.log(req.body);
   try {
-    db.User.updateOne({ email: email }); 
+    db.User.updateOne({ email: req.body.email }); 
   } catch (err) {
     console.log(err);
   }
@@ -430,7 +434,7 @@ app.post('/lead', (req, res) => {
 });
 
 app.get('/chart', (req, res) => {
-  console.log("hit the API", req.body);
+  // console.log("hit the API", req.body);
   // generateChart(req.body);
 });
 

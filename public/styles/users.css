@@ -85,7 +85,7 @@ td {
 }
 
 .login-card {
-    margin: 5vw 30vw 0 30vw;
+    margin: 0vw 30vw 0 30vw;
     border: 2px solid black;
     border-radius: 5px;
 }
@@ -107,8 +107,8 @@ td {
 }
 
 #bottom-line {
-    margin: 1vw 30vw 6vw 30vw;
-    padding: 0 1vw;
+    margin: 1vw 30vw 0 30vw;
+    padding: 0 1vw 6vw 1vw;
 }
 
 #btn-logout {
