@@ -1,39 +1,171 @@
 
-    <script type="module" defer src="../../../public/scripts/dashboard.mjs"></script>
+    <script defer src="../../../public/scripts/dashboard.js"></script>
     <link href="../../../public/styles/users2.css" rel="stylesheet">
 
 
     <main class="indented dark">
         <h1>Trucker Comp Dashboard<span><a href='/logout' id="btn-logout" >Logout</a></span></h1>
-
+        <div id="infoDisplay">
+            <h2>My info&nbsp;<i class="fas fa-window-minimize" onclick="hideInfo()"></i><i class="fa fa-pencil-square-o" onclick="editInfo()"></i></h2>
+            <img src="../public/images/truck2.jpg" style="float: right; height: 24vw;">
+            <p>Name: <span id= 'userName'>{{user.name}}</span></p>
+            <p>Email: <span id= 'userEmail'>{{user.email}}</span></p>
+            <p>Employees:</p> 
+                <table id="empTable">
+                    <th>
+                        <td><b>Type</b></td>
+                        <td><b>Number</b></td>
+                        <td><b>Payroll</b></td>
+                    </th>
+                    {{#each user.employees as |item|}}
+                    <tr>
+                        <td></td>
+                        <td>{{item.type}}</td>
+                        <td>{{item.number}}</td>
+                        <td>{{item.payroll}}</td>
+                    </tr>
+                    {{/each}}
+                </table>
+            <p>Total Payroll: <span id= 'userTotalPayroll'>{{user.totalPayroll}}</span></p>
+            <p>Annual mileage: <span id= 'userMileage'>{{user.mileage}}</span></p>
+            <p>ZIP Code: {{user.zipCode}}</p>
+        </div>
         <div id="two-column">
             <div class="left column">
                 <div id="progress">
                     <h2>Progress</h2>
-                    <canvas id="myChart" width="400" height="400"></canvas>
+                    <canvas id="myChart" width="100" height="100"></canvas>
                 </div>
                 <div id="status">
                     <h2>Calculated Workers' Comp Quote</h2>
                     <p>some info will be displayed here</p>
                 </div>
-                <div id="furtherInfo">
-                    <h2>Further Info</h2>
-                    <p>something else will be displayed here</p>
+                <div id="myInfo">
+                    <h2>My Information&nbsp;<i class="fas fa-expand" onclick="showInfo()"></i><i class="fa fa-pencil-square-o" onclick="editInfo()"></i></h2>
+                    <p>Name: {{user.name}}</p>
+                    <p>Email: {{user.email}}</p>
+                    {{!-- etc. --}}
+                </div>
+
+                <div id="contact-us">
+                    <h2>Any questions? Contact us at</h2>
+                    <p>(408) 262-9190</p>
+                    <p>wc@sarkinsurance.com</p>
                 </div>
             </div>
             <div class="right column">
                 <div id="nextStep" >
                     <h2 class="blue-bg">Next Step</h2>
-                    <p>We are processing your request</p>
+                    <ul>
+                        <li class ="next-step step1">Please input your information</li>
+                        <li class ="next-step step2 active">Complete dashboard data entry</li>
+                        <li class ="next-step step3">Submit your application</li>
+                        <li class ="next-step step4">We are processing your application</li>
+                        <li class ="next-step step5">Policy purchased!</li>
+                    </ul>
                 </div>
                 <div id="upcomingStep" >
                     <h2 class="blue-bg">Upcoming Steps</h2>
-                    <p>We are processing your request</p>
+                    <ul>
+                        <li class ="upcoming-step step1">Initial quote data entry</li>
+                        <li class ="upcoming-step step2">Complete dashboard data entry</li>
+                        <li class ="upcoming-step step3 active">Submit your application</li>
+                        <li class ="upcoming-step step4 active">We are processing your application</li>
+                        <li class ="upcoming-step step5 active">Policy purchased!</li>
+                    </ul>
                 </div>
                 <div id="completedStep" >
                     <h2 class="blue-bg">Completed Steps</h2>
-                    <p>You have input all the necessary data</p>
+                    <ul>
+                        <li class ="completed-step step1 active">Initial quote data entry</li>
+                        <li class ="completed-step step2">Complete dashboard data entry</li>
+                        <li class ="completed-step step3">Submit your application</li>
+                        <li class ="completed-step step4">We are processing your application</li>
+                        <li class ="completed-step step5">Policy purchased!</li>
+                    </ul>
                 </div>
             </div>
         </div>
+        <div id="manualInput">
+            <h2>Please check the following and correct as necessary&nbsp;<i class="far fa-save"></i></h2>
+            <form action="/lead" method="POST" >
+                <div id="manualInputForm">
+                    <fieldset>
+                        <label for="name">Name</label>
+                        <input id="name" name="name" type="text" value={{user.name}}>
+                    </fieldset>
+                    <fieldset>
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="text" value={{user.email}}>
+                    </fieldset>
+                    <fieldset>
+                        <label for="DOT">DOT Number</label>
+                        <input id="DOT" name="DOT" type="number">
+                    </fieldset>
+                    <fieldset>
+                        <label for="MCP">MCP Number</label>
+                        <input id="MCP" name="MCP" type="number" >
+                    </fieldset>
+
+
+                    <fieldset>
+                        <label for="companyName">Company Name</label>
+                        <input id="companyName" name="companyName" type="text" >
+                    </fieldset>
+
+                    <fieldset>
+                        <label for="address">Address</label>
+                        <input id="address" name="address" type="text" >
+                    </fieldset>
+                    <fieldset>
+                        <label for="phone">Phone Number</label>
+                        <input id="phone" name="phone" type="tel" >
+                    </fieldset>
+                    <fieldset>
+                        <label for="mailingAddress">Mailing Address</label>
+                        <input id="mailingAddress" name="mailingAddress" type="text" >
+                    </fieldset>
+                    <fieldset>
+                        <label for="totalPayroll">Total Payroll</label>
+                        <input id="totalPayroll" name="totalPayroll" type="number" value={{user.totalPayroll}}>
+                    </fieldset>
+                    <fieldset>
+                        <label for="mileage">Mileage</label>
+                        <input id="mileage" name="mileage" type="number" value={{user.mileage}}>
+                    </fieldset>
+                    <fieldset>
+                        <label for="powerUnits">Power Units</label>
+                        <input id="powerUnits" name="powerUnits" type="number" >
+                    </fieldset>
+                    <fieldset></fieldset>
+                    <div class="hero-form">
+                        <div id="employeeInfoTable">
+
+                            <div id="empTable">
+                                <div id="employeeInfoTableHeadings">
+                                    <p>Type</p>
+                                    <p>Number</p>  
+                                    <p>Payroll</p>
+                                </div>
+                                <p class="formline">
+                                    <select class="empType" id="empType0">
+                                        <option value="" disabled selected>Employee Type</option>
+                                        <option value="Driver">Driver</option>
+                                        <option value="Maintenance">Maintenance</option>
+                                        <option value="Accounting">Accounting</option>
+                                        <option value="Custodial">Custodial</option>
+                                        <option value="Clerical">Clerical</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <input class="empNumber" name="empNumber0" type="number" min="1" id="empNumber0">
+                                    <input class="empPayroll" name="empPayroll0" type="number" id="empPayroll0">
+                                </p>
+                            </div>
+                    </div>
+                    <button id="newRow" onclick="addRow(event)"><i class="fas fa-plus" ></i></button>
+                    <input type="submit" id="save2" class="btn-save" onclick="saveSecondLead(event)">
+
+                </div>
+            </form>
+        </div>  
     </main>

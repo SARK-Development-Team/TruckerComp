@@ -431,7 +431,7 @@ app.post('/lead', (req, res) => {
 
 app.get('/chart', (req, res) => {
   console.log("hit the API", req.body);
-  generateChart(req.body);
+  // generateChart(req.body);
 });
 
 
