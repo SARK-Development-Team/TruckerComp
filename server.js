@@ -159,7 +159,7 @@ async function sendEmail(data) {
         console.log(error)
         return error;
     }
-}
+};
 
 // This function is the basic quote calculation formula
 function calculateQuote(data) {
@@ -193,10 +193,7 @@ async function sqlSearch(number) {
     } catch (err) {
        console.log(err)
     }
-  }
-  
-
-
+};
 
 // This function saves the new "lead" object in the Azure DB, using the DOT as the row key
 function azureSave(object) {
@@ -226,16 +223,46 @@ function azureSave(object) {
         // insert the "lead" object into the table
         tableSvc.insertEntity('sarkleads',lead, function (err, result, response) {
             if(!err){
-                return
+                return;
             } else {
-                console.log(err)
+                console.log(err);
             }
         });
     } else {
-        console.log(err)
+        console.log(err);
     }
   });
-}
+};
+
+function azureUpdate(object) {
+    // Build the "lead" object from the data passed in
+    const rowKey = object.DOT.toString();
+    const empString = JSON.stringify(object.employees);
+    const lead = {
+        PartitionKey: {'_':'leads'},
+        RowKey: {'_': rowKey},
+        name: {'_': object.name},
+        email: {'_': object.email},
+        DOT: {'_': object.DOT},
+        MCP: {'_': object.MCP},
+        totalPayroll: {'_': object.totalPayroll},
+        mileage: {'_': object.mileage},
+        companyName: {'_': object.companyName},
+        address: {'_': object.address},
+        mailingAddress: {'_': object.mailingAddress},
+        phoneNumber: {'_': object.phoneNumber},
+        employees: {'_': empString},
+        powerUnits: {'_': object.powerUnits},
+    };
+
+    tableSvc.updateEntity('sarkleads', lead, function (err, result, response) {
+        if(!err){
+            return;
+        } else {
+            console.log(err);
+        }
+    });
+};
 
 function generateChart() {
     const myChart = new Chart(ctx, {
@@ -275,7 +302,7 @@ function generateChart() {
     }
     });
     return myChart;
-}
+};
 
 
 /* --------------------------
@@ -429,7 +456,15 @@ app.post('/lead', (req, res) => {
   } catch (err) {
     console.log(err);
   }
-  azureSave(req.body);
+  try {
+    azureSave(req.body);
+  } catch (err) {
+    if (err=="StorageError: The specified entity already exists.") {
+      azureUpdate(req.body);
+    } else {
+      console.log(err);
+    }
+  }
   res.send(`<p>Thank you for confirming! We will contact you shortly!</p>`);
 });
 
