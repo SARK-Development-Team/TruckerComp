@@ -1,11 +1,9 @@
 /* ----------
   This style sheet will be indexed by the vertical position of elements
-  1. Whole page elements
-  2. Navbar elements
-  3. Hero elements
-  4. About section elements
-  5. Footer elements
-  6. Media queries
+  1. Hero elements
+  2. About section elements
+  3. Footer elements
+  4. Media queries
 
   Each sub-section is organized alphabetically by:
   1. Elements
@@ -14,23 +12,6 @@
   4. Pseudoelements
   ---------- */
 
-
-
-/* ----------
-   Navbar
----------- */
-
-.btn-test {
-    float: right;
-    padding: 10px;
-    color: white;
-    background: red;
-    height: 2.5vw;
-    font-size: 1.4vw;
-    border: 1px solid black;
-    border-radius: 5%;
-    text-decoration: none;
-}
 
 /* ----------
     Hero
@@ -152,13 +133,14 @@ input {
 }
 
 .hero-form h3 {
-    margin: 2.4vw 0 0 0;
+    /* margin: 2.4vw 0 0 0; */
+    margin: 2vw 0 0 0;
 }
 
 .icon-area {
     display: flex;
     justify-content: center;
-    font-size: 1.7vw;
+    font-size: 1.5vw;
     align-items: center;
     grid-column-start: center;
     grid-row-start: bottom;
@@ -207,7 +189,7 @@ input {
     min-width: 78vw;
     display: grid;  
     grid-template-columns: [lside] 10% [center] 80% [rside] 10%;
-    grid-template-rows: [top] 5vh [topmid] 14vh [centerline] 4vh [bottommid] 17vh [bottom] 5vh;
+    grid-template-rows: [top] 5vh [topmid] 12vh [centerline] 4vh [bottommid] 14vh [bottom] 5vh;
     transition: transform 0.5s;
 }
 
@@ -341,7 +323,7 @@ input {
 }
 
 #quote-area {
-    margin: 1vw;
+    margin: 0 1vw;
     padding: 2vw;
     background: rgb(23, 122, 114);
     color: white;
@@ -351,7 +333,8 @@ input {
     text-align: center;
     width: fit-content;
     grid-column-start: center;
-    grid-row-start: topmid;
+    grid-row-start: top;
+    justify-self: center;
 }
 
 #reset-container {
