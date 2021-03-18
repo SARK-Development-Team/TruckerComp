@@ -21894,7 +21894,8 @@ var myChart = new Chart(ctx, {
     },
     options: {
         legend: {
-            display: true
+            display: true,
+            position: 'bottom'
         },
         animation: {
             animateRotate: true
