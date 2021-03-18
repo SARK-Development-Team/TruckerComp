@@ -5,7 +5,7 @@ const session = require('express-session');
 const bcrypt = require('bcrypt');
 const flash = require('connect-flash');
 
-const Chart = require('chart.js');
+// const Chart = require('chart.js');
 
 // for environment variables
 require('dotenv').config()
@@ -264,45 +264,7 @@ function azureUpdate(object) {
     });
 };
 
-function generateChart() {
-    const myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-    });
-    return myChart;
-};
+
 
 
 /* --------------------------
@@ -339,6 +301,8 @@ app.get('/register', forwardAuthenticated, (req, res) => res.render('register'))
 // Register
 app.post('/register', (req, res) => {
   const { name, email, password, password2, businessType, zipCode, mileage, totalPayroll } = req.body;
+  var DOT, MC, companyName, address, mailingAddress, phoneNumber, powerUnits;
+  DOT = MC = companyName = address = mailingAddress = phoneNumber = powerUnits = '';
   employees = JSON.parse(req.body.employees);
 
   let errors = [];
@@ -385,7 +349,7 @@ app.post('/register', (req, res) => {
           mileage,
           zipCode,
           DOT,
-          MCP,
+          MC,
           companyName,
           address,
           mailingAddress,
@@ -450,7 +414,10 @@ app.post('/dot', async (req, res) => {
 app.post('/lead', (req, res) => {
   console.log(req.body);
   try {
-    db.User.updateOne({ email: req.body.email }); 
+    db.User.updateOne({ email: req.body.email })
+    .then(console.log("successfully updated"))
+    .catch((err)=>console.log(err)); 
+
   } catch (err) {
     console.log(err);
   }
@@ -466,10 +433,10 @@ app.post('/lead', (req, res) => {
   res.send(`<p>Thank you for confirming! We will contact you shortly!</p>`);
 });
 
-app.get('/chart', (req, res) => {
-  // console.log("hit the API", req.body);
-  // generateChart(req.body);
-});
+// app.post('/chart', (req, res) => {
+//   console.log("hit the API", req.body);
+//   generateChart(req.body.percentage, req.body.ctx);
+// });
 
 
 // This listens at port 5001, unless there is a Configuration variable (as on heroku).

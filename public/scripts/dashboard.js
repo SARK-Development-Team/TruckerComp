@@ -1,3 +1,9 @@
+// import Chart from '/chart.js';
+var Chart = require('chart.js');
+
+// RUN this command in CLI when updating this file:
+// browserify public/scripts/dashboard.js -o public/scripts/bundle.js
+
 let uriRoot = '';
 
 
@@ -17,21 +23,38 @@ var leadData = {
 }
 
 
-// const ctx = document.getElementById('myChart').getContext('2d');
+const ctx = document.getElementById('myChart').getContext('2d');
 
-// async function fetchChart(percentage) {
-//     const uri = uriRoot+'chart';
+const percentage = 20;
 
-//     const result = fetch(uri, {
-//         method: 'GET',
-//         headers: { 'Content-Type': 'application/json' },
-//         // body: JSON.stringify(percentage)
-//     }).then(response => response.json()).catch(err=>console.log(err));
-
-//     return result;
-// }
-
-// fetchChart('20');
+var myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        datasets: [{
+            label: '% complete',
+            data: [percentage, 100-percentage],
+            backgroundColor: [
+                'red',
+                'white'
+            ],
+            borderColor: [
+                'black',
+                'black'
+            ],
+            borderWidth: 1
+        }],
+        labels: ['Complete']
+    },
+    options: {
+        legend: {
+            display: true
+        },
+        animation: {
+            animateRotate: true
+        },
+        responsive: false
+    }
+});
 
 function hideElement(...elements) {
     elements.forEach((e)=> document.getElementById(e).style.display='none')
@@ -181,22 +204,4 @@ async function fetchUser() {
 }
 
 
-// function populateForm(email) {
-//     const user = fetchUser()
-//     .then(
-//     ).catch(err=>console.log(err));
-
-//     document.getElementById('userName').value = user.name;
-//     document.getElementById('userEmail').value = user.email;
-//     document.getElementById('userName').value = user.name;
-//     document.getElementById('userName').value = user.name;
-//     document.getElementById('userName').value = user.name;
-//     document.getElementById('userName').value = user.name;
-//     document.getElementById('userName').value = user.name;
-//     document.getElementById('userName').value = user.name;
-//     document.getElementById('userName').value = user.name;
-//     document.getElementById('userName').value = user.name;
-
-// }
-
-// window.onload= populateForm(user.email);
+// window.onload=generateChart();

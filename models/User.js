@@ -38,7 +38,7 @@ const UserSchema = new mongoose.Schema({
   DOT: {
     type: Number,
   },
-  MCP: {
+  MC: {
     type: Number,
   },
   companyName: {
