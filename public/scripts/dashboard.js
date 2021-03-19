@@ -1,8 +1,4 @@
-// import Chart from '/chart.js';
-var Chart = require('chart.js');
 
-// RUN this command in CLI when updating this file:
-// browserify public/scripts/dashboard.js -o public/scripts/bundle.js
 
 let uriRoot = '';
 
@@ -20,56 +16,25 @@ var leadData = {
     phoneNumber: '',
     employees: '',
     powerUnits: '',
+    stage: 1
 }
 
 
-const ctx = document.getElementById('myChart').getContext('2d');
-
-const percentage = 20;
-
-var myChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        datasets: [{
-            label: '% complete',
-            data: [percentage, 100-percentage],
-            backgroundColor: [
-                'red',
-                'white'
-            ],
-            borderColor: [
-                'black',
-                'black'
-            ],
-            borderWidth: 1
-        }],
-        labels: ['Complete']
-    },
-    options: {
-        legend: {
-            display: true,
-            position: 'bottom'
-        },
-        animation: {
-            animateRotate: true
-        },
-        responsive: false
-    }
-});
-
 function hideElement(...elements) {
-    elements.forEach((e)=> document.getElementById(e).style.display='none')
+    elements.forEach((e)=> document.getElementById(e).style.maxHeight='0');
+    // .then(elements.forEach((e)=> document.getElementById(e).style.display='none'))
 }
 
 function showElement(...elements) {
 
-    elements.forEach((e)=> {
-        if (e=='two-column') {
-            document.getElementById(e).style.display='flex';
-        } else {
-            document.getElementById(e).style.display='block';
-        }
-    })
+    elements.forEach((e)=> document.getElementById(e).style.maxHeight='4000px');
+        // if (e=='two-column') {
+            // document.getElementById(e).style.display='flex';
+            ;
+    //     } else {
+    //         document.getElementById(e).style.display='block';
+    //     }
+    // }).then(elements.forEach((e)=> document.getElementById(e).style.height='unset'));
 }
 
 function showInfo() {
@@ -78,7 +43,7 @@ function showInfo() {
 }
 
 function hideInfo() {
-    hideElement('infoDisplay');
+    hideElement('infoDisplay', 'manualInput');
     showElement('two-column');
 }
 
@@ -204,5 +169,3 @@ async function fetchUser() {
     return result;
 }
 
-
-// window.onload=generateChart();
