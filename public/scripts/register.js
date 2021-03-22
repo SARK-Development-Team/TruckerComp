@@ -24,6 +24,11 @@ function checkCookie() {
 
     } catch (err) {
         console.log(err);
+        employeesField.value='';
+        businessField.value='';
+        payrollField.value='';
+        mileageField.value='';
+        zipField.value='';
     }
 
 }

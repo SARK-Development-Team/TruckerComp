@@ -22,19 +22,10 @@ var leadData = {
 
 function hideElement(...elements) {
     elements.forEach((e)=> document.getElementById(e).style.maxHeight='0');
-    // .then(elements.forEach((e)=> document.getElementById(e).style.display='none'))
 }
 
 function showElement(...elements) {
-
     elements.forEach((e)=> document.getElementById(e).style.maxHeight='4000px');
-        // if (e=='two-column') {
-            // document.getElementById(e).style.display='flex';
-            ;
-    //     } else {
-    //         document.getElementById(e).style.display='block';
-    //     }
-    // }).then(elements.forEach((e)=> document.getElementById(e).style.height='unset'));
 }
 
 function showInfo() {
@@ -145,6 +136,7 @@ function saveLead(e) {
     leadData.phoneNumber = document.getElementById('phone').value;
     leadData.powerUnits = document.getElementById('powerUnits').value;
     leadData.employees = saveEmployeeData();
+    if (leadData.stage==1) leadData.stage=2;
     const uri = uriRoot+'lead';
     const result = fetch(uri, {
         method: 'POST',
@@ -168,4 +160,23 @@ async function fetchUser() {
 
     return result;
 }
+
+function setStages() {
+    const steps = document.getElementsByClassName('step');
+    for (let i=0; i>steps.length; i++) {
+        steps[i].classList.remove('active')
+    }
+    var stage = leadData.stage;
+    document.getElementsByClassName(`next-step${stage}`)[0].classList.add('active')
+    for (let j = stage+1; j<5; j++) {
+        document.getElementsByClassName(`upcoming-step${j}`)[0].classList.add('active')
+    }
+
+    for (let k = stage; k>0; k--) {
+        document.getElementsByClassName(`completed-step${k}`)[0].classList.add('active')
+    }
+
+}
+
+window.onload = setStages();
 

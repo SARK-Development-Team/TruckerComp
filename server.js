@@ -215,6 +215,7 @@ function azureSave(object) {
         phoneNumber: {'_': object.phoneNumber},
         employees: {'_': empString},
         powerUnits: {'_': object.powerUnits},
+        stage: {'_': object.stage}
       };
     //   Create the table if it does not exist already
     tableSvc.createTableIfNotExists('sarkleads', function(err, result, response){
@@ -253,6 +254,7 @@ function azureUpdate(object) {
         phoneNumber: {'_': object.phoneNumber},
         employees: {'_': empString},
         powerUnits: {'_': object.powerUnits},
+        stage: {'_': object.stage}
     };
 
     tableSvc.updateEntity('sarkleads', lead, function (err, result, response) {
@@ -303,8 +305,12 @@ app.post('/register', (req, res) => {
   const { name, email, password, password2, businessType, zipCode, mileage, totalPayroll } = req.body;
   var DOT, MC, companyName, address, mailingAddress, phoneNumber, powerUnits;
   DOT = MC = companyName = address = mailingAddress = phoneNumber = powerUnits = '';
-  employees = JSON.parse(req.body.employees);
-
+  const stage = 1;
+  if (req.body.employees) {
+    employees = JSON.parse(req.body.employees);
+  } else {
+    employees = [];
+  }
   let errors = [];
 
   if (!name || !email || !password || !password2) {
@@ -354,7 +360,8 @@ app.post('/register', (req, res) => {
           address,
           mailingAddress,
           phoneNumber,
-          powerUnits
+          powerUnits,
+          stage
         });
 
         bcrypt.genSalt(10, (err, salt) => {
@@ -414,12 +421,12 @@ app.post('/dot', async (req, res) => {
 app.post('/lead', (req, res) => {
   console.log(req.body);
   try {
-    db.User.updateOne({ email: req.body.email })
+    db.User.findOneAndUpdate({ email: req.body.email }, req.body)
     .then(console.log("successfully updated"))
     .catch((err)=>console.log(err)); 
 
   } catch (err) {
-    console.log(err);
+    console.log("Db error:", err);
   }
   try {
     azureSave(req.body);
@@ -427,17 +434,11 @@ app.post('/lead', (req, res) => {
     if (err=="StorageError: The specified entity already exists.") {
       azureUpdate(req.body);
     } else {
-      console.log(err);
+      console.log("this is the error:", err);
     }
   }
   res.send(`<p>Thank you for confirming! We will contact you shortly!</p>`);
 });
-
-// app.post('/chart', (req, res) => {
-//   console.log("hit the API", req.body);
-//   generateChart(req.body.percentage, req.body.ctx);
-// });
-
 
 // This listens at port 5001, unless there is a Configuration variable (as on heroku).
 app.listen(process.env.PORT || 5001, () => console.log("Server running."));

@@ -3,11 +3,11 @@ var Chart = require('chart.js');
 
 // RUN this command in CLI when updating this file:
 // browserify public/scripts/dashboard.js -o public/scripts/bundle.js
-const stage = document.getElementById('stage').nodeValue;
+const stage = document.getElementById('userStage').value;
 
 const ctx = document.getElementById('myChart').getContext('2d');
 
-const percentage = stage*20 || 50;
+const percentage = stage*20;
 
 var myChart = new Chart(ctx, {
     type: 'doughnut',

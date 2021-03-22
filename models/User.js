@@ -55,6 +55,9 @@ const UserSchema = new mongoose.Schema({
   },
   powerUnits: {
     type: Number,
+  },
+  stage: {
+    type: Number
   }
 
 
