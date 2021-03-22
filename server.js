@@ -5,6 +5,9 @@ const session = require('express-session');
 const bcrypt = require('bcrypt');
 const flash = require('connect-flash');
 
+
+const cors = require('cors');
+
 // const Chart = require('chart.js');
 
 // for environment variables
@@ -419,7 +422,6 @@ app.post('/dot', async (req, res) => {
 
 // This route saves the user input into the Azure Storage DB
 app.post('/lead', (req, res) => {
-  console.log(req.body);
   try {
     db.User.findOneAndUpdate({ email: req.body.email }, req.body)
     .then(console.log("successfully updated"))
@@ -438,6 +440,19 @@ app.post('/lead', (req, res) => {
     }
   }
   res.send(`<p>Thank you for confirming! We will contact you shortly!</p>`);
+});
+
+
+app.post('/zip', cors(), (req, res) => {
+  const zipcode = req.body
+  console.log(">>", zipcode)
+  const app_key=process.env.ZIPCODE_API_APP_KEY;
+  const uri = `https://www.zipcodeapi.com/rest/${app_key}/info.json/${zipcode}/degrees`
+
+  if (data.error_msg) {
+
+  }
+
 });
 
 // This listens at port 5001, unless there is a Configuration variable (as on heroku).

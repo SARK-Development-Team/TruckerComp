@@ -203,13 +203,21 @@ function saveEmployeeData(){
 const zip = document.getElementById('slide4Zipcode');
 const miles = document.getElementById('slide4Mileage');
 
-zip.addEventListener('keyup', () => {
+zip.addEventListener('keyup', async () => {
     const input = parseInt(zip.value);
     const zipError = document.getElementById('zipError');
-    if (input>0 && Number.isInteger(input)) {
-        formData.zipCode = input;
-        zipError.style.visibility = 'hidden';
-        checkSlide4();
+    if (input>0 && Number.isInteger(input))  {
+        console.log(input.length);
+        if (input.length>=5) {
+            const valid = await validateZIP(input);
+            if (valid) {
+                formData.zipCode = input;
+                zipError.style.visibility = 'hidden';
+                checkSlide4();
+            } else {
+                zipError.style.visibility = 'visible';
+            }
+        }
     } else {
         zipError.style.visibility = 'visible';
     }
@@ -359,6 +367,18 @@ function sendQuote (data) {
 // Todo: determine if entered zip code is valid. 
 zipCodeError = "Please enter a valid zip code."
 // Consider this API: https://smartystreets.com/docs/cloud/us-zipcode-api
+function validateZIP(zipcode) {
+    const uri = uriRoot+'zip';
+    console.log("zipcode = ", zipcode)
+    fetch(uri, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(zipcode)
+    }).then(response => response.json());
+
+    return response;
+}
+
 
 
 function setCookie(name, value) {

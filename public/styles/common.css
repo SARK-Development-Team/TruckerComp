@@ -72,17 +72,17 @@ h2, h3 {
 }
 
 #navbar {
-    background: rgb(255, 240, 230);
+    background: rgb(225, 240, 250);
     list-style: none;
     display: grid;
     grid-template-columns: 3fr 3fr ;
     justify-content: center;
-    padding: .7vw 8%;
+    padding: .3vw 8%;
     text-align: center;
 }
 
 #navbar a {
-    font-size: 0.6vw;
+    font-size: 0.7vw;
     font-weight: 800;
     text-decoration: none;
     align-items: center;
@@ -140,15 +140,16 @@ h2, h3 {
 ---------- */
 
 .footer-logo-top {
-    font-size: 4.4vw;
+    /* font-size: 2.4vw; */
+    font-size: 29px;
     letter-spacing: -.07em;
     border-bottom: 1px solid #e2e2e2;
     margin: 0;
-    line-height: 4.1vw;
-    padding-top: .8vw;
+    line-height: 27px;
 }
 .footer-logo-bottom {
-    font-size: .99vw;
+    font-size: .6vw;
+    font-size: 7px;
     letter-spacing: -0.4px;
     margin: 0;
     padding-left: .5px;
@@ -164,7 +165,16 @@ h2, h3 {
     margin: 0;
 }
 
+#copy {
+    text-align: center; 
+    font-size:0.7vw; 
+    position: absolute; 
+    bottom: 1vw;
+    left: 45%;
+}
+
 #footer {
+    font-size: 0.7vw;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 0fr 1fr;
     align-items: center;
@@ -179,7 +189,7 @@ h2, h3 {
 }
 
 #footer>div {
-    margin: 1vw 1.4vw;
+    margin: 0 1.4vw;
 }
 
 #footer-area {
@@ -187,16 +197,18 @@ h2, h3 {
     color: rgb(226, 225, 225);
     font-size: 1.2vw;
     margin: 0;
-    padding: 1% 8%;
+    padding: 0 8%;
+    position: relative;
 }
 
 #footer-logo {
     display: flex;
     font-family: helvetica;
+    align-items: center;
 }
 
 #footer-logo img {
-    height: 7vw;
+    height: 56px;
 }
 
 
