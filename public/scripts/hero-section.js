@@ -66,7 +66,9 @@ function deactivateSlide(slideIndex) {
     next.onclick = '';
 }
 
-//------Slide 1 
+/* ----------
+   Slide 1
+---------- */
 const yes = document.getElementById('slide1Yes');
 const no = document.getElementById('slide1No');
 
@@ -81,10 +83,12 @@ yes.onclick = () => {
     const slide4 = document.getElementById('slide4');
     const slide5 = document.getElementById('slide5');
     const slide6 = document.getElementById('slide6');
+    const slide7 = document.getElementById('slide7');
     slide3.style.display='grid';
     slide4.style.transform = "translateX(300vw)";
     slide5.style.transform = "translateX(400vw)";
     slide6.style.transform = "translateX(500vw)";
+    slide7.style.transform = "translateX(600vw)";
     nextSlide(1);
 }
 
@@ -99,14 +103,19 @@ no.onclick = () => {
     const slide4 = document.getElementById('slide4');
     const slide5 = document.getElementById('slide5');
     const slide6 = document.getElementById('slide6');
+    const slide7 = document.getElementById('slide7');
     slide3.style.display='none';
     slide4.style.transform = "translateX(200vw)";
     slide5.style.transform = "translateX(300vw)";
     slide6.style.transform = "translateX(400vw)";
+    slide7.style.transform = "translateX(500vw)";
     nextSlide(1)
 };
 
-//------Slide 2
+/* ----------
+   Slide 2
+---------- */
+
 // For slides 2-5, the formData is updated based on the user's input.
 const longhaul = document.getElementById('slide2LongHaul');
 const sand = document.getElementById('slide2Sand');
@@ -146,7 +155,9 @@ towing.onclick = () => {
     nextSlide(2);
 }
 
-//------Slide 3 
+/* ----------
+   Slide 3
+---------- */
 
 // This is the plus icon that sits beneath the employee information table
 const newRow = document.getElementById('newRow');
@@ -199,7 +210,9 @@ function saveEmployeeData(){
 }
 
 
-//------Slide 4 
+/* ----------
+   Slide 4
+---------- */
 const zip = document.getElementById('slide4Zipcode');
 const miles = document.getElementById('slide4Mileage');
 
@@ -207,8 +220,7 @@ zip.addEventListener('keyup', async () => {
     const input = parseInt(zip.value);
     const zipError = document.getElementById('zipError');
     if (input>0 && Number.isInteger(input))  {
-        console.log(input.length);
-        if (input.length>=5) {
+        if (zip.value.length>=5) {
             const valid = await validateZIP(input);
             if (valid) {
                 formData.zipCode = input;
@@ -286,7 +298,9 @@ function fillInfo(data) {
 }
 
 
-//------Slide 5
+/* ----------
+   Slide 5
+---------- */
 
 const email = document.getElementById('slide5Email');
 
@@ -299,11 +313,15 @@ email.addEventListener('keyup', () => {
     const emailError = document.getElementById('emailError');
     if (input!='' && regex.test(input)) {
         formData.email = input;
+        document.getElementById('email').value=input;
+        document.getElementById('spanEmail').innerText=input;
         setCookie('clientData', JSON.stringify(formData));
         emailError.style.visibility = 'hidden';
         submit.style.background='#4ca846';
         submit.onclick=function() {
-            changeSlide(1); 
+            nextSlide(5);
+            nextSlide(6);
+            // changeSlide(1); 
             // this function sends the email
             sendQuote(formData);
         };
@@ -344,14 +362,16 @@ function fetchResult(data) {
 async function requestQuoteSlide(data) {
     const lowEnd = document.getElementById("low-end");
     const highEnd = document.getElementById("high-end");
-    const emailAdd = document.getElementById("email");
-
     let response = await fetchResult(data);
     let number = response.result;
     lowEnd.innerText=(number *0.8).toFixed(2);
     highEnd.innerText=(number *1.2).toFixed(2);
-    emailAdd.innerText=data.email;
 }
+
+
+/* ----------
+   Slide 6
+---------- */
 
 function sendQuote (data) {
     const uri = uriRoot+'send';
@@ -364,19 +384,24 @@ function sendQuote (data) {
 }
 
 
+
+
+
+
 // Todo: determine if entered zip code is valid. 
 zipCodeError = "Please enter a valid zip code."
 // Consider this API: https://smartystreets.com/docs/cloud/us-zipcode-api
 function validateZIP(zipcode) {
     const uri = uriRoot+'zip';
-    console.log("zipcode = ", zipcode)
+    const zipCodeObj = {"zipcode": zipcode};
     fetch(uri, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(zipcode)
+        body: JSON.stringify(zipCodeObj)
     }).then(response => response.json());
 
-    return response;
+    // return response;
+    return true;
 }
 
 
