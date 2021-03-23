@@ -48,9 +48,9 @@ input {
 
 .btn-reset {
     background: #426b13;
-    padding: 0.6vw 1.4vw;
+    padding: 0.3vw .6vw;
     color: white;
-    font-size: 1vw;
+    font-size: .8vw;
     border-radius: 2000px;
     cursor: pointer;
     z-index: 5;
@@ -340,7 +340,8 @@ input {
 
 #reset-container {
     text-align: center;
-    z-index: 5
+    z-index: 5;
+    margin: 1vw 0;
 }
 
 /* ----------
@@ -645,7 +646,7 @@ Media Queries
     }
 
     .btn-reset {
-        font-size: 2vh;
+        font-size: 1.4vh;
         
     }
 
@@ -696,10 +697,6 @@ Media Queries
     #empError, #payrollError, #zipError, #milesError, #emailError {
         font-size: 3.5vw;
     }
-
-    /* #reset-container {
-        top: 12vw;
-    } */
 
     #why-SARK {
         padding: 1% 12%;
