@@ -221,14 +221,14 @@ zip.addEventListener('keyup', async () => {
     const zipError = document.getElementById('zipError');
     if (input>0 && Number.isInteger(input))  {
         if (zip.value.length>=5) {
-            const valid = await validateZIP(input);
-            if (valid) {
+            // const valid = await validateZIP(input);
+            // if (valid) {
                 formData.zipCode = input;
                 zipError.style.visibility = 'hidden';
                 checkSlide4();
-            } else {
-                zipError.style.visibility = 'visible';
-            }
+            // } else {
+            //     zipError.style.visibility = 'visible';
+            // }
         }
     } else {
         zipError.style.visibility = 'visible';
@@ -313,14 +313,15 @@ email.addEventListener('keyup', () => {
     const emailError = document.getElementById('emailError');
     if (input!='' && regex.test(input)) {
         formData.email = input;
-        document.getElementById('email').value=input;
         document.getElementById('spanEmail').innerText=input;
         setCookie('clientData', JSON.stringify(formData));
         emailError.style.visibility = 'hidden';
         submit.style.background='#4ca846';
+        submit.style.cursor='pointer';
         submit.onclick=function() {
             nextSlide(5);
             nextSlide(6);
+            populateRegistrationForm(formData);
             // changeSlide(1); 
             // this function sends the email
             sendQuote(formData);
@@ -328,6 +329,7 @@ email.addEventListener('keyup', () => {
     } else {
         submit.style.background='red';
         submit.href = '';
+        submit.style.cursor='unset';
         emailError.style.visibility = 'visible';
     }
 });
@@ -383,25 +385,39 @@ function sendQuote (data) {
     }).then(response => response.json());
 }
 
+/* ----------
+   Slide 7
+---------- */
 
 
+// If the cookie exists already, populate the email and the hidden inputs of the form with the values from the cookie.
+function populateRegistrationForm(data) {
+
+    document.getElementById('email').value=data.email;
+    document.getElementById('employees').value=JSON.stringify(data.employees);
+    document.getElementById('businessType').value=data.businessType;
+    document.getElementById('totalPayroll').value=data.totalPayroll;
+    document.getElementById('mileage').value=data.mileage;
+    document.getElementById('zipCode').value=data.zipCode;
+}
 
 
 
 // Todo: determine if entered zip code is valid. 
-zipCodeError = "Please enter a valid zip code."
-// Consider this API: https://smartystreets.com/docs/cloud/us-zipcode-api
+// This code is not currently functional
+
 function validateZIP(zipcode) {
     const uri = uriRoot+'zip';
     const zipCodeObj = {"zipcode": zipcode};
-    fetch(uri, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(zipCodeObj)
-    }).then(response => response.json());
+    // fetch(uri, {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify(zipCodeObj)
+    // }).then(response => console.log(response.json()))
+    // .catch((err)=>console.log("++",err));
 
     // return response;
-    return true;
+    // return true;
 }
 
 

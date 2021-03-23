@@ -189,7 +189,7 @@ input {
     display: grid;  
     grid-template-columns: [lside] 10% [center] 80% [rside] 10%;
     /* grid-template-columns: [lside] 10% [center] 108% [rside] 10%; */
-    grid-template-rows: [top] 5vh [topmid] 12vh [centerline] 4vh [bottommid] 14vh [bottom] 5vh;
+    grid-template-rows: [top] 5vh [topmid] 12vh [centerline] 4vh [bottommid] 10vh [lowerbottom] 4vh [bottom] 5vh;
     transition: transform 0.5s;
 
 }
@@ -309,9 +309,7 @@ input {
 #hero {
     padding: 1vw 10vw;
     background: url('../images/truckbgd.jpeg');
-    /* background: #d8d8d8; */
     background-size: cover;
-    /* background-repeat: no-repeat; */
 }
 
 #hero a {
@@ -336,6 +334,10 @@ input {
     grid-column-start: center;
     grid-row-start: top;
     justify-self: center;
+}
+
+#quote-area h1, #quote-area h3 {
+    font-size: 1.8vw;
 }
 
 #reset-container {
@@ -528,7 +530,8 @@ svg {
     background: rgb(150, 160, 185);
     color: white;
     padding: 1vw;
-    margin-bottom: 1px solid grey;
+    text-align: center;
+    border-bottom: 1px solid grey;
 }
 
 .card-body {
@@ -540,7 +543,7 @@ svg {
     border-radius: 5px;
     grid-column-start: center;
     grid-row-start: top;
-    grid-row-end: bottom;
+    grid-row-end: lowerbottom;
 }
 
 /* .login-card input, .login-card label {
@@ -550,13 +553,13 @@ svg {
 #btn-register {
     padding: 0.6vw;
     background: green;
-    border-radius: 4%;
+    /* border-radius: 4%; */
     color: white;
     transition: all 0.6s ease;
     font-size: 1.1vw;
     width: 98%;
     text-align: center;
-    margin-top: 3vw;
+    margin-top: 1vw;
     grid-row-start: bottommid;
 }
 
@@ -565,7 +568,7 @@ svg {
     margin: 1vw 0;
     padding: 0 1vw 6vw 1vw;
     grid-column-start: center;
-    grid-row-start: bottom;
+    grid-row-start: lowerbottom;
 }
 
 
@@ -616,7 +619,7 @@ Media Queries
     }
 
     .slide{
-        grid-template-rows: [top] 5vh [topmid] 14vh [centerline] 1vh [bottommid] 15vh [bottom] 4vh;
+        grid-template-rows: [top] 5vh [topmid] 14vh [centerline] 1vh [bottommid] 10vh [lowerbottom] 5vh [bottom] 4vh;
     }
 
     .tile > br {
@@ -673,7 +676,7 @@ Media Queries
     }
 
     #btn-register {
-    
+        margin-top: 3vw;
         font-size: 2.8vw;
     }
 
@@ -683,6 +686,10 @@ Media Queries
 
     #login-line {
         font-size: 3.2vw
+    }
+
+    #quote-area h1, #quote-area h3 {
+        font-size: 4.5vw;
     }
 
     #employeeInfoTableHeadings p{

@@ -1,7 +1,6 @@
 
     <link href="public/styles/index.css" rel="stylesheet">
     <script defer src="public/scripts/hero-section.js"></script>
-
     <section>
         <!-- This contains the form and call to action -->
         <section id="hero" >
@@ -25,6 +24,8 @@
                         <div class="icon-area">
                             <div class="icons">
                                 <i class="fas fa-circle active"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle"></i>
@@ -62,6 +63,8 @@
                             <div class="icons">
                                 <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle active"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle"></i>
@@ -125,6 +128,8 @@
                                 <i class="fas fa-circle active"></i>
                                 <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
                             </div>               
                         </div>
                     </div>
@@ -157,6 +162,8 @@
                                 <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle active"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle"></i>
                             </div>
                         </div>
@@ -191,6 +198,8 @@
                                 <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle active"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
                             </div>
                         </div>
                         
@@ -206,10 +215,21 @@
                         <div id="quote-area">
                             <h3>Based on the information you've provided, we estimate a monthly worker's comp premium of</h3>
                             <h1>$<span id="low-end"></span> &mdash; $<span id="high-end"></span>/month</h1>
-                            <h3>We've also sent an email to <span id="spanEmail"></span> with further information.</h3>
+                            <h3>We've also sent an email to <span id="spanEmail" style="color: darkblue"></span> with further information.</h3>
                             {{!-- <h1>Please call 415 xxx xxxx to purchase a policy now!</h1> --}}
                             {{!-- <a class ='btn-purchase' href='register' >Click here to register!</a> --}}
                             <p id = "bgd-icons"><i class="material-icons" style="font-size: 16vw; left: 0; bottom: 0" >source</i> <i></i> <i class="material-icons" style="font-size: 13vw; right: 0; bottom: 0" >verified</i></p>
+                        </div>
+                        <div class="icon-area">
+                            <div class="icons">
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle active"></i>
+                                <i class="fas fa-circle"></i>
+                            </div>
                         </div>
                     </div>
                     {{!-- This slide appears after the submit button has been pressed. It contains the quote --}}
@@ -217,14 +237,11 @@
                         <div class="back-icon" onclick="changeSlide(-1)">
                             <i class="fas fa-chevron-left "></i>
                         </div>
-                        {{!-- <div class="next-icon" id="next7">
-                            <i class="fas fa-chevron-right "></i>
-                        </div> --}}
                         <section class="login-card">
                             <div class="card-heading">Create your account</div>
                             <form action="/register" method="POST">
                                 <div class="card-body">
-                                    {{!-- <input
+                                    <input
                                         type="hidden"
                                         id="employees"
                                         name="employees"
@@ -248,7 +265,7 @@
                                         type="hidden"
                                         id="zipCode"
                                         name="zipCode"
-                                    > --}}
+                                    >
                                     <p><label for="name">Name</label>
                                     <input
                                         type="name"
@@ -261,7 +278,6 @@
                                         type="email"
                                         id="email"
                                         name="email"
-                                        {{!-- placeholder="Enter Email" --}}
                                     ></p>
                                     <label for="password">Password</label>
                                     <input
@@ -279,9 +295,22 @@
                                     >
                                     <button id="btn-register" type="submit">Create</button>
                                 </div>
+                                
                             </form>     
                         </section>
+
                         <p id="login-line">Already registered? <a href="login">Click here to log in.</a></p>
+                        <div class="icon-area">
+                            <div class="icons">
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle active"></i>
+                            </div>
+                        </div>
                     </div>
 
                 </div>

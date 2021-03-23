@@ -5,7 +5,6 @@ const session = require('express-session');
 const bcrypt = require('bcrypt');
 const flash = require('connect-flash');
 
-
 const cors = require('cors');
 
 // const Chart = require('chart.js');
@@ -444,17 +443,18 @@ app.post('/lead', (req, res) => {
 
 
 app.post('/zip', cors(), (req, res) => {
-  // const zipcode = req.body.zipcode;
-  // const app_key=process.env.ZIPCODE_API_APP_KEY;
-  // const uri = `https://www.zipcodeapi.com/rest/${app_key}/info.json/${zipcode}/degrees`
-  // fetch(uri, {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify(zipCodeObj)
-  // }).then(response => response.json());
+  const zipcode = req.body.zipcode;
+  const app_key=process.env.ZIPCODE_API_APP_KEY;
+  const uri = `https://www.zipcodeapi.com/rest/${app_key}/info.json/${zipcode}/degrees`
+  $.ajax({
+    "url": uri,
+    "dataType": "json"
+  }).done(function(data) {
+    console.log(data);
+  })
 
   // return response;
-  return true;
+  // return true;
 });
 
 // This listens at port 5001, unless there is a Configuration variable (as on heroku).
