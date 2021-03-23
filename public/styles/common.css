@@ -168,9 +168,9 @@ h2, h3 {
 #copy {
     text-align: center; 
     font-size:0.7vw; 
-    position: absolute; 
+    /* position: absolute; 
     bottom: 1vw;
-    left: 45%;
+    left: 45%; */
 }
 
 #footer {
