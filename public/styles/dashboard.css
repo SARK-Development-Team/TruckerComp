@@ -4,8 +4,9 @@ fieldset {
     margin: 0;
 }
 
-input, label {
+input, label, select {
     display: block;
+    font-size: 1.1vw;
 }
 
 input {
@@ -16,7 +17,7 @@ input {
 
 input[type="radio"] {
     display: none;
-    font-size: 1.2vw;
+    font-size: 1.1vw;
     padding: 1vw;
     background: white;
     border-radius: 6px;
@@ -30,6 +31,10 @@ input[type="radio"]:checked + .toggle {
     color: white;
 }
 
+main p, main li, main td {
+    font-size: 1.1vw;
+}
+
 .active {
     display: block!important;
 }
@@ -41,7 +46,7 @@ input[type="radio"]:checked + .toggle {
 }
 
 .dark {
-    background: rgb(225,236,242);
+    background: rgb(228, 228, 228);
 }
 
 .fa, .far, .fas {
@@ -79,13 +84,31 @@ input[type="radio"]:checked + .toggle {
 #btn-logout {
     padding: 0.8vw;
     background: rgb(17, 61, 102);
-    border-radius: 4%;
+    /* border-radius: 4%; */
     color: white;
     transition: all 0.6s ease;
-    font-size: 1.4vw;
+    font-size: 1.1vw;
     text-align: center;
     float: right;
     text-decoration: none;
+}
+
+#btn-save {
+    padding: 0.8vw;
+    background: rgb(17, 61, 102);
+    color: white;
+    transition: all 0.6s ease;
+    font-size: 1.1vw;
+    text-align: center;
+}
+
+#btn-search {
+    padding: 0.8vw;
+    background: rgb(17, 61, 102);
+    color: white;
+    transition: all 0.6s ease;
+    font-size: 1.1vw;
+    text-align: center;
 }
 
 #employeeInfoTableHeadings p{
@@ -146,4 +169,37 @@ input[type="radio"]:checked + .toggle {
     transition: max-height .6s ease-in;
     max-height: 4000px;
     overflow: hidden;
+}
+
+
+/* ----------
+Media Queries
+---------- */
+
+@media only screen and (max-width: 700px) {
+
+    h2 {
+        font-size: 3.8vw;
+    }
+
+    input, label, select {
+        font-size: 3.4vw;
+    }
+
+    main p, main li {
+        font-size: 3vw;
+    }
+
+    #btn-logout, #btn-save, #btn-search {
+        font-size: 3.4vw;
+    }
+    
+    #manualInputForm {
+        grid-template-columns: 1fr;
+    }
+
+    #two-column {
+        display: grid;
+    }
+
 }

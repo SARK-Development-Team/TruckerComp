@@ -1,14 +1,14 @@
 
     <script defer src="../../../public/scripts/dashboard.js"></script>
     <script type="module" defer src="../../../public/scripts/bundle.js"></script>
-    <link href="../../../public/styles/users2.css" rel="stylesheet">
+    <link href="../../../public/styles/dashboard.css" rel="stylesheet">
 
 
     <main class="indented dark">
         <h1>Trucker Comp Dashboard<span><a href='/logout' id="btn-logout" >Logout</a></span></h1>
         <div id="infoDisplay">
             <h2>My info&nbsp;<i class="fas fa-window-minimize" onclick="hideInfo()"></i><i class="fa fa-pencil-square-o" onclick="editInfo()"></i></h2>
-            <img src="../public/images/truck2.jpg" style="float: right; height: 24vw;">
+            <img src="../public/images/truck2.png" style="float: right; height: 24vw;">
             <p>Name: <span id= 'userName'>{{user.name}}</span></p>
             <p>Email: <span id= 'userEmail'>{{user.email}}</span></p>
             <p>Employees:</p> 
@@ -124,8 +124,8 @@
                         <input id="DOT" name="DOT" type="number" value={{user.DOT}}>
                     </fieldset>
                     <fieldset>
-                        <label for="MCP">MCP Number</label>
-                        <input id="MCP" name="MCP" type="number" value={{user.MC}}>
+                        <label for="MC">MCP Number</label>
+                        <input id="MC" name="MC" type="number" value={{user.MC}}>
                     </fieldset>
                     <fieldset>
                         <label for="companyName">Company Name</label>
@@ -143,10 +143,10 @@
                         <label for="mailingAddress">Mailing Address</label>
                         <input id="mailingAddress" name="mailingAddress" type="text" value={{user.mailingAddress}}>
                     </fieldset>
-                    <fieldset>
+                    {{!-- <fieldset>
                         <label for="totalPayroll">Total Payroll</label>
                         <input id="totalPayroll" name="totalPayroll" type="number" value={{user.totalPayroll}}>
-                    </fieldset>
+                    </fieldset> --}}
                     <fieldset>
                         <label for="mileage">Mileage</label>
                         <input id="mileage" name="mileage" type="number" value={{user.mileage}}>
@@ -155,7 +155,7 @@
                         <label for="powerUnits">Power Units</label>
                         <input id="powerUnits" name="powerUnits" type="number" value={{user.powerUnits}}>
                     </fieldset>
-                    <fieldset></fieldset>
+                    {{!-- <fieldset></fieldset> --}}
                     <fieldset>
                         <div id="employeeInfoTable">
                             <p>Employees</p>
@@ -184,7 +184,7 @@
 
                 </div>
                 <button id="newRow" onclick="addRow(event)"><i class="fas fa-plus" ></i></button>
-                <input type="submit" id="save" class="btn-save" onclick="saveLead(event)">
+                <input type="submit" id="btn-save" onclick="saveLead(event)">
             </form>
         </div>  
     </main>

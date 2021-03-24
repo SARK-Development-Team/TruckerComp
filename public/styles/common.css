@@ -221,6 +221,11 @@ h2, h3 {
     #footer {
         grid-template-columns: 1fr 1fr;
     }
+
+    #footer a, #contact p {
+        font-size: 3.4vw;
+    }
+
     #footer-area {
         font-size: 3.5vw;
     }
