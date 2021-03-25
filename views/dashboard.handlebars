@@ -1,5 +1,5 @@
 
-    <script defer src="../../../public/scripts/dashboard.js"></script>
+    <script id="dbscript" data-user="{{user.DOT}}" defer src="../../../public/scripts/dashboard.js"></script>
     <script type="module" defer src="../../../public/scripts/bundle.js"></script>
     <link href="../../../public/styles/dashboard.css" rel="stylesheet">
 
@@ -8,7 +8,7 @@
         <h1>Trucker Comp Dashboard<span><a href='/logout' id="btn-logout" >Logout</a></span></h1>
         <div id="infoDisplay">
             <h2>My info&nbsp;<i class="fas fa-window-minimize" onclick="hideInfo()"></i><i class="fa fa-pencil-square-o" onclick="editInfo()"></i></h2>
-            <img src="../public/images/truck2.png" style="float: right; height: 24vw;">
+            <img src="../public/images/truck2.png" id="truckImg">
             <p>Name: <span id= 'userName'>{{user.name}}</span></p>
             <p>Email: <span id= 'userEmail'>{{user.email}}</span></p>
             <p>Employees:</p> 
@@ -31,16 +31,16 @@
             <p>Total Payroll: <span id= 'userTotalPayroll'>{{user.totalPayroll}}</span></p>
             <p>Annual mileage: <span id= 'userMileage'>{{user.mileage}}</span></p>
             {{#unless user.DOT}}
-                <p>ZIP Code: {{user.zipCode}}</p>
+                <p>ZIP Code: <span id='userZip'>{{user.zipCode}}</span></p>
             {{/unless}}
             {{#if user.DOT}}
-                <p>DOT Number: {{user.DOT}}</p>
-                <p>MC Number: {{user.MC}}</p>
-                <p>Company Name: {{user.companyName}}</p>
-                <p>Address: {{user.address}}</p>
-                <p>Phone Number: {{user.phone}}</p>
-                <p>Mailing Address: {{user.mailingAddress}}</p>
-                <p>Power Units: {{user.powerUnits}}</p>
+                <p>DOT Number: <span id='userDOT'>{{user.DOT}}</span></p>
+                <p>MC Number: <span id='userMC'>{{user.MC}}</span></p>
+                <p>Company Name: <span id='userCompanyName'>{{user.companyName}}</span></p>
+                <p>Address: <span id='userAddress'>{{user.address}}</span></p>
+                <p>Phone Number: <span id='userPhone'>{{user.phone}}</span></p>
+                <p>Mailing Address: <span id='userMailingAddress'>{{user.mailingAddress}}</span></p>
+                <p>Power Units: <span id='userPowerUnits'>{{user.powerUnits}}</span></p>
             {{/if}}
             {{!-- The user's stage of progress is placed here so that bundle.js can access the value --}}
             <input id="userStage" type="hidden" value={{user.stage}}>
@@ -72,7 +72,7 @@
                 <div id="nextStep" >
                     <h2 class="blue-bg">Next Step</h2>
                     <ul>
-                        <li class ="step next-step1">Please input your information</li>
+                        <li class ="step next-step1">Create your dashboard profile</li>
                         <li class ="step next-step2">Complete dashboard data entry</li>
                         <li class ="step next-step3">Submit your application</li>
                         <li class ="step next-step4">We are processing your application</li>
@@ -85,8 +85,8 @@
                         <li class ="step upcoming-step1">Initial quote data entry</li>
                         <li class ="step upcoming-step2">Complete dashboard data entry</li>
                         <li class ="step upcoming-step3">Submit your application</li>
-                        <li class ="step upcoming-step4">We are processing your application</li>
-                        <li class ="step upcoming-step5">Policy purchased!</li>
+                        <li class ="step upcoming-step4">Application processing</li>
+                        <li class ="step upcoming-step5">Purchase of policy</li>
                     </ul>
                 </div>
                 <div id="completedStep" >
@@ -106,22 +106,23 @@
                 <h2>Additional info</h2>
                 <label for="DOTsearch">Input your DOT Number to search our database or edit your profile directly</label>
                 <input name="DOTsearch" id="DOTsearch" type="number" min="0">
+                <p id="searchError"></p>
                 <button id="btn-search" onclick="searchDOT()">Search</button>
             </div>
-            <h2>Please confirm the following&nbsp;<i class="fas fa-window-minimize" onclick="hideInfo()"></i><i class="far fa-save"></i></h2>
+            <h2>Please provide the following information&nbsp;<i class="fas fa-window-minimize" onclick="hideInfo()"></i><i class="far fa-save"></i></h2>
             <form action="/lead" method="POST" >
                 <div id="manualInputForm">
                     <fieldset>
                         <label for="name">Name</label>
-                        <input id="name" name="name" type="text" value={{user.name}}>
+                        <input required id="name" name="name" type="text" value={{user.name}}>
                     </fieldset>
                     <fieldset>
                         <label for="email">Email</label>
-                        <input id="email" name="email" type="text" value={{user.email}}>
+                        <input required id="email" name="email" type="text" value={{user.email}}>
                     </fieldset>
                     <fieldset>
                         <label for="DOT">DOT Number</label>
-                        <input id="DOT" name="DOT" type="number" value={{user.DOT}}>
+                        <input required id="DOT" name="DOT" type="number" value={{user.DOT}}>
                     </fieldset>
                     <fieldset>
                         <label for="MC">MCP Number</label>
@@ -137,7 +138,7 @@
                     </fieldset>
                     <fieldset>
                         <label for="phone">Phone Number</label>
-                        <input id="phone" name="phone" type="tel" value={{user.phone}}>
+                        <input required id="phone" name="phone" type="tel" value={{user.phone}}>
                     </fieldset>
                     <fieldset>
                         <label for="mailingAddress">Mailing Address</label>

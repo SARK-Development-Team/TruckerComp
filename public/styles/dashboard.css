@@ -100,6 +100,7 @@ main p, main li, main td {
     transition: all 0.6s ease;
     font-size: 1.1vw;
     text-align: center;
+    cursor: pointer;
 }
 
 #btn-search {
@@ -164,6 +165,17 @@ main p, main li, main td {
 
 }
 
+#searchError {
+    font-style: italic;
+    color: red;
+    margin-block-start: 0;
+}
+
+#truckImg {
+    float: right; 
+    height: 24vw;
+}
+
 #two-column {
     display: flex;
     transition: max-height .6s ease-in;
@@ -186,7 +198,7 @@ Media Queries
         font-size: 3.4vw;
     }
 
-    main p, main li {
+    main p, main li, main td {
         font-size: 3vw;
     }
 
@@ -196,6 +208,10 @@ Media Queries
     
     #manualInputForm {
         grid-template-columns: 1fr;
+    }
+
+    #truckImg {
+        height: 50vw;
     }
 
     #two-column {

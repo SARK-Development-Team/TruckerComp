@@ -259,7 +259,7 @@ function azureUpdate(object) {
         stage: {'_': object.stage}
     };
 
-    tableSvc.updateEntity('sarkleads', lead, function (err, result, response) {
+    tableSvc.replaceEntity('sarkleads', lead, function (err, result, response) {
         if(!err){
             return;
         } else {
@@ -269,6 +269,17 @@ function azureUpdate(object) {
 };
 
 
+async function azureSearch(DOT) {
+  return new Promise((resolve) => {
+      tableSvc.retrieveEntity('sarkleads', 'leads', DOT, (err, result, response) => {
+          if (!err) {
+              resolve(response.body);
+          } else {
+              // resolve();
+          }
+      });
+  }); 
+}
 
 
 /* --------------------------
@@ -410,6 +421,13 @@ app.get('/dashboard', ensureAuthenticated, (req, res) => {
   })
 });
 
+// Search User
+app.post('/user', async (req, res) => {
+  
+  const user = await azureSearch(req.body.dot)
+  return res.json({ user });
+});
+
 
 // This route performs a search through the sark client DB for the DOT number entered
 // Returns an object that is partially displayed in the "result" box
@@ -429,13 +447,19 @@ app.post('/lead', (req, res) => {
   } catch (err) {
     console.log("Db error:", err);
   }
-  try {
-    azureSave(req.body);
-  } catch (err) {
-    if (err=="StorageError: The specified entity already exists.") {
+  if (req.body.stage<2) {
+    try {
+      console.log("trying to save in Azure");
+      azureSave(req.body);
+    } catch (err) {
+      console.log("Error Saving:", err);
+    }
+  } else {
+    try {
+      console.log("trying to update in Azure");
       azureUpdate(req.body);
-    } else {
-      console.log("this is the error:", err);
+    } catch (err) {
+      console.log("Error Updating:", err);
     }
   }
   res.send(`<p>Thank you for confirming! We will contact you shortly!</p>`);
