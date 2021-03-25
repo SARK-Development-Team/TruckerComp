@@ -1,39 +1,191 @@
 
-    <script type="module" defer src="../../../public/scripts/dashboard.mjs"></script>
-    <link href="../../../public/styles/users2.css" rel="stylesheet">
+    <script id="dbscript" data-user="{{user.DOT}}" defer src="../../../public/scripts/dashboard.js"></script>
+    <script type="module" defer src="../../../public/scripts/bundle.js"></script>
+    <link href="../../../public/styles/dashboard.css" rel="stylesheet">
 
 
     <main class="indented dark">
         <h1>Trucker Comp Dashboard<span><a href='/logout' id="btn-logout" >Logout</a></span></h1>
+        <div id="infoDisplay">
+            <h2>My info&nbsp;<i class="fas fa-window-minimize" onclick="hideInfo()"></i><i class="fa fa-pencil-square-o" onclick="editInfo()"></i></h2>
+            <img src="../public/images/truck2.png" id="truckImg">
+            <p>Name: <span id= 'userName'>{{user.name}}</span></p>
+            <p>Email: <span id= 'userEmail'>{{user.email}}</span></p>
+            <p>Employees:</p> 
+            <table id="empTable">
+                <th>
+                    <td><b>Type</b></td>
+                    <td><b>Number</b></td>
+                    <td><b>Payroll</b></td>
+                </th>
+                {{#each user.employees as |item|}}
+                <tr>
+                    <td></td>
+                    <td>{{item.type}}</td>
+                    <td>{{item.number}}</td>
+                    <td>{{item.payroll}}</td>
+                </tr>
+                {{/each}}
+            </table>
 
+            <p>Total Payroll: <span id= 'userTotalPayroll'>{{user.totalPayroll}}</span></p>
+            <p>Annual mileage: <span id= 'userMileage'>{{user.mileage}}</span></p>
+            {{#unless user.DOT}}
+                <p>ZIP Code: <span id='userZip'>{{user.zipCode}}</span></p>
+            {{/unless}}
+            {{#if user.DOT}}
+                <p>DOT Number: <span id='userDOT'>{{user.DOT}}</span></p>
+                <p>MC Number: <span id='userMC'>{{user.MC}}</span></p>
+                <p>Company Name: <span id='userCompanyName'>{{user.companyName}}</span></p>
+                <p>Address: <span id='userAddress'>{{user.address}}</span></p>
+                <p>Phone Number: <span id='userPhone'>{{user.phone}}</span></p>
+                <p>Mailing Address: <span id='userMailingAddress'>{{user.mailingAddress}}</span></p>
+                <p>Power Units: <span id='userPowerUnits'>{{user.powerUnits}}</span></p>
+            {{/if}}
+            {{!-- The user's stage of progress is placed here so that bundle.js can access the value --}}
+            <input id="userStage" type="hidden" value={{user.stage}}>
+        </div>
         <div id="two-column">
             <div class="left column">
                 <div id="progress">
                     <h2>Progress</h2>
-                    <canvas id="myChart" width="400" height="400"></canvas>
+                    <canvas id="myChart" width="200px" height="200px"></canvas>
                 </div>
                 <div id="status">
                     <h2>Calculated Workers' Comp Quote</h2>
                     <p>some info will be displayed here</p>
                 </div>
-                <div id="furtherInfo">
-                    <h2>Further Info</h2>
-                    <p>something else will be displayed here</p>
+                <div id="myInfo">
+                    <h2>My Information&nbsp;<i class="fas fa-expand" onclick="showInfo()"></i><i class="fa fa-pencil-square-o" onclick="editInfo()"></i></h2>
+                    <p>Name: <span id= 'userName2'>{{user.name}}</span></p>
+                    <p>Email: <span id= 'userEmail2'>{{user.email}}</span></p>
+                    {{!-- etc. --}}
+                </div>
+
+                <div id="contact-us">
+                    <h2>Any questions? Contact us at</h2>
+                    <p>(408) 262-9190</p>
+                    <p>wc@sarkinsurance.com</p>
                 </div>
             </div>
             <div class="right column">
                 <div id="nextStep" >
                     <h2 class="blue-bg">Next Step</h2>
-                    <p>We are processing your request</p>
+                    <ul>
+                        <li class ="step next-step1">Create your dashboard profile</li>
+                        <li class ="step next-step2">Complete dashboard data entry</li>
+                        <li class ="step next-step3">Submit your application</li>
+                        <li class ="step next-step4">We are processing your application</li>
+                        <li class ="step next-step5">Policy purchased!</li>
+                    </ul>
                 </div>
                 <div id="upcomingStep" >
                     <h2 class="blue-bg">Upcoming Steps</h2>
-                    <p>We are processing your request</p>
+                    <ul>
+                        <li class ="step upcoming-step1">Initial quote data entry</li>
+                        <li class ="step upcoming-step2">Complete dashboard data entry</li>
+                        <li class ="step upcoming-step3">Submit your application</li>
+                        <li class ="step upcoming-step4">Application processing</li>
+                        <li class ="step upcoming-step5">Purchase of policy</li>
+                    </ul>
                 </div>
                 <div id="completedStep" >
                     <h2 class="blue-bg">Completed Steps</h2>
-                    <p>You have input all the necessary data</p>
+                    <ul>
+                        <li class ="step completed-step1">Initial quote data entry</li>
+                        <li class ="step completed-step2">Complete dashboard data entry</li>
+                        <li class ="step completed-step3">Submit your application</li>
+                        <li class ="step completed-step4">We are processing your application</li>
+                        <li class ="step completed-step5">Policy purchased!</li>
+                    </ul>
                 </div>
             </div>
         </div>
+        <div id="manualInput">        
+            <div id="searchArea">
+                <h2>Additional info</h2>
+                <label for="DOTsearch">Input your DOT Number to search our database or edit your profile directly</label>
+                <input name="DOTsearch" id="DOTsearch" type="number" min="0">
+                <p id="searchError"></p>
+                <button id="btn-search" onclick="searchDOT()">Search</button>
+            </div>
+            <h2>Please provide the following information&nbsp;<i class="fas fa-window-minimize" onclick="hideInfo()"></i><i class="far fa-save"></i></h2>
+            <form action="/lead" method="POST" >
+                <div id="manualInputForm">
+                    <fieldset>
+                        <label for="name">Name</label>
+                        <input required id="name" name="name" type="text" value={{user.name}}>
+                    </fieldset>
+                    <fieldset>
+                        <label for="email">Email</label>
+                        <input required id="email" name="email" type="text" value={{user.email}}>
+                    </fieldset>
+                    <fieldset>
+                        <label for="DOT">DOT Number</label>
+                        <input required id="DOT" name="DOT" type="number" value={{user.DOT}}>
+                    </fieldset>
+                    <fieldset>
+                        <label for="MC">MCP Number</label>
+                        <input id="MC" name="MC" type="number" value={{user.MC}}>
+                    </fieldset>
+                    <fieldset>
+                        <label for="companyName">Company Name</label>
+                        <input id="companyName" name="companyName" type="text" value={{user.companyName}}>
+                    </fieldset>
+                    <fieldset>
+                        <label for="address">Address</label>
+                        <input id="address" name="address" type="text" value={{user.address}}>
+                    </fieldset>
+                    <fieldset>
+                        <label for="phone">Phone Number</label>
+                        <input required id="phone" name="phone" type="tel" value={{user.phone}}>
+                    </fieldset>
+                    <fieldset>
+                        <label for="mailingAddress">Mailing Address</label>
+                        <input id="mailingAddress" name="mailingAddress" type="text" value={{user.mailingAddress}}>
+                    </fieldset>
+                    {{!-- <fieldset>
+                        <label for="totalPayroll">Total Payroll</label>
+                        <input id="totalPayroll" name="totalPayroll" type="number" value={{user.totalPayroll}}>
+                    </fieldset> --}}
+                    <fieldset>
+                        <label for="mileage">Mileage</label>
+                        <input id="mileage" name="mileage" type="number" value={{user.mileage}}>
+                    </fieldset>
+                    <fieldset>
+                        <label for="powerUnits">Power Units</label>
+                        <input id="powerUnits" name="powerUnits" type="number" value={{user.powerUnits}}>
+                    </fieldset>
+                    {{!-- <fieldset></fieldset> --}}
+                    <fieldset>
+                        <div id="employeeInfoTable">
+                            <p>Employees</p>
+                            <div id="empTable">
+                                <div id="employeeInfoTableHeadings">
+                                    <p>Type</p>
+                                    <p>Number</p>  
+                                    <p>Payroll</p>
+                                </div>
+                                <p class="formline">
+                                    <select class="empType" id="empType0">
+                                        <option value="" disabled selected>Employee Type</option>
+                                        <option value="Driver">Driver</option>
+                                        <option value="Maintenance">Maintenance</option>
+                                        <option value="Accounting">Accounting</option>
+                                        <option value="Custodial">Custodial</option>
+                                        <option value="Clerical">Clerical</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <input class="empNumber" name="empNumber0" type="number" min="1" id="empNumber0">
+                                    <input class="empPayroll" name="empPayroll0" type="number" id="empPayroll0">
+                                </p>
+                            </div>
+                    </fieldset>
+
+
+                </div>
+                <button id="newRow" onclick="addRow(event)"><i class="fas fa-plus" ></i></button>
+                <input type="submit" id="btn-save" onclick="saveLead(event)">
+            </form>
+        </div>  
     </main>

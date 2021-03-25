@@ -1,0 +1,221 @@
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+input, label, select {
+    display: block;
+    font-size: 1.1vw;
+}
+
+input {
+    margin: .5vw 0 1.2vw 0;
+    width: 98%;
+    color: rgb(65, 65, 65);
+}
+
+input[type="radio"] {
+    display: none;
+    font-size: 1.1vw;
+    padding: 1vw;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid rgb(73, 73, 73);
+}
+
+input[type="radio"]:checked + .toggle {
+    background-color: #19b5b1;
+    cursor: pointer;
+    border: 1px solid #19b5b1;
+    color: white;
+}
+
+main p, main li, main td {
+    font-size: 1.1vw;
+}
+
+.active {
+    display: block!important;
+}
+
+.blue-bg {
+    background-color: rgb(21, 91, 172);
+    color: white;
+    padding: 1vw 2vw; 
+}
+
+.dark {
+    background: rgb(228, 228, 228);
+}
+
+.fa, .far, .fas {
+    cursor: pointer;
+    margin: 0 0.5vw;
+}
+
+.formline {
+    margin: .5vw 0!important;
+    display: flex;
+    flex-direction: row;
+}
+
+.formline select, .formline input {
+    margin: 0 .1vw 0 0;
+    width: 33%;
+}
+
+.left {
+    flex: 45%;
+    padding: 0 1vw;
+}
+
+.step {
+    display: none;
+}
+
+.right {
+    flex: 55%;
+    border-left: 1px solid rgb(224, 224, 224);
+    padding: 0 1vw;
+}
+
+
+#btn-logout {
+    padding: 0.8vw;
+    background: rgb(17, 61, 102);
+    /* border-radius: 4%; */
+    color: white;
+    transition: all 0.6s ease;
+    font-size: 1.1vw;
+    text-align: center;
+    float: right;
+    text-decoration: none;
+}
+
+#btn-save {
+    padding: 0.8vw;
+    background: rgb(17, 61, 102);
+    color: white;
+    transition: all 0.6s ease;
+    font-size: 1.1vw;
+    text-align: center;
+    cursor: pointer;
+}
+
+#btn-search {
+    padding: 0.8vw;
+    background: rgb(17, 61, 102);
+    color: white;
+    transition: all 0.6s ease;
+    font-size: 1.1vw;
+    text-align: center;
+}
+
+#employeeInfoTableHeadings p{
+    min-width: 32%;
+    display: inline-block;
+    margin: 0;
+}
+
+#infoDisplay {
+    display: block;
+    max-height: 0;
+    transition: max-height .6s ease-in;
+    overflow: hidden;
+}
+
+#manualInput {
+    display: block;
+    max-height: 0;
+    /* border: 0.5px solid grey;
+    border-radius: 5px;  */
+    padding: 1vw;
+    margin: 1vw 0;
+    transition: max-height .6s ease-in; 
+    overflow: hidden;
+}
+
+#manualInput fieldset{
+    width: 98%;
+}
+
+#manualInputForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#myChart {
+    margin: 0 2vw;
+    width: 200px;
+    height: 200px;
+}
+
+#result {
+    margin: 2vw 0;
+    display: none;
+    padding: 1vw;
+    background: rgb(233, 233, 233);
+    border: 1.5px solid black;
+    border-radius: 4px;
+}
+
+#result p {
+    color:rgb(73, 73, 73)
+
+}
+
+#searchError {
+    font-style: italic;
+    color: red;
+    margin-block-start: 0;
+}
+
+#truckImg {
+    float: right; 
+    height: 24vw;
+}
+
+#two-column {
+    display: flex;
+    transition: max-height .6s ease-in;
+    max-height: 4000px;
+    overflow: hidden;
+}
+
+
+/* ----------
+Media Queries
+---------- */
+
+@media only screen and (max-width: 700px) {
+
+    h2 {
+        font-size: 3.8vw;
+    }
+
+    input, label, select {
+        font-size: 3.4vw;
+    }
+
+    main p, main li, main td {
+        font-size: 3vw;
+    }
+
+    #btn-logout, #btn-save, #btn-search {
+        font-size: 3.4vw;
+    }
+    
+    #manualInputForm {
+        grid-template-columns: 1fr;
+    }
+
+    #truckImg {
+        height: 50vw;
+    }
+
+    #two-column {
+        display: grid;
+    }
+
+}

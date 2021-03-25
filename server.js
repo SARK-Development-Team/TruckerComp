@@ -5,7 +5,9 @@ const session = require('express-session');
 const bcrypt = require('bcrypt');
 const flash = require('connect-flash');
 
-const Chart = require('chart.js');
+const cors = require('cors');
+
+// const Chart = require('chart.js');
 
 // for environment variables
 require('dotenv').config()
@@ -159,7 +161,7 @@ async function sendEmail(data) {
         console.log(error)
         return error;
     }
-}
+};
 
 // This function is the basic quote calculation formula
 function calculateQuote(data) {
@@ -193,10 +195,7 @@ async function sqlSearch(number) {
     } catch (err) {
        console.log(err)
     }
-  }
-  
-
-
+};
 
 // This function saves the new "lead" object in the Azure DB, using the DOT as the row key
 function azureSave(object) {
@@ -218,6 +217,7 @@ function azureSave(object) {
         phoneNumber: {'_': object.phoneNumber},
         employees: {'_': empString},
         powerUnits: {'_': object.powerUnits},
+        stage: {'_': object.stage}
       };
     //   Create the table if it does not exist already
     tableSvc.createTableIfNotExists('sarkleads', function(err, result, response){
@@ -226,55 +226,59 @@ function azureSave(object) {
         // insert the "lead" object into the table
         tableSvc.insertEntity('sarkleads',lead, function (err, result, response) {
             if(!err){
-                return
+                return;
             } else {
-                console.log(err)
+                console.log(err);
             }
         });
     } else {
-        console.log(err)
+        console.log(err);
     }
   });
-}
+};
 
-function generateChart() {
-    const myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
+function azureUpdate(object) {
+    // Build the "lead" object from the data passed in
+    const rowKey = object.DOT.toString();
+    const empString = JSON.stringify(object.employees);
+    const lead = {
+        PartitionKey: {'_':'leads'},
+        RowKey: {'_': rowKey},
+        name: {'_': object.name},
+        email: {'_': object.email},
+        DOT: {'_': object.DOT},
+        MCP: {'_': object.MCP},
+        totalPayroll: {'_': object.totalPayroll},
+        mileage: {'_': object.mileage},
+        companyName: {'_': object.companyName},
+        address: {'_': object.address},
+        mailingAddress: {'_': object.mailingAddress},
+        phoneNumber: {'_': object.phoneNumber},
+        employees: {'_': empString},
+        powerUnits: {'_': object.powerUnits},
+        stage: {'_': object.stage}
+    };
+
+    tableSvc.replaceEntity('sarkleads', lead, function (err, result, response) {
+        if(!err){
+            return;
+        } else {
+            console.log(err);
         }
-    }
     });
-    return myChart;
+};
+
+
+async function azureSearch(DOT) {
+  return new Promise((resolve) => {
+      tableSvc.retrieveEntity('sarkleads', 'leads', DOT, (err, result, response) => {
+          if (!err) {
+              resolve(response.body);
+          } else {
+              // resolve();
+          }
+      });
+  }); 
 }
 
 
@@ -309,16 +313,17 @@ app.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
 app.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
 
 
-
-
-app.get('/dashboard', (req, res) => res.render('dashboard'));
-
-
 // Register
 app.post('/register', (req, res) => {
   const { name, email, password, password2, businessType, zipCode, mileage, totalPayroll } = req.body;
-  employees = JSON.parse(req.body.employees);
-
+  var DOT, MC, companyName, address, mailingAddress, phoneNumber, powerUnits;
+  DOT = MC = companyName = address = mailingAddress = phoneNumber = powerUnits = '';
+  const stage = 1;
+  if (req.body.employees) {
+    employees = JSON.parse(req.body.employees);
+  } else {
+    employees = [];
+  }
   let errors = [];
 
   if (!name || !email || !password || !password2) {
@@ -361,7 +366,15 @@ app.post('/register', (req, res) => {
           employees,
           totalPayroll,
           mileage,
-          zipCode
+          zipCode,
+          DOT,
+          MC,
+          companyName,
+          address,
+          mailingAddress,
+          phoneNumber,
+          powerUnits,
+          stage
         });
 
         bcrypt.genSalt(10, (err, salt) => {
@@ -388,9 +401,9 @@ app.post('/register', (req, res) => {
 // Login
 app.post('/login', (req, res, next) => {
   passport.authenticate('local', {
-    successRedirect: 'myInfo',
+    successRedirect: 'dashboard',
     failureRedirect: 'login',
-    failureFlash: true
+    failureFlash: true,
   })(req, res, next);
 });
 
@@ -402,11 +415,18 @@ app.get('/logout', (req, res) => {
 });
 
 // Dashboard
-app.get('/myInfo', ensureAuthenticated, (req, res) =>
-  res.render('myInfo', {
+app.get('/dashboard', ensureAuthenticated, (req, res) => {
+  res.render('dashboard', {
     user: req.user
   })
-);
+});
+
+// Search User
+app.post('/user', async (req, res) => {
+  
+  const user = await azureSearch(req.body.dot)
+  return res.json({ user });
+});
 
 
 // This route performs a search through the sark client DB for the DOT number entered
@@ -419,21 +439,47 @@ app.post('/dot', async (req, res) => {
 
 // This route saves the user input into the Azure Storage DB
 app.post('/lead', (req, res) => {
-  console.log(req.body);
   try {
-    db.User.updateOne({ email: email }); 
+    db.User.findOneAndUpdate({ email: req.body.email }, req.body)
+    .then(console.log("successfully updated"))
+    .catch((err)=>console.log(err)); 
+
   } catch (err) {
-    console.log(err);
+    console.log("Db error:", err);
   }
-  azureSave(req.body);
+  if (req.body.stage<2) {
+    try {
+      console.log("trying to save in Azure");
+      azureSave(req.body);
+    } catch (err) {
+      console.log("Error Saving:", err);
+    }
+  } else {
+    try {
+      console.log("trying to update in Azure");
+      azureUpdate(req.body);
+    } catch (err) {
+      console.log("Error Updating:", err);
+    }
+  }
   res.send(`<p>Thank you for confirming! We will contact you shortly!</p>`);
 });
 
-app.get('/chart', (req, res) => {
-  console.log("hit the API", req.body);
-  generateChart(req.body);
-});
 
+app.post('/zip', cors(), (req, res) => {
+  const zipcode = req.body.zipcode;
+  const app_key=process.env.ZIPCODE_API_APP_KEY;
+  const uri = `https://www.zipcodeapi.com/rest/${app_key}/info.json/${zipcode}/degrees`
+  $.ajax({
+    "url": uri,
+    "dataType": "json"
+  }).done(function(data) {
+    console.log(data);
+  })
+
+  // return response;
+  // return true;
+});
 
 // This listens at port 5001, unless there is a Configuration variable (as on heroku).
 app.listen(process.env.PORT || 5001, () => console.log("Server running."));

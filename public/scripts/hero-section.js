@@ -66,7 +66,9 @@ function deactivateSlide(slideIndex) {
     next.onclick = '';
 }
 
-//------Slide 1 
+/* ----------
+   Slide 1
+---------- */
 const yes = document.getElementById('slide1Yes');
 const no = document.getElementById('slide1No');
 
@@ -81,10 +83,12 @@ yes.onclick = () => {
     const slide4 = document.getElementById('slide4');
     const slide5 = document.getElementById('slide5');
     const slide6 = document.getElementById('slide6');
+    const slide7 = document.getElementById('slide7');
     slide3.style.display='grid';
     slide4.style.transform = "translateX(300vw)";
     slide5.style.transform = "translateX(400vw)";
     slide6.style.transform = "translateX(500vw)";
+    slide7.style.transform = "translateX(600vw)";
     nextSlide(1);
 }
 
@@ -99,14 +103,19 @@ no.onclick = () => {
     const slide4 = document.getElementById('slide4');
     const slide5 = document.getElementById('slide5');
     const slide6 = document.getElementById('slide6');
+    const slide7 = document.getElementById('slide7');
     slide3.style.display='none';
     slide4.style.transform = "translateX(200vw)";
     slide5.style.transform = "translateX(300vw)";
     slide6.style.transform = "translateX(400vw)";
+    slide7.style.transform = "translateX(500vw)";
     nextSlide(1)
 };
 
-//------Slide 2
+/* ----------
+   Slide 2
+---------- */
+
 // For slides 2-5, the formData is updated based on the user's input.
 const longhaul = document.getElementById('slide2LongHaul');
 const sand = document.getElementById('slide2Sand');
@@ -146,7 +155,9 @@ towing.onclick = () => {
     nextSlide(2);
 }
 
-//------Slide 3 
+/* ----------
+   Slide 3
+---------- */
 
 // This is the plus icon that sits beneath the employee information table
 const newRow = document.getElementById('newRow');
@@ -199,17 +210,26 @@ function saveEmployeeData(){
 }
 
 
-//------Slide 4 
+/* ----------
+   Slide 4
+---------- */
 const zip = document.getElementById('slide4Zipcode');
 const miles = document.getElementById('slide4Mileage');
 
-zip.addEventListener('keyup', () => {
+zip.addEventListener('keyup', async () => {
     const input = parseInt(zip.value);
     const zipError = document.getElementById('zipError');
-    if (input>0 && Number.isInteger(input)) {
-        formData.zipCode = input;
-        zipError.style.visibility = 'hidden';
-        checkSlide4();
+    if (input>0 && Number.isInteger(input))  {
+        if (zip.value.length>=5) {
+            // const valid = await validateZIP(input);
+            // if (valid) {
+                formData.zipCode = input;
+                zipError.style.visibility = 'hidden';
+                checkSlide4();
+            // } else {
+            //     zipError.style.visibility = 'visible';
+            // }
+        }
     } else {
         zipError.style.visibility = 'visible';
     }
@@ -278,7 +298,9 @@ function fillInfo(data) {
 }
 
 
-//------Slide 5
+/* ----------
+   Slide 5
+---------- */
 
 const email = document.getElementById('slide5Email');
 
@@ -291,17 +313,23 @@ email.addEventListener('keyup', () => {
     const emailError = document.getElementById('emailError');
     if (input!='' && regex.test(input)) {
         formData.email = input;
+        document.getElementById('spanEmail').innerText=input;
         setCookie('clientData', JSON.stringify(formData));
         emailError.style.visibility = 'hidden';
         submit.style.background='#4ca846';
+        submit.style.cursor='pointer';
         submit.onclick=function() {
-            changeSlide(1); 
+            nextSlide(5);
+            nextSlide(6);
+            populateRegistrationForm(formData);
+            // changeSlide(1); 
             // this function sends the email
             sendQuote(formData);
         };
     } else {
         submit.style.background='red';
         submit.href = '';
+        submit.style.cursor='unset';
         emailError.style.visibility = 'visible';
     }
 });
@@ -336,14 +364,16 @@ function fetchResult(data) {
 async function requestQuoteSlide(data) {
     const lowEnd = document.getElementById("low-end");
     const highEnd = document.getElementById("high-end");
-    const emailAdd = document.getElementById("email");
-
     let response = await fetchResult(data);
     let number = response.result;
     lowEnd.innerText=(number *0.8).toFixed(2);
     highEnd.innerText=(number *1.2).toFixed(2);
-    emailAdd.innerText=data.email;
 }
+
+
+/* ----------
+   Slide 6
+---------- */
 
 function sendQuote (data) {
     const uri = uriRoot+'send';
@@ -355,10 +385,41 @@ function sendQuote (data) {
     }).then(response => response.json());
 }
 
+/* ----------
+   Slide 7
+---------- */
+
+
+// If the cookie exists already, populate the email and the hidden inputs of the form with the values from the cookie.
+function populateRegistrationForm(data) {
+
+    document.getElementById('email').value=data.email;
+    document.getElementById('employees').value=JSON.stringify(data.employees);
+    document.getElementById('businessType').value=data.businessType;
+    document.getElementById('totalPayroll').value=data.totalPayroll;
+    document.getElementById('mileage').value=data.mileage;
+    document.getElementById('zipCode').value=data.zipCode;
+}
+
+
 
 // Todo: determine if entered zip code is valid. 
-zipCodeError = "Please enter a valid zip code."
-// Consider this API: https://smartystreets.com/docs/cloud/us-zipcode-api
+// This code is not currently functional
+
+function validateZIP(zipcode) {
+    const uri = uriRoot+'zip';
+    const zipCodeObj = {"zipcode": zipcode};
+    // fetch(uri, {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify(zipCodeObj)
+    // }).then(response => console.log(response.json()))
+    // .catch((err)=>console.log("++",err));
+
+    // return response;
+    // return true;
+}
+
 
 
 function setCookie(name, value) {

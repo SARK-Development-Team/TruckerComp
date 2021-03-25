@@ -1,7 +1,6 @@
 
     <link href="public/styles/index.css" rel="stylesheet">
     <script defer src="public/scripts/hero-section.js"></script>
-
     <section>
         <!-- This contains the form and call to action -->
         <section id="hero" >
@@ -25,6 +24,8 @@
                         <div class="icon-area">
                             <div class="icons">
                                 <i class="fas fa-circle active"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle"></i>
@@ -62,6 +63,8 @@
                             <div class="icons">
                                 <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle active"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle"></i>
@@ -125,6 +128,8 @@
                                 <i class="fas fa-circle active"></i>
                                 <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
                             </div>               
                         </div>
                     </div>
@@ -158,6 +163,8 @@
                                 <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle active"></i>
                                 <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
                             </div>
                         </div>
                         
@@ -167,6 +174,9 @@
                     <div class="slide" id="slide5">
                         <div class="back-icon" onclick="changeSlide(-1)">
                             <i class="fas fa-chevron-left "></i>
+                        </div>
+                        <div class="next-icon" id="next5">
+                            <i class="fas fa-chevron-right "></i>
                         </div>
                         <h3>Is this information correct?</h3>
                         <form class="hero-form">
@@ -188,22 +198,118 @@
                                 <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle"></i>
                                 <i class="fas fa-circle active"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
                             </div>
                         </div>
                         
                     </div>
                     {{!-- This slide appears after the submit button has been pressed. It contains the quote --}}
                     <div class="slide" id="slide6">
-                        <!-- <div class="back-icon" onclick="changeSlide(-1)">
+                        <div class="back-icon" onclick="changeSlide(-1)">
                             <i class="fas fa-chevron-left "></i>
-                        </div> -->
+                        </div>
+                        <div class="next-icon" id="next6">
+                            <i class="fas fa-chevron-right "></i>
+                        </div>
                         <div id="quote-area">
                             <h3>Based on the information you've provided, we estimate a monthly worker's comp premium of</h3>
                             <h1>$<span id="low-end"></span> &mdash; $<span id="high-end"></span>/month</h1>
-                            <h3>We've also sent an email to <span id="email"></span> with further information.</h3>
-                            <h1>Please call 415 xxx xxxx to purchase a policy now!</h1>
-                            <a class ='btn-purchase' href='register' >Click here to purchase!</a>
+                            <h3>We've also sent an email to <span id="spanEmail" style="color: darkblue"></span> with further information.</h3>
+                            {{!-- <h1>Please call 415 xxx xxxx to purchase a policy now!</h1> --}}
+                            {{!-- <a class ='btn-purchase' href='register' >Click here to register!</a> --}}
                             <p id = "bgd-icons"><i class="material-icons" style="font-size: 16vw; left: 0; bottom: 0" >source</i> <i></i> <i class="material-icons" style="font-size: 13vw; right: 0; bottom: 0" >verified</i></p>
+                        </div>
+                        <div class="icon-area">
+                            <div class="icons">
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle active"></i>
+                                <i class="fas fa-circle"></i>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- This slide appears after the submit button has been pressed. It contains the quote --}}
+                    <div class="slide" id="slide7">
+                        <div class="back-icon" onclick="changeSlide(-1)">
+                            <i class="fas fa-chevron-left "></i>
+                        </div>
+                        <section class="login-card">
+                            <div class="card-heading">Create your account</div>
+                            <form action="/register" method="POST">
+                                <div class="card-body">
+                                    <input
+                                        type="hidden"
+                                        id="employees"
+                                        name="employees"
+                                    >
+                                    <input
+                                        type="hidden"
+                                        id="businessType"
+                                        name="businessType"
+                                    >
+                                    <input
+                                        type="hidden"
+                                        id="totalPayroll"
+                                        name="totalPayroll"
+                                    >
+                                    <input
+                                        type="hidden"
+                                        id="mileage"
+                                        name="mileage"
+                                    >
+                                    <input
+                                        type="hidden"
+                                        id="zipCode"
+                                        name="zipCode"
+                                    >
+                                    <p><label for="name">Name</label>
+                                    <input
+                                        type="name"
+                                        id="name"
+                                        name="name"
+                                        placeholder="Enter Name"
+                                    >
+                                    <label for="email">Email</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                    ></p>
+                                    <label for="password">Password</label>
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        placeholder="Create Password"
+                                    >
+                                    <label for="password2">Confirm Password</label>
+                                    <input
+                                        type="password"
+                                        id="password2"
+                                        name="password2"
+                                        placeholder="Confirm Password"
+                                    >
+                                    <button id="btn-register" type="submit">Create</button>
+                                </div>
+                                
+                            </form>     
+                        </section>
+
+                        <p id="login-line">Already registered? <a href="login">Click here to log in.</a></p>
+                        <div class="icon-area">
+                            <div class="icons">
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle active"></i>
+                            </div>
                         </div>
                     </div>
 

@@ -38,7 +38,7 @@ const UserSchema = new mongoose.Schema({
   DOT: {
     type: Number,
   },
-  MCP: {
+  MC: {
     type: Number,
   },
   companyName: {
@@ -55,6 +55,9 @@ const UserSchema = new mongoose.Schema({
   },
   powerUnits: {
     type: Number,
+  },
+  stage: {
+    type: Number
   }
 
 

@@ -1,11 +1,9 @@
 /* ----------
   This style sheet will be indexed by the vertical position of elements
-  1. Whole page elements
-  2. Navbar elements
-  3. Hero elements
-  4. About section elements
-  5. Footer elements
-  6. Media queries
+  1. Hero elements
+  2. About section elements
+  3. Footer elements
+  4. Media queries
 
   Each sub-section is organized alphabetically by:
   1. Elements
@@ -14,23 +12,6 @@
   4. Pseudoelements
   ---------- */
 
-
-
-/* ----------
-   Navbar
----------- */
-
-.btn-test {
-    float: right;
-    padding: 10px;
-    color: white;
-    background: red;
-    height: 2.5vw;
-    font-size: 1.4vw;
-    border: 1px solid black;
-    border-radius: 5%;
-    text-decoration: none;
-}
 
 /* ----------
     Hero
@@ -67,9 +48,9 @@ input {
 
 .btn-reset {
     background: #426b13;
-    padding: 0.6vw 1.4vw;
+    padding: 0.3vw .6vw;
     color: white;
-    font-size: 1vw;
+    font-size: .8vw;
     border-radius: 2000px;
     cursor: pointer;
     z-index: 5;
@@ -152,13 +133,13 @@ input {
 }
 
 .hero-form h3 {
-    margin: 2.4vw 0 0 0;
+    margin: 2vw 0 0 0;
 }
 
 .icon-area {
     display: flex;
     justify-content: center;
-    font-size: 1.7vw;
+    font-size: 1.5vw;
     align-items: center;
     grid-column-start: center;
     grid-row-start: bottom;
@@ -207,8 +188,10 @@ input {
     min-width: 78vw;
     display: grid;  
     grid-template-columns: [lside] 10% [center] 80% [rside] 10%;
-    grid-template-rows: [top] 5vh [topmid] 14vh [centerline] 4vh [bottommid] 17vh [bottom] 5vh;
+    /* grid-template-columns: [lside] 10% [center] 108% [rside] 10%; */
+    grid-template-rows: [top] 5vh [topmid] 12vh [centerline] 4vh [bottommid] 10vh [lowerbottom] 4vh [bottom] 5vh;
     transition: transform 0.5s;
+
 }
 
 .slide > h3 {
@@ -326,9 +309,7 @@ input {
 #hero {
     padding: 1vw 10vw;
     background: url('../images/truckbgd.jpeg');
-    /* background: #d8d8d8; */
     background-size: cover;
-    /* background-repeat: no-repeat; */
 }
 
 #hero a {
@@ -341,7 +322,7 @@ input {
 }
 
 #quote-area {
-    margin: 1vw;
+    margin: 0 1vw;
     padding: 2vw;
     background: rgb(23, 122, 114);
     color: white;
@@ -351,12 +332,18 @@ input {
     text-align: center;
     width: fit-content;
     grid-column-start: center;
-    grid-row-start: topmid;
+    grid-row-start: top;
+    justify-self: center;
+}
+
+#quote-area h1, #quote-area h3 {
+    font-size: 1.8vw;
 }
 
 #reset-container {
     text-align: center;
-    z-index: 5
+    z-index: 5;
+    margin: 1vw 0;
 }
 
 /* ----------
@@ -535,135 +522,59 @@ svg {
     border-radius: 2000px;
 }
 
-/* ----------
-    Info
----------- */
-/* 
-.circle {
-    border-radius: 100%;
-}
 
-.chevron {
-    opacity: .5;
-    font-size: 2rem;
-    cursor: pointer;
-}
 
-.chevron:hover {
-    opacity: .8;
-}
+/* Register */
 
-.left-arrow {
-    position: absolute;
-    left: -26px;
-    top: 150px
-}
-
-.right-arrow {
-    position: absolute;
-    right: -26px;
-    top: 100px;
-}
-
-#blurb1 {
-    position: absolute;
-    overflow: hidden;
-    opacity: 1;
-    transition: opacity 1s ease;
-}
-
-#blurb2 {
-    position: absolute;
-    overflow: hidden;
-    opacity: 0;
-    transition: opacity 1s ease;
-}
-
-#info {
-    opacity: 0;
-    display: flex;
-    background: #1F486A;
+.card-heading {
+    background: rgb(150, 160, 185);
     color: white;
-    transition: opacity .6s ease;
-    min-height: 500px;
-    justify-content: center;
+    padding: 1vw;
+    text-align: center;
+    border-bottom: 1px solid grey;
 }
 
-#info-carousel {
-    position: relative;
-    width: 100%;
+.card-body {
+    padding: 1vw;
 }
 
-#info-carousel p {
-    line-height: 1.85;
+.login-card {
+    border: 2px solid black;
+    border-radius: 5px;
+    grid-column-start: center;
+    grid-row-start: top;
+    grid-row-end: lowerbottom;
 }
 
-#info-container {
-    padding: 40px 16%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 30px;
+/* .login-card input, .login-card label {
+    display: block;
+} */
+
+#btn-register {
+    padding: 0.6vw;
+    background: green;
+    /* border-radius: 4%; */
+    color: white;
+    transition: all 0.6s ease;
+    font-size: 1.1vw;
+    width: 98%;
+    text-align: center;
+    margin-top: 1vw;
+    grid-row-start: bottommid;
 }
 
-#info-img {
-    width: 17em;
-    height: 17em;
-}
 
-#inner-circle {
-    background: #255884;
-    width: 20.6em;
-    height: 20.6em;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#login-line {
+    margin: 1vw 0;
+    padding: 0 1vw 6vw 1vw;
+    grid-column-start: center;
+    grid-row-start: lowerbottom;
 }
-
-#outer-circle {
-    background: #225078;
-    width: 24em;
-    height: 24em;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
- */
 
 
 /* ----------
-    Footer
+Media Queries
 ---------- */
-
-#footer-logo {
-    height: 7vw;
-}
-
-#four-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    column-gap: 20px;
-    margin: 2vw 0 5vw 0;
-    text-align: center;
-}
-
-#legal {
-    background: #2b2b2a;
-}
-
-#sitemap {
-    background: rgb(71, 71, 71);
-}
-
-#social {
-    font-size: 2.2vw;
-    padding: .6vw;
-    text-align: right;
-    margin-right: 3vw;
-    align-self: flex-end;
-}
-
 
 /* All media queries activate at 700px width */
 @media only screen and (max-width: 700px) {
@@ -708,7 +619,7 @@ svg {
     }
 
     .slide{
-        grid-template-rows: [top] 5vh [topmid] 14vh [centerline] 1vh [bottommid] 15vh [bottom] 4vh;
+        grid-template-rows: [top] 5vh [topmid] 14vh [centerline] 1vh [bottommid] 10vh [lowerbottom] 5vh [bottom] 4vh;
     }
 
     .tile > br {
@@ -738,7 +649,7 @@ svg {
     }
 
     .btn-reset {
-        font-size: 2vh;
+        font-size: 1.4vh;
         
     }
 
@@ -764,9 +675,22 @@ svg {
         padding: 1% 20%;
     }
 
+    #btn-register {
+        margin-top: 3vw;
+        font-size: 2.8vw;
+    }
+
     #bottom-line {
         font-size: 2.8vw;
     }   
+
+    #login-line {
+        font-size: 3.2vw
+    }
+
+    #quote-area h1, #quote-area h3 {
+        font-size: 4.5vw;
+    }
 
     #employeeInfoTableHeadings p{
         font-size: 3vw;
@@ -781,10 +705,6 @@ svg {
         font-size: 3.5vw;
     }
 
-    /* #reset-container {
-        top: 12vw;
-    } */
-
     #why-SARK {
         padding: 1% 12%;
     }
@@ -792,4 +712,6 @@ svg {
         display: none
     }
 }
+
+
 
