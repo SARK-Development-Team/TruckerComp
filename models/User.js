@@ -50,7 +50,7 @@ const UserSchema = new mongoose.Schema({
   mailingAddress: {
     type: String,
   },
-  phoneNumber: {
+  phone: {
     type: String, 
   },
   powerUnits: {

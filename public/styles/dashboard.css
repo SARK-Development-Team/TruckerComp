@@ -165,7 +165,7 @@ main p, main li, main td {
 
 }
 
-#searchError {
+#searchError, #saveError {
     font-style: italic;
     color: red;
     margin-block-start: 0;
