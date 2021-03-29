@@ -115,15 +115,15 @@
                 <div id="manualInputForm">
                     <fieldset>
                         <label for="name">Name</label>
-                        <input required id="name" name="name" type="text" value={{user.name}}>
+                        <input required id="name" name="name" type="text" value={{user.name}} onkeypress="removeSaveError()">
                     </fieldset>
                     <fieldset>
                         <label for="email">Email</label>
-                        <input required id="email" name="email" type="text" value={{user.email}}>
+                        <input required id="email" name="email" type="text" value={{user.email}} onkeypress="removeSaveError()">
                     </fieldset>
                     <fieldset>
                         <label for="DOT">DOT Number</label>
-                        <input required id="DOT" name="DOT" type="number" value={{user.DOT}}>
+                        <input required id="DOT" name="DOT" type="number" value={{user.DOT}} onkeypress="removeSaveError()">
                     </fieldset>
                     <fieldset>
                         <label for="MC">MCP Number</label>
@@ -139,16 +139,12 @@
                     </fieldset>
                     <fieldset>
                         <label for="phone">Phone Number</label>
-                        <input required id="phone" name="phone" type="tel" value={{user.phone}}>
+                        <input required id="phone" name="phone" type="tel" value={{user.phone}} onkeypress="removeSaveError()">
                     </fieldset>
                     <fieldset>
                         <label for="mailingAddress">Mailing Address</label>
                         <input id="mailingAddress" name="mailingAddress" type="text" value={{user.mailingAddress}}>
                     </fieldset>
-                    {{!-- <fieldset>
-                        <label for="totalPayroll">Total Payroll</label>
-                        <input id="totalPayroll" name="totalPayroll" type="number" value={{user.totalPayroll}}>
-                    </fieldset> --}}
                     <fieldset>
                         <label for="mileage">Mileage</label>
                         <input id="mileage" name="mileage" type="number" value={{user.mileage}}>
@@ -157,7 +153,6 @@
                         <label for="powerUnits">Power Units</label>
                         <input id="powerUnits" name="powerUnits" type="number" value={{user.powerUnits}}>
                     </fieldset>
-                    {{!-- <fieldset></fieldset> --}}
                     <fieldset>
                         <div id="employeeInfoTable">
                             <p>Employees</p>

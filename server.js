@@ -202,7 +202,6 @@ function azureSave(object) {
     // Build the "lead" object from the data passed in
     // const rowKey = object._ID.toString();
     const empString = JSON.stringify(object.employees);
-    console.log(object);
     const userID = object._id.toString()
     var stage;
     if (object.stage==1) stage=2;
@@ -212,7 +211,7 @@ function azureSave(object) {
         name: {'_': object.name},
         email: {'_': object.email},
         DOT: {'_': object.DOT},
-        MCP: {'_': object.MCP},
+        MC: {'_': object.MC},
         totalPayroll: {'_': object.totalPayroll},
         mileage: {'_': object.mileage},
         companyName: {'_': object.companyName},
@@ -257,7 +256,7 @@ function azureSave(object) {
 //         name: {'_': object.name},
 //         email: {'_': object.email},
 //         DOT: {'_': object.DOT},
-//         MCP: {'_': object.MCP},
+//         MC: {'_': object.MC},
 //         totalPayroll: {'_': object.totalPayroll},
 //         mileage: {'_': object.mileage},
 //         companyName: {'_': object.companyName},

@@ -94,7 +94,6 @@ async function searchDOT() {
                 document.getElementById('searchError').innerText=`No result found for ${dot['dot']}.`;
             // If a client is found
             } else {
-                // document.getElementById('name').value = client.result['Name'];
                 document.getElementById('DOT').value = client.result['DOT Number'];
                 document.getElementById('companyName').value = client.result['Company Name'];
                 document.getElementById('MC').value = client.result['MCP Number'];
@@ -135,7 +134,6 @@ function saveLead(e) {
     document.getElementById('phone').value) {
         leadData.name = document.getElementById('name').value;
         leadData.email = document.getElementById('email').value;
-        // leadData.totalPayroll = document.getElementById('totalPayroll').value ?? '';
         leadData.mileage = document.getElementById('mileage').value ?? '';
         leadData.DOT = document.getElementById('DOT').value;
         leadData.companyName = document.getElementById('companyName').value ?? '';
@@ -146,6 +144,12 @@ function saveLead(e) {
         leadData.powerUnits = document.getElementById('powerUnits').value ?? '';
         leadData._id = document.getElementById('userID').value;
         leadData.employees = saveEmployeeData();
+        const formlines = document.getElementsByClassName('formline').length;
+        var payrollSum = 0;
+        for (let i=0; i<formlines; i++) {
+            payrollSum+=parseInt(document.getElementById(`empPayroll${i}`).value);
+        }
+        leadData.totalPayroll=payrollSum;
         leadData.stage=2;
         const uri = uriRoot+'lead';
         const result = fetch(uri, {
@@ -160,6 +164,10 @@ function saveLead(e) {
     } else {
         document.getElementById('saveError').innerText='Please enter at least your Name, Email Address, DOT Number, and Phone Number';
     }
+}
+
+function removeSaveError() {
+    document.getElementById('saveError').innerText='';
 }
 
 
@@ -230,6 +238,7 @@ window.onload = async () => {
     if (dot) {
         const id = document.getElementById('dbscript').getAttribute('data-user-id');
         const user = await fetchUser(id);
+        console.log(user.user);
         document.getElementById('name').value=user.user.name ?? '';
         document.getElementById('userName').value=user.user.name ?? '';
         document.getElementById('email').value=user.user.email ?? '';
@@ -237,7 +246,6 @@ window.onload = async () => {
         document.getElementById('userTotalPayroll').value=user.user.totalPayroll ?? '';
         document.getElementById('mileage').value=user.user.mileage ?? '';
         document.getElementById('userMileage').value=user.user.mileage ?? '';
-        // document.getElementById('userZip').value=user.;
         document.getElementById('DOT').value=user.user.DOT ?? '';
         document.getElementById('userDOT').value=user.user.DOT ?? '';
         document.getElementById('MC').value=user.user.MC ?? '';
@@ -252,7 +260,6 @@ window.onload = async () => {
         document.getElementById('userMailingAddress').value=user.user.mailingAddress ?? '';
         document.getElementById('powerUnits').value=user.user.powerUnits ?? '';
         document.getElementById('userPowerUnits').value=user.user.powerUnits ?? '';
-        // document.getElementById('userStage').value=2 ;
         if (user.user.employees.length) displayEmployees(user.user.employees);
     } else {
         console.log("no DOT exists for this user.");

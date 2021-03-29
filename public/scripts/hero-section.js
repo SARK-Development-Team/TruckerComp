@@ -155,6 +155,16 @@ towing.onclick = () => {
     nextSlide(2);
 }
 
+function forwardProgress() {
+    if (document.getElementById('slide4Zipcode').value && document.getElementById('slide4Mileage').value) {
+        nextSlide(4);
+    }
+    if (document.getElementById('slide5Email')) {
+        nextSlide(5);
+    }
+}
+
+
 /* ----------
    Slide 3
 ---------- */

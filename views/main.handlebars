@@ -39,7 +39,7 @@
                     <!-- This form is the next item in the carousel if the user selects "My company has employees", otherwise it skips to the third item -->
                     <div class="slide" id="slide2">
                         <h3>What type of trucking service do you provide?</h3>
-                        <div class="back-icon" onclick="changeSlide(-1)">
+                        <div class="back-icon" onclick="() => { changeSlide(-1); forwardProgress() }">
                             <i class="fas fa-chevron-left "></i>
                         </div>
                         <div class="next-icon" id="next2">
@@ -75,7 +75,7 @@
                     <!-- This div is the third item in the carousel -->
                     <div class="slide" id="slide3">
                         <h3>Please enter the following:</h3>
-                        <div class="back-icon" onclick="changeSlide(-1)">
+                        <div class="back-icon" onclick="() => { changeSlide(-1); forwardProgress() }">
                             <i class="fas fa-chevron-left "></i>
                         </div>
                         <div class="next-icon" id="next3">

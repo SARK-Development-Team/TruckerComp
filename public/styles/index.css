@@ -25,6 +25,10 @@ input {
     font-size: 1.3vw;
 }
 
+select {
+    font-size: 1.3vw;
+}
+
 .active {
     color: rgb(27, 27, 27)!important;
 }
@@ -606,7 +610,7 @@ Media Queries
         font-size: 10vw;
     }
 
-    .hero-form p, input {
+    .hero-form p, input, select {
         font-size: 3.2vw;
     }
 
