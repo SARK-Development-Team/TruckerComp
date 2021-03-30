@@ -32,10 +32,27 @@ h3 {
 h2, h3 {
     margin-block-start: 0;
     margin-block-end: 0;
+
 }
 
 .indented {
     padding: 1% 16%;
+}
+
+.message { 
+    margin-block-end: 0;
+    margin-block-start: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    text-align: center; 
+    background-color:rgb(197, 187, 38); 
+    margin: 1vw 30vw 0;
+}
+
+#messageArea {
+    padding-top: 2vw;
+    background-color: rgb(228, 228, 228); 
+    margin: 0;
 }
 
 /* ----------

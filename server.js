@@ -7,7 +7,6 @@ const flash = require('connect-flash');
 
 const cors = require('cors');
 
-// const Chart = require('chart.js');
 
 // for environment variables
 require('dotenv').config()
@@ -38,12 +37,12 @@ app.use(passport.session());
 
 app.use(flash());
 
-// app.use(function(req, res, next) {
-//   res.locals.success_msg = req.flash('success_msg');
-//   res.locals.error_msg = req.flash('error_msg');
-//   res.locals.error = req.flash('error');
-//   next();
-// });
+app.use(function(req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
+});
 
 app.use(function(req, res, next){
     var err = req.session.error,
@@ -149,7 +148,7 @@ async function sendEmail(data) {
         const mailOptions = {
             from: "wc@sarkinsurance.com",
             to: data.email,
-            subject: "Your workers' compensation insurance quote from Trucker Comp ",
+            subject: "Your workers' compensation insurance quote from Trucker Comp",
             text: 'Hello text version',
             html: htmlBody
         };
@@ -244,47 +243,14 @@ function azureSave(object) {
   });
 };
 
-// function azureUpdate(object) {
-//     // Build the "lead" object from the data passed in
-//     // const rowKey = object.DOT.toString();
-//     const empString = JSON.stringify(object.employees);
-//     const userID = object._id.toString()
-
-//     const lead = {
-//         PartitionKey: {'_':'leads'},
-//         RowKey: {'_': userID},
-//         name: {'_': object.name},
-//         email: {'_': object.email},
-//         DOT: {'_': object.DOT},
-//         MC: {'_': object.MC},
-//         totalPayroll: {'_': object.totalPayroll},
-//         mileage: {'_': object.mileage},
-//         companyName: {'_': object.companyName},
-//         address: {'_': object.address},
-//         mailingAddress: {'_': object.mailingAddress},
-//         phone: {'_': object.phone},
-//         employees: {'_': empString},
-//         powerUnits: {'_': object.powerUnits},
-//         stage: {'_': object.stage}
-//     };
-
-//     tableSvc.replaceEntity('sarkleads', lead, function (err, result, response) {
-//         if(!err){
-//             return;
-//         } else {
-//             console.log(err);
-//         }
-//     });
-// };
-
-
+// This function is used to find the lead in the Azure Storage table
 async function azureSearch(id) {
   return new Promise((resolve) => {
       tableSvc.retrieveEntity('sarkleads', 'leads', id, (err, result, response) => {
           if (!err) {
               resolve(response.body);
           } else {
-              // resolve();
+              console.log(err);
           }
       });
   }); 
@@ -295,8 +261,6 @@ async function azureSearch(id) {
          API ROUTES
 -------------------------- */
 
-
-// Routes
 
 app.get('/', (req, res) => {
     res.render('main',  {layout: "index"},);
@@ -315,14 +279,14 @@ app.post('/send', (req, res) => {
 });
 
 
-// Login Page
+// Show Login Page
 app.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
 
-// Register Page
+// Show Register Page
 app.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
 
 
-// Register
+// Register the user in the Mongo Database
 app.post('/register', (req, res) => {
   const { name, email, password, password2, businessType, zipCode, mileage, totalPayroll } = req.body;
   var DOT, MC, companyName, address, mailingAddress, phone, powerUnits;
@@ -421,6 +385,8 @@ app.get('/logout', (req, res) => {
   req.logout();
   req.flash('success_msg', 'You are logged out');
   res.redirect('login');
+  // console.log("locals:", res.locals);
+  // console.log("sesh:", req.session.flash.success_msg);
 });
 
 // Dashboard
@@ -464,7 +430,7 @@ app.post('/lead', (req, res) => {
   res.send(`<p>Thank you for confirming! We will contact you shortly!</p>`);
 });
 
-
+// This route is not currently being used
 app.post('/zip', cors(), (req, res) => {
   const zipcode = req.body.zipcode;
   const app_key=process.env.ZIPCODE_API_APP_KEY;
