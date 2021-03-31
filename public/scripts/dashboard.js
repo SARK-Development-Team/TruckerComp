@@ -238,7 +238,8 @@ window.onload = async () => {
     if (dot) {
         const id = document.getElementById('dbscript').getAttribute('data-user-id');
         const user = await fetchUser(id);
-        console.log(user.user);
+        // console.log(document.getElementById('dbscript').getAttribute('data-user-employees'));
+
         document.getElementById('name').value=user.user.name ?? '';
         document.getElementById('userName').value=user.user.name ?? '';
         document.getElementById('email').value=user.user.email ?? '';
@@ -263,6 +264,8 @@ window.onload = async () => {
         if (user.user.employees.length) displayEmployees(user.user.employees);
     } else {
         console.log("no DOT exists for this user.");
+        console.log(document.getElementById('dbscript').getAttribute('data-user-employees'));
+        // displayEmployees();
     }
 }
 

@@ -326,7 +326,7 @@ email.addEventListener('keyup', () => {
         document.getElementById('spanEmail').innerText=input;
         setCookie('clientData', JSON.stringify(formData));
         emailError.style.visibility = 'hidden';
-        submit.style.background='#4ca846';
+        submit.style.background='#3465D1';
         submit.style.cursor='pointer';
         submit.onclick=function() {
             nextSlide(5);
@@ -337,7 +337,7 @@ email.addEventListener('keyup', () => {
             sendQuote(formData);
         };
     } else {
-        submit.style.background='red';
+        submit.style.background='#666';
         submit.href = '';
         submit.style.cursor='unset';
         emailError.style.visibility = 'visible';

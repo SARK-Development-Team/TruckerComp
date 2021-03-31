@@ -1,5 +1,11 @@
 
-    <script id="dbscript" data-user-dot="{{user.DOT}}" data-user-id="{{user.id}}" defer src="../../../public/scripts/dashboard.js"></script>
+    <script id="dbscript" 
+        data-user-dot="{{user.DOT}}" 
+        data-user-id="{{user.id}}" 
+        {{!-- {{#each --}}
+        {{!-- data-user-employees="{{{JSON.parse(user.employees)}}}"  --}}
+        defer src="../../../public/scripts/dashboard.js">
+        </script>
     <script type="module" defer src="../../../public/scripts/bundle.js"></script>
     <link href="../../../public/styles/dashboard.css" rel="stylesheet">
 

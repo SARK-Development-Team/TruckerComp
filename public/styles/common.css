@@ -1,6 +1,15 @@
+
+
 /* ----------
   Whole page
 ---------- */
+
+/* color variables */
+:root {
+    --light: #8DAFC7;
+    --accent: #3465D1;
+    --dark: #C77D3F;
+  }
 
 * {
     box-sizing: border-box;
@@ -11,6 +20,7 @@ body {
     margin: 0;
     background: white;
     font-family: 'Raleway';
+    font-family: 'Source Sans Pro';
 }
 
 button {
@@ -45,13 +55,14 @@ h2, h3 {
     margin-inline-start: 0;
     margin-inline-end: 0;
     text-align: center; 
-    background-color:rgb(197, 187, 38); 
+    background-color: var(--dark); 
     margin: 1vw 30vw 0;
+    padding-top: 2vw;
 }
 
 #messageArea {
-    padding-top: 2vw;
-    background-color: rgb(228, 228, 228); 
+    /* padding-top: 2vw; */
+    background-color: var(--light); 
     margin: 0;
 }
 
@@ -60,7 +71,8 @@ h2, h3 {
 ---------- */
 
 .btn-nav {
-    background: rgb(245, 166, 20);
+    /* background: rgb(245, 166, 20); */
+    background: var(--dark);
     text-align: center;
     padding: 1vw;
 }
@@ -89,7 +101,8 @@ h2, h3 {
 }
 
 #navbar {
-    background: rgb(225, 240, 250);
+    /* background: rgb(225, 240, 250); */
+    background: var(--light);
     list-style: none;
     display: grid;
     grid-template-columns: 3fr 3fr ;
