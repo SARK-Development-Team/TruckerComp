@@ -67,13 +67,21 @@ h2, h3 {
     text-align: center; 
     background-color: var(--dark); 
     margin: 1vw 30vw 0;
-    padding-top: 2vw;
+    padding: 1vw 0;
+    font-size: var(--small);
+    color: var(--white);
 }
 
 #messageArea {
     /* padding-top: 2vw; */
     background-color: var(--white); 
     margin: 70px 0 0 0;
+}
+
+@media only screen and (max-width: 700px) {
+    .message {
+        font-size: var(--mobsmall);
+    }
 }
 
 /* ----------
