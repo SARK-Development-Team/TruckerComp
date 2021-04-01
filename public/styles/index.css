@@ -14,10 +14,12 @@
 
 /* color variables */
 :root {
-    --light: #8DAFC7;
-    --accent: #3465D1;
-    --dark: #C77D3F;
-  }
+    --white: #F5F3F5;
+    --light: #277EC3;
+    --accent: #1C2541;
+    --dark: #EF8354;
+}
+
   
 /* ----------
     Hero
@@ -36,7 +38,7 @@ select {
 }
 
 .active {
-    color: rgb(27, 27, 27)!important;
+    color: var(--accent)!important;
 }
 
 .btn-purchase {
@@ -46,8 +48,8 @@ select {
     background: var(--accent);
     padding: 1vw;
     border-radius: 4%;
-    border: 1px solid white;
-    color: white;
+    border: 1px solid var(--white);
+    color: var(--white);
     transition: all 0.6s ease;
     font-size: 1.1vw;
     margin: 0 34%;
@@ -59,7 +61,7 @@ select {
 .btn-reset {
     background: var(--dark);
     padding: 0.3vw .6vw;
-    color: white;
+    color: var(--white);
     font-size: .8vw;
     border-radius: 2000px;
     cursor: pointer;
@@ -73,8 +75,8 @@ select {
     background: var(--accent);
     padding: 1vw;
     border-radius: 4%;
-    border: 1px solid white;
-    color: white;
+    border: 1px solid var(--white);
+    color: var(--white);
     transition: all 0.6s ease;
     font-size: 1.1vw;
     margin: 0 34%;
@@ -86,11 +88,11 @@ select {
     text-align: center;
     align-self: center;
     cursor: unset;
-    background: #666;
+    background: var(--light);
     padding: 1vw;
     border-radius: 4%;
-    border: 1px solid white;
-    color: white;
+    border: 1px solid var(--white);
+    color: var(--white);
     transition: all 0.6s ease;
     font-size: 1.1vw;
     margin: 0 40%;
@@ -112,7 +114,7 @@ select {
 
 .four-tile {
     background: var(--light);
-    color: white;
+    color: var(--white);
     text-align: center;
     font-size: 1vw;
     width: 7.1vw;
@@ -120,7 +122,7 @@ select {
 }
 
 .fa-circle {
-    color: #585858;
+    color: var(--light);
     margin: 0 .2vw;
 }
 
@@ -191,7 +193,7 @@ select {
 
 .selected {
     background: var(--accent)!important;
-    color: white;
+    color: var(--white);
 }
 
 .slide {
@@ -254,7 +256,7 @@ select {
 
 .two-tile {
     background: var(--light);
-    color: white;
+    color: var(--white);
     text-align: center;
     font-size: 1vw;
     width: 9vw;
@@ -292,7 +294,7 @@ select {
 
 #container {
     width: 78vw;
-    /* background: white; */
+    /* background: var(--white); */
     background: rgba(255, 255, 255, .7)
     /* background: linear-gradient(to right, rgba(255, 255, 255, 0.8) 10%, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 1) 80%, rgba(255, 255, 255, 0.8) 90%); */
     /* opacity: .9; */
@@ -322,6 +324,7 @@ select {
 
 #hero {
     padding: 1vw 10vw;
+    margin-top: 70px;
     background: url('../images/truckbgd.jpeg');
     background-size: cover;
 }
@@ -339,7 +342,7 @@ select {
     margin: 0 1vw;
     padding: 2vw;
     background: var(--accent);
-    color: white;
+    color: var(--white);
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -389,7 +392,7 @@ svg {
     border-radius: 3px;
     color: #fff;
     background: var(--dark);
-    border: 1px solid white;
+    border: 1px solid var(--white);
     padding: .8vw 1.6vw;
     display: inline-block;
     -webkit-transition: all .2s ease-out;
@@ -411,6 +414,7 @@ svg {
 #about {
     margin: 2vw;
     padding: 1% 8%;
+    background: var(--white);
     /* font-family: 'Open Sans'; */
     /* color: #505050; */
 
@@ -495,13 +499,13 @@ svg {
 
 #US-map-lg {
     height: 20vw;
-    background: white;
+    background: var(--white);
     box-shadow: 0 0 15px -2px rgba(50, 50, 50, .2);
 }
 
 #US-map-sm {
     height: 42vw;
-    background: white;
+    background: var(--white);
     box-shadow: 0 0 15px -2px rgba(50, 50, 50, .2);
 }
 
@@ -515,7 +519,7 @@ svg {
     border-radius: 2000px;
     border: none;
     background: rgb(6, 12, 94);
-    color: white;
+    color: var(--white);
     font-size: 1.6vw;
     padding: .7vw 5vw;
     text-align: center;
@@ -584,7 +588,7 @@ svg {
 
 .card-heading {
     background: var(--light);
-    color: white;
+    color: var(--white);
     padding: 1vw;
     text-align: center;
     border-bottom: 1px solid var(--light);
@@ -610,7 +614,7 @@ svg {
     padding: 0.6vw;
     background: var(--dark);
     /* border-radius: 4%; */
-    color: white;
+    color: var(--white);
     transition: all 0.6s ease;
     font-size: 1.1vw;
     width: 98%;
