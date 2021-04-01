@@ -4,12 +4,20 @@
   Whole page
 ---------- */
 
-/* color variables */
+/* color and font-size variables */
 :root {
     --white: #F5F3F5;
     --light: #277EC3;
     --accent: #1C2541;
     --dark: #EF8354;
+    --xsmall: 0.8vw;
+    --small: 1vw;
+    --med: 1.3vw;
+    --large: 1.8vw;
+    --mobxsmall: 2.8vw;
+    --mobsmall: 3.5vw;
+    --mobmed: 4.2vw;
+    --moblarge: 5vw;
 }
 
 
@@ -30,14 +38,14 @@ button {
 }
 
 h2 {
-    font-size: 1.8vw;
+    font-size: var(--large);
     font-weight: 700;
     padding: 1vw 0;
     margin-bottom: 0; 
 }
 
 h3 {
-    font-size: 1.2vw;
+    font-size: var(--med);
     font-weight: 300;
 }
 
@@ -64,8 +72,8 @@ h2, h3 {
 
 #messageArea {
     /* padding-top: 2vw; */
-    background-color: var(--light); 
-    margin: 0;
+    background-color: var(--white); 
+    margin: 70px 0 0 0;
 }
 
 /* ----------
@@ -75,6 +83,7 @@ h2, h3 {
 .btn-nav {
     /* background: rgb(245, 166, 20); */
     background: var(--dark);
+    color: var(--white)!important;
     text-align: center;
     padding: 1vw;
 }
@@ -129,7 +138,7 @@ h2, h3 {
 }
 
 #navbar a {
-    font-size: 0.7vw;
+    font-size: var(--xsmall);
     font-weight: 800;
     text-decoration: none;
     align-items: center;
@@ -178,7 +187,7 @@ h2, h3 {
         justify-content: stretch;
     }
     #navbar a {
-        font-size: 2.2vw;
+        font-size: var(--mobxsmall);
     }
 }
 
@@ -195,7 +204,7 @@ h2, h3 {
     line-height: 27px;
 }
 .footer-logo-bottom {
-    font-size: .6vw;
+    font-size: var(--xsmall);
     font-size: 7px;
     letter-spacing: -0.4px;
     margin: 0;
@@ -203,7 +212,7 @@ h2, h3 {
 }
 
 .social {
-    font-size: 2.2vw;
+    font-size: var(--large);
     margin: 0 0.3vw;
 }
 
@@ -221,7 +230,7 @@ h2, h3 {
 }
 
 #footer {
-    font-size: 0.7vw;
+    font-size: var(--xsmall);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 0fr 1fr;
     align-items: center;
@@ -242,7 +251,7 @@ h2, h3 {
 #footer-area {
     background: #0b0125;
     color: rgb(226, 225, 225);
-    font-size: 1.2vw;
+    font-size: var(--small);
     margin: 0;
     padding: 0 8%;
     position: relative;
@@ -262,7 +271,7 @@ h2, h3 {
 
 @media only screen and (max-width: 700px) {
     .social {
-        font-size: 4vw;
+        font-size: var(--mobmed);
     }
     
     #footer {
@@ -270,10 +279,10 @@ h2, h3 {
     }
 
     #footer a, #contact p {
-        font-size: 3.4vw;
+        font-size: var(--mobsmall);
     }
 
     #footer-area {
-        font-size: 3.5vw;
+        font-size: var(--mobsmall);
     }
 }

@@ -12,12 +12,20 @@
   4. Pseudoelements
   ---------- */
 
-/* color variables */
+/* color and font-size variables */
 :root {
     --white: #F5F3F5;
     --light: #277EC3;
     --accent: #1C2541;
     --dark: #EF8354;
+    --xsmall: 0.8vw;
+    --small: 1vw;
+    --med: 1.3vw;
+    --large: 1.8vw;
+    --mobxsmall: 2.8vw;
+    --mobsmall: 3.5vw;
+    --mobmed: 4.2vw;
+    --moblarge: 5vw;
 }
 
   
@@ -30,11 +38,11 @@ input {
     background: inherit;
     border: none;
     border-bottom: 1px solid #585858;
-    font-size: 1.3vw;
+    font-size: var(--med);
 }
 
 select {
-    font-size: 1.3vw;
+    font-size: var(--med);
 }
 
 .active {
@@ -51,7 +59,7 @@ select {
     border: 1px solid var(--white);
     color: var(--white);
     transition: all 0.6s ease;
-    font-size: 1.1vw;
+    font-size: var(--med);
     margin: 0 34%;
     grid-column-start: center;
     grid-row-start: bottommid;
@@ -62,7 +70,7 @@ select {
     background: var(--dark);
     padding: 0.3vw .6vw;
     color: var(--white);
-    font-size: .8vw;
+    font-size: var(--xsmall);
     border-radius: 2000px;
     cursor: pointer;
     z-index: 5;
@@ -78,7 +86,7 @@ select {
     border: 1px solid var(--white);
     color: var(--white);
     transition: all 0.6s ease;
-    font-size: 1.1vw;
+    font-size: var(--med);
     margin: 0 34%;
     grid-column-start: center;
     grid-row-start: bottommid;
@@ -94,7 +102,7 @@ select {
     border: 1px solid var(--white);
     color: var(--white);
     transition: all 0.6s ease;
-    font-size: 1.1vw;
+    font-size: var(--med);
     margin: 0 40%;
     grid-column-start: center;
     grid-row-start: bottommid;
@@ -116,7 +124,7 @@ select {
     background: var(--light);
     color: var(--white);
     text-align: center;
-    font-size: 1vw;
+    font-size: var(--small);
     width: 7.1vw;
     height: 10.5vw;
 }
@@ -140,7 +148,7 @@ select {
 }
 
 .hero-form p {
-    font-size: 1.2vw;
+    font-size: var(--med);
     margin: 0;
 }
 
@@ -151,7 +159,7 @@ select {
 .icon-area {
     display: flex;
     justify-content: center;
-    font-size: 1.5vw;
+    font-size: var(--med);
     align-items: center;
     grid-column-start: center;
     grid-row-start: bottom;
@@ -258,7 +266,7 @@ select {
     background: var(--light);
     color: var(--white);
     text-align: center;
-    font-size: 1vw;
+    font-size: var(--small);
     width: 9vw;
     height: 10.5vw;
 }
@@ -273,7 +281,7 @@ select {
 }
 
 #bottom-line {
-    font-size: .9vw;
+    font-size: var(--xsmall);
     font-style: italic;
     text-align: center;
     padding-bottom: .1vw;
@@ -308,7 +316,7 @@ select {
 #employeeInfoTableHeadings p{
     margin: 0 5vw 0 0;
     width: 33%;
-    font-size: 1vw;
+    font-size: var(--small);
 }
 
 #empError, #milesError, #payrollError, #zipError, #emailError {
@@ -316,7 +324,7 @@ select {
     padding: 0;
     visibility: hidden;
     font-style: italic;
-    font-size: 1vw;
+    font-size: var(--small);
     color: var(--dark);
     grid-column-start: center;
     grid-row-start: bottommid;
@@ -324,7 +332,7 @@ select {
 
 #hero {
     padding: 1vw 10vw;
-    margin-top: 70px;
+    /* margin-top: 70px; */
     background: url('../images/truckbgd.jpeg');
     background-size: cover;
 }
@@ -332,10 +340,6 @@ select {
 #hero a {
     text-decoration: none;
     cursor: pointer;
-}
-
-#icon-spacer {
-    width:60%;
 }
 
 #quote-area {
@@ -354,7 +358,7 @@ select {
 }
 
 #quote-area h1, #quote-area h3 {
-    font-size: 1.8vw;
+    font-size: var(--large);
 }
 
 #reset-container {
@@ -372,7 +376,7 @@ select {
 ---------- */
 
 svg {
-    fill: var(--accent);
+    fill: var(--light);
 }
 
 .about-box {
@@ -388,7 +392,7 @@ svg {
 }
 
 .about-button {
-    font-size: 1.1vw;
+    font-size: var(--small);
     border-radius: 3px;
     color: #fff;
     background: var(--dark);
@@ -408,7 +412,7 @@ svg {
     max-width: 100%;
     min-height: 6vw;
     margin: 1vw 0;
-    font-size: 1.2vw;
+    font-size: var(--med);
 }
 
 #about {
@@ -421,7 +425,7 @@ svg {
 }
 
 #about h3 {
-    font-size: 1.6vw;
+    font-size: var(--large);
     font-weight: 400;
 }
 
@@ -438,8 +442,8 @@ svg {
 }
 
 #about-headline h2 {
-    font-size: 1.9vw;
-    font-weight: 400;
+    font-size: var(--large);
+    font-weight: 700;
 }
 
 /* ----------
@@ -616,7 +620,7 @@ svg {
     /* border-radius: 4%; */
     color: var(--white);
     transition: all 0.6s ease;
-    font-size: 1.1vw;
+    font-size: var(--small);
     width: 98%;
     text-align: center;
     margin-top: 1vw;
@@ -646,25 +650,17 @@ Media Queries
 }
 
 
-/* All media queries activate at 700px width */
 @media screen and (max-width: 700px) {
 
     h2, #cta h2 {
-        font-size: 4vw;
+        font-size: var(--mobmed);
     }
     h3 {
-        font-size: 3.5vw;
-    }
-
-    .indented {
-        padding: 1% 10%;
-    }
-    .wide-indent {
-        padding: 1% 10%;
+        font-size: var(--mobsmall);
     }
 
     .about-text {
-        font-size: 3.5vw;
+        font-size: var(--mobsmall);
     }
 
     .about-icon {
@@ -676,8 +672,41 @@ Media Queries
         font-size: 10vw;
     }
 
+    .btn-contact {
+        font-size: var(--moblarge);
+        padding: 1vw 10vw;
+    }
+
+    .btn-reset {
+        font-size: var(--mobxsmall);
+    }
+
+    .btn-save {
+        font-size: var(--moblarge);
+        padding: 1vw 6vw;
+        margin: 0;
+    }
+    
+    .btn-submit {
+        font-size: var(--moblarge);
+        padding: .6vw 6vw;
+        margin: 0 18%;
+    }
+
+    .formline select, .formline input {
+        margin: 0 0.5vw 0 0;
+    }
+
     .hero-form p, input, select {
-        font-size: 3.2vw;
+        font-size: var(--mobsmall);
+    }
+
+    .icon-area {
+        font-size: var(--mobmed);
+    }
+
+    .indented {
+        padding: 1% 10%;
     }
 
     .map-side-sm {
@@ -686,6 +715,10 @@ Media Queries
 
     .map-side-lg {
         display: none;
+    }
+
+    .material-icons{
+        display: none
     }
 
     .slide{
@@ -697,7 +730,7 @@ Media Queries
     }
 
     .tiles-two, .tiles-multi {
-        font-size: 5vw;
+        font-size: var(--moblarge);
         align-items: center;
         flex-direction: column;
         margin: 0;
@@ -710,72 +743,55 @@ Media Queries
         height: unset;
         padding: 2vw;
         margin-bottom: 10px;
-        font-size: 5vw;
+        font-size: var(--moblarge);
     }
 
-    .btn-contact {
-        font-size: 5vw;
-        padding: 1vw 10vw;
+    #about-headline h2{
+        font-size: var(--moblarge);
     }
 
-    .btn-reset {
-        font-size: 1.4vh;
-        
-    }
-
-    .btn-save {
-        font-size: 5vw;
-        padding: 1vw 6vw;
-        margin: 0;
-    }
-    
-    .btn-submit {
-        font-size: 5vw;
-        padding: .6vw 6vw;
-        margin: 0 18%;
-    }
-
-    .formline select, .formline input {
-        margin: 0 0.5vw 0 0;
-    }
-
-
-    #btn-register {
-        margin-top: 3vw;
-        font-size: 2.8vw;
+    #about h3 {
+        font-size: var(--moblarge);
     }
 
     #bottom-line {
-        font-size: 2.8vw;
+        font-size: var(--mobsmall);
     }   
 
-    #login-line {
-        font-size: 3.2vw
-    }
-
-    #quote-area h1, #quote-area h3 {
-        font-size: 4.5vw;
+    #btn-register {
+        margin-top: 3vw;
+        font-size: var(--mobsmall);
     }
 
     #employeeInfoTableHeadings p{
-        font-size: 3vw;
+        font-size: var(--mobsmall);
         margin: 0 0.5vw 0 0;
+    }
+
+    #empError, #payrollError, #zipError, #milesError, #emailError {
+        font-size: var(--mobsmall);
     }
 
     #hero {
         padding: 1% 8%;
     }
 
-    #empError, #payrollError, #zipError, #milesError, #emailError {
-        font-size: 3.5vw;
+    #login-line {
+        font-size: var(--mobsmall)
+    }
+
+    #quote-area h1, #quote-area h3 {
+        font-size: var(--mobmed);
+    }
+
+    #partners img {
+        height: 8vw;
     }
 
     #why-SARK {
         padding: 1% 12%;
     }
-    .material-icons{
-        display: none
-    }
+
 }
 
 

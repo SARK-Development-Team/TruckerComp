@@ -1,14 +1,22 @@
-/* color variables */
+/* color and font-size variables */
 :root {
     --white: #F5F3F5;
     --light: #277EC3;
     --accent: #1C2541;
     --dark: #EF8354;
+    --xsmall: 0.8vw;
+    --small: 1vw;
+    --med: 1.3vw;
+    --large: 1.8vw;
+    --mobxsmall: 2.8vw;
+    --mobsmall: 3.5vw;
+    --mobmed: 4.2vw;
+    --moblarge: 5vw;
 }
 
 input, label {
     display: block;
-    font-size: 1.1vw;
+    font-size: var(--small);
 }
 
 input {
@@ -19,9 +27,9 @@ input {
 
 .card-heading {
     background: var(--light);
-    color: white;
+    color: var(--white)!important;
     padding: 1vw;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid var(--light);
     margin-block-start: 0;
     margin-block-end: 0;
 }
@@ -31,7 +39,7 @@ input {
 }
 
 .dark {
-    background: white;
+    background: var(--white);
 }
 
 .dark *:not(input, button, label) {
@@ -42,23 +50,23 @@ input {
     margin: 0vw 30vw 0 30vw;
     border: 2px solid var(--accent);
     border-radius: 5px;
-    font-size: 1.1vw;
+    font-size: var(--small);
 
 }
 
 #bottom-line {
     margin: 1vw 30vw 0 30vw;
     padding: 0 1vw 6vw 1vw;
-    font-size: 1.1vw;
+    font-size: var(--small);
 }
 
 #btn-submit {
     padding: 0.6vw;
     background: var(--dark);
     border-radius: 4%;
-    color: white;
+    color: var(--white);
     transition: all 0.6s ease;
-    font-size: 1.1vw;
+    font-size: var(--small);
     width: 98%;
     text-align: center;
 }
@@ -71,11 +79,11 @@ Media Queries
 
 
     input, label, select {
-        font-size: 3.4vw;
+        font-size: var(--mobsmall);
     }
 
     #bottom-line, #btn-submit{
-        font-size: 3.4vw;
+        font-size: var(--mobsmall);
     }
     
     #bottom-line {
@@ -84,6 +92,6 @@ Media Queries
 
     .login-card {
         margin: 0vw 10vw 0 10vw;
-        font-size: 3.4vw;
+        font-size: var(--mobsmall);
     }
 }
