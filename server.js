@@ -7,7 +7,6 @@ const flash = require('connect-flash');
 
 const cors = require('cors');
 
-// const Chart = require('chart.js');
 
 // for environment variables
 require('dotenv').config()
@@ -38,12 +37,12 @@ app.use(passport.session());
 
 app.use(flash());
 
-// app.use(function(req, res, next) {
-//   res.locals.success_msg = req.flash('success_msg');
-//   res.locals.error_msg = req.flash('error_msg');
-//   res.locals.error = req.flash('error');
-//   next();
-// });
+app.use(function(req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
+});
 
 app.use(function(req, res, next){
     var err = req.session.error,
@@ -149,7 +148,7 @@ async function sendEmail(data) {
         const mailOptions = {
             from: "wc@sarkinsurance.com",
             to: data.email,
-            subject: "Your workers' compensation insurance quote from Trucker Comp ",
+            subject: "Your workers' compensation insurance quote from Trucker Comp",
             text: 'Hello text version',
             html: htmlBody
         };
@@ -200,82 +199,58 @@ async function sqlSearch(number) {
 // This function saves the new "lead" object in the Azure DB, using the DOT as the row key
 function azureSave(object) {
     // Build the "lead" object from the data passed in
-    const rowKey = object.DOT.toString();
+    // const rowKey = object._ID.toString();
     const empString = JSON.stringify(object.employees);
+    const userID = object._id.toString()
+    var stage;
+    if (object.stage==1) stage=2;
     const lead = {
         PartitionKey: {'_':'leads'},
-        RowKey: {'_': rowKey},
+        RowKey: {'_': userID},
         name: {'_': object.name},
         email: {'_': object.email},
         DOT: {'_': object.DOT},
-        MCP: {'_': object.MCP},
+        MC: {'_': object.MC},
         totalPayroll: {'_': object.totalPayroll},
         mileage: {'_': object.mileage},
         companyName: {'_': object.companyName},
         address: {'_': object.address},
         mailingAddress: {'_': object.mailingAddress},
-        phoneNumber: {'_': object.phoneNumber},
+        phone: {'_': object.phone},
         employees: {'_': empString},
         powerUnits: {'_': object.powerUnits},
-        stage: {'_': object.stage}
+        stage: {'_': stage}
       };
     //   Create the table if it does not exist already
     tableSvc.createTableIfNotExists('sarkleads', function(err, result, response){
     // If there is no error
     if(!err){
         // insert the "lead" object into the table
-        tableSvc.insertEntity('sarkleads',lead, function (err, result, response) {
-            if(!err){
-                return;
-            } else {
-                console.log(err);
-            }
-        });
+        try {
+            tableSvc.insertOrReplaceEntity('sarkleads',lead, function (err, result, response) {
+                if(!err){
+                    return;
+                } else {
+                    console.log(err);
+                }
+            });
+        } catch(err) {
+            console.log(err)
+        }
     } else {
         console.log(err);
     }
   });
 };
 
-function azureUpdate(object) {
-    // Build the "lead" object from the data passed in
-    const rowKey = object.DOT.toString();
-    const empString = JSON.stringify(object.employees);
-    const lead = {
-        PartitionKey: {'_':'leads'},
-        RowKey: {'_': rowKey},
-        name: {'_': object.name},
-        email: {'_': object.email},
-        DOT: {'_': object.DOT},
-        MCP: {'_': object.MCP},
-        totalPayroll: {'_': object.totalPayroll},
-        mileage: {'_': object.mileage},
-        companyName: {'_': object.companyName},
-        address: {'_': object.address},
-        mailingAddress: {'_': object.mailingAddress},
-        phoneNumber: {'_': object.phoneNumber},
-        employees: {'_': empString},
-        powerUnits: {'_': object.powerUnits},
-        stage: {'_': object.stage}
-    };
-
-    tableSvc.replaceEntity('sarkleads', lead, function (err, result, response) {
-        if(!err){
-            return;
-        } else {
-            console.log(err);
-        }
-    });
-};
-
-
-async function azureSearch(DOT) {
+// This function is used to find the lead in the Azure Storage table
+async function azureSearch(id) {
   return new Promise((resolve) => {
-      tableSvc.retrieveEntity('sarkleads', 'leads', DOT, (err, result, response) => {
+      tableSvc.retrieveEntity('sarkleads', 'leads', id, (err, result, response) => {
           if (!err) {
               resolve(response.body);
           } else {
-              // resolve();
+              console.log(err);
           }
       });
   }); 
@@ -286,8 +261,6 @@ async function azureSearch(DOT) {
          API ROUTES
 -------------------------- */
 
-
-// Routes
 
 app.get('/', (req, res) => {
     res.render('main',  {layout: "index"},);
@@ -306,18 +279,18 @@ app.post('/send', (req, res) => {
 });
 
 
-// Login Page
+// Show Login Page
 app.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
 
-// Register Page
+// Show Register Page
 app.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
 
 
-// Register
+// Register the user in the Mongo Database
 app.post('/register', (req, res) => {
   const { name, email, password, password2, businessType, zipCode, mileage, totalPayroll } = req.body;
-  var DOT, MC, companyName, address, mailingAddress, phoneNumber, powerUnits;
-  DOT = MC = companyName = address = mailingAddress = phoneNumber = powerUnits = '';
+  var DOT, MC, companyName, address, mailingAddress, phone, powerUnits;
+  DOT = MC = companyName = address = mailingAddress = phone = powerUnits = '';
   const stage = 1;
   if (req.body.employees) {
     employees = JSON.parse(req.body.employees);
@@ -372,7 +345,7 @@ app.post('/register', (req, res) => {
           companyName,
           address,
           mailingAddress,
-          phoneNumber,
+          phone,
           powerUnits,
           stage
         });
@@ -412,6 +385,8 @@ app.get('/logout', (req, res) => {
   req.logout();
   req.flash('success_msg', 'You are logged out');
   res.redirect('login');
+  // console.log("locals:", res.locals);
+  // console.log("sesh:", req.session.flash.success_msg);
 });
 
 // Dashboard
@@ -423,8 +398,7 @@ app.get('/dashboard', ensureAuthenticated, (req, res) => {
 
 // Search User
 app.post('/user', async (req, res) => {
-  
-  const user = await azureSearch(req.body.dot)
+  const user = await azureSearch(req.body.id)
   return res.json({ user });
 });
 
@@ -440,32 +414,23 @@ app.post('/dot', async (req, res) => {
 // This route saves the user input into the Azure Storage DB
 app.post('/lead', (req, res) => {
   try {
-    db.User.findOneAndUpdate({ email: req.body.email }, req.body)
+    db.User.findOneAndUpdate({ _id: req.body._id }, req.body)
     .then(console.log("successfully updated"))
     .catch((err)=>console.log(err)); 
 
   } catch (err) {
     console.log("Db error:", err);
   }
-  if (req.body.stage<2) {
-    try {
-      console.log("trying to save in Azure");
-      azureSave(req.body);
-    } catch (err) {
-      console.log("Error Saving:", err);
-    }
-  } else {
-    try {
-      console.log("trying to update in Azure");
-      azureUpdate(req.body);
-    } catch (err) {
-      console.log("Error Updating:", err);
-    }
+  try {
+    console.log("trying to save in Azure");
+    azureSave(req.body);
+  } catch (err) {
+    console.log("Error Saving:", err);
   }
   res.send(`<p>Thank you for confirming! We will contact you shortly!</p>`);
 });
 
-
+// This route is not currently being used
 app.post('/zip', cors(), (req, res) => {
   const zipcode = req.body.zipcode;
   const app_key=process.env.ZIPCODE_API_APP_KEY;

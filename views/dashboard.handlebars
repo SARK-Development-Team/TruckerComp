@@ -1,5 +1,11 @@
 
-    <script id="dbscript" data-user="{{user.DOT}}" defer src="../../../public/scripts/dashboard.js"></script>
+    <script id="dbscript" 
+        data-user-dot="{{user.DOT}}" 
+        data-user-id="{{user.id}}" 
+        {{!-- {{#each --}}
+        {{!-- data-user-employees="{{{JSON.parse(user.employees)}}}"  --}}
+        defer src="../../../public/scripts/dashboard.js">
+        </script>
     <script type="module" defer src="../../../public/scripts/bundle.js"></script>
     <link href="../../../public/styles/dashboard.css" rel="stylesheet">
 
@@ -44,6 +50,7 @@
             {{/if}}
             {{!-- The user's stage of progress is placed here so that bundle.js can access the value --}}
             <input id="userStage" type="hidden" value={{user.stage}}>
+            <input id="userID" type="hidden" value={{user._id}}>
         </div>
         <div id="two-column">
             <div class="left column">
@@ -109,20 +116,20 @@
                 <p id="searchError"></p>
                 <button id="btn-search" onclick="searchDOT()">Search</button>
             </div>
-            <h2>Please provide the following information&nbsp;<i class="fas fa-window-minimize" onclick="hideInfo()"></i><i class="far fa-save"></i></h2>
+            <h2>Please provide the following information&nbsp;<i class="fas fa-window-minimize" onclick="hideInfo()"></i></h2>
             <form action="/lead" method="POST" >
                 <div id="manualInputForm">
                     <fieldset>
                         <label for="name">Name</label>
-                        <input required id="name" name="name" type="text" value={{user.name}}>
+                        <input required id="name" name="name" type="text" value={{user.name}} onkeypress="removeSaveError()">
                     </fieldset>
                     <fieldset>
                         <label for="email">Email</label>
-                        <input required id="email" name="email" type="text" value={{user.email}}>
+                        <input required id="email" name="email" type="text" value={{user.email}} onkeypress="removeSaveError()">
                     </fieldset>
                     <fieldset>
                         <label for="DOT">DOT Number</label>
-                        <input required id="DOT" name="DOT" type="number" value={{user.DOT}}>
+                        <input required id="DOT" name="DOT" type="number" value={{user.DOT}} onkeypress="removeSaveError()">
                     </fieldset>
                     <fieldset>
                         <label for="MC">MCP Number</label>
@@ -138,16 +145,12 @@
                     </fieldset>
                     <fieldset>
                         <label for="phone">Phone Number</label>
-                        <input required id="phone" name="phone" type="tel" value={{user.phone}}>
+                        <input required id="phone" name="phone" type="tel" value={{user.phone}} onkeypress="removeSaveError()">
                     </fieldset>
                     <fieldset>
                         <label for="mailingAddress">Mailing Address</label>
                         <input id="mailingAddress" name="mailingAddress" type="text" value={{user.mailingAddress}}>
                     </fieldset>
-                    {{!-- <fieldset>
-                        <label for="totalPayroll">Total Payroll</label>
-                        <input id="totalPayroll" name="totalPayroll" type="number" value={{user.totalPayroll}}>
-                    </fieldset> --}}
                     <fieldset>
                         <label for="mileage">Mileage</label>
                         <input id="mileage" name="mileage" type="number" value={{user.mileage}}>
@@ -156,7 +159,6 @@
                         <label for="powerUnits">Power Units</label>
                         <input id="powerUnits" name="powerUnits" type="number" value={{user.powerUnits}}>
                     </fieldset>
-                    {{!-- <fieldset></fieldset> --}}
                     <fieldset>
                         <div id="employeeInfoTable">
                             <p>Employees</p>
@@ -181,10 +183,14 @@
                                 </p>
                             </div>
                     </fieldset>
+                    
+                    <input id="ID" type="hidden" value={{user._id}}>
+                    {{!-- <input id="stage" type="hidden" value=2> --}}
 
 
                 </div>
                 <button id="newRow" onclick="addRow(event)"><i class="fas fa-plus" ></i></button>
+                <p id="saveError"></p>
                 <input type="submit" id="btn-save" onclick="saveLead(event)">
             </form>
         </div>  

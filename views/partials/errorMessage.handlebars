@@ -1,4 +1,12 @@
 
 {{#each errors as |item|}}
-    <p style="text-align: center; background-color:rgb(197, 187, 38); margin: 1vw 30vw">{{item.msg}}</p>
+    <p class="message">{{item.msg}}</p>
+{{/each}}
+
+{{#each error as |item|}}
+    <p class="message">{{item}}</p>
+{{/each}}
+
+{{#each success as |item|}}
+    <p class="message">{{item}}</p>
 {{/each}}

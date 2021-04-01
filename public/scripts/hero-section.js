@@ -155,6 +155,16 @@ towing.onclick = () => {
     nextSlide(2);
 }
 
+function forwardProgress() {
+    if (document.getElementById('slide4Zipcode').value && document.getElementById('slide4Mileage').value) {
+        nextSlide(4);
+    }
+    if (document.getElementById('slide5Email')) {
+        nextSlide(5);
+    }
+}
+
+
 /* ----------
    Slide 3
 ---------- */
@@ -276,25 +286,26 @@ function fillInfo(data) {
         q2.innerText='Annual payroll: ' + data.totalPayroll;
     } else {
         q1.innerText = 'No employees'
+        q2.innerText='Annual payroll: ' + "-";
     }
     switch (data.businessType) {
         case 1:
-            q3.innerText='Type of business: Long-Haul Trucking';
+            q4.innerText='Type of business: Long-Haul Trucking';
             break;
         case 2:
-            q3.innerText='Type of business: Sand & Gravel Trucking';
+            q4.innerText='Type of business: Sand & Gravel Trucking';
             break;
         case 3:
-            q3.innerText='Type of business: Local Trucking';
+            q4.innerText='Type of business: Local Trucking';
             break;
         case 4:
-            q3.innerText='Type of business: Towing Services';
+            q4.innerText='Type of business: Towing Services';
             break;
         default:
-            q3.innerText='Error';
+            q4.innerText='Error';
             break;
     }
-    q4.innerText='Zip code: '+ data.zipCode + '\n Number of miles driven: ' + data.mileage;
+    q3.innerText='Zip code: '+ data.zipCode + '\n Number of miles driven: ' + data.mileage;
 }
 
 
@@ -316,7 +327,7 @@ email.addEventListener('keyup', () => {
         document.getElementById('spanEmail').innerText=input;
         setCookie('clientData', JSON.stringify(formData));
         emailError.style.visibility = 'hidden';
-        submit.style.background='#4ca846';
+        submit.style.background='#EF8354';
         submit.style.cursor='pointer';
         submit.onclick=function() {
             nextSlide(5);
@@ -327,7 +338,7 @@ email.addEventListener('keyup', () => {
             sendQuote(formData);
         };
     } else {
-        submit.style.background='red';
+        submit.style.background='#277EC3';
         submit.href = '';
         submit.style.cursor='unset';
         emailError.style.visibility = 'visible';

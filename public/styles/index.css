@@ -12,7 +12,23 @@
   4. Pseudoelements
   ---------- */
 
+/* color and font-size variables */
+:root {
+    --white: #F5F3F5;
+    --light: #277EC3;
+    --accent: #1C2541;
+    --dark: #EF8354;
+    --xsmall: 0.8vw;
+    --small: 1vw;
+    --med: 1.3vw;
+    --large: 1.8vw;
+    --mobxsmall: 2.8vw;
+    --mobsmall: 3.5vw;
+    --mobmed: 4.2vw;
+    --moblarge: 5vw;
+}
 
+  
 /* ----------
     Hero
 ---------- */
@@ -22,24 +38,28 @@ input {
     background: inherit;
     border: none;
     border-bottom: 1px solid #585858;
-    font-size: 1.3vw;
+    font-size: var(--med);
+}
+
+select {
+    font-size: var(--med);
 }
 
 .active {
-    color: rgb(27, 27, 27)!important;
+    color: var(--accent)!important;
 }
 
 .btn-purchase {
     text-align: center;
     align-self: center;
     cursor: pointer;
-    background-color: rgb(0, 81, 128);
+    background: var(--accent);
     padding: 1vw;
     border-radius: 4%;
-    border: 1px solid white;
-    color: white;
+    border: 1px solid var(--white);
+    color: var(--white);
     transition: all 0.6s ease;
-    font-size: 1.1vw;
+    font-size: var(--med);
     margin: 0 34%;
     grid-column-start: center;
     grid-row-start: bottommid;
@@ -47,10 +67,10 @@ input {
 }
 
 .btn-reset {
-    background: #426b13;
+    background: var(--dark);
     padding: 0.3vw .6vw;
-    color: white;
-    font-size: .8vw;
+    color: var(--white);
+    font-size: var(--xsmall);
     border-radius: 2000px;
     cursor: pointer;
     z-index: 5;
@@ -60,13 +80,13 @@ input {
     text-align: center;
     align-self: center;
     cursor: pointer;
-    background-color: green;
+    background: var(--accent);
     padding: 1vw;
     border-radius: 4%;
-    border: 1px solid white;
-    color: white;
+    border: 1px solid var(--white);
+    color: var(--white);
     transition: all 0.6s ease;
-    font-size: 1.1vw;
+    font-size: var(--med);
     margin: 0 34%;
     grid-column-start: center;
     grid-row-start: bottommid;
@@ -76,13 +96,13 @@ input {
     text-align: center;
     align-self: center;
     cursor: unset;
-    background-color: #666;
+    background: var(--light);
     padding: 1vw;
     border-radius: 4%;
-    border: 1px solid white;
-    color: white;
+    border: 1px solid var(--white);
+    color: var(--white);
     transition: all 0.6s ease;
-    font-size: 1.1vw;
+    font-size: var(--med);
     margin: 0 40%;
     grid-column-start: center;
     grid-row-start: bottommid;
@@ -101,16 +121,16 @@ input {
 
 
 .four-tile {
-    background: #6699B9;
-    color: white;
+    background: var(--light);
+    color: var(--white);
     text-align: center;
-    font-size: 1vw;
+    font-size: var(--small);
     width: 7.1vw;
     height: 10.5vw;
 }
 
 .fa-circle {
-    color: #585858;
+    color: var(--light);
     margin: 0 .2vw;
 }
 
@@ -128,7 +148,7 @@ input {
 }
 
 .hero-form p {
-    font-size: 1.2vw;
+    font-size: var(--med);
     margin: 0;
 }
 
@@ -139,7 +159,7 @@ input {
 .icon-area {
     display: flex;
     justify-content: center;
-    font-size: 1.5vw;
+    font-size: var(--med);
     align-items: center;
     grid-column-start: center;
     grid-row-start: bottom;
@@ -152,7 +172,7 @@ input {
 
 .back-icon {
     font-size: 5.1vw;
-    color: rgb(219, 166, 166);
+    color: var(--dark);
     transition: all .5s ease;
     z-index: 3;
     cursor: pointer;
@@ -163,7 +183,7 @@ input {
 
 .next-icon {
     font-size: 5.1vw;
-    color: rgb(219, 166, 166);
+    color: var(--dark);
     opacity: 0;
     transition: all .5s ease;
     z-index: 3;
@@ -180,8 +200,8 @@ input {
 }
 
 .selected {
-    background: #1e8ee9!important;
-    color: white;
+    background: var(--accent)!important;
+    color: var(--white);
 }
 
 .slide {
@@ -189,7 +209,7 @@ input {
     display: grid;  
     grid-template-columns: [lside] 10% [center] 80% [rside] 10%;
     /* grid-template-columns: [lside] 10% [center] 108% [rside] 10%; */
-    grid-template-rows: [top] 5vh [topmid] 12vh [centerline] 4vh [bottommid] 10vh [lowerbottom] 4vh [bottom] 5vh;
+    grid-template-rows: [top] 5vh [topmid] 12vh [centerline] 4vh [bottommid] 10vh [lowerbottom] 6vh [bottom] 5vh;
     transition: transform 0.5s;
 
 }
@@ -203,14 +223,16 @@ input {
 .tile {
     transition: all ease 250ms;
     border-radius: 6%;
+    border: none;
+    box-shadow: 1px 1px 2px var(--light), -1px -1px 2px var(--light), 1px -1px 2px var(--light), -1px 1px 2px var(--light);
 }
 
 .tile:hover {
-    background: #3499cc;
+    background: var(--accent);
 }
 
 .tile:focus {
-    background: #3499cc;
+    background: var(--accent);
     border: none;
 }
 
@@ -241,10 +263,10 @@ input {
 }
 
 .two-tile {
-    background: #6699B9;
-    color: white;
+    background: var(--light);
+    color: var(--white);
     text-align: center;
-    font-size: 1vw;
+    font-size: var(--small);
     width: 9vw;
     height: 10.5vw;
 }
@@ -259,11 +281,11 @@ input {
 }
 
 #bottom-line {
-    font-size: .9vw;
+    font-size: var(--xsmall);
     font-style: italic;
     text-align: center;
     padding-bottom: .1vw;
-    color: #585858;
+    color: var(--accent);
     width: 100%;
 }
 
@@ -280,8 +302,10 @@ input {
 
 #container {
     width: 78vw;
-    background: white;
-    opacity: .9;
+    /* background: var(--white); */
+    background: rgba(255, 255, 255, .7)
+    /* background: linear-gradient(to right, rgba(255, 255, 255, 0.8) 10%, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 1) 80%, rgba(255, 255, 255, 0.8) 90%); */
+    /* opacity: .9; */
 }
 
 #employeeInfoTableHeadings {
@@ -292,7 +316,7 @@ input {
 #employeeInfoTableHeadings p{
     margin: 0 5vw 0 0;
     width: 33%;
-    font-size: 1vw;
+    font-size: var(--small);
 }
 
 #empError, #milesError, #payrollError, #zipError, #emailError {
@@ -300,14 +324,15 @@ input {
     padding: 0;
     visibility: hidden;
     font-style: italic;
-    font-size: 1vw;
-    color: red;
+    font-size: var(--small);
+    color: var(--dark);
     grid-column-start: center;
     grid-row-start: bottommid;
 }
 
 #hero {
     padding: 1vw 10vw;
+    /* margin-top: 70px; */
     background: url('../images/truckbgd.jpeg');
     background-size: cover;
 }
@@ -317,15 +342,11 @@ input {
     cursor: pointer;
 }
 
-#icon-spacer {
-    width:60%;
-}
-
 #quote-area {
     margin: 0 1vw;
     padding: 2vw;
-    background: rgb(23, 122, 114);
-    color: white;
+    background: var(--accent);
+    color: var(--white);
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -337,7 +358,7 @@ input {
 }
 
 #quote-area h1, #quote-area h3 {
-    font-size: 1.8vw;
+    font-size: var(--large);
 }
 
 #reset-container {
@@ -346,46 +367,66 @@ input {
     margin: 1vw 0;
 }
 
+#spanEmail {
+    color: var(--dark);
+}
+
 /* ----------
     About
 ---------- */
 
 svg {
-    height: 4vw;
-    width: 4vw;
-    padding: 1.2vw;
+    fill: var(--light);
 }
 
 .about-box {
-    border: .6vw solid rgb(0, 0, 0);
+    /* border: .6vw solid rgb(0, 0, 0);
     border-radius: 3%;
     flex: 1 1 0;
+    text-align: center; */
+    padding: 1.6vw;
     text-align: center;
+    width: 100%;
+    box-shadow: 0 1px 4px 0 rgb(0 0 0 / 30%);
+    background-color: #fff;
 }
 
-.about-icon {
-    height: 5vw;
-    width: 5vw;
-    margin: auto;
-    border: .4vw solid black;
-    border-radius: 100%;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    display: flex;
+.about-button {
+    font-size: var(--small);
+    border-radius: 3px;
+    color: #fff;
+    background: var(--dark);
+    border: 1px solid var(--white);
+    padding: .8vw 1.6vw;
+    display: inline-block;
+    -webkit-transition: all .2s ease-out;
+    -moz-transition: all .2s ease-out;
+    -ms-transition: all .2s ease-out;
+    -o-transition: all .2s ease-out;
+    transition: all .2s ease-out;
 }
 
 .about-text {
-    font-size: 1.4vw;
-    font-weight: 600;
-}
-
-.wide-indent {
-    padding: 1% 22%;
+    /* font-size: 1.4vw;
+    font-weight: 600; */
+    max-width: 100%;
+    min-height: 6vw;
+    margin: 1vw 0;
+    font-size: var(--med);
 }
 
 #about {
     margin: 2vw;
+    padding: 1% 8%;
+    background: var(--white);
+    /* font-family: 'Open Sans'; */
+    /* color: #505050; */
+
+}
+
+#about h3 {
+    font-size: var(--large);
+    font-weight: 400;
 }
 
 #about-container {
@@ -401,7 +442,30 @@ svg {
 }
 
 #about-headline h2 {
-    font-size: 38px;
+    font-size: var(--large);
+    font-weight: 700;
+}
+
+/* ----------
+   Partners
+---------- */
+
+#partners {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 8%;
+}
+
+#partners img {
+    height: 4vw;
+    margin: 0 1%;
+}
+
+#partners-section {
+    text-align: center;
+    margin: 4vw 0;
+    /* color: #bfbfbf; */
 }
 
 /* ----------
@@ -439,13 +503,13 @@ svg {
 
 #US-map-lg {
     height: 20vw;
-    background: white;
+    background: var(--white);
     box-shadow: 0 0 15px -2px rgba(50, 50, 50, .2);
 }
 
 #US-map-sm {
     height: 42vw;
-    background: white;
+    background: var(--white);
     box-shadow: 0 0 15px -2px rgba(50, 50, 50, .2);
 }
 
@@ -459,7 +523,7 @@ svg {
     border-radius: 2000px;
     border: none;
     background: rgb(6, 12, 94);
-    color: white;
+    color: var(--white);
     font-size: 1.6vw;
     padding: .7vw 5vw;
     text-align: center;
@@ -527,11 +591,11 @@ svg {
 /* Register */
 
 .card-heading {
-    background: rgb(150, 160, 185);
-    color: white;
+    background: var(--light);
+    color: var(--white);
     padding: 1vw;
     text-align: center;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid var(--light);
 }
 
 .card-body {
@@ -552,11 +616,11 @@ svg {
 
 #btn-register {
     padding: 0.6vw;
-    background: green;
+    background: var(--dark);
     /* border-radius: 4%; */
-    color: white;
+    color: var(--white);
     transition: all 0.6s ease;
-    font-size: 1.1vw;
+    font-size: var(--small);
     width: 98%;
     text-align: center;
     margin-top: 1vw;
@@ -576,25 +640,27 @@ svg {
 Media Queries
 ---------- */
 
-/* All media queries activate at 700px width */
-@media only screen and (max-width: 700px) {
+@media screen and (max-width: 1100px) {
+
+    #about-container {
+        display: grid;
+        gap: 2vw;
+        padding: 1% 0;
+    }
+}
+
+
+@media screen and (max-width: 700px) {
 
     h2, #cta h2 {
-        font-size: 4vw;
+        font-size: var(--mobmed);
     }
     h3 {
-        font-size: 3.5vw;
-    }
-
-    .indented {
-        padding: 1% 10%;
-    }
-    .wide-indent {
-        padding: 1% 10%;
+        font-size: var(--mobsmall);
     }
 
     .about-text {
-        font-size: 3.5vw;
+        font-size: var(--mobsmall);
     }
 
     .about-icon {
@@ -606,8 +672,41 @@ Media Queries
         font-size: 10vw;
     }
 
-    .hero-form p, input {
-        font-size: 3.2vw;
+    .btn-contact {
+        font-size: var(--moblarge);
+        padding: 1vw 10vw;
+    }
+
+    .btn-reset {
+        font-size: var(--mobxsmall);
+    }
+
+    .btn-save {
+        font-size: var(--moblarge);
+        padding: 1vw 6vw;
+        margin: 0;
+    }
+    
+    .btn-submit {
+        font-size: var(--moblarge);
+        padding: .6vw 6vw;
+        margin: 0 18%;
+    }
+
+    .formline select, .formline input {
+        margin: 0 0.5vw 0 0;
+    }
+
+    .hero-form p, input, select {
+        font-size: var(--mobsmall);
+    }
+
+    .icon-area {
+        font-size: var(--mobmed);
+    }
+
+    .indented {
+        padding: 1% 10%;
     }
 
     .map-side-sm {
@@ -616,6 +715,10 @@ Media Queries
 
     .map-side-lg {
         display: none;
+    }
+
+    .material-icons{
+        display: none
     }
 
     .slide{
@@ -627,7 +730,7 @@ Media Queries
     }
 
     .tiles-two, .tiles-multi {
-        font-size: 5vw;
+        font-size: var(--moblarge);
         align-items: center;
         flex-direction: column;
         margin: 0;
@@ -640,77 +743,55 @@ Media Queries
         height: unset;
         padding: 2vw;
         margin-bottom: 10px;
-        font-size: 5vw;
+        font-size: var(--moblarge);
     }
 
-    .btn-contact {
-        font-size: 5vw;
-        padding: 1vw 10vw;
+    #about-headline h2{
+        font-size: var(--moblarge);
     }
 
-    .btn-reset {
-        font-size: 1.4vh;
-        
-    }
-
-    .btn-save {
-        font-size: 5vw;
-        padding: 1vw 6vw;
-        margin: 0;
-    }
-    
-    .btn-submit {
-        font-size: 5vw;
-        padding: 1vw 6vw;
-        margin: 0 18%;
-    }
-
-    .formline select, .formline input {
-        margin: 0 0.5vw 0 0;
-    }
-
-    #about-container {
-        display: grid;
-        gap: 8vw;
-        padding: 1% 20%;
-    }
-
-    #btn-register {
-        margin-top: 3vw;
-        font-size: 2.8vw;
+    #about h3 {
+        font-size: var(--moblarge);
     }
 
     #bottom-line {
-        font-size: 2.8vw;
+        font-size: var(--mobsmall);
     }   
 
-    #login-line {
-        font-size: 3.2vw
-    }
-
-    #quote-area h1, #quote-area h3 {
-        font-size: 4.5vw;
+    #btn-register {
+        margin-top: 3vw;
+        font-size: var(--mobsmall);
     }
 
     #employeeInfoTableHeadings p{
-        font-size: 3vw;
+        font-size: var(--mobsmall);
         margin: 0 0.5vw 0 0;
+    }
+
+    #empError, #payrollError, #zipError, #milesError, #emailError {
+        font-size: var(--mobsmall);
     }
 
     #hero {
         padding: 1% 8%;
     }
 
-    #empError, #payrollError, #zipError, #milesError, #emailError {
-        font-size: 3.5vw;
+    #login-line {
+        font-size: var(--mobsmall)
+    }
+
+    #quote-area h1, #quote-area h3 {
+        font-size: var(--mobmed);
+    }
+
+    #partners img {
+        height: 8vw;
     }
 
     #why-SARK {
         padding: 1% 12%;
     }
-    .material-icons{
-        display: none
-    }
+
 }
 
 

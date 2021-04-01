@@ -7,6 +7,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="public/favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="public/favicon_io/favicon-16x16.png">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="public/styles/common.css" rel="stylesheet">
 
@@ -22,8 +24,12 @@
     {{>navbar}}
     
 <!-- xxxxxxxxxx -->
-    {{>errorMessage errors = errors}}
-    
+    <div id="messageArea">
+        {{>errorMessage errors = errors}}
+        {{>errorMessage error = error_msg}}
+        {{>errorMessage success = success_msg}}
+    </div>
+
     {{{body}}}
 
 <!-- xxxxxxxxxx -->

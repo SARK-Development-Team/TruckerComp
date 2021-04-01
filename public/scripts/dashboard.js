@@ -13,25 +13,12 @@ var leadData = {
     companyName: '',
     address: '',
     mailingAddress: '',
-    phoneNumber: '',
+    phone: '',
     employees: '',
     powerUnits: '',
-    stage: 1
+    stage: 1,
+    _id: ''
 }
-
-async function fetchUser(DOT) {
-    const uri = uriRoot+'user';
-
-    const result = fetch(uri, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(DOT)
-    }).then(response => response.json()).catch(err=>console.log(err));
-
-    return result;
-
-}
-
 
 function hideElement(...elements) {
     elements.forEach((e)=> document.getElementById(e).style.maxHeight='0');
@@ -57,7 +44,7 @@ function editInfo() {
 }
 
 function addRow(e) {
-    e.preventDefault()
+    if(e) e.preventDefault()
     const formlines = document.getElementsByClassName('formline').length;
     const line = `                                
     <p class="formline">
@@ -107,7 +94,6 @@ async function searchDOT() {
                 document.getElementById('searchError').innerText=`No result found for ${dot['dot']}.`;
             // If a client is found
             } else {
-                // document.getElementById('name').value = client.result['Name'];
                 document.getElementById('DOT').value = client.result['DOT Number'];
                 document.getElementById('companyName').value = client.result['Company Name'];
                 document.getElementById('MC').value = client.result['MCP Number'];
@@ -142,45 +128,77 @@ async function fetchDOT(dotObject) {
 
 function saveLead(e) {
     e.preventDefault();
-    leadData.name = document.getElementById('name').value;
-    leadData.email = document.getElementById('email').value;
-    // leadData.totalPayroll = document.getElementById('totalPayroll').value ?? '';
-    leadData.mileage = document.getElementById('mileage').value ?? '';
-    leadData.DOT = document.getElementById('DOT').value;
-    leadData.companyName = document.getElementById('companyName').value ?? '';
-    leadData.MC = document.getElementById('MC').value ?? '';
-    leadData.address = document.getElementById('address').value ?? '';
-    leadData.mailingAddress = document.getElementById('mailingAddress').value ?? '';
-    leadData.phoneNumber = document.getElementById('phone').value;
-    leadData.powerUnits = document.getElementById('powerUnits').value ?? '';
-    leadData.employees = saveEmployeeData();
-    if (leadData.stage==1) leadData.stage=2;
-    const uri = uriRoot+'lead';
-    const result = fetch(uri, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(leadData)
-    }).then(
-        alert('Thank you for confirming! We will contact you shortly!'),
-        location.reload()
-    )
-    .catch(err=>console.log(err));
+    if (document.getElementById('name').value &&
+    document.getElementById('email').value &&
+    document.getElementById('DOT').value &&
+    document.getElementById('phone').value) {
+        leadData.name = document.getElementById('name').value;
+        leadData.email = document.getElementById('email').value;
+        leadData.mileage = document.getElementById('mileage').value ?? '';
+        leadData.DOT = document.getElementById('DOT').value;
+        leadData.companyName = document.getElementById('companyName').value ?? '';
+        leadData.MC = document.getElementById('MC').value ?? '';
+        leadData.address = document.getElementById('address').value ?? '';
+        leadData.mailingAddress = document.getElementById('mailingAddress').value ?? '';
+        leadData.phone = document.getElementById('phone').value;
+        leadData.powerUnits = document.getElementById('powerUnits').value ?? '';
+        leadData._id = document.getElementById('userID').value;
+        leadData.employees = saveEmployeeData();
+        const formlines = document.getElementsByClassName('formline').length;
+        var payrollSum = 0;
+        for (let i=0; i<formlines; i++) {
+            payrollSum+=parseInt(document.getElementById(`empPayroll${i}`).value);
+        }
+        leadData.totalPayroll=payrollSum;
+        leadData.stage=2;
+        const uri = uriRoot+'lead';
+        const result = fetch(uri, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(leadData)
+        }).then(
+            alert('Thank you for confirming! We will contact you shortly!'),
+            location.reload()
+        )
+        .catch(err=>console.log(err));
+    } else {
+        document.getElementById('saveError').innerText='Please enter at least your Name, Email Address, DOT Number, and Phone Number';
+    }
+}
+
+function removeSaveError() {
+    document.getElementById('saveError').innerText='';
 }
 
 
 // RESUME HERE
-async function fetchUser(dot) {
+async function fetchUser(id) {
     const uri = uriRoot+'user';
-    const dotObj = {"dot": dot}; 
+    const idObj = {"id": id}; 
     const result = fetch(uri, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(dotObj)
+        body: JSON.stringify(idObj)
     }).then(response => response.json())
     .catch(err=>console.log(err));
 
     return result;
 }
+
+// async function fetchUser(DOT) {
+//     const uri = uriRoot+'user';
+
+//     const result = fetch(uri, {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify(DOT)
+//     }).then(response => response.json()).catch(err=>console.log(err));
+
+//     return result;
+
+// }
+
+
 
 function setStages() {
     const steps = document.getElementsByClassName('step');
@@ -200,12 +218,28 @@ function setStages() {
 
 }
 
+
+function displayEmployees(object) {
+    const empObject = JSON.parse(object); 
+    const numlines = empObject.length;
+    for (let i = 0; i<numlines; i++) {
+        document.getElementById(`empType${i}`).options[0].removeAttribute('selected');
+        document.getElementById(`empType${i}`).value=empObject[i].type;
+        document.getElementById(`empNumber${i}`).value= empObject[i].number ?? '';
+        document.getElementById(`empPayroll${i}`).value= empObject[i].payroll ?? '';
+        addRow();
+    }
+}
+
+
 window.onload = async () => {
-    const dot = document.getElementById('dbscript').getAttribute('data-user');
+    const dot = document.getElementById('dbscript').getAttribute('data-user-dot');
     setStages();
     if (dot) {
-        const user = await fetchUser(dot);
-        console.log(user);
+        const id = document.getElementById('dbscript').getAttribute('data-user-id');
+        const user = await fetchUser(id);
+        // console.log(document.getElementById('dbscript').getAttribute('data-user-employees'));
+
         document.getElementById('name').value=user.user.name ?? '';
         document.getElementById('userName').value=user.user.name ?? '';
         document.getElementById('email').value=user.user.email ?? '';
@@ -213,7 +247,6 @@ window.onload = async () => {
         document.getElementById('userTotalPayroll').value=user.user.totalPayroll ?? '';
         document.getElementById('mileage').value=user.user.mileage ?? '';
         document.getElementById('userMileage').value=user.user.mileage ?? '';
-        // document.getElementById('userZip').value=user.;
         document.getElementById('DOT').value=user.user.DOT ?? '';
         document.getElementById('userDOT').value=user.user.DOT ?? '';
         document.getElementById('MC').value=user.user.MC ?? '';
@@ -228,10 +261,11 @@ window.onload = async () => {
         document.getElementById('userMailingAddress').value=user.user.mailingAddress ?? '';
         document.getElementById('powerUnits').value=user.user.powerUnits ?? '';
         document.getElementById('userPowerUnits').value=user.user.powerUnits ?? '';
-        document.getElementById('userStage').value=user.user.stage ;
-
+        if (user.user.employees.length) displayEmployees(user.user.employees);
     } else {
         console.log("no DOT exists for this user.");
+        console.log(document.getElementById('dbscript').getAttribute('data-user-employees'));
+        // displayEmployees();
     }
 }
 
