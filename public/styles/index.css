@@ -372,6 +372,39 @@ select {
 }
 
 /* ----------
+  Info Tabs
+---------- */
+
+
+
+.info-tab {
+    flex: 33%;
+    text-align: center;
+    cursor: pointer;
+    padding: 6px;
+}
+
+.info-blurb {
+    transition: opacity 1s ease;
+}
+
+.chosen {
+    background: var(--light);
+    color: var(--white);
+}
+
+#three-tab-section {
+    background: var(--white);
+    margin: 1% 12%;
+}
+
+#three-tabs {
+    display: flex;
+    color: var(--light);
+    justify-content: center;
+}
+
+/* ----------
     About
 ---------- */
 

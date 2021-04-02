@@ -203,6 +203,12 @@ h2, h3 {
     Footer
 ---------- */
 
+
+.fa, .fab, .far, .fas {
+    cursor: pointer;
+    margin: 0 0.5vw;
+}
+
 .footer-heading {
     letter-spacing: -.04em;
     padding: 1vw 0;

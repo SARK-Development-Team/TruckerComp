@@ -55,6 +55,21 @@ main p, main li, main td {
     display: block!important;
 }
 
+.block {
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    border: 1px solid gray;
+    padding: 5px;
+}
+
+.block-header {
+    min-width: 40px;
+    margin-top: -13px;
+    margin-left: 15px;
+    background: white;
+    padding: 0 1vw;
+}
+
 .blue-bg {
     background: var(--accent);
     color: white;
@@ -65,10 +80,6 @@ main p, main li, main td {
     background: white;
 }
 
-.fa, .far, .fas {
-    cursor: pointer;
-    margin: 0 0.5vw;
-}
 
 .formline {
     margin: .5vw 0!important;
@@ -86,16 +97,15 @@ main p, main li, main td {
     padding: 0 1vw;
 }
 
-.step {
-    display: none;
-}
-
 .right {
     flex: 55%;
     border-left: 1px solid var(--accent);
     padding: 0 1vw;
 }
 
+.step {
+    display: none;
+}
 
 #btn-logout {
     padding: 0.8vw;
@@ -166,20 +176,6 @@ main p, main li, main td {
     width: 200px;
     height: 200px;
 }
-
-/* #result {
-    margin: 2vw 0;
-    display: none;
-    padding: 1vw;
-    background: rgb(233, 233, 233);
-    border: 1.5px solid black;
-    border-radius: 4px;
-}
-
-#result p {
-    color:rgb(73, 73, 73)
-
-} */
 
 #searchError, #saveError {
     font-style: italic;

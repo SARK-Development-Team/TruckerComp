@@ -15,42 +15,55 @@
         <div id="infoDisplay">
             <h2>My info&nbsp;<i class="fas fa-window-minimize" onclick="hideInfo()"></i><i class="fa fa-pencil-square-o" onclick="editInfo()"></i></h2>
             <img src="../public/images/truck2.png" id="truckImg">
-            <p>Name: <span id= 'userName'>{{user.name}}</span></p>
-            <p>Email: <span id= 'userEmail'>{{user.email}}</span></p>
-            <p>Employees:</p> 
-            <table id="empTable">
-                <th>
-                    <td><b>Type</b></td>
-                    <td><b>Number</b></td>
-                    <td><b>Payroll</b></td>
-                </th>
-                {{#each user.employees as |item|}}
-                <tr>
-                    <td></td>
-                    <td>{{item.type}}</td>
-                    <td>{{item.number}}</td>
-                    <td>{{item.payroll}}</td>
-                </tr>
-                {{/each}}
-            </table>
+            <div class="block">
+                <h3 class="block-header">{{user.name}}</h3>
+                <p>Name: <span id= 'userName'>{{user.name}}</span></p>
+                <p>Email: <span id= 'userEmail'>{{user.email}}</span></p>
+                {{#if user.DOT}}
+                    <p>Phone Number: <span id='userPhone'>{{user.phone}}</span></p>
+                {{/if}}
+            </div>
 
-            <p>Total Payroll: <span id= 'userTotalPayroll'>{{user.totalPayroll}}</span></p>
-            <p>Annual mileage: <span id= 'userMileage'>{{user.mileage}}</span></p>
-            {{#unless user.DOT}}
-                <p>ZIP Code: <span id='userZip'>{{user.zipCode}}</span></p>
-            {{/unless}}
-            {{#if user.DOT}}
-                <p>DOT Number: <span id='userDOT'>{{user.DOT}}</span></p>
-                <p>MC Number: <span id='userMC'>{{user.MC}}</span></p>
-                <p>Company Name: <span id='userCompanyName'>{{user.companyName}}</span></p>
-                <p>Address: <span id='userAddress'>{{user.address}}</span></p>
-                <p>Phone Number: <span id='userPhone'>{{user.phone}}</span></p>
-                <p>Mailing Address: <span id='userMailingAddress'>{{user.mailingAddress}}</span></p>
-                <p>Power Units: <span id='userPowerUnits'>{{user.powerUnits}}</span></p>
-            {{/if}}
-            {{!-- The user's stage of progress is placed here so that bundle.js can access the value --}}
-            <input id="userStage" type="hidden" value={{user.stage}}>
-            <input id="userID" type="hidden" value={{user._id}}>
+            <br>
+            <div class="block">
+                <h3 class="block-header">blah</h3>
+                {{#if user.DOT}}
+                    <p>Company Name: <span id='userCompanyName'>{{user.companyName}}</span></p>
+                    <p>DOT Number: <span id='userDOT'>{{user.DOT}}</span></p>
+                    <p>MC Number: <span id='userMC'>{{user.MC}}</span></p>
+                    <p>Address: <span id='userAddress'>{{user.address}}</span></p>
+                    <p>Mailing Address: <span id='userMailingAddress'>{{user.mailingAddress}}</span></p>
+                {{/if}}
+                {{!-- <p>Employees:</p>  --}}
+                <table id="empTable">
+                    <th>
+                        <td><b>Type</b></td>
+                        <td><b>Number</b></td>
+                        <td><b>Payroll</b></td>
+                    </th>
+                    {{#each user.employees as |item|}}
+                    <tr>
+                        <td></td>
+                        <td>{{item.type}}</td>
+                        <td>{{item.number}}</td>
+                        <td>{{item.payroll}}</td>
+                    </tr>
+                    {{/each}}
+                </table>
+
+                <p>Total Payroll: <span id= 'userTotalPayroll'>{{user.totalPayroll}}</span></p>
+                <p>Annual mileage: <span id= 'userMileage'>{{user.mileage}}</span></p>
+                {{#if user.DOT}}
+                    <p>Power Units: <span id='userPowerUnits'>{{user.powerUnits}}</span></p>
+                {{/if}}
+                {{#unless user.DOT}}
+                    <p>ZIP Code: <span id='userZip'>{{user.zipCode}}</span></p>
+                {{/unless}}
+
+                {{!-- The user's stage of progress is placed here so that bundle.js can access the value --}}
+                <input id="userStage" type="hidden" value={{user.stage}}>
+                <input id="userID" type="hidden" value={{user._id}}>
+            </div>
         </div>
         <div id="two-column">
             <div class="left column">
