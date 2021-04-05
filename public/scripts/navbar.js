@@ -8,7 +8,6 @@ window.onscroll = () => {
         comp.style.color=("#F5F3F5");
         navbar.classList.add("darkNav");
         navbar.classList.remove("lightNav");
-        console.log("scrolled")
     } 
     else {
         comp.style.color=("rgb(33, 115, 209)");

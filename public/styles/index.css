@@ -376,12 +376,20 @@ select {
 ---------- */
 
 
+.info-heading {
+    background: var(--accent);
+    padding: 1vw;
+    color: var(--white);
+}
 
 .info-tab {
     flex: 33%;
     text-align: center;
     cursor: pointer;
     padding: 6px;
+    margin: 0 0 1vw 0;
+    color: var(--white);
+    background: var(--light);
 }
 
 .info-blurb {
@@ -389,13 +397,12 @@ select {
 }
 
 .chosen {
-    background: var(--light);
-    color: var(--white);
+    background: var(--accent);
 }
 
 #three-tab-section {
     background: var(--white);
-    margin: 1% 12%;
+    margin: 2% 12%;
 }
 
 #three-tabs {
