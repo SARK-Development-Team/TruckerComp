@@ -106,8 +106,7 @@ function hideSlide2() {
 const digits = document.querySelector(".digits").children;
 for (let i=1; i<digits.length; i++) {
     digits[i].addEventListener('keydown', (e) => {
-        console.log("e is ", e)
-        console.log("e.key is ", e.key);
+
         if (e.key=="Backspace") {
             e.target.previousElementSibling.focus();
         }
@@ -176,6 +175,7 @@ async function searchDOT(e) {
                 document.getElementById('phone').value = client.result['Phone'];
                 document.getElementById('powerUnits').value = client.result['Power Units'];
                 document.getElementById('drivers').value = client.result['Drivers'];
+                document.getElementById('empNumber0').value = client.result['Drivers'];
             }
         } catch (err) {
             console.log(err);

@@ -35,6 +35,7 @@
                 </div>
                 <div class="icon-area">
                     <div class="icons">
+                        <i class="fa fa-circle active"></i>
                         <i class="fa fa-circle-o"></i>
                         <i class="fa fa-circle-o"></i>
                         <i class="fa fa-circle-o"></i>
@@ -101,12 +102,14 @@
             </div>
 
         </section>
+
         <div id="carousel">
             <div class="slide" id="slide2" >
                 <h2>How many miles?</h2>
                 <input type="number" min="0" id="slide2Mileage" name="miles">
                 <div class="icon-area">
                     <div class="icons">
+                        <i class="fa fa-circle"></i>
                         <i class="fa fa-circle active"></i>
                         <i class="fa fa-circle-o"></i>
                         <i class="fa fa-circle-o"></i>
@@ -139,8 +142,9 @@
                 </form> --}}
                 <div class="icon-area">
                     <div class="icons">
+                        <i class="fa fa-circle"></i>
+                        <i class="fa fa-circle"></i>
                         <i class="fa fa-circle active"></i>
-                        <i class="fa fa-circle-o"></i>
                         <i class="fa fa-circle-o"></i>
                         <i class="fa fa-circle-o"></i>
                     </div>
@@ -157,13 +161,12 @@
                 <form class="hero-form">
                     <div id="employeeInfoTable">
                         <div id="employeeInfoTableHeadings">
-                            <p>Employee Type</p>
-                            <p>How many of this type of employee do you have on your payroll?</p>  
-                            <p>What is the total combined payroll for these employees?</p></div>
+                            <p>How many drivers do you have on your payroll?</p>  
+                            <p>What is their combined payroll?</p></div>
                         <p class="formline">
                             {{!-- This is the dropdown menu for employee type --}}
                             {{!-- If it is changed, the function addRow() will also need to be updated --}}
-                            <select class="empType" id="empType0">
+                            {{!-- <select class="empType" id="empType0">
                                 <option value="" disabled selected>Employee Type</option>
                                 <option value="Driver">Driver</option>
                                 <option value="Maintenance">Maintenance</option>
@@ -171,11 +174,11 @@
                                 <option value="Custodial">Custodial</option>
                                 <option value="Clerical">Clerical</option>
                                 <option value="Other">Other</option>
-                            </select>
+                            </select> --}}
                             <input class="empNumber" name="empNumber0" type="number" min="1" id="empNumber0">
                             <input class="empPayroll" name="empPayroll0" type="number" id="empPayroll0">
                         </p>
-                        <p class="formline">
+                        {{!-- <p class="formline">
                             <select class="empType" id="empType1">
                                 <option value="" disabled selected>Employee Type</option>
                                 <option value="Driver">Driver</option>
@@ -187,9 +190,9 @@
                             </select>
                             <input class="empNumber" name="empNumber1" type="number" min="1" id="empNumber1">
                             <input class="empPayroll" name="empPayroll1" type="number" id="empPayroll1">
-                        </p>
+                        </p> --}}
                     </div>
-                    <button id="newRow" onclick="addRow(event)"><i class="fas fa-plus" ></i></button>
+                    {{!-- <button id="newRow" onclick="addRow(event)"><i class="fas fa-plus" ></i></button> --}}
 
                     <div class="btn-save" id="saveEmployeeData" onclick="saveEmployeeData()">Save Employee Data</div>
                     <div class="btn-next" onclick="changeSlide(1)">Next slide</div>
@@ -197,8 +200,9 @@
                 <div class="icon-area">
                     <div class="icons">
                         <i class="fa fa-circle"></i>
+                        <i class="fa fa-circle"></i>
+                        <i class="fa fa-circle"></i>
                         <i class="fa fa-circle active"></i>
-                        <i class="fa fa-circle-o"></i>
                         <i class="fa fa-circle-o"></i>
                     </div>               
                 </div>
@@ -226,6 +230,7 @@
 
                     <div class="icon-area">
                         <div class="icons">
+                            <i class="fa fa-circle"></i>
                             <i class="fa fa-circle"></i>
                             <i class="fa fa-circle"></i>
                             <i class="fa fa-circle"></i>

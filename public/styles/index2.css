@@ -108,7 +108,7 @@ fieldset input, fieldset label {
 .slide {
     background: var(--white);
     text-align: center;
-    padding: 2vw;
+    padding: 2vw 13vw;
     min-width: 100vw;
     min-height: 28vw;
     /* display: grid;   */
@@ -127,6 +127,7 @@ fieldset input, fieldset label {
     scroll-snap-type: x mandatory;
     overflow: hidden;
     width: 100vw;
+    background: var(--white);
 }
 
 #DOTError, #emailError {
