@@ -37,7 +37,7 @@ button {
     cursor: pointer;
 }
 
-h2 {
+/* h2 {
     font-size: var(--large);
     font-weight: 700;
     padding: 1vw 0;
@@ -47,12 +47,12 @@ h2 {
 h3 {
     font-size: var(--med);
     font-weight: 300;
-}
+} */
 
 h2, h3 {
     margin-block-start: 0;
     margin-block-end: 0;
-
+    margin: 0;
 }
 
 .indented {

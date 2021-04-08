@@ -208,7 +208,6 @@ select {
     min-width: 78vw;
     display: grid;  
     grid-template-columns: [lside] 10% [center] 80% [rside] 10%;
-    /* grid-template-columns: [lside] 10% [center] 108% [rside] 10%; */
     grid-template-rows: [top] 5vh [topmid] 12vh [centerline] 4vh [bottommid] 10vh [lowerbottom] 6vh [bottom] 5vh;
     transition: transform 0.5s;
 

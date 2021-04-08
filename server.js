@@ -262,8 +262,11 @@ async function azureSearch(id) {
 -------------------------- */
 
 
+// app.get('/', (req, res) => {
+//     res.render('main',  {layout: "index"},);
+// })
 app.get('/', (req, res) => {
-    res.render('main',  {layout: "index"},);
+    res.render('main2',  {layout: "index"},);
 })
 
 // This function receives the request from the client side with the initialFormData, runs it through the formula, and returns a number
