@@ -21,16 +21,17 @@
                 <div class="type-tiles">
                     <button class ="four-tile tile" id="slide1Towing" >
                         <i class="material-icons" >car_repair</i><br>
-                        Towing Services</button>
+                        <p>Towing Services
+                        </p></button>
                     <button class ="four-tile tile" id="slide1Sand" >
                         <i class="material-icons" >landscape</i><br>
-                        Sand & Gravel Trucking</button>
+                        <p>Sand & Gravel Trucking</p></button>
                     <button class ="four-tile tile" id="slide1LongHaul" >
                         <i class="material-icons" >room</i><br>
-                        Long Haul Trucking</button>
+                        <p>Long Haul Trucking</p></button>
                     <button class ="four-tile tile" id="slide1Local" >
                         <i class="material-icons" >local_shipping</i><br>
-                        Local Trucking</button>
+                        <p>Local Trucking</p></button>
 
                 </div>
                 <div class="icon-area">
@@ -69,7 +70,7 @@
                                     </fieldset>
                                     <fieldset>
                                         <label for="address">Address</label>
-                                        <input class="modal-input" id="address" name="address" type="text" >
+                                        <input class="modal-input" id="address" name="address" type="text">
                                     </fieldset>
                                     <fieldset>
                                         <label for="phone">Phone Number</label>
@@ -87,7 +88,7 @@
                                         <label for="powerUnits">Power Units</label>
                                         <input class="modal-input" id="powerUnits" name="powerUnits" type="number" >
                                     </fieldset>
-                                    <p id="saveError"></p>
+                                    <p id="saveError" class="error"></p>
                                 </div>
                             </form>
                         </div>
@@ -95,7 +96,10 @@
                     </div>
                     <div class="modal-footer">
                         <p>Is this information correct?</p>
-                        <input id="btn-save" type="submit" class="btn" onclick="saveLead(event)" value="Yes">
+                        <input id="btn-save" type="submit" class="btn-save" 
+                        {{!-- onclick="saveLead(event)"  --}}
+                        onclick="confirmModalInfo()"
+                        value="Yes">
                         <input id="btn-close" type="button" class="btn" data-dismiss="modal" onclick="closeModal()" value="Close">
                     </div>
                 </div>
@@ -103,7 +107,31 @@
 
         </section>
 
-        <div id="carousel">
+        <section id="slide5-modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p>Based on the information you gave us</p>
+                    </div>
+                    <div class="modal-body">
+                        <div id="quote-result">
+                            <p>we estimate a monthly worker's comp premium of</p>
+                            <p>$<span id="low-end"></span> &mdash; $<span id="high-end"></span>/month</p>
+                            <p>We've also sent an email to <span id="spanEmail"></span> with further information.</p>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <p>Call (408) 262-9190 or email wc@sarkinsurance.com</p>
+                        <p>to lock in this rate today!</p>    
+                        <input id="btn-close2" type="button" class="btn" data-dismiss="modal" onclick="closeModal()" value="Close">
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="carousel">
             <div class="slide" id="slide2" >
                 <h2>How many miles?</h2>
                 <input type="number" min="0" id="slide2Mileage" name="miles">
@@ -116,8 +144,10 @@
                         <i class="fa fa-circle-o"></i>
                     </div>
                 </div>
-                <div class="btn-next" onclick="changeSlide(1)">Next slide</div>
+                <div id="next2" class="btn-next" onclick="changeSlide(1)">Next slide</div>
             </div>
+
+
             <div class="slide" id="slide3" >
                 <h3>What is your Department of Transportation (DOT) number?</h3>
                 <div class="digits">
@@ -131,9 +161,9 @@
                 </div>
                 <input type="number" id="slide3DOT" name="DOT" min="0">
                 {{!-- <span id="btn-search" class="btn-submit" onclick="searchDOT(event)">Search</span> --}}
-                <p id='DOTError'>Please enter a valid DOT Number</p>
+                <p id='DOTError'  class="error">Please enter a valid DOT Number</p>
                     
-                <div class="btn-next" onclick="changeSlide(1)">Next slide</div>
+                <div id="next3" class="btn-next" onclick="changeSlide(1)">Next slide</div>
                 {{!-- <form class="hero-form">
                     <input type="number" id="slide3DOT" name="DOT" min="0"><span class="btn-submit" onclick="searchDOT(event)">Search</span>
                     <p id='DOTError'>Please enter a valid DOT Number</p>
@@ -152,50 +182,27 @@
             </div>
             <div class="slide" id="slide4">
                 <h4>Please enter the following:</h4>
-                {{!-- <div class="back-icon" onclick="changeSlide(-1)">
-                    <i class="fas fa-chevron-left "></i>
-                </div>
-                <div class="next-icon" id="next3">
-                    <i class="fas fa-chevron-right "></i>
-                </div> --}}
+
                 <form class="hero-form">
-                    <div id="employeeInfoTable">
-                        <div id="employeeInfoTableHeadings">
-                            <p>How many drivers do you have on your payroll?</p>  
-                            <p>What is their combined payroll?</p></div>
-                        <p class="formline">
-                            {{!-- This is the dropdown menu for employee type --}}
-                            {{!-- If it is changed, the function addRow() will also need to be updated --}}
-                            {{!-- <select class="empType" id="empType0">
-                                <option value="" disabled selected>Employee Type</option>
-                                <option value="Driver">Driver</option>
-                                <option value="Maintenance">Maintenance</option>
-                                <option value="Accounting">Accounting</option>
-                                <option value="Custodial">Custodial</option>
-                                <option value="Clerical">Clerical</option>
-                                <option value="Other">Other</option>
-                            </select> --}}
-                            <input class="empNumber" name="empNumber0" type="number" min="1" id="empNumber0">
-                            <input class="empPayroll" name="empPayroll0" type="number" id="empPayroll0">
-                        </p>
-                        {{!-- <p class="formline">
-                            <select class="empType" id="empType1">
-                                <option value="" disabled selected>Employee Type</option>
-                                <option value="Driver">Driver</option>
-                                <option value="Maintenance">Maintenance</option>
-                                <option value="Accounting">Accounting</option>
-                                <option value="Custodial">Custodial</option>
-                                <option value="Clerical">Clerical</option>
-                                <option value="Other">Other</option>
-                            </select>
-                            <input class="empNumber" name="empNumber1" type="number" min="1" id="empNumber1">
-                            <input class="empPayroll" name="empPayroll1" type="number" id="empPayroll1">
-                        </p> --}}
-                    </div>
+                    <label for="empNumber">How many drivers do you have on your payroll</label>
+                    <input name="empNumber" type="number" min="1" id="empNumber">
+                    {{!-- <input class="empPayroll" name="empPayroll0" type="number" id="empPayroll0"> --}}
+                    <label for="empPayroll">What is their average yearly pre-tax income?</label>
+                    <select class="empPayroll" id="empPayroll" name="empPayroll">
+                        <option value="" disabled selected>Please select</option>
+                        <option value="4.5">Less than $45,000</option>
+                        <option value="5.0">$45,001 ~ $55,000</option>
+                        <option value="6.0">$55,001 ~ $65,000</option>
+                        <option value="7.0">$65,001 ~ $75,000</option>
+                        <option value="8.0">$75,001 ~ 85,000</option>
+                        <option value="10">$85,001 ~ 100,000</option>
+                        <option value="12">More than $100,000</option>
+                    </select>
+
                     {{!-- <button id="newRow" onclick="addRow(event)"><i class="fas fa-plus" ></i></button> --}}
 
-                    <div class="btn-save" id="saveEmployeeData" onclick="saveEmployeeData()">Save Employee Data</div>
-                    <div class="btn-next" onclick="changeSlide(1)">Next slide</div>
+                    <div class="btn-save" id="btn-saveEmployeeData" onclick="saveEmployeeData()">Save Employee Data</div>
+                    <div id="next4" class="btn-next" onclick="changeSlide(1)">Next slide</div>
                 </form>
                 <div class="icon-area">
                     <div class="icons">
@@ -213,20 +220,18 @@
                     <h4>Is this information correct?</h4>
                 </div>
                 <div class="slide-body">
-                    <form class="hero-form">
-                        <div style="display: grid; grid-template-columns: 1fr 1fr;">
-                            <p id = "q1"></p>
-                            <p id = "q2"></p>
-                            <p id = "q3"></p>
-                            <p id = "q4"></p>
-                        </div>
+                    <div id="confirmation">
+                        <p id = "q1"></p>
+                        <p id = "q2"></p>
+                        <p id = "q3"></p>
+                        <p id = "q4"></p>
+                    </div>
 
 
-                        <h4>Enter your email address to receive a quote immediately!  <input type="email" name="email" id="slide5Email"></h4>
-                        <p id='emailError'>Please enter a valid email address</p>
+                    <h4>Enter your email address to receive a quote immediately!  <input type="email" name="email" id="slide5Email"></h4>
+                    <p id='emailError' class="error">Please enter a valid email address</p>
 
-                        <div class="btn-submit" id="submit" >Submit</div>
-                    </form>
+                    <div class="btn-submit" id="submit" >Submit</div>
 
                     <div class="icon-area">
                         <div class="icons">
@@ -240,7 +245,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
     </section>
 

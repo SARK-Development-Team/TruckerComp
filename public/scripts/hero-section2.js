@@ -16,7 +16,7 @@ function initializeCarousel() {
         
     }
     formData = {
-        employees: [],
+        // employees: [],
         totalPayroll: 0,
         businessType: 0,
         zipCode: 0,
@@ -100,6 +100,32 @@ function hideSlide2() {
 
 // ---- Slide 2 ---- //
 
+// Only allow the user to progress if the content is valid.
+// If a choice is made, the next button is activated
+function allowProgress(slideIndex) {
+    const next = document.getElementById('next' + slideIndex);
+    next.style.opacity=1;
+    next.style.cursor="pointer"
+    next.onclick = () => changeSlide(1);
+}
+
+// If the conditions are no longer met, the button for the next slide is deactivated
+function stopProgress(slideIndex) {
+    const next = document.getElementById('next' + slideIndex);
+    next.style.opacity=0;
+    next.style.cursor=""
+    next.onclick = '';
+}
+
+
+document.getElementById("slide2Mileage").addEventListener("keydown", (e) => {
+    if(e.target.value!=0) {
+        formData.mileage=e.target.value;
+        allowProgress(2);
+    } else {
+        stopProgress(2)
+    }
+})
 
 // ---- Slide 3 ---- //
 
@@ -123,7 +149,6 @@ document.querySelector(".digits").addEventListener("input", (e) => {
       e.target.nextElementSibling.focus();
     } 
     if (!e.target.nextElementSibling) {
-        console.log("it's filled");
         var total = '';
         for (let i=0; i<digits.length; i++) {
             total+=digits[i].value;
@@ -175,7 +200,7 @@ async function searchDOT(e) {
                 document.getElementById('phone').value = client.result['Phone'];
                 document.getElementById('powerUnits').value = client.result['Power Units'];
                 document.getElementById('drivers').value = client.result['Drivers'];
-                document.getElementById('empNumber0').value = client.result['Drivers'];
+                document.getElementById('empNumber').value = client.result['Drivers'];
             }
         } catch (err) {
             console.log(err);
@@ -202,6 +227,11 @@ for (let i = 0; i < inputFields.length; i++) {
     })
 }
 
+// This function will have more to do later (saving the lead)
+function confirmModalInfo() {
+    $('#slide3-modal').modal('hide');
+    allowProgress(3);
+}
 
 function closeModal() {
     $('#slide3-modal').modal('hide');
@@ -209,26 +239,92 @@ function closeModal() {
 
 // ---- Slide 4 ---- //
 
-function addRow(e) {
-    e.preventDefault()
-    const formlines = document.getElementsByClassName('formline').length;
-    const line = `                                
-    <p class="formline">
-        <select class="empType" id="empType${formlines}">
-            <option value="" disabled selected>Employee Type</option>
-            <option value="Driver">Driver</option>
-            <option value="Maintenance">Maintenance</option>
-            <option value="Accounting">Accounting</option>
-            <option value="Custodial">Custodial</option>
-            <option value="Clerical">Clerical</option>
-            <option value="Other">Other</option>
-        </select>
-        <input class="empNumber" name="empNumber${formlines}" type="number" min="1" id="empNumber${formlines}" >
-        <input class="empPayroll" name="empPayroll${formlines}" type="number" min="0.01" id="empPayroll${formlines}">
-    </p>
-    `
+function saveEmployeeData() {
+    if (document.getElementById('empNumber').value && document.getElementById('empPayroll').value) {
+        formData.totalPayroll=(document.getElementById('empNumber').value * parseInt(document.getElementById('empPayroll').value));
+        fillInfo(formData);
+        allowProgress(4);
+    }
+}
 
-    let lineElement = document.createElement('div');
-    lineElement.innerHTML=line;
-    document.getElementById("employeeInfoTable").appendChild(lineElement);
+// ---- Slide 5 ---- //
+
+
+// Fills in the data area on slide 5 for confirmation
+function fillInfo(data) {
+    const q1 = document.getElementById('q1');
+    const q2 = document.getElementById('q2');
+    const q3 = document.getElementById('q3');
+    const q4 = document.getElementById('q4');
+    switch (data.businessType) {
+        case 1:
+            q1.innerText='Type of business: Long-Haul Trucking';
+            break;
+        case 2:
+            q1.innerText='Type of business: Sand & Gravel Trucking';
+            break;
+        case 3:
+            q1.innerText='Type of business: Local Trucking';
+            break;
+        case 4:
+            q1.innerText='Type of business: Towing Services';
+            break;
+        default:
+            q1.innerText='Error';
+            break;
+    }
+    q2.innerText='Mileage: ' + data.mileage;
+
+    q3.innerText='Zip code: '+ data.zipCode;
+
+    q4.innerText='Total payroll: ' + data.totalPayroll;
+}
+
+const email = document.getElementById('slide5Email');
+
+email.addEventListener('keyup', () => {
+
+    const input = email.value;
+    const submit = document.getElementById('submit');
+    // this regex tests for an email address
+    const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const emailError = document.getElementById('emailError');
+    if (input!='' && regex.test(input)) {
+        formData.email = input;
+        // setCookie('clientData', JSON.stringify(formData));
+        emailError.style.visibility = 'hidden';
+        submit.style.background='#EF8354';
+        submit.style.cursor='pointer';
+        submit.onclick=function() {
+            // this function sends the email
+            sendQuote(formData);
+        };
+    } else {
+        submit.style.background='#277EC3';
+        submit.href = '';
+        submit.style.cursor='unset';
+        emailError.style.visibility = 'visible';
+    }
+});
+
+
+function sendQuote (data) {
+    // const uri = uriRoot+'send';
+
+    fetch('/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    }).then(response => response.json());
+}
+
+
+//This is the call for the quote
+async function requestQuoteSlide(data) {
+    const lowEnd = document.getElementById("low-end");
+    const highEnd = document.getElementById("high-end");
+    let response = await fetchResult(data);
+    let number = response.result;
+    lowEnd.innerText=(number *0.8).toFixed(2);
+    highEnd.innerText=(number *1.2).toFixed(2);
 }
