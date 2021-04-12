@@ -29,8 +29,9 @@ body {
     padding: 0;
     margin: 0;
     background: var(--white);
-    font-family: 'Raleway';
-    font-family: 'Source Sans Pro';
+    /* font-family: 'Raleway'; */
+    /* font-family: 'Source Sans Pro'; */
+    font-family: 'Lato'!important;
 }
 
 button {

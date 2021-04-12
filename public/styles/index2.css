@@ -29,6 +29,15 @@ fieldset input, fieldset label {
     width: 100%;
 }
 
+fieldset label {
+    color: var(--accent);
+}
+
+.accentText {
+    color: var(--accent);
+}
+
+
 .active {
     color: var(--accent)!important;
 }
@@ -52,7 +61,6 @@ fieldset input, fieldset label {
     transition: all 0.6s ease;
     /* font-size: var(--med); */
     margin: 0 34%;
-    grid-row-start: upperbottom;
 }
 
 .error {
@@ -62,8 +70,7 @@ fieldset input, fieldset label {
     font-style: italic;
     font-size: var(--small);
     color: var(--dark);
-    grid-column-start: center;
-    grid-row-start: bottommid;
+
 }
 
 .fa-circle, .fa-circle-o {
@@ -73,10 +80,8 @@ fieldset input, fieldset label {
 
 
 .hero-form {
-    grid-column-start: center;
-    grid-row-start: topmid; 
-    grid-row-end: bottom;
-    padding: 0 4vw;
+    background: white;
+    padding: 1vw 0;
 }
 
 .icon-area {
@@ -85,6 +90,7 @@ fieldset input, fieldset label {
     font-size: var(--med);
     align-items: center;
     margin: 1.5vw;
+    align-self: center;
 }
 
 .icons {
@@ -105,14 +111,14 @@ fieldset input, fieldset label {
 }
 
 .formline {
-    margin: .5vw 0!important;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr 1fr 3fr;
+    margin: 0 0 .2vw 0;
+    /* flex-direction: row; */
 }
 
-.formline select, .formline input {
-    margin: 0 5vw 0 0;
-    width: 33%;
+.formline * {
+    margin: 0 .5vw;
     /* font-size: var(--small); */
 }
 
@@ -122,16 +128,10 @@ fieldset input, fieldset label {
     padding: 2vw 13vw;
     min-width: 100vw;
     min-height: 28vw;
-    /* display: grid;   */
-    /* grid-template-columns: [lside] 30% [rside] 70%; */
-    /* grid-template-columns: [lside] 10% [center] 80% [rside] 10%; */
-    /* grid-template-rows: [top] 6vh [main] 38vh [upperbottom] 6vh [lowerbottom] 6vh; */
-    /* grid-template-rows: [top] 15vh [main] 15vh [upperbottom] 10vh [lowerbottom] 10vh; */
     transition: transform 0.5s;
 }
 
 #carousel {
-    /* position: absolute; */
     z-index: 2;
     display: flex;
     position: relative;
@@ -144,14 +144,12 @@ fieldset input, fieldset label {
 
 
 #employeeInfoTableHeadings {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr 1fr 3fr;
 }
 
 #employeeInfoTableHeadings p{
-    margin: 0 5vw 0 0;
-    width: 33%;
-    /* font-size: var(--small); */
+    margin: 0 0 .2vw 0;
 }
 
 #form-intro {
@@ -215,18 +213,12 @@ fieldset input, fieldset label {
 
 #slide1 {
     /* display: grid; */
-    /* grid-template-rows: 6em [top] 2em [middle] 5em [bottommid] 3em [bottom]; */
     text-align: center;
 }
 
 #slide1-headline {
-    /* grid-row-start: top; */
     margin-bottom: 1vw;
 }
-
-/* #slide1-question {
-    grid-row-start: topmid;
-} */
 
 @media screen and (max-width: 1100px) {
     .material-icons{
@@ -235,6 +227,50 @@ fieldset input, fieldset label {
     .tile {
         padding: 0;
     }
+}
+
+/* ----------
+   Slide 2 
+-----------*/
+
+.btn-reset {
+    background: var(--dark);
+    padding: 0.3vw;
+    color: var(--white);
+    align-self: center;
+
+    cursor: pointer;
+    z-index: 5;
+}
+
+.mileage-tiles {
+    display: grid;
+    /* flex-direction: column; */
+    justify-content: center;
+    column-gap: 2vw;
+    /* padding: 2.4vw .8vw; */
+    position: relative;
+    flex-wrap: nowrap;
+}
+
+.slide-nav {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+
+.three-tile {
+    background: var(--light);
+    color: var(--white);
+    text-align: center;
+    font-size: var(--small);
+    width: 36vw;
+    border: none;
+    margin: 1vw;
+}
+
+.three-tile p {
+    margin: 0;
+    padding: .6vw;
 }
 
 
@@ -246,6 +282,8 @@ fieldset input, fieldset label {
     font-size: 2rem;
     width: 1.5rem;
     text-align: center;
+    margin: 2vw .2vw;
+    background: white;
 }
 
 .digits input:focus {
@@ -265,7 +303,6 @@ fieldset input, fieldset label {
     transition: all 0.6s ease;
     /* font-size: var(--med); */
     margin: 0 34%;
-    grid-row-start: upperbottom;
 }
 
 .dual-column {
@@ -283,6 +320,29 @@ fieldset input, fieldset label {
     /* border: 1px solid var(--white); */
     color: var(--white);
     transition: all 0.6s ease;
+}
+
+.back-icon {
+    /* font-size: 3.5vw; */
+    color: var(--dark);
+    transition: all .5s ease;
+    z-index: 3;
+    cursor: pointer;
+    align-self: center;
+    /* flex: 1 1 0; */
+}
+
+.next-icon {
+    font-size: 5.1vw;
+    color: var(--dark);
+    opacity: 0;
+    transition: all .5s ease;
+    z-index: 3;
+    justify-self: start;
+}
+
+.next-icon:hover, .back-icon:hover {
+    transform: scale(1.2);
 }
 
 #btn-saveEmployeeData {
@@ -322,10 +382,40 @@ fieldset input, fieldset label {
     display:none;
 }
 
-/* #manualInput {
+#newRow {
+    margin-top: 1rem;
+    width: 98%;
+    background: var(--light);
+    color: var(--white);
+}
 
-    margin: 1vw 0;
-} */
+.modal-dialog {
+    min-width: 80%;
+}
+
+.modal-header {
+    display: block;
+    text-align: center;
+}
+
+.modal-body {
+    display: grid;
+    grid-template-columns: 4fr 5fr;
+}
+
+.modal-left {
+    padding: 1vw;
+
+}
+
+.modal-right {
+    background: var(--light);
+    color: var(--white);
+    font-size: small;
+    padding: 1vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
 
 #manualInput fieldset{
     width: 98%;
@@ -333,7 +423,7 @@ fieldset input, fieldset label {
 
 #manualInputForm {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr; */
 }
 
 
@@ -349,6 +439,26 @@ fieldset input, fieldset label {
     margin: 0;
 }
 
+
+#btn-close2 {
+    text-align: center;
+    align-self: center;
+    cursor: pointer;
+    background: var(--dark);
+    padding: 1vw;
+    border-radius: 4%;
+    /* border: 1px solid var(--white); */
+    color: var(--white);
+    transition: all 0.6s ease;
+}
+
+
+@media (min-width: 576) {
+    .modal-dialog {
+        max-width: 80%;
+        min-width: 80%;
+    }
+}
 
 /* ----------
   Info Tabs

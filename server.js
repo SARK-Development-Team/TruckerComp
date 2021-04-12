@@ -7,6 +7,13 @@ const flash = require('connect-flash');
 
 const cors = require('cors');
 
+const axios = require('axios');
+const cheerio = require('cheerio');
+const fs = require('fs');
+
+const DOT = '2129644'
+const URL = 'https://ai.fmcsa.dot.gov/SMS/Carrier/DOT/CarrierRegistration.aspx';
+
 
 // for environment variables
 require('dotenv').config()
@@ -193,11 +200,36 @@ async function sqlSearch(number) {
         let pool = await sql.connect(process.env.SQL_CONNSTRING)
         let result1 = await pool.request()
             .query(`SELECT * FROM sark.Client WHERE [DOT Number] = ${number}`)
+        // console.log(result1.recordset[0]);
         return (result1.recordset[0])
     } catch (err) {
-       console.log(err)
+       console.log(err);
     }
 };
+
+// ////////////
+///////////////
+///////////////
+
+async function fmcsaSearch(number) {
+    try {
+      var html = '';
+      var $;
+      axios.get(URL.replace('DOT', DOT))
+          .then(response => {
+              html = response.data,
+              $ = cheerio.load(html),
+              console.log("this thing", $('article').children('h2').contents());
+              // .children('h2').contents());
+          })
+          .catch(error => {
+              console.log(error)
+          })
+
+    } catch(err) {
+      console.log(err);
+    }
+}
 
 // This function saves the new "lead" object in the Azure DB, using the DOT as the row key
 function azureSave(object) {
@@ -413,6 +445,7 @@ app.post('/user', async (req, res) => {
 // Returns an object that is partially displayed in the "result" box
 app.post('/dot', async (req, res) => {
   const result = await sqlSearch(req.body.dot);   
+  // const result = await fmcsaSearch(req.body.dot);
   return res.json({ result });
 });
 

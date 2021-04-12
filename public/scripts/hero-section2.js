@@ -59,25 +59,25 @@ const sand = $('#slide1Sand');
 const longhaul = $('#slide1LongHaul');
 const local = $('#slide1Local');
 
-towing.click(() => {
+towing.on("click", () => {
     formData.businessType=1;
     showSlide2();
     openSlides();
 });
 
-sand.click(() => {
+sand.on("click", () => {
     formData.businessType=2;
     showSlide2();
     openSlides();
 });
 
-longhaul.click(() => {
+longhaul.on("click", () => {
     formData.businessType=3;
     showSlide2();
     openSlides();
 });
 
-local.click(() => {
+local.on("click", () => {
     formData.businessType=4;
     hideSlide2();
     openSlides();
@@ -102,6 +102,26 @@ function hideSlide2() {
 
 // Only allow the user to progress if the content is valid.
 // If a choice is made, the next button is activated
+
+const lowMileage = $('#slide2Low');
+const mediumMileage = $('#slide2Medium');
+const highMileage = $('#slide2High');
+
+lowMileage.on("click", () => {
+    formData.mileage=1;
+    changeSlide(1)
+});
+
+mediumMileage.on("click", () => {
+    formData.mileage=2;
+    changeSlide(1)
+});
+highMileage.on("click", () => {
+    formData.mileage=3;
+    changeSlide(1)
+});
+
+
 function allowProgress(slideIndex) {
     const next = document.getElementById('next' + slideIndex);
     next.style.opacity=1;
@@ -118,25 +138,26 @@ function stopProgress(slideIndex) {
 }
 
 
-document.getElementById("slide2Mileage").addEventListener("keydown", (e) => {
-    if(e.target.value!=0) {
-        formData.mileage=e.target.value;
-        allowProgress(2);
-    } else {
-        stopProgress(2)
-    }
-})
+// document.getElementById("slide2Mileage").addEventListener("keydown", (e) => {
+//     if(e.target.value!=0) {
+//         formData.mileage=e.target.value;
+//         allowProgress(2);
+//     } else {
+//         stopProgress(2)
+//     }
+// })
 
 // ---- Slide 3 ---- //
 
 const digits = document.querySelector(".digits").children;
 for (let i=1; i<digits.length; i++) {
     digits[i].addEventListener('keydown', (e) => {
-
+        document.getElementById('DOTError').style.visibility="hidden";
         if (e.key=="Backspace") {
             e.target.previousElementSibling.focus();
         }
     })
+
 }
 
 document.querySelector(".digits").addEventListener("input", (e) => {
@@ -160,19 +181,6 @@ document.querySelector(".digits").addEventListener("input", (e) => {
 });
 
 
-// const DOTinput = document.getElementById('slide3DOT');
-
-// DOTinput.addEventListener('keyup', () => {
-//     const input = parseInt(DOTinput.value);
-//     const DOTError = document.getElementById('DOTError');
-//     if (input>0 && Number.isInteger(input)) {
-//         formData.mileage = input;
-//         DOTError.style.visibility = 'hidden';
-//         // checkSlide4();
-//     } else {
-//         DOTError.style.visibility = 'visible';
-//     }
-// });
 
 // When the button for the DOT search field is pressed
 async function searchDOT(e) {
@@ -192,15 +200,16 @@ async function searchDOT(e) {
             // If a client is found
             } else {
                 $('#slide3-modal').modal('show');
-                document.getElementById('DOT').value = client.result['DOT Number'];
-                document.getElementById('companyName').value = client.result['Company Name'];
-                document.getElementById('MC').value = client.result['MCP Number'];
+                // document.getElementById('DOTError').style.visibility="hidden";
+                document.getElementById('DOT').innerText = client.result['DOT Number'];
+                document.getElementById('companyName').innerText = client.result['Company Name'];
+                // document.getElementById('MC').value = client.result['MCP Number'];
                 document.getElementById('address').value = client.result['Address'];
                 document.getElementById('mailingAddress').value = client.result['Mailing Address'];
                 document.getElementById('phone').value = client.result['Phone'];
-                document.getElementById('powerUnits').value = client.result['Power Units'];
-                document.getElementById('drivers').value = client.result['Drivers'];
-                document.getElementById('empNumber').value = client.result['Drivers'];
+                document.getElementById('powerUnits').innerText = client.result['Power Units'];
+                document.getElementById('drivers').innerText = client.result['Drivers'];
+                document.getElementById('empNumber0').value = client.result['Drivers'];
             }
         } catch (err) {
             console.log(err);
@@ -235,16 +244,72 @@ function confirmModalInfo() {
 
 function closeModal() {
     $('#slide3-modal').modal('hide');
+    $('#slide5-modal').modal('hide');
 }
 
 // ---- Slide 4 ---- //
 
 function saveEmployeeData() {
-    if (document.getElementById('empNumber').value && document.getElementById('empPayroll').value) {
-        formData.totalPayroll=(document.getElementById('empNumber').value * parseInt(document.getElementById('empPayroll').value));
-        fillInfo(formData);
-        allowProgress(4);
+    formData.employees = [];
+    formData.totalPayroll = 0;
+    const formlines = document.getElementsByClassName('formline');
+    try {
+        for (let i=0; i<formlines.length; i++) {
+            let type = document.getElementById('empType'+i).value;
+            let number = document.getElementById('empNumber'+i).value;
+            let payroll = document.getElementById('empPayroll'+i).value;
+            if (type && number && payroll) {
+                formData.employees.push({'type': type, 'number': number, 'payroll': payroll});
+            }
+            formData.totalPayroll+=parseInt(payroll);
+        }
+        if (formData.employees.length) {
+            fillInfo(formData);
+            changeSlide(1);
+        }
+    } catch(err) {
+        console.log(err);
     }
+}
+
+const newRow = document.getElementById('newRow');
+
+// This function adds another row to the employee info table when the plus icon is pressed
+function addRow(e) {
+    e.preventDefault()
+    const formlines = document.getElementsByClassName('formline').length;
+    const line = `                                
+    <p class="formline">
+        <select class="empType" id="empType${formlines}">
+            <option value="" disabled selected>Employee Type</option>
+            <option value="Driver">Driver</option>
+            <option value="Maintenance">Maintenance</option>
+            <option value="Accounting">Accounting</option>
+            <option value="Custodial">Custodial</option>
+            <option value="Clerical">Clerical</option>
+            <option value="Other">Other</option>
+        </select>
+        <input class="empNumber" name="empNumber${formlines}" type="number" min="1" id="empNumber${formlines}" >
+        <select class="empPayroll" id="empPayroll${formlines}" name="empPayroll${formlines}">
+            <option value="" disabled selected>Please select</option>
+            <option value="4.5">Less than $45,000</option>
+            <option value="5.0">$45,001 ~ $55,000</option>
+            <option value="6.0">$55,001 ~ $65,000</option>
+            <option value="7.0">$65,001 ~ $75,000</option>
+            <option value="8.0">$75,001 ~ 85,000</option>
+            <option value="10">$85,001 ~ 100,000</option>
+            <option value="12">More than $100,000</option>
+        </select>
+        <span>|</span>
+        <span id="empTotal${formlines}"></span>
+
+    </p>
+
+    `
+
+    let lineElement = document.createElement('div');
+    lineElement.innerHTML=line;
+    document.getElementById("employeeInfoTable").appendChild(lineElement);
 }
 
 // ---- Slide 5 ---- //
@@ -296,6 +361,7 @@ email.addEventListener('keyup', () => {
         submit.style.background='#EF8354';
         submit.style.cursor='pointer';
         submit.onclick=function() {
+            $('#slide5-modal').modal('show');
             // this function sends the email
             sendQuote(formData);
         };
