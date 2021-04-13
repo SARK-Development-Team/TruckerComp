@@ -13,10 +13,6 @@
     --moblarge: 5vw;
 }
 
-/* h2, h3 {
-
-} */
-
 input {
     background: inherit;
     border: none;
@@ -37,13 +33,12 @@ fieldset label {
     color: var(--accent);
 }
 
-
 .active {
     color: var(--accent)!important;
 }
 
 .banner {
-    margin: 5vw 4vw;
+    /* margin: 5vw 4vw; */
     color: var(--accent);
     text-align: right;
 }
@@ -53,7 +48,7 @@ fieldset label {
     text-align: center;
     align-self: center;
     cursor: pointer;
-    background: var(--accent);
+    background: var(--light);
     padding: 1vw;
     border-radius: 4%;
     border: 1px solid var(--white);
@@ -100,15 +95,6 @@ fieldset label {
 
 
 
-.first-slide {
-    background: var(--white);
-    padding: 2vw;
-    position: absolute;
-    left: 50vw;
-    width: 50vw;
-    min-height: 28vw;
-    transition: left 1s ease;
-}
 
 .formline {
     display: grid;
@@ -127,7 +113,7 @@ fieldset label {
     text-align: center;
     padding: 2vw 13vw;
     min-width: 100vw;
-    min-height: 28vw;
+    max-height: 100%;
     transition: transform 0.5s;
 }
 
@@ -139,6 +125,8 @@ fieldset label {
     overflow: hidden;
     width: 100vw;
     background: var(--white);
+    max-height: 100%;
+    /* min-height: 600px; */
 }
 
 
@@ -167,11 +155,15 @@ fieldset label {
 }
 
 #intro-image {
+    max-height: 100%;
+    min-height: 600px;
+    padding: 3vw;
+    background-position: 100% 0%;
+    background-size: cover;
     background: url('../images/truckbgd2.jpg');
     background-size: cover;
     position: absolute;
-    width: 50vw;
-    min-height: 28vw;
+    width: 36vw;
     left: 0;
     transition: left 1s ease;
 
@@ -179,6 +171,16 @@ fieldset label {
 /* ----------
    Slide 1 
 -----------*/
+
+
+.first-slide {
+    background: var(--white);
+    padding: 3vw;
+    position: absolute;
+    left: 36vw;
+    width: 64vw;
+    transition: left 1s ease;
+}
 
 .four-tile {
     background: var(--light);
@@ -213,14 +215,17 @@ fieldset label {
 
 #slide1 {
     /* display: grid; */
+    max-height: 100%;
+    min-height: 600px;
     text-align: center;
 }
 
 #slide1-headline {
-    margin-bottom: 1vw;
+    margin-bottom: 3vw;
+    color: var(--light);
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 991px) {
     .material-icons{
         display: none
     }
@@ -235,10 +240,10 @@ fieldset label {
 
 .btn-reset {
     background: var(--dark);
-    padding: 0.3vw;
+    padding: 0.5vw;
     color: var(--white);
     align-self: center;
-
+    font-size: var(--small);
     cursor: pointer;
     z-index: 5;
 }
@@ -255,7 +260,7 @@ fieldset label {
 
 .slide-nav {
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-columns: 1fr 6fr 1fr;
 }
 
 .three-tile {
@@ -270,7 +275,7 @@ fieldset label {
 
 .three-tile p {
     margin: 0;
-    padding: .6vw;
+    padding: 1.6vw;
 }
 
 
@@ -428,16 +433,32 @@ fieldset label {
 
 
 
+
+
+@media (min-width: 576) {
+    .modal-dialog {
+        max-width: 80%;
+        min-width: 80%;
+    }
+}
+
+
+/* ----------
+   Slide5
+---------- */
+
+
 #confirmation {
     line-height: 1;
     text-align: left;
     display: grid;
     justify-content: center;
+    grid-template-columns: 1fr 1fr;
 }
 
-#confirmation p {
+/* #confirmation p {
     margin: 0;
-}
+} */
 
 
 #btn-close2 {
@@ -452,13 +473,25 @@ fieldset label {
     transition: all 0.6s ease;
 }
 
-
-@media (min-width: 576) {
-    .modal-dialog {
-        max-width: 80%;
-        min-width: 80%;
-    }
+#slide5 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
+
+#slide5Left {
+    padding: 2vw;
+}
+
+#slide5Right {
+    padding: 2vw;
+}
+
+#submit {
+    margin: 0;
+    border-radius: 0;
+}
+
+
 
 /* ----------
   Info Tabs

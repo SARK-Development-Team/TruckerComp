@@ -23,6 +23,8 @@ function initializeCarousel() {
         mileage: 0,
         email: ''
     }
+    document.getElementById("slide1").style.left="36vw";
+    document.getElementById("intro-image").style.left="0vw";
     for (let i = 0; i < slides.length; i++) {
         let multiplier = i*100;
         slides[i].style.transform= "translateX(" + multiplier +"vw)";  
@@ -203,6 +205,7 @@ async function searchDOT(e) {
                 // document.getElementById('DOTError').style.visibility="hidden";
                 document.getElementById('DOT').innerText = client.result['DOT Number'];
                 document.getElementById('companyName').innerText = client.result['Company Name'];
+                document.getElementById('slide5Name').innerText = client.result['Company Name'];
                 // document.getElementById('MC').value = client.result['MCP Number'];
                 document.getElementById('address').value = client.result['Address'];
                 document.getElementById('mailingAddress').value = client.result['Mailing Address'];
@@ -323,26 +326,40 @@ function fillInfo(data) {
     const q4 = document.getElementById('q4');
     switch (data.businessType) {
         case 1:
-            q1.innerText='Type of business: Long-Haul Trucking';
+            q1.innerText='Long-Haul Trucking';
             break;
         case 2:
-            q1.innerText='Type of business: Sand & Gravel Trucking';
+            q1.innerText='Sand & Gravel Trucking';
             break;
         case 3:
-            q1.innerText='Type of business: Local Trucking';
+            q1.innerText='Local Trucking';
             break;
         case 4:
-            q1.innerText='Type of business: Towing Services';
+            q1.innerText='Towing Services';
             break;
         default:
             q1.innerText='Error';
             break;
     }
-    q2.innerText='Mileage: ' + data.mileage;
 
-    q3.innerText='Zip code: '+ data.zipCode;
+    switch (data.mileage) {
+        case 1:
+            q2.innerText='< 200 miles';
+            break;
+        case 2:
+            q2.innerText='200 - 500 miles';
+            break;
+        case 3:
+            q2.innerText='> 500 miles';
+            break;
+        default:
+            q2.innerText='Error';
+            break;
+    }
 
-    q4.innerText='Total payroll: ' + data.totalPayroll;
+    q3.innerText=data.zipCode;
+
+    q4.innerText=data.totalPayroll;
 }
 
 const email = document.getElementById('slide5Email');

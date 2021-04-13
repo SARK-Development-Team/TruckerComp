@@ -117,7 +117,7 @@
 
         </section>
 
-        <section id="slide5-modal" class="modal fade">
+        {{!-- <section id="slide5-modal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -132,7 +132,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        {{!-- <p>Call (408) 262-9190 or email wc@sarkinsurance.com to lock in this rate today!</p>     --}}
+                        <p>Call (408) 262-9190 or email wc@sarkinsurance.com to lock in this rate today!</p> 
                         <input id="btn-purchase" type="button" class="btn" value="Purchase Policy">
                         <input id="btn-close2" type="button" class="btn" data-dismiss="modal" onclick="closeModal()" value="Close">
                     
@@ -140,12 +140,12 @@
                 </div>
             </div>
 
-        </section>
+        </section> --}}
 
         <section id="carousel">
             <div class="slide" id="slide2" >
                 <div class="slide-nav">
-                    <div class="back-icon" onclick="changeSlide(-1)">
+                    <div class="back-icon" onclick="initializeCarousel()">
                         <i class="fas fa-arrow-left"></i>
                     </div>
 
@@ -300,39 +300,60 @@
                 </div>
             </div>
             <div class="slide" id="slide5">
-                <div class="slide-nav">
-                    <div class="back-icon" onclick="changeSlide(-1)">
-                        <i class="fas fa-arrow-left"></i>
-                    </div>
+                <div id="slide5Left">
+                    <div class="slide-nav">
+                        <div class="back-icon" onclick="changeSlide(-1)">
+                            <i class="fas fa-arrow-left"></i>
+                        </div>
 
-                    <div class="icon-area">
-                        <div class="icons">
-                            <i class="fa fa-circle active"></i>
-                            <i class="fa fa-circle active"></i>
-                            <i class="fa fa-circle active"></i>
-                            <i class="fa fa-circle active"></i>
-                            <i class="fa fa-circle-o active"></i>
+                        <div class="icon-area">
+                            <div class="icons">
+                                <i class="fa fa-circle active"></i>
+                                <i class="fa fa-circle active"></i>
+                                <i class="fa fa-circle active"></i>
+                                <i class="fa fa-circle active"></i>
+                                <i class="fa fa-circle-o active"></i>
+                            </div>
+                        </div>
+                        {{!-- <div class="next-icon" id="next5">
+                            <i class="fas fa-arrow-right "></i>
+                        </div> --}}
+                        <div class="btn btn-reset">Reset form</div>
+                    </div>
+                    <div style="background: white;">
+                        <h4 id="slide5Name"></h4>
+
+                        <div id="confirmation">
+
+                            <p class="accentText">DOT</p>
+                            <p></p>
+                            <p class="accentText">Business Type</p>
+                            <p id="q1"></p>
+                            <p class="accentText">Mileage</p>
+                            <p id="q2"></p>
+                            <p class="accentText">Zip Code</p>
+                            <p id="q3"></p>
+                            <p class="accentText">Total Payroll</p>
+                            <p id="q4"></p>
                         </div>
                     </div>
-                    {{!-- <div class="next-icon" id="next5">
-                        <i class="fas fa-arrow-right "></i>
-                    </div> --}}
-                    <div class="btn btn-reset">Reset form</div>
                 </div>
-                    <h4>Is this information correct?</h4>
-
-                    <div id="confirmation">
-                        <p id = "q1"></p>
-                        <p id = "q2"></p>
-                        <p id = "q3"></p>
-                        <p id = "q4"></p>
+                <div id="slide5Right">
+                    <div class="quote-header">
+                        <p>Based on the information you gave us</p>
                     </div>
+                    <div class="quote-body">
+                        <div id="quote-result">
+                            <p>we estimate a monthly worker's comp premium of</p>
+                            <p>$<span id="low-end"></span> &mdash; $<span id="high-end"></span>/month</p>
+                        </div>
 
+                    </div>
 
                     <h4>Enter your email address to receive a quote immediately!  <input type="email" name="email" id="slide5Email"></h4>
                     <p id='emailError' class="error">Please enter a valid email address</p>
 
-                    <div class="btn-submit" id="submit" >Submit</div>
+                    <div class="btn-submit" id="submit" >Purchase policy</div>
                 </div>
             </div>
         </section>
