@@ -132,7 +132,10 @@ function allowProgress(slideIndex) {
     const next = document.getElementById('next' + slideIndex);
     next.style.opacity=1;
     next.style.cursor="pointer"
-    next.onclick = () => changeSlide(1);
+    next.onclick = () => {
+        document.getElementById('searchResult').style.display="none";
+        changeSlide(1);
+    }
 }
 
 // If the conditions are no longer met, the button for the next slide is deactivated
@@ -185,7 +188,60 @@ document.querySelector(".digits").addEventListener("input", (e) => {
         // $('#btn-search').css("display", "inline");
     }
 });
+const searchResultBody = `            
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p>Based on the DOT you entered, this is what we found...</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-left">
+                    <h4 id="companyName"></h4>
+                    <h5 id="DBA"></h5>
+                    <div id="manualInput">
+                        <div id="manualInputForm">
+                            <p class="accentText">DOT:  <span id="DOT"></span></p>
+                            <fieldset>
+                                <label for="address">Address</label>
+                                <input class="modal-input" id="address" name="address" type="text">
+                            </fieldset>
+                            <fieldset>
+                                <label for="mailingAddress">Mailing Address</label>
+                                <input class="modal-input" id="mailingAddress" name="mailingAddress" type="text" >
+                            </fieldset>
+                            <fieldset>
+                                <label for="phone">Phone Number</label>
+                                <input class="modal-input" id="phone" name="phone" type="tel" >
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>  
+                <div class="modal-right">
+                    <p class="accentText">Vehicle Miles Traveled</p>
+                    <p id="milesTraveled"></p>
+                    <p class="accentText">Carrier Operation</p>
+                    <p id="carrierOperation"></p>
+                    <p class="accentText">Trucks</p>
+                    <p id="powerUnits"></p>
+                    <p class="accentText">Drivers</p>
+                    <p id="drivers"></p>
+                    <p class="accentText">Operation Type</p>
+                    <p id="operationType"></p>
+                    <p class="accentText">Cargo Carried</p>
+                    <p id="cargoCarried"></p>
 
+                </div>
+            </div>
+            <div class="modal-footer">
+                <p>Is this information correct?</p>
+                <input id="btn-save" type="submit" class="btn-save" 
+                onclick="confirmModalInfo()"
+                value="Yes">
+                <input id="btn-close" type="button" class="btn" data-dismiss="modal" onclick="closeModal()" value="Close">
+            </div>
+        </div>
+    </div>
+`
 
 
 // When the button for the DOT search field is pressed
@@ -205,7 +261,8 @@ async function searchDOT(e) {
                 document.getElementById('DOTError').style.visibility="visible";
             // If a client is found
             } else {
-                $('#slide3-modal').modal('show');
+                // $('#slide3-modal').modal('show');
+                document.getElementById('searchResult').innerHTML=searchResultBody;
                 const zipCodePattern = /\d{5}/;
                 formData.zipCode = client.result['Address'].match(zipCodePattern)[0];
                 // document.getElementById('DOTError').style.visibility="hidden";

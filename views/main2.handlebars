@@ -66,7 +66,7 @@
                 {{!-- <div class="next-icon" id="next5">
                     <i class="fas fa-arrow-right "></i>
                 </div> --}}
-                <div class="btn btn-reset">Reset form</div>
+                <div class="btn btn-reset" onclick="initializeCarousel()">Reset form</div>
             </div>
             <h2>How far do your trucks drive?</h2>
 
@@ -86,7 +86,7 @@
             <div id="next2" class="btn-next" onclick="changeSlide(1)">Next slide</div>
         </div>
 
-        <section id="slide3-modal" class="modal fade">
+        {{!-- <section id="slide3-modal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -97,13 +97,13 @@
                             <h4 id="companyName"></h4>
                             <h5 id="DBA"></h5>
                             <div id="manualInput">
-                                {{!-- <form action="/lead" method="POST" > --}}
+                                <form action="/lead" method="POST" >
                                     <div id="manualInputForm">
                                         <p class="accentText">DOT:  <span id="DOT"></span></p>
-                                        {{!-- <fieldset>
+                                        <fieldset>
                                             <label for="DOT">DOT Number</label>
                                             <input class="modal-input" id="DOT" name="DOT" type="number">
-                                        </fieldset> --}}
+                                        </fieldset>
                                         <fieldset>
                                             <label for="address">Address</label>
                                             <input class="modal-input" id="address" name="address" type="text">
@@ -117,12 +117,12 @@
                                             <input class="modal-input" id="phone" name="phone" type="tel" >
                                         </fieldset>
 
-                                        {{!-- <fieldset>
+                                        <fieldset>
                                             <label for="MC">MCP Number</label>
                                             <input class="modal-input" id="MC" name="MC" type="number">
-                                        </fieldset> --}}
+                                        </fieldset>
                                     </div>
-                                {{!-- </form> --}}
+                                </form>
                             </div>
                         </div>  
                         <div class="modal-right">
@@ -144,7 +144,7 @@
                     <div class="modal-footer">
                         <p>Is this information correct?</p>
                         <input id="btn-save" type="submit" class="btn-save" 
-                        {{!-- onclick="saveLead(event)"  --}}
+                        onclick="saveLead(event)" 
                         onclick="confirmModalInfo()"
                         value="Yes">
                         <input id="btn-close" type="button" class="btn" data-dismiss="modal" onclick="closeModal()" value="Close">
@@ -152,7 +152,7 @@
                 </div>
             </div>
 
-        </section>
+        </section> --}}
 
         {{!-- <section id="slide5-modal" class="modal fade">
             <div class="modal-dialog">
@@ -199,7 +199,7 @@
                     {{!-- <div class="next-icon" id="next5">
                         <i class="fas fa-arrow-right "></i>
                     </div> --}}
-                    <div class="btn btn-reset">Reset form</div>
+                <div class="btn btn-reset" onclick="initializeCarousel()">Reset form</div>
                 </div>
                 <h3>What is your Department of Transportation (DOT) number?</h3>
                 <div class="digits">
@@ -214,8 +214,8 @@
                 <input type="number" id="slide3DOT" name="DOT" min="0">
                 {{!-- <span id="btn-search" class="btn-submit" onclick="searchDOT(event)">Search</span> --}}
                 <p id='DOTError'  class="error">Please enter a valid DOT Number</p>
-                    
-                <div id="next3" class="btn-next" >Continue ></div>
+                <div id="searchResult"></div>
+                <div id="next3" class="btn-next" onclick="">Continue ></div>
                 {{!-- <form class="hero-form">
                     <input type="number" id="slide3DOT" name="DOT" min="0"><span class="btn-submit" onclick="searchDOT(event)">Search</span>
                     <p id='DOTError'>Please enter a valid DOT Number</p>
@@ -242,7 +242,7 @@
                     {{!-- <div class="next-icon" id="next5">
                         <i class="fas fa-arrow-right "></i>
                     </div> --}}
-                    <div class="btn btn-reset">Reset form</div>
+                    <div class="btn btn-reset" onclick="initializeCarousel()">Reset form</div>
                 </div>
 
                 <form class="hero-form">
@@ -317,7 +317,7 @@
                         {{!-- <div class="next-icon" id="next5">
                             <i class="fas fa-arrow-right "></i>
                         </div> --}}
-                        <div class="btn btn-reset">Reset form</div>
+                    <div class="btn btn-reset" onclick="initializeCarousel()">Reset form</div>
                     </div>
                     <div style="background: white; padding: 1vw">
                         <h4 id="slide5Name"></h4>
