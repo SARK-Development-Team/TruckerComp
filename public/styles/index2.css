@@ -173,7 +173,7 @@ fieldset label {
 -----------*/
 
 
-.first-slide {
+.narrow-slide {
     background: var(--white);
     padding: 3vw;
     position: absolute;
@@ -214,7 +214,6 @@ fieldset label {
 }
 
 #slide1 {
-    /* display: grid; */
     max-height: 100%;
     min-height: 600px;
     text-align: center;
@@ -278,6 +277,12 @@ fieldset label {
     padding: 1.6vw;
 }
 
+#slide2 {
+    max-height: 100%;
+    min-height: 600px;
+    text-align: center;
+    z-index: 5;
+}
 
 /* ----------
    Slide 3 
@@ -480,6 +485,10 @@ fieldset label {
 
 #slide5Left {
     padding: 2vw;
+}
+
+#slide5Name {
+    text-align: left;
 }
 
 #slide5Right {

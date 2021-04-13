@@ -51,10 +51,7 @@ function changeSlide(n) {
 
 // ---- Slide 1 ---- //
 
-function openSlides() {
-    document.getElementById('intro-image').style.left = "-100vw";
-    document.getElementById('slide1').style.left = "100vw";
-}
+
 
 const towing = $('#slide1Towing');
 const sand = $('#slide1Sand');
@@ -64,33 +61,37 @@ const local = $('#slide1Local');
 towing.on("click", () => {
     formData.businessType=1;
     showSlide2();
-    openSlides();
+    document.getElementById('slide1').style.left = "100vw";
+
 });
 
 sand.on("click", () => {
     formData.businessType=2;
     showSlide2();
-    openSlides();
+    document.getElementById('slide1').style.left = "100vw";
+
 });
 
 longhaul.on("click", () => {
     formData.businessType=3;
     showSlide2();
-    openSlides();
+    document.getElementById('slide1').style.left = "100vw";
+    // openSlides();
 });
 
 local.on("click", () => {
     formData.businessType=4;
     hideSlide2();
+    document.getElementById('slide1').style.left = "100vw";
     openSlides();
 });
 
 
 function showSlide2() {
     $('#slide2').css("display", "block");
-    $('#slide3').css("transform", "translateX(100vw)")
-    $('#slide4').css("transform", "translateX(200vw)")
-    $('#slide5').css("transform", "translateX(300vw)")
+    $('#slide3').css("transform", "translateX(0vw)")
+    $('#slide4').css("transform", "translateX(100vw)")
+    $('#slide5').css("transform", "translateX(200vw)")
 }
 
 function hideSlide2() {
@@ -102,8 +103,10 @@ function hideSlide2() {
 
 // ---- Slide 2 ---- //
 
-// Only allow the user to progress if the content is valid.
-// If a choice is made, the next button is activated
+function openSlides() {
+    document.getElementById('intro-image').style.left = "-100vw";
+    document.getElementById('slide2').style.left = "100vw";
+}
 
 const lowMileage = $('#slide2Low');
 const mediumMileage = $('#slide2Medium');
@@ -111,16 +114,17 @@ const highMileage = $('#slide2High');
 
 lowMileage.on("click", () => {
     formData.mileage=1;
-    changeSlide(1)
+    openSlides()
 });
 
 mediumMileage.on("click", () => {
     formData.mileage=2;
-    changeSlide(1)
+    openSlides()
+    // changeSlide(1)
 });
 highMileage.on("click", () => {
     formData.mileage=3;
-    changeSlide(1)
+    openSlides()
 });
 
 
@@ -202,6 +206,8 @@ async function searchDOT(e) {
             // If a client is found
             } else {
                 $('#slide3-modal').modal('show');
+                const zipCodePattern = /\d{5}/;
+                formData.zipCode = client.result['Address'].match(zipCodePattern)[0];
                 // document.getElementById('DOTError').style.visibility="hidden";
                 document.getElementById('DOT').innerText = client.result['DOT Number'];
                 document.getElementById('companyName').innerText = client.result['Company Name'];
@@ -320,10 +326,14 @@ function addRow(e) {
 
 // Fills in the data area on slide 5 for confirmation
 function fillInfo(data) {
+
+    const q0 = document.getElementById('q0');
     const q1 = document.getElementById('q1');
     const q2 = document.getElementById('q2');
     const q3 = document.getElementById('q3');
     const q4 = document.getElementById('q4');
+    
+    q0.innerText = document.getElementById('DOT').innerText;
     switch (data.businessType) {
         case 1:
             q1.innerText='Long-Haul Trucking';
