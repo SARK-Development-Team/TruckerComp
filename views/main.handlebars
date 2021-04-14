@@ -1,6 +1,7 @@
 
     <link href="public/styles/index.css" rel="stylesheet">
     <script defer src="public/scripts/hero-section.js"></script>
+    <script defer src="public/scripts/info-tabs.js"></script>
     <section>
         <!-- This contains the form and call to action -->
         <section id="hero" >
@@ -327,7 +328,19 @@
             </div>
         </section>
 
-
+        <section id="three-tab-section">
+            <div id="three-tabs">
+                <div id="leftTab" class="info-tab" onclick="changeTab('leftTab')">COVERAGE</div>
+                <div id="centerTab" class="info-tab" onclick="changeTab('centerTab')">COST</div>
+                <div id="rightTab" class="info-tab" onclick="changeTab('rightTab')">FAQ</div>
+            </div>
+            <div class="info-blurb">
+                <h2 class="info-heading">Left Tab Heading</h2>
+                <p>It’s your job to keep employees safe at work. However, accidents happen. Sometimes employees get injured or become ill on the job, and that’s why we have Workers Compensation Insurance.
+                <p>This insurance covers medical costs and lost wages, as well as things like rehabilitation or physical therapy. It’s mandatory in many states, and highly recommended for all employers.</p>
+                <p>Read on to find out more about this type of coverage and what your business should look for in a policy.</p> 
+            </div>
+        </section>
 
 
         <!-- This section will contain further information about SARK -->

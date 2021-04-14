@@ -11,46 +11,72 @@
 
 
     <main class="indented dark">
-        <h1>Trucker Comp Dashboard<span><a href='/logout' id="btn-logout" >Logout</a></span></h1>
+        {{!-- <h1>Trucker Comp Dashboard<span><a href='/logout' id="btn-logout" >Logout</a></span></h1> --}}
+        <a href='/logout' id="btn-logout" >Logout</a>
         <div id="infoDisplay">
             <h2>My info&nbsp;<i class="fas fa-window-minimize" onclick="hideInfo()"></i><i class="fa fa-pencil-square-o" onclick="editInfo()"></i></h2>
-            <img src="../public/images/truck2.png" id="truckImg">
-            <p>Name: <span id= 'userName'>{{user.name}}</span></p>
-            <p>Email: <span id= 'userEmail'>{{user.email}}</span></p>
-            <p>Employees:</p> 
-            <table id="empTable">
-                <th>
-                    <td><b>Type</b></td>
-                    <td><b>Number</b></td>
-                    <td><b>Payroll</b></td>
-                </th>
-                {{#each user.employees as |item|}}
-                <tr>
-                    <td></td>
-                    <td>{{item.type}}</td>
-                    <td>{{item.number}}</td>
-                    <td>{{item.payroll}}</td>
-                </tr>
-                {{/each}}
-            </table>
 
-            <p>Total Payroll: <span id= 'userTotalPayroll'>{{user.totalPayroll}}</span></p>
-            <p>Annual mileage: <span id= 'userMileage'>{{user.mileage}}</span></p>
-            {{#unless user.DOT}}
-                <p>ZIP Code: <span id='userZip'>{{user.zipCode}}</span></p>
-            {{/unless}}
-            {{#if user.DOT}}
-                <p>DOT Number: <span id='userDOT'>{{user.DOT}}</span></p>
-                <p>MC Number: <span id='userMC'>{{user.MC}}</span></p>
-                <p>Company Name: <span id='userCompanyName'>{{user.companyName}}</span></p>
-                <p>Address: <span id='userAddress'>{{user.address}}</span></p>
-                <p>Phone Number: <span id='userPhone'>{{user.phone}}</span></p>
-                <p>Mailing Address: <span id='userMailingAddress'>{{user.mailingAddress}}</span></p>
-                <p>Power Units: <span id='userPowerUnits'>{{user.powerUnits}}</span></p>
-            {{/if}}
-            {{!-- The user's stage of progress is placed here so that bundle.js can access the value --}}
-            <input id="userStage" type="hidden" value={{user.stage}}>
-            <input id="userID" type="hidden" value={{user._id}}>
+            {{!-- <div class="block">
+                <h3 class="block-header">User info</h3> --}}
+            <div class="dual-column">
+                <div>
+                    <h2 class="blue-bg">User Info</h2>
+                    <div class="dual-column">
+                        <p><b>Name:</b> <span id= 'userName'>{{user.name}}</span></p>
+                        <p><b>Email:</b> <span id= 'userEmail'>{{user.email}}</span></p>
+                        {{#if user.DOT}}
+                        <p><b>Phone Number:</b> <span id='userPhone'>{{user.phone}}</span></p>
+                        {{/if}}
+                    </div>
+                        
+                    <br>
+                    {{!-- <div class="block">
+                    <h3 class="block-header">Company info</h3> --}}
+                    <h2 class="blue-bg">Company Info</h2>
+                    <div class="dual-column">
+                        
+                        {{#if user.DOT}}
+                            <p><b>Company Name:</b> <span id='userCompanyName'>{{user.companyName}}</span></p>
+                            <p><b>DOT Number:</b> <span id='userDOT'>{{user.DOT}}</span></p>
+                            <p><b>MC Number:</b> <span id='userMC'>{{user.MC}}</span></p>
+                            <p><b>Address:</b> <span id='userAddress'>{{user.address}}</span></p>
+                            <p><b>Mailing Address:</b> <span id='userMailingAddress'>{{user.mailingAddress}}</span></p>
+                        {{/if}}
+                        {{!-- <p>Employees:</p>  --}}
+                        <table id="empTable">
+                            <th>
+                                <td><b>Type</b></td>
+                                <td><b>Number</b></td>
+                                <td><b>Payroll</b></td>
+                            </th>
+                            {{#each user.employees as |item|}}
+                                <tr>
+                                    <td></td>
+                                    <td>{{item.type}}</td>
+                                    <td>{{item.number}}</td>
+                                    <td>{{item.payroll}}</td>
+                                </tr>
+                            {{/each}}
+                        </table>
+                        
+                        <p><b>Total Payroll:</b> <span id= 'userTotalPayroll'>{{user.totalPayroll}}</span></p>
+                        <p><b>Annual mileage:</b> <span id= 'userMileage'>{{user.mileage}}</span></p>
+                        {{#if user.DOT}}
+                            <p><b>Power Units:</b> <span id='userPowerUnits'>{{user.powerUnits}}</span></p>
+                        {{/if}}
+                        {{#unless user.DOT}}
+                            <p><b>ZIP Code:</b> <span id='userZip'>{{user.zipCode}}</span></p>
+                        {{/unless}}
+                        
+                        {{!-- The user's stage of progress is placed here so that bundle.js can access the value --}}
+                        <input id="userStage" type="hidden" value={{user.stage}}>
+                        <input id="userID" type="hidden" value={{user._id}}>
+                    </div>
+                </div>
+                <div>
+                    <img src="../public/images/truck5-1.png" id="truckImg">
+                </div>
+            </div>
         </div>
         <div id="two-column">
             <div class="left column">
@@ -161,7 +187,7 @@
                     </fieldset>
                     <fieldset>
                         <div id="employeeInfoTable">
-                            <p>Employees</p>
+                            <p><b>Employees</b></p>
                             <div id="empTable">
                                 <div id="employeeInfoTableHeadings">
                                     <p>Type</p>

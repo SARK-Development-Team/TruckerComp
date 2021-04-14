@@ -7,6 +7,13 @@ const flash = require('connect-flash');
 
 const cors = require('cors');
 
+const axios = require('axios');
+const cheerio = require('cheerio');
+const fs = require('fs');
+
+const DOT = '2129644'
+const URL = 'https://ai.fmcsa.dot.gov/SMS/Carrier/DOT/CarrierRegistration.aspx';
+
 
 // for environment variables
 require('dotenv').config()
@@ -164,23 +171,26 @@ async function sendEmail(data) {
 
 // This function is the basic quote calculation formula
 function calculateQuote(data) {
-    let empArray = data.employees;
+    // let empArray = data.employees;
     // 'typeTotal' will increase by a given amount based on the number and type of employees   
-    let typeTotal = 0;
+    // let typeTotal = 0;
     // 'payRollTotal' will increase based on the total combined payroll
-    let payrollTotal = 0;
-    for (let i =0; i<empArray.length; i++) {
-        if (empArray[i].type =='driver') {
-            // 1.5 for every driver
-            typeTotal+= empArray[i].number*1.5;
-        } else {
-            // 1 for all other employee types
-            typeTotal+= empArray[i].number;
-        }
-        payrollTotal+=empArray[i].payroll;
-    }
-
-    return (payrollTotal *0.000002 + typeTotal * 0.85 + data.mileage * 0.000005);
+    // let payrollTotal = 0;
+    // for (let i =0; i<empArray.length; i++) {
+    //     if (empArray[i].type =='driver') {
+    //         // 1.5 for every driver
+    //         typeTotal+= empArray[i].number*1.5;
+    //     } else {
+    //         // 1 for all other employee types
+    //         typeTotal+= empArray[i].number;
+    //     }
+    //     payrollTotal+=empArray[i].payroll;
+    // }
+    const payrollFactor = 0.0002;
+    // const typeFactor = 0;
+    const mileageFactor = 0.00005;
+    // return (payrollTotal *0.000002 + typeTotal * 0.85 + data.mileage * 0.000005);
+    return (data.totalPayroll*payrollFactor + data.mileage * mileageFactor);
 };
 
 
@@ -190,11 +200,36 @@ async function sqlSearch(number) {
         let pool = await sql.connect(process.env.SQL_CONNSTRING)
         let result1 = await pool.request()
             .query(`SELECT * FROM sark.Client WHERE [DOT Number] = ${number}`)
+        // console.log(result1.recordset[0]);
         return (result1.recordset[0])
     } catch (err) {
-       console.log(err)
+       console.log(err);
     }
 };
+
+// ////////////
+///////////////
+///////////////
+
+async function fmcsaSearch(number) {
+    try {
+      var html = '';
+      var $;
+      axios.get(URL.replace('DOT', DOT))
+          .then(response => {
+              html = response.data,
+              $ = cheerio.load(html),
+              console.log("this thing", $('article').children('h2').contents());
+              // .children('h2').contents());
+          })
+          .catch(error => {
+              console.log(error)
+          })
+
+    } catch(err) {
+      console.log(err);
+    }
+}
 
 // This function saves the new "lead" object in the Azure DB, using the DOT as the row key
 function azureSave(object) {
@@ -262,8 +297,11 @@ async function azureSearch(id) {
 -------------------------- */
 
 
+// app.get('/', (req, res) => {
+//     res.render('main',  {layout: "index"},);
+// })
 app.get('/', (req, res) => {
-    res.render('main',  {layout: "index"},);
+    res.render('main2',  {layout: "index"},);
 })
 
 // This function receives the request from the client side with the initialFormData, runs it through the formula, and returns a number
@@ -407,6 +445,7 @@ app.post('/user', async (req, res) => {
 // Returns an object that is partially displayed in the "result" box
 app.post('/dot', async (req, res) => {
   const result = await sqlSearch(req.body.dot);   
+  const result2 = await fmcsaSearch(req.body.dot);
   return res.json({ result });
 });
 

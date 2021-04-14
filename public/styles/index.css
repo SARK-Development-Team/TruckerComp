@@ -208,7 +208,6 @@ select {
     min-width: 78vw;
     display: grid;  
     grid-template-columns: [lside] 10% [center] 80% [rside] 10%;
-    /* grid-template-columns: [lside] 10% [center] 108% [rside] 10%; */
     grid-template-rows: [top] 5vh [topmid] 12vh [centerline] 4vh [bottommid] 10vh [lowerbottom] 6vh [bottom] 5vh;
     transition: transform 0.5s;
 
@@ -369,6 +368,46 @@ select {
 
 #spanEmail {
     color: var(--dark);
+}
+
+/* ----------
+  Info Tabs
+---------- */
+
+
+.info-heading {
+    background: var(--accent);
+    padding: 1vw;
+    color: var(--white);
+}
+
+.info-tab {
+    flex: 33%;
+    text-align: center;
+    cursor: pointer;
+    padding: 6px;
+    margin: 0 0 1vw 0;
+    color: var(--white);
+    background: var(--light);
+}
+
+.info-blurb {
+    transition: opacity 1s ease;
+}
+
+.chosen {
+    background: var(--accent);
+}
+
+#three-tab-section {
+    background: var(--white);
+    margin: 2% 12%;
+}
+
+#three-tabs {
+    display: flex;
+    color: var(--light);
+    justify-content: center;
 }
 
 /* ----------

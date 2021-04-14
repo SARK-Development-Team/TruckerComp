@@ -7,7 +7,8 @@
 /* color and font-size variables */
 :root {
     --white: #F5F3F5;
-    --light: #277EC3;
+    --light: rgb(236,245,254);
+    --blue: rgb(55, 147, 255);
     --accent: #1C2541;
     --dark: #EF8354;
     --xsmall: 0.8vw;
@@ -29,15 +30,16 @@ body {
     padding: 0;
     margin: 0;
     background: var(--white);
-    font-family: 'Raleway';
-    font-family: 'Source Sans Pro';
+    /* font-family: 'Raleway'; */
+    /* font-family: 'Source Sans Pro'; */
+    font-family: 'Lato'!important;
 }
 
 button {
     cursor: pointer;
 }
 
-h2 {
+/* h2 {
     font-size: var(--large);
     font-weight: 700;
     padding: 1vw 0;
@@ -47,12 +49,12 @@ h2 {
 h3 {
     font-size: var(--med);
     font-weight: 300;
-}
+} */
 
 h2, h3 {
     margin-block-start: 0;
     margin-block-end: 0;
-
+    margin: 0;
 }
 
 .indented {
@@ -140,13 +142,13 @@ h2, h3 {
     width: 100%;
     min-height: 70px;
     text-align: center;
-    z-index: 5;
+    z-index: 9;
     transition: background-color 0.5s ease;
     top: 0;
 }
 
 #navbar a {
-    font-size: var(--xsmall);
+    font-size: 16px;
     font-weight: 800;
     text-decoration: none;
     align-items: center;
@@ -203,17 +205,30 @@ h2, h3 {
     Footer
 ---------- */
 
+
+.fa, .fab, .far, .fas {
+    cursor: pointer;
+    margin: 0 0.5vw;
+}
+
+.footer-heading {
+    letter-spacing: -.04em;
+    padding: 1vw 0;
+}
+
 .footer-logo-top {
+    color: #1c1d1f;
     /* font-size: 2.4vw; */
-    font-size: 29px;
+    font-size: 43.5px;
     letter-spacing: -.07em;
-    border-bottom: 1px solid #e2e2e2;
+    border-bottom: 1px solid #1c1d1f;
     margin: 0;
-    line-height: 27px;
+    line-height: 40px;
 }
 .footer-logo-bottom {
+    color: #1c1d1f;
     font-size: var(--xsmall);
-    font-size: 7px;
+    font-size: 10.5px;
     letter-spacing: -0.4px;
     margin: 0;
     padding-left: .5px;
@@ -222,46 +237,64 @@ h2, h3 {
 .social {
     font-size: var(--large);
     margin: 0 0.3vw;
+    color: #1c1d1f;
 }
 
-#contact * {
+#contact div {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+}
+
+#contact div a {
     padding: 0;
     margin: 0;
+    flex: 50%;
 }
 
 #copy {
-    text-align: center; 
-    font-size:0.7vw; 
+    /* text-align: center;  */
+    font-size: 0.7vw; 
+    background: #1c1d1f;
+    color: rgb(192, 192, 192);
+    padding: 1% 13.5%;
     /* position: absolute; 
     bottom: 1vw;
     left: 45%; */
 }
 
 #footer {
-    font-size: var(--xsmall);
+    font-size: var(--small);
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 0fr 1fr;
-    align-items: center;
+    grid-template-columns: 5fr 2fr 2fr 2fr;
+
 }
 
 #footer a {
-    color: inherit;
+    color: grey;
+    display: block;
+    text-decoration: none;
 }
 
 #footer a:hover {
-    color: #3499cc;   
+    color: var(--accent);   
 }
 
 #footer>div {
     margin: 0 1.4vw;
 }
 
+#footer p {
+    margin-block-end: 0;
+    margin-block-start: 0;
+}
+
 #footer-area {
-    background: #0b0125;
-    color: rgb(226, 225, 225);
+    background: #eef6fc;
+    color: #1c1d1f;
     font-size: var(--small);
     margin: 0;
-    padding: 0 8%;
+    padding: 1% 12% 2% 12%;
     position: relative;
 }
 
@@ -272,7 +305,7 @@ h2, h3 {
 }
 
 #footer-logo img {
-    height: 56px;
+    height: 74.5px;
 }
 
 
