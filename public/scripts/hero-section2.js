@@ -3,6 +3,8 @@
 // This section handles changing the carousel's active slide
 let slideIndex = 0;
 const slides = document.getElementsByClassName("slide");
+const digits = document.querySelector(".digits").children;
+
 initializeCarousel();
 
 // Sets all formData to initial values 
@@ -15,6 +17,7 @@ function initializeCarousel() {
         carouselContents[i].setAttribute("tabindex", "-1");
         
     }
+    // Resets the formData
     formData = {
         // employees: [],
         totalPayroll: 0,
@@ -23,9 +26,14 @@ function initializeCarousel() {
         mileage: 0,
         email: ''
     }
+    for (let i=0; i<digits.length; i++) {
+        digits[i].value='';
+    }
+
     document.getElementById("slide1").style.left="36vw";
     document.getElementById("slide2").style.left="36vw";
     document.getElementById("intro-image").style.left="0vw";
+    document.getElementById('searchResult').style.display="none";
     for (let i = 0; i < slides.length; i++) {
         let multiplier = i*100;
         slides[i].style.transform= "translateX(" + multiplier +"vw)";  
@@ -130,13 +138,13 @@ highMileage.on("click", () => {
 
 
 function allowProgress(slideIndex) {
-    const next = document.getElementById('next' + slideIndex);
-    next.style.opacity=1;
-    next.style.cursor="pointer"
-    next.onclick = () => {
+    // const next = document.getElementById('next' + slideIndex);
+    // next.style.opacity=1;
+    // next.style.cursor="pointer"
+    // next.onclick = () => {
         document.getElementById('searchResult').style.display="none";
         changeSlide(1);
-    }
+    // }
 }
 
 // If the conditions are no longer met, the button for the next slide is deactivated
@@ -159,7 +167,6 @@ function stopProgress(slideIndex) {
 
 // ---- Slide 3 ---- //
 
-const digits = document.querySelector(".digits").children;
 for (let i=1; i<digits.length; i++) {
     digits[i].addEventListener('keydown', (e) => {
         document.getElementById('DOTError').style.visibility="hidden";
@@ -201,7 +208,7 @@ const searchResultBody = `
                     <h5 id="DBA"></h5>
                     <div id="manualInput">
                         <div id="manualInputForm">
-                            <p class="accentText">DOT:  <span id="DOT"></span></p>
+                            <p class="blueText">DOT:  <span id="DOT"></span></p>
                             <fieldset>
                                 <label for="address">Address</label>
                                 <input class="modal-input" id="address" name="address" type="text">
@@ -214,30 +221,34 @@ const searchResultBody = `
                                 <label for="phone">Phone Number</label>
                                 <input class="modal-input" id="phone" name="phone" type="tel" >
                             </fieldset>
+                            <fieldset>
+                                <label for="email">Email</label>
+                                <input class="modal-input" id="email" name="email" type="email" >
+                            </fieldset>
                         </div>
                     </div>
                 </div>  
-                <div class="modal-right">
-                    <p class="accentText">Vehicle Miles Traveled</p>
-                    <p id="milesTraveled"></p>
-                    <p class="accentText">Carrier Operation</p>
-                    <p id="carrierOperation"></p>
-                    <p class="accentText">Trucks</p>
-                    <p id="powerUnits"></p>
-                    <p class="accentText">Drivers</p>
-                    <p id="drivers"></p>
-                    <p class="accentText">Operation Type</p>
-                    <p id="operationType"></p>
-                    <p class="accentText">Cargo Carried</p>
-                    <p id="cargoCarried"></p>
+                <div style ="background: var(--light);">
+                    <div class="modal-right">
+                        <p class="blueText">Vehicle Miles Traveled</p>
+                        <p id="milesTraveled"></p>
+                        <p class="blueText">Carrier Operation</p>
+                        <p id="carrierOperation"></p>
+                        <p class="blueText">Trucks</p>
+                        <p id="powerUnits"></p>
+                        <p class="blueText">Drivers</p>
+                        <p id="drivers"></p>
+                        <p class="blueText">Operation Type</p>
+                        <p id="operationType"></p>
+                        <p class="blueText">Cargo Carried</p>
+                        <p id="cargoCarried"></p>
+                    </div>
+                    <div class="btn-next" onclick="allowProgress(3)">Continue ></div>
 
                 </div>
-                <div class="btn-next" onclick="">Continue ></div>
 
             </div>
-            <div class="modal-footer">
-                <p>Is this information correct?</p>
-            </div>
+
         </div>
     </div>
 `
@@ -246,6 +257,7 @@ const searchResultBody = `
 // When the button for the DOT search field is pressed
 async function searchDOT(e) {
     e.preventDefault();
+    document.getElementById('searchResult').innerHTML='';
     let dotvalue = parseInt(document.getElementById('slide3DOT').value);
     let dot = {'dot': dotvalue};
     // Only searches if a value is entered
@@ -262,13 +274,15 @@ async function searchDOT(e) {
             } else {
                 // $('#slide3-modal').modal('show');
                 document.getElementById('searchResult').innerHTML=searchResultBody;
+                document.getElementById('searchResult').style.display="block";
                 const zipCodePattern = /\d{5}/;
                 formData.zipCode = client.result['Address'].match(zipCodePattern)[0];
                 // document.getElementById('DOTError').style.visibility="hidden";
                 document.getElementById('DOT').innerText = client.result['DOT Number'];
                 document.getElementById('companyName').innerText = client.result['Company Name'];
                 document.getElementById('slide5Name').innerText = client.result['Company Name'];
-                // document.getElementById('MC').value = client.result['MCP Number'];
+                document.getElementById('email').value = client.result['Email'];
+                document.getElementById('slide5Email').value = client.result['Email'];
                 document.getElementById('address').value = client.result['Address'];
                 document.getElementById('mailingAddress').value = client.result['Mailing Address'];
                 document.getElementById('phone').value = client.result['Phone'];

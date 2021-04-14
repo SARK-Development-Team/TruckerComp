@@ -301,7 +301,7 @@ async function azureSearch(id) {
 //     res.render('main',  {layout: "index"},);
 // })
 app.get('/', (req, res) => {
-    res.render('main2',  {layout: "index"},);
+    res.render('main2');
 })
 
 // This function receives the request from the client side with the initialFormData, runs it through the formula, and returns a number
@@ -445,7 +445,8 @@ app.post('/user', async (req, res) => {
 // Returns an object that is partially displayed in the "result" box
 app.post('/dot', async (req, res) => {
   const result = await sqlSearch(req.body.dot);   
-  const result2 = await fmcsaSearch(req.body.dot);
+  // const result2 = await fmcsaSearch(req.body.dot);
+  console.log(result);
   return res.json({ result });
 });
 
