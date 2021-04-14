@@ -24,6 +24,7 @@ function initializeCarousel() {
         email: ''
     }
     document.getElementById("slide1").style.left="36vw";
+    document.getElementById("slide2").style.left="36vw";
     document.getElementById("intro-image").style.left="0vw";
     for (let i = 0; i < slides.length; i++) {
         let multiplier = i*100;
