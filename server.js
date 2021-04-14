@@ -77,12 +77,12 @@ app.use('/public', express.static(path.join(__dirname, '/public')));
 const hbars = require('handlebars');
 const handle = require('express-handlebars');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
-app.engine('handlebars', handle({
-    defaultLayout: 'index',
-    handlebars: allowInsecurePrototypeAccess(hbars),
-    extname: '.hbs'
+app.engine('hbs', handle({
+  defaultLayout: 'index',
+  handlebars: allowInsecurePrototypeAccess(hbars),
+  extname: '.hbs'
 }));
-app.set('view engine', 'handlebars');
+app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'views'));
 
 
