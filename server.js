@@ -446,7 +446,8 @@ app.post('/user', async (req, res) => {
 // Returns an object that is partially displayed in the "result" box
 app.post('/dot', async (req, res) => {
   const result = await sqlSearch(req.body.dot);   
-  const result2 = await fmcsaSearch(req.body.dot);
+  // const result2 = await fmcsaSearch(req.body.dot);
+  console.log(result);
   return res.json({ result });
 });
 
