@@ -79,7 +79,8 @@ const handle = require('express-handlebars');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 app.engine('handlebars', handle({
     defaultLayout: 'index',
-    handlebars: allowInsecurePrototypeAccess(hbars)
+    handlebars: allowInsecurePrototypeAccess(hbars),
+    extname: '.hbs'
 }));
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
@@ -301,7 +302,7 @@ async function azureSearch(id) {
 //     res.render('main',  {layout: "index"},);
 // })
 app.get('/', (req, res) => {
-    res.render('main2',  {layout: "index"},);
+    res.render('main',  {layout: "index"},);
 })
 
 // This function receives the request from the client side with the initialFormData, runs it through the formula, and returns a number
