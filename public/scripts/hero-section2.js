@@ -231,13 +231,11 @@ const searchResultBody = `
                     <p id="cargoCarried"></p>
 
                 </div>
+                <div class="btn-next" onclick="">Continue ></div>
+
             </div>
             <div class="modal-footer">
                 <p>Is this information correct?</p>
-                <input id="btn-save" type="submit" class="btn-save" 
-                onclick="confirmModalInfo()"
-                value="Yes">
-                <input id="btn-close" type="button" class="btn" data-dismiss="modal" onclick="closeModal()" value="Close">
             </div>
         </div>
     </div>

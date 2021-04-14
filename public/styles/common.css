@@ -7,7 +7,8 @@
 /* color and font-size variables */
 :root {
     --white: #F5F3F5;
-    --light: #277EC3;
+    --light: rgb(236,245,254);
+    --blue: rgb(55, 147, 255);
     --accent: #1C2541;
     --dark: #EF8354;
     --xsmall: 0.8vw;
@@ -141,13 +142,13 @@ h2, h3 {
     width: 100%;
     min-height: 70px;
     text-align: center;
-    z-index: 5;
+    z-index: 9;
     transition: background-color 0.5s ease;
     top: 0;
 }
 
 #navbar a {
-    font-size: var(--xsmall);
+    font-size: 16px;
     font-weight: 800;
     text-decoration: none;
     align-items: center;
