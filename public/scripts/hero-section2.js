@@ -30,9 +30,13 @@ function initializeCarousel() {
         digits[i].value='';
     }
 
-    document.getElementById("slide1").style.left="36vw";
-    document.getElementById("slide2").style.left="36vw";
-    document.getElementById("intro-image").style.left="0vw";
+    document.getElementById("slide1").classList.remove('move-right');
+    document.getElementById("slide1").classList.add('in-place');
+    document.getElementById("slide2").classList.remove('move-right');
+    document.getElementById("slide2").classList.add('in-place');
+    // document.getElementById("slide2").style.left="36vw";
+    document.getElementById("intro-image").classList.remove('move-left');
+    document.getElementById("intro-image").classList.add('present');
     document.getElementById('searchResult').style.display="none";
     for (let i = 0; i < slides.length; i++) {
         let multiplier = i*100;
@@ -70,41 +74,47 @@ const local = $('#slide1Local');
 towing.on("click", () => {
     formData.businessType=1;
     showSlide2();
-    document.getElementById('slide1').style.left = "100vw";
+    document.getElementById('slide1').classList.add('move-right');
+    document.getElementById('slide1').classList.remove('in-place');
 
 });
 
 sand.on("click", () => {
     formData.businessType=2;
     showSlide2();
-    document.getElementById('slide1').style.left = "100vw";
+    document.getElementById('slide1').classList.add('move-right');
+    document.getElementById('slide1').classList.remove('in-place');
 
 });
 
 longhaul.on("click", () => {
     formData.businessType=3;
     showSlide2();
-    document.getElementById('slide1').style.left = "100vw";
-    // openSlides();
+    document.getElementById('slide1').classList.add('move-right');
+    document.getElementById('slide1').classList.remove('in-place');
 });
 
 local.on("click", () => {
     formData.businessType=4;
-    hideSlide2();
-    document.getElementById('slide1').style.left = "100vw";
+    // hideSlide2();
+    document.getElementById('slide1').classList.add('move-right');
+    document.getElementById('slide1').classList.remove('in-place');
+    document.getElementById('slide2').classList.add('move-right');
+    document.getElementById('slide2').classList.remove('in-place');
+
     openSlides();
 });
 
 
 function showSlide2() {
-    $('#slide2').css("display", "block");
+    // $('#slide2').css("display", "block");
     $('#slide3').css("transform", "translateX(0vw)")
     $('#slide4').css("transform", "translateX(100vw)")
     $('#slide5').css("transform", "translateX(200vw)")
 }
 
 function hideSlide2() {
-    $('#slide2').css("display", "none");
+    // $('#slide2').css("display", "none");
     $('#slide3').css("transform", "translateX(0vw)")
     $('#slide4').css("transform", "translateX(100vw)")
     $('#slide5').css("transform", "translateX(200vw)")
@@ -113,8 +123,10 @@ function hideSlide2() {
 // ---- Slide 2 ---- //
 
 function openSlides() {
-    document.getElementById('intro-image').style.left = "-100vw";
-    document.getElementById('slide2').style.left = "100vw";
+    document.getElementById('intro-image').classList.remove('present');
+    document.getElementById('intro-image').classList.add('move-left');
+    document.getElementById('slide2').classList.remove('in-place');
+    document.getElementById('slide2').classList.add('move-right');
 }
 
 const lowMileage = $('#slide2Low');
