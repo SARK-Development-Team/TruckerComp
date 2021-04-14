@@ -114,6 +114,7 @@ fieldset label {
     padding: 2vw 13vw;
     min-width: 100vw;
     max-height: 100%;
+    min-height: 500px;
     transition: transform 0.5s;
 }
 
@@ -146,6 +147,7 @@ fieldset label {
 }
 
 #hero {
+    margin-top: 70px;
     position: relative;
     min-height: 38vw;
     color: var(--accent);
@@ -154,7 +156,7 @@ fieldset label {
 
 #intro-image {
     max-height: 100%;
-    min-height: 600px;
+    min-height: 500px;
     padding: 3vw;
     background-position: 100% 0%;
     background-size: cover;
@@ -162,20 +164,18 @@ fieldset label {
     background-size: cover;
     position: absolute;
     width: 36vw;
-    left: 0;
     transition: left 1s ease;
 }
 
-@media screen and (max-width: 991px) {
-    #intro-image {
-        display: none;
-    }
-    .narrow-slide {
-        left: 0;
-        width: 100vw;
-    }
-
+.present {
+    left: 0vw;
 }
+
+.move-left {
+    left: -100vw;
+}
+
+
 
 /* ----------
    Slide 1 
@@ -186,9 +186,14 @@ fieldset label {
     background: var(--white);
     padding: 3vw;
     position: absolute;
-    left: 36vw;
+    /* left: 36vw; */
     width: 64vw;
     transition: left 1s ease;
+}
+
+.in-place {
+    left: 36vw;
+    /* width: 64vw; */
 }
 
 .four-tile {
@@ -202,6 +207,10 @@ fieldset label {
 
 .material-icons {
     font-size: 52px;
+}
+
+.move-right {
+    left: 100vw;
 }
 
 .tile {
@@ -230,7 +239,7 @@ fieldset label {
 
 #slide1 {
     max-height: 100%;
-    min-height: 600px;
+    min-height: 500px;
     text-align: center;
     background: var(--light);
 }
@@ -246,6 +255,20 @@ fieldset label {
     }
     .tile {
         padding: 0;
+    }
+
+    .four-tile {
+        font-size: unset;
+    }
+
+    #intro-image {
+        display: none;
+    }
+    .in-place {
+        left: 0vw;
+    }
+    .narrow-slide {
+        width: 100vw;
     }
 }
 
@@ -295,9 +318,16 @@ fieldset label {
 
 #slide2 {
     max-height: 100%;
-    min-height: 600px;
+    min-height: 500px;
     text-align: center;
     z-index: 3;
+}
+
+@media screen and (max-width: 991px) {
+    .btn-reset {
+        font-size: unset;
+    }
+    
 }
 
 /* ----------
@@ -369,10 +399,6 @@ fieldset label {
 
 .next-icon:hover, .back-icon:hover {
     transform: scale(1.2);
-}
-
-#btn-saveEmployeeData {
-    margin: 0 30%;
 }
 
 #slide3-modal {
