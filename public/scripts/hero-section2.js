@@ -26,6 +26,7 @@ function initializeCarousel() {
         mileage: 0,
         email: ''
     }
+    // Resets the DOT digits
     for (let i=0; i<digits.length; i++) {
         digits[i].value='';
     }
@@ -34,7 +35,6 @@ function initializeCarousel() {
     document.getElementById("slide1").classList.add('in-place');
     document.getElementById("slide2").classList.remove('move-right');
     document.getElementById("slide2").classList.add('in-place');
-    // document.getElementById("slide2").style.left="36vw";
     document.getElementById("intro-image").classList.remove('move-left');
     document.getElementById("intro-image").classList.add('present');
     document.getElementById('searchResult').style.display="none";

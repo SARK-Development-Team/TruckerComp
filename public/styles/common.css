@@ -194,7 +194,7 @@ h2, h3 {
     #nav-toggle:checked ~ #menu-items {
         display: grid;
         grid-row: 2;
-        justify-content: stretch;
+        justify-content: right;
     }
     #navbar a {
         font-size: var(--mobxsmall);

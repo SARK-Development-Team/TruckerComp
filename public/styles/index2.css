@@ -235,6 +235,7 @@ fieldset label {
     padding: 2.4vw .8vw;
     position: relative;
     flex-wrap: nowrap;
+    align-items: center;
 }
 
 #slide1 {
@@ -259,8 +260,14 @@ fieldset label {
 
     .four-tile {
         font-size: unset;
+        margin-bottom: 10px;
+        width: 80vw;
     }
 
+
+    .type-tiles {
+        flex-direction: column;
+    }
     #intro-image {
         display: none;
     }
@@ -326,6 +333,11 @@ fieldset label {
 @media screen and (max-width: 991px) {
     .btn-reset {
         font-size: unset;
+    }
+    .three-tile {
+        font-size: unset;
+        width: 80vw;
+        margin-bottom: 10px;
     }
     
 }
@@ -401,13 +413,8 @@ fieldset label {
     transform: scale(1.2);
 }
 
-#slide3-modal {
-    /* display: none; */
-    background: var(--white);
-}
-
 #slide3DOT {
-    display:none;
+    display: none;
 }
 
 #newRow {
@@ -457,17 +464,6 @@ fieldset label {
 #manualInputForm {
     display: grid;
     /* grid-template-columns: 1fr 1fr; */
-}
-
-
-
-
-
-@media (min-width: 576) {
-    .modal-dialog {
-        max-width: 80%;
-        min-width: 80%;
-    }
 }
 
 
