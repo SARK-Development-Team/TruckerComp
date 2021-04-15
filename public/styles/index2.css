@@ -36,7 +36,6 @@
     background: rgba(194, 222, 255, 0.7);
     color: var(--blue);
     text-align: right;
-    line-height: 115%;
     font-weight: 400;
     border-radius: 10px;
 }
@@ -446,6 +445,7 @@ input {
 
 #employeeInfoTableHeadings p{
     margin: 0 0 .2vw 0;
+    font-weight: bold;
 }
 
 #newRow {
@@ -494,7 +494,11 @@ input {
     border-radius: 0;
 }
 
-
+@media screen and (max-width: 676px) {
+    #slide5{
+        grid-template-columns: unset;
+    }
+}
 
 /* ----------
   Info Tabs
