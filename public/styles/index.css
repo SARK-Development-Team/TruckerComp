@@ -1,21 +1,8 @@
-/* ----------
-  This style sheet will be indexed by the vertical position of elements
-  1. Hero elements
-  2. About section elements
-  3. Footer elements
-  4. Media queries
-
-  Each sub-section is organized alphabetically by:
-  1. Elements
-  2. Classes
-  3. IDs
-  4. Pseudoelements
-  ---------- */
-
-/* color and font-size variables */
+/* CSS Color and font-size variables */
 :root {
     --white: #F5F3F5;
-    --light: #277EC3;
+    --light: rgb(236,245,254);
+    --blue: rgb(55, 147, 255);
     --accent: #1C2541;
     --dark: #EF8354;
     --xsmall: 0.8vw;
@@ -28,141 +15,77 @@
     --moblarge: 5vw;
 }
 
-  
+/* ----------------------------------------------------------------------------------------------------
+ This page defines the styles used in main.hbs
+
+ It is organized by the section of the page in which the style in question is implemented in order of:
+ 1. html tags
+ 2. classes
+ 3. ids
+ 4. media queries
+-----------------------------------------------------------------------------------------------------*/
+
+
 /* ----------
-    Hero
----------- */
+ Intro image 
+-----------*/
 
-
-input {
-    background: inherit;
-    border: none;
-    border-bottom: 1px solid #585858;
-    font-size: var(--med);
-}
-
-select {
-    font-size: var(--med);
-}
-
-.active {
-    color: var(--accent)!important;
-}
-
-.btn-purchase {
-    text-align: center;
-    align-self: center;
-    cursor: pointer;
-    background: var(--accent);
+.banner {
+    /* margin: 5vw 4vw; */
     padding: 1vw;
-    border-radius: 4%;
-    border: 1px solid var(--white);
-    color: var(--white);
-    transition: all 0.6s ease;
-    font-size: var(--med);
-    margin: 0 34%;
-    grid-column-start: center;
-    grid-row-start: bottommid;
+    background: rgba(194, 222, 255, 0.7);
+    color: var(--blue);
+    text-align: right;
+    font-weight: 400;
+    border-radius: 10px;
+}
+
+#form-intro {
+    /* display: grid;
+    grid-template-columns: 1fr 1fr; */
     z-index: 5;
+    position: absolute;
 }
 
-.btn-reset {
-    background: var(--dark);
-    padding: 0.3vw .6vw;
-    color: var(--white);
-    font-size: var(--xsmall);
-    border-radius: 2000px;
-    cursor: pointer;
-    z-index: 5;
+#hero {
+    margin-top: 70px;
+    position: relative;
+    min-height: 38vw;
+    color: var(--accent);
+    overflow: hidden;
 }
 
-.btn-save {
-    text-align: center;
-    align-self: center;
-    cursor: pointer;
-    background: var(--accent);
-    padding: 1vw;
-    border-radius: 4%;
-    border: 1px solid var(--white);
-    color: var(--white);
-    transition: all 0.6s ease;
-    font-size: var(--med);
-    margin: 0 34%;
-    grid-column-start: center;
-    grid-row-start: bottommid;
+#intro-image {
+    max-height: 100%;
+    min-height: 500px;
+    padding: 3vw;
+    background-position: 100% 0%;
+    background-size: cover;
+    background: url('../images/truckbgd2.jpg');
+    background-size: cover;
+    position: absolute;
+    width: 36vw;
+    transition: left 1s ease;
 }
 
-.btn-submit {
-    text-align: center;
-    align-self: center;
-    cursor: unset;
-    background: var(--light);
-    padding: 1vw;
-    border-radius: 4%;
-    border: 1px solid var(--white);
-    color: var(--white);
-    transition: all 0.6s ease;
-    font-size: var(--med);
-    margin: 0 40%;
-    grid-column-start: center;
-    grid-row-start: bottommid;
+.present {
+    left: 0vw;
 }
 
-.formline {
-    margin: .5vw 0!important;
-    display: flex;
-    flex-direction: row;
+.move-left {
+    left: -100vw;
 }
 
-.formline select, .formline input {
-    margin: 0 5vw 0 0;
-    width: 33%;
-}
-
-
-.four-tile {
-    background: var(--light);
-    color: var(--white);
-    text-align: center;
-    font-size: var(--small);
-    width: 7.1vw;
-    height: 10.5vw;
-}
-
-.fa-circle {
-    color: var(--light);
-    margin: 0 .2vw;
-}
-
-.heading-area {
-    margin: 1% 0;
-    text-align: center;
-    padding: 0 3%;
-}
-
-.hero-form {
-    grid-column-start: center;
-    grid-row-start: topmid; 
-    grid-row-end: bottom;
-    padding: 0 4vw;
-}
-
-.hero-form p {
-    font-size: var(--med);
-    margin: 0;
-}
-
-.hero-form h3 {
-    margin: 2vw 0 0 0;
-}
+/* ----------
+   Slide 1 
+-----------*/
 
 .icon-area {
     display: flex;
     justify-content: center;
-    font-size: var(--med);
     align-items: center;
-    grid-column-start: center;
-    grid-row-start: bottom;
+    margin: 1.5vw;
+    align-self: center;
 }
 
 .icons {
@@ -170,204 +93,411 @@ select {
     transition: color 0.6s ease;
 }
 
-.back-icon {
-    font-size: 5.1vw;
-    color: var(--dark);
-    transition: all .5s ease;
-    z-index: 3;
-    cursor: pointer;
-    grid-column-start: lside;
-    grid-row-start: centerline;
-    justify-self: end;
+.narrow-slide {
+    background: var(--white);
+    padding: 3vw;
+    position: absolute;
+    width: 64vw;
+    transition: left 1s ease;
 }
 
-.next-icon {
-    font-size: 5.1vw;
-    color: var(--dark);
-    opacity: 0;
-    transition: all .5s ease;
-    z-index: 3;
-    grid-column-start: rside;
-    grid-row-start: centerline;
+.in-place {
+    left: 36vw;
 }
 
-.next-icon:hover, .back-icon:hover {
-    transform: scale(1.2);
+.four-tile {
+    color: var(--white);
+    text-align: center;
+    font-size: var(--small);
+    width: 8.2vw;
+    border: none;
+    height: 10.5vw;
 }
 
 .material-icons {
-    font-size: 3.5vw;
+    font-size: 52px;
 }
 
-.selected {
-    background: var(--accent)!important;
-    color: var(--white);
-}
-
-.slide {
-    min-width: 78vw;
-    display: grid;  
-    grid-template-columns: [lside] 10% [center] 80% [rside] 10%;
-    grid-template-rows: [top] 5vh [topmid] 12vh [centerline] 4vh [bottommid] 10vh [lowerbottom] 6vh [bottom] 5vh;
-    transition: transform 0.5s;
-
-}
-
-.slide > h3 {
-    text-align: center;
-    grid-column-start: center;
-    grid-row-start: top;
+.move-right {
+    left: 100vw;
 }
 
 .tile {
     transition: all ease 250ms;
-    border-radius: 6%;
+    border-radius: 10px;
     border: none;
-    box-shadow: 1px 1px 2px var(--light), -1px -1px 2px var(--light), 1px -1px 2px var(--light), -1px 1px 2px var(--light);
+    background: var(--blue);
+    transition: all .5s ease;
 }
 
 .tile:hover {
     background: var(--accent);
 }
 
-.tile:focus {
-    background: var(--accent);
-    border: none;
-}
-
-.tiles-two {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    column-gap: 3.3vw;
-    padding: 2.4vw .8vw;
-    position: relative;
-    grid-column-start: center;
-    grid-row-start: topmid;
-    grid-row-end: bottom;
-}
-
-.tiles-multi {
+.type-tiles {
     display: flex;
     flex-direction: row;
     justify-content: center;
     column-gap: 2vw;
     padding: 2.4vw .8vw;
     position: relative;
-    flex-direction: row;
     flex-wrap: nowrap;
-    grid-column-start: center;
-    grid-row-start: topmid;
-    grid-row-end: bottommid;
+    align-items: center;
 }
 
-.two-tile {
+#slide1 {
+    max-height: 100%;
+    min-height: 500px;
+    text-align: center;
     background: var(--light);
+}
+
+#slide1-headline {
+    margin-bottom: 3vw;
+    color: var(--blue);
+}
+
+@media screen and (max-width: 991px) {
+    .material-icons{
+        display: none
+    }
+    .tile {
+        padding: 0;
+    }
+
+    .four-tile {
+        font-size: unset;
+        margin-bottom: 10px;
+        width: 70vw;
+    }
+
+    .type-tiles {
+        flex-direction: column;
+    }
+    #intro-image {
+        display: none;
+    }
+    .in-place {
+        left: 0vw;
+    }
+    .narrow-slide {
+        width: 100vw;
+    }
+}
+
+/* ----------
+   Slide 2 
+-----------*/
+
+.btn-reset {
+    background: var(--dark);
+    padding: 0.5vw;
+    color: var(--white);
+    align-self: center;
+    font-size: var(--small);
+    cursor: pointer;
+    z-index: 5;
+    border-radius: 10px;
+}
+
+.mileage-tiles {
+    display: grid;
+    /* flex-direction: column; */
+    justify-content: center;
+    column-gap: 2vw;
+    /* padding: 2.4vw .8vw; */
+    position: relative;
+    flex-wrap: nowrap;
+}
+
+.slide-nav {
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+}
+
+.three-tile {
     color: var(--white);
     text-align: center;
     font-size: var(--small);
-    width: 9vw;
-    height: 10.5vw;
+    width: 36vw;
+    border: none;
+    margin: 1vw;
 }
 
-#bgd-icons {
-    display: grid;
-    grid-template-columns: 2fr 3fr 2fr;
-    position: absolute;
-    color: rgba(255, 255, 255, 0.3);
-    bottom: 0;
-    z-index: 0;
+.three-tile p {
+    margin: 0;
+    padding: 1.6vw;
 }
 
-#bottom-line {
-    font-size: var(--xsmall);
-    font-style: italic;
+#slide2 {
+    max-height: 100%;
+    min-height: 500px;
     text-align: center;
-    padding-bottom: .1vw;
-    color: var(--accent);
+    z-index: 3;
+}
+
+@media screen and (max-width: 991px) {
+    .btn-reset {
+        font-size: unset;
+    }
+    .three-tile {
+        font-size: unset;
+        width: 80vw;
+        margin-bottom: 10px;
+    }
+    
+}
+
+/* ----------
+   Slide 3 
+-----------*/
+
+fieldset input, fieldset label {
+    display: block;
+    font-size: small;
     width: 100%;
 }
 
-#carousel {
-    display: flex;
-    position: relative;
-    scroll-snap-type: x mandatory;
-    overflow: hidden;
+fieldset label {
+    color: var(--accent);
 }
 
-#carousel *:not(button, input):focus {
+input {
+    background: inherit;
+    border: none;
+    border-bottom: 1px solid #585858;
+}
+
+.back-icon {
+    transition: all .5s ease;
+    z-index: 3;
+    cursor: pointer;
+    align-self: center;
+}
+
+.blueText {
+    color: var(--blue);
+}
+
+.btn-next {
+    text-align: center;
+    align-self: center;
+    cursor: pointer;
+    background: var(--blue);
+    padding: 1vw;
+    border: 1px solid var(--white);
+    color: var(--white);
+    transition: all 0.6s ease;
+}
+
+.btn-save {
+    text-align: center;
+    align-self: center;
+    cursor: pointer;
+    background: var(--blue);
+    padding: 1vw;
+    color: var(--white);
+    transition: all 0.6s ease;
+}
+
+.btn-submit {
+    text-align: center;
+    align-self: center;
+    cursor: pointer;
+    background: var(--blue);
+    padding: 1vw;
+    border-radius: 4%;
+    border: 1px solid var(--white);
+    color: var(--white);
+    transition: all 0.6s ease;
+    /* font-size: var(--med); */
+    margin: 0 34%;
+}
+
+.digits input {
+    font-size: 2rem;
+    width: 1.5rem;
+    text-align: center;
+    margin: 2vw .2vw;
+    background: white;
+}
+
+.digits input:focus {
+    border: 2px solid var(--dark);
     outline: none;
 }
 
-#container {
-    width: 78vw;
-    /* background: var(--white); */
-    background: rgba(255, 255, 255, .7)
-    /* background: linear-gradient(to right, rgba(255, 255, 255, 0.8) 10%, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 1) 80%, rgba(255, 255, 255, 0.8) 90%); */
-    /* opacity: .9; */
+.dual-column {
+    display: grid; 
+    grid-template-columns: 1fr 1fr;
 }
 
-#employeeInfoTableHeadings {
-    display: flex;
-    flex-direction: row;
-}
-
-#employeeInfoTableHeadings p{
-    margin: 0 5vw 0 0;
-    width: 33%;
-    font-size: var(--small);
-}
-
-#empError, #milesError, #payrollError, #zipError, #emailError {
+.error {
     margin: 0;
     padding: 0;
     visibility: hidden;
     font-style: italic;
     font-size: var(--small);
     color: var(--dark);
-    grid-column-start: center;
-    grid-row-start: bottommid;
 }
 
-#hero {
-    padding: 1vw 10vw;
-    /* margin-top: 70px; */
-    background: url('../images/truckbgd.jpeg');
-    background-size: cover;
+.modal-body {
+    display: grid;
+    grid-template-columns: 4fr 5fr;
 }
 
-#hero a {
-    text-decoration: none;
-    cursor: pointer;
+.modal-dialog {
+    min-width: 100%;
+    margin: 0 auto;
 }
 
-#quote-area {
-    margin: 0 1vw;
-    padding: 2vw;
-    background: var(--accent);
-    color: var(--white);
-    height: fit-content;
+.modal-header {
+    display: block;
+    text-align: center;
+}
+
+.modal-header p {
+    margin-bottom: 0;
+}
+
+
+.modal-left {
+    padding: 1vw;
+    text-align: left;
+}
+
+.modal-right {
+    text-align: left;
+    color: var(--accent);
+    font-size: small;
+    padding: 1vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.slide {
+    background: var(--white);
+    text-align: center;
+    padding: 2vw 13vw;
+    min-width: 100vw;
+    max-height: 100%;
+    min-height: 500px;
+    transition: transform 0.5s;
+}
+
+#carousel {
+    z-index: 2;
     display: flex;
-    flex-direction: column;
-    text-align: center;
-    width: fit-content;
-    grid-column-start: center;
-    grid-row-start: top;
-    justify-self: center;
+    position: relative;
+    scroll-snap-type: x mandatory;
+    overflow: hidden;
+    width: 100vw;
+    background: var(--white);
+    max-height: 100%;
+    /* min-height: 600px; */
 }
 
-#quote-area h1, #quote-area h3 {
-    font-size: var(--large);
+#manualInput fieldset{
+    width: 98%;
 }
 
-#reset-container {
-    text-align: center;
-    z-index: 5;
-    margin: 1vw 0;
+#manualInputForm {
+    display: grid;
+    /* grid-template-columns: 1fr 1fr; */
 }
 
-#spanEmail {
-    color: var(--dark);
+#slide3DOT {
+    display: none;
+}
+
+@media screen and (max-width: 676px) {
+    .modal-body {
+        grid-template-columns: unset;
+    }
+}
+
+
+/* ----------
+   Slide4
+---------- */
+
+.formline {
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr 1fr 3fr;
+    margin: 0 0 .2vw 0;
+    /* flex-direction: row; */
+}
+
+.formline * {
+    margin: 0 .5vw;
+    /* font-size: var(--small); */
+}
+
+.hero-form {
+    background: white;
+    padding: 1vw 0;
+}
+
+#employeeInfoTableHeadings {
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr 1fr 3fr;
+}
+
+#employeeInfoTableHeadings p{
+    margin: 0 0 .2vw 0;
+    font-weight: bold;
+}
+
+#newRow {
+    margin-top: 1rem;
+    width: 98%;
+    background: var(--blue);
+    color: var(--white);
+}
+
+/* ----------
+   Slide 5
+---------- */
+
+
+#confirmation {
+    line-height: 1;
+    text-align: left;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+}
+
+/* #confirmation p {
+    margin: 0;
+} */
+
+#slide5 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#slide5Left {
+    padding: 2vw;
+}
+
+#slide5Name {
+    text-align: left;
+}
+
+#slide5Right {
+    padding: 2vw;
+}
+
+#submit {
+    margin: 0;
+    border-radius: 0;
+}
+
+@media screen and (max-width: 676px) {
+    #slide5{
+        grid-template-columns: unset;
+    }
 }
 
 /* ----------
@@ -388,7 +518,7 @@ select {
     padding: 6px;
     margin: 0 0 1vw 0;
     color: var(--white);
-    background: var(--light);
+    background: var(--blue);
 }
 
 .info-blurb {
@@ -406,7 +536,7 @@ select {
 
 #three-tabs {
     display: flex;
-    color: var(--light);
+    color: var(--blue);
     justify-content: center;
 }
 
@@ -415,7 +545,7 @@ select {
 ---------- */
 
 svg {
-    fill: var(--light);
+    fill: var(--blue);
 }
 
 .about-box {
@@ -432,7 +562,7 @@ svg {
 
 .about-button {
     font-size: var(--small);
-    border-radius: 3px;
+    border-radius: 10px;
     color: #fff;
     background: var(--dark);
     border: 1px solid var(--white);
@@ -506,332 +636,3 @@ svg {
     margin: 4vw 0;
     /* color: #bfbfbf; */
 }
-
-/* ----------
-     Map
----------- */
-
-/* .narrow-indent {
-    padding: 1% 12%;
-} */
-
-.map-side-lg {
-    display: block;
-    height: 20vw;
-    position: relative;
-}
-
-.map-side-sm {
-    display: none;
-    height: 42vw;
-    position: relative;
-}
-
-.text-side h3 {
-    font-weight: 700;
-}
-
-.two-column {
-    padding: 1% 16%;
-    background: rgb(235, 239, 255);
-    display: flex;
-    justify-content: center;
-    column-gap: 3%;
-    align-items: center;
-}
-
-#US-map-lg {
-    height: 20vw;
-    background: var(--white);
-    box-shadow: 0 0 15px -2px rgba(50, 50, 50, .2);
-}
-
-#US-map-sm {
-    height: 42vw;
-    background: var(--white);
-    box-shadow: 0 0 15px -2px rgba(50, 50, 50, .2);
-}
-
-/* ----------
-  Why-SARK
----------- */
-
-
-
-.btn-contact {
-    border-radius: 2000px;
-    border: none;
-    background: rgb(6, 12, 94);
-    color: var(--white);
-    font-size: 1.6vw;
-    padding: .7vw 5vw;
-    text-align: center;
-    margin: 2vw auto;
-    cursor: pointer;
-}
-
-.bullet-icon {
-    height: 3.5vw;
-    width: 3.5vw;
-    margin: auto;
-    border: .3vw solid black;
-    border-radius: 100%;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-}
-
-.bullet-icon img {
-    height: 2.4vw;
-    width: 2.4vw;
-    padding: 1.2vw;
-}
-
-.bullet-icon p {
-    text-align: center;
-    font-size: 2.9vw;
-    font-weight: bold;
-}
-
-.bullet-text {
-    font-weight: 600;
-    margin: .8vw 0;
-}
-
-.bullet-area {
-    padding: 0 2%;
-    display: grid;
-    grid-template-columns: 1fr 7fr;
-    align-items: center;
-}
-
-#cta {
-    text-align: center;
-    margin: 3vw 0;
-}
-
-#cta h2 {
-    font-size: 2.5vw;
-}
-
-#why-SARK {
-    padding: 0 20%;
-}
-
-#why-SARK hr {
-    height: .6vw;
-    background: black;
-    border-radius: 2000px;
-}
-
-
-
-/* Register */
-
-.card-heading {
-    background: var(--light);
-    color: var(--white);
-    padding: 1vw;
-    text-align: center;
-    border-bottom: 1px solid var(--light);
-}
-
-.card-body {
-    padding: 1vw;
-}
-
-.login-card {
-    border: 2px solid black;
-    border-radius: 5px;
-    grid-column-start: center;
-    grid-row-start: top;
-    grid-row-end: lowerbottom;
-}
-
-/* .login-card input, .login-card label {
-    display: block;
-} */
-
-#btn-register {
-    padding: 0.6vw;
-    background: var(--dark);
-    /* border-radius: 4%; */
-    color: var(--white);
-    transition: all 0.6s ease;
-    font-size: var(--small);
-    width: 98%;
-    text-align: center;
-    margin-top: 1vw;
-    grid-row-start: bottommid;
-}
-
-
-#login-line {
-    margin: 1vw 0;
-    padding: 0 1vw 6vw 1vw;
-    grid-column-start: center;
-    grid-row-start: lowerbottom;
-}
-
-
-/* ----------
-Media Queries
----------- */
-
-@media screen and (max-width: 1100px) {
-
-    #about-container {
-        display: grid;
-        gap: 2vw;
-        padding: 1% 0;
-    }
-}
-
-
-@media screen and (max-width: 700px) {
-
-    h2, #cta h2 {
-        font-size: var(--mobmed);
-    }
-    h3 {
-        font-size: var(--mobsmall);
-    }
-
-    .about-text {
-        font-size: var(--mobsmall);
-    }
-
-    .about-icon {
-        height: 10vw;
-        width: 10vw;
-    }
-
-    .back-icon, .next-icon {
-        font-size: 10vw;
-    }
-
-    .btn-contact {
-        font-size: var(--moblarge);
-        padding: 1vw 10vw;
-    }
-
-    .btn-reset {
-        font-size: var(--mobxsmall);
-    }
-
-    .btn-save {
-        font-size: var(--moblarge);
-        padding: 1vw 6vw;
-        margin: 0;
-    }
-    
-    .btn-submit {
-        font-size: var(--moblarge);
-        padding: .6vw 6vw;
-        margin: 0 18%;
-    }
-
-    .formline select, .formline input {
-        margin: 0 0.5vw 0 0;
-    }
-
-    .hero-form p, input, select {
-        font-size: var(--mobsmall);
-    }
-
-    .icon-area {
-        font-size: var(--mobmed);
-    }
-
-    .indented {
-        padding: 1% 10%;
-    }
-
-    .map-side-sm {
-        display: block;
-    }
-
-    .map-side-lg {
-        display: none;
-    }
-
-    .material-icons{
-        display: none
-    }
-
-    .slide{
-        grid-template-rows: [top] 5vh [topmid] 14vh [centerline] 1vh [bottommid] 10vh [lowerbottom] 5vh [bottom] 4vh;
-    }
-
-    .tile > br {
-        display: none;
-    }
-
-    .tiles-two, .tiles-multi {
-        font-size: var(--moblarge);
-        align-items: center;
-        flex-direction: column;
-        margin: 0;
-        padding: 0;
-        justify-content: unset;
-    }
-
-    .two-tile, .four-tile {
-        width: 90%;
-        height: unset;
-        padding: 2vw;
-        margin-bottom: 10px;
-        font-size: var(--moblarge);
-    }
-
-    #about-headline h2{
-        font-size: var(--moblarge);
-    }
-
-    #about h3 {
-        font-size: var(--moblarge);
-    }
-
-    #bottom-line {
-        font-size: var(--mobsmall);
-    }   
-
-    #btn-register {
-        margin-top: 3vw;
-        font-size: var(--mobsmall);
-    }
-
-    #employeeInfoTableHeadings p{
-        font-size: var(--mobsmall);
-        margin: 0 0.5vw 0 0;
-    }
-
-    #empError, #payrollError, #zipError, #milesError, #emailError {
-        font-size: var(--mobsmall);
-    }
-
-    #hero {
-        padding: 1% 8%;
-    }
-
-    #login-line {
-        font-size: var(--mobsmall)
-    }
-
-    #quote-area h1, #quote-area h3 {
-        font-size: var(--mobmed);
-    }
-
-    #partners img {
-        height: 8vw;
-    }
-
-    #why-SARK {
-        padding: 1% 12%;
-    }
-
-}
-
-
-
