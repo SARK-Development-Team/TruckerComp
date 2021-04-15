@@ -272,10 +272,37 @@ async function fetchDOT(dotObject) {
 
 // ---- Slide 4 ---- //
 
+let formlines = document.getElementsByClassName('formline');
+
+addPayrollUpdate();
+addTotalUpdate();
+
+function addPayrollUpdate() {
+    for (let i =0; i<formlines.length; i++) {
+        document.getElementById(`empTotal${i}`).addEventListener("change", (e) => {
+            console.log("payroll etarget is: ", e.target.value);
+            console.log("parseInt payroll is ", parseInt(document.getElementById(`empNumber${i}`).value));
+            document.getElementById(`empPayroll${i}`).value =  parseInt(e.target.value)/ parseInt(document.getElementById(`empNumber${i}`).value);            
+        });
+    }
+}
+
+function addTotalUpdate() {
+    for (let i =0; i<formlines.length; i++) {
+        document.getElementById(`empPayroll${i}`).addEventListener("change", (e) => {  
+            console.log("total etarget is: ", e.target.value);
+            console.log("parseInt total is ", parseInt(document.getElementById(`empNumber${i}`).value));
+            document.getElementById(`empTotal${i}`).value =  parseInt(e.target.value) * parseInt(document.getElementById(`empNumber${i}`).value);            
+        });
+    }
+}
+
+
+
 function saveEmployeeData() {
     formData.employees = [];
     formData.totalPayroll = 0;
-    const formlines = document.getElementsByClassName('formline');
+    // let formlines = document.getElementsByClassName('formline');
     try {
         for (let i=0; i<formlines.length; i++) {
             let type = document.getElementById('empType'+i).value;
@@ -313,18 +340,9 @@ function addRow(e) {
             <option value="Other">Other</option>
         </select>
         <input class="empNumber" name="empNumber${formlines}" type="number" min="1" id="empNumber${formlines}" >
-        <select class="empPayroll" id="empPayroll${formlines}" name="empPayroll${formlines}">
-            <option value="" disabled selected>Please select</option>
-            <option value="4.5">Less than $45,000</option>
-            <option value="5.0">$45,001 ~ $55,000</option>
-            <option value="6.0">$55,001 ~ $65,000</option>
-            <option value="7.0">$65,001 ~ $75,000</option>
-            <option value="8.0">$75,001 ~ 85,000</option>
-            <option value="10">$85,001 ~ 100,000</option>
-            <option value="12">More than $100,000</option>
-        </select>
+        <input class="empPayroll" name="empPayroll${formlines}" type="number" min="1" id="empPayroll${formlines}" placeholder="50,000">
         <span>|</span>
-        <span id="empTotal${formlines}"></span>
+        <input class="empTotal" name="empTotal${formlines}" type="number" min="1" id="empTotal${formlines}" >
 
     </p>
 
@@ -333,6 +351,8 @@ function addRow(e) {
     let lineElement = document.createElement('div');
     lineElement.innerHTML=line;
     document.getElementById("employeeInfoTable").appendChild(lineElement);
+    addPayrollUpdate();
+    addTotalUpdate();
 }
 
 // ---- Slide 5 ---- //

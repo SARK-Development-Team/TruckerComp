@@ -2,10 +2,10 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const bcrypt = require('bcrypt');
-const flash = require('connect-flash');
+// const bcrypt = require('bcrypt');
+// const flash = require('connect-flash');
 const routes = require('./routes');
-const cors = require('cors');
+// const cors = require('cors');
 
 
 // for environment variables
