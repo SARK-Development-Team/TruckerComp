@@ -1,3 +1,4 @@
+/* CSS Color and font-size variables */
 :root {
     --white: #F5F3F5;
     --light: rgb(236,245,254);
@@ -14,29 +15,20 @@
     --moblarge: 5vw;
 }
 
-input {
-    background: inherit;
-    border: none;
-    border-bottom: 1px solid #585858;
-}
+/* ----------------------------------------------------------------------------------------------------
+ This page defines the styles used in main.hbs
 
-fieldset input, fieldset label {
-    display: block;
-    font-size: small;
-    width: 100%;
-}
+ It is organized by the section of the page in which the style in question is implemented in order of:
+ 1. html tags
+ 2. classes
+ 3. ids
+ 4. media queries
+-----------------------------------------------------------------------------------------------------*/
 
-fieldset label {
-    color: var(--accent);
-}
 
-.blueText {
-    color: var(--blue);
-}
-
-.active {
-    color: var(--accent)!important;
-}
+/* ----------
+ Intro image 
+-----------*/
 
 .banner {
     /* margin: 5vw 4vw; */
@@ -47,96 +39,6 @@ fieldset label {
     line-height: 115%;
     font-weight: 400;
     border-radius: 10px;
-    
-}
-
-.btn-next {
-    text-align: center;
-    align-self: center;
-    cursor: pointer;
-    background: var(--blue);
-    padding: 1vw;
-    border: 1px solid var(--white);
-    color: var(--white);
-    transition: all 0.6s ease;
-}
-
-.error {
-    margin: 0;
-    padding: 0;
-    visibility: hidden;
-    font-style: italic;
-    font-size: var(--small);
-    color: var(--dark);
-
-}
-
-.fa-circle, .fa-circle-o {
-    color: var(--blue);
-    margin: 0 .2vw;
-}
-
-
-.hero-form {
-    background: white;
-    padding: 1vw 0;
-}
-
-.icon-area {
-    display: flex;
-    justify-content: center;
-    font-size: var(--med);
-    align-items: center;
-    margin: 1.5vw;
-    align-self: center;
-}
-
-.icons {
-    text-align: center;
-    transition: color 0.6s ease;
-}
-
-.formline {
-    display: grid;
-    grid-template-columns: 3fr 3fr 3fr 1fr 3fr;
-    margin: 0 0 .2vw 0;
-    /* flex-direction: row; */
-}
-
-.formline * {
-    margin: 0 .5vw;
-    /* font-size: var(--small); */
-}
-
-.slide {
-    background: var(--white);
-    text-align: center;
-    padding: 2vw 13vw;
-    min-width: 100vw;
-    max-height: 100%;
-    min-height: 500px;
-    transition: transform 0.5s;
-}
-
-#carousel {
-    z-index: 2;
-    display: flex;
-    position: relative;
-    scroll-snap-type: x mandatory;
-    overflow: hidden;
-    width: 100vw;
-    background: var(--white);
-    max-height: 100%;
-    /* min-height: 600px; */
-}
-
-#employeeInfoTableHeadings {
-    display: grid;
-    grid-template-columns: 3fr 3fr 3fr 1fr 3fr;
-}
-
-#employeeInfoTableHeadings p{
-    margin: 0 0 .2vw 0;
 }
 
 #form-intro {
@@ -175,25 +77,33 @@ fieldset label {
     left: -100vw;
 }
 
-
-
 /* ----------
    Slide 1 
 -----------*/
 
+.icon-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5vw;
+    align-self: center;
+}
+
+.icons {
+    text-align: center;
+    transition: color 0.6s ease;
+}
 
 .narrow-slide {
     background: var(--white);
     padding: 3vw;
     position: absolute;
-    /* left: 36vw; */
     width: 64vw;
     transition: left 1s ease;
 }
 
 .in-place {
     left: 36vw;
-    /* width: 64vw; */
 }
 
 .four-tile {
@@ -202,7 +112,7 @@ fieldset label {
     font-size: var(--small);
     width: 8.2vw;
     border: none;
-    /* height: 10.5vw; */
+    height: 10.5vw;
 }
 
 .material-icons {
@@ -219,13 +129,11 @@ fieldset label {
     border: none;
     background: var(--blue);
     transition: all .5s ease;
-    /* box-shadow: 1px 1px 2px var(--blue), -1px -1px 2px var(--blue), 1px -1px 2px var(--blue), -1px 1px 2px var(--blue); */
 }
 
 .tile:hover {
     background: var(--accent);
 }
-
 
 .type-tiles {
     display: flex;
@@ -263,7 +171,6 @@ fieldset label {
         margin-bottom: 10px;
         width: 80vw;
     }
-
 
     .type-tiles {
         flex-direction: column;
@@ -346,17 +253,52 @@ fieldset label {
    Slide 3 
 -----------*/
 
-.digits input {
-    font-size: 2rem;
-    width: 1.5rem;
-    text-align: center;
-    margin: 2vw .2vw;
-    background: white;
+fieldset input, fieldset label {
+    display: block;
+    font-size: small;
+    width: 100%;
 }
 
-.digits input:focus {
-    border: 2px solid var(--dark);
-    outline: none;
+fieldset label {
+    color: var(--accent);
+}
+
+input {
+    background: inherit;
+    border: none;
+    border-bottom: 1px solid #585858;
+}
+
+.back-icon {
+    transition: all .5s ease;
+    z-index: 3;
+    cursor: pointer;
+    align-self: center;
+}
+
+.blueText {
+    color: var(--blue);
+}
+
+.btn-next {
+    text-align: center;
+    align-self: center;
+    cursor: pointer;
+    background: var(--blue);
+    padding: 1vw;
+    border: 1px solid var(--white);
+    color: var(--white);
+    transition: all 0.6s ease;
+}
+
+.btn-save {
+    text-align: center;
+    align-self: center;
+    cursor: pointer;
+    background: var(--blue);
+    padding: 1vw;
+    color: var(--white);
+    transition: all 0.6s ease;
 }
 
 .btn-submit {
@@ -373,55 +315,36 @@ fieldset label {
     margin: 0 34%;
 }
 
+.digits input {
+    font-size: 2rem;
+    width: 1.5rem;
+    text-align: center;
+    margin: 2vw .2vw;
+    background: white;
+}
+
+.digits input:focus {
+    border: 2px solid var(--dark);
+    outline: none;
+}
+
 .dual-column {
     display: grid; 
     grid-template-columns: 1fr 1fr;
 }
 
-.btn-save {
-    text-align: center;
-    align-self: center;
-    cursor: pointer;
-    background: var(--blue);
-    padding: 1vw;
-    /* border-radius: 4%; */
-    /* border: 1px solid var(--white); */
-    color: var(--white);
-    transition: all 0.6s ease;
-}
-
-.back-icon {
-    /* font-size: 3.5vw; */
+.error {
+    margin: 0;
+    padding: 0;
+    visibility: hidden;
+    font-style: italic;
+    font-size: var(--small);
     color: var(--dark);
-    transition: all .5s ease;
-    z-index: 3;
-    cursor: pointer;
-    align-self: center;
-    /* flex: 1 1 0; */
 }
 
-.next-icon {
-    font-size: 5.1vw;
-    color: var(--dark);
-    opacity: 0;
-    transition: all .5s ease;
-    z-index: 3;
-    justify-self: start;
-}
-
-.next-icon:hover, .back-icon:hover {
-    transform: scale(1.2);
-}
-
-#slide3DOT {
-    display: none;
-}
-
-#newRow {
-    margin-top: 1rem;
-    width: 98%;
-    background: var(--blue);
-    color: var(--white);
+.modal-body {
+    display: grid;
+    grid-template-columns: 4fr 5fr;
 }
 
 .modal-dialog {
@@ -438,10 +361,6 @@ fieldset label {
     margin-bottom: 0;
 }
 
-.modal-body {
-    display: grid;
-    grid-template-columns: 4fr 5fr;
-}
 
 .modal-left {
     padding: 1vw;
@@ -457,6 +376,28 @@ fieldset label {
     grid-template-columns: 1fr 1fr;
 }
 
+.slide {
+    background: var(--white);
+    text-align: center;
+    padding: 2vw 13vw;
+    min-width: 100vw;
+    max-height: 100%;
+    min-height: 500px;
+    transition: transform 0.5s;
+}
+
+#carousel {
+    z-index: 2;
+    display: flex;
+    position: relative;
+    scroll-snap-type: x mandatory;
+    overflow: hidden;
+    width: 100vw;
+    background: var(--white);
+    max-height: 100%;
+    /* min-height: 600px; */
+}
+
 #manualInput fieldset{
     width: 98%;
 }
@@ -466,6 +407,53 @@ fieldset label {
     /* grid-template-columns: 1fr 1fr; */
 }
 
+#slide3DOT {
+    display: none;
+}
+
+@media screen and (max-width: 676px) {
+    .modal-body {
+        grid-template-columns: unset;
+    }
+}
+
+
+/* ----------
+   Slide4
+---------- */
+
+.formline {
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr 1fr 3fr;
+    margin: 0 0 .2vw 0;
+    /* flex-direction: row; */
+}
+
+.formline * {
+    margin: 0 .5vw;
+    /* font-size: var(--small); */
+}
+
+.hero-form {
+    background: white;
+    padding: 1vw 0;
+}
+
+#employeeInfoTableHeadings {
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr 1fr 3fr;
+}
+
+#employeeInfoTableHeadings p{
+    margin: 0 0 .2vw 0;
+}
+
+#newRow {
+    margin-top: 1rem;
+    width: 98%;
+    background: var(--blue);
+    color: var(--white);
+}
 
 /* ----------
    Slide5
@@ -483,19 +471,6 @@ fieldset label {
 /* #confirmation p {
     margin: 0;
 } */
-
-
-#btn-close2 {
-    text-align: center;
-    align-self: center;
-    cursor: pointer;
-    background: var(--dark);
-    padding: 1vw;
-    border-radius: 10px;
-    /* border: 1px solid var(--white); */
-    color: var(--white);
-    transition: all 0.6s ease;
-}
 
 #slide5 {
     display: grid;

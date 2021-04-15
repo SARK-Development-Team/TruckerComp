@@ -1,9 +1,4 @@
 
-
-/* ----------
-  Whole page
----------- */
-
 /* color and font-size variables */
 :root {
     --white: #F5F3F5;
@@ -20,6 +15,22 @@
     --mobmed: 4.2vw;
     --moblarge: 5vw;
 }
+
+/* ----------------------------------------------------------------------------------------------------
+ This page defines the styles used in the navbar and footer
+
+ It is organized by the section of the page in which the style in question is implemented in order of:
+ 1. html tags
+ 2. classes
+ 3. ids
+ 4. media queries
+-----------------------------------------------------------------------------------------------------*/
+
+
+
+/* ----------
+  Whole page
+---------- */
 
 
 * {
@@ -39,51 +50,10 @@ button {
     cursor: pointer;
 }
 
-/* h2 {
-    font-size: var(--large);
-    font-weight: 700;
-    padding: 1vw 0;
-    margin-bottom: 0; 
-}
-
-h3 {
-    font-size: var(--med);
-    font-weight: 300;
-} */
-
 h2, h3 {
     margin-block-start: 0;
     margin-block-end: 0;
     margin: 0;
-}
-
-.indented {
-    padding: 1% 16%;
-}
-
-.message { 
-    margin-block-end: 0;
-    margin-block-start: 0;
-    margin-inline-start: 0;
-    margin-inline-end: 0;
-    text-align: center; 
-    background-color: var(--dark); 
-    margin: 1vw 30vw 0;
-    padding: 1vw 0;
-    font-size: var(--small);
-    color: var(--white);
-}
-
-#messageArea {
-    /* padding-top: 2vw; */
-    background-color: var(--white); 
-    margin: 70px 0 0 0;
-}
-
-@media only screen and (max-width: 700px) {
-    .message {
-        font-size: var(--mobsmall);
-    }
 }
 
 /* ----------
@@ -104,7 +74,6 @@ h2, h3 {
 
 .lightNav {
     background: var(--white);
-
 }
 
 .logo {
@@ -120,8 +89,13 @@ h2, h3 {
     margin-block-end: 0;
 }
 
-#by-sark {
-    font-size: 13px;
+#hamburger-icon {
+    font-size: 40px;
+    float: right;
+    cursor: pointer;
+    position: absolute;
+    right: 7vw;
+    top: 1.5vw;
 }
 
 #menu-items {
@@ -162,25 +136,6 @@ h2, h3 {
     display: none;
 }
 
-#comp {
-    color: rgb(33, 115, 209);
-}
-
-#hamburger-icon {
-    font-size: 40px;
-    float: right;
-    cursor: pointer;
-    position: absolute;
-    right: 7vw;
-    top: 1.5vw;
-}
-
-#truckercomp {
-    font-size: 26px;
-    font-weight: 800;
-    color: red;
-    line-height: 26px;
-}
 
 @media only screen and (max-width: 700px) {
     #hamburger-icon {
@@ -308,9 +263,7 @@ h2, h3 {
     height: 74.5px;
 }
 
-
-
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 676px) {
     .social {
         font-size: var(--mobmed);
     }
