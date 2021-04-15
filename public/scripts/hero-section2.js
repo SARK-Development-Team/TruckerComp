@@ -64,61 +64,38 @@ function changeSlide(n) {
 
 // ---- Slide 1 ---- //
 
+const towing = document.getElementById('slide1Towing');
+const sand = document.getElementById('slide1Sand');
+const longhaul = document.getElementById('slide1LongHaul');
+const local = document.getElementById('slide1Local');
 
+function moveSlide1() {
+    document.getElementById('slide1').classList.add('move-right');
+    document.getElementById('slide1').classList.remove('in-place');
+}
 
-const towing = $('#slide1Towing');
-const sand = $('#slide1Sand');
-const longhaul = $('#slide1LongHaul');
-const local = $('#slide1Local');
-
-towing.on("click", () => {
+towing.addEventListener("click", () => {
     formData.businessType=1;
-    showSlide2();
-    document.getElementById('slide1').classList.add('move-right');
-    document.getElementById('slide1').classList.remove('in-place');
-
+    moveSlide1();
 });
 
-sand.on("click", () => {
+sand.addEventListener("click", () => {
     formData.businessType=2;
-    showSlide2();
-    document.getElementById('slide1').classList.add('move-right');
-    document.getElementById('slide1').classList.remove('in-place');
-
+    moveSlide1();
 });
 
-longhaul.on("click", () => {
+longhaul.addEventListener("click", () => {
     formData.businessType=3;
-    showSlide2();
-    document.getElementById('slide1').classList.add('move-right');
-    document.getElementById('slide1').classList.remove('in-place');
+    moveSlide1();
 });
 
-local.on("click", () => {
+local.addEventListener("click", () => {
     formData.businessType=4;
-    // hideSlide2();
-    document.getElementById('slide1').classList.add('move-right');
-    document.getElementById('slide1').classList.remove('in-place');
+    moveSlide1();
     document.getElementById('slide2').classList.add('move-right');
     document.getElementById('slide2').classList.remove('in-place');
-
     openSlides();
 });
-
-
-function showSlide2() {
-    // $('#slide2').css("display", "block");
-    $('#slide3').css("transform", "translateX(0vw)")
-    $('#slide4').css("transform", "translateX(100vw)")
-    $('#slide5').css("transform", "translateX(200vw)")
-}
-
-function hideSlide2() {
-    // $('#slide2').css("display", "none");
-    $('#slide3').css("transform", "translateX(0vw)")
-    $('#slide4').css("transform", "translateX(100vw)")
-    $('#slide5').css("transform", "translateX(200vw)")
-}
 
 // ---- Slide 2 ---- //
 
@@ -129,53 +106,29 @@ function openSlides() {
     document.getElementById('slide2').classList.add('move-right');
 }
 
-const lowMileage = $('#slide2Low');
-const mediumMileage = $('#slide2Medium');
-const highMileage = $('#slide2High');
+const lowMileage = document.getElementById('slide2Low');
+const mediumMileage = document.getElementById('slide2Medium');
+const highMileage = document.getElementById('slide2High');
 
-lowMileage.on("click", () => {
+lowMileage.addEventListener("click", () => {
     formData.mileage=1;
     openSlides()
 });
 
-mediumMileage.on("click", () => {
+mediumMileage.addEventListener("click", () => {
     formData.mileage=2;
     openSlides()
-    // changeSlide(1)
 });
-highMileage.on("click", () => {
+highMileage.addEventListener("click", () => {
     formData.mileage=3;
     openSlides()
 });
 
 
 function allowProgress(slideIndex) {
-    // const next = document.getElementById('next' + slideIndex);
-    // next.style.opacity=1;
-    // next.style.cursor="pointer"
-    // next.onclick = () => {
         document.getElementById('searchResult').style.display="none";
         changeSlide(1);
-    // }
 }
-
-// If the conditions are no longer met, the button for the next slide is deactivated
-function stopProgress(slideIndex) {
-    const next = document.getElementById('next' + slideIndex);
-    next.style.opacity=0;
-    next.style.cursor=""
-    next.onclick = '';
-}
-
-
-// document.getElementById("slide2Mileage").addEventListener("keydown", (e) => {
-//     if(e.target.value!=0) {
-//         formData.mileage=e.target.value;
-//         allowProgress(2);
-//     } else {
-//         stopProgress(2)
-//     }
-// })
 
 // ---- Slide 3 ---- //
 
@@ -203,9 +156,8 @@ document.querySelector(".digits").addEventListener("input", (e) => {
         for (let i=0; i<digits.length; i++) {
             total+=digits[i].value;
         }
-        $('#slide3DOT').val(total);
+        document.getElementById('slide3DOT').value= total;
         searchDOT(event);
-        // $('#btn-search').css("display", "inline");
     }
 });
 const searchResultBody = `            
@@ -279,12 +231,10 @@ async function searchDOT(e) {
 
             // If a client is not found
             if (!client.result) {
-                // resultField.innerHTML = `<p>No result found for ${dot['dot']}.</p>`
                 document.getElementById('DOTError').innerText=`No result found for ${dot['dot']}.`;
                 document.getElementById('DOTError').style.visibility="visible";
             // If a client is found
             } else {
-                // $('#slide3-modal').modal('show');
                 document.getElementById('searchResult').innerHTML=searchResultBody;
                 document.getElementById('searchResult').style.display="block";
                 const zipCodePattern = /\d{5}/;
@@ -318,24 +268,6 @@ async function fetchDOT(dotObject) {
         body: JSON.stringify(dotObject)
     }).then(response => response.json()).catch(err=>console.log(err));
     return result;
-}
-
-const inputFields = document.getElementsByClassName('modal-input');
-for (let i = 0; i < inputFields.length; i++) {
-    inputFields[i].addEventListener('change', () => {
-        $('#btn-save').attr('value', 'Update');
-    })
-}
-
-// This function will have more to do later (saving the lead)
-function confirmModalInfo() {
-    $('#slide3-modal').modal('hide');
-    allowProgress(3);
-}
-
-function closeModal() {
-    $('#slide3-modal').modal('hide');
-    $('#slide5-modal').modal('hide');
 }
 
 // ---- Slide 4 ---- //
@@ -470,7 +402,6 @@ email.addEventListener('keyup', () => {
         submit.style.background='#EF8354';
         submit.style.cursor='pointer';
         submit.onclick=function() {
-            $('#slide5-modal').modal('show');
             // this function sends the email
             sendQuote(formData);
         };
