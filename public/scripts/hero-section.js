@@ -278,42 +278,52 @@ addPayrollUpdate();
 addTotalUpdate();
 
 function addPayrollUpdate() {
+    formData.totalPayroll = 0;
+    var payrollValue =0;
     for (let i =0; i<formlines.length; i++) {
         document.getElementById(`empTotal${i}`).addEventListener("change", (e) => {
-            console.log("payroll etarget is: ", e.target.value);
-            console.log("parseInt payroll is ", parseInt(document.getElementById(`empNumber${i}`).value));
             document.getElementById(`empPayroll${i}`).value =  parseInt(e.target.value)/ parseInt(document.getElementById(`empNumber${i}`).value);            
         });
+        payrollValue+=parseInt(document.getElementById(`empTotal${i}`).value);
+        console.log("payrollValue is ", formData.totalPayroll); 
     }
+    formData.totalPayroll=payrollValue;
+    document.getElementById('totalPayroll').innerText = formData.totalPayroll
 }
 
 function addTotalUpdate() {
+    formData.totalPayroll = 0;
+    var payrollValue =0;
     for (let i =0; i<formlines.length; i++) {
         document.getElementById(`empPayroll${i}`).addEventListener("change", (e) => {  
-            console.log("total etarget is: ", e.target.value);
-            console.log("parseInt total is ", parseInt(document.getElementById(`empNumber${i}`).value));
             document.getElementById(`empTotal${i}`).value =  parseInt(e.target.value) * parseInt(document.getElementById(`empNumber${i}`).value);            
         });
+        payrollValue+=parseInt(document.getElementById(`empTotal${i}`).value);
+        console.log("-->payrollValue is ", formData.totalPayroll); 
     }
+    formData.totalPayroll=payrollValue;
+    document.getElementById('totalPayroll').innerText = formData.totalPayroll
 }
 
 
 
 function saveEmployeeData() {
-    formData.employees = [];
-    formData.totalPayroll = 0;
+    // formData.employees = [];
+    // formData.totalPayroll = 0;
     // let formlines = document.getElementsByClassName('formline');
     try {
-        for (let i=0; i<formlines.length; i++) {
-            let type = document.getElementById('empType'+i).value;
-            let number = document.getElementById('empNumber'+i).value;
-            let payroll = document.getElementById('empPayroll'+i).value;
-            if (type && number && payroll) {
-                formData.employees.push({'type': type, 'number': number, 'payroll': payroll});
-            }
-            formData.totalPayroll+=parseInt(payroll);
-        }
-        if (formData.employees.length) {
+        // for (let i=0; i<formlines.length; i++) {
+        //     let type = document.getElementById('empType'+i).value;
+        //     let number = document.getElementById('empNumber'+i).value;
+        //     let payroll = document.getElementById('empPayroll'+i).value;
+        //     let totalpr = document.getElementById('empTotal'+i).value;
+        //     if (type && number && payroll) {
+                // formData.employees.push({'type': type, 'number': number, 'payroll': payroll});
+            //     formData.totalPayroll+=parseInt(totalpr);
+            // }
+            
+        // }
+        if (formData.totalPayroll) {
             fillInfo(formData);
             changeSlide(1);
         }
@@ -339,10 +349,10 @@ function addRow(e) {
             <option value="Clerical">Clerical</option>
             <option value="Other">Other</option>
         </select>
-        <input class="empNumber" name="empNumber${formlines}" type="number" min="1" id="empNumber${formlines}" >
-        <input class="empPayroll" name="empPayroll${formlines}" type="number" min="1" id="empPayroll${formlines}" placeholder="50,000">
+        <input class="empNumber" name="empNumber${formlines}" type="number" min="1" id="empNumber${formlines}" value=1>
+        <input class="empPayroll" name="empPayroll${formlines}" type="number" min="1" id="empPayroll${formlines}" value=50000>
         <span>|</span>
-        <input class="empTotal" name="empTotal${formlines}" type="number" min="1" id="empTotal${formlines}" >
+        <input class="empTotal" name="empTotal${formlines}" type="number" min="1" id="empTotal${formlines}" value=50000>
 
     </p>
 
