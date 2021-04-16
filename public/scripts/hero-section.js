@@ -272,8 +272,7 @@ async function fetchDOT(dotObject) {
 
 let formlines = document.getElementsByClassName('formline');
 
-addPayrollUpdate();
-addTotalUpdate();
+
 
 function addPayrollUpdate() {
     formData.totalPayroll = 0;
@@ -315,21 +314,9 @@ function fetchResult(data) {
 }
 
 function saveEmployeeData() {
-    // formData.employees = [];
-    // formData.totalPayroll = 0;
-    // let formlines = document.getElementsByClassName('formline');
+
     try {
-        // for (let i=0; i<formlines.length; i++) {
-        //     let type = document.getElementById('empType'+i).value;
-        //     let number = document.getElementById('empNumber'+i).value;
-        //     let payroll = document.getElementById('empPayroll'+i).value;
-        //     let totalpr = document.getElementById('empTotal'+i).value;
-        //     if (type && number && payroll) {
-                // formData.employees.push({'type': type, 'number': number, 'payroll': payroll});
-            //     formData.totalPayroll+=parseInt(totalpr);
-            // }
-            
-        // }
+
         if (formData.totalPayroll) {
             fillInfo(formData);
             requestQuoteSlide(formData)
@@ -475,3 +462,8 @@ async function requestQuoteSlide(data) {
     lowEnd.innerText=(number *0.8).toFixed(2);
     highEnd.innerText=(number *1.2).toFixed(2);
 }
+
+// On page load //
+
+addPayrollUpdate();
+addTotalUpdate();
