@@ -108,7 +108,7 @@
 .four-tile {
     color: var(--white);
     text-align: center;
-    font-size: var(--small);
+    /* font-size: var(--small); */
     width: 8.2vw;
     border: none;
     height: 10.5vw;
@@ -164,16 +164,18 @@
     .tile {
         padding: 0;
     }
-
     .four-tile {
         font-size: unset;
         margin-bottom: 10px;
         width: 70vw;
+        height: unset;
     }
 
     .type-tiles {
         flex-direction: column;
+
     }
+
     #intro-image {
         display: none;
     }
@@ -218,7 +220,7 @@
 .three-tile {
     color: var(--white);
     text-align: center;
-    font-size: var(--small);
+    /* font-size: var(--small); */
     width: 36vw;
     border: none;
     margin: 1vw;
@@ -349,11 +351,13 @@ input {
 .modal-dialog {
     min-width: 100%;
     margin: 0 auto;
+    background: white;
 }
 
 .modal-header {
     display: block;
     text-align: center;
+    padding: 10px;
 }
 
 .modal-header p {
@@ -369,7 +373,7 @@ input {
 .modal-right {
     text-align: left;
     color: var(--accent);
-    font-size: small;
+    /* font-size: small; */
     padding: 1vw;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -397,13 +401,24 @@ input {
     /* min-height: 600px; */
 }
 
-#manualInput fieldset{
+/* #manualInput fieldset{
     width: 98%;
-}
+    border: none;
+} */
 
 #manualInputForm {
     display: grid;
-    /* grid-template-columns: 1fr 1fr; */
+    grid-template-columns: 1fr 8fr;
+    word-wrap: normal;
+}
+
+#manualInputForm textarea {
+    background: inherit;
+    border: none;
+}
+
+#manualInputForm * {
+    margin: 1vw 0 0 0;
 }
 
 #slide3DOT {
@@ -480,6 +495,7 @@ input {
 #slide5Email {
     width: 100%;
     font-weight: 400;
+    text-align: center;
 }
 
 #slide5Left {

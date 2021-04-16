@@ -29,7 +29,6 @@ async function fmcsaSearch(number) {
     try {
       var html = '';
       var $;
-      var datTags;
       var clientObj = {}
       await axios.get(URL.replace('DOT', number))
           .then(response => {
@@ -72,7 +71,7 @@ async function fmcsaSearch(number) {
           .catch(error => {
               console.log(error)
           })
-          console.log("cob in the function= ", clientObj);
+        //   console.log("cob in the function= ", clientObj);
           return clientObj;
 
     } catch(err) {
@@ -86,7 +85,6 @@ async function fmcsaSearch(number) {
 const searchDOT = async (req, res) => {
     // const result = await sqlSearch(req.body.dot);   
     const result = await fmcsaSearch(req.body.dot);
-    console.log(result);
     return res.json({ result });
 };
 

@@ -168,27 +168,20 @@ const searchResultBody = `
             </div>
             <div class="modal-body">
                 <div class="modal-left">
-                    <h4 id="companyName"></h4>
-                    <h5 id="DBA"></h5>
+                    <h2 id="companyName"></h2>
+                    <h3 id="DBA"></h3>
                     <div id="manualInput">
                         <div id="manualInputForm">
-                            <p class="blueText">DOT:  <span id="DOT"></span></p>
-                            <fieldset>
-                                <label for="address">Address</label>
-                                <input class="modal-input" id="address" name="address" type="text">
-                            </fieldset>
-                            <fieldset>
-                                <label for="mailingAddress">Mailing Address</label>
-                                <input class="modal-input" id="mailingAddress" name="mailingAddress" type="text" >
-                            </fieldset>
-                            <fieldset>
-                                <label for="phone">Phone Number</label>
-                                <input class="modal-input" id="phone" name="phone" type="tel" >
-                            </fieldset>
-                            <fieldset>
-                                <label for="email">Email</label>
-                                <input class="modal-input" id="email" name="email" type="email" >
-                            </fieldset>
+                            <p class="blueText">DOT:</p>
+                            <p id="DOT"></p>
+                            <label for="address">Address</label>
+                            <textarea class="modal-input" id="address" name="address" type="text" cols="40" rows="2"></textarea>
+                            <label for="mailingAddress">Mailing Address</label>
+                            <textarea class="modal-input" id="mailingAddress" name="mailingAddress" type="text" cols="40" rows="2"></textarea>
+                            <label for="phone">Phone Number</label>
+                            <input class="modal-input" id="phone" name="phone" type="tel" >
+                            <label for="email">Email</label>
+                            <input class="modal-input" id="email" name="email" type="email" >
                         </div>
                     </div>
                 </div>  
@@ -308,7 +301,18 @@ function addTotalUpdate() {
     document.getElementById('totalPayroll').innerText = formData.totalPayroll
 }
 
+// This sends the data to the backend and returns with a number for the quote
+function fetchResult(data) {
 
+    const result = fetch('/quote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    }).then(response => response.json());
+
+    let number = result;
+    return number;
+}
 
 function saveEmployeeData() {
     // formData.employees = [];
@@ -328,6 +332,7 @@ function saveEmployeeData() {
         // }
         if (formData.totalPayroll) {
             fillInfo(formData);
+            requestQuoteSlide(formData)
             changeSlide(1);
         }
     } catch(err) {
