@@ -238,19 +238,24 @@ async function searchDOT(e) {
                 document.getElementById('searchResult').innerHTML=searchResultBody;
                 document.getElementById('searchResult').style.display="block";
                 const zipCodePattern = /\d{5}/;
-                formData.zipCode = client.result['Address'].match(zipCodePattern)[0];
+                formData.zipCode = client.result['address'].match(zipCodePattern)[0];
                 // document.getElementById('DOTError').style.visibility="hidden";
-                document.getElementById('DOT').innerText = client.result['DOT Number'];
-                document.getElementById('companyName').innerText = client.result['Company Name'];
-                document.getElementById('slide5Name').innerText = client.result['Company Name'];
-                document.getElementById('email').value = client.result['Email'];
-                document.getElementById('slide5Email').value = client.result['Email'];
-                document.getElementById('address').value = client.result['Address'];
-                document.getElementById('mailingAddress').value = client.result['Mailing Address'];
-                document.getElementById('phone').value = client.result['Phone'];
-                document.getElementById('powerUnits').innerText = client.result['Power Units'];
-                document.getElementById('drivers').innerText = client.result['Drivers'];
-                document.getElementById('empNumber0').value = client.result['Drivers'];
+                if (client.result['DBA']) {
+                    document.getElementById('DBA').innerText = "DBA: "+ client.result['DBA'];
+                }
+                document.getElementById('DOT').innerText = client.result['DOT'];
+                document.getElementById('companyName').innerText = client.result['name'];
+                document.getElementById('slide5Name').innerText = client.result['name'];
+                document.getElementById('email').value = client.result['email'];
+                document.getElementById('slide5Email').value = client.result['email'];
+                document.getElementById('address').value = client.result['address'];
+                document.getElementById('carrierOperation').innerText = client.result['carrierOperation'];
+                document.getElementById('milesTraveled').innerText = client.result['milesTraveled'];
+                // document.getElementById('mailingAddress').value = client.result['Mailing Address'];
+                document.getElementById('phone').value = client.result['phone'];
+                document.getElementById('powerUnits').innerText = client.result['powerUnits'];
+                document.getElementById('drivers').innerText = client.result['drivers'];
+                document.getElementById('empNumber0').value = client.result['drivers'];
             }
         } catch (err) {
             console.log(err);
@@ -285,7 +290,6 @@ function addPayrollUpdate() {
             document.getElementById(`empPayroll${i}`).value =  parseInt(e.target.value)/ parseInt(document.getElementById(`empNumber${i}`).value);            
         });
         payrollValue+=parseInt(document.getElementById(`empTotal${i}`).value);
-        console.log("payrollValue is ", formData.totalPayroll); 
     }
     formData.totalPayroll=payrollValue;
     document.getElementById('totalPayroll').innerText = formData.totalPayroll
@@ -299,7 +303,6 @@ function addTotalUpdate() {
             document.getElementById(`empTotal${i}`).value =  parseInt(e.target.value) * parseInt(document.getElementById(`empNumber${i}`).value);            
         });
         payrollValue+=parseInt(document.getElementById(`empTotal${i}`).value);
-        console.log("-->payrollValue is ", formData.totalPayroll); 
     }
     formData.totalPayroll=payrollValue;
     document.getElementById('totalPayroll').innerText = formData.totalPayroll
@@ -397,6 +400,9 @@ function fillInfo(data) {
     }
 
     switch (data.mileage) {
+        case 0:
+            q2.innerText='Not provided';
+            break;
         case 1:
             q2.innerText='< 200 miles';
             break;

@@ -477,6 +477,11 @@ input {
     grid-template-columns: 1fr 1fr;
 }
 
+#slide5Email {
+    width: 100%;
+    font-weight: 400;
+}
+
 #slide5Left {
     padding: 2vw;
 }
