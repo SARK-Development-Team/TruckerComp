@@ -7,7 +7,6 @@ const session = require('express-session');
 const routes = require('./routes');
 // const cors = require('cors');
 
-
 // ---> //
 // CSS Post-processing for non-compatible browsers //
 // const autoprefixer = require('autoprefixer')
