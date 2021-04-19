@@ -1,7 +1,7 @@
 // ---- Initial Settings ---- //
 
 // This section handles changing the carousel's active slide
-let slideIndex = 0;
+let slideIndex = 3;
 const slides = document.getElementsByClassName("slide");
 const digits = document.querySelector(".digits").children;
 
@@ -17,6 +17,7 @@ function initializeCarousel() {
         carouselContents[i].setAttribute("tabindex", "-1");
         
     }
+    slideIndex = 3;
     // Resets the formData
     formData = {
         // employees: [],
@@ -37,28 +38,50 @@ function initializeCarousel() {
     document.getElementById("slide2").classList.add('in-place');
     document.getElementById("intro-image").classList.remove('move-left');
     document.getElementById("intro-image").classList.add('present');
-    document.getElementById('searchResult').style.display="none";
-    for (let i = 0; i < slides.length; i++) {
-        let multiplier = i*100;
-        slides[i].style.transform= "translateX(" + multiplier +"vw)";  
-    }
+    document.getElementById("searchResult").style.display="none";
+
+    document.getElementById("slide3").classList.add("in-view");
+    document.getElementById("slide3").classList.remove("off-screen-left");
+    
+    document.getElementById("slide4").classList.remove("off-screen-left");
+    document.getElementById("slide4").classList.add("off-screen-right");
+    document.getElementById("slide4").classList.remove("in-view");
+
+    document.getElementById("slide5").classList.add("off-screen-right");
+    document.getElementById("slide5").classList.remove("in-view");
+
+    // for (let i = 0; i < slides.length; i++) {
+    //     let multiplier = i*100;
+    //     slides[i].style.transform= "translateX(" + multiplier +"vw)";  
+    // }
 }
 
 // ---- General Functionality ---- //
 
 // When the slides advance, the next slide moves in from the right and the old moves out to the left
 function changeSlide(n) {
-    for (let i = 0; i < slides.length; i++) {
-        let value = slides[i].style.transform;
-        let numValue = parseInt(value.replace("translateX(", "").replace("vw",""));
+    // for (let i = 0; i < slides.length; i++) {
+    //     let value = slides[i].style.transform;
+    //     let numValue = parseInt(value.replace("translateX(", "").replace("vw",""));
         if (n<0) {
-            numValue+=200;
+            document.getElementById(`slide${slideIndex}`).classList.add("off-screen-right");
+            document.getElementById(`slide${slideIndex}`).classList.remove("in-view");
+            document.getElementById(`slide${slideIndex-1}`).classList.remove("off-screen-left");
+            document.getElementById(`slide${slideIndex-1}`).classList.add("in-view");
+            slideIndex-=1;
+            // numValue+=200;
         } else if (n>0) {
-            numValue-=200;
+            document.getElementById(`slide${slideIndex}`).classList.add("off-screen-left");
+            document.getElementById(`slide${slideIndex}`).classList.remove("in-view");
+            document.getElementById(`slide${slideIndex+1}`).classList.remove("off-screen-right");
+            document.getElementById(`slide${slideIndex+1}`).classList.add("in-view");
+            slideIndex+=1;
         }
-        let newValue = "translateX(" + numValue.toString() +"vw)";
-        slides[i].style.transform= newValue;  
-    }
+    //     let newValue = "translateX(" + numValue.toString() +"vw)";
+    //     slides[i].style.transform= newValue;  
+
+
+    // }
 }
 
 
