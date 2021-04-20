@@ -32,27 +32,28 @@ function initializeCarousel() {
         digits[i].value='';
     }
 
+    // Places the slides correctly and removes any classes 
     document.getElementById("slide1").classList.remove('move-right');
     document.getElementById("slide1").classList.add('visible');
     document.getElementById("slide2").classList.remove('move-right');
     document.getElementById("slide2").classList.add('visible');
     document.getElementById("intro-image").classList.remove('move-left');
     document.getElementById("intro-image").classList.add('visible');
-    // document.getElementById("searchResult").style.display="none";
+    document.getElementById("searchResult").style.display="none";
     // document.getElementById("hero").style.minHeight="500px";
 
-    // document.getElementById("slide3").classList.add("in-view");
-    // document.getElementById("slide3").classList.remove("off-screen-left");
-    // document.getElementById("slide3").style.display="block";
+    document.getElementById("slide3").classList.add("visible");
+    document.getElementById("slide3").classList.remove("move-left");
+    document.getElementById("slide3").style.display="block";
     
-    // document.getElementById("slide4").classList.remove("off-screen-left");
-    // document.getElementById("slide4").classList.add("off-screen-right");
-    // document.getElementById("slide4").classList.remove("in-view");
-    // document.getElementById("slide4").style.display="block";
+    document.getElementById("slide4").classList.remove("move-left");
+    document.getElementById("slide4").classList.add("move-right");
+    document.getElementById("slide4").classList.remove("visible");
+    document.getElementById("slide4").style.display="block";
 
-    // document.getElementById("slide5").classList.add("off-screen-right");
-    // document.getElementById("slide5").classList.remove("in-view");
-    // document.getElementById("slide5").style.display="grid";
+    document.getElementById("slide5").classList.add("move-right");
+    document.getElementById("slide5").classList.remove("visible");
+    document.getElementById("slide5").style.display="grid";
 
     // for (let i = 0; i < slides.length; i++) {
     //     let multiplier = i*100;
@@ -81,7 +82,7 @@ function changeSlide(n) {
 
 function moveSlideLeft(n) {
     setTimeout(()=> {
-        document.getElementById(`slide${n}`).classList.add("off-screen-left");
+        document.getElementById(`slide${n}`).classList.add("move-left");
         document.getElementById(`slide${n}`).classList.remove("in-view");
     }, 500);
     document.getElementById(`slide${n-1}`).style.display="none";
@@ -89,7 +90,7 @@ function moveSlideLeft(n) {
 
 function moveSlideRight(n) {
     setTimeout(()=> {
-        document.getElementById(`slide${n}`).classList.add("off-screen-right");
+        document.getElementById(`slide${n}`).classList.add("move-right");
         document.getElementById(`slide${n}`).classList.remove("in-view");
     }, 500);
     document.getElementById(`slide${n-1}`).style.display="none";
@@ -97,7 +98,7 @@ function moveSlideRight(n) {
 
 function moveSlideIn(n) {
     setTimeout(()=> {
-        document.getElementById(`slide${n}`).classList.remove("off-screen-right");
+        document.getElementById(`slide${n}`).classList.remove("move-right");
         document.getElementById(`slide${n}`).classList.add("in-view");
     }, 500);
     document.getElementById(`slide${n-1}`).style.display="none";

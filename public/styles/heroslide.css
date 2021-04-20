@@ -267,6 +267,11 @@ Hero Slide
         background-size: cover;
     }
 
+    #slide1, #slide2 {
+        left: 0;
+        width: 100%;
+    }
+
     .form-button-image {
         max-height: 100%;
         min-height: 5px;
