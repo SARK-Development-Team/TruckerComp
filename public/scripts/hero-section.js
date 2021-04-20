@@ -33,26 +33,26 @@ function initializeCarousel() {
     }
 
     document.getElementById("slide1").classList.remove('move-right');
-    document.getElementById("slide1").classList.add('in-place');
-    document.getElementById("slide2").classList.remove('move-right');
-    document.getElementById("slide2").classList.add('in-place');
-    document.getElementById("intro-image").classList.remove('move-left');
-    document.getElementById("intro-image").classList.add('present');
-    document.getElementById("searchResult").style.display="none";
-    document.getElementById("hero").style.minHeight="500px";
+    document.getElementById("slide1").classList.add('visible');
+    // document.getElementById("slide2").classList.remove('move-right');
+    // document.getElementById("slide2").classList.add('in-place');
+    // document.getElementById("intro-image").classList.remove('move-left');
+    // document.getElementById("intro-image").classList.add('present ');
+    // document.getElementById("searchResult").style.display="none";
+    // document.getElementById("hero").style.minHeight="500px";
 
-    document.getElementById("slide3").classList.add("in-view");
-    document.getElementById("slide3").classList.remove("off-screen-left");
-    document.getElementById("slide3").style.display="block";
+    // document.getElementById("slide3").classList.add("in-view");
+    // document.getElementById("slide3").classList.remove("off-screen-left");
+    // document.getElementById("slide3").style.display="block";
     
-    document.getElementById("slide4").classList.remove("off-screen-left");
-    document.getElementById("slide4").classList.add("off-screen-right");
-    document.getElementById("slide4").classList.remove("in-view");
-    document.getElementById("slide4").style.display="block";
+    // document.getElementById("slide4").classList.remove("off-screen-left");
+    // document.getElementById("slide4").classList.add("off-screen-right");
+    // document.getElementById("slide4").classList.remove("in-view");
+    // document.getElementById("slide4").style.display="block";
 
-    document.getElementById("slide5").classList.add("off-screen-right");
-    document.getElementById("slide5").classList.remove("in-view");
-    document.getElementById("slide5").style.display="grid";
+    // document.getElementById("slide5").classList.add("off-screen-right");
+    // document.getElementById("slide5").classList.remove("in-view");
+    // document.getElementById("slide5").style.display="grid";
 
     // for (let i = 0; i < slides.length; i++) {
     //     let multiplier = i*100;
@@ -84,6 +84,7 @@ function moveSlideLeft(n) {
         document.getElementById(`slide${n}`).classList.add("off-screen-left");
         document.getElementById(`slide${n}`).classList.remove("in-view");
     }, 500);
+    document.getElementById(`slide${n-1}`).style.display="none";
 }
 
 function moveSlideRight(n) {
@@ -91,6 +92,7 @@ function moveSlideRight(n) {
         document.getElementById(`slide${n}`).classList.add("off-screen-right");
         document.getElementById(`slide${n}`).classList.remove("in-view");
     }, 500);
+    document.getElementById(`slide${n-1}`).style.display="none";
 }
 
 function moveSlideIn(n) {
@@ -112,7 +114,7 @@ const local = document.getElementById('slide1Local');
 
 function moveSlide1() {
     document.getElementById('slide1').classList.add('move-right');
-    document.getElementById('slide1').classList.remove('in-place');
+    document.getElementById('slide1').classList.remove('visible');
 }
 
 towing.addEventListener("click", () => {
@@ -134,7 +136,7 @@ local.addEventListener("click", () => {
     formData.businessType=4;
     moveSlide1();
     document.getElementById('slide2').classList.add('move-right');
-    document.getElementById('slide2').classList.remove('in-place');
+    document.getElementById('slide2').classList.remove('visible');
     openSlides();
 });
 

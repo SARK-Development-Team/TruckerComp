@@ -1,8 +1,8 @@
-<div class="form-section.visible slide-right">
-    <div class="hero-image">
+<div class="form-section ">
+    <div class="hero-image visible" id="intro-image">
       <h1 class="image-caption">Get 20% off your Worker’s Compensation in 30 seconds.</h1>
     </div>
-    <div class="hero-page">
+    <div class="hero-page visible" id="slide1">
       <h1 class="hero-caption">Instant Quote.<br></h1>
       <h1 class="hero-caption">No account needed.<br></h1>
       <div class="hero-question w-container">
@@ -30,4 +30,40 @@
         </div>
       </div>
     </div>
+    {{!-- Slide 2 added here --}}
+        <div class="hero-page visible" id="slide2" >
+          <div class="slide-nav">
+              <div class="back-icon" onclick="initializeCarousel()">
+                  <img src="../public/images/darkarrow.svg">
+              </div>
+
+              <div class="icon-area">
+                  <div class="icons">
+                      <img src="../public/images/darkfullcircle.svg">
+                      <img src="../public/images/darkemptycircle.svg">
+                      <img src="../public/images/lightemptycircle.svg">
+                      <img src="../public/images/lightemptycircle.svg">
+                      <img src="../public/images/lightemptycircle.svg">
+
+                  </div>
+              </div>
+
+              <div class="btn btn-reset" onclick="initializeCarousel()">Reset</div>
+          </div>
+          <h2>How far do your trucks drive?</h2>
+
+          <div class="mileage-tiles">
+              <button class ="three-tile tile" id="slide2Low" >
+                  <p>&lt; 200 miles</p>
+              </button>
+              <button class ="three-tile tile" id="slide2Medium" >
+                  <p>200 - 500 miles</p>
+              </button>
+              <button class ="three-tile tile" id="slide2High" >
+                  <p>&gt; 500 miles</p>
+              </button>
+
+          </div>
+
+      </div>
   </div>

@@ -3,7 +3,7 @@
 COMMON
 
 */
-.slide-right {
+/* .slide-right {
     animation: slideRight 700ms;
 }
 
@@ -17,7 +17,7 @@ COMMON
        transform: translateX(500px);
        opacity: 0;
    }
-}
+} */
 
 .form-section {
     display: -webkit-box;
@@ -86,13 +86,17 @@ Hero Image
 
 .hero-image {
     max-height: 100%;
-    max-width: 35%;
+    /* max-width: 35%; */
+    width: 35%;
     min-height: 600px;
-    min-width: 300px;
+    /* min-width: 300px; */
     padding: 40px 3vw;
     background-image: url('../images/truckbgd.jpeg');
     background-position: 100% 0%;
     background-size: cover;
+    transition: transform .5s ease;
+    position: absolute;
+    z-index: 5;
 }
 
 .image-caption {
@@ -123,8 +127,27 @@ Hero Slide
     -webkit-flex: 1;
     -ms-flex: 1;
     flex: 1;
-    background-color: rgba(194, 222, 255, 0.31);
+    /* background-color: rgba(194, 222, 255, 0.31);
+    background-color: rgba(194, 222, 255, 1); */
+    background-color: rgb(236,245,254);
     font-family: Lato, sans-serif;
+    transition: transform .5s ease;
+    /* position: absolute; */
+    /* z-index: 5; */
+}
+
+#slide1 {
+    left: 40%;
+    z-index: 5;
+    width: 55%;
+    position: absolute;
+}
+
+#slide2 {
+    left: 40%;
+    z-index: 4;
+    width: 55%;
+    position: absolute;
 }
 
 .hero-caption {
@@ -221,6 +244,18 @@ Hero Slide
     font-size: 24px;
     text-align: center;
     text-decoration: none;
+}
+
+.move-left {
+    transform: translateX(-100vw);
+}
+
+.move-right {
+    transform: translateX(100vw);
+}
+
+.visible {
+    transform: translateX(0vw);
 }
 
 @media screen and (max-width: 991px) {
