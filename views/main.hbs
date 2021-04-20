@@ -10,11 +10,13 @@
         {{>heroslide}}
 
 
-        <section id="carousel">
+        <section 
+        {{!-- id="carousel" --}}
+        >
 
             <div class="slide" id="slide3" >
                 <div class="slide-nav">
-                    <div class="back-icon" onclick="initializeCarousel()">
+                    <div class="back-icon" onclick="initializeForm()">
                         <img src="../public/images/darkarrow.svg">
                     </div>
 
@@ -30,7 +32,7 @@
                     {{!-- <div class="next-icon" id="next5">
                         <i class="fas fa-arrow-right "></i>
                     </div> --}}
-                <div class="btn btn-reset" onclick="initializeCarousel()">Reset</div>
+                <div class="btn btn-reset" onclick="initializeForm()">Reset</div>
                 </div>
                 <h2>What is your Department of Transportation (DOT) number?</h2>
                 <div class="digits">
@@ -44,8 +46,55 @@
                 </div>
                 <input type="number" id="slide3DOT" name="DOT" min="0">
 
-                <p id='DOTError'  class="error">Please enter a valid DOT Number</p>
-                <div id="searchResult"></div>
+                <p id='DOTError' class="error">Please enter a valid DOT Number</p>
+                <div id="searchResult" class="expandable">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <p>Based on the DOT you entered, this is what we found...</p>
+                            </div>
+                            <div class="modal-body">
+                                <div class="modal-left">
+                                    <h2 id="companyName"></h2>
+                                    <h3 id="DBA"></h3>
+                                    <div id="manualInput">
+                                        <div id="manualInputForm">
+                                            <p class="blueText">DOT:</p>
+                                            <p id="DOT"></p>
+                                            <label for="address">Address</label>
+                                            <textarea class="modal-input" id="address" name="address" type="text" cols="40" rows="2"></textarea>
+                                            <label for="mailingAddress">Mailing Address</label>
+                                            <textarea class="modal-input" id="mailingAddress" name="mailingAddress" type="text" cols="40" rows="2"></textarea>
+                                            <label for="phone">Phone Number</label>
+                                            <input class="modal-input" id="phone" name="phone" type="tel" >
+                                            <label for="email">Email</label>
+                                            <input class="modal-input" id="email" name="email" type="email" >
+                                        </div>
+                                    </div>
+                                </div>  
+                                <div style ="background: var(--light);">
+                                    <div class="modal-right">
+                                        <p class="blueText">Vehicle Miles Traveled</p>
+                                        <p id="milesTraveled"></p>
+                                        <p class="blueText">Carrier Operation</p>
+                                        <p id="carrierOperation"></p>
+                                        <p class="blueText">Trucks</p>
+                                        <p id="powerUnits"></p>
+                                        <p class="blueText">Drivers</p>
+                                        <p id="drivers"></p>
+                                        <p class="blueText">Operation Type</p>
+                                        <p id="operationType"></p>
+                                        <p class="blueText">Cargo Carried</p>
+                                        <p id="cargoCarried"></p>
+                                    </div>
+                                    <div class="btn-next" onclick="changeSlide(1)">Continue ></div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
             <div class="slide" id="slide4">
@@ -64,7 +113,7 @@
                         </div>
                     </div>
 
-                    <div class="btn btn-reset" onclick="initializeCarousel()">Reset</div>
+                    <div class="btn btn-reset" onclick="initializeForm()">Reset</div>
                 </div>
 
                 <form class="hero-form">
@@ -138,7 +187,7 @@
                         {{!-- <div class="next-icon" id="next5">
                             <i class="fas fa-arrow-right "></i>
                         </div> --}}
-                    <div class="btn btn-reset" onclick="initializeCarousel()">Reset</div>
+                    <div class="btn btn-reset" onclick="initializeForm()">Reset</div>
                     </div>
                     <div style="background: white; padding: 1vw">
                         <h4 id="slide5Name"></h4>

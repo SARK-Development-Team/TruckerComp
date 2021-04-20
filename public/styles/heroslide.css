@@ -1,24 +1,19 @@
-/*
 
-COMMON
+/* -------------------------------------------------------------------------------------------------------
+ This page defines the styles used in heroslide.hbs
 
-*/
+ It is organized by the section of the page in which the style in question is implemented, in order of:
+ 1. html tags
+ 2. classes
+ 3. ids
+ All media queries come at the end.
+---------------------------------------------------------------------------------------------------------*/
 
-/* .slide-right {
-    animation: slideRight 700ms;
-}
 
-@keyframes slideRight {
 
-   0% {
-    transform: translateX(0px); 
-   }
-
-   100% {
-       transform: translateX(500px);
-       opacity: 0;
-   }
-} */
+/* ---------- 
+   Common
+---------- */
 
 .form-section {
     display: -webkit-box;
@@ -36,13 +31,12 @@ COMMON
     grid-template-rows: auto;
 }
 
-.question-title {
-    margin-right: 20px;
-    margin-bottom: 0px;
-    margin-left: 20px;
-    color: #36579a;
-    font-weight: 700;
-    text-align: center;
+.move-left {
+    transform: translateX(-100vw);
+}
+
+.move-right {
+    transform: translateX(100vw);
 }
 
 .progress-block {
@@ -89,11 +83,9 @@ COMMON
     /* background: var(--white); */
 }
 
-/*
-
-Hero Image
-
-*/
+/* ---------- 
+ Intro image
+---------- */
 
 .hero-image {
     max-height: 100%;
@@ -258,16 +250,13 @@ Hero Slide
     text-decoration: none;
 }
 
-.move-left {
-    transform: translateX(-100vw);
-}
-
-.move-right {
-    transform: translateX(100vw);
-}
-
-.visible {
-    transform: translateX(0vw);
+.question-title {
+    margin-right: 20px;
+    margin-bottom: 0px;
+    margin-left: 20px;
+    color: #36579a;
+    font-weight: 700;
+    text-align: center;
 }
 
 .second-question {
