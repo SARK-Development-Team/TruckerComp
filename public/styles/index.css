@@ -53,6 +53,7 @@
     min-height: 500px;
     color: var(--accent);
     overflow: hidden;
+    background: var(--white);
 }
 
 #intro-image {
@@ -360,13 +361,13 @@ input {
 .off-screen-right {
     opacity: 0;
     left: 100vw;
-    display: none;
+    /* display: none; */
 }
 
 .off-screen-left {
     opacity: 0;
     left: -100vw;
-    display: none;
+    /* display: none; */
 }
 
 .modal-body {
@@ -407,7 +408,7 @@ input {
 
 .slide {
     /* position: absolute; */
-    left: 0;
+    /* left: 0; */
     background: var(--white);
     text-align: center;
     padding: 2vw 13vw;
@@ -417,14 +418,18 @@ input {
     transition: all 1.5s;
 }
 
+#slide3, #slide4, #slide5 {
+    position: absolute;   
+}
+
 #carousel {
     /* pointer-events: none;  */
     z-index: 2;
     display: flex;
-    position: relative;
+    position: absolute;
     -ms-scroll-snap-type: x mandatory;
         scroll-snap-type: x mandatory;
-    overflow: hidden;
+    /* overflow: hidden; */
     width: 100vw;
     background: var(--white);
     max-height: 100%;

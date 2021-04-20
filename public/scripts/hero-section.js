@@ -39,16 +39,20 @@ function initializeCarousel() {
     document.getElementById("intro-image").classList.remove('move-left');
     document.getElementById("intro-image").classList.add('present');
     document.getElementById("searchResult").style.display="none";
+    document.getElementById("hero").style.minHeight="500px";
 
     document.getElementById("slide3").classList.add("in-view");
     document.getElementById("slide3").classList.remove("off-screen-left");
+    document.getElementById("slide3").style.display="block";
     
     document.getElementById("slide4").classList.remove("off-screen-left");
     document.getElementById("slide4").classList.add("off-screen-right");
     document.getElementById("slide4").classList.remove("in-view");
+    document.getElementById("slide4").style.display="block";
 
     document.getElementById("slide5").classList.add("off-screen-right");
     document.getElementById("slide5").classList.remove("in-view");
+    document.getElementById("slide5").style.display="grid";
 
     // for (let i = 0; i < slides.length; i++) {
     //     let multiplier = i*100;
@@ -64,24 +68,38 @@ function changeSlide(n) {
     //     let value = slides[i].style.transform;
     //     let numValue = parseInt(value.replace("translateX(", "").replace("vw",""));
         if (n<0) {
-            document.getElementById(`slide${slideIndex}`).classList.add("off-screen-right");
-            document.getElementById(`slide${slideIndex}`).classList.remove("in-view");
-            document.getElementById(`slide${slideIndex-1}`).classList.remove("off-screen-left");
-            document.getElementById(`slide${slideIndex-1}`).classList.add("in-view");
+            moveSlideRight(slideIndex);
+            moveSlideIn(slideIndex-1);
             slideIndex-=1;
             // numValue+=200;
         } else if (n>0) {
-            document.getElementById(`slide${slideIndex}`).classList.add("off-screen-left");
-            document.getElementById(`slide${slideIndex}`).classList.remove("in-view");
-            document.getElementById(`slide${slideIndex+1}`).classList.remove("off-screen-right");
-            document.getElementById(`slide${slideIndex+1}`).classList.add("in-view");
+            moveSlideLeft(slideIndex);
+            moveSlideIn(slideIndex+1);
             slideIndex+=1;
         }
-    //     let newValue = "translateX(" + numValue.toString() +"vw)";
-    //     slides[i].style.transform= newValue;  
+}
 
+function moveSlideLeft(n) {
+    setTimeout(()=> {
+        document.getElementById(`slide${n}`).classList.add("off-screen-left");
+        document.getElementById(`slide${n}`).classList.remove("in-view");
+    }, 500);
+}
 
-    // }
+function moveSlideRight(n) {
+    setTimeout(()=> {
+        document.getElementById(`slide${n}`).classList.add("off-screen-right");
+        document.getElementById(`slide${n}`).classList.remove("in-view");
+    }, 500);
+}
+
+function moveSlideIn(n) {
+    setTimeout(()=> {
+        document.getElementById(`slide${n}`).classList.remove("off-screen-right");
+        document.getElementById(`slide${n}`).classList.add("in-view");
+    }, 500);
+    document.getElementById(`slide${n-1}`).style.display="none";
+
 }
 
 
@@ -150,6 +168,7 @@ highMileage.addEventListener("click", () => {
 
 function allowProgress(slideIndex) {
         document.getElementById('searchResult').style.display="none";
+        document.getElementById("hero").style.minHeight="500px";
         changeSlide(1);
 }
 
@@ -253,6 +272,8 @@ async function searchDOT(e) {
             } else {
                 document.getElementById('searchResult').innerHTML=searchResultBody;
                 document.getElementById('searchResult').style.display="block";
+                document.getElementById("hero").style.minHeight="1000px";
+
                 const zipCodePattern = /\d{5}/;
                 formData.zipCode = client.result['address'].match(zipCodePattern)[0];
                 // document.getElementById('DOTError').style.visibility="hidden";
