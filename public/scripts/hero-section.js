@@ -1,50 +1,53 @@
 // ---- Initial Settings ---- //
 
-// This section handles changing the carousel's active slide
-let slideIndex = 3;
+// This section handles changing the form's active slide
+let slideIndex;
 const slides = document.getElementsByClassName("slide");
 const digits = document.querySelector(".digits").children;
 
-initializeCarousel();
+initializeForm();
 
 // Sets all formData to initial values 
 // Arranges slides so that all but the first start off screen on the right
-function initializeCarousel() {
+// This function is also called when the reset button is pressed
+function initializeForm() {
 
-    // Tabbing through the carousel breaks it, so this makes the carousel items untabbable
-    let carouselContents = document.getElementById("carousel").querySelectorAll("*");
-    for (let i =0; i<carouselContents.length; i++){
-        carouselContents[i].setAttribute("tabindex", "-1");
-        
+    // Tabbing through the form breaks it, so this makes the form items untabbable
+    let formContents = document.getElementById("hero").querySelectorAll("*");
+    for (let i =0; i<formContents.length; i++){
+        formContents[i].setAttribute("tabindex", "-1");      
     }
+    // Resets the current slide displayed in the carousel
+    // It starts at 3 because slides 1 and 2 are outside of the carousel
     slideIndex = 3;
     // Resets the formData
     formData = {
-        // employees: [],
         totalPayroll: 0,
         businessType: 0,
         zipCode: 0,
         mileage: 0,
         email: ''
     }
-    // Resets the DOT digits
+    // Resets the DOT digits input area on slide 3
     for (let i=0; i<digits.length; i++) {
         digits[i].value='';
     }
-    // document.getElementById('hero').style.minHeight = (parseInt(document.getElementById('slide1').offsetHeight) + 100) + 'px';
     // Places the slides correctly and removes any classes 
-    document.getElementById("slide1").classList.remove('move-right');
-    document.getElementById("slide1").classList.add('visible');
-    document.getElementById("slide2").classList.remove('move-right');
-    document.getElementById("slide2").classList.add('visible');
     document.getElementById("intro-image").classList.remove('move-left');
     document.getElementById("intro-image").classList.add('visible');
-    document.getElementById("searchResult").style.display="none";
+    
+    document.getElementById("slide1").classList.remove('move-right');
+    document.getElementById("slide1").classList.add('visible');
+
+    document.getElementById("slide2").classList.remove('move-right');
+    document.getElementById("slide2").classList.add('visible');
+
     // document.getElementById("hero").style.minHeight="500px";
 
     document.getElementById("slide3").classList.add("visible");
     document.getElementById("slide3").classList.remove("move-left");
     document.getElementById("slide3").style.display="block";
+    document.getElementById("searchResult").classList.add("expandable-collapsed");
     
     document.getElementById("slide4").classList.remove("move-left");
     document.getElementById("slide4").classList.add("move-right");
@@ -54,55 +57,45 @@ function initializeCarousel() {
     document.getElementById("slide5").classList.add("move-right");
     document.getElementById("slide5").classList.remove("visible");
     document.getElementById("slide5").style.display="grid";
-
-    // for (let i = 0; i < slides.length; i++) {
-    //     let multiplier = i*100;
-    //     slides[i].style.transform= "translateX(" + multiplier +"vw)";  
-    // }
 }
 
 // ---- General Functionality ---- //
 
 // When the slides advance, the next slide moves in from the right and the old moves out to the left
 function changeSlide(n) {
-    // for (let i = 0; i < slides.length; i++) {
-    //     let value = slides[i].style.transform;
-    //     let numValue = parseInt(value.replace("translateX(", "").replace("vw",""));
-        if (n<0) {
-            moveSlideRight(slideIndex);
-            moveSlideIn(slideIndex-1);
-            slideIndex-=1;
-            // numValue+=200;
-        } else if (n>0) {
-            moveSlideLeft(slideIndex);
-            moveSlideIn(slideIndex+1);
-            slideIndex+=1;
-        }
+    // hide the search result
+    document.getElementById("searchResult").classList.add("expandable-collapsed");
+
+    // When the back button is pressed, the parameter is -1
+    if (n<0) {
+        moveSlideRight(slideIndex);
+        moveSlideIn(slideIndex-1);
+        slideIndex-=1;
+    // When the continue button is pressed, the parameter is 1
+    } else if (n>0) {
+        moveSlideLeft(slideIndex);
+        moveSlideIn(slideIndex+1);
+        slideIndex+=1;
+    }
 }
 
+// moving a slide in the carousel off the left side of the screen
 function moveSlideLeft(n) {
-    setTimeout(()=> {
-        document.getElementById(`slide${n}`).classList.add("move-left");
-        document.getElementById(`slide${n}`).classList.remove("in-view");
-    }, 500);
-    document.getElementById(`slide${n-1}`).style.display="none";
+    document.getElementById(`slide${n}`).classList.add("move-left");
+    document.getElementById(`slide${n}`).classList.remove("visible");
 }
 
+// moving a slide in the carousel off the right side of the screen
 function moveSlideRight(n) {
-    setTimeout(()=> {
-        document.getElementById(`slide${n}`).classList.add("move-right");
-        document.getElementById(`slide${n}`).classList.remove("in-view");
-    }, 500);
-    document.getElementById(`slide${n-1}`).style.display="none";
+    document.getElementById(`slide${n}`).classList.add("move-right");
+    document.getElementById(`slide${n}`).classList.remove("visible");
 }
 
+// moving a slide in the right margin into view
 function moveSlideIn(n) {
-    setTimeout(()=> {
-        document.getElementById(`slide${n}`).classList.remove("move-right");
-        document.getElementById(`slide${n}`).classList.add("in-view");
-    }, 500);
-    document.getElementById(`slide${n-1}`).style.display="none";
-
+    document.getElementById(`slide${n}`).classList.remove("move-right");
+    document.getElementById(`slide${n}`).classList.remove("move-left");
+    document.getElementById(`slide${n}`).classList.add("in-view");
 }
 
 
@@ -133,6 +126,7 @@ longhaul.addEventListener("click", () => {
     moveSlide(1);
 });
 
+// Choosing local skips slide 2
 local.addEventListener("click", () => {
     formData.businessType=4;
     moveSlide(1);
@@ -170,7 +164,7 @@ highMileage.addEventListener("click", () => {
 
 
 function allowProgress(slideIndex) {
-        document.getElementById('searchResult').style.display="none";
+        document.getElementById('searchResult').classList.add("expandable-collapsed");
         document.getElementById("hero").style.minHeight="500px";
         changeSlide(1);
 }
@@ -205,61 +199,63 @@ document.querySelector(".digits").addEventListener("input", (e) => {
         searchDOT(event);
     }
 });
-const searchResultBody = `            
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <p>Based on the DOT you entered, this is what we found...</p>
-            </div>
-            <div class="modal-body">
-                <div class="modal-left">
-                    <h2 id="companyName"></h2>
-                    <h3 id="DBA"></h3>
-                    <div id="manualInput">
-                        <div id="manualInputForm">
-                            <p class="blueText">DOT:</p>
-                            <p id="DOT"></p>
-                            <label for="address">Address</label>
-                            <textarea class="modal-input" id="address" name="address" type="text" cols="40" rows="2"></textarea>
-                            <label for="mailingAddress">Mailing Address</label>
-                            <textarea class="modal-input" id="mailingAddress" name="mailingAddress" type="text" cols="40" rows="2"></textarea>
-                            <label for="phone">Phone Number</label>
-                            <input class="modal-input" id="phone" name="phone" type="tel" >
-                            <label for="email">Email</label>
-                            <input class="modal-input" id="email" name="email" type="email" >
-                        </div>
-                    </div>
-                </div>  
-                <div style ="background: var(--light);">
-                    <div class="modal-right">
-                        <p class="blueText">Vehicle Miles Traveled</p>
-                        <p id="milesTraveled"></p>
-                        <p class="blueText">Carrier Operation</p>
-                        <p id="carrierOperation"></p>
-                        <p class="blueText">Trucks</p>
-                        <p id="powerUnits"></p>
-                        <p class="blueText">Drivers</p>
-                        <p id="drivers"></p>
-                        <p class="blueText">Operation Type</p>
-                        <p id="operationType"></p>
-                        <p class="blueText">Cargo Carried</p>
-                        <p id="cargoCarried"></p>
-                    </div>
-                    <div class="btn-next" onclick="allowProgress(3)">Continue ></div>
 
-                </div>
+// This html populates the search result field when a DOT match is found
+// const searchResultBody = `            
+//     <div class="modal-dialog">
+//         <div class="modal-content">
+//             <div class="modal-header">
+//                 <p>Based on the DOT you entered, this is what we found...</p>
+//             </div>
+//             <div class="modal-body">
+//                 <div class="modal-left">
+//                     <h2 id="companyName"></h2>
+//                     <h3 id="DBA"></h3>
+//                     <div id="manualInput">
+//                         <div id="manualInputForm">
+//                             <p class="blueText">DOT:</p>
+//                             <p id="DOT"></p>
+//                             <label for="address">Address</label>
+//                             <textarea class="modal-input" id="address" name="address" type="text" cols="40" rows="2"></textarea>
+//                             <label for="mailingAddress">Mailing Address</label>
+//                             <textarea class="modal-input" id="mailingAddress" name="mailingAddress" type="text" cols="40" rows="2"></textarea>
+//                             <label for="phone">Phone Number</label>
+//                             <input class="modal-input" id="phone" name="phone" type="tel" >
+//                             <label for="email">Email</label>
+//                             <input class="modal-input" id="email" name="email" type="email" >
+//                         </div>
+//                     </div>
+//                 </div>  
+//                 <div style ="background: var(--light);">
+//                     <div class="modal-right">
+//                         <p class="blueText">Vehicle Miles Traveled</p>
+//                         <p id="milesTraveled"></p>
+//                         <p class="blueText">Carrier Operation</p>
+//                         <p id="carrierOperation"></p>
+//                         <p class="blueText">Trucks</p>
+//                         <p id="powerUnits"></p>
+//                         <p class="blueText">Drivers</p>
+//                         <p id="drivers"></p>
+//                         <p class="blueText">Operation Type</p>
+//                         <p id="operationType"></p>
+//                         <p class="blueText">Cargo Carried</p>
+//                         <p id="cargoCarried"></p>
+//                     </div>
+//                     <div class="btn-next" onclick="changeSlide(1)">Continue ></div>
 
-            </div>
+//                 </div>
 
-        </div>
-    </div>
-`
+//             </div>
+
+//         </div>
+//     </div>
+// `
 
 
 // When the button for the DOT search field is pressed
 async function searchDOT(e) {
     e.preventDefault();
-    document.getElementById('searchResult').innerHTML='';
+    document.getElementById('searchResult').classList.add("expandable-collapsed");
     let dotvalue = parseInt(document.getElementById('slide3DOT').value);
     let dot = {'dot': dotvalue};
     // Only searches if a value is entered
@@ -273,8 +269,10 @@ async function searchDOT(e) {
                 document.getElementById('DOTError').style.visibility="visible";
             // If a client is found
             } else {
-                document.getElementById('searchResult').innerHTML=searchResultBody;
-                document.getElementById('searchResult').style.display="block";
+                // document.getElementById('searchResult').innerHTML=searchResultBody;
+                document.getElementById('searchResult').classList.remove("expandable-collapsed");
+
+                // document.getElementById('searchResult').style.display="block";
                 document.getElementById("hero").style.minHeight="1000px";
 
                 const zipCodePattern = /\d{5}/;

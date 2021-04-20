@@ -1,23 +1,19 @@
-/*
 
-COMMON
+/* -------------------------------------------------------------------------------------------------------
+ This page defines the styles used in heroslide.hbs
 
-*/
-/* .slide-right {
-    animation: slideRight 700ms;
-}
+ It is organized by the section of the page in which the style in question is implemented, in order of:
+ 1. html tags
+ 2. classes
+ 3. ids
+ All media queries come at the end.
+---------------------------------------------------------------------------------------------------------*/
 
-@keyframes slideRight {
 
-   0% {
-    transform: translateX(0px); 
-   }
 
-   100% {
-       transform: translateX(500px);
-       opacity: 0;
-   }
-} */
+/* ---------- 
+   Common
+---------- */
 
 .form-section {
     display: -webkit-box;
@@ -35,13 +31,12 @@ COMMON
     grid-template-rows: auto;
 }
 
-.question-title {
-    margin-right: 20px;
-    margin-bottom: 0px;
-    margin-left: 20px;
-    color: #36579a;
-    font-weight: 700;
-    text-align: center;
+.move-left {
+    transform: translateX(-100vw);
+}
+
+.move-right {
+    transform: translateX(100vw);
 }
 
 .progress-block {
@@ -78,6 +73,18 @@ COMMON
     grid-template-rows: auto;
 }
 
+.question-title {
+    margin-right: 20px;
+    margin-bottom: 0px;
+    margin-left: 20px;
+    color: #36579a;
+    font-weight: 700;
+    text-align: center;
+}
+
+.visible {
+    transform: translateX(0vw);
+}
 
 #hero {
     margin-top: 70px;
@@ -89,11 +96,9 @@ COMMON
     /* background: var(--white); */
 }
 
-/*
-
-Hero Image
-
-*/
+/* ---------- 
+ Intro image
+---------- */
 
 .hero-image {
     max-height: 100%;
@@ -126,56 +131,9 @@ Hero Image
     text-align: right;
 }
 
-/*
-
-Hero Slide
-
-*/
-
-.hero-page {
-    padding-top: 60px;
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    /* background-color: rgba(194, 222, 255, 0.31);
-    background-color: rgba(194, 222, 255, 1); */
-    background-color: rgb(236,245,254);
-    max-height: 100%;
-    min-height: 650px;
-    font-family: Lato, sans-serif;
-    transition: transform .5s ease;
-    /* position: absolute; */
-    /* z-index: 5; */
-}
-
-#slide1 {
-    left: 40%;
-    z-index: 5;
-    width: 55%;
-    position: absolute;
-}
-
-#slide2 {
-    left: 40%;
-    z-index: 4;
-    width: 55%;
-    position: absolute;
-}
-
-.hero-caption {
-    padding-bottom: 20px;
-    color: #3793ff;
-    font-size: 3em;
-    font-weight: 700;
-    letter-spacing: 1px;
-    white-space: normal;
-    text-align: center;
-}
-
-.hero-question {
-    margin: 20px auto;
-}
+/* ---------- 
+   Slide 1
+---------- */
 
 .first-buttons {
     display: -webkit-box;
@@ -259,17 +217,58 @@ Hero Slide
     text-decoration: none;
 }
 
-.move-left {
-    transform: translateX(-100vw);
+.hero-caption {
+    padding-bottom: 20px;
+    color: #3793ff;
+    font-size: 3em;
+    font-weight: 700;
+    letter-spacing: 1px;
+    white-space: normal;
+    text-align: center;
 }
 
-.move-right {
-    transform: translateX(100vw);
+.hero-question {
+    margin: 20px auto;
 }
 
-.visible {
-    transform: translateX(0vw);
+.hero-page {
+    padding-top: 60px;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    /* background-color: rgba(194, 222, 255, 0.31);
+    background-color: rgba(194, 222, 255, 1); */
+    background-color: rgb(236,245,254);
+    max-height: 100%;
+    min-height: 650px;
+    font-family: Lato, sans-serif;
+    transition: transform .5s ease;
 }
+
+#slide1 {
+    left: 40%;
+    z-index: 5;
+    width: 55%;
+    position: absolute;
+}
+
+/* ---------- 
+   Slide 2
+---------- */
+
+#slide2 {
+    left: 40%;
+    z-index: 4;
+    width: 55%;
+    position: absolute;
+}
+
+
+
+/* ---------- 
+Media queries
+---------- */
 
 @media screen and (max-width: 991px) {
     #hero, #carousel {
