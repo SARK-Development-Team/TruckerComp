@@ -34,10 +34,10 @@ function initializeCarousel() {
 
     document.getElementById("slide1").classList.remove('move-right');
     document.getElementById("slide1").classList.add('visible');
-    // document.getElementById("slide2").classList.remove('move-right');
-    // document.getElementById("slide2").classList.add('in-place');
-    // document.getElementById("intro-image").classList.remove('move-left');
-    // document.getElementById("intro-image").classList.add('present ');
+    document.getElementById("slide2").classList.remove('move-right');
+    document.getElementById("slide2").classList.add('visible');
+    document.getElementById("intro-image").classList.remove('move-left');
+    document.getElementById("intro-image").classList.add('visible');
     // document.getElementById("searchResult").style.display="none";
     // document.getElementById("hero").style.minHeight="500px";
 
@@ -112,41 +112,38 @@ const sand = document.getElementById('slide1Sand');
 const longhaul = document.getElementById('slide1LongHaul');
 const local = document.getElementById('slide1Local');
 
-function moveSlide1() {
-    document.getElementById('slide1').classList.add('move-right');
-    document.getElementById('slide1').classList.remove('visible');
+function moveSlide(number) {
+    document.getElementById(`slide${number}`).classList.add('move-right');
+    document.getElementById(`slide${number}`).classList.remove('visible');
 }
 
 towing.addEventListener("click", () => {
     formData.businessType=1;
-    moveSlide1();
+    moveSlide(1);
 });
 
 sand.addEventListener("click", () => {
     formData.businessType=2;
-    moveSlide1();
+    moveSlide(1);
 });
 
 longhaul.addEventListener("click", () => {
     formData.businessType=3;
-    moveSlide1();
+    moveSlide(1);
 });
 
 local.addEventListener("click", () => {
     formData.businessType=4;
-    moveSlide1();
-    document.getElementById('slide2').classList.add('move-right');
-    document.getElementById('slide2').classList.remove('visible');
-    openSlides();
+    moveSlide(1);
+    moveSlide(2);
+    removeIntroImage();
 });
 
 // ---- Slide 2 ---- //
 
-function openSlides() {
-    document.getElementById('intro-image').classList.remove('present');
+function removeIntroImage() {
+    document.getElementById('intro-image').classList.remove('visible');
     document.getElementById('intro-image').classList.add('move-left');
-    document.getElementById('slide2').classList.remove('in-place');
-    document.getElementById('slide2').classList.add('move-right');
 }
 
 const lowMileage = document.getElementById('slide2Low');
@@ -155,16 +152,19 @@ const highMileage = document.getElementById('slide2High');
 
 lowMileage.addEventListener("click", () => {
     formData.mileage=1;
-    openSlides()
+    moveSlide(2);
+    removeIntroImage();
 });
 
 mediumMileage.addEventListener("click", () => {
     formData.mileage=2;
-    openSlides()
+    moveSlide(2);
+    removeIntroImage();
 });
 highMileage.addEventListener("click", () => {
     formData.mileage=3;
-    openSlides()
+    moveSlide(2);
+    removeIntroImage();
 });
 
 
