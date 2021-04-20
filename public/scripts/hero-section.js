@@ -31,7 +31,7 @@ function initializeCarousel() {
     for (let i=0; i<digits.length; i++) {
         digits[i].value='';
     }
-
+    // document.getElementById('hero').style.minHeight = (parseInt(document.getElementById('slide1').offsetHeight) + 100) + 'px';
     // Places the slides correctly and removes any classes 
     document.getElementById("slide1").classList.remove('move-right');
     document.getElementById("slide1").classList.add('visible');

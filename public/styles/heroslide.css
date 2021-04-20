@@ -78,6 +78,17 @@ COMMON
     grid-template-rows: auto;
 }
 
+
+#hero {
+    margin-top: 70px;
+    position: relative;
+    min-height: 600px;
+    max-height: 100%;
+    /* color: var(--accent); */
+    overflow: hidden;
+    /* background: var(--white); */
+}
+
 /*
 
 Hero Image
@@ -261,6 +272,10 @@ Hero Slide
 }
 
 @media screen and (max-width: 991px) {
+    #hero {
+        min-height: 700px;
+    }
+
     .hero-image {
         display: none;
         background-image: url('../images/redtrucks.png');
@@ -324,6 +339,10 @@ Hero Slide
         -ms-flex: 1;
         flex: 1;
       }
+
+    #hero {
+        min-height: 900px;
+    }
 }
 
 @media screen and (max-width: 479px) {
@@ -333,5 +352,6 @@ Hero Slide
         -webkit-flex: 0 auto;
         -ms-flex: 0 auto;
         flex: 0 auto;
-      }
     }
+
+}

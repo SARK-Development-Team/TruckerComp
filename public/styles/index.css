@@ -47,7 +47,7 @@
     position: absolute;
 } */
 
-#hero {
+/* #hero {
     margin-top: 70px;
     position: relative;
     min-height: 600px;
@@ -55,7 +55,7 @@
     color: var(--accent);
     overflow: hidden;
     background: var(--white);
-}
+} */
 
 /* #intro-image {
     max-height: 100%;
@@ -78,11 +78,11 @@
     left: -100vw;
 } */
 
-@media screen and (max-width: 991px) {
+/* @media screen and (max-width: 991px) {
     #hero {
         min-height: 560px;
     }
-}
+} */
 
 
 /* ----------
@@ -454,7 +454,7 @@ input {
 }
 
 #manualInputForm * {
-    margin: 1vw 0 0 0;
+    margin: .4vw 0 0 0;
 }
 
 #slide3DOT {
