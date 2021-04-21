@@ -30,48 +30,53 @@ async function fmcsaSearch(number) {
       var html = '';
       var $;
       var clientObj = {}
+      const properties = ['name', 'DBA', 'DOT', 'address', 'phone', 'email', 'milesTraveled', 'powerUnits', 'drivers', 'carrierOperations']
       await axios.get(URL.replace('DOT', number))
           .then(response => {
               html = response.data,
-              $ = cheerio.load(html),
-              $('.dat').map(function (i, el) {
-                if (i===0) {
-                    clientObj.name=$(this).text()
+              $ = cheerio.load(html);
+            $('.dat').map(function (i, el) {
+                let labelName= $(this).prev().text().replace(/(\r\n|\n|\r)/gm, "").replace(/  +/g, "");
+                switch(labelName) {
+                    case "Legal Name:":
+                        clientObj.name=$(this).text();
+                        break;
+                    case "DBA Name:":
+                        clientObj.DBA=$(this).text();
+                        break;
+                    case "U.S. DOT#:":
+                        clientObj.DOT=$(this).text();
+                        break;
+                    case "Address:":
+                        clientObj.address=$(this).text().replace(/(\r\n|\n|\r)/gm, "").replace(/  +/g, "");
+                        break;
+                    case "Telephone:":
+                        clientObj.phone=$(this).text();
+                        break;
+                    case "Email:":
+                        clientObj.email=$(this).text();
+                        break;
+                    case "Vehicle Miles Traveled:":
+                        clientObj.milesTraveled=$(this).text();
+                        break;
+                    case "Power Units:":
+                        clientObj.powerUnits=$(this).text();
+                        break;
+                    case "Drivers:":
+                        clientObj.drivers=$(this).text();
+                        break;
+                    case "Carrier Operation:":
+                        clientObj.carrierOperation=$(this).text();
+                        break;
+                    default:
+                        break;
                 }
-                if (i===1) {
-                    clientObj.DBA=$(this).text()
-                }
-                if (i===2) {
-                    clientObj.DOT=$(this).text()
-                }
-                if (i===3) {
-                    clientObj.address=$(this).text().replace(/(\r\n|\n|\r)/gm, "").replace(/  +/g, "");
-                }
-                if (i===4) {
-                    clientObj.phone=$(this).text()
-                }
-                if (i===6) {
-                    clientObj.email=$(this).text()
-                }
-                if (i===7) {
-                    clientObj.milesTraveled=$(this).text()
-                }
-                if (i===9) {
-                    clientObj.powerUnits=$(this).text()
-                }
-                if (i===11) {
-                    clientObj.drivers=$(this).text()
-                }
-                if (i===12) {
-                    clientObj.carrierOperation=$(this).text()
-                }
-
             })
+     
           })
           .catch(error => {
               console.log(error)
           })
-        //   console.log("cob in the function= ", clientObj);
           return clientObj;
 
     } catch(err) {
@@ -80,7 +85,7 @@ async function fmcsaSearch(number) {
 }
 
 
-// This route performs a search through the sark client DB for the DOT number entered
+// This route performs a search through the FMCSA DB for the DOT number entered
 // Returns an object that is partially displayed in the "result" box
 const searchDOT = async (req, res) => {
     // const result = await sqlSearch(req.body.dot);   
