@@ -46,12 +46,17 @@
                 </div>
                 <input type="number" id="slide3DOT" name="DOT" min="0">
 
-                <p id='DOTError' class="error">Please enter a valid DOT Number</p>
+                {{!-- <p id='DOTError' class="error">Please enter a valid DOT Number</p> --}}
+                <div id="loading-icon">
+                    <p>Searching for DOT <span id="searchingSpan"></span></p>
+                    <i class="fas fa-spinner fa-pulse"></i>
+                </div>
                 <div id="searchResult" class="expandable">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <p>Based on the DOT you entered, this is what we found...</p>
+                                {{!-- <p>Based on the DOT you entered, this is what we found...</p> --}}
+                                <p id="result-header"></p>
                             </div>
                             <div class="modal-body">
                                 <div class="modal-left">

@@ -170,7 +170,7 @@ function allowProgress(slideIndex) {
 
 for (let i=1; i<digits.length; i++) {
     digits[i].addEventListener('keydown', (e) => {
-        document.getElementById('DOTError').style.visibility="hidden";
+        // document.getElementById('DOTError').style.visibility="hidden";
         if (e.key=="Backspace") {
             e.target.previousElementSibling.focus();
         }
@@ -197,76 +197,41 @@ document.querySelector(".digits").addEventListener("input", (e) => {
     }
 });
 
-// This html populates the search result field when a DOT match is found
-// const searchResultBody = `            
-//     <div class="modal-dialog">
-//         <div class="modal-content">
-//             <div class="modal-header">
-//                 <p>Based on the DOT you entered, this is what we found...</p>
-//             </div>
-//             <div class="modal-body">
-//                 <div class="modal-left">
-//                     <h2 id="companyName"></h2>
-//                     <h3 id="DBA"></h3>
-//                     <div id="manualInput">
-//                         <div id="manualInputForm">
-//                             <p class="blueText">DOT:</p>
-//                             <p id="DOT"></p>
-//                             <label for="address">Address</label>
-//                             <textarea class="modal-input" id="address" name="address" type="text" cols="40" rows="2"></textarea>
-//                             <label for="mailingAddress">Mailing Address</label>
-//                             <textarea class="modal-input" id="mailingAddress" name="mailingAddress" type="text" cols="40" rows="2"></textarea>
-//                             <label for="phone">Phone Number</label>
-//                             <input class="modal-input" id="phone" name="phone" type="tel" >
-//                             <label for="email">Email</label>
-//                             <input class="modal-input" id="email" name="email" type="email" >
-//                         </div>
-//                     </div>
-//                 </div>  
-//                 <div style ="background: var(--light);">
-//                     <div class="modal-right">
-//                         <p class="blueText">Vehicle Miles Traveled</p>
-//                         <p id="milesTraveled"></p>
-//                         <p class="blueText">Carrier Operation</p>
-//                         <p id="carrierOperation"></p>
-//                         <p class="blueText">Trucks</p>
-//                         <p id="powerUnits"></p>
-//                         <p class="blueText">Drivers</p>
-//                         <p id="drivers"></p>
-//                         <p class="blueText">Operation Type</p>
-//                         <p id="operationType"></p>
-//                         <p class="blueText">Cargo Carried</p>
-//                         <p id="cargoCarried"></p>
-//                     </div>
-//                     <div class="btn-next" onclick="changeSlide(1)">Continue ></div>
-
-//                 </div>
-
-//             </div>
-
-//         </div>
-//     </div>
-// `
-
+const successHeader = `<p><i class="fas fa-check-circle" style="color: green"></i><span>Found record for DOT </span><span id="DOT-success-header"></span></p>`
+const failureHeader = `
+    <p><i class="fas fa-times-circle" style="color: red"></i><span>No record found for DOT </span><span id="DOT-failure-header"></span></p>
+    <p>Please enter the information below</p>
+`
 
 // When the button for the DOT search field is pressed
 async function searchDOT(e) {
     e.preventDefault();
     document.getElementById('searchResult').classList.add("expandable-collapsed");
+    const loadIcon = document.getElementById('loading-icon');
     let dotvalue = parseInt(document.getElementById('slide3DOT').value);
     let dot = {'dot': dotvalue};
     // Only searches if a value is entered
     if (dot['dot']) {
         try {
+            loadIcon.style.display = "block";
             const client = await fetchDOT(dot);
 
             // If a client is not found
-            if (!client.result) {
-                document.getElementById('DOTError').innerText=`No result found for ${dot['dot']}.`;
-                document.getElementById('DOTError').style.visibility="visible";
-            // If a client is found
+            if (Object.keys(client.result).length === 0) {
+            // if (client.result =={}) {
+                // document.getElementById('DOTError').innerText=`No result found for ${dot['dot']}.`;
+                // document.getElementById('DOTError').style.visibility="visible";
+                loadIcon.style.display = "none";
+                document.getElementById('result-header').innerHTML= failureHeader;
+                document.getElementById('DOT-failure-header').innerText = dot['dot']
+                document.getElementById('searchResult').classList.remove("expandable-collapsed");
+                console.log("failure client: ", client.result)
+                // If a client is found
             } else {
-                // document.getElementById('searchResult').innerHTML=searchResultBody;
+                console.log("success client: ", client.result)
+                loadIcon.style.display = "none";
+                document.getElementById('result-header').innerHTML= successHeader;
+                document.getElementById('DOT-success-header').innerText = dot['dot']
                 document.getElementById('searchResult').classList.remove("expandable-collapsed");
 
                 // document.getElementById('searchResult').style.display="block";

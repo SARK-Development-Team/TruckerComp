@@ -196,6 +196,8 @@ input {
     left: -100vw;
 }
 
+
+
 .modal-body {
     display: grid;
     grid-template-columns: 4fr 5fr;
@@ -246,9 +248,14 @@ input {
     transition: all 1s;
 }
 
-#slide3, #slide4, #slide5 {
-    position: absolute;   
+#loading-icon {
+    display: none;
 }
+
+#loading-icon i {
+    font-size: 60px;
+}
+
 /* 
 #carousel {
     z-index: 2;
@@ -280,6 +287,10 @@ input {
 
 #manualInputForm * {
     margin: .4vw 0 0 0;
+}
+
+#slide3, #slide4, #slide5 {
+    position: absolute;   
 }
 
 #slide3DOT {
