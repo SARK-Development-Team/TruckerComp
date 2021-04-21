@@ -46,17 +46,14 @@ function initializeForm() {
 
     document.getElementById("slide3").classList.add("visible");
     document.getElementById("slide3").classList.remove("move-left");
-    document.getElementById("slide3").style.display="block";
     document.getElementById("searchResult").classList.add("expandable-collapsed");
     
     document.getElementById("slide4").classList.remove("move-left");
     document.getElementById("slide4").classList.add("move-right");
     document.getElementById("slide4").classList.remove("visible");
-    document.getElementById("slide4").style.display="block";
 
     document.getElementById("slide5").classList.add("move-right");
     document.getElementById("slide5").classList.remove("visible");
-    document.getElementById("slide5").style.display="grid";
 }
 
 // ---- General Functionality ---- //
