@@ -30,60 +30,9 @@
  Intro image 
 -----------*/
 
-.banner {
-    /* margin: 5vw 4vw; */
-    padding: 1vw;
-    background: rgba(194, 222, 255, 0.7);
-    color: var(--blue);
-    text-align: right;
-    font-weight: 400;
-    border-radius: 10px;
-}
-
-/* #form-intro {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    z-index: 5;
-    position: absolute;
-} */
-
 #hero {
-    /* margin-top: 70px;
-    position: relative;
-    min-height: 600px;
-    max-height: 100%;
-    color: var(--accent);
-    overflow: hidden; */
     background: var(--white);
 }
-
-/* #intro-image {
-    max-height: 100%;
-    min-height: 500px;
-    padding: 3vw;
-    background-position: 100% 0%;
-    background-size: cover;
-    background: url('../images/truckbgd2.jpg');
-    background-size: cover;
-    position: absolute;
-    width: 36vw;
-    transition: left 1s ease;
-} */
-
-/* .present {
-    left: 0vw;
-}
-
-.move-left {
-    left: -100vw;
-} */
-
-/* @media screen and (max-width: 991px) {
-    #hero {
-        min-height: 560px;
-    }
-} */
-
 
 /* ----------
    Slide 1 
@@ -102,101 +51,6 @@
     transition: color 0.6s ease;
 }
 
-.narrow-slide {
-    background: var(--white);
-    padding: 3vw;
-    position: absolute;
-    width: 64vw;
-    transition: left 1s ease;
-}
-
-.in-place {
-    left: 36vw;
-}
-
-.four-tile {
-    color: var(--white);
-    text-align: center;
-    /* font-size: var(--small); */
-    width: 8.2vw;
-    border: none;
-    height: 10.5vw;
-}
-
-.material-icons {
-    font-size: 52px;
-}
-
-.move-right {
-    left: 100vw;
-}
-
-.tile {
-    transition: all ease 250ms;
-    border-radius: 10px;
-    border: none;
-    background: var(--blue);
-    transition: all .5s ease;
-}
-
-.tile:hover {
-    background: var(--accent);
-}
-
-.type-tiles {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    -moz-column-gap: 2vw;
-         column-gap: 2vw;
-    padding: 1.4vw .8vw;
-    position: relative;
-    flex-wrap: nowrap;
-    align-items: center;
-}
-
-/* #slide1 {
-    max-height: 100%;
-    min-height: 500px;
-    text-align: center;
-    background: var(--light);
-} */
-
-/* #slide1-headline {
-    margin-bottom: 3vw;
-    color: var(--blue);
-} */
-
-@media screen and (max-width: 991px) {
-    .material-icons{
-        display: none
-    }
-    .tile {
-        padding: 0;
-    }
-    .four-tile {
-        font-size: unset;
-        margin-bottom: 10px;
-        width: 70vw;
-        height: unset;
-    }
-
-    .type-tiles {
-        flex-direction: column;
-
-    }
-
-    /* #intro-image {
-        display: none;
-    } */
-    .in-place {
-        left: 0vw;
-    }
-    .narrow-slide {
-        width: 100vw;
-    }
-}
-
 /* ----------
    Slide 2 
 -----------*/
@@ -212,53 +66,15 @@
     border-radius: 10px;
 }
 
-.mileage-tiles {
-    display: grid;
-    /* flex-direction: column; */
-    justify-content: center;
-    -moz-column-gap: 2vw;
-         column-gap: 2vw;
-    /* padding: 2.4vw .8vw; */
-    position: relative;
-    flex-wrap: nowrap;
-}
-
 .slide-nav {
     display: grid;
     grid-template-columns: 1fr 6fr 1fr;
 }
 
-.three-tile {
-    color: var(--white);
-    text-align: center;
-    /* font-size: var(--small); */
-    width: 36vw;
-    border: none;
-    margin: 1vw;
-}
-
-.three-tile p {
-    margin: 0;
-    padding: 1.6vw;
-}
-
-/* #slide2 {
-    max-height: 100%;
-    min-height: 500px;
-    text-align: center;
-    z-index: 3;
-} */
-
 @media screen and (max-width: 991px) {
     .btn-reset {
         font-size: unset;
     }
-    .three-tile {
-        font-size: unset;
-        width: 80vw;
-        margin-bottom: 10px;
-    }
-    
 }
 
 /* ----------
@@ -380,6 +196,8 @@ input {
     left: -100vw;
 }
 
+
+
 .modal-body {
     display: grid;
     grid-template-columns: 4fr 5fr;
@@ -427,12 +245,17 @@ input {
     min-width: 100vw;
     max-height: 100%;
     min-height: 500px;
-    transition: all 1.5s;
+    transition: all 1s;
 }
 
-#slide3, #slide4, #slide5 {
-    position: absolute;   
+#loading-icon {
+    display: none;
 }
+
+#loading-icon i {
+    font-size: 60px;
+}
+
 /* 
 #carousel {
     z-index: 2;
@@ -464,6 +287,10 @@ input {
 
 #manualInputForm * {
     margin: .4vw 0 0 0;
+}
+
+#slide3, #slide4, #slide5 {
+    position: absolute;   
 }
 
 #slide3DOT {
