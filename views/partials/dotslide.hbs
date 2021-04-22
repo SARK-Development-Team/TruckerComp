@@ -52,42 +52,50 @@
             <div class="query-form w-row">
             <div class="basic-info w-col w-col-8 w-col-stack">
                 <div class="company-heading">
-                <h2 class="company-name">ACME TRUCKING INC.</h2>
-                <h3 class="dba-subtitle">DBA<span class="dba">Many Trucks United</span></h3>
+                    <h2 id="companyName" class="company-name">ACME TRUCKING INC.</h2>
+                    <h3 class="dba-subtitle">DBA<span id="DBA" class="dba">Many Trucks United</span></h3>
                 </div>
-                <div class="contact-info">
-                <div class="label dot">DOT #</div>
-                <div class="field dot">{{DOT}}</div>
-                <div class="label">Email</div>
-                <div class="field">acme190@gmail.com</div>
-                <div class="label">Phone #</div>
-                <div class="field">(408) 262-9190</div>
-                <div class="label">Address</div>
-                <div class="field">2092 Concourse Dr., San Jose, CA 95131</div>
-                <div class="label">Mailing Address</div>
-                <div class="field">A very long text string for the purposes of testing how long the mailing address and address lines can possible be. This is not a real address, hopefully. Lorem ipsum quatsum whateversum</div>
+                <div id="manualInputForm" class="contact-info">
+                    <div class="label dot">DOT #</div>
+                    <div id="DOT" class="field dot">{{DOT}}</div>
+                    <label for="email" class="label">Email</label>
+                    <input id="email" type="email" name="email" class="field">acme190@gmail.com
+                    </input>
+                    <label for="phone" class="label">Phone #</label>
+                    <input id="phone" name="phone" type="tel" class="field">(408) 262-9190</input>
+                    <label for="address" class="label">Address</label>
+                    <textarea id="address" name="address" type="text" cols="40" rows="2"
+                        class="field">2092 Concourse Dr., San Jose, CA 95131</textarea>
+                    <label for="mailingAddress" class="label">Mailing Address</label>
+                    <textarea class="field" id="mailingAddress" name="mailingAddress" type="text" cols="40"
+                        rows="2">A very long text string for the purposes of testing how long the mailing address and address
+                                                                                lines can possible be. This is not a real address, hopefully. Lorem ipsum quatsum whateversum</textarea>
                 </div>
             </div>
             <div class="truck-info w-col w-col-4 w-col-stack">
-                <div class="label aside">Carrier Operation</div>
-                <div class="field aside">Interstate</div>
+                <label for="carrierOperation" class="label aside">Carrier Operation</label>
+                <select id="carrierOperation" name="carrierOperation" class="field aside">
+                    <option>Interstate</option>
+                    <option>Intrastate (Hazardous)</option>
+                    <option>Intrastate (Non-Hazardous)</option>
+                </select>
                 <div class="aside-input">
-                <div class="label aside">Trucks</div>
-                <div id="w-node-_3f199091-b2df-7bda-38d8-54fba3542133-5e872a0e" class="field aside">100</div>
-                <div class="label aside">Drivers</div>
-                <div id="w-node-_92426d06-4ae6-b7b2-7ebf-f2ef204537f2-5e872a0e" class="field aside">100</div>
-                <div class="label aside">Vehicle Miles Traveled</div>
-                <div id="w-node-b345bf66-39fd-23ec-9512-247ea91b67d6-5e872a0e" class="field aside">10,000</div>
+                    <label for="trucks" class="label aside">Trucks</label>
+                    <input id="powerUnits" name="trucks" type="number" class="field aside">100</input>
+                    <label for="drivers" class="label aside">Drivers</label>
+                    <input id="drivers" name="drivers" type="number" class="field aside">100</input   >
+                    <label for="milesTraveled" class="label aside">Vehicle Miles Traveled</label>
+                    <input id="milesTraveled" name="milesTraveled" type="number" class="field aside">10,000</input>
                 </div>
-                <div class="label aside">Operation Type</div>
+                <div for="operationType" class="label aside">Operation Type</div>
                 <div class="field aside"><span class="combination-input">general freight | X</span> </div>
                 <div class="label aside">Cargo Carried</div>
                 <div class="field aside"><span class="combination-input">Vegetables | X</span> </div>
             </div>
             </div>
-            <a href="#" class="form-button big w-inline-block">
-            <h3 class="form-button-text">Continue</h3>
-            </a>
+            <button onclick="changeSlide(1)" class="form-button big w-inline-block">
+            <h3 class="form-button-text">Continue ></h3>
+            </button>
         </div>
     </div>
 </div>
