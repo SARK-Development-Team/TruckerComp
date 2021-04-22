@@ -1,0 +1,90 @@
+<div class="form-page" id="slide3">
+
+    {{!-- Progress bar component. Finalizes reset and additions. --}}
+    <div class="progress-bar">
+        <div onclick="initializeForm()">
+            <img src="/public/images/darkarrow.svg" loading="lazy" width="33" alt="" class="arrow">
+        </div>
+        <div class="progress-block fullscreen">
+            <img src="/public/images/darkfullcircle.svg" loading="lazy" alt="">
+            <img src="/public/images/darkfullcircle.svg" loading="lazy" alt="">
+            <img src="/public/images/darkemptycircle.svg" loading="lazy" alt="">
+            <img src="/public/images/lightemptycircle.svg" loading="lazy" alt="">
+            <img src="/public/images/lightemptycircle.svg" loading="lazy" alt="">
+        </div>
+        <div onclick="initializeForm()" class="form-button reset w-inline-block">
+            <h3 class="form-button-text">Reset</h3>
+        </div>
+    </div>
+
+    <div class="dot-block">
+
+        <h2 class="question-title">What&#x27;s your Department of Transportation (DOT) number?</h2>
+
+        {{! Digits for entering in DOT number.}}
+        <div class="digits">
+            <input type="text" name="digit1" />
+            <input type="text" name="digit2" />
+            <input type="text" name="digit3" />
+            <input type="text" name="digit4" />
+            <input type="text" name="digit5" />
+            <input type="text" name="digit6" />
+            <input type="text" name="digit7" />
+        </div>
+        <input type="number" id="slide3DOT" name="DOT" min="0">
+
+        <div id="loading-icon" class="dot-query">
+            <div class="query-heading">
+                <h3 class="dot-text-result">Searching records for DOT # <span id="searchingSpan"></span>.</h3>
+            </div>
+            <img src="/public/images/loadingIcon.svg" alt="">
+        </div>
+
+        {{! Success condition for DOT query.}}
+        <div id="searchResult" class="dot-query expandable">
+            <div class="query-heading success">
+                <img src="/public/images/check.min.svg" loading="lazy" width="36" alt="" class="dot-check">
+                <h3 class="dot-text-result">Found information for DOT #.</h3>
+            </div>
+            <div class="query-form w-row">
+            <div class="basic-info w-col w-col-8 w-col-stack">
+                <div class="company-heading">
+                <h2 class="company-name">ACME TRUCKING INC.</h2>
+                <h3 class="dba-subtitle">DBA<span class="dba">Many Trucks United</span></h3>
+                </div>
+                <div class="contact-info">
+                <div class="label dot">DOT #</div>
+                <div id="w-node-_8d804449-46a5-cab3-c60a-1890fc549565-5e872a0e" class="field dot">{{DOT}}</div>
+                <div class="label">Email</div>
+                <div class="field">acme190@gmail.com</div>
+                <div class="label">Phone #</div>
+                <div class="field">(408) 262-9190</div>
+                <div class="label">Address</div>
+                <div class="field">2092 Concourse Dr., San Jose, CA 95131</div>
+                <div class="label">Mailing Address</div>
+                <div class="field">A very long text string for the purposes of testing how long the mailing address and address lines can possible be. This is not a real address, hopefully. Lorem ipsum quatsum whateversum</div>
+                </div>
+            </div>
+            <div class="truck-info w-col w-col-4 w-col-stack">
+                <div class="label aside">Carrier Operation</div>
+                <div class="field aside">Interstate</div>
+                <div class="aside-input">
+                <div class="label aside">Trucks</div>
+                <div id="w-node-_3f199091-b2df-7bda-38d8-54fba3542133-5e872a0e" class="field aside">100</div>
+                <div class="label aside">Drivers</div>
+                <div id="w-node-_92426d06-4ae6-b7b2-7ebf-f2ef204537f2-5e872a0e" class="field aside">100</div>
+                <div class="label aside">Vehicle Miles Traveled</div>
+                <div id="w-node-b345bf66-39fd-23ec-9512-247ea91b67d6-5e872a0e" class="field aside">10,000</div>
+                </div>
+                <div class="label aside">Operation Type</div>
+                <div class="field aside"><span class="combination-input">general freight | X</span> </div>
+                <div class="label aside">Cargo Carried</div>
+                <div class="field aside"><span class="combination-input">Vegetables | X</span> </div>
+            </div>
+            </div>
+            <a href="#" class="form-button big w-inline-block">
+            <h3 class="form-button-text">Continue</h3>
+            </a>
+        </div>
+    </div>
+</div>
