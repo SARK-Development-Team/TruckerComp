@@ -1,0 +1,58 @@
+.progress-block.fullscreen {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-right: 14vw;
+    padding-left: 14vw;
+    -webkit-box-pack: stretch;
+    -webkit-justify-content: stretch;
+    -ms-flex-pack: stretch;
+    justify-content: stretch;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .form-button.reset {
+    margin-right: 2vw;
+    margin-left: 2vw;
+    padding-top: 0px;
+    padding-right: 0.5vw;
+    padding-left: 0.5vw;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 auto;
+    -ms-flex: 0 auto;
+    flex: 0 auto;
+    background-color: #ef8354;
+  }
+  
+  .form-button.reset:hover {
+    background-color: #1c2243;
+  }
+  
+
+@media screen and (max-width: 991px) {     
+  .progress-block.fullscreen {
+    padding-right: 5vw;
+    padding-left: 5vw;
+  }
+}
+
+@media screen and (max-width: 767px) {
+    .progress-block.fullscreen {
+        padding-right: 0vw;
+        padding-left: 0vw;
+      }
+}
+
+@media screen and (max-width: 479px) {
+    .form-button.reset {
+        margin-bottom: 10px;
+        padding-bottom: 0px;
+        -webkit-box-pack: end;
+        -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+      }
+}
