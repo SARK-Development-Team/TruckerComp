@@ -217,7 +217,8 @@ async function searchDOT(e) {
             const client = await fetchDOT(dot);
 
             // If a client is not found
-            if (Object.keys(client.result).length === 0) {
+            // if (Object.keys(client.result).length < 3) {
+            if (!client.result.name) {
                 loadIcon.style.display = "none";
                 document.getElementById('result-header').innerHTML= failureHeader;
                 document.getElementById('DOT-failure-header').innerText = dot['dot']
@@ -247,13 +248,17 @@ async function searchDOT(e) {
                 document.getElementById('email').value = client.result['email'] ?? '';
                 document.getElementById('slide5Email').value = client.result['email'] ?? '';
                 document.getElementById('address').value = client.result['address'] ?? '';
-                document.getElementById('carrierOperation').innerText = client.result['carrierOperation'] ?? '';
+                // document.getElementById('carrierOperation').value = client.result['carrierOperation'] ?? '';
                 document.getElementById('milesTraveled').innerText = client.result['milesTraveled'] ?? '';
                 // document.getElementById('mailingAddress').value = client.result['Mailing Address'];
                 document.getElementById('phone').value = client.result['phone'] ?? '';
                 document.getElementById('powerUnits').innerText = client.result['powerUnits'] ?? '';
                 document.getElementById('drivers').innerText = client.result['drivers'] ?? '';
                 document.getElementById('empNumber0').value = client.result['drivers'] ?? 0;
+                // for (let i =0; i<client.result.opClass.length; i++) {
+                //     result.opClass[i]
+                //     document.getElementById('carrierOperation').value=
+                // }
             }
         } catch (err) {
             console.log(err);

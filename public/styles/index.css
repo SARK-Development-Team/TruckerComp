@@ -92,9 +92,9 @@ fieldset label {
 }
 
 input {
-    background: inherit;
-    border: none;
-    border-bottom: 1px solid #585858;
+    background: var(--white);
+    border: 1px solid var(--accent);
+    /* border-bottom: 1px solid #585858; */
 }
 
 .back-icon {
@@ -159,6 +159,8 @@ input {
     text-align: center;
     margin: 2vw .2vw;
     background: white;
+    border: none;
+    border-bottom: 1px solid #585858;
 }
 
 .digits input:focus {
@@ -200,7 +202,7 @@ input {
 
 .modal-body {
     display: grid;
-    grid-template-columns: 4fr 5fr;
+    grid-template-columns: 4fr 3fr;
 }
 
 .modal-dialog {
@@ -281,8 +283,8 @@ input {
 }
 
 #manualInputForm textarea {
-    background: inherit;
-    border: none;
+    background: var(--white);
+    border: 1px solid var(--accent);
 }
 
 #manualInputForm * {
