@@ -52,8 +52,8 @@
             <div class="query-form w-row">
                 <div class="basic-info w-col w-col-8 w-col-stack">
                     <div class="company-heading">
-                        <h2 id="companyName" class="company-name">ACME TRUCKING INC.</h2>
-                        <h3 class="dba-subtitle">DBA<span id="DBA" class="dba">Many Trucks United</span></h3>
+                        <h2 id="companyName" class="company-name"><input name="companyName"/></h2>
+                        <h3 class="dba-subtitle">DBA<span id="DBA" class="dba"><input name="dbaName"/></span></h3>
                     </div>
                     <div id="manualInputForm" class="contact-info">
                         <div class="label dot">DOT #</div>
@@ -72,9 +72,9 @@
                 <div class="truck-info w-col w-col-4 w-col-stack">
                     <label for="carrierOperation" class="label aside">Carrier Operation</label>
                     <select id="carrierOperation" name="carrierOperation" class="field aside">
-                        <option>Interstate</option>
-                        <option>Intrastate (Hazardous)</option>
-                        <option>Intrastate (Non-Hazardous)</option>
+                        <option value="interstate">Interstate</option>
+                        <option value="intrastatehm">Intrastate (Hazardous)</option>
+                        <option value="intrastate">Intrastate (Non-Hazardous)</option>
                     </select>
                     <div class="aside-input">
                         <label for="trucks" class="label aside">Trucks</label>
@@ -90,9 +90,9 @@
                     <div class="field aside"><span class="combination-input">Vegetables | X</span> </div>
                 </div>
             </div>
-            <button onclick="changeSlide(1)" class="form-button big w-inline-block">
+            <div onclick="changeSlide(1)" class="form-button big w-inline-block">
                 <h3 class="form-button-text">Continue ></h3>
-            </button>
+            </div>
         </div>
     </div>
 </div>

@@ -146,7 +146,7 @@ input {
 .expandable {
     transition: all .5s ease-out;
     overflow: hidden;
-    max-height: 500px;
+    max-height: 700px;
 }
 
 .expandable-collapsed {

@@ -1,390 +1,383 @@
 h3 {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    font-size: 22px;
-    line-height: 30px;
-    font-weight: 500;
-  }
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: 500;
+}
 
-  .center {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 40px;
-      margin-bottom: 40px;
-  }
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
 
 .progress-block.fullscreen {
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-left: 0px;
-    padding-right: 14vw;
-    padding-left: 14vw;
-    -webkit-box-pack: stretch;
-    -webkit-justify-content: stretch;
-    -ms-flex-pack: stretch;
-    justify-content: stretch;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+  padding-right: 14vw;
+  padding-left: 14vw;
+  -webkit-box-pack: stretch;
+  -webkit-justify-content: stretch;
+  -ms-flex-pack: stretch;
+  justify-content: stretch;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .form-button.reset {
-    margin-right: 2vw;
-    margin-left: 2vw;
-    padding-top: 0px;
-    padding-right: 0.5vw;
-    padding-left: 0.5vw;
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 auto;
-    -ms-flex: 0 auto;
-    flex: 0 auto;
-    background-color: #ef8354;
+  margin-right: 2vw;
+  margin-left: 2vw;
+  padding-top: 0px;
+  padding-right: 0.5vw;
+  padding-left: 0.5vw;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 auto;
+  -ms-flex: 0 auto;
+  flex: 0 auto;
+  background-color: #ef8354;
 }
 
 .form-button.reset:hover {
-    background-color: #1c2243;
+  background-color: #1c2243;
 }
 
 .query-heading {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    margin-right: 4vw;
-    margin-left: 4vw;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    border-bottom: 2px dashed #1c2243;
-    border-radius: 0px;
-    background-color: transparent;
-    color: #1c2243;
-    text-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 4vw;
+  margin-left: 4vw;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border-bottom: 2px dashed #1c2243;
+  border-radius: 0px;
+  background-color: transparent;
+  color: #1c2243;
+  text-align: center;
 }
 
 .query-heading.success {
-    margin-right: 2vw;
-    margin-left: 2vw;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 auto;
-    -ms-flex: 0 auto;
-    flex: 0 auto;
+  margin-right: 2vw;
+  margin-left: 2vw;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 auto;
+  -ms-flex: 0 auto;
+  flex: 0 auto;
 }
 
 .query-heading.failure {
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .query-form {
-    margin-top: 0px;
-    margin-right: 2vw;
-    margin-left: 2vw;
-  }
+  margin-top: 0px;
+  margin-right: 2vw;
+  margin-left: 2vw;
+}
 
-  .basic-info {
-    padding-top: 15px;
-    padding-right: 20px;
-  }
+.basic-info {
+  padding-top: 15px;
+  padding-right: 20px;
+}
 
 .dot-block {
-    margin: 20px 8vw;
+  margin: 20px 8vw;
 }
 
 .dot-query {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    margin-top: 30px;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    border-radius: 10px 10px 0px 0px;
-    background-color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 30px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  border-radius: 10px 10px 0px 0px;
+  background-color: #fff;
 }
 
 .dot-check {
-    margin-right: 20px;
-    margin-left: 20px;
-    -webkit-align-self: center;
-    -ms-flex-item-align: center;
-    -ms-grid-row-align: center;
-    align-self: center;
-  }
+  margin-right: 20px;
+  margin-left: 20px;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  align-self: center;
+}
 
-  .company-heading {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-align: start;
-    -webkit-align-items: flex-start;
-    -ms-flex-align: start;
-    align-items: flex-start;
-  }
+.company-heading {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
 
-  .company-name {
-    margin-bottom: 5px;
-    -webkit-align-self: auto;
-    -ms-flex-item-align: auto;
-    -ms-grid-row-align: auto;
-    align-self: auto;
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 auto;
-    -ms-flex: 0 auto;
-    flex: 0 auto;
-    line-height: 30px;
-    font-weight: 400;
-    text-align: left;
-    letter-spacing: 1px;
-    text-indent: 0px;
-  }
+.company-name {
+  margin-bottom: 5px;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  -ms-grid-row-align: auto;
+  align-self: auto;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 auto;
+  -ms-flex: 0 auto;
+  flex: 0 auto;
+  line-height: 30px;
+  font-weight: 400;
+  text-align: left;
+  letter-spacing: 1px;
+  text-indent: 0px;
+}
 
-  .dba-subtitle {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    color: rgba(51, 51, 51, 0.4);
-    text-align: left;
-  }
+.dba-subtitle {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  color: rgba(51, 51, 51, 0.4);
+  text-align: left;
+}
 
-  .dba {
-    margin-left: 10px;
-    color: #36579a;
-    font-weight: 400;
-  }
+.dba {
+  margin-left: 10px;
+  color: #36579a;
+  font-weight: 400;
+}
 
-  .contact-info {
-    display: -ms-grid;
-    display: grid;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    grid-auto-flow: row;
-    grid-auto-columns: 1fr;
-    grid-column-gap: 12px;
-    grid-row-gap: 21px;
-    -ms-grid-columns: 1.25fr 7fr;
-    grid-template-columns: 1.25fr 7fr;
-    -ms-grid-rows: minmax(auto, 1fr) auto auto auto auto;
-    grid-template-rows: minmax(auto, 1fr) auto auto auto auto;
-  }
+.contact-info {
+  display: -ms-grid;
+  display: grid;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  grid-auto-flow: row;
+  grid-auto-columns: 1fr;
+  grid-column-gap: 12px;
+  grid-row-gap: 21px;
+  -ms-grid-columns: 1.25fr 7fr;
+  grid-template-columns: 1.25fr 7fr;
+  -ms-grid-rows: minmax(auto, 1fr) auto auto auto auto;
+  grid-template-rows: minmax(auto, 1fr) auto auto auto auto;
+}
 
-  .label {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    color: #36579a;
-    font-size: 18px;
-    line-height: 125%;
-    font-weight: 700;
-  }
-  
-  .label.dot {
-    margin-top: 0px;
-    margin-bottom: 10px;
-    padding-top: 0px;
-    font-size: 20px;
-    line-height: 125%;
-  }
-  
-  .label.aside {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    font-size: 16px;
-  }
+.label {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #36579a;
+  font-size: 18px;
+  line-height: 125%;
+  font-weight: 700;
+}
 
-  .field {
-    padding: 5px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
-    font-size: 16px;
-    line-height: 125%;
-  }
-  
-  .field.dot {
-    padding: 2px 0px;
-    border-style: none;
-    border-radius: 0px;
-    color: #1c2243;
-    font-size: 18px;
-    line-height: 125%;
-  }
-  
-  .field.aside {
-    min-width: 5vw;
-    margin-left: 0px;
-    padding: 3px 5px;
-    -webkit-align-self: center;
-    -ms-flex-item-align: center;
-    -ms-grid-row-align: center;
-    align-self: center;
-    border-radius: 5px;
-    background-color: #fff;
-  }
+.label.dot {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  padding-top: 0px;
+  font-size: 20px;
+  line-height: 125%;
+}
 
-  .truck-info {
-    min-height: 400px;
-    padding: 10px;
-    background-color: rgba(194, 222, 255, 0.31);
-    color: #1c1d1f;
-  }
+.label.aside {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
 
-  .aside-input {
-    display: -ms-grid;
-    display: grid;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-    grid-auto-columns: 1fr;
-    grid-column-gap: 16px;
-    grid-row-gap: 9px;
-    -ms-grid-columns: 0.5fr 0.5fr;
-    grid-template-columns: 0.5fr 0.5fr;
-    -ms-grid-rows: auto auto auto;
-    grid-template-rows: auto auto auto;
-  }
+.field {
+  padding: 5px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  font-size: 16px;
+  line-height: 125%;
+}
 
-  .combination-input {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 10px;
-    background-color: rgba(194, 222, 255, 0.31);
-    color: rgba(28, 34, 67, 0.72);
-    font-size: 15px;
-    text-transform: capitalize;
-  }
+.field.dot {
+  padding: 2px 0px;
+  border-style: none;
+  border-radius: 0px;
+  color: #1c2243;
+  font-size: 18px;
+  line-height: 125%;
+}
 
-  .form-button.big {
-    display: block;
-    margin: 10px 2vw;
-    padding-top: 0px;
-    padding-right: 2vw;
-    padding-left: 2vw;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-align-self: stretch;
-    -ms-flex-item-align: stretch;
-    -ms-grid-row-align: stretch;
-    align-self: stretch;
-    border-radius: 5px;
-  }
+.field.aside {
+  min-width: 5vw;
+  margin-left: 0px;
+  padding: 3px 5px;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  align-self: center;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.truck-info {
+  min-height: 400px;
+  padding: 10px;
+  background-color: rgba(194, 222, 255, 0.31);
+  color: #1c1d1f;
+}
+
+.aside-input {
+  display: -ms-grid;
+  display: grid;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  grid-auto-columns: 1fr;
+  grid-column-gap: 16px;
+  grid-row-gap: 9px;
+  -ms-grid-columns: 0.5fr 0.5fr;
+  grid-template-columns: 0.5fr 0.5fr;
+  -ms-grid-rows: auto auto auto;
+  grid-template-rows: auto auto auto;
+}
+
+.combination-input {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 10px;
+  background-color: rgba(194, 222, 255, 0.31);
+  color: rgba(28, 34, 67, 0.72);
+  font-size: 15px;
+  text-transform: capitalize;
+}
+
+.form-button.big {
+  display: block;
+  margin-top: 10px;
+  margin-right: 2vw;
+  margin-bottom: 10px;
+  margin-left: 2vw;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 2vw;
+  padding-left: 2vw;
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
 
 @media screen and (max-width: 991px) {
-    .progress-block.fullscreen {
-        padding-right: 5vw;
-        padding-left: 5vw;
-    }
-
-    .truck-info {
-      min-height: 0px;
-    }
+  .progress-block.fullscreen {
+    padding-right: 5vw;
+    padding-left: 5vw;
+  }
+  .truck-info {
+    min-height: 0px;
+  }
 }
 
 @media screen and (max-width: 767px) {
-    .progress-block.fullscreen {
-        padding-right: 0vw;
-        padding-left: 0vw;
-    }
-    .form-button-text.reset {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    .form-button.reset {
-        margin-bottom: 0px;
-        padding-bottom: 0px;
-        grid-column: 1/3;
-        -webkit-box-pack: end;
-        -webkit-justify-content: flex-end;
-        -ms-flex-pack: end;
-        justify-content: flex-end;
-    }
-
-    .form-button.big {
-      padding-bottom: 0px;
-    }
+  .progress-block.fullscreen {
+    padding-right: 0vw;
+    padding-left: 0vw;
+  }
+  .form-button-text.reset {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .form-button.reset {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    grid-column: 1/3;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+  }
+  .form-button.big {
+    padding-bottom: 2px;
+    padding-top: 2px;
+  }
 }
 
 @media screen and (max-width: 479px) {
-    .query-heading {
-        margin-right: 10px;
-        margin-left: 10px;
-    }
-    .dot-block {
-        margin-right: 3vw;
-        margin-left: 3vw;
-    }
-    .dot-text-result {
-        margin-bottom: 0px;
-        font-size: 18px;
-        line-height: 120%;
-    }
-
-    .company-name {
-        font-size: 22px;
-        line-height: 125%;
-        text-align: center;
-        letter-spacing: 0px;
-      }
-
-      .dba-subtitle {
-        font-size: 20px;
-        line-height: 125%;
-        text-align: center;
-      }
-
-      .contact-info {
-        grid-column-gap: 8px;
-      }
-
-      .form-button.big {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        border-radius: 0px;
-      }
+  .query-heading {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  .dot-block {
+    margin-right: 3vw;
+    margin-left: 3vw;
+  }
+  .dot-text-result {
+    margin-bottom: 0px;
+    font-size: 18px;
+    line-height: 120%;
+  }
+  .company-name {
+    font-size: 22px;
+    line-height: 125%;
+    text-align: center;
+    letter-spacing: 0px;
+  }
+  .dba-subtitle {
+    font-size: 20px;
+    line-height: 125%;
+    text-align: center;
+  }
+  .contact-info {
+    grid-column-gap: 8px;
+  }
+  .form-button.big {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
 }
