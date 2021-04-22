@@ -153,11 +153,17 @@ input {
     max-height: 0;
 }
 
+.digits {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .digits input {
     font-size: 2rem;
     width: 1.5rem;
     text-align: center;
-    margin: 2vw .2vw;
+    margin: 2vw .3vw;
     background: white;
 }
 
