@@ -288,11 +288,6 @@ input {
 
 #manualInputForm textarea {
     background: inherit;
-    border: none;
-}
-
-#manualInputForm * {
-    margin: .4vw 0 0 0;
 }
 
 #slide3, #slide4, #slide5 {
