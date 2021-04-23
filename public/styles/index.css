@@ -90,12 +90,12 @@ fieldset input, fieldset label {
 fieldset label {
     color: var(--accent);
 }
-
+/* 
 input {
     background: var(--white);
     border: 1px solid var(--accent);
-    /* border-bottom: 1px solid #585858; */
-}
+    border-bottom: 1px solid #585858;
+} */
 
 .back-icon {
     transition: all .5s ease;
@@ -143,36 +143,6 @@ input {
     margin: 0 34%;
 }
 
-.expandable {
-    transition: all .5s ease-out;
-    overflow: hidden;
-    max-height: 700px;
-}
-
-.expandable-collapsed {
-    max-height: 0;
-}
-
-.digits {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.digits input {
-    font-size: 2rem;
-    width: 1.8rem;
-    text-align: center;
-    margin: 3vw .3vw;
-    background: white;
-    border: none;
-    border-bottom: 1px solid #585858;
-}
-
-.digits input:focus {
-    border: 2px solid var(--dark);
-    outline: none;
-}
 
 .dual-column {
     display: grid; 

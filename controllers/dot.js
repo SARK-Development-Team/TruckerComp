@@ -75,8 +75,11 @@ async function fmcsaSearch(number) {
                 }
             })
             // These return arrays of all the items checked with an X and eliminates empty items
+            const xPattern = /^X/gm
             clientObj.opClass = ($('.opClass .checked').text().split('X')).filter(Boolean);
-            clientObj.cargo = ($('.cargo .checked').text().split('X')).filter(Boolean);
+            clientObj.cargo = ($('.cargo .checked').text().split('X')).filter(Boolean)
+            // clientObj.opClass = ($('.opClass .checked').text().split(xPattern)).filter(Boolean);
+            // clientObj.cargo = ($('.cargo .checked').text().split(xPattern)).filter(Boolean);
           })
           .catch(error => {
               console.log(error)

@@ -310,7 +310,7 @@ Hero Slide
 
 @media screen and (max-width: 991px) {
     #hero, #carousel {
-        min-height: 700px;
+        min-height: 1300px;
     }
     .hero-image {
         display: none;

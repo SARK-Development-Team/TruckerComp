@@ -237,7 +237,7 @@ async function searchDOT(e) {
                 document.getElementById('searchResult').classList.remove("expandable-collapsed");
 
                 // document.getElementById('searchResult').style.display="block";
-                document.getElementById("hero").style.minHeight="1000px";
+                // document.getElementById("hero").style.minHeight="1000px";
                 if (client.result['address']) { 
                     const zipCodePattern = /\d{5}/;
                     formData.zipCode = client.result['address'].match(zipCodePattern)[0];
@@ -264,10 +264,24 @@ async function searchDOT(e) {
                 document.getElementById('powerUnits').value = client.result['powerUnits'] ?? '';
                 document.getElementById('drivers').value = client.result['drivers'] ?? '';
                 // document.getElementById('empNumber0').value = client.result['drivers'] ?? 0;
-                // for (let i =0; i<client.result.opClass.length; i++) {
-                //     result.opClass[i]
-                //     document.getElementById('carrierOperation').value=
-                // }
+                const operationTypeChoices = document.querySelectorAll('.drop-options')[0].childNodes[0].childNodes;
+                const cargoCarriedChoices = document.querySelectorAll('.drop-options')[1].childNodes[0].childNodes;
+                const opClasses = client.result.opClass;
+                const cargo = client.result.cargo;
+                for (const el of opClasses) {
+                    for (const a of operationTypeChoices) {
+                        if (a.textContent.toUpperCase()==el) {
+                            myDrop.addOption(event, a)
+                        }
+                    }
+                }                 
+                for (const el of cargo) {
+                    for (const a of cargoCarriedChoices) {
+                        if (a.textContent.toUpperCase()==el) {
+                            secondDrop.addOption(event, a)
+                        }
+                    }
+                }                 
             }
         } catch (err) {
             console.log(err);
