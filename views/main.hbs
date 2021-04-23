@@ -13,77 +13,7 @@
         
           <section class="form-section">
             {{>dotslide}}
-            <div class="slide" id="slide4">
-                <div class="slide-nav">
-                    <div class="back-icon" onclick="changeSlide(-1)">
-                        <img src="../public/images/darkarrow.svg">
-                    </div>
-
-                    <div class="icon-area">
-                        <div class="icons">
-                            <img src="../public/images/darkfullcircle.svg">
-                            <img src="../public/images/darkfullcircle.svg">
-                            <img src="../public/images/darkfullcircle.svg">
-                            <img src="../public/images/darkemptycircle.svg">
-                            <img src="../public/images/lightemptycircle.svg">
-                        </div>
-                    </div>
-
-                    <div class="btn btn-reset" onclick="initializeForm()">Reset</div>
-                </div>
-
-                <form class="hero-form">
-                    <h2>Please confirm your payroll</h2>
-                    <div id="employeeInfoTable">
-                        <div id="employeeInfoTableHeadings">
-                            <p>Type</p>
-                            <p>#</p>  
-                            <p>Salary</p>
-                            <p>|</p>
-                            <p>Total</p>
-                        </div>
-                            {{!-- This is the dropdown menu for employee type --}}
-                            {{!-- If it is changed, the function addRow() will also need to be updated --}}
-                        <p class="formline">
-                            <select class="empType" id="empType0">
-                                <option value="" disabled >Employee Type</option>
-                                <option value="Driver" selected>Driver</option>
-                                <option value="Maintenance">Maintenance</option>
-                                <option value="Accounting">Accounting</option>
-                                <option value="Custodial">Custodial</option>
-                                <option value="Clerical">Clerical</option>
-                                <option value="Other">Other</option>
-                            </select>
-                            <input class="empNumber" name="empNumber0" type="number" min="1" id="empNumber0">
-                            <input class="empPayroll" name="empPayroll0" type="number" min="1" id="empPayroll0" value=50000>
-
-                            {{!-- <select class="empPayroll" id="empPayroll0" name="empPayroll0">
-                                <option value="" disabled selected>Please select</option>
-                                <option value="4.5">Less than $45,000</option>
-                                <option value="5.0">$45,001 ~ $55,000</option>
-                                <option value="6.0">$55,001 ~ $65,000</option>
-                                <option value="7.0">$65,001 ~ $75,000</option>
-                                <option value="8.0">$75,001 ~ $85,000</option>
-                                <option value="10">$85,001 ~ $100,000</option>
-                                <option value="12">More than $100,000</option>
-                            </select> --}}
-                            <span>|</span>
-                            <input class="empTotal" name="empTotal0" type="number" min="1" id="empTotal0" value=50000>
-                        </p>
-                    </div>
-                    <button id="newRow" class="btn" onclick="addRow(event)">Add row <i class="fas fa-plus" ></i></button>
-
-                    {{!-- <div id="next4" class="btn-next" onclick="changeSlide(1)">Next slide</div> --}}
-                </form>
-                <div style="display: grid; grid-template-columns: 3fr 2fr 3fr">
-                    <div></div>
-                    <div>
-                        <p>Total payroll</p>
-                        <p id="totalPayroll"></p>
-                    </div>
-                    <div class="btn-save" id="btn-saveEmployeeData" onclick="saveEmployeeData()">Continue ></div>
-                </div>
-            </div>
+            {{>payrollslide}}
             <div class="slide" id="slide5">
                 <div id="slide5Left">
                     <div class="slide-nav">

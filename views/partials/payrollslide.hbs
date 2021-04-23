@@ -1,0 +1,44 @@
+<div class="form-page">
+
+    {{!-- Progress bar component. Finalizes reset and additions. --}}
+    <div class="progress-bar">
+        <div onclick="changeSlide(-1)">
+            <img src="/public/images/darkarrow.svg" loading="lazy" width="33" alt="" class="arrow">
+        </div>
+        <div class="progress-block fullscreen">
+            <img src="/public/images/darkfullcircle.svg" loading="lazy" alt="">
+            <img src="/public/images/darkfullcircle.svg" loading="lazy" alt="">
+            <img src="/public/images/darkemptycircle.svg" loading="lazy" alt="">
+            <img src="/public/images/lightemptycircle.svg" loading="lazy" alt="">
+            <img src="/public/images/lightemptycircle.svg" loading="lazy" alt="">
+        </div>
+        <div onclick="initializeForm()" class="form-button reset w-inline-block">
+            <h3 class="form-button-text reset">Reset</h3>
+        </div>
+    </div>
+
+    <div class="payroll-container w-container">
+        <h1 class="question-title">Please confirm your payroll.</h1>
+        <div class="payroll-table">
+            <div class="payroll-columns">
+                <h3 id="typeHeader" class="table-header">Type</h3>
+                <h3 id="amountHeader" class="table-header">#</h3>
+                <h3 id="salaryHeader" class="table-header">Salary</h3>
+                <img src="images/wrong.svg" loading="lazy" id="removeHeader"
+                    alt="" class="remove-type row1 colRemove">
+                <h4 class="table-field row1 colType">Driver</h4>
+                <h4 class="table-field row1 colAmount">1</h4>
+                <h4 class="table-field row1 colSalary">$50,000</h4>
+                <div id="addButton" class="form-button payroll row2 w-inline-block">
+                    <h4 class="form-button-text payroll">Add Type</h4>
+                </div>
+            </div>
+            <div class="line"></div>
+            <div class="payroll-total-column">
+                <h3 class="table-header">Total</h3>
+                <h4 class="table-field">$50,000</h4>
+            </div>
+        </div>
+        <h2 class="total-payroll">Total Payroll<br><span class="total-payroll-gray">$250,000</span><br></h2>
+    </div>
+</div>
