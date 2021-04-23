@@ -35,7 +35,7 @@ async function fmcsaSearch(number) {
           .then(response => {
               html = response.data,
               $ = cheerio.load(html);
-            $('.dat').map(function (i, el) {
+              $('.dat').map(function(i, el) {
                 let labelName= $(this).prev().text().replace(/(\r\n|\n|\r)/gm, "").replace(/  +/g, "");
                 switch(labelName) {
                     case "Legal Name:":
@@ -72,7 +72,9 @@ async function fmcsaSearch(number) {
                         break;
                 }
             })
-     
+            // These return arrays of all the items checked with an X and eliminates empty items
+            clientObj.opClass = ($('.opClass .checked').text().split('X')).filter(Boolean);
+            clientObj.cargo = ($('.cargo .checked').text().split('X')).filter(Boolean);
           })
           .catch(error => {
               console.log(error)
@@ -90,6 +92,7 @@ async function fmcsaSearch(number) {
 const searchDOT = async (req, res) => {
     // const result = await sqlSearch(req.body.dot);   
     const result = await fmcsaSearch(req.body.dot);
+    console.log(result);
     return res.json({ result });
 };
 
