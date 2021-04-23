@@ -76,7 +76,7 @@
 #hero {
     margin-top: 70px;
     position: relative;
-    min-height: 650px;
+    min-height: 1050px;
     max-height: 100%;
     /* color: var(--accent); */
     overflow: hidden;
@@ -124,7 +124,7 @@ Hero Slide
 
 */
 
-.hero-page {
+.form-page {
     padding-top: 60px;
     -webkit-box-flex: 1;
     -webkit-flex: 1;
