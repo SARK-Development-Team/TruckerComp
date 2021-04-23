@@ -307,31 +307,31 @@ let formlines = document.getElementsByClassName('formline');
 
 
 
-function addPayrollUpdate() {
-    formData.totalPayroll = 0;
-    var payrollValue =0;
-    for (let i =0; i<formlines.length; i++) {
-        document.getElementById(`empTotal${i}`).addEventListener("change", (e) => {
-            document.getElementById(`empPayroll${i}`).value =  parseInt(e.target.value)/ parseInt(document.getElementById(`empNumber${i}`).value);            
-        });
-        payrollValue+=parseInt(document.getElementById(`empTotal${i}`).value);
-    }
-    formData.totalPayroll=payrollValue;
-    // document.getElementById('totalPayroll').innerText = formData.totalPayroll
-}
+// function addPayrollUpdate() {
+//     formData.totalPayroll = 0;
+//     var payrollValue =0;
+//     for (let i =0; i<formlines.length; i++) {
+//         document.getElementById(`empTotal${i}`).addEventListener("change", (e) => {
+//             document.getElementById(`empPayroll${i}`).value =  parseInt(e.target.value)/ parseInt(document.getElementById(`empNumber${i}`).value);            
+//         });
+//         payrollValue+=parseInt(document.getElementById(`empTotal${i}`).value);
+//     }
+//     formData.totalPayroll=payrollValue;
+//     document.getElementById('totalPayroll').innerText = formData.totalPayroll
+// }
 
-function addTotalUpdate() {
-    formData.totalPayroll = 0;
-    var payrollValue =0;
-    for (let i =0; i<formlines.length; i++) {
-        document.getElementById(`empPayroll${i}`).addEventListener("change", (e) => {  
-            document.getElementById(`empTotal${i}`).value =  parseInt(e.target.value) * parseInt(document.getElementById(`empNumber${i}`).value);            
-        });
-        payrollValue+=parseInt(document.getElementById(`empTotal${i}`).value);
-    }
-    formData.totalPayroll=payrollValue;
-    // document.getElementById('totalPayroll').innerText = formData.totalPayroll
-}
+// function addTotalUpdate() {
+//     formData.totalPayroll = 0;
+//     var payrollValue =0;
+//     for (let i =0; i<formlines.length; i++) {
+//         document.getElementById(`empPayroll${i}`).addEventListener("change", (e) => {  
+//             document.getElementById(`empTotal${i}`).value =  parseInt(e.target.value) * parseInt(document.getElementById(`empNumber${i}`).value);            
+//         });
+//         payrollValue+=parseInt(document.getElementById(`empTotal${i}`).value);
+//     }
+//     formData.totalPayroll=payrollValue;
+//     document.getElementById('totalPayroll').innerText = formData.totalPayroll
+// }
 
 // This sends the data to the backend and returns with a number for the quote
 function fetchResult(data) {
@@ -361,36 +361,25 @@ function saveEmployeeData() {
 }
 
 const newRow = document.getElementById('newRow');
+var payrollLines = 2;
 
 // This function adds another row to the employee info table when the plus icon is pressed
 function addRow(e) {
     e.preventDefault()
-    const formlines = document.getElementsByClassName('formline').length;
-    const line = `                                
-    <p class="formline">
-        <select class="empType" id="empType${formlines}">
-            <option value="" disabled selected>Employee Type</option>
-            <option value="Driver">Driver</option>
-            <option value="Maintenance">Maintenance</option>
-            <option value="Accounting">Accounting</option>
-            <option value="Custodial">Custodial</option>
-            <option value="Clerical">Clerical</option>
-            <option value="Other">Other</option>
-        </select>
-        <input class="empNumber" name="empNumber${formlines}" type="number" min="1" id="empNumber${formlines}" value=1>
-        <input class="empPayroll" name="empPayroll${formlines}" type="number" min="1" id="empPayroll${formlines}" value=50000>
-        <span>|</span>
-        <input class="empTotal" name="empTotal${formlines}" type="number" min="1" id="empTotal${formlines}" value=50000>
-
-    </p>
-
+    // const formlines = document.getElementsByClassName('formline').length+1;
+    const line = `
+        <img src="public/images/wrong.svg" loading="lazy" id="removeHeader"
+        alt="" class="remove-type row${payrollLines}" colRemove">
+        <h4 class="table-field row${payrollLines}" colType">Driver</h4>
+        <h4 class="table-field row${payrollLines}" colAmount">1</h4>
+        <h4 class="table-field row${payrollLines}" colSalary">$50,000</h4>
     `
 
-    let lineElement = document.createElement('div');
-    lineElement.innerHTML=line;
-    document.getElementById("employeeInfoTable").appendChild(lineElement);
-    addPayrollUpdate();
-    addTotalUpdate();
+    document.getElementById("payroll-columns").insertAdjacentHTML('beforeend', line);
+    // .appendChild(html.documentElement);
+    payrollLines++;
+    // addPayrollUpdate();
+    // addTotalUpdate();
 }
 
 // ---- Slide 5 ---- //
@@ -498,5 +487,5 @@ async function requestQuoteSlide(data) {
 
 // On page load //
 
-addPayrollUpdate();
-addTotalUpdate();
+// addPayrollUpdate();
+// addTotalUpdate();

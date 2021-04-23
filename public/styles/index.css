@@ -55,99 +55,10 @@
    Slide 2 
 -----------*/
 
-.btn-reset {
-    background: var(--dark);
-    padding: 0.5vw;
-    color: var(--white);
-    align-self: center;
-    font-size: var(--small);
-    cursor: pointer;
-    /* z-index: 5; */
-    border-radius: 10px;
-}
-
-.slide-nav {
-    display: grid;
-    grid-template-columns: 1fr 6fr 1fr;
-}
-
-@media screen and (max-width: 991px) {
-    .btn-reset {
-        font-size: unset;
-    }
-}
 
 /* ----------
    Slide 3 
 -----------*/
-
-fieldset input, fieldset label {
-    display: block;
-    font-size: small;
-    width: 100%;
-}
-
-fieldset label {
-    color: var(--accent);
-}
-/* 
-input {
-    background: var(--white);
-    border: 1px solid var(--accent);
-    border-bottom: 1px solid #585858;
-} */
-
-.back-icon {
-    transition: all .5s ease;
-    z-index: 3;
-    cursor: pointer;
-    align-self: center;
-}
-
-.blueText {
-    color: var(--blue);
-}
-
-.btn-next {
-    text-align: center;
-    align-self: center;
-    cursor: pointer;
-    background: var(--blue);
-    padding: 1vw;
-    border: 1px solid var(--white);
-    color: var(--white);
-    transition: all 0.6s ease;
-}
-
-.btn-save {
-    text-align: center;
-    align-self: center;
-    cursor: pointer;
-    background: var(--blue);
-    padding: 1vw;
-    color: var(--white);
-    transition: all 0.6s ease;
-}
-
-.btn-submit {
-    text-align: center;
-    align-self: center;
-    cursor: pointer;
-    background: var(--blue);
-    padding: 1vw;
-    border-radius: 4%;
-    border: 1px solid var(--white);
-    color: var(--white);
-    transition: all 0.6s ease;
-    /* font-size: var(--med); */
-    margin: 0 34%;
-}
-
-
-.dual-column {
-    display: grid; 
-    grid-template-columns: 1fr 1fr;
-}
 
 .error {
     margin: 0;
@@ -174,48 +85,6 @@ input {
     left: -100vw;
 }
 
-
-
-.modal-body {
-    display: grid;
-    grid-template-columns: 4fr 3fr;
-}
-
-.modal-dialog {
-    min-width: 100%;
-    margin: 0 auto;
-    background: white;
-}
-
-.modal-header {
-    display: block;
-    text-align: center;
-    padding: 10px;
-}
-
-.modal-header p {
-    margin-bottom: 0;
-}
-
-
-.modal-left {
-    padding: 1vw;
-    text-align: left;
-}
-
-.modal-right {
-    text-align: left;
-    color: var(--accent);
-    padding: 1vw;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.modal-right p {
-    font-size: larger;
-    padding: .5vw 0 0 0;
-}
-
 .slide {
     background: var(--white);
     text-align: center;
@@ -234,24 +103,6 @@ input {
     font-size: 60px;
 }
 
-/* 
-#carousel {
-    z-index: 2;
-    display: flex;
-    position: absolute;
-    -ms-scroll-snap-type: x mandatory;
-        scroll-snap-type: x mandatory;
-    width: 100vw;
-    background: var(--white);
-    max-height: 100%;
-    min-height: 650px;
-} */
-
-/* #manualInput fieldset{
-    width: 98%;
-    border: none;
-} */
-
 #manualInputForm {
     display: grid;
     grid-template-columns: 1fr 8fr;
@@ -266,51 +117,16 @@ input {
     display: none;
 }
 
-@media screen and (max-width: 991px) {
-    .modal-body {
-        grid-template-columns: unset;
-    }
-}
+/* @media screen and (max-width: 991px) {
+
+} */
 
 
 /* ----------
    Slide 4
 ---------- */
 
-.formline {
-    display: grid;
-    grid-template-columns: 3fr 3fr 3fr 1fr 3fr;
-    margin: 0 0 .2vw 0;
-    /* flex-direction: row; */
-}
 
-.formline * {
-    margin: 0 .5vw;
-    /* font-size: var(--small); */
-}
-
-.hero-form {
-    background: white;
-    padding: 1vw 0;
-}
-
-#employeeInfoTableHeadings {
-    display: grid;
-    grid-template-columns: 3fr 3fr 3fr 1fr 3fr;
-}
-
-#employeeInfoTableHeadings p{
-    margin: 0 0 .2vw 0;
-    font-weight: bold;
-}
-
-#newRow {
-    margin-top: 1rem;
-    width: 98%;
-    background: var(--blue);
-    color: var(--white);
-    border: none;
-}
 
 /* ----------
    Slide 5
