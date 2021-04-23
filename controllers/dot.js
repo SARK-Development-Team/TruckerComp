@@ -36,6 +36,7 @@ async function fmcsaSearch(number) {
               html = response.data,
               $ = cheerio.load(html);
               $('.dat').map(function(i, el) {
+                //   Get rid of spaces and line breaks
                 let labelName= $(this).prev().text().replace(/(\r\n|\n|\r)/gm, "").replace(/  +/g, "");
                 switch(labelName) {
                     case "Legal Name:":
@@ -57,7 +58,8 @@ async function fmcsaSearch(number) {
                         clientObj.email=$(this).text();
                         break;
                     case "Vehicle Miles Traveled:":
-                        clientObj.milesTraveled=$(this).text();
+                        // Remove commas from numbers if present
+                        clientObj.milesTraveled=$(this).text().replace(",","");
                         break;
                     case "Power Units:":
                         clientObj.powerUnits=$(this).text();

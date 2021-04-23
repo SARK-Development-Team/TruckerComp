@@ -197,9 +197,9 @@ document.querySelector(".digits").addEventListener("input", (e) => {
     }
 });
 
-const successHeader = `<p><i class="fas fa-check-circle" style="color: green"></i><span>Found record for DOT </span><span id="DOT-success-header"></span></p>`
+const successHeader = `<p><span>Found record for DOT </span><span id="DOT-success-header"></span></p>`
 const failureHeader = `
-    <p><i class="fas fa-times-circle" style="color: red"></i><span>No record found for DOT </span><span id="DOT-failure-header"></span></p>
+    <p><span>No record found for DOT </span><span id="DOT-failure-header"></span></p>
     <p>Please enter the information below</p>
 `
 
@@ -240,7 +240,12 @@ async function searchDOT(e) {
                 }
                 // document.getElementById('DOTError').style.visibility="hidden";
                 if (client.result['DBA']) {
-                    document.getElementById('DBA').innerText = "DBA: "+ client.result['DBA'];
+                    document.getElementById('DBA').innerText = "DBA";
+                    document.getElementById('DBAfield').value = client.result['DBA'];
+                    document.getElementById('DBAfield').style.visibility = "visible";
+                } else {
+                    document.getElementById('DBA').innerText = "";
+                    document.getElementById('DBAfield').style.visibility = "hidden";
                 }
                 document.getElementById('DOT').innerText = client.result['DOT'] ?? '';
                 document.getElementById('companyName').innerText = client.result['name'] ?? '' ;
@@ -254,7 +259,7 @@ async function searchDOT(e) {
                 document.getElementById('phone').value = client.result['phone'] ?? '';
                 document.getElementById('powerUnits').value = client.result['powerUnits'] ?? '';
                 document.getElementById('drivers').value = client.result['drivers'] ?? '';
-                document.getElementById('empNumber0').value = client.result['drivers'] ?? 0;
+                // document.getElementById('empNumber0').value = client.result['drivers'] ?? 0;
                 // for (let i =0; i<client.result.opClass.length; i++) {
                 //     result.opClass[i]
                 //     document.getElementById('carrierOperation').value=
@@ -294,7 +299,7 @@ function addPayrollUpdate() {
         payrollValue+=parseInt(document.getElementById(`empTotal${i}`).value);
     }
     formData.totalPayroll=payrollValue;
-    document.getElementById('totalPayroll').innerText = formData.totalPayroll
+    // document.getElementById('totalPayroll').innerText = formData.totalPayroll
 }
 
 function addTotalUpdate() {
@@ -307,7 +312,7 @@ function addTotalUpdate() {
         payrollValue+=parseInt(document.getElementById(`empTotal${i}`).value);
     }
     formData.totalPayroll=payrollValue;
-    document.getElementById('totalPayroll').innerText = formData.totalPayroll
+    // document.getElementById('totalPayroll').innerText = formData.totalPayroll
 }
 
 // This sends the data to the backend and returns with a number for the quote

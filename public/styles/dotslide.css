@@ -172,7 +172,7 @@ h3 {
 }
 
 .dba {
-  margin-left: 10px;
+  margin: 0 10px;
   color: #36579a;
   font-weight: 400;
 }
@@ -308,6 +308,10 @@ h3 {
   border-top-right-radius: 5px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+
+#DBAfield {
+  visibility: hidden;
 }
 
 @media screen and (max-width: 991px) {
