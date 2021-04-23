@@ -57,6 +57,10 @@ var $ = {
     },
     addOption: function(e, element){ 
        var index = Number(element.dataset.index);
+       console.log(e.target);
+       console.log("added ", element);
+       console.log(typeof element);
+
        this.clearStates()
        this.selected.push({
           index: Number(index),
@@ -67,6 +71,8 @@ var $ = {
        this.render()
     },
     removeOption: function(e, element){
+        // console.log(e.target);
+        // console.log("removed ", element);
        e.stopPropagation();
        this.clearStates()
        var index = Number(element.dataset.index);
@@ -125,10 +131,21 @@ var $ = {
     renderOptions: function(){  
        var that = this;
        var parentHTML = $.template('<div></div>')
+    //    var idType = that.html.select.name;
+    //    console.log(typeof idType)
+    //    console.log(idType)
+    //    console.log(this);
+    //    .replace("select#",""));
        this.options.forEach(function(option, index){
+        //    console.log(typeof idType);
           var childHTML = $.template(
              '<a data-index="'+index+'" class="'+option.state+'">'+ option.html +'</a>')
-          childHTML.on('click', function(e){ that.addOption(e, this) })
+          childHTML.on('click', function(e){ 
+            //   console.log("that is: ", that);
+            //   console.log("this is now: ", this);
+              
+              that.addOption(e, this) 
+            })
           parentHTML.appendChild(childHTML)
        })
        this.html.dropOptions.innerHTML = '';

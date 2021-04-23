@@ -30,7 +30,7 @@ async function fmcsaSearch(number) {
       var html = '';
       var $;
       var clientObj = {}
-      const properties = ['name', 'DBA', 'DOT', 'address', 'phone', 'email', 'milesTraveled', 'powerUnits', 'drivers', 'carrierOperations']
+    //   const properties = ['name', 'DBA', 'DOT', 'address', 'phone', 'email', 'milesTraveled', 'powerUnits', 'drivers', 'carrierOperations']
       await axios.get(URL.replace('DOT', number))
           .then(response => {
               html = response.data,
@@ -92,7 +92,6 @@ async function fmcsaSearch(number) {
 const searchDOT = async (req, res) => {
     // const result = await sqlSearch(req.body.dot);   
     const result = await fmcsaSearch(req.body.dot);
-    console.log(result);
     return res.json({ result });
 };
 

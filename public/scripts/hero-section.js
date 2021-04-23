@@ -249,11 +249,11 @@ async function searchDOT(e) {
                 document.getElementById('slide5Email').value = client.result['email'] ?? '';
                 document.getElementById('address').value = client.result['address'] ?? '';
                 // document.getElementById('carrierOperation').value = client.result['carrierOperation'] ?? '';
-                document.getElementById('milesTraveled').innerText = client.result['milesTraveled'] ?? '';
+                document.getElementById('milesTraveled').value = client.result['milesTraveled'] ?? '';
                 // document.getElementById('mailingAddress').value = client.result['Mailing Address'];
                 document.getElementById('phone').value = client.result['phone'] ?? '';
-                document.getElementById('powerUnits').innerText = client.result['powerUnits'] ?? '';
-                document.getElementById('drivers').innerText = client.result['drivers'] ?? '';
+                document.getElementById('powerUnits').value = client.result['powerUnits'] ?? '';
+                document.getElementById('drivers').value = client.result['drivers'] ?? '';
                 document.getElementById('empNumber0').value = client.result['drivers'] ?? 0;
                 // for (let i =0; i<client.result.opClass.length; i++) {
                 //     result.opClass[i]
