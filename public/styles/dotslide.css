@@ -118,6 +118,7 @@ h3 {
 }
 
 .dot-check {
+  display: none;
   margin-right: 20px;
   margin-left: 20px;
   -webkit-align-self: center;

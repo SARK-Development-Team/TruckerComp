@@ -220,16 +220,20 @@ async function searchDOT(e) {
             // if (Object.keys(client.result).length < 3) {
             if (!client.result.name) {
                 loadIcon.style.display = "none";
+                document.getElementById('DOT-check-icon').style.display="none";
+                document.getElementById('DOT-wrong-icon').style.display="block";
                 document.getElementById('result-header').innerHTML= failureHeader;
-                document.getElementById('DOT-failure-header').innerText = dot['dot']
+                document.getElementById('DOT-failure-header').innerText = dot['dot'];
                 document.getElementById('searchResult').classList.remove("expandable-collapsed");
                 console.log("failure client: ", client.result)
                 // If a client is found
             } else {
                 console.log("success client: ", client.result)
                 loadIcon.style.display = "none";
+                document.getElementById('DOT-check-icon').style.display="block";
+                document.getElementById('DOT-wrong-icon').style.display="none";
                 document.getElementById('result-header').innerHTML= successHeader;
-                document.getElementById('DOT-success-header').innerText = dot['dot']
+                document.getElementById('DOT-success-header').innerText = dot['dot'];
                 document.getElementById('searchResult').classList.remove("expandable-collapsed");
 
                 // document.getElementById('searchResult').style.display="block";

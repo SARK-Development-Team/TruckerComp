@@ -137,8 +137,7 @@ Hero Slide
     min-height: 650px;
     font-family: Lato, sans-serif;
     transition: transform .5s ease;
-    /* position: absolute; */
-    /* z-index: 5; */
+    width: 100%;
 }
 
 #slide1 {
