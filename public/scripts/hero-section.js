@@ -197,9 +197,9 @@ document.querySelector(".digits").addEventListener("input", (e) => {
     }
 });
 
-const successHeader = `<p><i class="fas fa-check-circle" style="color: green"></i><span>Found record for DOT </span><span id="DOT-success-header"></span></p>`
+const successHeader = `<p><span>Found record for DOT </span><span id="DOT-success-header"></span></p>`
 const failureHeader = `
-    <p><i class="fas fa-times-circle" style="color: red"></i><span>No record found for DOT </span><span id="DOT-failure-header"></span></p>
+    <p><span>No record found for DOT </span><span id="DOT-failure-header"></span></p>
     <p>Please enter the information below</p>
 `
 
@@ -220,27 +220,36 @@ async function searchDOT(e) {
             // if (Object.keys(client.result).length < 3) {
             if (!client.result.name) {
                 loadIcon.style.display = "none";
+                document.getElementById('DOT-check-icon').style.display="none";
+                document.getElementById('DOT-wrong-icon').style.display="block";
                 document.getElementById('result-header').innerHTML= failureHeader;
-                document.getElementById('DOT-failure-header').innerText = dot['dot']
+                document.getElementById('DOT-failure-header').innerText = dot['dot'];
                 document.getElementById('searchResult').classList.remove("expandable-collapsed");
                 console.log("failure client: ", client.result)
                 // If a client is found
             } else {
                 console.log("success client: ", client.result)
                 loadIcon.style.display = "none";
+                document.getElementById('DOT-check-icon').style.display="block";
+                document.getElementById('DOT-wrong-icon').style.display="none";
                 document.getElementById('result-header').innerHTML= successHeader;
-                document.getElementById('DOT-success-header').innerText = dot['dot']
+                document.getElementById('DOT-success-header').innerText = dot['dot'];
                 document.getElementById('searchResult').classList.remove("expandable-collapsed");
 
                 // document.getElementById('searchResult').style.display="block";
-                document.getElementById("hero").style.minHeight="1000px";
+                // document.getElementById("hero").style.minHeight="1000px";
                 if (client.result['address']) { 
                     const zipCodePattern = /\d{5}/;
                     formData.zipCode = client.result['address'].match(zipCodePattern)[0];
                 }
                 // document.getElementById('DOTError').style.visibility="hidden";
                 if (client.result['DBA']) {
-                    document.getElementById('DBA').innerText = "DBA: "+ client.result['DBA'];
+                    document.getElementById('DBA').innerText = "DBA";
+                    document.getElementById('DBAfield').value = client.result['DBA'];
+                    document.getElementById('DBAfield').style.visibility = "visible";
+                } else {
+                    document.getElementById('DBA').innerText = "";
+                    document.getElementById('DBAfield').style.visibility = "hidden";
                 }
                 document.getElementById('DOT').innerText = client.result['DOT'] ?? '';
                 document.getElementById('companyName').innerText = client.result['name'] ?? '' ;
@@ -254,11 +263,25 @@ async function searchDOT(e) {
                 document.getElementById('phone').value = client.result['phone'] ?? '';
                 document.getElementById('powerUnits').value = client.result['powerUnits'] ?? '';
                 document.getElementById('drivers').value = client.result['drivers'] ?? '';
-                document.getElementById('empNumber0').value = client.result['drivers'] ?? 0;
-                // for (let i =0; i<client.result.opClass.length; i++) {
-                //     result.opClass[i]
-                //     document.getElementById('carrierOperation').value=
-                // }
+                // document.getElementById('empNumber0').value = client.result['drivers'] ?? 0;
+                const operationTypeChoices = document.querySelectorAll('.drop-options')[0].childNodes[0].childNodes;
+                const cargoCarriedChoices = document.querySelectorAll('.drop-options')[1].childNodes[0].childNodes;
+                const opClasses = client.result.opClass;
+                const cargo = client.result.cargo;
+                for (const el of opClasses) {
+                    for (const a of operationTypeChoices) {
+                        if (a.textContent.toUpperCase()==el) {
+                            myDrop.addOption(event, a)
+                        }
+                    }
+                }                 
+                for (const el of cargo) {
+                    for (const a of cargoCarriedChoices) {
+                        if (a.textContent.toUpperCase()==el) {
+                            secondDrop.addOption(event, a)
+                        }
+                    }
+                }                 
             }
         } catch (err) {
             console.log(err);
@@ -284,31 +307,31 @@ let formlines = document.getElementsByClassName('formline');
 
 
 
-function addPayrollUpdate() {
-    formData.totalPayroll = 0;
-    var payrollValue =0;
-    for (let i =0; i<formlines.length; i++) {
-        document.getElementById(`empTotal${i}`).addEventListener("change", (e) => {
-            document.getElementById(`empPayroll${i}`).value =  parseInt(e.target.value)/ parseInt(document.getElementById(`empNumber${i}`).value);            
-        });
-        payrollValue+=parseInt(document.getElementById(`empTotal${i}`).value);
-    }
-    formData.totalPayroll=payrollValue;
-    document.getElementById('totalPayroll').innerText = formData.totalPayroll
-}
+// function addPayrollUpdate() {
+//     formData.totalPayroll = 0;
+//     var payrollValue =0;
+//     for (let i =0; i<formlines.length; i++) {
+//         document.getElementById(`empTotal${i}`).addEventListener("change", (e) => {
+//             document.getElementById(`empPayroll${i}`).value =  parseInt(e.target.value)/ parseInt(document.getElementById(`empNumber${i}`).value);            
+//         });
+//         payrollValue+=parseInt(document.getElementById(`empTotal${i}`).value);
+//     }
+//     formData.totalPayroll=payrollValue;
+//     document.getElementById('totalPayroll').innerText = formData.totalPayroll
+// }
 
-function addTotalUpdate() {
-    formData.totalPayroll = 0;
-    var payrollValue =0;
-    for (let i =0; i<formlines.length; i++) {
-        document.getElementById(`empPayroll${i}`).addEventListener("change", (e) => {  
-            document.getElementById(`empTotal${i}`).value =  parseInt(e.target.value) * parseInt(document.getElementById(`empNumber${i}`).value);            
-        });
-        payrollValue+=parseInt(document.getElementById(`empTotal${i}`).value);
-    }
-    formData.totalPayroll=payrollValue;
-    document.getElementById('totalPayroll').innerText = formData.totalPayroll
-}
+// function addTotalUpdate() {
+//     formData.totalPayroll = 0;
+//     var payrollValue =0;
+//     for (let i =0; i<formlines.length; i++) {
+//         document.getElementById(`empPayroll${i}`).addEventListener("change", (e) => {  
+//             document.getElementById(`empTotal${i}`).value =  parseInt(e.target.value) * parseInt(document.getElementById(`empNumber${i}`).value);            
+//         });
+//         payrollValue+=parseInt(document.getElementById(`empTotal${i}`).value);
+//     }
+//     formData.totalPayroll=payrollValue;
+//     document.getElementById('totalPayroll').innerText = formData.totalPayroll
+// }
 
 // This sends the data to the backend and returns with a number for the quote
 function fetchResult(data) {
@@ -338,36 +361,25 @@ function saveEmployeeData() {
 }
 
 const newRow = document.getElementById('newRow');
+var payrollLines = 2;
 
 // This function adds another row to the employee info table when the plus icon is pressed
 function addRow(e) {
     e.preventDefault()
-    const formlines = document.getElementsByClassName('formline').length;
-    const line = `                                
-    <p class="formline">
-        <select class="empType" id="empType${formlines}">
-            <option value="" disabled selected>Employee Type</option>
-            <option value="Driver">Driver</option>
-            <option value="Maintenance">Maintenance</option>
-            <option value="Accounting">Accounting</option>
-            <option value="Custodial">Custodial</option>
-            <option value="Clerical">Clerical</option>
-            <option value="Other">Other</option>
-        </select>
-        <input class="empNumber" name="empNumber${formlines}" type="number" min="1" id="empNumber${formlines}" value=1>
-        <input class="empPayroll" name="empPayroll${formlines}" type="number" min="1" id="empPayroll${formlines}" value=50000>
-        <span>|</span>
-        <input class="empTotal" name="empTotal${formlines}" type="number" min="1" id="empTotal${formlines}" value=50000>
-
-    </p>
-
+    // const formlines = document.getElementsByClassName('formline').length+1;
+    const line = `
+        <img src="public/images/wrong.svg" loading="lazy" id="removeHeader"
+        alt="" class="remove-type row${payrollLines}" colRemove">
+        <h4 class="table-field row${payrollLines}" colType">Driver</h4>
+        <h4 class="table-field row${payrollLines}" colAmount">1</h4>
+        <h4 class="table-field row${payrollLines}" colSalary">$50,000</h4>
     `
 
-    let lineElement = document.createElement('div');
-    lineElement.innerHTML=line;
-    document.getElementById("employeeInfoTable").appendChild(lineElement);
-    addPayrollUpdate();
-    addTotalUpdate();
+    document.getElementById("payroll-columns").insertAdjacentHTML('beforeend', line);
+    // .appendChild(html.documentElement);
+    payrollLines++;
+    // addPayrollUpdate();
+    // addTotalUpdate();
 }
 
 // ---- Slide 5 ---- //
@@ -475,5 +487,5 @@ async function requestQuoteSlide(data) {
 
 // On page load //
 
-addPayrollUpdate();
-addTotalUpdate();
+// addPayrollUpdate();
+// addTotalUpdate();

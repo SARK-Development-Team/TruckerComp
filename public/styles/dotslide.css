@@ -14,6 +14,39 @@ h3 {
   margin-bottom: 40px;
 }
 
+
+
+.expandable {
+  transition: all .5s ease-out;
+  overflow: hidden;
+  max-height: 700px;
+}
+
+.expandable-collapsed {
+  max-height: 0!important;
+}
+
+.digits {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.digits input {
+  font-size: 2rem;
+  width: 1.8rem;
+  text-align: center;
+  margin: 3vw .3vw;
+  background: white;
+  border: none;
+  border-bottom: 1px solid #585858;
+}
+
+.digits input:focus {
+  border: 2px solid var(--dark);
+  outline: none;
+}
+
 .progress-block.fullscreen {
   margin-top: 0px;
   margin-right: 0px;
@@ -118,6 +151,7 @@ h3 {
 }
 
 .dot-check {
+  display: none;
   margin-right: 20px;
   margin-left: 20px;
   -webkit-align-self: center;
@@ -172,7 +206,7 @@ h3 {
 }
 
 .dba {
-  margin-left: 10px;
+  margin: 0 10px;
   color: #36579a;
   font-weight: 400;
 }
@@ -310,6 +344,10 @@ h3 {
   border-bottom-right-radius: 5px;
 }
 
+#DBAfield {
+  visibility: hidden;
+}
+
 @media screen and (max-width: 991px) {
   .progress-block.fullscreen {
     padding-right: 5vw;
@@ -317,6 +355,9 @@ h3 {
   }
   .truck-info {
     min-height: 0px;
+  }
+  .expandable {
+    max-height: 960px;
   }
 }
 

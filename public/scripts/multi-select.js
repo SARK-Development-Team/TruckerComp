@@ -33,7 +33,7 @@ var $ = {
        this.html.parent = $.get(info.selector)[0].parentNode
        this.html.drop = $.template('<div class="drop"></div>')
        this.html.dropDisplay = $.template('<div class="drop-display">Display</div>')
-       this.html.dropOptions = $.template('<div class="drop-options">Options</div>')
+       this.html.dropOptions = $.template(`<div class="drop-options">Options</div>`)
        this.html.dropScreen = $.template('<div class="drop-screen"></div>')
        
        this.html.parent.insertBefore(this.html.drop, this.html.select)
@@ -57,10 +57,6 @@ var $ = {
     },
     addOption: function(e, element){ 
        var index = Number(element.dataset.index);
-       console.log(e.target);
-       console.log("added ", element);
-       console.log(typeof element);
-
        this.clearStates()
        this.selected.push({
           index: Number(index),
@@ -198,3 +194,7 @@ var $ = {
  });
 
 //   myDrop.toggle();
+
+// module.exports = { 
+//     addOption
+// }
