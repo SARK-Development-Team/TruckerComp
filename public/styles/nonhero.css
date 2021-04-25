@@ -1,0 +1,296 @@
+.spoiler {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #1c2243;
+    font-family: Lato, sans-serif;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+}
+
+.partners {
+    display: block;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    grid-auto-columns: 1fr;
+    -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    -ms-grid-rows: auto auto;
+    grid-template-rows: auto auto;
+    background-color: rgba(194, 222, 255, 0.31);
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
+.partners-layout {
+    display: -ms-grid;
+    display: grid;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 5px 15px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    justify-items: stretch;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    -webkit-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    grid-auto-columns: 1fr;
+    grid-column-gap: 16px;
+    grid-row-gap: 9px;
+    -ms-grid-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    -ms-grid-rows: auto auto;
+    grid-template-rows: auto auto;
+    background-color: transparent;
+}
+
+.partner {
+    overflow: visible;
+    max-height: 60px;
+    max-width: 200px;
+    margin-right: 10px;
+    margin-left: 10px;
+    text-align: left;
+    -o-object-fit: scale-down;
+    object-fit: scale-down;
+}
+
+.bigger-container {
+    margin-right: 5vw;
+    margin-left: 5vw;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #fff;
+}
+
+.title {
+    margin-top: 0px;
+    font-family: Lato, sans-serif;
+    color: #1c2243;
+    font-weight: 700;
+    text-align: left;
+}
+
+.title.center {
+    margin-top: 60px;
+    margin-bottom: 0px;
+    color: #3793ff;
+    text-align: center;
+}
+
+.title.main {
+    margin-top: 31px;
+    margin-bottom: 31px;
+    text-align: center;
+}
+
+.subtitle {
+    color: rgba(28, 34, 67, 0.8);
+    text-align: left;
+}
+
+.subtitle.spanned {
+    display: inline-block;
+    width: 75%;
+    margin: 10px 0px;
+    font-size: 22px;
+    line-height: 125%;
+    text-align: center;
+}
+
+.triple-image-caption-container {
+    display: -ms-grid;
+    display: grid;
+    max-width: 800px;
+    margin-right: auto;
+    margin-left: auto;
+    grid-auto-columns: 1fr;
+    grid-column-gap: 40px;
+    grid-row-gap: 40px;
+    -ms-grid-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    -ms-grid-rows: auto;
+    grid-template-rows: auto;
+    text-align: left;
+}
+
+.triple-image-mask {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 100%;
+    border-radius: 0%;
+}
+
+.triple-caption-image {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    padding: 40px 30px 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    -o-object-fit: fill;
+    object-fit: fill;
+    -o-object-position: 50% 50%;
+    object-position: 50% 50%;
+}
+
+.caption {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: Lato, sans-serif;
+    color: #1c2243;
+    line-height: 125%;
+    font-weight: 400;
+    text-align: center;
+}
+
+.centered-container {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    padding: 20px 2vw;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    border-radius: 0px;
+    background-color: rgba(194, 222, 255, 0.15);
+    text-align: center;
+  }
+
+  .qa-block {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  .body-text {
+    width: 90%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 25px;
+    font-family: Lato, sans-serif;
+    text-align: left;
+  }
+
+  .call-to-action {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .get-phone {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-family: Lato, sans-serif;
+    color: #3793ff;
+    font-weight: 700;
+  }
+
+  .get-phone.subtitle {
+    color: rgba(28, 34, 67, 0.8);
+    text-align: center;
+  }
+
+  .button {
+    padding: 10px 41px;
+    border-radius: 10px;
+    background-color: #3793ff;
+    font-family: Lato, sans-serif;
+    font-size: 24px;
+    line-height: 125%;
+    font-weight: 700;
+  }
+
+  .form-container {
+    padding-right: 5vw;
+    padding-left: 5vw;
+  }
+
+  .contact-form-grid {
+    display: -ms-grid;
+    display: grid;
+    margin-top: 10px;
+    grid-auto-columns: 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 4px;
+    -ms-grid-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    -ms-grid-rows: auto;
+    grid-template-rows: auto;
+  }
+
+@media screen and (max-width: 991px) {
+    .partner {
+        max-width: 180px;
+    }
+    .triple-image-caption-container {
+        grid-column-gap: 20px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .partners-layout {
+        justify-items: center;
+        -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        -ms-grid-rows: auto auto auto auto;
+        grid-template-rows: auto auto auto auto;
+    }
+    .partner {
+        max-width: 150px;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+    .triple-image-caption-container {
+        max-width: 65%;
+        min-width: 50%;
+        -ms-grid-row-align: stretch;
+        align-self: stretch;
+        -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+        -ms-grid-rows: auto;
+        grid-template-rows: auto;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .partner {
+        max-width: 100px;
+    }
+    .triple-image-caption-container {
+        width: 75%;
+        margin-right: auto;
+        margin-left: auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        justify-items: stretch;
+        -webkit-box-align: stretch;
+        -webkit-align-items: stretch;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+        -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    }
+
+    .centered-container {
+        text-align: left;
+      }
+}
