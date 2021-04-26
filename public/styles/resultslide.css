@@ -1,6 +1,7 @@
 
-.submit {
-    
+.disabled {
+    background: #1c2243;
+    cursor: none;
 }
 
 #action-area {

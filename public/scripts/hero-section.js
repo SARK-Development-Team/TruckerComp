@@ -475,16 +475,13 @@ email.addEventListener('keyup', () => {
         formData.email = input;
         // setCookie('clientData', JSON.stringify(formData));
         emailError.style.visibility = 'hidden';
-        submit.style.background='#EF8354';
-        submit.style.cursor='pointer';
+        submit.classList.remove('disabled');
         submit.onclick=function() {
             // this function sends the email
             sendQuote(formData);
         };
     } else {
-        submit.style.background='#277EC3';
-        submit.href = '';
-        submit.style.cursor='unset';
+        submit.classList.add('disabled');
         emailError.style.visibility = 'visible';
     }
 });
