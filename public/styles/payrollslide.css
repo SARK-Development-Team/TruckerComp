@@ -19,7 +19,14 @@
     grid-template-rows: auto auto;
     border-radius: 10px;
     background-color: #fff;
-  }
+}
+
+.formline {
+    grid-row-start: 2;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    display: grid;
+}
 
 .payroll-columns {
     display: -ms-grid;
@@ -51,12 +58,11 @@
     font-size: 20px;
     line-height: 125%;
     text-align: center;
+    margin: 0 12px;
   }
 
   .form-button.payroll {
-    margin-top: 20px;
-    margin-right: 10vw;
-    margin-left: 10vw;
+    margin: 20px 20vw 0;
     padding-top: 0px;
     padding-right: 0vw;
     padding-left: 0vw;

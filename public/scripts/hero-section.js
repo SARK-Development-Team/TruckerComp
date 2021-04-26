@@ -257,13 +257,12 @@ async function searchDOT(e) {
                 document.getElementById('email').value = client.result['email'] ?? '';
                 document.getElementById('slide5Email').value = client.result['email'] ?? '';
                 document.getElementById('address').value = client.result['address'] ?? '';
-                // document.getElementById('carrierOperation').value = client.result['carrierOperation'] ?? '';
                 document.getElementById('milesTraveled').value = client.result['milesTraveled'] ?? '';
                 // document.getElementById('mailingAddress').value = client.result['Mailing Address'];
                 document.getElementById('phone').value = client.result['phone'] ?? '';
                 document.getElementById('powerUnits').value = client.result['powerUnits'] ?? '';
                 document.getElementById('drivers').value = client.result['drivers'] ?? '';
-                // document.getElementById('empNumber0').value = client.result['drivers'] ?? 0;
+                document.getElementById('empAmount0').value = client.result['drivers'] ?? 0;
                 const operationTypeChoices = document.querySelectorAll('.drop-options')[0].childNodes[0].childNodes;
                 const cargoCarriedChoices = document.querySelectorAll('.drop-options')[1].childNodes[0].childNodes;
                 const opClasses = client.result.opClass;
@@ -289,7 +288,21 @@ async function searchDOT(e) {
     }
 }
 
-// This function makes the API call to the server, searching for the DOT number in the sark_client DB and returning one client that matches that number 
+
+function saveClientData() {
+    // If an email address is given on the DOT slide, save it in the formData and add it to the input on slide 5
+    if (document.getElementById('email').value) {
+        formData.email = document.getElementById('email').value;
+        document.getElementById('slide5Email').value = formData.email;
+    } 
+    // If the input for Vehicle Miles Traveled is entered, save it to the formData
+    if (document.getElementById('milesTraveled').value) {
+        formData.mileage = document.getElementById('milesTraveled').value
+    }
+    changeSlide(1);
+}
+
+// This function makes the API call to the server, searching for the DOT number in the FMCSA website and returning one client that matches that number 
 async function fetchDOT(dotObject) {
     // const uri = uriRoot+'dot';
 
@@ -303,10 +316,21 @@ async function fetchDOT(dotObject) {
 
 // ---- Slide 4 ---- //
 
-let formlines = document.getElementsByClassName('formline');
 
 
+function savePayrollData() {
 
+    try {
+
+        if (formData.totalPayroll) {
+            fillInfo(formData);
+            requestQuoteSlide(formData)
+            changeSlide(1);
+        }
+    } catch(err) {
+        console.log(err);
+    }
+}
 // function addPayrollUpdate() {
 //     formData.totalPayroll = 0;
 //     var payrollValue =0;
@@ -346,38 +370,31 @@ function fetchResult(data) {
     return number;
 }
 
-function saveEmployeeData() {
 
-    try {
-
-        if (formData.totalPayroll) {
-            fillInfo(formData);
-            requestQuoteSlide(formData)
-            changeSlide(1);
-        }
-    } catch(err) {
-        console.log(err);
-    }
-}
-
-const newRow = document.getElementById('newRow');
-var payrollLines = 2;
-
-// This function adds another row to the employee info table when the plus icon is pressed
+// This function adds another row to the employee info table only when the most recent line is completely filled in
 function addRow(e) {
     e.preventDefault()
-    // const formlines = document.getElementsByClassName('formline').length+1;
-    const line = `
-        <img src="public/images/wrong.svg" loading="lazy" id="removeHeader"
-        alt="" class="remove-type row${payrollLines}" colRemove">
-        <h4 class="table-field row${payrollLines}" colType">Driver</h4>
-        <h4 class="table-field row${payrollLines}" colAmount">1</h4>
-        <h4 class="table-field row${payrollLines}" colSalary">$50,000</h4>
-    `
+    const payrollLines = document.getElementsByClassName('remove-type').length;
+    const lastLine = Array.from(document.getElementsByClassName(`table-field row${payrollLines}`));
+    if (lastLine.every((e) => e.value)) {
+        const line = `
+            <img src="public/images/wrong.svg" loading="lazy" id="removeHeader"
+            alt="" class="remove-type row${payrollLines+1}" colRemove">
+            <select class="table-field row${payrollLines+1} colType" id="empTyperow${payrollLines+1}">
+                <option value="" disabled >Employee Type</option>
+                <option value="Driver" >Driver</option>
+                <option value="Maintenance">Maintenance</option>
+                <option value="Accounting">Accounting</option>
+                <option value="Custodial">Custodial</option>
+                <option value="Clerical">Clerical</option>
+                <option value="Other">Other</option>
+            </select>
+            <input class="table-field row${payrollLines+1}" colAmount"></input>
+            <input class="table-field row${payrollLines+1}" colSalary"></input>
+        `
 
-    document.getElementById("payroll-columns").insertAdjacentHTML('beforeend', line);
-    // .appendChild(html.documentElement);
-    payrollLines++;
+        document.getElementById("payroll-columns").insertAdjacentHTML('beforeend', line);
+    }
     // addPayrollUpdate();
     // addTotalUpdate();
 }

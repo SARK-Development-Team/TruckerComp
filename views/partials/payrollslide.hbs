@@ -26,9 +26,18 @@
                 <h3 id="salaryHeader" class="table-header">Salary</h3>
                 <img src="public/images/wrong.svg" loading="lazy" id="removeHeader"
                     alt="" class="remove-type row1 colRemove">
-                <h4 class="table-field row1 colType">Driver</h4>
-                <h4 class="table-field row1 colAmount">1</h4>
-                <h4 class="table-field row1 colSalary">$50,000</h4>
+                <select class="table-field row1 colType" id="empType0">
+                    <option value="" disabled >Employee Type</option>
+                    <option value="Driver" selected>Driver</option>
+                    <option value="Maintenance">Maintenance</option>
+                    <option value="Accounting">Accounting</option>
+                    <option value="Custodial">Custodial</option>
+                    <option value="Clerical">Clerical</option>
+                    <option value="Other">Other</option>
+                </select>
+                {{!-- <input class="table-field row1 colType"></input> --}}
+                <input class="table-field row1 colAmount" id="empAmount0"></input>
+                <input class="table-field row1 colSalary"></input>
 
             </div>
             <div class="line"></div>
@@ -38,9 +47,12 @@
                 </div>
 
         </div>
-        <div id="addRow" class="form-button payroll row2 w-inline-block" onclick="addRow(event)">
+        <div id="addRow" class="form-button payroll w-inline-block" onclick="addRow(event)">
             <h4 class="form-button-text payroll">Add Type</h4>
         </div>
         <h2 class="total-payroll">Total Payroll<br><span class="total-payroll-gray">$250,000</span><br></h2>
+        <div onclick="savePayrollData()" class="form-button big w-inline-block">
+            <h3 class="form-button-text">Continue ></h3>
+        </div>
     </div>
 </div>
