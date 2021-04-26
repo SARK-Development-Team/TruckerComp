@@ -1,0 +1,41 @@
+#action-area {
+    background: white;
+    padding: 24px 48px;
+    font-size: 24px;
+}
+
+#confirmation {
+    line-height: 1;
+    text-align: left;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+    font-size: 20px;
+}
+
+#quote-area {
+    background: white;
+    padding: 24px;
+    font-size: 20px;
+}
+
+#result-area {
+    background: white;
+    padding: 24px;
+}
+
+
+#slide5Email {
+    width: 100%;
+    font-weight: 400;
+    text-align: center;
+}
+
+#slide5Name {
+    text-align: left;
+}
+
+#submit {
+    margin: 0;
+    border-radius: 0;
+}

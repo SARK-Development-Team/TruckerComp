@@ -395,8 +395,8 @@ function addRow(e) {
                 <option value="Clerical">Clerical</option>
                 <option value="Other">Other</option>
             </select>
-            <input class="table-field row${payrollLines+1} colAmount" id="empAmount${payrollLines+1}" value=0></input>
-            <input class="table-field row${payrollLines+1} colSalary" id="empSalary${payrollLines+1}" value=0></input>
+            <input type="number" class="table-field row${payrollLines+1} colAmount" id="empAmount${payrollLines+1}" value=0></input>
+            <input type="number" class="table-field row${payrollLines+1} colSalary" id="empSalary${payrollLines+1}" value=0></input>
         `
         const totalBox = `
             <input type="number" class="table-field total" id="empTotal${payrollLines+1}" value=0></input>

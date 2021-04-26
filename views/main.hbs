@@ -13,67 +13,10 @@
     <section id="hero">
         {{>heroslide}}
         
-          <section class="form-section">
+        <section class="form-section">
             {{>dotslide}}
             {{>payrollslide}}
-            <div class="slide" id="slide5">
-                <div id="slide5Left">
-                    <div class="slide-nav">
-                        <div class="back-icon" onclick="changeSlide(-1)">
-                            <img src="../public/images/darkarrow.svg">
-                        </div>
-
-                        <div class="icon-area">
-                            <div class="icons">
-                                <img src="../public/images/darkfullcircle.svg">
-                                <img src="../public/images/darkfullcircle.svg">
-                                <img src="../public/images/darkfullcircle.svg">
-                                <img src="../public/images/darkfullcircle.svg">
-                                <img src="../public/images/darkemptycircle.svg">
-                            </div>
-                        </div>
-                        {{!-- <div class="next-icon" id="next5">
-                            <i class="fas fa-arrow-right "></i>
-                        </div> --}}
-                    <div class="btn btn-reset" onclick="initializeForm()">Reset</div>
-                    </div>
-                    <div style="background: white; padding: 1vw">
-                        <h4 id="slide5Name"></h4>
-
-                        <div id="confirmation">
-
-                            <p class="accentText">DOT</p>
-                            <p id="q0"></p>
-                            <p class="accentText">Business Type</p>
-                            <p id="q1"></p>
-                            <p class="accentText">Mileage</p>
-                            <p id="q2"></p>
-                            <p class="accentText">Zip Code</p>
-                            <p id="q3"></p>
-                            <p class="accentText">Total Payroll</p>
-                            <p id="q4"></p>
-                        </div>
-                    </div>
-                </div>
-                <div id="slide5Right">
-                    <div class="quote-header">
-                        <h5>Based on the information you gave us</h5>
-                    </div>
-                    <div class="quote-body">
-                        <div id="quote-result">
-                            <h5>we estimate a monthly worker's comp premium of</h5>
-                            <h5>$<span id="low-end"></span> &mdash; $<span id="high-end"></span>/month</h5>
-                        </div>
-
-                    </div>
-
-                    <h4>Enter your email address to purchase your policy!  <input type="slide5Email" name="slide5Email" id="slide5Email"></h4>
-                    <p id='emailError' class="error">Please enter a valid email address</p>
-
-                    <div class="btn-submit" id="submit" >Purchase policy</div>
-                </div>
-            </div>
+            {{>resultslide}}
         </section>
-
     </section>
     {{>nonhero}}

@@ -1,0 +1,50 @@
+<div class="form-page" id="slide5">
+    {{!-- Progress bar component. Finalizes reset and additions. --}}
+    <div class="progress-bar">
+        <div onclick="changeSlide(-1)">
+            <img src="/public/images/darkarrow.svg" loading="lazy" width="33" alt="" class="arrow">
+        </div>
+        <div class="progress-block fullscreen">
+            <img src="/public/images/darkfullcircle.svg" loading="lazy" alt="">
+            <img src="/public/images/darkfullcircle.svg" loading="lazy" alt="">
+            <img src="/public/images/darkfullcircle.svg" loading="lazy" alt="">
+            <img src="/public/images/darkfullcircle.svg" loading="lazy" alt="">
+            <img src="/public/images/darkemptycircle.svg" loading="lazy" alt="">
+        </div>
+        <div onclick="initializeForm()" class="form-button reset w-inline-block">
+            <h3 class="form-button-text reset">Reset</h3>
+        </div>
+    </div>
+    <div id="result-area">
+        <h4 id="slide5Name"></h4>
+
+        <div id="confirmation">
+
+            <p class="accentText">DOT</p>
+            <p id="q0"></p>
+            <p class="accentText">Business Type</p>
+            <p id="q1"></p>
+            <p class="accentText">Mileage</p>
+            <p id="q2"></p>
+            <p class="accentText">Zip Code</p>
+            <p id="q3"></p>
+            <p class="accentText">Total Payroll</p>
+            <p id="q4"></p>
+        </div>
+    </div>
+
+    <div id="quote-area">
+        <h5>Based on the information you gave us</h5>
+        <div id="quote-result">
+            <h5>we estimate a monthly worker's comp premium of</h5>
+            <h5>$<span id="low-end"></span> &mdash; $<span id="high-end"></span>/month</h5>
+        </div>
+
+    </div>
+    <div id="action-area">
+        <h4>Enter your email address to purchase your policy!  <input type="slide5Email" name="slide5Email" id="slide5Email"></h4>
+        <p id='emailError' class="error">Please enter a valid email address</p>
+
+        <div class="btn-submit" id="submit" >Purchase policy</div>
+    </div>
+</div>
