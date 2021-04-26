@@ -89,6 +89,11 @@
     flex: 0 auto;
   }
 
+  .total {
+    margin-top: 4px;
+    width: 6em;
+  }
+
   .total-payroll {
     margin-top: 0px;
     color: #1c2243;

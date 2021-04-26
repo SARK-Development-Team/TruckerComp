@@ -26,7 +26,7 @@
                 <h3 id="salaryHeader" class="table-header">Salary</h3>
                 <img src="public/images/wrong.svg" loading="lazy" id="removeHeader"
                     alt="" class="remove-type row1 colRemove">
-                <select class="table-field row1 colType" id="empType0">
+                <select class="table-field row1 colType" id="empType1">
                     <option value="" disabled >Employee Type</option>
                     <option value="Driver" selected>Driver</option>
                     <option value="Maintenance">Maintenance</option>
@@ -36,21 +36,21 @@
                     <option value="Other">Other</option>
                 </select>
                 {{!-- <input class="table-field row1 colType"></input> --}}
-                <input class="table-field row1 colAmount" id="empAmount0"></input>
-                <input class="table-field row1 colSalary"></input>
+                <input type="number" class="table-field row1 colAmount" id="empAmount1" value=0></input>
+                <input type="number" class="table-field row1 colSalary" id="empSalary1" value=0></input>
 
             </div>
             <div class="line"></div>
-                <div class="payroll-total-column">
+                <div class="payroll-total-column" id="total-column">
                     <h3 class="table-header">Total</h3>
-                    <h4 class="table-field">$50,000</h4>
+                    <input type="number" class="table-field total" id="empTotal1" value=0></input>
                 </div>
 
         </div>
         <div id="addRow" class="form-button payroll w-inline-block" onclick="addRow(event)">
             <h4 class="form-button-text payroll">Add Type</h4>
         </div>
-        <h2 class="total-payroll">Total Payroll<br><span class="total-payroll-gray">$250,000</span><br></h2>
+        <h2 class="total-payroll">Total Payroll<br>$<span class="total-payroll-gray" id="total-payroll"></span><br></h2>
         <div onclick="savePayrollData()" class="form-button big w-inline-block">
             <h3 class="form-button-text">Continue ></h3>
         </div>
