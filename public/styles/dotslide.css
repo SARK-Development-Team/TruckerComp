@@ -6,24 +6,17 @@ h3 {
   font-weight: 500;
 }
 
+.basic-info {
+  padding-top: 15px;
+  padding-right: 20px;
+}
+
 .center {
   display: block;
   margin-left: auto;
   margin-right: auto;
   margin-top: 40px;
   margin-bottom: 40px;
-}
-
-
-
-.expandable {
-  transition: all .5s ease-out;
-  overflow: hidden;
-  max-height: 700px;
-}
-
-.expandable-collapsed {
-  max-height: 0!important;
 }
 
 .digits {
@@ -47,20 +40,43 @@ h3 {
   outline: none;
 }
 
-.progress-block.fullscreen {
-  margin-top: 0px;
-  margin-right: 0px;
-  margin-left: 0px;
-  padding-right: 14vw;
-  padding-left: 14vw;
-  -webkit-box-pack: stretch;
-  -webkit-justify-content: stretch;
-  -ms-flex-pack: stretch;
-  justify-content: stretch;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
+.dot-block {
+  margin: 20px 8vw;
+}
+
+.dot-query {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 30px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  border-radius: 10px 10px 0px 0px;
+  background-color: #fff;
+}
+
+.dot-check {
+  display: none;
+  margin-right: 20px;
+  /* margin-left: 20px; */
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  align-self: center;
+}
+
+.expandable {
+  transition: all .5s ease-out;
+  overflow: hidden;
+  max-height: 700px;
+}
+
+.expandable-collapsed {
+  max-height: 0!important;
 }
 
 .form-button.reset {
@@ -78,6 +94,22 @@ h3 {
 
 .form-button.reset:hover {
   background-color: #1c2243;
+}
+
+.progress-block.fullscreen {
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+  padding-right: 14vw;
+  padding-left: 14vw;
+  -webkit-box-pack: stretch;
+  -webkit-justify-content: stretch;
+  -ms-flex-pack: stretch;
+  justify-content: stretch;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .query-heading {
@@ -124,40 +156,6 @@ h3 {
   margin-top: 0px;
   margin-right: 2vw;
   margin-left: 2vw;
-}
-
-.basic-info {
-  padding-top: 15px;
-  padding-right: 20px;
-}
-
-.dot-block {
-  margin: 20px 8vw;
-}
-
-.dot-query {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  margin-top: 30px;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  border-radius: 10px 10px 0px 0px;
-  background-color: #fff;
-}
-
-.dot-check {
-  display: none;
-  margin-right: 20px;
-  margin-left: 20px;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  -ms-grid-row-align: center;
-  align-self: center;
 }
 
 .company-heading {

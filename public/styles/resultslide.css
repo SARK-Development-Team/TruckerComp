@@ -1,3 +1,8 @@
+
+.submit {
+    
+}
+
 #action-area {
     background: white;
     padding: 24px 48px;
@@ -33,9 +38,4 @@
 
 #slide5Name {
     text-align: left;
-}
-
-#submit {
-    margin: 0;
-    border-radius: 0;
 }
