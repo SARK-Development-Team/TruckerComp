@@ -317,6 +317,8 @@ async function fetchDOT(dotObject) {
 // ---- Slide 4 ---- //
 
 function savePayrollData() {
+    addPayrollUpdate();
+    addTotalUpdate();
     try {
         if (formData.totalPayroll) {
             fillInfo(formData);
@@ -332,13 +334,11 @@ function addPayrollUpdate() {
     formData.totalPayroll=0;
     var payrollValue=0;
     const payrollLines = document.getElementsByClassName('remove-type').length;
-    console.log("add Payroll, ", payrollLines)
     for (let i =0; i<payrollLines; i++) {
         document.getElementById(`empTotal${i+1}`).addEventListener("change", (e) => {
             document.getElementById(`empSalary${i+1}`).value =  parseInt(e.target.value)/ parseInt(document.getElementById(`empAmount${i+1}`).value);            
         });
         payrollValue+=parseInt(document.getElementById(`empTotal${i+1}`).value);
-        console.log("addPayroll ", payrollValue);
 
     }
     formData.totalPayroll=payrollValue;
@@ -349,7 +349,6 @@ function addTotalUpdate() {
     formData.totalPayroll=0;
     var payrollValue=0;
     const payrollLines = document.getElementsByClassName('remove-type').length;
-    console.log("add Total, ", payrollLines);
     for (let i =0; i<payrollLines; i++) {
         console.log("i is ", i)
         document.getElementById(`empSalary${i+1}`).addEventListener("change", (e) => {  
@@ -357,7 +356,6 @@ function addTotalUpdate() {
         });
 
         payrollValue+=parseInt(document.getElementById(`empTotal${i+1}`).value);
-        console.log("addTotal ", payrollValue);
     }
     formData.totalPayroll=payrollValue;
     document.getElementById('total-payroll').innerText = formData.totalPayroll
