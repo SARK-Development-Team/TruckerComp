@@ -13,10 +13,13 @@
 #confirmation {
     line-height: 1;
     text-align: left;
+    display: -ms-grid;
     display: grid;
     justify-content: center;
+    -ms-grid-columns: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
     font-size: 20px;
+    padding: 0 5vw;
 }
 
 #quote-area {
