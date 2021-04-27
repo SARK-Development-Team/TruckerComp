@@ -215,9 +215,9 @@ async function searchDOT(e) {
         try {
             loadIcon.style.display = "block";
             const client = await fetchDOT(dot);
+            document.getElementById('DOT').innerText = parseInt(document.getElementById('slide3DOT').value);
 
             // If a client is not found
-            // if (Object.keys(client.result).length < 3) {
             if (!client.result.name) {
                 loadIcon.style.display = "none";
                 document.getElementById('DOT-check-icon').style.display="none";
@@ -236,8 +236,6 @@ async function searchDOT(e) {
                 document.getElementById('DOT-success-header').innerText = dot['dot'];
                 document.getElementById('searchResult').classList.remove("expandable-collapsed");
 
-                // document.getElementById('searchResult').style.display="block";
-                // document.getElementById("hero").style.minHeight="1000px";
                 if (client.result['address']) { 
                     const zipCodePattern = /\d{5}/;
                     formData.zipCode = client.result['address'].match(zipCodePattern)[0];
@@ -251,7 +249,6 @@ async function searchDOT(e) {
                     document.getElementById('DBA').innerText = "";
                     document.getElementById('DBAfield').style.visibility = "hidden";
                 }
-                document.getElementById('DOT').innerText = client.result['DOT'] ?? '';
                 document.getElementById('companyName').innerText = client.result['name'] ?? '' ;
                 document.getElementById('slide5Name').innerText = client.result['name'] ?? '';
                 document.getElementById('email').value = client.result['email'] ?? '';
@@ -350,7 +347,6 @@ function addTotalUpdate() {
     var payrollValue=0;
     const payrollLines = document.getElementsByClassName('remove-type').length;
     for (let i =0; i<payrollLines; i++) {
-        console.log("i is ", i)
         document.getElementById(`empSalary${i+1}`).addEventListener("change", (e) => {  
             document.getElementById(`empTotal${i+1}`).value =  parseInt(e.target.value) * parseInt(document.getElementById(`empAmount${i+1}`).value);            
         });
@@ -418,7 +414,7 @@ function fillInfo(data) {
     const q3 = document.getElementById('q3');
     const q4 = document.getElementById('q4');
     
-    q0.innerText = document.getElementById('DOT').innerText;
+    q0.innerText = parseInt(document.getElementById('slide3DOT').value);
     switch (data.businessType) {
         case 1:
             q1.innerText='Long-Haul Trucking';

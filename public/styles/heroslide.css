@@ -306,6 +306,7 @@ Hero Slide
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
+    cursor: pointer;
   }
 
 @media screen and (max-width: 991px) {
