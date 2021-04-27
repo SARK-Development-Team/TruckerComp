@@ -170,7 +170,6 @@ function allowProgress(slideIndex) {
 
 for (let i=1; i<digits.length; i++) {
     digits[i].addEventListener('keydown', (e) => {
-        // document.getElementById('DOTError').style.visibility="hidden";
         if (e.key=="Backspace") {
             e.target.previousElementSibling.focus();
         }
@@ -225,10 +224,9 @@ async function searchDOT(e) {
                 document.getElementById('result-header').innerHTML= failureHeader;
                 document.getElementById('DOT-failure-header').innerText = dot['dot'];
                 document.getElementById('searchResult').classList.remove("expandable-collapsed");
-                console.log("failure client: ", client.result)
-                // If a client is found
+            // If a client is found
             } else {
-                console.log("success client: ", client.result)
+                console.log("success--> client: ", client.result)
                 loadIcon.style.display = "none";
                 document.getElementById('DOT-check-icon').style.display="block";
                 document.getElementById('DOT-wrong-icon').style.display="none";
@@ -240,7 +238,6 @@ async function searchDOT(e) {
                     const zipCodePattern = /\d{5}/;
                     formData.zipCode = client.result['address'].match(zipCodePattern)[0];
                 }
-                // document.getElementById('DOTError').style.visibility="hidden";
                 if (client.result['DBA']) {
                     document.getElementById('DBA').innerText = "DBA";
                     document.getElementById('DBAfield').value = client.result['DBA'];
@@ -267,14 +264,14 @@ async function searchDOT(e) {
                 for (const el of opClasses) {
                     for (const a of operationTypeChoices) {
                         if (a.textContent.toUpperCase()==el) {
-                            myDrop.addOption(event, a)
+                            opTypeDrop.addOption(event, a)
                         }
                     }
                 }                 
                 for (const el of cargo) {
                     for (const a of cargoCarriedChoices) {
                         if (a.textContent.toUpperCase()==el) {
-                            secondDrop.addOption(event, a)
+                            cargoDrop.addOption(event, a)
                         }
                     }
                 }                 

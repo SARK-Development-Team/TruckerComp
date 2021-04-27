@@ -127,18 +127,11 @@ var $ = {
     renderOptions: function(){  
        var that = this;
        var parentHTML = $.template('<div></div>')
-    //    var idType = that.html.select.name;
-    //    console.log(typeof idType)
-    //    console.log(idType)
-    //    console.log(this);
-    //    .replace("select#",""));
+
        this.options.forEach(function(option, index){
-        //    console.log(typeof idType);
           var childHTML = $.template(
              '<a data-index="'+index+'" class="'+option.state+'">'+ option.html +'</a>')
           childHTML.on('click', function(e){ 
-            //   console.log("that is: ", that);
-            //   console.log("this is now: ", this);
               
               that.addOption(e, this) 
             })
@@ -175,26 +168,12 @@ var $ = {
     }
  }; o.init(); return o;}
  
+
  
- //Set up some data
-//  var options = [
-//     { html: 'cats', value: 'cats' },
-//     { html: 'fish', value: 'fish' },
-//     { html: 'squids', value: 'squids' },
-//     { html: 'cats', value: 'whales' },
-//     { html: 'cats', value: 'bikes' },
-//  ];
- 
- var myDrop = new drop({
+ var opTypeDrop = new drop({
     selector:  '#operationType'
  });
- var secondDrop = new drop({
+ var cargoDrop = new drop({
     selector:  '#cargoCarried'
-    // preselected: [0, 2]
  });
 
-//   myDrop.toggle();
-
-// module.exports = { 
-//     addOption
-// }
