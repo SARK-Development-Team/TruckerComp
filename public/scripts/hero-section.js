@@ -42,8 +42,6 @@ function initializeForm() {
     document.getElementById("slide2").classList.remove('move-right');
     document.getElementById("slide2").classList.add('visible');
 
-    // document.getElementById("hero").style.minHeight="500px";
-
     document.getElementById("slide3").classList.add("visible");
     document.getElementById("slide3").classList.remove("move-left");
     document.getElementById("searchResult").classList.add("expandable-collapsed");
@@ -168,6 +166,7 @@ function allowProgress(slideIndex) {
 
 // ---- Slide 3 ---- //
 
+// This function allows the user to backspace through the 7 separate fields
 for (let i=1; i<digits.length; i++) {
     digits[i].addEventListener('keydown', (e) => {
         if (e.key=="Backspace") {
@@ -177,6 +176,7 @@ for (let i=1; i<digits.length; i++) {
 
 }
 
+// This is the function that allows the DOT input to come together from the 7 separate fields
 document.querySelector(".digits").addEventListener("input", (e) => {
     try {
         e.target.value = e.data.replace(/[^0-9]/g,'');
@@ -196,13 +196,43 @@ document.querySelector(".digits").addEventListener("input", (e) => {
     }
 });
 
+
+// Parses the individual digits into the individual boxes when a value is pasted into the first box.
+function pasteValues(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    try {
+        const values = e.clipboardData.getData("text").split("");
+        for (i=0; i<values.length-1; i++) {
+            let inputBox = document.querySelectorAll('.digit')[i]
+
+            inputBox.value= values[parseInt(i)];
+        };
+        if (values.length >= 7) {
+
+            var total = '';
+            for (let i=0; i<digits.length; i++) {
+                total+=digits[i].value;
+            }
+            document.getElementById('slide3DOT').value= parseInt(total);
+            if (total.length=7) {
+                searchDOT(event);
+            }
+        }
+    } catch(err) {
+        console.log(err);
+    }
+
+}
+
+
 const successHeader = `<p><span>Found record for DOT </span><span id="DOT-success-header"></span></p>`
 const failureHeader = `
     <p><span>No record found for DOT </span><span id="DOT-failure-header"></span></p>
     <p>Please enter the information below</p>
 `
 
-// This assures that all fields in the form are returned to initial conditions
+// This assures that all fields in the form (after the DOT entry fields) are returned to initial conditions
 function clearAllFields() {
     document.getElementById('companyName').innerText = '' ;
     document.getElementById('DBA').innerText = '';
@@ -218,7 +248,6 @@ function clearAllFields() {
     document.getElementById('carrierOperation').value = '';
     const operationTypeChoices = Array.from(document.querySelectorAll('.drop-options')[0].childNodes[0].childNodes);
     const cargoCarriedChoices = Array.from(document.querySelectorAll('.drop-options')[1].childNodes[0].childNodes);
-    Array.from(operationTypeChoices)
     for (const el of operationTypeChoices) {
         opTypeDrop.removeOption(event, el)
     }                 
