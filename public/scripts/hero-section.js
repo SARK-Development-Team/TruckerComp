@@ -202,9 +202,43 @@ const failureHeader = `
     <p>Please enter the information below</p>
 `
 
+// This assures that all fields in the form are returned to initial conditions
+function clearAllFields() {
+    document.getElementById('companyName').innerText = '' ;
+    document.getElementById('DBA').innerText = '';
+    document.getElementById('slide5Name').innerText = '';
+    document.getElementById('email').value = '';
+    document.getElementById('slide5Email').value = '';
+    document.getElementById('address').value = '';
+    document.getElementById('mailingAddress').value = '';
+    document.getElementById('milesTraveled').value = '';
+    document.getElementById('phone').value = '';
+    document.getElementById('powerUnits').value = '';
+    document.getElementById('drivers').value = '';
+    document.getElementById('carrierOperation').value = '';
+    const operationTypeChoices = Array.from(document.querySelectorAll('.drop-options')[0].childNodes[0].childNodes);
+    const cargoCarriedChoices = Array.from(document.querySelectorAll('.drop-options')[1].childNodes[0].childNodes);
+    Array.from(operationTypeChoices)
+    for (const el of operationTypeChoices) {
+        opTypeDrop.removeOption(event, el)
+    }                 
+    for (const el of cargoCarriedChoices) {
+        cargoDrop.removeOption(event, el)
+    }       
+    document.getElementById('empAmount1').value = 0;
+    document.getElementById('q0').innerText = '';
+    document.getElementById('q1').innerText = '';
+    document.getElementById('q2').innerText = '';
+    document.getElementById('q3').innerText = '';
+    document.getElementById('q4').innerText = '';
+    document.getElementById('low-end').innerText = '';
+    document.getElementById('high-end').innerText = '';
+}
+
 // When the button for the DOT search field is pressed
 async function searchDOT(e) {
     e.preventDefault();
+    clearAllFields();
     document.getElementById('searchResult').classList.add("expandable-collapsed");
     const loadIcon = document.getElementById('loading-icon');
     let dotvalue = parseInt(document.getElementById('slide3DOT').value);
