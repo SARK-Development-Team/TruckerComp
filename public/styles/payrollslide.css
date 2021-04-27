@@ -1,9 +1,9 @@
 .payroll-container {
     margin-top: 20px;
     margin-bottom: 20px;
-  }
+}
 
-  .payroll-table {
+.payroll-table {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -44,9 +44,9 @@
     grid-template-columns: 40px 260px 215px 260px;
     -ms-grid-rows: auto auto;
     grid-template-rows: auto auto;
-  }
+}
 
-  .table-header {
+.table-header {
     margin-right: auto;
     margin-left: auto;
     font-size: 24px;
@@ -54,69 +54,68 @@
     font-weight: 700;
     text-align: center;
     text-decoration: none;
-  }
+}
 
-  .table-field {
+.table-field {
     font-size: 20px;
     line-height: 125%;
     text-align: center;
     margin: 0 12px;
-  }
+}
 
-  .form-button.payroll {
+.form-button.payroll {
     margin: 20px 20vw 0;
     padding-top: 0px;
     padding-right: 0vw;
     padding-left: 0vw;
-  }
+}
   
-
-  .form-button-text.payroll {
+.form-button-text.payroll {
     font-size: 20px;
     line-height: 125%;
     font-weight: 300;
-  }
+}
 
-  .line {
+.line {
     width: 3px;
     background-color: #1c2243;
-  }
+}
 
-  .payroll-total-column {
+.payroll-total-column {
     width: 14vw;
     min-width: 150px;
     -webkit-box-flex: 0;
     -webkit-flex: 0 auto;
     -ms-flex: 0 auto;
     flex: 0 auto;
-  }
+}
 
-  .total {
+.total {
     margin-top: 4px;
     width: 6em;
-  }
+}
 
-  .total-payroll {
+.total-payroll {
     margin-top: 0px;
     color: #1c2243;
     font-weight: 700;
     text-align: center;
-  }
+}
   
-  .total-payroll-gray {
+.total-payroll-gray {
     display: inline-block;
     margin-top: 5px;
     margin-bottom: 5px;
     color: rgba(28, 34, 67, 0.66);
     font-weight: 400;
-  }
+}
 
-  .remove-type {
+.remove-type {
     max-width: 75%;
     margin-left: 20px;
-  }
+}
 
-  #typeHeader {
+#typeHeader {
     -ms-grid-row: 1;
     grid-row-start: 1;
     -ms-grid-row-span: 1;
@@ -125,9 +124,9 @@
     grid-column-start: 2;
     -ms-grid-column-span: 1;
     grid-column-end: 3;
-  }
+}
 
-  #amountHeader {
+#amountHeader {
     -ms-grid-column-span: 1;
     grid-column-end: 4;
     -ms-grid-column: 3;
@@ -136,9 +135,9 @@
     grid-row-end: 2;
     -ms-grid-row: 1;
     grid-row-start: 1;
-  }
+}
 
-  #salaryHeader {
+#salaryHeader {
     -ms-grid-column-span: 1;
     grid-column-end: 5;
     -ms-grid-column: 4;
@@ -147,14 +146,18 @@
     grid-row-end: 2;
     -ms-grid-row: 1;
     grid-row-start: 1;
-  }
+}
   
-  #addRow {
+#addRow {
     -ms-grid-column: 2;
     grid-column-start: 2;
     -ms-grid-column-span: 3;
     grid-column-end: 5;
-  }
+}
+
+#slide4 {
+    position: absolute;   
+}
 
   .colRemove {
     -ms-grid-column: 1;

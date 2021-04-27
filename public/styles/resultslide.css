@@ -4,6 +4,15 @@
     cursor: none;
 }
 
+.error {
+    margin: 0;
+    padding: 0;
+    visibility: hidden;
+    font-style: italic;
+    /* font-size: var(--small);
+    color: var(--dark); */
+}
+
 #action-area {
     text-align: center;
     padding: 12px 48px;
@@ -19,7 +28,6 @@
     -ms-grid-columns: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
     font-size: 20px;
-    padding: 0 5vw;
 }
 
 #quote-area {
@@ -30,9 +38,13 @@
 
 #result-area {
     background: white;
-    padding: 24px;
+    padding: 24px 5vw;
+
 }
 
+#slide5 {
+    position: absolute;   
+}
 
 #slide5Email {
     width: 100%;

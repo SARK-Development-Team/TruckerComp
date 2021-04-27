@@ -31,6 +31,11 @@
     grid-template-rows: auto;
 }
 
+.in-view {
+    opacity: 1;
+    left: 5%;
+}
+
 .move-left {
     transform: translateX(-100vw);
 }
@@ -74,6 +79,7 @@
 }
 
 #hero {
+    background: #F5F3F5;
     margin-top: 70px;
     position: relative;
     min-height: 1050px;

@@ -346,6 +346,28 @@ h3 {
   visibility: hidden;
 }
 
+#loading-icon {
+  display: none;
+}
+
+#loading-icon i {
+  font-size: 60px;
+}
+
+#manualInputForm {
+  display: grid;
+  grid-template-columns: 1fr 8fr;
+  word-wrap: normal;
+}
+
+#slide3DOT {
+  display: none;
+}
+
+#slide3 {
+  position: absolute;   
+}
+
 @media screen and (max-width: 991px) {
   .progress-block.fullscreen {
     padding-right: 5vw;
