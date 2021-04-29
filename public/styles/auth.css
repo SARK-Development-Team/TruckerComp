@@ -62,6 +62,17 @@ hr {
     position: relative;
 }
 
+.step:hover::before {
+    position: absolute;
+    color: white;
+    padding: 10px;
+    top: -100%;
+    left: -200%;
+    background: black;
+    opacity: 90%;
+    width: 300px;
+}
+
 #progress-steps {
     margin-top: 30px;
     list-style: none;
@@ -76,59 +87,22 @@ hr {
 }
 
 #step1:hover::before {
-    position: absolute;
-    color: white;
-    padding: 10px;
-    top: -100%;
-    left: 0;
-    background: black;
-    opacity: 90%;
     content: "First, create your TruckerComp profile";
-    width: 200px;
-
 }
 
 #step2:hover::before {
-    position: absolute;
-    color: white;
-    padding: 10px;
-    top: -100%;
-    left: 0;
-    background: black;
-    opacity: 90%;
     content: "Next, provide information about your business";
 }
 
 #step3:hover::before {
-    position: absolute;
-    color: white;
-    padding: 10px;
-    top: -100%;
-    left: 0;
-    background: black;
-    opacity: 90%;
     content: "Then, submit the following documents: ";
 }
 
 #step4:hover::before {
-    position: absolute;
-    color: white;
-    padding: 10px;
-    top: -100%;
-    left: 0;
-    background: black;
-    opacity: 90%;
     content: "After this, we will process your documents and respond in 1-2 business days";
 }
 
 #step5:hover::before {
-    position: absolute;
-    color: white;
-    padding: 10px;
-    top: -100%;
-    left: 0;
-    background: black;
-    opacity: 90%;
     content: "Lastly, you can purchase your policy!";
 }
 
