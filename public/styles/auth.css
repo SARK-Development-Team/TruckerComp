@@ -1,0 +1,39 @@
+.card-heading {
+    background: rgb(55, 147, 255);
+    color: white;
+    padding: 1vw;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.card-body {
+    padding: 1vw;
+}
+
+.login-card {
+    margin: 100px 25% 0 25%;
+    border: 2px solid #1C2541;
+    border-radius: 5px;
+    font-size: large;
+}
+
+#bottom-line {
+    margin: 1vw 25% 0 25%;
+    padding: 0 1vw 6vw 1vw;
+}
+
+#btn-submit {
+    padding: 10px;
+    background: #EF8354;
+    color: white;
+    transition: all 0.6s ease;
+    width: 98%;
+    text-align: center;
+    margin: 15px 0 8px 0;
+}
+
+/* ----------
+Media Queries
+---------- */
+
+/* @media only screen and (max-width: 700px) { */

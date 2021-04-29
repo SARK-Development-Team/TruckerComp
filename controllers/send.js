@@ -32,10 +32,10 @@ const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_U
 */
 
 async function sendEmail(data) {
+    console.log("hit the function")
     try {
         oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
         const accessToken = await oAuth2Client.getAccessToken();
-
         var transport = nodemailer.createTransport({
             host: 'smtp.gmail.com',
             port: 465,
@@ -55,7 +55,7 @@ async function sendEmail(data) {
             <p>Based on the information you've provided, we estimate that we can provide a monthly worker's comp premium of ${(quote *0.8).toFixed(2)} &mdash; ${(quote *1.2).toFixed(2)} </p>
             <h1>Please call 415 xxx xxxx to purchase a policy now!</h1>
         `
-
+        console.log("got the quote: ", quote)
         const mailOptions = {
             from: "wc@sarkinsurance.com",
             to: data.email,

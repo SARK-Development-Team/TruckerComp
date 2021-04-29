@@ -197,7 +197,7 @@ document.querySelector(".digits").addEventListener("input", (e) => {
 });
 
 
-// Parses the individual digits into the individual boxes when a value is pasted into the first box.
+// Parses the individual digits into the individual boxes when a value is pasted into any of the input boxes.
 function pasteValues(e) {
     e.stopPropagation();
     e.preventDefault();

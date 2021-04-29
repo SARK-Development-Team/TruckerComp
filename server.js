@@ -7,20 +7,6 @@ const session = require('express-session');
 const routes = require('./routes');
 // const cors = require('cors');
 
-// ---> //
-// CSS Post-processing for non-compatible browsers //
-// const autoprefixer = require('autoprefixer')
-// const postcss = require('postcss')
-
-// postcss([ autoprefixer ]).process(css).then(result => {
-//   result.warnings().forEach(warn => {
-//     console.warn(warn.toString())
-//   })
-//   console.log(result.css)
-// })
-
-// <--- //
-
 
 // for environment variables
 require('dotenv').config()
@@ -187,6 +173,8 @@ app.get('/', (req, res) => {
 app.use('/quote', routes.quote);
 app.use('/send', routes.send);
 app.use('/dot', routes.dot);
+
+app.use('/users', routes.users);
 
 /* --------------------------
    The following routes are 
