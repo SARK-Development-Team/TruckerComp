@@ -178,12 +178,14 @@ const logoutUser = (req, res) => {
 };
 
 // Dashboard
-const openDashboard = (ensureAuthenticated, (req, res) => {
-    res.render('myInfo', {
-        user: req.user
-    })
-});
-
+// const openDashboard = (ensureAuthenticated, (req, res) => {
+//     res.render('myInfo', {
+//         user: req.user
+//     })
+// });
+const openDashboard = (req, res) => {
+    res.render('dashboard', {layout: "auth"})
+}
 
 module.exports = {
     renderLogin,
