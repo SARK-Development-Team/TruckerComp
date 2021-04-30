@@ -9,8 +9,8 @@
     padding: 0;
     visibility: hidden;
     font-style: italic;
-    /* font-size: var(--small);
-    color: var(--dark); */
+    font-size: medium;
+    color: #EF8354;
 }
 
 #action-area {

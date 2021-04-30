@@ -55,7 +55,6 @@ async function sendEmail(data) {
             <p>Based on the information you've provided, we estimate that we can provide a monthly worker's comp premium of ${(quote *0.8).toFixed(2)} &mdash; ${(quote *1.2).toFixed(2)} </p>
             <h1>Please call 415 xxx xxxx to purchase a policy now!</h1>
         `
-        console.log("got the quote: ", quote)
         const mailOptions = {
             from: "wc@sarkinsurance.com",
             to: data.email,
@@ -76,10 +75,9 @@ async function sendEmail(data) {
 // This function is the basic quote calculation formula
 function calculateQuote(data) {
     const payrollFactor = 0.0002;
-    // const typeFactor = 0;
+    const purchaseBaseline = 500;
     const mileageFactor = 0.00005;
-
-    return (data.totalPayroll*payrollFactor + data.mileage * mileageFactor);
+    return (data.totalPayroll*payrollFactor + data.mileage * mileageFactor+purchaseBaseline);
 };
 
 

@@ -173,7 +173,7 @@ app.get('/', (req, res) => {
 app.use('/quote', routes.quote);
 app.use('/send', routes.send);
 app.use('/dot', routes.dot);
-
+app.use('/purchase', routes.purchase);
 app.use('/users', routes.users);
 
 /* --------------------------

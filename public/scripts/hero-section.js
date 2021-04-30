@@ -533,12 +533,21 @@ email.addEventListener('keyup', () => {
         submit.onclick=function() {
             // this function sends the email
             sendQuote(formData);
+            purchasePolicy(formData);
         };
     } else {
         submit.classList.add('disabled');
         emailError.style.visibility = 'visible';
     }
 });
+
+function purchasePolicy(data) {
+    fetch('/purchase', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    }).then(response => response.json());
+}
 
 
 function sendQuote (data) {
