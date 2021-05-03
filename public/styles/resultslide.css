@@ -1,3 +1,6 @@
+.bold {
+    font-weight: 700;
+}
 
 .disabled {
     background: #1c2243;
@@ -32,14 +35,14 @@
 
 #quote-area {
     text-align: center;
-    padding: 12px 24px;
+    padding: 12px 24px 4px;
     font-size: 20px;
 }
 
 #result-area {
     background: white;
     padding: 24px 5vw;
-
+    margin: 0 20px;
 }
 
 #slide5 {

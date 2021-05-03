@@ -62,7 +62,7 @@ function initializeForm() {
 function changeSlide(n) {
     // hide the search result
     document.getElementById("searchResult").classList.add("expandable-collapsed");
-
+    useInitialPageHeight();
     // When the back button is pressed, the parameter is -1
     if (n<0) {
         moveSlideRight(slideIndex);
@@ -160,13 +160,6 @@ highMileage.addEventListener("click", () => {
     removeIntroImage();
 });
 
-
-function allowProgress(slideIndex) {
-        document.getElementById('searchResult').classList.add("expandable-collapsed");
-        document.getElementById("hero").style.minHeight="500px";
-        changeSlide(1);
-}
-
 // ---- Slide 3 ---- //
 
 // This function allows the user to backspace through the 7 separate fields
@@ -177,6 +170,14 @@ for (let i=1; i<digits.length; i++) {
         }
     })
 
+}
+
+function expandPageHeight() {
+    document.getElementById("hero").classList.add('taller');
+}
+
+function useInitialPageHeight() {
+    document.getElementById("hero").classList.remove('taller');
 }
 
 // This is the function that allows the DOT input to come together from the 7 separate fields
@@ -289,7 +290,7 @@ async function searchDOT(e) {
             loadIcon.style.display = "block";
             const client = await fetchDOT(dot);
             document.getElementById('DOT').innerText = parseInt(document.getElementById('slide3DOT').value);
-
+            expandPageHeight();
             // If a client is not found
             if (!client.result.name) {
                 loadIcon.style.display = "none";
