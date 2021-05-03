@@ -4,6 +4,7 @@
 let slideIndex;
 const slides = document.getElementsByClassName("slide");
 const digits = document.querySelector(".digits").children;
+// const digits = Array.from(document.querySelectorAll(".digit"));
 
 initializeForm();
 
@@ -43,6 +44,7 @@ function initializeForm() {
     document.getElementById("slide2").classList.add('visible');
 
     document.getElementById("slide3").classList.add("visible");
+    document.querySelector(".slide-area").style.opacity=0;
     document.getElementById("slide3").classList.remove("move-left");
     document.getElementById("searchResult").classList.add("expandable-collapsed");
     
@@ -134,6 +136,7 @@ local.addEventListener("click", () => {
 function removeIntroImage() {
     document.getElementById('intro-image').classList.remove('visible');
     document.getElementById('intro-image').classList.add('move-left');
+    document.querySelector('.slide-area').style.opacity=1;
 }
 
 const lowMileage = document.getElementById('slide2Low');
@@ -232,6 +235,13 @@ const failureHeader = `
     <p>Please enter the information below</p>
 `
 
+function clearDOT() {
+    for (let i=0; i<digits.length; i++) {
+        digits[i].value = '';
+    }
+}
+
+
 // This assures that all fields in the form (after the DOT entry fields) are returned to initial conditions
 function clearAllFields() {
     document.getElementById('companyName').innerText = '' ;
@@ -263,6 +273,7 @@ function clearAllFields() {
     document.getElementById('low-end').innerText = '';
     document.getElementById('high-end').innerText = '';
 }
+
 
 // When the button for the DOT search field is pressed
 async function searchDOT(e) {

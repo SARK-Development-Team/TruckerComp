@@ -32,7 +32,7 @@
 }
 
 .in-view {
-    opacity: 1;
+    /* opacity: 1; */
     left: 5%;
 }
 
@@ -366,8 +366,8 @@ Hero Slide
         align-self: center;
     }
     .form-button-text {
-        margin-top: 20px;
-        margin-bottom: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
         -webkit-align-self: center;
         -ms-flex-item-align: center;
         -ms-grid-row-align: center;

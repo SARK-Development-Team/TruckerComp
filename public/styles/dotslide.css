@@ -19,6 +19,11 @@ h3 {
   margin-bottom: 40px;
 }
 
+#digit-area {
+  position: relative;
+  margin: 20px 33%;
+}
+
 .digits {
   display: flex;
   align-items: center;
@@ -29,14 +34,14 @@ h3 {
   font-size: 2rem;
   width: 1.8rem;
   text-align: center;
-  margin: 3vw .3vw;
   background: white;
   border: none;
+  margin: 0 4px;
   border-bottom: 1px solid #585858;
 }
 
 .digits input:focus {
-  border: 2px solid var(--dark);
+  border: 2px solid #EF8354;
   outline: none;
 }
 
@@ -342,6 +347,18 @@ h3 {
   border-bottom-right-radius: 5px;
 }
 
+
+#clear-button {
+  border-radius: 5px;
+  border: 1px solid rgb(193, 213, 219);
+  color: rgb(193, 213, 219);
+  position: absolute;
+  padding: 5px;
+  cursor: pointer;
+  right: -30px;
+  top: 5px;
+}
+
 #DBAfield {
   visibility: hidden;
 }
@@ -365,10 +382,13 @@ h3 {
 }
 
 #slide3 {
-  position: absolute;   
+  position: absolute; 
 }
 
 @media screen and (max-width: 991px) {
+  #digit-area {
+    margin: 20px 28%;
+  }
   .progress-block.fullscreen {
     padding-right: 5vw;
     padding-left: 5vw;
@@ -382,6 +402,9 @@ h3 {
 }
 
 @media screen and (max-width: 767px) {
+  #digit-area {
+    margin: 20px 20%;
+  }
   .progress-block.fullscreen {
     padding-right: 0vw;
     padding-left: 0vw;
@@ -406,6 +429,9 @@ h3 {
 }
 
 @media screen and (max-width: 479px) {
+  #digit-area {
+    margin: 20px 8%;
+  }
   .query-heading {
     margin-right: 10px;
     margin-left: 10px;
