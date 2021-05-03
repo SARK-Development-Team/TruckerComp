@@ -63,6 +63,7 @@ function changeSlide(n) {
     // hide the search result
     document.getElementById("searchResult").classList.add("expandable-collapsed");
     useInitialPageHeight();
+    window.scrollTo(0,0);
     // When the back button is pressed, the parameter is -1
     if (n<0) {
         moveSlideRight(slideIndex);
@@ -442,6 +443,9 @@ function fetchResult(data) {
     return number;
 }
 
+function removeLine() {
+    console.log(this);
+}
 
 // This function adds another row to the employee info table only when the most recent line is completely filled in
 function addRow(e) {
@@ -450,7 +454,7 @@ function addRow(e) {
     const lastLine = Array.from(document.getElementsByClassName(`table-field row${payrollLines}`));
     if (lastLine.every((e) => e.value)) {
         const line = `
-            <img src="public/images/wrong.svg" loading="lazy" id="removeHeader"
+            <img src="public/images/wrong.svg" loading="lazy" id="removeHeader onclick="removeLine()"
             alt="" class="remove-type row${payrollLines+1}" colRemove">
             <select class="table-field row${payrollLines+1} colType" id="empType${payrollLines+1}">
                 <option value="" disabled selected>Employee Type</option>

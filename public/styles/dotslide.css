@@ -77,7 +77,7 @@ h3 {
 .expandable {
   transition: all .5s ease-out;
   overflow: hidden;
-  max-height: 1000px;
+  max-height: 1100px;
 }
 
 .expandable-collapsed {
