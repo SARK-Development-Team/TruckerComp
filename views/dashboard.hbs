@@ -6,9 +6,9 @@
     <h1>TruckerComp Dashboard for /user/</h1>
 
     <div id="dashboard-nav">
-        <div class="dashboard-nav-button">Progress</div>
-        <div class="dashboard-nav-button">Profile</div>
-        <div class="dashboard-nav-button">Policy Info</div>
+        <div class="dashboard-nav-button" onclick="dashboardToggle(event, 'progress-section')">Progress</div>
+        <div class="dashboard-nav-button" onclick="dashboardToggle(event, 'profile-section')">Profile</div>
+        <div class="dashboard-nav-button" onclick="dashboardToggle(event, 'policy-section')">Policy Info</div>
     </div>
 
     <div id="progress-section" class="dashboard-section hidden">
