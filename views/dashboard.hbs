@@ -2,46 +2,59 @@
 <script defer src="../public/scripts/dashboard.js"></script>
 
 <section id="dashboard">
+
     <h1>TruckerComp Dashboard for /user/</h1>
-    
-    <h2>Policy progress (hover for details)</h2>
 
-    <div id="progress-steps">
-        <li id="step1" class="step">Step 1</li>
-        <li id="step2" class="step">Step 2</li>
-        <li id="step3" class="step">Step 3</li>
-        <li id="step4" class="step">Step 4</li>
-        <li id="step5" class="step">Step 5</li>
-
-    </div>
-    <div id="progress-graphic">
-        <hr class="completed"/>
-        <hr class="completed"/>
-        <hr class="current"/>
-        <hr />
-        <hr />
+    <div id="dashboard-nav">
+        <div class="dashboard-nav-button">Progress</div>
+        <div class="dashboard-nav-button">Profile</div>
+        <div class="dashboard-nav-button">Policy Info</div>
     </div>
 
+    <div id="progress-section" class="dashboard-section hidden">
+        <h2>Policy progress (hover for details)</h2>
 
-    <h2>Here is the information we have on record for you</h2>
-    <div id="userInfo">
-        <h4>Name: </h4>
-        <h4>Email: </h4>
-        <h4>Phone Number: </h4>
-        <h4>Company Name: </h4>
-        <h4>DOT Number: </h4>
-        <h4>MC Number: </h4>
-        <h4>Address: </h4>
-        <h4>Mailing Address: </h4>
-        <h4>Trucks: </h4>
-        <h4>Drivers: </h4>
-        <h4>Total Payroll: </h4>
-        <h4>Annual Mileage: </h4>
-    </div> 
-    <h2>Upload your 2020 1099 (pdf)</h2>
-    <input id="file-upload" type="file" >
+        <div id="progress-steps">
+            <li id="step1" class="step">Step 1</li>
+            <li id="step2" class="step">Step 2</li>
+            <li id="step3" class="step">Step 3</li>
+            <li id="step4" class="step">Step 4</li>
+            <li id="step5" class="step">Step 5</li>
 
-    <h4>Your uploaded files</h4>
-    <div id="file-preview"></div>
+        </div>
+        <div id="progress-graphic">
+            <hr class="completed"/>
+            <hr class="completed"/>
+            <hr class="current"/>
+            <hr />
+            <hr />
+        </div>
+    </div>
 
+    <div id="profile-section" class="dashboard-section" >
+
+        <h2>Here is the information we have on record for you</h2>
+        <div id="userInfo">
+            <h4>Name: </h4>
+            <h4>Email: </h4>
+            <h4>Phone Number: </h4>
+            <h4>Company Name: </h4>
+            <h4>DOT Number: </h4>
+            <h4>MC Number: </h4>
+            <h4>Address: </h4>
+            <h4>Mailing Address: </h4>
+            <h4>Trucks: </h4>
+            <h4>Drivers: </h4>
+            <h4>Total Payroll: </h4>
+            <h4>Annual Mileage: </h4>
+        </div> 
+    </div>
+
+    <div id="policy-section" class="dashboard-section hidden">
+        <h2>Upload your 2020 1099 (pdf)</h2>
+        <input id="file-upload" type="file" >
+
+        <h4>Your uploaded files</h4>
+        <div id="file-preview"></div>
+    </div>
 </section>

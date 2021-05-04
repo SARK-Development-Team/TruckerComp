@@ -176,10 +176,38 @@
 
 .testimonial-body {
     text-align: center;
+    font-size: 16px;
+    font-style: italic;
 }
 
 .testimonial-header {
     text-align: center;
+    font-size: 19px;
+    margin-bottom: 5px;
+}
+
+.testimonial-image {
+    /* text-align: center;
+    border-radius: 50%;
+    margin-bottom: 5px;
+    height: 150px;
+    width: 150px;
+    width: auto;
+    height: 100%;
+    margin-left: -50px; */
+    width: 200px;
+    height: 200px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.testimonial-image img {
+    position: absolute;
+    transform: scale(2);
 }
 
 .title {

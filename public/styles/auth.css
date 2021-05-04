@@ -5,6 +5,18 @@ hr {
     width: 20%;
 }
 
+.card-body {
+    padding: 15px;
+}
+
+.card-heading {
+    background: #1C2541;
+    color: white;
+    padding: 1vw;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
 .completed {
     height: 15px;
     background: #1C2541;
@@ -17,16 +29,22 @@ hr {
     background: rgb(55, 147, 255);
 }
 
-.card-heading {
-    background: #1C2541;
+.dashboard-nav-button {
+    width: 100%;
+    border: 1px solid black;
+    background: rgb(55, 147, 255);
+    transition: background-color .5s ease;
+    text-align: center;
+    padding: 10px;
     color: white;
-    padding: 1vw;
-    margin-block-start: 0;
-    margin-block-end: 0;
 }
 
-.card-body {
-    padding: 15px;
+.dashboard-nav-button:hover {
+    background: #1C2541;
+}
+
+.hidden {
+    display: none;
 }
 
 .login-card {
@@ -54,6 +72,10 @@ hr {
 
 #dashboard { 
     margin: 100px 12% 80px 12%;
+}
+
+#dashboard-nav {
+    display: flex;
 }
 
 .step {

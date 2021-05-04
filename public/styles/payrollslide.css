@@ -27,13 +27,6 @@
     grid-column-end: 3;
 }
 
-.formline {
-    grid-row-start: 2;
-    grid-column-start: 1;
-    grid-column-end: 4;
-    display: grid;
-}
-
 .form-button.payroll {
     margin: 20px 20vw 0;
     padding-top: 0px;
@@ -61,7 +54,7 @@
   flex: 1;
   grid-auto-columns: 1fr;
   grid-column-gap: 0px;
-  grid-row-gap: 5px;
+  /* grid-row-gap: 5px; */
   /* -ms-grid-columns: 40px 0.5fr 0.25fr 1fr;
   grid-template-columns: 40px 0.5fr 0.25fr 1fr; */
   -ms-grid-columns: 40px 260px 215px 260px;
