@@ -443,19 +443,29 @@ function fetchResult(data) {
     return number;
 }
 
-function removeLine() {
-    console.log(this);
+function removeLine(e, number) {
+    e.preventDefault();
+    document.getElementById(`removeLine${number}`).style.display="none";
+    document.getElementById(`empType${number}`).style.display="none";
+    document.getElementById(`empAmount${number}`).style.display="none";
+    document.getElementById(`empSalary${number}`).style.display="none";
+    document.getElementById(`empTotal${number}`).style.display="none";
+    document.getElementById(`empType${number}`).value="Other";
+    document.getElementById(`empAmount${number}`).value=0.000001;
+    document.getElementById(`empSalary${number}`).value=0.000001;
+    document.getElementById(`empTotal${number}`).value=0.000001;
 }
 
 // This function adds another row to the employee info table only when the most recent line is completely filled in
 function addRow(e) {
-    e.preventDefault()
+    e.preventDefault();
     const payrollLines = document.getElementsByClassName('remove-type').length;
     const lastLine = Array.from(document.getElementsByClassName(`table-field row${payrollLines}`));
+    console.log(lastLine);
     if (lastLine.every((e) => e.value)) {
         const line = `
-            <img src="public/images/wrong.svg" loading="lazy" id="removeHeader onclick="removeLine()"
-            alt="" class="remove-type row${payrollLines+1}" colRemove">
+            <img src="public/images/wrong.svg" loading="lazy" onclick="removeLine(event, ${payrollLines+1})"
+            alt="" class="remove-type row${payrollLines+1}" id="removeLine${payrollLines+1}" >
             <select class="table-field row${payrollLines+1} colType" id="empType${payrollLines+1}">
                 <option value="" disabled selected>Employee Type</option>
                 <option value="Driver" >Driver</option>
@@ -467,12 +477,15 @@ function addRow(e) {
             </select>
             <input type="number" class="table-field row${payrollLines+1} colAmount" id="empAmount${payrollLines+1}" value=0></input>
             <input type="number" class="table-field row${payrollLines+1} colSalary" id="empSalary${payrollLines+1}" value=0></input>
-        `
+            `
         const totalBox = `
             <input type="number" class="table-field total" id="empTotal${payrollLines+1}" value=0></input>
         `
         document.getElementById("payroll-columns").insertAdjacentHTML('beforeend', line);
         document.getElementById("total-column").insertAdjacentHTML('beforeend', totalBox);
+    }
+    else {
+        lastLine.every((e) => console.log("e= ", e, " evalue= ", e.value))
     }
     addPayrollUpdate();
     addTotalUpdate();
