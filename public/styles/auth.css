@@ -43,6 +43,11 @@ hr {
     background: #1C2541;
 }
 
+.dashboard-section {
+    opacity: 0;
+    transition: opacity .5s ease;
+}
+
 .hidden {
     display: none;
 }

@@ -33,6 +33,9 @@ function initializeForm() {
     for (let i=0; i<digits.length; i++) {
         digits[i].value='';
     }
+    document.getElementById("hero").classList.remove('tall');
+    document.getElementById("hero").classList.remove('taller');
+
     // Places the slides correctly and removes any classes 
     document.getElementById("intro-image").classList.remove('move-left');
     document.getElementById("intro-image").classList.add('visible');
@@ -395,6 +398,7 @@ function savePayrollData() {
             requestQuoteSlide(formData)
             changeSlide(1);
         }
+        document.getElementById('hero').classList.add('tall');
     } catch(err) {
         console.log(err);
     }
