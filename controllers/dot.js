@@ -14,17 +14,13 @@ async function sqlSearch(number) {
         let pool = await sql.connect(process.env.SQL_CONNSTRING)
         let result1 = await pool.request()
             .query(`SELECT * FROM sark.Client WHERE [DOT Number] = ${number}`)
-        // console.log(result1.recordset[0]);
         return (result1.recordset[0])
     } catch (err) {
        console.log(err);
     }
 };
 
-// ////////////
-///////////////
-///////////////
-
+// This function searches the FMCSA DB for a client based on the DOT entered
 async function fmcsaSearch(number) {
     try {
       var html = '';
@@ -37,7 +33,8 @@ async function fmcsaSearch(number) {
               $ = cheerio.load(html);
               $('.dat').map(function(i, el) {
                 //   Get rid of spaces and line breaks
-                let labelName= $(this).prev().text().replace(/(\r\n|\n|\r)/gm, "").replace(/  +/g, "");
+                // let labelName= $(this).prev().text().replace(/(\r\n|\n|\r)/gm, "").replace(/  +/g, "");
+                let labelName= $(this).prev().text().trim();
                 switch(labelName) {
                     case "Legal Name:":
                         clientObj.name=$(this).text();
@@ -49,7 +46,8 @@ async function fmcsaSearch(number) {
                         clientObj.DOT=$(this).text();
                         break;
                     case "Address:":
-                        clientObj.address=$(this).text().replace(/(\r\n|\n|\r)/gm, "").replace(/  +/g, "");
+                        // clientObj.address=$(this).text().replace(/(\r\n|\n|\r)/gm, "").replace(/  +/g, "");
+                        clientObj.address=$(this).text().trim();
                         break;
                     case "Telephone:":
                         clientObj.phone=$(this).text();
@@ -92,7 +90,7 @@ async function fmcsaSearch(number) {
 }
 
 
-// This route performs a search through the FMCSA DB for the DOT number entered
+// This route performs a search through the DB for the DOT number entered
 // Returns an object that is partially displayed in the "result" box
 const searchDOT = async (req, res) => {
     // const result = await sqlSearch(req.body.dot);   

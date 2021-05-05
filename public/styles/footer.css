@@ -122,7 +122,11 @@
     text-align: left;
 }
 
-@media screen and (max-width: 991px) {}
+@media screen and (max-width: 991px) {
+    .footer-column {
+        margin: 0;
+    }
+}
 
 @media screen and (max-width: 767px) {
     .social-icon-group {
@@ -137,10 +141,20 @@
     .logo-text {
         margin-top: 15px;
     }
+    .footer-column {
+        margin: 0px 5%;
+        float: left;
+        width: 33.3333%;
+    }
     .footer-title {
         margin-top: 35px;
         text-align: left;
     }
 }
 
-@media screen and (max-width: 479px) {}
+@media screen and (max-width: 479px) {
+    .footer-column {
+        margin: 0 20%;
+        width: 100%
+    }
+}

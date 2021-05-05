@@ -79,9 +79,9 @@ button {
 
 .logo p {
     -webkit-margin-before: 0;
-            margin-block-start: 0;
+    margin-block-start: 0;
     -webkit-margin-after: 0;
-            margin-block-end: 0;
+    margin-block-end: 0;
 }
 
 #hamburger-icon {
@@ -100,8 +100,6 @@ button {
 }
 
 #navbar {
-    /* background: rgb(225, 240, 250); */
-    /* background: var(--white); */
     position: fixed;
     list-style: none;
     display: grid;
@@ -146,17 +144,4 @@ button {
         grid-row: 2;
         justify-content: right;
     }
-    #navbar a {
-        font-size: var(--mobxsmall);
-    }
-}
-
-/* ----------
-    Footer
----------- */
-
-
-.fa, .fab, .far, .fas {
-    cursor: pointer;
-    margin: 0 0.5vw;
 }

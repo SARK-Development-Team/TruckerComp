@@ -1,3 +1,4 @@
+
 hr {
     height: 9px;
     background: white;
@@ -67,21 +68,12 @@ hr {
 
 #btn-submit {
     padding: 10px;
-    /* background: #EF8354; */
     background: rgb(55, 147, 255);
     color: white;
     transition: all 0.6s ease;
     width: 98%;
     text-align: center;
     margin: 15px 0 8px 0;
-}
-
-#dashboard { 
-    margin: 100px 12% 80px 12%;
-}
-
-#dashboard-nav {
-    display: flex;
 }
 
 .step {
@@ -99,6 +91,14 @@ hr {
     background: black;
     opacity: 90%;
     width: 300px;
+}
+
+#dashboard { 
+    margin: 100px 12% 80px 12%;
+}
+
+#dashboard-nav {
+    display: flex;
 }
 
 #progress-steps {
@@ -141,9 +141,15 @@ hr {
     grid-template-columns: 1fr 1fr;
 }
 
+
 /* ----------
 Media Queries
 ---------- */
+@media only screen and (max-width: 676px) {
+    #footer-columns {
+        display: unset;
+    }
+}
 
 @media only screen and (max-width: 479px) {
     .login-card {

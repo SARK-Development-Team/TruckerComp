@@ -19,11 +19,6 @@ h3 {
   margin-bottom: 40px;
 }
 
-#digit-area {
-  position: relative;
-  margin: 20px 33%;
-}
-
 .digits {
   display: flex;
   align-items: center;
@@ -363,6 +358,11 @@ h3 {
   visibility: hidden;
 }
 
+#digit-area {
+  position: relative;
+  margin: 20px 33%;
+}
+
 #loading-icon {
   display: none;
 }
@@ -377,13 +377,14 @@ h3 {
   word-wrap: normal;
 }
 
+#slide3 {
+  position: absolute; 
+}
+
 #slide3DOT {
   display: none;
 }
 
-#slide3 {
-  position: absolute; 
-}
 
 @media screen and (max-width: 991px) {
   #digit-area {

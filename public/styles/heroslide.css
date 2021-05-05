@@ -10,167 +10,15 @@
 ---------------------------------------------------------------------------------------------------------*/
 
 
-
-/* ---------- 
-   Common
----------- */
-
-.form-section {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    margin-top: 0px;
-    margin-right: 5vw;
-    margin-left: 5vw;
-    grid-auto-flow: row;
-    grid-auto-columns: 1fr;
-    -ms-grid-columns: 1.5fr 2fr;
-    grid-template-columns: 1.5fr 2fr;
-    -ms-grid-rows: auto;
-    grid-template-rows: auto;
-}
-
-.in-view {
-    left: 5%;
-}
-
-.move-left {
-    transform: translateX(-100vw);
-}
-
-.move-right {
-    transform: translateX(100vw);
-}
-
-.progress-block {
-    display: -ms-grid;
-    display: grid;
-    margin: 40px auto 0px;
-    padding-top: 0px;
-    padding-right: 17vw;
-    padding-left: 17vw;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    justify-items: center;
-    -webkit-box-align: start;
-    -webkit-align-items: start;
-    -ms-flex-align: start;
-    align-items: start;
-    -webkit-align-content: center;
-    -ms-flex-line-pack: center;
-    align-content: center;
-    -ms-grid-row-align: auto;
-    align-self: auto;
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    grid-auto-columns: 1fr;
-    grid-column-gap: 11px;
-    grid-row-gap: 16px;
-    -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    -ms-grid-rows: auto;
-    grid-template-rows: auto;
-}
-
-.taller {
-    height: 970px!important;
-}
-
-#hero {
-    background: #F5F3F5;
-    margin-top: 70px;
-    position: relative;
-    /* min-height: 1050px; */
-    /* max-height: 100%; */
-    overflow: hidden;
-    height: 720px;
-}
-
-/* ---------- 
- Intro image
----------- */
-
-.hero-image {
-    min-height: 650px;
-    /* height: 100%; */
-    /* max-width: 35%; */
-    width: 35%;
-    /* min-height: 650px; */
-    /* min-width: 300px; */
-    padding: 40px 3vw;
-    background-image: url('../images/truckbgd.jpeg');
-    background-position: 100% 0%;
-    background-size: cover;
-    transition: transform .5s ease;
-    position: absolute;
-    z-index: 5;
-}
-
-.image-caption {
-    margin-right: auto;
-    margin-left: auto;
-    padding: 10px;
-    border: 0px none #000;
-    border-radius: 10px;
-    background-color: transparent;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(194, 222, 255, 0.31)), to(rgba(194, 222, 255, 0.31))), -webkit-gradient(linear, left top, left bottom, from(rgba(194, 222, 255, 0.31)), to(rgba(194, 222, 255, 0.31))), -webkit-gradient(linear, left top, left bottom, from(rgba(194, 222, 255, 0.31)), to(rgba(194, 222, 255, 0.31))), -webkit-gradient(linear, left top, left bottom, from(rgba(194, 222, 255, 0.31)), to(rgba(194, 222, 255, 0.31)));
-    background-image: linear-gradient(180deg, rgba(194, 222, 255, 0.31), rgba(194, 222, 255, 0.31)), linear-gradient(180deg, rgba(194, 222, 255, 0.31), rgba(194, 222, 255, 0.31)), linear-gradient(180deg, rgba(194, 222, 255, 0.31), rgba(194, 222, 255, 0.31)), linear-gradient(180deg, rgba(194, 222, 255, 0.31), rgba(194, 222, 255, 0.31));
-    color: #3793ff;
-    font-size: 32px;
-    line-height: 115%;
-    font-weight: 400;
-    text-align: right;
-}
-
-/*
-
-Hero Slide
-
-*/
-
-.form-page {
-    padding-top: 60px;
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    background-color: rgb(236, 245, 254);
-    min-height: 650px;
-    font-family: Lato, sans-serif;
-    transition: transform .5s ease;
-    width: 90%;
-}
-
-#slide1 {
-    left: 40%;
-    z-index: 5;
-    width: 55%;
-    position: absolute;
-}
-
-#slide2 {
-    left: 40%;
-    z-index: 4;
-    width: 55%;
-    position: absolute;
-}
-
-.hero-caption {
-    color: #3793ff;
-    font-size: 3em;
-    font-weight: 700;
-    letter-spacing: 1px;
-    white-space: normal;
-    text-align: center;
-}
-
-.hero-question {
-    margin: 20px auto;
+.arrow {
+    display: block;
+    margin-left: 0vw;
+    align-self: center;
+    order: -1;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    cursor: pointer;
 }
 
 .first-buttons {
@@ -256,21 +104,6 @@ Hero Slide
     text-decoration: none;
 }
 
-.question-title {
-    margin-right: 20px;
-    margin-bottom: 0px;
-    margin-left: 20px;
-    color: #1c2243;
-    font-weight: 700;
-    text-align: center;
-}
-
-.second-question {
-    margin-top: 30px;
-    margin-right: 8vw;
-    margin-left: 8vw;
-}
-
 .form-button.vertical {
     margin-top: 10px;
     margin-right: 0px;
@@ -280,6 +113,121 @@ Hero Slide
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 0%;
+}
+
+.form-page {
+    padding-top: 60px;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    background-color: rgb(236, 245, 254);
+    min-height: 650px;
+    font-family: Lato, sans-serif;
+    transition: transform .5s ease;
+    width: 90%;
+}
+
+.form-section {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 0px;
+    margin-right: 5vw;
+    margin-left: 5vw;
+    grid-auto-flow: row;
+    grid-auto-columns: 1fr;
+    -ms-grid-columns: 1.5fr 2fr;
+    grid-template-columns: 1.5fr 2fr;
+    -ms-grid-rows: auto;
+    grid-template-rows: auto;
+}
+
+.hero-caption {
+    color: #3793ff;
+    font-size: 3em;
+    font-weight: 700;
+    letter-spacing: 1px;
+    white-space: normal;
+    text-align: center;
+}
+
+.hero-image {
+    min-height: 650px;
+    width: 35%;
+    padding: 40px 3vw;
+    background-image: url('../images/truckbgd.jpeg');
+    background-position: 100% 0%;
+    background-size: cover;
+    transition: transform .5s ease;
+    position: absolute;
+    z-index: 5;
+}
+
+.hero-question {
+    margin: 20px auto;
+}
+
+.image-caption {
+    margin-right: auto;
+    margin-left: auto;
+    padding: 10px;
+    border: 0px none #000;
+    border-radius: 10px;
+    background-color: transparent;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(194, 222, 255, 0.31)), to(rgba(194, 222, 255, 0.31))), -webkit-gradient(linear, left top, left bottom, from(rgba(194, 222, 255, 0.31)), to(rgba(194, 222, 255, 0.31))), -webkit-gradient(linear, left top, left bottom, from(rgba(194, 222, 255, 0.31)), to(rgba(194, 222, 255, 0.31))), -webkit-gradient(linear, left top, left bottom, from(rgba(194, 222, 255, 0.31)), to(rgba(194, 222, 255, 0.31)));
+    background-image: linear-gradient(180deg, rgba(194, 222, 255, 0.31), rgba(194, 222, 255, 0.31)), linear-gradient(180deg, rgba(194, 222, 255, 0.31), rgba(194, 222, 255, 0.31)), linear-gradient(180deg, rgba(194, 222, 255, 0.31), rgba(194, 222, 255, 0.31)), linear-gradient(180deg, rgba(194, 222, 255, 0.31), rgba(194, 222, 255, 0.31));
+    color: #3793ff;
+    font-size: 32px;
+    line-height: 115%;
+    font-weight: 400;
+    text-align: right;
+}
+.in-view {
+    left: 5%;
+}
+
+.move-left {
+    transform: translateX(-100vw);
+}
+
+.move-right {
+    transform: translateX(100vw);
+}
+
+.progress-block {
+    display: -ms-grid;
+    display: grid;
+    margin: 40px auto 0px;
+    padding-top: 0px;
+    padding-right: 17vw;
+    padding-left: 17vw;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    justify-items: center;
+    -webkit-box-align: start;
+    -webkit-align-items: start;
+    -ms-flex-align: start;
+    align-items: start;
+    -webkit-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    -ms-grid-row-align: auto;
+    align-self: auto;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    grid-auto-columns: 1fr;
+    grid-column-gap: 11px;
+    grid-row-gap: 16px;
+    -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    -ms-grid-rows: auto;
+    grid-template-rows: auto;
 }
 
 .progress-bar {
@@ -304,37 +252,71 @@ Hero Slide
     align-self: center;
 }
 
-.arrow {
-    display: block;
-    margin-left: 0vw;
-    align-self: center;
-    order: -1;
-    flex-grow: 0;
-    flex-shrink: 1;
-    flex-basis: auto;
-    cursor: pointer;
-  }
+.question-title {
+    margin-right: 20px;
+    margin-bottom: 0px;
+    margin-left: 20px;
+    color: #1c2243;
+    font-weight: 700;
+    text-align: center;
+}
+
+.second-question {
+    margin-top: 30px;
+    margin-right: 8vw;
+    margin-left: 8vw;
+}
+
+.tall {
+    height: 780px!important;
+}
+
+.taller {
+    height: 970px!important;
+}
+
+#hero {
+    background: #F5F3F5;
+    margin-top: 70px;
+    position: relative;
+    overflow: hidden;
+    height: 720px;
+}
+
+#slide1 {
+    left: 40%;
+    z-index: 5;
+    width: 55%;
+    position: absolute;
+}
+
+#slide2 {
+    left: 40%;
+    z-index: 4;
+    width: 55%;
+    position: absolute;
+}
 
 @media screen and (max-width: 991px) {
 
+    .form-button-image {
+        max-height: 100%;
+        min-height: 5px;
+    }
     .hero-image {
         display: none;
         background-image: url('../images/redtrucks.png');
         background-size: cover;
-    }
-    #slide1, #slide2 {
-        left: 0;
-        width: 100%;
-    }
-    .form-button-image {
-        max-height: 100%;
-        min-height: 5px;
     }
     .tall {
         height: 820px!important;
     }
     .taller {
         height: 1300px!important;
+    }
+    #slide1, #slide2 {
+        left: 0;
+        width: 100%;
     }
 }
 
@@ -381,9 +363,7 @@ Hero Slide
         -ms-flex: 1;
         flex: 1;
     }
-    #hero {
-        height: 780px;
-    }
+
     .progress-bar {
         margin-right: 2vw;
         margin-left: 2vw;
@@ -395,6 +375,9 @@ Hero Slide
     }
     .taller {
         height: 1500px!important;
+    }
+    #hero {
+        height: 780px;
     }
 }
 

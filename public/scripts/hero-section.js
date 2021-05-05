@@ -25,7 +25,7 @@ function initializeForm() {
     formData = {
         totalPayroll: 0,
         businessType: 0,
-        zipCode: 0,
+        zipCode: "Not provided",
         mileage: 0,
         email: ''
     }
@@ -216,6 +216,7 @@ function pasteValues(e) {
 
             inputBox.value= values[parseInt(i)];
         };
+        // When a value longer than 7 digits is pasted, the first 7 digits are kept and the rest discarded
         if (values.length >= 7) {
 
             var total = '';
@@ -233,14 +234,16 @@ function pasteValues(e) {
 
 }
 
-
+// One of these two is inserted in the result header when a DOT search is performed
 const successHeader = `<p><span>Found record for DOT </span><span id="DOT-success-header"></span></p>`
 const failureHeader = `
     <p><span>No record found for DOT </span><span id="DOT-failure-header"></span></p>
     <p>Please enter the information below</p>
 `
 
+// This clears the DOT input fields
 function clearDOT() {
+    document.getElementById("searchResult").classList.add("expandable-collapsed")
     for (let i=0; i<digits.length; i++) {
         digits[i].value = '';
     }
@@ -261,6 +264,7 @@ function clearAllFields() {
     document.getElementById('powerUnits').value = '';
     document.getElementById('drivers').value = '';
     document.getElementById('carrierOperation').value = '';
+    // Clears out the drop-down menus
     const operationTypeChoices = Array.from(document.querySelectorAll('.drop-options')[0].childNodes[0].childNodes);
     const cargoCarriedChoices = Array.from(document.querySelectorAll('.drop-options')[1].childNodes[0].childNodes);
     for (const el of operationTypeChoices) {
@@ -312,11 +316,12 @@ async function searchDOT(e) {
                 document.getElementById('result-header').innerHTML= successHeader;
                 document.getElementById('DOT-success-header').innerText = dot['dot'];
                 document.getElementById('searchResult').classList.remove("expandable-collapsed");
-
+                // If an address is returned, pull the zipcode out of it and add it to the form data
                 if (client.result['address']) { 
                     const zipCodePattern = /\d{5}/;
                     formData.zipCode = client.result['address'].match(zipCodePattern)[0];
                 }
+                // If a DBA name is returned, add a section that displays it
                 if (client.result['DBA']) {
                     document.getElementById('DBA').innerText = "DBA";
                     document.getElementById('DBAfield').value = client.result['DBA'];
@@ -361,6 +366,18 @@ async function searchDOT(e) {
     }
 }
 
+document.getElementById('milesTraveled').addEventListener('keydown', (e) => {
+    // If the input for Vehicle Miles Traveled is manually changed, save it to the formData
+    const formMileage = document.getElementById('milesTraveled').value
+    if (formMileage < 200) {
+        formData.mileage = 1;
+    } else if (formMileage > 500) {
+        formData.mileage = 3;
+    } else {
+        formData.mileage = 2;
+    }
+});
+
 
 function saveClientData() {
     // If an email address is given on the DOT slide, save it in the formData and add it to the input on slide 5
@@ -368,10 +385,6 @@ function saveClientData() {
         formData.email = document.getElementById('email').value;
         document.getElementById('slide5Email').value = formData.email;
     } 
-    // If the input for Vehicle Miles Traveled is entered, save it to the formData
-    if (document.getElementById('milesTraveled').value) {
-        formData.mileage = document.getElementById('milesTraveled').value
-    }
     changeSlide(1);
 }
 
