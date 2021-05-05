@@ -37,6 +37,7 @@ hr {
     text-align: center;
     padding: 10px;
     color: white;
+    cursor: pointer;
 }
 
 .dashboard-nav-button:hover {
