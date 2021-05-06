@@ -1,11 +1,11 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const session = require('express-session');
+// const session = require('express-session');
 // const bcrypt = require('bcrypt');
-// const flash = require('connect-flash');
 const routes = require('./routes');
 // const cors = require('cors');
+// const flash = require('connect-flash');
 
 
 // for environment variables
@@ -22,19 +22,14 @@ const app = express();
 
 // Middleware
 
-app.use(session({
-    secret: 'secret',
-    resave: true,
-    saveUninitialized: true
-}));
 
 /* --------------------------
   The following middleware is 
   currently not being used
 -------------------------- */
 
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 // app.use(flash());
 

@@ -573,7 +573,7 @@ email.addEventListener('keyup', () => {
     const emailError = document.getElementById('emailError');
     if (input!='' && regex.test(input)) {
         formData.email = input;
-        // setCookie('clientData', JSON.stringify(formData));
+        setCookie('clientData', JSON.stringify(formData));
         emailError.style.visibility = 'hidden';
         submit.classList.remove('disabled');
         submit.onclick=function() {
@@ -616,6 +616,13 @@ async function requestQuoteSlide(data) {
     lowEnd.innerText=(number *0.8).toFixed(2);
     highEnd.innerText=(number *1.2).toFixed(2);
 }
+
+// This saves the formData as a cookie in the browser
+function setCookie(name, value) {
+    const today = new Date();
+    const expiry = new Date(today.getTime() + 24 * 3600000); // saves cookie for 24 hours
+    document.cookie=name + "=" + value + "; path=/; expires=" + expiry.toGMTString();
+  }
 
 // On page load //
 

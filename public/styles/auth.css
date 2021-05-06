@@ -6,6 +6,11 @@ hr {
     width: 20%;
 }
 
+input {
+    margin-bottom: 10px;
+    min-width: 60%;
+}
+
 .card-body {
     padding: 15px;
 }

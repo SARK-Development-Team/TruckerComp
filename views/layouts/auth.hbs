@@ -12,8 +12,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="../../public/styles/normalize.css" rel="stylesheet" type="text/css">
     <link href="../../public/styles/common.css" rel="stylesheet">
-    <link href="../../public/styles/footer.css" rel="stylesheet">
     <link href="../../public/styles/webflow.css" rel="stylesheet">
+    <link href="../../public/styles/footer.css" rel="stylesheet">
     <link href="../../public/styles/auth.css" rel="stylesheet">
 
     <script src="https://kit.fontawesome.com/793cc4a12c.js" crossorigin="anonymous"></script>
@@ -25,8 +25,11 @@
     {{>authnavbar}}
 
     <!-- xxxxxxxxxx -->
-
-    {{{body}}}
+    {{#if user}}
+        {{{body user = user}}}
+    {{else}}
+        {{{body}}}
+    {{/if}}
 
     <!-- xxxxxxxxxx -->
 
