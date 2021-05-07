@@ -1,23 +1,23 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-// const session = require('express-session');
-// const bcrypt = require('bcrypt');
+const session = require('express-session');
+const bcrypt = require('bcrypt');
 const routes = require('./routes');
 // const cors = require('cors');
-// const flash = require('connect-flash');
+const flash = require('connect-flash');
 
 
 // for environment variables
 require('dotenv').config()
 
+const app = express();
 
 // Passport is responsible for the user's login/logout behavior
 const passport = require('passport');
 require('./config/passport')(passport);
 
 
-const app = express();
 
 
 // Middleware
@@ -27,34 +27,34 @@ const app = express();
   The following middleware is 
   currently not being used
 -------------------------- */
-
+app.use(session({ secret: 'secret' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use(flash());
+app.use(flash());
 
-// app.use(function(req, res, next) {
-//   res.locals.success_msg = req.flash('success_msg');
-//   res.locals.error_msg = req.flash('error_msg');
-//   res.locals.error = req.flash('error');
-//   next();
-// });
+app.use(function(req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
+});
 
-// app.use(function(req, res, next){
-//     var err = req.session.error,
-//         msg = req.session.notice,
-//         success = req.session.success;
+app.use(function(req, res, next){
+    var err = req.session.error,
+        msg = req.session.notice,
+        success = req.session.success;
   
-//     delete req.session.error;
-//     delete req.session.success;
-//     delete req.session.notice;
+    delete req.session.error;
+    delete req.session.success;
+    delete req.session.notice;
   
-//     if (err) res.locals.error = err;
-//     if (msg) res.locals.notice = msg;
-//     if (success) res.locals.success = success;
+    if (err) res.locals.error = err;
+    if (msg) res.locals.notice = msg;
+    if (success) res.locals.success = success;
   
-//     next();
-// });
+    next();
+});
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -83,61 +83,62 @@ app.set('views', path.join(__dirname, 'views'));
 -------------------------- */
 
 
-// const db = require('./models');
+const db = require('./models');
 
-// // Azure is where the completed client lead is stored
-// const azure = require('azure-storage');
-// const tableSvc = azure.createTableService(process.env.AZURE_STORAGE_ACCOUNT, process.env.AZURE_STORAGE_ACCESS_KEY);
+// Azure is where the completed client lead is stored
+const azure = require('azure-storage');
+const tableSvc = azure.createTableService(process.env.AZURE_STORAGE_ACCOUNT, process.env.AZURE_STORAGE_ACCESS_KEY);
 
-// const { ensureAuthenticated, forwardAuthenticated } = require('./config/auth');
+const { ensureAuthenticated, forwardAuthenticated } = require('./config/auth');
+const auth = require('./config/auth');
 
 
-// // This function saves the new "lead" object in the Azure DB, using the DOT as the row key
-// function azureSave(object) {
-//     // Build the "lead" object from the data passed in
-//     // const rowKey = object._ID.toString();
-//     const empString = JSON.stringify(object.employees);
-//     const userID = object._id.toString()
-//     var stage;
-//     if (object.stage==1) stage=2;
-//     const lead = {
-//         PartitionKey: {'_':'leads'},
-//         RowKey: {'_': userID},
-//         name: {'_': object.name},
-//         email: {'_': object.email},
-//         DOT: {'_': object.DOT},
-//         MC: {'_': object.MC},
-//         totalPayroll: {'_': object.totalPayroll},
-//         mileage: {'_': object.mileage},
-//         companyName: {'_': object.companyName},
-//         address: {'_': object.address},
-//         mailingAddress: {'_': object.mailingAddress},
-//         phone: {'_': object.phone},
-//         employees: {'_': empString},
-//         powerUnits: {'_': object.powerUnits},
-//         stage: {'_': stage}
-//       };
-//     //   Create the table if it does not exist already
-//     tableSvc.createTableIfNotExists('sarkleads', function(err, result, response){
-//     // If there is no error
-//     if(!err){
-//         // insert the "lead" object into the table
-//         try {
-//             tableSvc.insertOrReplaceEntity('sarkleads',lead, function (err, result, response) {
-//                 if(!err){
-//                     return;
-//                 } else {
-//                     console.log(err);
-//                 }
-//             });
-//         } catch(err) {
-//             console.log(err)
-//         }
-//     } else {
-//         console.log(err);
-//     }
-//   });
-// };
+// This function saves the new "lead" object in the Azure DB, using the DOT as the row key
+function azureSave(object) {
+    // Build the "lead" object from the data passed in
+    // const rowKey = object._ID.toString();
+    const empString = JSON.stringify(object.employees);
+    const userID = object._id.toString()
+    var stage;
+    if (object.stage==1) stage=2;
+    const lead = {
+        PartitionKey: {'_':'leads'},
+        RowKey: {'_': userID},
+        name: {'_': object.name},
+        email: {'_': object.email},
+        DOT: {'_': object.DOT},
+        MC: {'_': object.MC},
+        totalPayroll: {'_': object.totalPayroll},
+        mileage: {'_': object.mileage},
+        companyName: {'_': object.companyName},
+        address: {'_': object.address},
+        mailingAddress: {'_': object.mailingAddress},
+        phone: {'_': object.phone},
+        employees: {'_': empString},
+        powerUnits: {'_': object.powerUnits},
+        stage: {'_': stage}
+      };
+    //   Create the table if it does not exist already
+    tableSvc.createTableIfNotExists('sarkleads', function(err, result, response){
+    // If there is no error
+    if(!err){
+        // insert the "lead" object into the table
+        try {
+            tableSvc.insertOrReplaceEntity('sarkleads',lead, function (err, result, response) {
+                if(!err){
+                    return;
+                } else {
+                    console.log(err);
+                }
+            });
+        } catch(err) {
+            console.log(err)
+        }
+    } else {
+        console.log(err);
+    }
+  });
+};
 
 // // This function is used to find the lead in the Azure Storage table
 // async function azureSearch(id) {
@@ -178,14 +179,14 @@ app.use('/users', routes.users);
 
 
 // // Show Login Page
-// app.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
+// app.get('/users/login', forwardAuthenticated, (req, res) => res.render('login'));
 
 // // Show Register Page
-// app.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
+// app.get('/users/register', forwardAuthenticated, (req, res) => res.render('register'));
 
 
 // // Register the user in the Mongo Database
-// app.post('/register', (req, res) => {
+// app.post('/users/register', (req, res) => {
 //   const { name, email, password, password2, businessType, zipCode, mileage, totalPayroll } = req.body;
 //   var DOT, MC, companyName, address, mailingAddress, phone, powerUnits;
 //   DOT = MC = companyName = address = mailingAddress = phone = powerUnits = '';
@@ -222,6 +223,7 @@ app.use('/users', routes.users);
 //       if (user) {
 //         errors.push({ msg: 'Email already exists' });
 //         res.render('register', {
+//           layout: 'auth',
 //           errors,
 //           name,
 //           email,
@@ -259,7 +261,9 @@ app.use('/users', routes.users);
 //                   'success_msg',
 //                   'You are now registered and can log in'
 //                 );
-//                 res.render('login', {email: email});
+//                 res.render('login', {
+//                   layout: 'auth',
+//                   email: email});
 //               })
 //               .catch(err => console.log(err));
 //           });
@@ -270,7 +274,7 @@ app.use('/users', routes.users);
 // });
 
 // // Login
-// app.post('/login', (req, res, next) => {
+// app.post('/users/login', (req, res, next) => {
 //   passport.authenticate('local', {
 //     successRedirect: 'dashboard',
 //     failureRedirect: 'login',
@@ -279,17 +283,16 @@ app.use('/users', routes.users);
 // });
 
 // // Logout
-// app.get('/logout', (req, res) => {
+// app.get('/users/logout', (req, res) => {
 //   req.logout();
 //   req.flash('success_msg', 'You are logged out');
 //   res.redirect('login');
-//   // console.log("locals:", res.locals);
-//   // console.log("sesh:", req.session.flash.success_msg);
 // });
 
 // // Dashboard
-// app.get('/dashboard', ensureAuthenticated, (req, res) => {
+// app.get('/users/dashboard', ensureAuthenticated, (req, res) => {
 //   res.render('dashboard', {
+//     layout: 'auth',
 //     user: req.user
 //   })
 // });

@@ -18,40 +18,6 @@ require('../config/passport')(passport);
 router.use(passport.initialize());
 router.use(passport.session());
 
-// router.use(flash());
-
-// router.use(session({
-//     secret: 'secret',
-//     resave: true,
-//     saveUninitialized: true
-// }));
-
-// router.use(function(req, res, next) {
-//   res.locals.success_msg = req.flash('success_msg');
-//   res.locals.error_msg = req.flash('error_msg');
-//   res.locals.error = req.flash('error');
-//   next();
-// });
-
-// router.use(function(req, res, next){
-//     var err = req.session.error,
-//         msg = req.session.notice,
-//         success = req.session.success;
-  
-//     delete req.session.error;
-//     delete req.session.success;
-//     delete req.session.notice;
-  
-//     if (err) res.locals.error = err;
-//     if (msg) res.locals.notice = msg;
-//     if (success) res.locals.success = success;
-  
-//     next();
-// });
-
-
-
-// const User = require('../../models/User');
 const db = require('../models');
 
 // Azure is where the completed client lead is stored
@@ -132,7 +98,6 @@ const renderRegister = (forwardAuthenticated, (req, res) => {
 // Register
 const registerUser = (req, res) => {
     const { name, email, password, password2, businessType, employees, zipCode, mileage, totalPayroll } = req.body;
-    // console.log(req);
     let errors = [];
 
     if (!name || !email || !password || !password2) {
@@ -187,11 +152,11 @@ const registerUser = (req, res) => {
                 newUser
                 .save()
                 .then(user => {
-                    // req.flash(
-                    // 'success_msg',
-                    // 'You are now registered and can log in'
-                    // );
-                    // res.redirect('/users/login', {email: email});
+                    req.flash(
+                    'success_msg',
+                    'You are now registered and can log in'
+                    );
+                    res.redirect('/users/login', {email: email});
                     res.render('login', {
                         layout: "auth", 
                         email: email
@@ -211,26 +176,24 @@ const loginUser = (req, res, next) => {
   passport.authenticate('local', {
     successRedirect: 'dashboard',
     failureRedirect: 'login',
-    // failureFlash: true
+    failureFlash: true
   })(req, res, next);
 };
 
 // Logout
 const logoutUser = (req, res) => {
     req.logout();
-    // req.flash('success_msg', 'You are logged out');
+    req.flash('success_msg', 'You are logged out');
     res.redirect('login');
 };
 
 // Dashboard
-// const openDashboard = (ensureAuthenticated, (req, res) => {
-//     res.render('myInfo', {
-//         user: req.user
-//     })
-// });
-const openDashboard = (req, res) => {
-    res.render('dashboard', {layout: "auth"})
-}
+const openDashboard = (ensureAuthenticated, (req, res) => {
+    res.render('dashboard', {
+        layout: "auth",
+        user: req.user
+    })
+});
 
 module.exports = {
     renderLogin,

@@ -23,13 +23,9 @@
 <body>
 
     {{>authnavbar}}
-
     <!-- xxxxxxxxxx -->
-    {{#if user}}
-        {{{body user = user}}}
-    {{else}}
-        {{{body}}}
-    {{/if}}
+    {{{body}}}
+    <div>{{user.name}}</div>
 
     <!-- xxxxxxxxxx -->
 
