@@ -3,8 +3,12 @@
 
 <section id="dashboard">
     <a href='logout' id="btn-logout" >Logout</a>
-    <h1>TruckerComp Dashboard for /user/</h1>
-
+    {{#if user}}
+        <h1>TruckerComp Dashboard for {{user.name}}</h1>
+    {{else}}
+        <h1>TruckerComp Dashboard</h1>
+        <h4>Please create your profile</h4>
+    {{/if}}
     <div id="dashboard-nav">
         <div class="dashboard-nav-button" onclick="dashboardToggle(event, 'progress-section')">Progress</div>
         <div class="dashboard-nav-button" onclick="dashboardToggle(event, 'profile-section')">Profile</div>
@@ -36,17 +40,17 @@
         <h2>Here is the information we have on record for you</h2>
         <div id="userInfo">
             <h4>Name: <span class="userInfo">{{user.name}}</span></h4>
-            <h4>Email: </h4>
-            <h4>Phone Number: </h4>
-            <h4>Company Name: </h4>
-            <h4>DOT Number: </h4>
-            <h4>MC Number: </h4>
-            <h4>Address: </h4>
-            <h4>Mailing Address: </h4>
-            <h4>Trucks: </h4>
-            <h4>Drivers: </h4>
-            <h4>Total Payroll: </h4>
-            <h4>Annual Mileage: </h4>
+            <h4>Email: <span class="userInfo">{{user.email}}</span></h4>
+            <h4>Phone Number: <span class="userInfo">{{user.phone}}</span></h4>
+            <h4>Company Name: <span class="userInfo">{{user.companyName}}</span></h4>
+            <h4>DOT Number: <span class="userInfo">{{user.DOT}}</span></h4>
+            <h4>MC Number: <span class="userInfo">{{user.DOT}}</span></h4>
+            <h4>Address: <span class="userInfo">{{user.address}}</span></h4>
+            <h4>Mailing Address: <span class="userInfo">{{user.mailingAddress}}</span></h4>
+            <h4>Trucks: <span class="userInfo">{{user.powerUnits}}</span></h4>
+            <h4>Drivers: <span class="userInfo">{{user.drivers}}</span></h4>
+            <h4>Total Payroll: <span class="userInfo">{{user.totalPayroll}}</span></h4>
+            <h4>Annual Mileage: <span class="userInfo">{{user.mileage}}</span></h4>
         </div> 
     </div>
 

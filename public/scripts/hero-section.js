@@ -27,7 +27,18 @@ function initializeForm() {
         businessType: 0,
         zipCode: "Not provided",
         mileage: 0,
-        email: ''
+        email: '',
+        DOT: '',
+        companyName: '',
+        DBA: '',
+        address: '',
+        mailingAddress: '',
+        phone: '',
+        powerUnits: '',
+        drivers: '',
+        carrierOperation: '',
+        operationType: [],
+        cargoCarried: [],
     }
     // Resets the DOT digits input area on slide 3
     for (let i=0; i<digits.length; i++) {
@@ -381,10 +392,29 @@ document.getElementById('milesTraveled').addEventListener('keydown', (e) => {
 
 function saveClientData() {
     // If an email address is given on the DOT slide, save it in the formData and add it to the input on slide 5
-    if (document.getElementById('email').value) {
+    // if (document.getElementById('email').value) {
+        formData.DOT=document.getElementById('slide3DOT').value;
         formData.email = document.getElementById('email').value;
+        formData.phone=document.getElementById('phone').value;
+        formData.address=document.getElementById('address').value;
+        formData.mailingAddress=document.getElementById('mailingAddress').value;
+        formData.powerUnits=document.getElementById('powerUnits').value;
+        formData.drivers=document.getElementById('drivers').value;
+        formData.carrierOperation=document.getElementById('carrierOperation').value;
+
+        // These lines establish the contents of the dropdown boxes 
+        const operationTypeChoices = Array.from(document.querySelectorAll('.drop-display')[0].childNodes[0].childNodes);
+        const cargoCarriedChoices = Array.from(document.querySelectorAll('.drop-display')[1].childNodes[0].childNodes);
+
+        // These lines save their contents into the formData as arrays
+        for (let i=0; i<operationTypeChoices.length; i++) {
+            formData.operationType.push(operationTypeChoices[i].innerText.slice(0, -2));
+        }
+        for (let j=0; j<cargoCarriedChoices.length; j++) {
+            formData.cargoCarried.push(cargoCarriedChoices[j].innerText.slice(0, -2));
+        }
         document.getElementById('slide5Email').value = formData.email;
-    } 
+    // } 
     changeSlide(1);
 }
 

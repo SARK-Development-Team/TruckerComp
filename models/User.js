@@ -21,11 +21,14 @@ const UserSchema = new mongoose.Schema({
     default: Date.now
   },
   businessType: {
-    type: String,
+    type: String
   },
-  employees: {
-    type: Array
+  carrierOperation: {
+    type: String
   },
+  // employees: {
+  //   type: Array
+  // },
   totalPayroll: {
     type: Number
   },
@@ -38,10 +41,13 @@ const UserSchema = new mongoose.Schema({
   DOT: {
     type: Number,
   },
-  MC: {
-    type: Number,
-  },
+  // MC: {
+  //   type: Number,
+  // },
   companyName: {
+    type: String, 
+  },
+  DBA: {
     type: String, 
   },
   address: {
@@ -56,10 +62,18 @@ const UserSchema = new mongoose.Schema({
   powerUnits: {
     type: Number,
   },
+  drivers: {
+    type: Number,
+  },
   stage: {
     type: Number
+  },
+  operationType: {
+    type: Array
+  },
+  cargoCarried: {
+    type: Array
   }
-
 
 });
 

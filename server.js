@@ -22,11 +22,6 @@ require('./config/passport')(passport);
 
 // Middleware
 
-
-/* --------------------------
-  The following middleware is 
-  currently not being used
--------------------------- */
 app.use(session({ secret: 'secret' }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -74,13 +69,6 @@ app.engine('hbs', handle({
 }));
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'views'));
-
-
-
-/* --------------------------
-  The following functions are 
-  currently not being used
--------------------------- */
 
 
 const db = require('./models');
@@ -159,9 +147,6 @@ function azureSave(object) {
 -------------------------- */
 
 
-// app.get('/', (req, res) => {
-//     res.render('main',  {layout: "index"},);
-// })
 app.get('/', (req, res) => {
     res.render('main');
 })
