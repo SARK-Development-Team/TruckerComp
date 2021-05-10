@@ -62,9 +62,9 @@ function azureSave(object) {
 };
 
 // This route saves the user input into the Azure Storage DB
-savetoMongoDB = () => {
+savetoMongoDB = (data) => {
   try {
-    db.User.findOneAndUpdate({ _id: req.body._id }, req.body)
+    db.User.findOneAndUpdate({ _id: data._id }, data)
     .then(console.log("successfully updated"))
     .catch((err)=>console.log(err)); 
 
@@ -73,11 +73,11 @@ savetoMongoDB = () => {
   }
   try {
     console.log("trying to save in Azure");
-    azureSave(req.body);
+    azureSave(data);
+    alert(`<p>Thank you for confirming! We will contact you shortly!</p>`);
   } catch (err) {
     console.log("Error Saving:", err);
   }
-  res.send(`<p>Thank you for confirming! We will contact you shortly!</p>`);
 }
 
 

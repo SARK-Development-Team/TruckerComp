@@ -344,14 +344,12 @@ async function searchDOT(e) {
                 document.getElementById('companyName').innerText = client.result['name'] ?? '' ;
                 document.getElementById('slide5Name').innerText = client.result['name'] ?? '';
                 document.getElementById('email').value = client.result['email'] ?? '';
-                document.getElementById('slide5Email').value = client.result['email'] ?? '';
                 document.getElementById('address').value = client.result['address'] ?? '';
                 document.getElementById('milesTraveled').value = client.result['milesTraveled'] ?? '';
                 // document.getElementById('mailingAddress').value = client.result['Mailing Address'];
                 document.getElementById('phone').value = client.result['phone'] ?? '';
                 document.getElementById('powerUnits').value = client.result['powerUnits'] ?? '';
                 document.getElementById('drivers').value = client.result['drivers'] ?? '';
-                document.getElementById('empAmount1').value = client.result['drivers'] ?? 0;
                 const operationTypeChoices = document.querySelectorAll('.drop-options')[0].childNodes[0].childNodes;
                 const cargoCarriedChoices = document.querySelectorAll('.drop-options')[1].childNodes[0].childNodes;
                 const opClasses = client.result.opClass;
@@ -413,7 +411,10 @@ function saveClientData() {
         for (let j=0; j<cargoCarriedChoices.length; j++) {
             formData.cargoCarried.push(cargoCarriedChoices[j].innerText.slice(0, -2));
         }
+        document.getElementById('empAmount1').value = document.getElementById('drivers').value;
+
         document.getElementById('slide5Email').value = formData.email;
+        testEmail();
     // } 
     changeSlide(1);
 }
@@ -594,27 +595,29 @@ function fillInfo(data) {
 
 const email = document.getElementById('slide5Email');
 
-email.addEventListener('keyup', () => {
-
+function testEmail() {
     const input = email.value;
     const submit = document.getElementById('submit');
     // this regex tests for an email address
     const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     const emailError = document.getElementById('emailError');
+    emailError.style.visibility = 'hidden';
     if (input!='' && regex.test(input)) {
-        formData.email = input;
-        setCookie('clientData', JSON.stringify(formData));
-        emailError.style.visibility = 'hidden';
         submit.classList.remove('disabled');
         submit.onclick=function() {
             // this function sends the email
             sendQuote(formData);
             purchasePolicy(formData);
+            setCookie('clientData', JSON.stringify(formData));
         };
     } else {
         submit.classList.add('disabled');
         emailError.style.visibility = 'visible';
     }
+}
+
+email.addEventListener('keyup', () => {
+    testEmail();
 });
 
 function purchasePolicy(data) {

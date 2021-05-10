@@ -156,7 +156,8 @@ const registerUser = (req, res) => {
                     'success_msg',
                     'You are now registered and can log in'
                     );
-                    res.redirect('/users/login', {email: email});
+                    // res.redirect('/users/login', {
+                    //     email: email});
                     res.render('login', {
                         layout: "auth", 
                         email: email
