@@ -71,13 +71,13 @@ savetoMongoDB = (data) => {
   } catch (err) {
     console.log("Db error:", err);
   }
-  try {
-    console.log("trying to save in Azure");
-    azureSave(data);
-    alert(`<p>Thank you for confirming! We will contact you shortly!</p>`);
-  } catch (err) {
-    console.log("Error Saving:", err);
-  }
+  // try {
+  //   console.log("trying to save in Azure");
+  //   azureSave(data);
+  //   alert(`<p>Thank you for confirming! We will contact you shortly!</p>`);
+  // } catch (err) {
+  //   console.log("Error Saving:", err);
+  // }
 }
 
 

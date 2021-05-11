@@ -32,7 +32,6 @@ const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_U
 */
 
 async function sendEmail(data) {
-    console.log("hit the function")
     try {
         oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
         const accessToken = await oAuth2Client.getAccessToken();
@@ -74,10 +73,10 @@ async function sendEmail(data) {
 
 // This function is the basic quote calculation formula
 function calculateQuote(data) {
-    const payrollFactor = 0.0002;
+    const payrollFactor = 0.002;
     const purchaseBaseline = 500;
-    const mileageFactor = 0.00005;
-    return (data.totalPayroll*payrollFactor + data.mileage * mileageFactor+purchaseBaseline);
+    const mileageFactor = 0.0005;
+    return ((data.totalPayroll*payrollFactor + data.mileage) * mileageFactor+purchaseBaseline);
 };
 
 

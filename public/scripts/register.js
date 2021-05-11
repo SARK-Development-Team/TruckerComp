@@ -10,11 +10,11 @@ const companyField = document.getElementById('companyName');
 const DBAField = document.getElementById('DBA');
 const addressField = document.getElementById('address');
 const mailingField = document.getElementById('mailingAddress');
-const phoneField = document.getElementById('phoneCode');
+const phoneField = document.getElementById('phone');
 const trucksField = document.getElementById('powerUnits');
 const driversField = document.getElementById('drivers');
 const operationField = document.getElementById('operationType');
-const cargoField = document.getElementById('zipCode');
+const cargoField = document.getElementById('cargoCarried');
 
 
 // If the cookie exists already, populate the email and the hidden inputs of the form with the values from the cookie.
@@ -31,16 +31,16 @@ function checkCookie() {
         payrollField.value=clientDataObj.totalPayroll;
         mileageField.value=clientDataObj.mileage;
         zipField.value=clientDataObj.zipCode;
-        DOTField=clientDataObj.DOT;
-        companyField=clientDataObj.companyName;
-        DBAField=clientDataObj.DBA;
-        addressField=clientDataObj.address;
-        mailingField=clientDataObj.mailingAddress;
-        phoneField=clientDataObj.phone;
-        trucksField=clientDataObj.powerUnits;
-        driversField=clientDataObj.drivers;
-        operationField=JSON.stringify(clientDataObj.operationType);
-        cargoField==JSON.stringify(clientDataObj.cargoCarried);
+        DOTField.value=clientDataObj.DOT;
+        companyField.value=clientDataObj.companyName;
+        DBAField.value=clientDataObj.DBA;
+        addressField.value=clientDataObj.address;
+        mailingField.value=clientDataObj.mailingAddress;
+        phoneField.value=clientDataObj.phone;
+        trucksField.value=clientDataObj.powerUnits;
+        driversField.value=clientDataObj.drivers;
+        operationField.value=JSON.stringify(clientDataObj.operationType);
+        cargoField.value==JSON.stringify(clientDataObj.cargoCarried);
         return clientDataObj;
 
     } catch (err) {
@@ -50,16 +50,16 @@ function checkCookie() {
         payrollField.value='';
         mileageField.value='';
         zipField.value='';
-        DOTField='';
-        companyField='';
-        DBAField='';
-        addressField='';
-        mailingField='';
-        phoneField='';
-        trucksField='';
-        driversField='';
-        operationField=JSON.stringify(clientDataObj.operationType);
-        cargoField==JSON.stringify(clientDataObj.cargoCarried);
+        DOTField.value='';
+        companyField.value='';
+        DBAField.value='';
+        addressField.value='';
+        mailingField.value='';
+        phoneField.value='';
+        trucksField.value='';
+        driversField.value='';
+        operationField.value=JSON.stringify(clientDataObj.operationType);
+        cargoField.value=JSON.stringify(clientDataObj.cargoCarried);
     }
 
 }

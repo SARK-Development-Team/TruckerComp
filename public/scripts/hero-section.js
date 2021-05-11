@@ -25,7 +25,7 @@ function initializeForm() {
     formData = {
         totalPayroll: 0,
         businessType: 0,
-        zipCode: "Not provided",
+        zipCode: 0,
         mileage: 0,
         email: '',
         DOT: '',
@@ -387,34 +387,33 @@ document.getElementById('milesTraveled').addEventListener('keydown', (e) => {
     }
 });
 
-
+// This function saves the client data into the formData object when the users progresses from the dotslide to the payrollslide
 function saveClientData() {
     // If an email address is given on the DOT slide, save it in the formData and add it to the input on slide 5
-    // if (document.getElementById('email').value) {
-        formData.DOT=document.getElementById('slide3DOT').value;
-        formData.email = document.getElementById('email').value;
-        formData.phone=document.getElementById('phone').value;
-        formData.address=document.getElementById('address').value;
-        formData.mailingAddress=document.getElementById('mailingAddress').value;
-        formData.powerUnits=document.getElementById('powerUnits').value;
-        formData.drivers=document.getElementById('drivers').value;
-        formData.carrierOperation=document.getElementById('carrierOperation').value;
+    formData.DOT=document.getElementById('slide3DOT').value;
+    formData.email = document.getElementById('email').value;
+    formData.phone=document.getElementById('phone').value;
+    formData.address=document.getElementById('address').value;
+    formData.mailingAddress=document.getElementById('mailingAddress').value;
+    formData.powerUnits=document.getElementById('powerUnits').value;
+    formData.drivers=document.getElementById('drivers').value;
+    formData.carrierOperation=document.getElementById('carrierOperation').value;
 
-        // These lines establish the contents of the dropdown boxes 
-        const operationTypeChoices = Array.from(document.querySelectorAll('.drop-display')[0].childNodes[0].childNodes);
-        const cargoCarriedChoices = Array.from(document.querySelectorAll('.drop-display')[1].childNodes[0].childNodes);
+    // These lines establish the contents of the dropdown boxes 
+    const operationTypeChoices = Array.from(document.querySelectorAll('.drop-display')[0].childNodes[0].childNodes);
+    const cargoCarriedChoices = Array.from(document.querySelectorAll('.drop-display')[1].childNodes[0].childNodes);
 
-        // These lines save their contents into the formData as arrays
-        for (let i=0; i<operationTypeChoices.length; i++) {
-            formData.operationType.push(operationTypeChoices[i].innerText.slice(0, -2));
-        }
-        for (let j=0; j<cargoCarriedChoices.length; j++) {
-            formData.cargoCarried.push(cargoCarriedChoices[j].innerText.slice(0, -2));
-        }
-        document.getElementById('empAmount1').value = document.getElementById('drivers').value;
+    // These lines save their contents into the formData as arrays
+    for (let i=0; i<operationTypeChoices.length; i++) {
+        formData.operationType.push(operationTypeChoices[i].innerText.slice(0, -2));
+    }
+    for (let j=0; j<cargoCarriedChoices.length; j++) {
+        formData.cargoCarried.push(cargoCarriedChoices[j].innerText.slice(0, -2));
+    }
+    document.getElementById('empAmount1').value = document.getElementById('drivers').value;
 
-        document.getElementById('slide5Email').value = formData.email;
-        testEmail();
+    document.getElementById('slide5Email').value = formData.email;
+    testEmail();
     // } 
     changeSlide(1);
 }
@@ -587,8 +586,11 @@ function fillInfo(data) {
             q2.innerText='Error';
             break;
     }
-
-    q3.innerText=data.zipCode;
+    if (formData.zipcode) {
+        q3.innerText=data.zipCode;
+    } else {
+        q3.innerText='Not provided';
+    }
 
     q4.innerText=data.totalPayroll;
 }

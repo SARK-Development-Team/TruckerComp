@@ -20,10 +20,6 @@ router.use(passport.session());
 
 const db = require('../models');
 
-// Azure is where the completed client lead is stored
-const azure = require('azure-storage');
-const tableSvc = azure.createTableService(process.env.AZURE_STORAGE_ACCOUNT, process.env.AZURE_STORAGE_ACCESS_KEY);
-
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
 // router.use(flash());
@@ -41,46 +37,6 @@ async function sqlSearch(number) {
   }
 }
 
-
-// This function saves the new "lead" object in the Azure DB, using the DOT as the row key
-function azureSave(object) {
-  // Build the "lead" object from the data passed in
-  const rowKey = object.DOT.toString();
-  const lead = {
-      PartitionKey: {'_':'leads'},
-      RowKey: {'_': rowKey},
-      name: {'_': object.name},
-      email: {'_': object.email},
-      DOT: {'_': object.DOT},
-      MCP: {'_': object.MCP},
-      totalPayroll: {'_': object.totalPayroll},
-      mileage: {'_': object.mileage},
-      companyName: {'_': object.companyName},
-      address: {'_': object.address},
-      mailingAddress: {'_': object.mailingAddress},
-      phoneNumber: {'_': object.phoneNumber},
-      drivers: {'_': object.drivers},
-      powerUnits: {'_': object.powerUnits},
-    };
-  //   Create the table if it does not exist already
-  tableSvc.createTableIfNotExists('sarkleads', function(err, result, response){
-  // If there is no error
-  if(!err){
-      // insert the "lead" object into the table
-      tableSvc.insertEntity('sarkleads',lead, function (err, result, response) {
-          if(!err){
-              return
-          } else {
-              console.log(err)
-          }
-      });
-  } else {
-      console.log(err)
-  }
-});
-}
-
-
 // Login Page
 const renderLogin = (forwardAuthenticated, (req, res) => {
     res.render('login', {layout: "auth"})
@@ -97,7 +53,10 @@ const renderRegister = (forwardAuthenticated, (req, res) => {
 
 // Register
 const registerUser = (req, res) => {
-    const { name, email, password, password2, businessType, employees, zipCode, mileage, totalPayroll } = req.body;
+    const { name, email, password, password2, businessType, 
+        carrierOperation, DOT, companyName, DBA, address, mailingAddress, 
+        phone, powerUnits, drivers, operationType, cargoCarried, 
+        zipCode, mileage, totalPayroll } = req.body;
     let errors = [];
 
     if (!name || !email || !password || !password2) {
@@ -135,11 +94,21 @@ const registerUser = (req, res) => {
             });
         } else {
             const newUser = new db.User({
+            carrierOperation, 
+            DOT, 
+            companyName, 
+            DBA, 
+            address, 
+            mailingAddress, 
+            phone, 
+            powerUnits, 
+            drivers, 
+            operationType, 
+            cargoCarried, 
             name,
             email,
             password,
             businessType,
-            employees,
             totalPayroll,
             mileage,
             zipCode
