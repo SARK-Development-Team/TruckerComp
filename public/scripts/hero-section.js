@@ -414,7 +414,6 @@ function saveClientData() {
 
     document.getElementById('slide5Email').value = formData.email;
     testEmail();
-    // } 
     changeSlide(1);
 }
 
@@ -501,6 +500,8 @@ function removeLine(e, number) {
     document.getElementById(`empAmount${number}`).value=0.000001;
     document.getElementById(`empSalary${number}`).value=0.000001;
     document.getElementById(`empTotal${number}`).value=0.000001;
+    addPayrollUpdate();
+    addTotalUpdate();
 }
 
 // This function adds another row to the employee info table only when the most recent line is completely filled in

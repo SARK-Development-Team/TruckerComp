@@ -75,7 +75,7 @@ async function sendEmail(data) {
 function calculateQuote(data) {
     const payrollFactor = 0.002;
     const purchaseBaseline = 500;
-    const mileageFactor = 0.0005;
+    const mileageFactor = 500;
     return ((data.totalPayroll*payrollFactor + data.mileage) * mileageFactor+purchaseBaseline);
 };
 

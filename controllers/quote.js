@@ -18,10 +18,10 @@ function calculateQuote(data) {
     //     }
     //     payrollTotal+=empArray[i].payroll;
     // }
-    const payrollFactor = 0.0002;
+    const payrollFactor = 0.002;
     const purchaseBaseline = 500;
-    const mileageFactor = 0.00005;
-    return (data.totalPayroll*payrollFactor + data.mileage * mileageFactor+purchaseBaseline);
+    const mileageFactor = 500;
+    return ((data.totalPayroll*payrollFactor + data.mileage) * mileageFactor+purchaseBaseline);
 };
 
 const generateQuote = (req, res) => {
