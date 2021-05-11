@@ -44,13 +44,21 @@
             <h4>Phone Number: <span class="userInfo">{{user.phone}}</span></h4>
             <h4>Company Name: <span class="userInfo">{{user.companyName}}</span></h4>
             <h4>DOT Number: <span class="userInfo">{{user.DOT}}</span></h4>
-            <h4>MC Number: <span class="userInfo">{{user.DOT}}</span></h4>
             <h4>Address: <span class="userInfo">{{user.address}}</span></h4>
             <h4>Mailing Address: <span class="userInfo">{{user.mailingAddress}}</span></h4>
             <h4>Trucks: <span class="userInfo">{{user.powerUnits}}</span></h4>
             <h4>Drivers: <span class="userInfo">{{user.drivers}}</span></h4>
             <h4>Total Payroll: <span class="userInfo">{{user.totalPayroll}}</span></h4>
             <h4>Annual Mileage: <span class="userInfo">{{user.mileage}}</span></h4>
+            <h4>Carrier Operation: <span class="userInfo">{{user.carrierOperation}}</span></h4>
+            <h4>Operation Type: </h4>
+                {{#each user.operationType as |item|}}
+                <h4>{{item}}</h4>
+                {{/each}}
+            <h4>Cargo Carried: </h4>
+                {{#each user.cargoCarried as |item|}}
+                <h4>{{item}}</h4>
+                {{/each}}
         </div> 
     </div>
 

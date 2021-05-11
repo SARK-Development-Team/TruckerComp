@@ -508,7 +508,6 @@ function addRow(e) {
     e.preventDefault();
     const payrollLines = document.getElementsByClassName('remove-type').length;
     const lastLine = Array.from(document.getElementsByClassName(`table-field row${payrollLines}`));
-    console.log(lastLine);
     if (lastLine.every((e) => e.value)) {
         const line = `
             <img src="public/images/wrong.svg" loading="lazy" onclick="removeLine(event, ${payrollLines+1})"
@@ -522,11 +521,11 @@ function addRow(e) {
                 <option value="Clerical">Clerical</option>
                 <option value="Other">Other</option>
             </select>
-            <input type="number" class="table-field row${payrollLines+1} colAmount" id="empAmount${payrollLines+1}" value=0></input>
-            <input type="number" class="table-field row${payrollLines+1} colSalary" id="empSalary${payrollLines+1}" value=0></input>
+            <input type="number" class="table-field row${payrollLines+1} colAmount" id="empAmount${payrollLines+1}" value=0 onfocusout="addPayrollUpdate()"></input>
+            <input type="number" class="table-field row${payrollLines+1} colSalary" id="empSalary${payrollLines+1}" value=0 onfocusout="addPayrollUpdate()"></input>
             `
         const totalBox = `
-            <input type="number" class="table-field total" id="empTotal${payrollLines+1}" value=0></input>
+            <input type="number" class="table-field total" id="empTotal${payrollLines+1}" value=0 onfocusout="addTotalUpdate()"></input>
         `
         document.getElementById("payroll-columns").insertAdjacentHTML('beforeend', line);
         document.getElementById("total-column").insertAdjacentHTML('beforeend', totalBox);
@@ -534,8 +533,8 @@ function addRow(e) {
     else {
         lastLine.every((e) => console.log("e= ", e, " evalue= ", e.value))
     }
-    addPayrollUpdate();
-    addTotalUpdate();
+    // addPayrollUpdate();
+    // addTotalUpdate();
 }
 
 // ---- Slide 5 ---- //

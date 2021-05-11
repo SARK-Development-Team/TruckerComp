@@ -38,14 +38,14 @@
                     <option value="Other">Other</option>
                 </select>
                 {{!-- <input class="table-field row1 colType"></input> --}}
-                <input type="number" class="table-field row1 colAmount" id="empAmount1" value=0></input>
-                <input type="number" class="table-field row1 colSalary" id="empSalary1" value=0></input>
+                <input type="number" class="table-field row1 colAmount" id="empAmount1" value=0 onfocusout="addPayrollUpdate()"></input>
+                <input type="number" class="table-field row1 colSalary" id="empSalary1" value=0 onfocusout="addPayrollUpdate()"></input>
 
             </div>
             <div class="line"></div>
                 <div class="payroll-total-column" id="total-column">
                     <h3 class="table-header">Total</h3>
-                    <input type="number" class="table-field total" id="empTotal1" value=0></input>
+                    <input type="number" class="table-field total" id="empTotal1" value=0 onfocusout="addTotalUpdate()"></input>
                 </div>
 
         </div>
