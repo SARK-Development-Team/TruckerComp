@@ -12,9 +12,15 @@
         <h4>Please create your profile</h4>
     {{/if}}
     <div id="dashboard-nav">
-        <div class="dashboard-nav-button" onclick="dashboardToggle(event, 'progress-section')">Progress</div>
-        <div class="dashboard-nav-button" onclick="dashboardToggle(event, 'profile-section')">Profile</div>
-        <div class="dashboard-nav-button" onclick="dashboardToggle(event, 'policy-section')">Policy Info</div>
+        <div class="dashboard-nav-button left" onclick="dashboardToggle(event, 'progress-section')">
+            <h3 class="form-button-text">Progess</h3>
+        </div>
+        <div class="dashboard-nav-button" onclick="dashboardToggle(event, 'profile-section')">
+            <h3 class="form-button-text">Profile</h3>
+        </div>
+        <div class="dashboard-nav-button right" onclick="dashboardToggle(event, 'policy-section')">            
+            <h3 class="form-button-text">Policy Info</h3>
+        </div>
     </div>
 
     <div id="progress-section" class="dashboard-section hidden">
@@ -62,7 +68,9 @@
                     <h4>{{item}}</h4>
                     {{/each}}
             </div> 
-            <button id="toggleForm" onclick="toggleForm()">Edit</button>
+            <button class="form-button" id="toggleForm" onclick="toggleForm()">
+                <h3 class="form-button-text">Edit</h3>
+            </button>
         </div>
         <form action="/update" method="POST" >
             <div id="userInfoUpdate">
@@ -169,7 +177,9 @@
                         <option value="32">Other</option>
                     </select>
                 </div>
-                <input type="submit" id="saveForm" onclick="saveForm" value="Save">
+                <button type="submit" id="saveForm" class="form-button" onclick="saveForm">
+                    <h3 class="form-button-text">Save</h3>
+                </button>
 
             </div>
         </form>
