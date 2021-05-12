@@ -9,6 +9,7 @@ async function dashboardToggle(e, id) {
         sec.style.opacity=0;
         sec.classList.add("hidden");
     });
+    unToggleForm();
     dButtons.forEach((button) => {
         button.style.background="rgb(55, 147, 255)";
     });
@@ -28,3 +29,18 @@ document.getElementById('file-upload').addEventListener("change", (event) => {
     aTag.innerText = event.target.files[0].name;
     document.getElementById('file-preview').append(aTag);
 });
+
+
+function toggleForm() {
+    document.getElementById("userInfoStatic").style.display="none";
+    document.getElementById("userInfoUpdate").style.display="block";
+}
+
+function unToggleForm() {
+    document.getElementById("userInfoUpdate").style.display="none";
+    document.getElementById("userInfoStatic").style.display="grid";
+}
+
+function saveForm() {
+    unToggleForm();
+}

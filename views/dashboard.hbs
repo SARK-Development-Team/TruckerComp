@@ -1,5 +1,7 @@
+<link href="../public/styles/multi-select.css" rel="stylesheet">
 
 <script defer src="../public/scripts/dashboard.js"></script>
+<script defer src="../public/scripts/multi-select.js"></script>
 
 <section id="dashboard">
     <a href='logout' id="btn-logout" >Logout</a>
@@ -36,30 +38,141 @@
     </div>
 
     <div id="profile-section" class="dashboard-section" style="opacity: 1;">
+        <div id="userInfoStatic">
+            <h2>Here is the information we have on record for you</h2>
+            <div id="userInfo">
+                <h4>Name: <span class="userInfo">{{user.name}}</span></h4>
+                <h4>Email: <span class="userInfo">{{user.email}}</span></h4>
+                <h4>Phone Number: <span class="userInfo">{{user.phone}}</span></h4>
+                <h4>Company Name: <span class="userInfo">{{user.companyName}}</span></h4>
+                <h4>DOT Number: <span class="userInfo">{{user.DOT}}</span></h4>
+                <h4>Address: <span class="userInfo">{{user.address}}</span></h4>
+                <h4>Mailing Address: <span class="userInfo">{{user.mailingAddress}}</span></h4>
+                <h4>Trucks: <span class="userInfo">{{user.powerUnits}}</span></h4>
+                <h4>Drivers: <span class="userInfo">{{user.drivers}}</span></h4>
+                <h4>Total Payroll: <span class="userInfo">{{user.totalPayroll}}</span></h4>
+                <h4>Annual Mileage: <span class="userInfo">{{user.mileage}}</span></h4>
+                <h4>Carrier Operation: <span class="userInfo">{{user.carrierOperation}}</span></h4>
+                <h4>Operation Type: </h4>
+                    {{#each user.operationType as |item|}}
+                    <h4>{{item}}</h4>
+                    {{/each}}
+                <h4>Cargo Carried: </h4>
+                    {{#each user.cargoCarried as |item|}}
+                    <h4>{{item}}</h4>
+                    {{/each}}
+            </div> 
+            <button id="toggleForm" onclick="toggleForm()">Edit</button>
+        </div>
+        <form action="/update" method="POST" >
+            <div id="userInfoUpdate">
+                <h2>Update your information</h2>
+                <div id="editForm">
+                    <fieldset>
+                        <label for="name">Name</label>
+                        <input id="name" name="name" type="text" value={{user.name}}>
+                    </fieldset>
+                    <fieldset>
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="text" value={{user.email}}>
+                    </fieldset>
 
-        <h2>Here is the information we have on record for you</h2>
-        <div id="userInfo">
-            <h4>Name: <span class="userInfo">{{user.name}}</span></h4>
-            <h4>Email: <span class="userInfo">{{user.email}}</span></h4>
-            <h4>Phone Number: <span class="userInfo">{{user.phone}}</span></h4>
-            <h4>Company Name: <span class="userInfo">{{user.companyName}}</span></h4>
-            <h4>DOT Number: <span class="userInfo">{{user.DOT}}</span></h4>
-            <h4>Address: <span class="userInfo">{{user.address}}</span></h4>
-            <h4>Mailing Address: <span class="userInfo">{{user.mailingAddress}}</span></h4>
-            <h4>Trucks: <span class="userInfo">{{user.powerUnits}}</span></h4>
-            <h4>Drivers: <span class="userInfo">{{user.drivers}}</span></h4>
-            <h4>Total Payroll: <span class="userInfo">{{user.totalPayroll}}</span></h4>
-            <h4>Annual Mileage: <span class="userInfo">{{user.mileage}}</span></h4>
-            <h4>Carrier Operation: <span class="userInfo">{{user.carrierOperation}}</span></h4>
-            <h4>Operation Type: </h4>
-                {{#each user.operationType as |item|}}
-                <h4>{{item}}</h4>
-                {{/each}}
-            <h4>Cargo Carried: </h4>
-                {{#each user.cargoCarried as |item|}}
-                <h4>{{item}}</h4>
-                {{/each}}
-        </div> 
+                    <fieldset>
+                        <label for="phone">Phone Number</label>
+                        <input id="phone" name="phone" type="tel" >
+                    </fieldset>
+                    <fieldset>
+                        <label for="companyName">Company Name</label>
+                        <input id="companyName" name="companyName" type="text" >
+                    </fieldset>
+                    <fieldset>
+                        <label for="DOT">DOT Number</label>
+                        <input id="DOT" name="DOT" type="number">
+                    </fieldset>
+                    <fieldset>
+                        <label for="address">Address</label>
+                        <input id="address" name="address" type="text" >
+                    </fieldset>
+                    <fieldset>
+                        <label for="mailingAddress">Mailing Address</label>
+                        <input id="mailingAddress" name="mailingAddress" type="text" >
+                    </fieldset>
+                    <fieldset>
+                        <label for="powerUnits">Trucks</label>
+                        <input id="powerUnits" name="powerUnits" type="number" >
+                    </fieldset>
+                    <fieldset>
+                        <label for="drivers">Drivers</label>
+                        <input id="drivers" name="powerUnits" type="number" >
+                    </fieldset>
+                    <fieldset>
+                        <label for="totalPayroll">Total Payroll</label>
+                        <input id="totalPayroll" name="totalPayroll" type="number" value={{user.totalPayroll}}>
+                    </fieldset>
+                    <fieldset>
+                        <label for="editMileage">Annual Mileage</label>
+                        <input id="editMileage" name="editMileage" type="number" value={{user.mileage}}>
+                    </fieldset>
+                    <fieldset>
+                        <label for="mileage">Annual Mileage</label>
+                        <input id="mileage" name="mileage" type="number" value={{user.mileage}}>
+                    </fieldset>
+                    <label class="label aside" for="operationType">Operation Type</label>
+                    <select name="operationType" class="field aside" id="operationType">
+                        <option value="1">Authorized for Hire</option>
+                        <option value="2">Private Passenger, Business</option>
+                        <option value="3">U.S. Mail</option>
+                        <option value="4">Exempt for Hire</option>
+                        <option value="5">Local Government</option>
+                        <option value="6">Private Passenger, Non-business</option>
+                        <option value="7">Federal Government</option>
+                        <option value="8">Indian Tribe</option>
+                        <option value="9">Private Property</option>
+                        <option value="10">Migrant</option>
+                        <option value="11">State Government</option>
+                        <option value="12">Dump Truck</option>
+                        <option value="13">Other</option>
+                    </select>
+                    <label class="label aside" for="cargoCarried">Cargo Carried</label>
+                    <select name="cargoCarried" class="field aside" id="cargoCarried">
+                        <option value="1">General Freight</option>
+                        <option value="2">Motor Vehicles</option>
+                        <option value="3">Building Materials</option>
+                        <option value="4">Fresh Produce</option>
+                        <option value="5">Passengers</option>
+                        <option value="6">Grain, Feed, Hay</option>
+                        <option value="7">Garbage, Refuse, Trash</option>
+                        <option value="8">Commodities Dry Bulk</option>
+                        <option value="9">Paper Products</option>
+                        <option value="10">Construction</option>
+                        <option value="11">Household Goods</option>
+                        <option value="12">Drive away/Towaway</option>
+                        <option value="13">Mobile Homes</option>
+                        <option value="14">Liquids/Gases</option>
+                        <option value="15">Oil Field Equipment</option>
+                        <option value="16">Coal, Coke</option>
+                        <option value="17">U.S. Mail</option>
+                        <option value="18">Refrigerated Food</option>
+                        <option value="19">Utility</option>
+                        <option value="20">Water Well</option>
+                        <option value="21">Metal; Sheets, Coils, Rolls</option>
+                        <option value="22">Logs, Poles, Beams, Lumber</option>
+                        <option value="23">Machinery, Large Objects</option>
+                        <option value="24">Intermodal Containers</option>
+                        <option value="25">Livestock</option>
+                        <option value="26">Meat</option>
+                        <option value="27">Chemicals</option>
+                        <option value="28">Beverages</option>
+                        <option value="29">Farm Supply</option>
+                        <option value="30">Sand and Gravel</option>
+                        <option value="31">Office Furniture & Supplies</option>
+                        <option value="32">Other</option>
+                    </select>
+                </div>
+                <input type="submit" id="saveForm" onclick="saveForm" value="Save">
+
+            </div>
+        </form>
     </div>
 
     <div id="policy-section" class="dashboard-section hidden">
