@@ -13,7 +13,11 @@ async function dashboardToggle(e, id) {
     dButtons.forEach((button) => {
         button.style.background="rgb(55, 147, 255)";
     });
-    e.target.style.background="#1C2541";
+    if (e.target.nodeName=="DIV") {;
+        e.target.style.background="#1C2541";
+    } else {
+        e.target.parentNode.style.background="#1C2541";
+    }
     document.getElementById(id).classList.remove("hidden")
     await delay(300);
     document.getElementById(id).style.opacity=1;
