@@ -35,23 +35,29 @@ input {
     background: rgb(55, 147, 255);
 }
 
+.dashboard-nav {
+    width: 100%;
+}
+
 .dashboard-nav-button {
     width: 100%;
     /* border: 1px solid black; */
     background: rgb(55, 147, 255);
     transition: background-color .5s ease;
     text-align: center;
-    padding: 10px;
+    padding: 0 10px;
     color: white;
     cursor: pointer;
 }
 
 .left {
     border-radius: 5px 0 0 5px;
+    border-right: 1px solid white;
 }
 
 .right {
     border-radius: 0 5px 5px 0;
+    border-left: 1px solid white;
 }
 
 .dashboard-nav-button:hover {
@@ -88,7 +94,7 @@ input {
     align-self: stretch;
     border-radius: 5px;
     background-color: rgb(55, 147, 255);
-    width: 98%;
+    width: 100%;
 }
 .form-button-text {
     margin-top: 10px;
@@ -201,6 +207,10 @@ input {
 Media Queries
 ---------- */
 @media only screen and (max-width: 676px) {
+    #userInfo, #editForm {
+        -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    }
     #footer-columns {
         display: unset;
     }
