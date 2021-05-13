@@ -1,5 +1,6 @@
 <link href="../public/styles/multi-select.css" rel="stylesheet">
 
+<script type="text/javascript" src="https://static.eversign.com/js/embedded-signing.js"></script>
 <script defer src="../public/scripts/dashboard.js"></script>
 <script defer src="../public/scripts/multi-select.js"></script>
 
@@ -41,6 +42,10 @@
             <hr />
             <hr />
         </div>
+        <div id="messages-area">
+
+
+        </div>
     </div>
 
     <div id="profile-section" class="dashboard-section" style="opacity: 1;">
@@ -49,8 +54,8 @@
             <div id="userInfo">
                 <h4>Name: <span class="userInfo">{{user.name}}</span></h4>
                 <h4>Email: <span class="userInfo">{{user.email}}</span></h4>
-                <h4>Phone Number: <span class="userInfo">{{user.phone}}</span></h4>
                 <h4>Company Name: <span class="userInfo">{{user.companyName}}</span></h4>
+                <h4>Phone Number: <span class="userInfo">{{user.phone}}</span></h4>
                 <h4>DOT Number: <span class="userInfo">{{user.DOT}}</span></h4>
                 <h4>Address: <span class="userInfo">{{user.address}}</span></h4>
                 <h4>Mailing Address: <span class="userInfo">{{user.mailingAddress}}</span></h4>
@@ -84,15 +89,15 @@
                         <label for="email">Email</label>
                         <input id="email" name="email" type="text" value={{user.email}}>
                     </fieldset>
-
-                    <fieldset>
-                        <label for="phone">Phone Number</label>
-                        <input id="phone" name="phone" type="tel" >
-                    </fieldset>
                     <fieldset>
                         <label for="companyName">Company Name</label>
                         <input id="companyName" name="companyName" type="text" >
                     </fieldset>
+                    <fieldset>
+                        <label for="phone">Phone Number</label>
+                        <input id="phone" name="phone" type="tel" >
+                    </fieldset>
+
                     <fieldset>
                         <label for="DOT">DOT Number</label>
                         <input id="DOT" name="DOT" type="number">
@@ -191,5 +196,9 @@
 
         <h4>Your uploaded files</h4>
         <div id="file-preview"></div>
+
+        <div id="signature-area">
+
+        </div>
     </div>
 </section>

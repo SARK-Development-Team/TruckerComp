@@ -3,5 +3,6 @@ module.exports = {
     send: require('./send'),
     dot: require('./dot'),
     purchase: require('./purchase'),
-    users: require('./users')
+    users: require('./users'),
+    events: require('./events')
 }

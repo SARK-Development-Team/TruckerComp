@@ -156,6 +156,7 @@ app.use('/send', routes.send);
 app.use('/dot', routes.dot);
 app.use('/purchase', routes.purchase);
 app.use('/users', routes.users);
+app.use('/events', routes.events);
 
 /* --------------------------
    The following routes are 

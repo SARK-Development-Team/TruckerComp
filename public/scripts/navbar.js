@@ -15,3 +15,8 @@ window.onscroll = () => {
         navbar.classList.remove("darkNav");
     }
 };
+
+if (window.location.pathname=="/users/dashboard") {
+    document.getElementById('login-button').innerText="Log Out";
+    document.getElementById('login-button').setAttribute('href', '/users/logout');
+}

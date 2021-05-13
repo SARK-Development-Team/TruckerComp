@@ -9,7 +9,6 @@ async function dashboardToggle(e, id) {
         sec.style.opacity=0;
         sec.classList.add("hidden");
     });
-    unToggleForm();
     dButtons.forEach((button) => {
         button.style.background="rgb(55, 147, 255)";
     });
@@ -20,6 +19,7 @@ async function dashboardToggle(e, id) {
     }
     document.getElementById(id).classList.remove("hidden")
     await delay(300);
+    unToggleForm();
     document.getElementById(id).style.opacity=1;
 }
 
@@ -35,8 +35,9 @@ document.getElementById('file-upload').addEventListener("change", (event) => {
 });
 
 
-function toggleForm() {
+async function toggleForm() {
     document.getElementById("userInfoStatic").style.display="none";
+    await delay(300);
     document.getElementById("userInfoUpdate").style.display="block";
 }
 
@@ -47,4 +48,52 @@ function unToggleForm() {
 
 function saveForm() {
     unToggleForm();
+}
+
+
+function requestDocument(data) {
+    fetch('/requestDoc', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    }).then(response => response.json());
+}
+
+function requestInformation(data) {
+    fetch('/requestInfo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    }).then(response => response.json());
+}
+
+function requestSignature(data) {
+
+    if(true) {
+        eversign.open({
+            url: "YOUR_EMBEDDED_SIGNING_URL",  //<----replace with correct url
+            containerID: "container",
+            width: 600,
+            height: 600,
+            events: {
+              loaded: function () {
+                console.log("loaded Callback");
+              },
+              signed: function () {
+                console.log("signed Callback");
+              },
+              declined: function () {
+                console.log("declined Callback");
+              },
+              error: function () {
+                console.log("error Callback");
+              }
+            }
+        });
+    }
+    fetch('/requestSig', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    }).then(response => response.json());
 }
