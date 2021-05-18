@@ -1,11 +1,15 @@
 <link href="../public/styles/multi-select.css" rel="stylesheet">
 
 <script type="text/javascript" src="https://static.eversign.com/js/embedded-signing.js"></script>
-<script defer src="../public/scripts/dashboard.js"></script>
+<script 
+    id="dbScript"
+    data-opType="{{user.operationType}}" 
+    data-cargo="{{user.cargoCarried}}" 
+    defer src="../public/scripts/dashboard.js">
+</script>
 <script defer src="../public/scripts/multi-select.js"></script>
 
 <section id="dashboard">
-    <a href='logout' id="btn-logout" >Logout</a>
     {{#if user}}
         <h1>TruckerComp Dashboard for {{user.name}}</h1>
     {{else}}
@@ -52,32 +56,31 @@
         <div id="userInfoStatic">
             <h2>Here is the information we have on record for you</h2>
             <div id="userInfo">
-                <h4>Name: <span class="userInfo">{{user.name}}</span></h4>
-                <h4>Email: <span class="userInfo">{{user.email}}</span></h4>
-                <h4>Company Name: <span class="userInfo">{{user.companyName}}</span></h4>
-                <h4>Phone Number: <span class="userInfo">{{user.phone}}</span></h4>
-                <h4>DOT Number: <span class="userInfo">{{user.DOT}}</span></h4>
-                <h4>Address: <span class="userInfo">{{user.address}}</span></h4>
-                <h4>Mailing Address: <span class="userInfo">{{user.mailingAddress}}</span></h4>
-                <h4>Trucks: <span class="userInfo">{{user.powerUnits}}</span></h4>
-                <h4>Drivers: <span class="userInfo">{{user.drivers}}</span></h4>
-                <h4>Total Payroll: <span class="userInfo">{{user.totalPayroll}}</span></h4>
-                <h4>Annual Mileage: <span class="userInfo">{{user.mileage}}</span></h4>
-                <h4>Carrier Operation: <span class="userInfo">{{user.carrierOperation}}</span></h4>
+                <h4>Name: <span class="userProperty">{{user.name}}</span></h4>
+                <h4>Email: <span class="userProperty">{{user.email}}</span></h4>
+                <h4>Company Name: <span class="userProperty">{{user.companyName}}</span></h4>
+                <h4>Phone Number: <span class="userProperty">{{user.phone}}</span></h4>
+                <hr class="separator" />
+                <h4>DOT Number: <span class="userProperty">{{user.DOT}}</span></h4>
+                <h4>Address: <span class="userProperty">{{user.address}}</span></h4>
+                <h4>Mailing Address: <span class="userProperty">{{user.mailingAddress}}</span></h4>
+                <h4>Trucks: <span class="userProperty">{{user.powerUnits}}</span></h4>
+                <hr class="separator" />
+                <h4>Drivers: <span class="userProperty">{{user.drivers}}</span></h4>
+                <h4>Total Payroll: <span class="userProperty">{{user.totalPayroll}}</span></h4>
+                <h4>Annual Mileage: <span class="userProperty">{{user.mileage}}</span></h4>
+                <h4>Carrier Operation: <span class="userProperty">{{user.carrierOperation}}</span></h4>
+                <hr class="separator" />
                 <h4>Operation Type: </h4>
-                    {{#each user.operationType as |item|}}
-                    <h4>{{item}}</h4>
-                    {{/each}}
+                <h4 id="opTypes" class="userProperty"></h4>
                 <h4>Cargo Carried: </h4>
-                    {{#each user.cargoCarried as |item|}}
-                    <h4>{{item}}</h4>
-                    {{/each}}
+                <h4 id="cargo" class="userProperty"></h4>
             </div> 
             <button class="form-button" id="toggleForm" onclick="toggleForm()">
                 <h3 class="form-button-text">Edit</h3>
             </button>
         </div>
-        <form action="/update" method="POST" >
+        <form >
             <div id="userInfoUpdate">
                 <h2>Update your information</h2>
                 <div id="editForm">
@@ -91,44 +94,48 @@
                     </fieldset>
                     <fieldset>
                         <label for="companyName">Company Name</label>
-                        <input id="companyName" name="companyName" type="text" >
+                        <input id="companyName" name="companyName" type="text" value={{user.companyName}}>
                     </fieldset>
                     <fieldset>
                         <label for="phone">Phone Number</label>
-                        <input id="phone" name="phone" type="tel" >
+                        <input id="phone" name="phone" type="tel" value={{user.phone}}>
                     </fieldset>
 
                     <fieldset>
                         <label for="DOT">DOT Number</label>
-                        <input id="DOT" name="DOT" type="number">
+                        <input id="DOT" name="DOT" type="number" value={{user.DOT}}>
                     </fieldset>
                     <fieldset>
                         <label for="address">Address</label>
-                        <input id="address" name="address" type="text" >
+                        <input id="address" name="address" type="text" value={{user.address}}>
                     </fieldset>
                     <fieldset>
                         <label for="mailingAddress">Mailing Address</label>
-                        <input id="mailingAddress" name="mailingAddress" type="text" >
+                        <input id="mailingAddress" name="mailingAddress" type="text" value={{user.mailingAddress}}>
                     </fieldset>
                     <fieldset>
                         <label for="powerUnits">Trucks</label>
-                        <input id="powerUnits" name="powerUnits" type="number" >
+                        <input id="powerUnits" name="powerUnits" type="number" value={{user.powerUnits}}>
                     </fieldset>
                     <fieldset>
                         <label for="drivers">Drivers</label>
-                        <input id="drivers" name="powerUnits" type="number" >
+                        <input id="drivers" name="powerUnits" type="number" value={{user.drivers}}>
                     </fieldset>
                     <fieldset>
                         <label for="totalPayroll">Total Payroll</label>
                         <input id="totalPayroll" name="totalPayroll" type="number" value={{user.totalPayroll}}>
                     </fieldset>
                     <fieldset>
-                        <label for="editMileage">Annual Mileage</label>
-                        <input id="editMileage" name="editMileage" type="number" value={{user.mileage}}>
-                    </fieldset>
-                    <fieldset>
                         <label for="mileage">Annual Mileage</label>
                         <input id="mileage" name="mileage" type="number" value={{user.mileage}}>
+                    </fieldset>
+                    <fieldset>
+                        <label for="carrierOperation">Carrier Operation</label>
+                        <select id="carrierOperation" name="carrierOperation" value={{user.carrierOperation}}>
+                            <option value="interstate">Interstate</option>
+                            <option value="intrastate-hm">Intrastate (Hazardous)</option>
+                            <option value="intrastate-non">Intrastate (Non-Hazardous)</option>
+                        </select>
                     </fieldset>
                     <label class="label aside" for="operationType">Operation Type</label>
                     <select name="operationType" class="field aside" id="operationType">
@@ -182,9 +189,10 @@
                         <option value="32">Other</option>
                     </select>
                 </div>
-                <button type="submit" id="saveForm" class="form-button" onclick="saveForm">
+                <input id="userID" type="hidden" value={{user._id}}>
+                <a id="saveForm" class="form-button" onclick="saveForm(event)">
                     <h3 class="form-button-text">Save</h3>
-                </button>
+                </a>
 
             </div>
         </form>
@@ -198,7 +206,7 @@
         <div id="file-preview"></div>
 
         <div id="signature-area">
-
+            {{!-- <iframe src="" height="100px" width="400px"></iframe> --}}
         </div>
     </div>
 </section>

@@ -11,6 +11,10 @@ require('dotenv').config()
 // SQl Server is accessed to search the DOT on the dashboard page
 const sql = require('mssql')
 
+// Azure is where the completed client lead is stored
+const azure = require('azure-storage');
+const tableSvc = azure.createTableService(process.env.AZURE_STORAGE_ACCOUNT, process.env.AZURE_STORAGE_ACCESS_KEY);
+
 // Passport is responsible for the user's login/logout behavior
 const passport = require('passport');
 require('../config/passport')(passport);
@@ -157,6 +161,61 @@ const logoutUser = (req, res) => {
     res.redirect('login');
 };
 
+// This function saves the new "lead" object in the Azure DB, using the DOT as the row key
+
+const updateUser = (req, res) => {
+    const object = req.body;
+    // Build the "lead" object from the data passed in
+    const opTypeString = JSON.stringify(object.operationType);
+    const cargoString = JSON.stringify(object.cargoCarried);
+    const userID = object._id.toString()
+    var stage;
+    if (object.stage==1) stage=2;
+    const lead = {
+
+        operationType: [],
+        cargoCarried: [],
+        PartitionKey: {'_':'leads'},
+        RowKey: {'_': userID},
+        name: {'_': object.name},
+        email: {'_': object.email},
+        DOT: {'_': object.DOT},
+        totalPayroll: {'_': object.totalPayroll},
+        mileage: {'_': object.mileage},
+        companyName: {'_': object.companyName},
+        address: {'_': object.address},
+        mailingAddress: {'_': object.mailingAddress},
+        phone: {'_': object.phone},
+        powerUnits: {'_': object.powerUnits},
+        drivers: {'_': object.drivers},
+        carrierOperation: {'_': object.carrierOperation},
+        operationType: {'_': opTypeString},
+        cargoCarried: {'_': cargoString},
+        stage: {'_': stage}
+    };
+    //   Create the table if it does not exist already
+    tableSvc.createTableIfNotExists('leads', function(err, result, response){
+        // If there is no error
+        if(!err){
+            // insert the "lead" object into the table
+            try {
+                tableSvc.insertOrReplaceEntity('leads',lead, function (err, result, response) {
+                    if(!err){
+                        return;
+                    } else {
+                        console.log(err);
+                    }
+                });
+            } catch(err) {
+                console.log(err)
+            }
+        } else {
+            console.log(err);
+        }
+    });
+};
+
+
 // Dashboard
 const openDashboard = (ensureAuthenticated, (req, res) => {
     res.render('dashboard', {
@@ -171,5 +230,6 @@ module.exports = {
     renderRegister,
     registerUser,
     logoutUser,
+    updateUser,
     openDashboard
 }

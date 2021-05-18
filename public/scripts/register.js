@@ -58,8 +58,8 @@ function checkCookie() {
         phoneField.value='';
         trucksField.value='';
         driversField.value='';
-        operationField.value=JSON.stringify(clientDataObj.operationType);
-        cargoField.value=JSON.stringify(clientDataObj.cargoCarried);
+        operationField.value='';
+        cargoField.value='';
     }
 
 }

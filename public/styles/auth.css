@@ -74,7 +74,7 @@ input {
 }
 
 .login-card {
-    margin: 100px 25% 0 25%;
+    margin: 20px 25% 0 25%;
     border: 2px solid #1C2541;
     border-radius: 5px;
     font-size: large;
@@ -97,8 +97,8 @@ input {
     width: 100%;
 }
 .form-button-text {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 4px;
+    margin-bottom: 4px;
     -webkit-align-self: center;
     -ms-flex-item-align: center;
     -ms-grid-row-align: center;
@@ -109,6 +109,21 @@ input {
     flex: 1;
     color: white;
     background: inherit;
+}
+
+.message {
+    margin: 5px 30%;
+    background: #EF8354;
+    color: white;
+    text-align: center;
+}
+
+.separator {
+    grid-column: span 2;
+    height: 1.5px;
+    background: #1C2541;
+    border: 1px solid #1C2541;
+    width: 80%;
 }
 
 .step {
@@ -128,6 +143,11 @@ input {
     width: 300px;
 }
 
+.userProperty {
+    float: right;
+    font-weight: 400;
+}
+
 #bottom-line {
     margin: 1vw 25% 0 25%;
     padding: 0 1vw 6vw 1vw;
@@ -144,11 +164,15 @@ input {
 }
 
 #dashboard { 
-    margin: 100px 12% 80px 12%;
+    margin: 10px 12% 80px 12%;
 }
 
 #dashboard-nav {
     display: flex;
+}
+
+#messageArea {
+    margin-top: 100px;
 }
 
 #progress-steps {
@@ -189,6 +213,9 @@ input {
     display: grid;
     -ms-grid-columns: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+    background: #F5F3F5;
+    padding: 10px;
 }
 
 #userInfoUpdate {
@@ -200,6 +227,8 @@ input {
     display: grid;
     -ms-grid-columns: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
+    background: #F5F3F5;
+    padding: 10px;
 }
 
 #editForm label {
@@ -211,6 +240,11 @@ input {
 Media Queries
 ---------- */
 @media only screen and (max-width: 676px) {
+    .separator {
+        grid-column: unset;
+        display: none;
+    }
+
     #userInfo, #editForm {
         -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;

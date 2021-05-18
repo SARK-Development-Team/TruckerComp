@@ -181,6 +181,7 @@ highMileage.addEventListener("click", () => {
 for (let i=1; i<digits.length; i++) {
     digits[i].addEventListener('keydown', (e) => {
         if (e.key=="Backspace") {
+            e.target.value='';
             e.target.previousElementSibling.focus();
         }
     })

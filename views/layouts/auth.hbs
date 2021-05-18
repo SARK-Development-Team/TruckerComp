@@ -23,6 +23,13 @@
 <body>
 
     {{>authnavbar}}
+
+    <div id="messageArea">
+        {{>errorMessage errors = errors}}
+        {{>errorMessage error = error_msg}}
+        {{>errorMessage success = success_msg}}
+    </div>
+
     <!-- xxxxxxxxxx -->
     {{{body}}}
 
