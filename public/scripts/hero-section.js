@@ -184,8 +184,19 @@ for (let i=1; i<digits.length; i++) {
             e.target.value='';
             e.target.previousElementSibling.focus();
         }
+        const intRegex = /[0-9]/
+        if (e.target.value && intRegex.test(e.key)) e.target.value = e.key
     })
-
+}
+// This function allows the user to overwrite existing field inputs 
+for (let i=0; i<digits.length; i++) {
+    digits[i].addEventListener('keydown', (e) => {
+        const intRegex = /[0-9]/
+        if (e.target.value && intRegex.test(e.key)) {
+            e.target.value = e.key
+            e.target.nextElementSibling.focus();
+        }
+    })
 }
 
 function expandPageHeight() {
@@ -198,13 +209,14 @@ function useInitialPageHeight() {
 
 // This is the function that allows the DOT input to come together from the 7 separate fields
 document.querySelector(".digits").addEventListener("input", (e) => {
+    if (e.target.value) e.target.value ='';
     try {
         e.target.value = e.data.replace(/[^0-9]/g,'');
     } catch(err) {
         console.log(err);
     }
-    if ( e.target.value !== "" && e.target.nextElementSibling && e.target.nextElementSibling.nodeName === "INPUT" ){
-      e.target.nextElementSibling.focus();
+    if (e.target.value !== "" && e.target.nextElementSibling && e.target.nextElementSibling.nodeName === "INPUT" ){
+        e.target.nextElementSibling.focus();
     } 
     if (!e.target.nextElementSibling) {
         var total = '';
