@@ -222,23 +222,25 @@ function pasteValues(e) {
     e.stopPropagation();
     e.preventDefault();
     try {
+        // When a value longer than 7 digits is pasted, the first 7 digits are kept and the rest discarded
         const values = e.clipboardData.getData("text").split("");
-        for (i=0; i<values.length-1; i++) {
+        const span = Math.min(values.length, 7)
+        for (i=0; i<span; i++) {
             let inputBox = document.querySelectorAll('.digit')[i]
 
             inputBox.value= values[parseInt(i)];
         };
-        // When a value longer than 7 digits is pasted, the first 7 digits are kept and the rest discarded
         if (values.length >= 7) {
 
             var total = '';
             for (let i=0; i<digits.length; i++) {
+                console.log("i: ", i, " digitsval: ", digits[i].value)
                 total+=digits[i].value;
             }
             document.getElementById('slide3DOT').value= parseInt(total);
-            if (total.length=7) {
+            // if (total.length=7) {
                 searchDOT(event);
-            }
+            // }
         }
     } catch(err) {
         console.log(err);
@@ -330,8 +332,9 @@ async function searchDOT(e) {
                 document.getElementById('searchResult').classList.remove("expandable-collapsed");
                 // If an address is returned, pull the zipcode out of it and add it to the form data
                 if (client.result['address']) { 
-                    const zipCodePattern = /\d{5}/;
-                    formData.zipCode = client.result['address'].match(zipCodePattern)[0];
+                    const zipCodePattern = /\d{5}/g;
+                    const zipCodeMatches = client.result['address'].match(zipCodePattern)
+                    formData.zipCode = zipCodeMatches[zipCodeMatches.length-1];
                 }
                 // If a DBA name is returned, add a section that displays it
                 if (client.result['DBA']) {

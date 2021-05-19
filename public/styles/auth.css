@@ -188,6 +188,10 @@ input {
     align-items: center;
 }
 
+#saveForm {
+    cursor: pointer;
+}
+
 #step1:hover::before {
     content: "First, create your TruckerComp profile";
 }

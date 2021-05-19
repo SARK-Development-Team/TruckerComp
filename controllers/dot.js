@@ -46,8 +46,10 @@ async function fmcsaSearch(number) {
                         clientObj.DOT=$(this).text();
                         break;
                     case "Address:":
-                        // clientObj.address=$(this).text().replace(/(\r\n|\n|\r)/gm, "").replace(/  +/g, "");
-                        clientObj.address=$(this).text().trim();
+                        let addArray = $(this).html().split('<br>');
+                        console.log(addArray[0].trim(), "\n", addArray[1].trim().replace(/(\r\n|\n|\r)/gm, "").replace(/  +/g, " "));
+                        let combAddress = addArray[0].trim() + "\n" + addArray[1].trim().replace(/(\r\n|\n|\r)/gm, "").replace(/  +/g, " ")
+                        clientObj.address=combAddress;
                         break;
                     case "Telephone:":
                         clientObj.phone=$(this).text();

@@ -19,11 +19,20 @@ var leadData = {
 
 // These pull the dropdown menu options out of the script option, which are strings, and turn them into arrays
 // And then populate the form with the applicable items
-if (document.getElementById('dbScript').getAttribute('data-opType')) {
-    let opClasses = JSON.parse(document.getElementById('dbScript').getAttribute('data-opType'));
-    document.getElementById('opTypes').innerText = opClasses.join(", ");
+const dataOpType = document.getElementById('dbScript').getAttribute('data-opType');
+const dataCargo = document.getElementById('dbScript').getAttribute('data-cargo');
+if (dataOpType) {
+    document.getElementById('opTypes').innerText = '';
+    console.log(typeof dataOpType);
+    if (typeof dataOpType == "string") {
+        let opClasses = JSON.parse(document.getElementById('dbScript').getAttribute('data-opType'));
+        document.getElementById('opTypes').innerText = opClasses.join(", ");
+    } else {
+        document.getElementById('opTypes') = dataOpType;
+    }
 }
 if (document.getElementById('dbScript').getAttribute('data-cargo')) {
+    document.getElementById('cargo').innerText = '';
     let cargo = JSON.parse(document.getElementById('dbScript').getAttribute('data-cargo'));
     document.getElementById('cargo').innerText = cargo.join(", ");
 }

@@ -129,8 +129,6 @@ const registerUser = (req, res) => {
                     'success_msg',
                     'You are now registered and can log in'
                     );
-                    // res.redirect('/users/login', {
-                    //     email: email});
                     res.render('login', {
                         layout: "auth", 
                         email: email
@@ -205,7 +203,13 @@ const updateUser = (req, res) => {
                     } else {
                         console.log(err);
                     }
+                    
                 });
+                // Subsequently updates the Mongo DB with the same data
+                // Both updates must pass or the catch is triggered
+                db.User.findOneAndUpdate({ _id: userID }, object)
+                .then(console.log("successfully updated"))
+                .catch((err)=>console.log(err)); 
             } catch(err) {
                 console.log(err)
             }
@@ -214,6 +218,11 @@ const updateUser = (req, res) => {
         }
     });
 };
+
+// This route is used to update the Mongo DB after the Azure DB is updated
+savetoMongoDB = (data) => {
+
+  }
 
 
 // Dashboard
