@@ -189,7 +189,7 @@ for (let i=1; i<digits.length; i++) {
     })
 }
 // This function allows the user to overwrite existing field inputs 
-for (let i=0; i<digits.length; i++) {
+for (let i=0; i<digits.length-1; i++) {
     digits[i].addEventListener('keydown', (e) => {
         const intRegex = /[0-9]/
         if (e.target.value && intRegex.test(e.key)) {
