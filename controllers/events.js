@@ -29,7 +29,7 @@ requestInfo = () => {
 }
 
 // Check the SARK DB for any updates from the underwriting team
-queryAll = async () => {
+queryAll = async (number) => {
     try {
         let pool = await sql.connect(connString)
         let result1 = await pool.request()

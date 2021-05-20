@@ -47,7 +47,6 @@ async function fmcsaSearch(number) {
                         break;
                     case "Address:":
                         let addArray = $(this).html().split('<br>');
-                        console.log(addArray[0].trim(), "\n", addArray[1].trim().replace(/(\r\n|\n|\r)/gm, "").replace(/  +/g, " "));
                         let combAddress = addArray[0].trim() + "\n" + addArray[1].trim().replace(/(\r\n|\n|\r)/gm, "").replace(/  +/g, " ")
                         clientObj.address=combAddress;
                         break;

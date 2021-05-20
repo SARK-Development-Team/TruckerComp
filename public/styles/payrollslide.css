@@ -302,9 +302,12 @@
 }
 
 @media screen and (max-width: 479px) {
+    .colSalary {
+        max-width: 80px;
+    }
     .payroll-columns {
-        -ms-grid-columns: 40px 120px 100px 120px;
-        grid-template-columns: 40px 120px 100px 120px;
+        -ms-grid-columns: 40px 120px 80px 120px;
+        grid-template-columns: 40px 120px 80px 120px;
     }
     .remove-type {
         margin-left: 10px;

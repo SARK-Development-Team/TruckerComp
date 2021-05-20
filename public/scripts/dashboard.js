@@ -16,26 +16,24 @@ var leadData = {
     stage: 1,
     _id: ''
 }
-
-// These pull the dropdown menu options out of the script option, which are strings, and turn them into arrays
-// And then populate the form with the applicable items
-const dataOpType = document.getElementById('dbScript').getAttribute('data-opType');
-const dataCargo = document.getElementById('dbScript').getAttribute('data-cargo');
-if (dataOpType) {
-    document.getElementById('opTypes').innerText = '';
-    console.log(typeof dataOpType);
-    if (typeof dataOpType == "string") {
-        let opClasses = JSON.parse(document.getElementById('dbScript').getAttribute('data-opType'));
-        document.getElementById('opTypes').innerText = opClasses.join(", ");
-    } else {
-        document.getElementById('opTypes') = dataOpType;
+// First clear all existing data in the dropdown fields if there is any
+// This avoids duplicate display of data
+function clearDropDownFields() {
+    if (document.querySelectorAll('.drop-display')[0].childNodes[0].innerText) {
+        const operationTypeChoices = Array.from(document.querySelectorAll('.drop-display')[0].childNodes[0].childNodes);
+        for (const el of operationTypeChoices) {
+            opTypeDrop.removeOption(event, el)
+        }   
     }
+    if (document.querySelectorAll('.drop-display')[1].childNodes[0].innerText) {
+        const cargoCarriedChoices = Array.from(document.querySelectorAll('.drop-display')[1].childNodes[0].childNodes);
+        for (const el of cargoCarriedChoices) {
+            cargoDrop.removeOption(event, el)
+        }    
+    }       
 }
-if (document.getElementById('dbScript').getAttribute('data-cargo')) {
-    document.getElementById('cargo').innerText = '';
-    let cargo = JSON.parse(document.getElementById('dbScript').getAttribute('data-cargo'));
-    document.getElementById('cargo').innerText = cargo.join(", ");
-}
+ 
+
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
@@ -147,11 +145,11 @@ function requestSignature(data) {
     }).then(response => response.json());
 }
 
-function queryEvents(userID) {
+function queryEvents(user) {
     fetch('/queryAll', {
-        method: 'GET',
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(userID)
+        body: JSON.stringify(user)
     }).then(response => response.json());
 }
 
@@ -202,6 +200,21 @@ function saveLead(e) {
 
 // This function populates the dropdown boxes with the appropriate data if there is any
 function populateDropDownBoxes() {
+    clearDropDownFields();
+    // These pull the dropdown menu options out of the script option, which are strings, and turn them into arrays
+// And then populate the form with the applicable items
+// if (dataOpType) {
+//     document.getElementById('opTypes').innerText = '';
+//     console.log(typeof dataOpType);
+//     let opClasses = JSON.parse(document.getElementById('dbScript').getAttribute('data-opType'));
+//     document.getElementById('opTypes').innerText = opClasses.join(", ");
+
+// }
+// if (document.getElementById('dbScript').getAttribute('data-cargo')) {
+//     document.getElementById('cargo').innerText = '';
+//     let cargo = JSON.parse(document.getElementById('dbScript').getAttribute('data-cargo'));
+//     document.getElementById('cargo').innerText = cargo.join(", ");
+// }
     if (document.getElementById('dbScript').getAttribute('data-opType')) {
         let operationTypeChoices = document.querySelectorAll('.drop-options')[0].childNodes[0].childNodes;
         let opClasses = JSON.parse(document.getElementById('dbScript').getAttribute('data-opType'));
@@ -226,5 +239,7 @@ function populateDropDownBoxes() {
     }
 }
 
+const userDOT = document.getElementById('DOT').value;
+
 // When the user logs in, the SARK DB is queried for any updates from the SARK side
-// queryEvents();
+queryEvents(userDOT);

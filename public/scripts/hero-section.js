@@ -246,7 +246,6 @@ function pasteValues(e) {
 
             var total = '';
             for (let i=0; i<digits.length; i++) {
-                console.log("i: ", i, " digitsval: ", digits[i].value)
                 total+=digits[i].value;
             }
             document.getElementById('slide3DOT').value= parseInt(total);
@@ -421,10 +420,16 @@ function saveClientData() {
 
     // These lines save their contents into the formData as arrays
     for (let i=0; i<operationTypeChoices.length; i++) {
-        formData.operationType.push(operationTypeChoices[i].innerText.slice(0, -2));
+        // nodes with the "hide" class get ignored
+        if (!operationTypeChoices[i].classList.contains('hide')) {
+            formData.operationType.push(operationTypeChoices[i].innerText.slice(0, -2));
+        }
     }
     for (let j=0; j<cargoCarriedChoices.length; j++) {
-        formData.cargoCarried.push(cargoCarriedChoices[j].innerText.slice(0, -2));
+        // nodes with the "hide" class get ignored
+        if (!cargoCarriedChoices[j].classList.contains('hide')) {
+            formData.cargoCarried.push(cargoCarriedChoices[j].innerText.slice(0, -2));
+        }
     }
     document.getElementById('empAmount1').value = document.getElementById('drivers').value;
 
@@ -621,6 +626,7 @@ function testEmail() {
     const emailError = document.getElementById('emailError');
     emailError.style.visibility = 'hidden';
     if (input!='' && regex.test(input)) {
+        formData.email = input;
         submit.classList.remove('disabled');
         submit.onclick=function() {
             // this function sends the email

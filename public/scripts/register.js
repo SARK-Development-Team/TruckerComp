@@ -25,7 +25,6 @@ function checkCookie() {
         let clientDataObj = JSON.parse(clientData);
         // Here the values get assigned from the cookie
         emailField.value=clientDataObj.email;
-        // employeesField.value=JSON.stringify(clientDataObj.employees);
         businessField.value=clientDataObj.businessType;
         carrierField.value=clientDataObj.carrierOperation;
         payrollField.value=clientDataObj.totalPayroll;
@@ -40,12 +39,11 @@ function checkCookie() {
         trucksField.value=clientDataObj.powerUnits;
         driversField.value=clientDataObj.drivers;
         operationField.value=JSON.stringify(clientDataObj.operationType);
-        cargoField.value==JSON.stringify(clientDataObj.cargoCarried);
+        cargoField.value=JSON.stringify(clientDataObj.cargoCarried);
         return clientDataObj;
 
     } catch (err) {
         console.log(err);
-        // employeesField.value='';
         businessField.value='';
         payrollField.value='';
         mileageField.value='';
