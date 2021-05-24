@@ -67,7 +67,9 @@ var $ = {
        this.render()
     },
     removeOption: function(e, element){
-       e.stopPropagation();
+       if (e) {
+         e.stopPropagation();
+       }
        this.clearStates()
        var index = Number(element.dataset.index);
        this.selected.forEach(function(select){

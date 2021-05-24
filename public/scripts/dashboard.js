@@ -16,17 +16,45 @@ var leadData = {
     stage: 1,
     _id: ''
 }
+
+let dataOpType = document.getElementById('dbScript').getAttribute('data-opType');
+let opClasses = [];
+
+if (dataOpType) {
+    if (dataOpType.includes('')) {
+        opClasses = dataOpType.replace(',', '').split('');     
+        opClasses.pop();
+    } else {
+        opClasses = JSON.parse(document.getElementById('dbScript').getAttribute('data-opType'));
+    }
+}
+document.getElementById('opTypes').innerText=opClasses;
+let dataCargo = document.getElementById('dbScript').getAttribute('data-cargo');
+let cargo = [];
+
+if (dataCargo) { 
+    if (dataCargo.includes('')) {
+        cargo = dataCargo.replace(',', '').split('');     
+        cargo.pop();
+    } else {
+        cargo = JSON.parse(document.getElementById('dbScript').getAttribute('data-cargo'));
+    }
+}
+document.getElementById('cargo').innerText=cargo;
+
+
 // First clear all existing data in the dropdown fields if there is any
 // This avoids duplicate display of data
 function clearDropDownFields() {
-    if (document.querySelectorAll('.drop-display')[0].childNodes[0].innerText) {
-        const operationTypeChoices = Array.from(document.querySelectorAll('.drop-display')[0].childNodes[0].childNodes);
+    // if (document.querySelectorAll('.drop-display')[0].childNodes[0].innerText) {
+    if (document.querySelectorAll('.drop-display')[0].firstChild.innerText) {
+        const operationTypeChoices = Array.from(document.querySelectorAll('.drop-options')[0].childNodes[0].childNodes);
         for (const el of operationTypeChoices) {
             opTypeDrop.removeOption(event, el)
         }   
     }
     if (document.querySelectorAll('.drop-display')[1].childNodes[0].innerText) {
-        const cargoCarriedChoices = Array.from(document.querySelectorAll('.drop-display')[1].childNodes[0].childNodes);
+        const cargoCarriedChoices = Array.from(document.querySelectorAll('.drop-options')[1].childNodes[0].childNodes);
         for (const el of cargoCarriedChoices) {
             cargoDrop.removeOption(event, el)
         }    
@@ -72,8 +100,8 @@ document.getElementById('file-upload').addEventListener("change", (event) => {
 
 
 async function toggleForm() {
-    document.getElementById("userInfoStatic").style.display="none";
     populateDropDownBoxes();
+    document.getElementById("userInfoStatic").style.display="none";
     await delay(300);
     document.getElementById("userInfoUpdate").style.display="block";
 }
@@ -176,11 +204,16 @@ function saveLead(e) {
         // These lines establish the contents of the dropdown boxes 
         let operationTypeChoices = Array.from(document.querySelectorAll('.drop-display')[0].childNodes[0].childNodes);
         let cargoCarriedChoices = Array.from(document.querySelectorAll('.drop-display')[1].childNodes[0].childNodes);
+
         for (let i=0; i<operationTypeChoices.length; i++) {
-            leadData.operationType.push(operationTypeChoices[i].innerText);
+            if (!operationTypeChoices[i].classList.contains('hide')) {
+                leadData.operationType.push(operationTypeChoices[i].innerText);
+            }
         }
         for (let j=0; j<cargoCarriedChoices.length; j++) {
-            leadData.cargoCarried.push(cargoCarriedChoices[j].innerText);
+            if (!cargoCarriedChoices[j].classList.contains('hide')) {
+                leadData.cargoCarried.push(cargoCarriedChoices[j].innerText);
+            }
         }
         leadData.stage=2;
         // const uri = uriRoot+'lead';
@@ -198,48 +231,57 @@ function saveLead(e) {
     }
 }
 
-// This function populates the dropdown boxes with the appropriate data if there is any
+function displayDDValues() {
+//    These pull the dropdown menu options out of the script option, which are strings, and turn them into arrays
+// And then populate the form with the applicable items
+if (dataOpType) {
+    document.getElementById('opTypes').innerText = '';
+    console.log(typeof dataOpType);
+    let opClasses = JSON.parse(document.getElementById('dbScript').getAttribute('data-opType'));
+    document.getElementById('opTypes').innerText = opClasses.join(", ");
+
+}
+if (document.getElementById('dbScript').getAttribute('data-cargo')) {
+    document.getElementById('cargo').innerText = '';
+    let cargo = JSON.parse(document.getElementById('dbScript').getAttribute('data-cargo'));
+    document.getElementById('cargo').innerText = cargo.join(", ");
+}
+
+}
+
+
+
+// This function populates the dropdown boxes in the edit section with the appropriate data if there is any
 function populateDropDownBoxes() {
     clearDropDownFields();
-    // These pull the dropdown menu options out of the script option, which are strings, and turn them into arrays
-// And then populate the form with the applicable items
-// if (dataOpType) {
-//     document.getElementById('opTypes').innerText = '';
-//     console.log(typeof dataOpType);
-//     let opClasses = JSON.parse(document.getElementById('dbScript').getAttribute('data-opType'));
-//     document.getElementById('opTypes').innerText = opClasses.join(", ");
 
-// }
-// if (document.getElementById('dbScript').getAttribute('data-cargo')) {
-//     document.getElementById('cargo').innerText = '';
-//     let cargo = JSON.parse(document.getElementById('dbScript').getAttribute('data-cargo'));
-//     document.getElementById('cargo').innerText = cargo.join(", ");
-// }
-    if (document.getElementById('dbScript').getAttribute('data-opType')) {
-        let operationTypeChoices = document.querySelectorAll('.drop-options')[0].childNodes[0].childNodes;
-        let opClasses = JSON.parse(document.getElementById('dbScript').getAttribute('data-opType'));
-        for (const el of opClasses) {
-            for (const a of operationTypeChoices) {
-                if (a.textContent==el) {
-                    opTypeDrop.addOption(event, a)
-                }
+
+ 
+
+    // A new account that only exists in MongoDB stores the values slightly differently than one that has been updated and 
+    // saved to the Azure DB
+    // These lines sort out which pattern the values are stored as and turns them into arrays appropriately.
+
+    let operationTypeChoices = document.querySelectorAll('.drop-options')[0].childNodes[0].childNodes;
+    for (const el of opClasses) {
+        for (const a of operationTypeChoices) {
+            if (a.textContent==el) {
+                opTypeDrop.addOption(event, a)
             }
-        }       
-    }
-    if (document.getElementById('dbScript').getAttribute('data-cargo')) { 
-        let cargoCarriedChoices = document.querySelectorAll('.drop-options')[1].childNodes[0].childNodes;
-        let cargo = JSON.parse(document.getElementById('dbScript').getAttribute('data-cargo'));
-        for (const el of cargo) {
-            for (const a of cargoCarriedChoices) {
-                if (a.textContent==el) {
-                    cargoDrop.addOption(event, a)
-                }
+        }
+    }       
+
+    let cargoCarriedChoices = document.querySelectorAll('.drop-options')[1].childNodes[0].childNodes;
+    for (const el of cargo) {
+        for (const a of cargoCarriedChoices) {
+            if (a.textContent==el) {
+                cargoDrop.addOption(event, a)
             }
-        }      
-    }
+        }
+    }      
 }
 
 const userDOT = document.getElementById('DOT').value;
 
 // When the user logs in, the SARK DB is queried for any updates from the SARK side
-queryEvents(userDOT);
+// queryEvents(userDOT);

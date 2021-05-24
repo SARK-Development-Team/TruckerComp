@@ -1,6 +1,6 @@
 <div class="form-page" id="slide3">
 
-    {{!-- Progress bar component. Finalizes reset and additions. --}}
+    <!-- Progress bar component. Finalizes reset and additions. -->
     <div class="progress-bar">
         <div onclick="initializeForm()">
             <img src="/public/images/darkarrow.svg" loading="lazy" width="33" alt="" class="arrow">
@@ -21,7 +21,7 @@
 
         <h2 class="question-title">What&#x27;s your Department of Transportation (DOT) number?</h2>
 
-        {{! Digits for entering in DOT number.}}
+        <!-- Digits for entering in DOT number. -->
         <div id="digit-area">
             <div class="digits">
                 <input type="text" class="digit" name="digit1" maxlength="1" onpaste="pasteValues(event)" />
@@ -36,7 +36,7 @@
         </div>
         <input type="number" id="slide3DOT" name="DOT" min="0">
 
-        {{! Loading condition for DOT query.}}
+         <!-- Loading condition for DOT query. -->
         <div id="loading-icon" class="dot-query">
             <div class="query-heading">
                 <h3 class="dot-text-result">Searching records for DOT # <span id="searchingSpan"></span></h3>
@@ -46,7 +46,7 @@
             </div>
         </div>
 
-        {{! Success condition for DOT query.}}
+        <!-- Success condition for DOT query. -->
         <div id="searchResult" class="dot-query expandable">
             <div class="query-heading success">
                 <img src="/public/images/check.min.svg" loading="lazy" width="36" alt="" class="dot-check" id="DOT-check-icon">
@@ -57,7 +57,6 @@
                 <div class="basic-info w-col w-col-8 w-col-stack">
                     <div class="company-heading">
                         <h2 id="companyName" class="company-name"><input name="companyName"/></h2>
-                        {{!-- <h3 class="dba-subtitle">DBA<span id="DBA" class="dba"><input name="dbaName"/></span></h3> --}}
                         <h3 class="dba-subtitle"><span id="DBA" class="dba"></span><input name="dbaName" id="DBAfield"/></h3>
                     </div>
                     <div id="manualInputForm" class="contact-info">

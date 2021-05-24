@@ -43,7 +43,7 @@ async function sqlSearch(number) {
 
 // Login Page
 const renderLogin = (forwardAuthenticated, (req, res) => {
-    res.render('login', {layout: "auth"})
+    res.render('login', {layout: "layouts/auth"})
 });
 
 // router.get('/login', forwardAuthenticated, (req, res) => );
@@ -52,7 +52,7 @@ const renderLogin = (forwardAuthenticated, (req, res) => {
 // router.get('/register', forwardAuthenticated, (req, res) => res.render('register', {layout: "dashboard"}));
 
 const renderRegister = (forwardAuthenticated, (req, res) => {
-    res.render('register', {layout: "auth"})
+    res.render('register', {layout: "layouts/auth"})
 });
 
 // Register
@@ -77,7 +77,7 @@ const registerUser = (req, res) => {
 
     if (errors.length > 0) {
         res.render('register', {
-        layout: "auth",
+        layout: "layouts/auth",
         errors,
         name,
         email,
@@ -89,7 +89,7 @@ const registerUser = (req, res) => {
         if (user) {
             errors.push({ msg: 'Email already exists' });
             res.render('register', {
-            layout: "auth",
+            layout: "layouts/auth",
             errors,
             name,
             email,
@@ -130,7 +130,7 @@ const registerUser = (req, res) => {
                     'You are now registered and can log in'
                     );
                     res.render('login', {
-                        layout: "auth", 
+                        layout: "layouts/auth", 
                         email: email
                     });
                 })
@@ -228,7 +228,7 @@ savetoMongoDB = (data) => {
 // Dashboard
 const openDashboard = (ensureAuthenticated, (req, res) => {
     res.render('dashboard', {
-        layout: "auth",
+        layout: "layouts/auth",
         user: req.user
     })
 });
