@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const session = require('express-session');
-// const flash = require('connect-flash');
+const flash = require('connect-flash');
 
 // for environment variables
 require('dotenv').config()
@@ -26,7 +26,7 @@ const db = require('../models');
 
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
-// router.use(flash());
+router.use(flash());
 
 
 // This function searches the sark DB for a client based on the DOT entered
@@ -43,7 +43,7 @@ async function sqlSearch(number) {
 
 // Login Page
 const renderLogin = (forwardAuthenticated, (req, res) => {
-    res.render('login', {layout: "layouts/auth"})
+    res.render('login', {layout: "layouts/auth", errors: []})
 });
 
 // router.get('/login', forwardAuthenticated, (req, res) => );
@@ -52,8 +52,9 @@ const renderLogin = (forwardAuthenticated, (req, res) => {
 // router.get('/register', forwardAuthenticated, (req, res) => res.render('register', {layout: "dashboard"}));
 
 const renderRegister = (forwardAuthenticated, (req, res) => {
-    res.render('register', {layout: "layouts/auth"})
+    res.render('register', {layout: "layouts/auth", errors: []})
 });
+
 
 // Register
 const registerUser = (req, res) => {
@@ -62,7 +63,6 @@ const registerUser = (req, res) => {
         phone, powerUnits, drivers, operationType, cargoCarried, 
         zipCode, mileage, totalPayroll } = req.body;
     let errors = [];
-
     if (!name || !email || !password || !password2) {
         errors.push({ msg: 'Please enter all fields' });
     }
@@ -144,12 +144,12 @@ const registerUser = (req, res) => {
 
 // Login
 const loginUser = (req, res, next) => {
-  errors = [];
-  passport.authenticate('local', {
-    successRedirect: 'dashboard',
-    failureRedirect: 'login',
-    failureFlash: true
-  })(req, res, next);
+    errors = [];
+    passport.authenticate('local', {
+        successRedirect: 'dashboard',
+        failureRedirect: 'login',
+        failureFlash: true
+    })(req, res, next);
 };
 
 // Logout
@@ -208,7 +208,7 @@ const updateUser = (req, res) => {
                 // Subsequently updates the Mongo DB with the same data
                 // Both updates must pass or the catch is triggered
                 db.User.findOneAndUpdate({ _id: userID }, object)
-                .then(console.log("successfully updated"))
+                .then(console.log("Mongo DB successfully updated"))
                 .catch((err)=>console.log(err)); 
             } catch(err) {
                 console.log(err)
@@ -219,17 +219,11 @@ const updateUser = (req, res) => {
     });
 };
 
-// This route is used to update the Mongo DB after the Azure DB is updated
-savetoMongoDB = (data) => {
-
-  }
-
-
 // Dashboard
 const openDashboard = (ensureAuthenticated, (req, res) => {
+    user= req.user;
     res.render('dashboard', {
         layout: "layouts/auth",
-        user: req.user
     })
 });
 

@@ -22,13 +22,12 @@
 
 <body>
 
-    <%- include ('../partials/authnavbar') %>
+    <%- include ('../partials/authnavbar'); %>
 
 
     <div id="messageArea">
-          <%# include ('../partials/errorMessage', {errors: errors, success: success}) %>
+    <%- include ('../partials/errorMessage', {errors: errors}); %>
 
-        <!-- {{>errorMessage errors = errors success = success_msg}} -->
     </div>
 
     <!-- xxxxxxxxxx -->
@@ -36,7 +35,7 @@
 
     <!-- xxxxxxxxxx -->
 
-    <%- include ('../partials/authfooter') %>
+    <%- include ('../partials/authfooter'); %>
 
 
 </body>

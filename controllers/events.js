@@ -7,7 +7,17 @@ const connString = process.env.SQL_CONNSTRING;
 
 const sql = require('mssql');
 
-requestDoc = (number) => {
+
+const messageList = [
+    "Please confirm the information on your profile or edit as necessary and forward to SARK",
+    "Please complete the attached form and provide your signature",
+    "Please contact XXX for more information",
+    "Please provide a copy of the following documents"
+];
+
+
+
+const requestDoc = (number) => {
     const docs = [
         "1099 Form",
         "Drivers' License",

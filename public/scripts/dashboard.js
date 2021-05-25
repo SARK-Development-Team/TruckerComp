@@ -285,3 +285,24 @@ const userDOT = document.getElementById('DOT').value;
 
 // When the user logs in, the SARK DB is queried for any updates from the SARK side
 // queryEvents(userDOT);
+
+
+
+window.onload= () => {
+    // Display relevant fields
+
+    // Determine user stage
+    // Stages:
+    // 1-- create profile
+    // 2-- edit & submit profile
+    // 3-- submit necessary docs
+    // 4-- sign forms
+    // 5-- get approved
+    // If user has 
+
+    // Show progress
+    // Load progress
+    // if (user.stage) {
+    // Show messages if any exist
+    // QueryEvents(userDOT);
+}

@@ -10,12 +10,12 @@
 <script defer src="../public/scripts/multi-select.js"></script>
 
 <section id="dashboard">
-    <!-- {{#if user}}      <-------------------------------- Fix for ejs
-        <h1>TruckerComp Dashboard for {{user.name}}</h1>
-    {{else}}
+    <% if (user) { %>
+        <h1>TruckerComp Dashboard for <%= user.name %></h1>
+    <% } else { %> 
         <h1>TruckerComp Dashboard</h1>
         <h4>Please create your profile</h4>
-    {{/if}} -->
+    <% } %>
     <div id="dashboard-nav">
         <div class="dashboard-nav-button left" onclick="dashboardToggle(event, 'progress-section')">
             <h3 class="form-button-text">Progess</h3>
@@ -72,7 +72,7 @@
                 <h4>Carrier Operation: <span class="userProperty"><%= user.carrierOperation %></span></h4>
                 <hr class="separator" />
                 <h4>Operation Type: </h4>
-                <h4 id="opTypes" class="userProperty"></h4>
+                <h4 id="opTypes" class="userProperty"> <%= JSON.stringify(user.operationType) %> </h4>
                 <h4>Cargo Carried: </h4>
                 <h4 id="cargo" class="userProperty"></h4>
             </div> 
