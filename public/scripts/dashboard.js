@@ -17,6 +17,8 @@ var leadData = {
     _id: ''
 }
 
+
+// update for new format
 let dataOpType = document.getElementById('dbScript').getAttribute('data-opType');
 let opClasses = [];
 
@@ -84,6 +86,9 @@ async function dashboardToggle(e, id) {
     document.getElementById(id).classList.remove("hidden")
     await delay(300);
     unToggleForm();
+    if (e.target.parentNode.querySelector('.alert')) {
+        removeAlertIcon(e.target.parentNode);
+    }
     document.getElementById(id).style.opacity=1;
 }
 
@@ -327,8 +332,8 @@ function addAlertIcon(buttonID) {
 }
 
 // This removes the alert from the button that is passed into it
-function removeAlertIcon(buttonID) {
-    const alertIcon = document.getElementById(buttonID).lastElementChild;
+function removeAlertIcon(node) {
+    const alertIcon = node.lastElementChild;
     if (alertIcon.classList.contains('alert')) alertIcon.remove();
 }
 
