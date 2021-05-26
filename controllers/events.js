@@ -11,8 +11,7 @@ const sql = require('mssql');
 const messageList = {
     "profile": "Please confirm the information on your profile or edit as necessary and forward to SARK",
     "document": "Please complete the attached form and provide your signature",
-    "contact": "Please contact XXX for more information",
-    "document": "Please provide a copy of the following documents"
+    "contact": "Please contact XXX for more information"
 };
 
 

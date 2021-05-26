@@ -185,8 +185,15 @@ async function queryEvents(DOT) {
 
 // receives an array of messages and displays them in the dashboard
 function displayMessages(messages) {
+
     for (const [key, value] of Object.entries(messages)) {
-        console.log(`${key}: ${value}`);
+        if (key=="document") {
+            addAlertIcon('progressButton')
+            let block = document.createElement('div')
+            block.innerText=value;
+            document.getElementById('messages-area').append(block)
+        }
+        // console.log(`${key}: ${value}`);
       }
 }
 
@@ -291,6 +298,8 @@ function saveLead(e) {
     }
 }
 
+
+// This needs to be adjusted to the new format
 function displayDDValues() {
 //    These pull the dropdown menu options out of the script option, which are strings, and turn them into arrays
 // And then populate the form with the applicable items
@@ -375,8 +384,7 @@ window.onload = async ()=> {
     // if (user.stage) {
     // Show messages if any exist
     // if (user.DOT) {
-        let messages = await queryEvents(userDOT);
+    let messages = await queryEvents(userDOT);
     // }
-    console.log("mess: ", messages);
     if (messages) displayMessages(messages);
 }
