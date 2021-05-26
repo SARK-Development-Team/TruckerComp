@@ -8,6 +8,8 @@ router.post('/register', ctrl.users.registerUser);
 router.get('/logout', ctrl.users.logoutUser);
 router.get('/dashboard', ctrl.users.openDashboard);
 router.post('/update', ctrl.users.updateUser);
+router.post('/azureSearch', ctrl.users.azureSearch);
+router.post('/mongoSearch', ctrl.users.mongoSearch);
 
 
 module.exports = router;

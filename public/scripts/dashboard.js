@@ -113,8 +113,8 @@ function unToggleForm() {
 
 function saveForm(e) {
     e.preventDefault;
-    unToggleForm();
     saveLead(e);
+    unToggleForm();
 }
 
 
@@ -173,13 +173,72 @@ function requestSignature(data) {
     }).then(response => response.json());
 }
 
-function queryEvents(user) {
-    fetch('/queryAll', {
+async function queryEvents(DOT) {
+    const user = {'DOT': DOT};
+    const events = await fetch('/events/queryAll', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
     }).then(response => response.json());
+    return events;
 }
+
+// receives an array of messages and displays them in the dashboard
+function displayMessages(messages) {
+    for (const [key, value] of Object.entries(messages)) {
+        console.log(`${key}: ${value}`);
+      }
+}
+
+const userEmail =document.getElementById('dbScript').getAttribute('data-email');
+
+async function loadUser(email) {
+    // search in Mongo DB
+    const user = await mongoSearch(email);
+
+    return user;
+}
+
+async function mongoSearch(email) {
+    const data = {'email': email};
+    const result = await fetch('mongoSearch', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    }).then(response => response.json())
+    // .json())
+    // console.log("res: ", result)
+    return result;
+}
+
+function displayUserData(user) {
+    document.getElementById('name').value = user.name;
+    document.getElementById('userName').innerText = user.name;
+    document.getElementById('email').value = user.email;
+    document.getElementById('userEmail').innerText = user.email;
+    document.getElementById('companyName').value = user.companyName;
+    document.getElementById('userCompanyName').innerText = user.companyName;
+    document.getElementById('phone').value = user.phone;
+    document.getElementById('userPhone').innerText = user.phone;
+    document.getElementById('DOT').value = user.DOT;
+    document.getElementById('userDOT').innerText = user.DOT;
+    document.getElementById('address').value = user.address;
+    document.getElementById('userAddress').innerText = user.address;
+    document.getElementById('mailingAddress').value = user.mailingAddress;
+    document.getElementById('userMailingAddress').innerText = user.mailingAddress;
+    document.getElementById('powerUnits').value = user.powerUnits;
+    document.getElementById('userPowerUnits').innerText = user.powerUnits;
+    document.getElementById('drivers').value = user.drivers;
+    document.getElementById('userDrivers').innerText = user.drivers;
+    document.getElementById('totalPayroll').value = user.totalPayroll;
+    document.getElementById('userTotalPayroll').innerText = user.totalPayroll;
+    document.getElementById('mileage').value = user.mileage;
+    document.getElementById('userMileage').innerText = user.mileage;
+    document.getElementById('carrierOperation').value = user.carrierOperation;
+    document.getElementById('userCarrierOperation').innerText = user.carrierOperation;
+    displayDDValues();
+}
+
 
 // saves the dashboard form data to the Azure DB 
 function saveLead(e) {
@@ -227,6 +286,7 @@ function saveLead(e) {
         )
         .catch(err=>console.log(err));
     } else {
+        alert('Please enter a name, email address, DOT Number, and phone number');
         // document.getElementById('saveError').innerText='Please enter at least your Name, Email Address, DOT Number, and Phone Number';
     }
 }
@@ -249,19 +309,29 @@ if (document.getElementById('dbScript').getAttribute('data-cargo')) {
 
 }
 
+// This adds an alert to the button that is passed into it
+function addAlertIcon(buttonID) {
+    const alertIcon = document.createElement('div');
+    alertIcon.classList.add('alert');
+    alertIcon.innerText="!";
+    document.getElementById(buttonID).append(alertIcon);
+}
+
+// This removes the alert from the button that is passed into it
+function removeAlertIcon(buttonID) {
+    const alertIcon = document.getElementById(buttonID).lastElementChild;
+    if (alertIcon.classList.contains('alert')) alertIcon.remove();
+}
+
 
 
 // This function populates the dropdown boxes in the edit section with the appropriate data if there is any
 function populateDropDownBoxes() {
     clearDropDownFields();
-
-
- 
-
+    
     // A new account that only exists in MongoDB stores the values slightly differently than one that has been updated and 
     // saved to the Azure DB
     // These lines sort out which pattern the values are stored as and turns them into arrays appropriately.
-
     let operationTypeChoices = document.querySelectorAll('.drop-options')[0].childNodes[0].childNodes;
     for (const el of opClasses) {
         for (const a of operationTypeChoices) {
@@ -270,7 +340,6 @@ function populateDropDownBoxes() {
             }
         }
     }       
-
     let cargoCarriedChoices = document.querySelectorAll('.drop-options')[1].childNodes[0].childNodes;
     for (const el of cargo) {
         for (const a of cargoCarriedChoices) {
@@ -288,9 +357,10 @@ const userDOT = document.getElementById('DOT').value;
 
 
 
-window.onload= () => {
+window.onload = async ()=> {
+    let user = await loadUser(userEmail);
     // Display relevant fields
-
+    displayUserData(user);
     // Determine user stage
     // Stages:
     // 1-- create profile
@@ -304,5 +374,9 @@ window.onload= () => {
     // Load progress
     // if (user.stage) {
     // Show messages if any exist
-    // QueryEvents(userDOT);
+    // if (user.DOT) {
+        let messages = await queryEvents(userDOT);
+    // }
+    console.log("mess: ", messages);
+    if (messages) displayMessages(messages);
 }

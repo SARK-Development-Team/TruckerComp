@@ -8,12 +8,12 @@ const connString = process.env.SQL_CONNSTRING;
 const sql = require('mssql');
 
 
-const messageList = [
-    "Please confirm the information on your profile or edit as necessary and forward to SARK",
-    "Please complete the attached form and provide your signature",
-    "Please contact XXX for more information",
-    "Please provide a copy of the following documents"
-];
+const messageList = {
+    "profile": "Please confirm the information on your profile or edit as necessary and forward to SARK",
+    "document": "Please complete the attached form and provide your signature",
+    "contact": "Please contact XXX for more information",
+    "document": "Please provide a copy of the following documents"
+};
 
 
 
@@ -39,16 +39,21 @@ requestInfo = () => {
 }
 
 // Check the SARK DB for any updates from the underwriting team
-queryAll = async (number) => {
+queryAll = async (req, res) => {
+    // console.log(`${user['DOT']}`);
     try {
         let pool = await sql.connect(connString)
         let result1 = await pool.request()
-            .query(`SELECT * FROM sark.Client WHERE [DOT Number] = ${number}`)
+            .query(`SELECT * FROM sark.Client WHERE [DOT Number] = ${req.body['DOT']}`)
         const event = result1.recordset[0]  //<--update this to get only the necessary event from the DB 
         // if (event type === document) ...
         // if (event type === information) ...
         // if (event type === signature) ...
-        // return event
+        // console.log(event);
+        // return event;
+        if (event) {
+            res.json(messageList);
+        }
     } catch (err) {
        console.log(err);
     }

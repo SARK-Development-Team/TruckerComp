@@ -227,6 +227,23 @@ const openDashboard = (ensureAuthenticated, (req, res) => {
     })
 });
 
+const azureSearch = async (req, res) => {
+    return new Promise((resolve) => {
+    tableSvc.retrieveEntity('leads', 'email', req.body['email'], (err, result, response) => {
+          if (!err) {
+              resolve(response.body);
+          } else {
+              console.log(err);
+          }
+      });
+  }); 
+}
+
+const mongoSearch = async (req, res) => {
+    const user = await db.User.findOne({ email: req.body['email'] })   
+    res.json(user);
+}
+
 module.exports = {
     renderLogin,
     loginUser,
@@ -234,5 +251,7 @@ module.exports = {
     registerUser,
     logoutUser,
     updateUser,
-    openDashboard
+    openDashboard,
+    azureSearch,
+    mongoSearch
 }

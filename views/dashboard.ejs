@@ -3,8 +3,7 @@
 <script type="text/javascript" src="https://static.eversign.com/js/embedded-signing.js"></script>
 <script 
     id="dbScript"
-    data-opType="<%= user.operationType %>" 
-    data-cargo="<%= user.cargoCarried %>" 
+    data-email="<%= user.email %>" 
     defer src="../public/scripts/dashboard.js">
 </script>
 <script defer src="../public/scripts/multi-select.js"></script>
@@ -17,13 +16,13 @@
         <h4>Please create your profile</h4>
     <% } %>
     <div id="dashboard-nav">
-        <div class="dashboard-nav-button left" onclick="dashboardToggle(event, 'progress-section')">
+        <div id="progressButton" class="dashboard-nav-button left" onclick="dashboardToggle(event, 'progress-section')">
             <h3 class="form-button-text">Progess</h3>
         </div>
-        <div class="dashboard-nav-button" onclick="dashboardToggle(event, 'profile-section')">
+        <div id="profileButton" class="dashboard-nav-button" onclick="dashboardToggle(event, 'profile-section')">
             <h3 class="form-button-text">Profile</h3>
         </div>
-        <div class="dashboard-nav-button right" onclick="dashboardToggle(event, 'policy-section')">            
+        <div id="policyButton" class="dashboard-nav-button right" onclick="dashboardToggle(event, 'policy-section')">            
             <h3 class="form-button-text">Policy Info</h3>
         </div>
     </div>
@@ -56,20 +55,20 @@
         <div id="userInfoStatic">
             <h2>Here is the information we have on record for you</h2>
             <div id="userInfo">
-                <h4>Name: <span class="userProperty"><%= user.name %></span></h4>
-                <h4>Email: <span class="userProperty"><%= user.email %></span></h4>
-                <h4>Company Name: <span class="userProperty"><%= user.companyName %></span></h4>
-                <h4>Phone Number: <span class="userProperty"><%= user.phone %></span></h4>
+                <h4>Name: <span class="userProperty" id="userName"></span></h4>
+                <h4>Email: <span class="userProperty" id="userEmail"></span></h4>
+                <h4>Company Name: <span class="userProperty" id="userCompanyName"></span></h4>
+                <h4>Phone Number: <span class="userProperty" id="userPhone"></span></h4>
                 <hr class="separator" />
-                <h4>DOT Number: <span class="userProperty"><%= user.DOT %></span></h4>
-                <h4>Address: <span class="userProperty"><%= user.address %></span></h4>
-                <h4>Mailing Address: <span class="userProperty"><%= user.mailingAddress %></span></h4>
-                <h4>Trucks: <span class="userProperty"><%= user.powerUnits %></span></h4>
+                <h4>DOT Number: <span class="userProperty" id="userDOT"></span></h4>
+                <h4>Address: <span class="userProperty" id="userAddress"></span></h4>
+                <h4>Mailing Address: <span class="userProperty" id="userMailingAddress"></span></h4>
+                <h4>Trucks: <span class="userProperty" id="userPowerUnits"></span></h4>
                 <hr class="separator" />
-                <h4>Drivers: <span class="userProperty"><%= user.drivers %></span></h4>
-                <h4>Total Payroll: <span class="userProperty"><%= user.totalPayroll %></span></h4>
-                <h4>Annual Mileage: <span class="userProperty"><%= user.mileage %></span></h4>
-                <h4>Carrier Operation: <span class="userProperty"><%= user.carrierOperation %></span></h4>
+                <h4>Drivers: <span class="userProperty" id="userDrivers"></span></h4>
+                <h4>Total Payroll: <span class="userProperty" id="userTotalPayroll"></span></h4>
+                <h4>Annual Mileage: <span class="userProperty" id="userMileage"></span></h4>
+                <h4>Carrier Operation: <span class="userProperty" id="userCarrierOperation"></span></h4>
                 <hr class="separator" />
                 <h4>Operation Type: </h4>
                 <h4 id="opTypes" class="userProperty"> <%= JSON.stringify(user.operationType) %> </h4>
