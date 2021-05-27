@@ -168,7 +168,12 @@ const updateUser = (req, res) => {
     const cargoString = JSON.stringify(object.cargoCarried);
     const userID = object._id.toString()
     var stage;
-    if (object.stage==1) stage=2;
+    console.log(object)
+    if (object.stage==1) {
+        stage=2;
+    } else {
+        stage=object.stage;
+    }
     const lead = {
 
         operationType: [],
