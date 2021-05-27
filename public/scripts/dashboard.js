@@ -17,34 +17,6 @@ var leadData = {
     _id: ''
 }
 
-
-// update for new format
-let dataOpType = document.getElementById('dbScript').getAttribute('data-opType');
-let opClasses = [];
-
-if (dataOpType) {
-    if (dataOpType.includes('')) {
-        opClasses = dataOpType.replace(',', '').split('');     
-        opClasses.pop();
-    } else {
-        opClasses = JSON.parse(document.getElementById('dbScript').getAttribute('data-opType'));
-    }
-}
-document.getElementById('opTypes').innerText=opClasses;
-let dataCargo = document.getElementById('dbScript').getAttribute('data-cargo');
-let cargo = [];
-
-if (dataCargo) { 
-    if (dataCargo.includes('')) {
-        cargo = dataCargo.replace(',', '').split('');     
-        cargo.pop();
-    } else {
-        cargo = JSON.parse(document.getElementById('dbScript').getAttribute('data-cargo'));
-    }
-}
-document.getElementById('cargo').innerText=cargo;
-
-
 // First clear all existing data in the dropdown fields if there is any
 // This avoids duplicate display of data
 function clearDropDownFields() {
@@ -105,7 +77,6 @@ document.getElementById('file-upload').addEventListener("change", (event) => {
 
 
 async function toggleForm() {
-    populateDropDownBoxes();
     document.getElementById("userInfoStatic").style.display="none";
     await delay(300);
     document.getElementById("userInfoUpdate").style.display="block";
@@ -116,9 +87,11 @@ function unToggleForm() {
     document.getElementById("userInfoStatic").style.display="grid";
 }
 
-function saveForm(e) {
+async function saveForm(e) {
     e.preventDefault;
     saveLead(e);
+    let user = await loadUser(userEmail);
+    displayUserData(user);
     unToggleForm();
 }
 
@@ -151,7 +124,7 @@ function requestSignature(data) {
 
     if(true) {
         eversign.open({
-            url: "YOUR_EMBEDDED_SIGNING_URL",  //<----replace with correct url
+            url: 'https://api.eversign.com/api/document',  //<----replace with correct url
             containerID: "container",
             width: 600,
             height: 600,
@@ -202,7 +175,7 @@ function displayMessages(messages) {
       }
 }
 
-const userEmail =document.getElementById('dbScript').getAttribute('data-email');
+const userEmail = document.getElementById('dbScript').getAttribute('data-email');
 
 async function loadUser(email) {
     // search in Mongo DB
@@ -218,8 +191,6 @@ async function mongoSearch(email) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     }).then(response => response.json())
-    // .json())
-    // console.log("res: ", result)
     return result;
 }
 
@@ -248,9 +219,57 @@ function displayUserData(user) {
     document.getElementById('userMileage').innerText = user.mileage;
     document.getElementById('carrierOperation').value = user.carrierOperation;
     document.getElementById('userCarrierOperation').innerText = user.carrierOperation;
-    displayDDValues();
+    displayDDValues(user);
+    populateDDBoxes(user);
+
+}
+// This function shows the static values for the profile display page
+function displayDDValues(user) {
+    // These pull the dropdown menu options out of the script option, which are strings, and turn them into arrays
+    // And then populate the form with the applicable items
+    if (user.operationType) {
+        document.getElementById('opTypes').innerText = '';
+        // let opClasses = JSON.parse(document.getElementById('dbScript').getAttribute('data-opType'));
+        let opClasses = []
+        for (let i=0; i<user.operationType.length; i++) {
+            opClasses.push(user.operationType[i].replace(/[^A-Za-z, ]/g, ""));
+        }
+        document.getElementById('opTypes').innerText = opClasses.join(", ");
+    }
+    if (user.cargoCarried) {
+        document.getElementById('cargo').innerText = '';
+        // let opClasses = JSON.parse(document.getElementById('dbScript').getAttribute('data-opType'));
+        let cargo = []
+        for (let i=0; i<user.cargoCarried.length; i++) {
+            cargo.push(user.cargoCarried[i].replace(/[^A-Za-z, ]/g, ""));
+        }
+        document.getElementById('cargo').innerText = cargo.join(", ");
+    }
 }
 
+// This function populates the dropdown boxes in the edit section with the appropriate data if there is any
+function populateDDBoxes(user) {
+    clearDropDownFields();
+
+    let operationTypeChoices = document.querySelectorAll('.drop-options')[0].childNodes[0].childNodes;
+    for (let el of user.operationType) {
+        el = el.replace(/[^A-Za-z,. ]/g, "")
+        for (const a of operationTypeChoices) {
+            if (a.textContent==el) {
+                opTypeDrop.addOption(event, a)
+            }
+        }
+    }       
+    let cargoCarriedChoices = document.querySelectorAll('.drop-options')[1].childNodes[0].childNodes;
+    for (let el of user.cargoCarried) {
+        el = el.replace(/[^A-Za-z,. ]/g, "")
+        for (const a of cargoCarriedChoices) {
+            if (a.textContent==el) {
+                cargoDrop.addOption(event, a)
+            }
+        }
+    }      
+}
 
 // saves the dashboard form data to the Azure DB 
 function saveLead(e) {
@@ -272,17 +291,23 @@ function saveLead(e) {
         leadData.totalPayroll = document.getElementById('totalPayroll').value;
         leadData.drivers = document.getElementById('drivers').value;
         leadData.carrierOperation = document.getElementById('carrierOperation').value;
+        leadData.operationType = [];
+        leadData.cargoCarried = [];
         // These lines establish the contents of the dropdown boxes 
         let operationTypeChoices = Array.from(document.querySelectorAll('.drop-display')[0].childNodes[0].childNodes);
         let cargoCarriedChoices = Array.from(document.querySelectorAll('.drop-display')[1].childNodes[0].childNodes);
 
         for (let i=0; i<operationTypeChoices.length; i++) {
-            if (!operationTypeChoices[i].classList.contains('hide')) {
+            if (!operationTypeChoices[i].classList.contains('hide') && 
+            // !operationTypeChoices[i].classList.contains('add') && 
+            !operationTypeChoices[i].classList.contains('remove')) {
                 leadData.operationType.push(operationTypeChoices[i].innerText);
             }
         }
         for (let j=0; j<cargoCarriedChoices.length; j++) {
-            if (!cargoCarriedChoices[j].classList.contains('hide')) {
+            if (!cargoCarriedChoices[j].classList.contains('hide') && 
+            // !cargoCarriedChoices[j].classList.contains('add') && 
+            !cargoCarriedChoices[j].classList.contains('remove')) {
                 leadData.cargoCarried.push(cargoCarriedChoices[j].innerText);
             }
         }
@@ -303,26 +328,6 @@ function saveLead(e) {
     }
 }
 
-
-// This needs to be adjusted to the new format
-function displayDDValues() {
-//    These pull the dropdown menu options out of the script option, which are strings, and turn them into arrays
-// And then populate the form with the applicable items
-if (dataOpType) {
-    document.getElementById('opTypes').innerText = '';
-    console.log(typeof dataOpType);
-    let opClasses = JSON.parse(document.getElementById('dbScript').getAttribute('data-opType'));
-    document.getElementById('opTypes').innerText = opClasses.join(", ");
-
-}
-if (document.getElementById('dbScript').getAttribute('data-cargo')) {
-    document.getElementById('cargo').innerText = '';
-    let cargo = JSON.parse(document.getElementById('dbScript').getAttribute('data-cargo'));
-    document.getElementById('cargo').innerText = cargo.join(", ");
-}
-
-}
-
 // This adds an alert to the button that is passed into it
 function addAlertIcon(buttonID) {
     const alertIcon = document.createElement('div');
@@ -337,59 +342,47 @@ function removeAlertIcon(node) {
     if (alertIcon.classList.contains('alert')) alertIcon.remove();
 }
 
-
-
-// This function populates the dropdown boxes in the edit section with the appropriate data if there is any
-function populateDropDownBoxes() {
-    clearDropDownFields();
-    
-    // A new account that only exists in MongoDB stores the values slightly differently than one that has been updated and 
-    // saved to the Azure DB
-    // These lines sort out which pattern the values are stored as and turns them into arrays appropriately.
-    let operationTypeChoices = document.querySelectorAll('.drop-options')[0].childNodes[0].childNodes;
-    for (const el of opClasses) {
-        for (const a of operationTypeChoices) {
-            if (a.textContent==el) {
-                opTypeDrop.addOption(event, a)
-            }
-        }
-    }       
-    let cargoCarriedChoices = document.querySelectorAll('.drop-options')[1].childNodes[0].childNodes;
-    for (const el of cargo) {
-        for (const a of cargoCarriedChoices) {
-            if (a.textContent==el) {
-                cargoDrop.addOption(event, a)
-            }
-        }
-    }      
-}
-
 const userDOT = document.getElementById('DOT').value;
 
 // When the user logs in, the SARK DB is queried for any updates from the SARK side
 // queryEvents(userDOT);
 
+function displayVisualProgress(stage) {
+    let levels = document.getElementById('progress-graphic').children
+    for (let i = 0; i<stage-1; i++) {
+        levels[i].classList.add('completed');
+    }
+    levels[stage-1].classList.add('current');
+}
 
 
 window.onload = async ()=> {
+    // Determine the current user
     let user = await loadUser(userEmail);
     // Display relevant fields
     displayUserData(user);
     // Determine user stage
     // Stages:
+    if (user.stage) {
+        displayVisualProgress(user.stage);
+    } else {
+        displayVisualProgress(1);
+    }
+
     // 1-- create profile
     // 2-- edit & submit profile
     // 3-- submit necessary docs
     // 4-- sign forms
     // 5-- get approved
-    // If user has 
 
-    // Show progress
-    // Load progress
     // if (user.stage) {
     // Show messages if any exist
     // if (user.DOT) {
-    let messages = await queryEvents(userDOT);
+    try {
+        let messages = await queryEvents(userDOT);
     // }
-    if (messages) displayMessages(messages);
+        if (messages) displayMessages(messages);
+    } catch (err) {
+        console.log("no messages");
+    }
 }
