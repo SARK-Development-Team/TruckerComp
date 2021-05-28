@@ -1,9 +1,11 @@
 
 // for environment variables
 require('dotenv').config();
-
+const fetch = require('node-fetch');
 
 const connString = process.env.SQL_CONNSTRING;
+const eversignAPI = process.env.EVERSIGN_ACCESS_KEY;
+const eversignBusinessID = process.env.EVERSIGN_BUSINESS_ID;
 
 const sql = require('mssql');
 
@@ -15,6 +17,36 @@ const messageList = {
 };
 
 
+async function requestSignature() {
+    // if(true) {
+    //     eversign.open({
+    //         url: 'https://api.eversign.com/api/document',  //<----replace with correct url
+    //         containerID: "signature-area",
+    //         width: 600,
+    //         height: 600,
+    //         events: {
+    //           loaded: function () {
+    //             console.log("loaded Callback");
+    //           },
+    //           signed: function () {
+    //             console.log("signed Callback");
+    //           },
+    //           declined: function () {
+    //             console.log("declined Callback");
+    //           },
+    //           error: function () {
+    //             console.log("error Callback");
+    //           }
+    //         }
+    //     });
+    // }
+    let sigForm = await fetch(`https://api.eversign.com/api/document?access_key=${eversignAPI}&business_id=${eversignBusinessID}&type="text"`, {
+        // method: 'POST',
+        // headers: { 'Content-Type': 'application/json' },
+        // body: JSON.stringify(data)
+    }).then(response => response.json()).catch(err=>console.error(err));
+    console.log(sigForm);
+}
 
 const requestDoc = (number) => {
     const docs = [
@@ -27,9 +59,9 @@ const requestDoc = (number) => {
     return message;
 }
 
-requestSig = () => {
-    const message = "Please provide your signature."
-    return message;
+requestSig = async (req, res) => {
+    const sigForm = await requestSignature();
+    return sigForm;
 }
 
 requestInfo = () => {

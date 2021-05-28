@@ -120,31 +120,32 @@ function requestInformation(data) {
     }).then(response => response.json());
 }
 
-function requestSignature(data) {
+function requestSignature() {
 
-    if(true) {
-        eversign.open({
-            url: 'https://api.eversign.com/api/document',  //<----replace with correct url
-            containerID: "container",
-            width: 600,
-            height: 600,
-            events: {
-              loaded: function () {
-                console.log("loaded Callback");
-              },
-              signed: function () {
-                console.log("signed Callback");
-              },
-              declined: function () {
-                console.log("declined Callback");
-              },
-              error: function () {
-                console.log("error Callback");
-              }
-            }
-        });
-    }
-    fetch('/requestSig', {
+    // if(true) {
+    //     eversign.open({
+    //         url: 'https://api.eversign.com/api/document',  //<----replace with correct url
+    //         containerID: "signature-area",
+    //         width: 600,
+    //         height: 600,
+    //         events: {
+    //           loaded: function () {
+    //             console.log("loaded Callback");
+    //           },
+    //           signed: function () {
+    //             console.log("signed Callback");
+    //           },
+    //           declined: function () {
+    //             console.log("declined Callback");
+    //           },
+    //           error: function () {
+    //             console.log("error Callback");
+    //           }
+    //         }
+    //     });
+    // }
+    let data = { };
+    fetch('/events/requestSig', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -252,7 +253,19 @@ function populateDDBoxes(user) {
     clearDropDownFields();
 
     let operationTypeChoices = document.querySelectorAll('.drop-options')[0].childNodes[0].childNodes;
-    for (let el of user.operationType) {
+    var opTypeArray = [];
+    let reg = /\[/
+    if (reg.test(user.operationType)) {
+        let otypes = user.operationType.join('');
+        otypes = otypes.split('",');
+        for (let i = 0; i < otypes.length; i++) {
+            otypes[i].replace(/[^A-Za-z,. ]/g, "");
+            opTypeArray.push(otypes[i]);
+        }
+    } else {
+        opTypeArray=user.operationType
+    }
+    for (let el of opTypeArray) {
         el = el.replace(/[^A-Za-z,. ]/g, "")
         for (const a of operationTypeChoices) {
             if (a.textContent==el) {
@@ -261,7 +274,18 @@ function populateDDBoxes(user) {
         }
     }       
     let cargoCarriedChoices = document.querySelectorAll('.drop-options')[1].childNodes[0].childNodes;
-    for (let el of user.cargoCarried) {
+    var cargoArray = [];
+    if (reg.test(user.cargoCarried)) {
+        let ctypes = user.cargoCarried.join('');
+        ctypes = ctypes.split('",');
+        for (let i = 0; i < ctypes.length; i++) {
+            ctypes[i].replace(/[^A-Za-z,. ]/g, "");
+            cargoArray.push(ctypes[i]);
+        }
+    } else {
+        cargoArray=user.cargoCarried
+    }
+    for (let el of cargoArray) {
         el = el.replace(/[^A-Za-z,. ]/g, "")
         for (const a of cargoCarriedChoices) {
             if (a.textContent==el) {
@@ -378,6 +402,8 @@ window.onload = async ()=> {
     // if (user.stage) {
     // Show messages if any exist
     // if (user.DOT) {
+    requestSignature();
+
     try {
         let messages = await queryEvents(userDOT);
     // }
@@ -385,4 +411,5 @@ window.onload = async ()=> {
     } catch (err) {
         console.log("no messages");
     }
+
 }
