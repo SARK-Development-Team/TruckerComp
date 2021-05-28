@@ -62,8 +62,4 @@ function checkCookie() {
 
 }
 
-// function validateForm() {
-    
-// }
-
 checkCookie();

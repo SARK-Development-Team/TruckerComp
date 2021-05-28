@@ -22,19 +22,6 @@ input {
     padding: 0 0 19px 0;
 }
 
-/* .alert::before {
-    content: "";
-    width: 0px;
-    height: 0px;
-    position: absolute;
-    border-left: 9px solid #EF8354;
-    border-right: 6px solid transparent;
-    border-top: 8px solid #EF8354;
-    border-bottom: 8px solid transparent;
-    left: -1px;
-    bottom: -1px;
-} */
-
 .card-body {
     padding: 15px;
 }

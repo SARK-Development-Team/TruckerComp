@@ -20,7 +20,6 @@ var leadData = {
 // First clear all existing data in the dropdown fields if there is any
 // This avoids duplicate display of data
 function clearDropDownFields() {
-    // if (document.querySelectorAll('.drop-display')[0].childNodes[0].innerText) {
     if (document.querySelectorAll('.drop-display')[0].firstChild.innerText) {
         const operationTypeChoices = Array.from(document.querySelectorAll('.drop-options')[0].childNodes[0].childNodes);
         for (const el of operationTypeChoices) {
@@ -75,18 +74,20 @@ document.getElementById('file-upload').addEventListener("change", (event) => {
     document.getElementById('file-preview').append(aTag);
 });
 
-
+// This changes the static profile to the editable version
 async function toggleForm() {
     document.getElementById("userInfoStatic").style.display="none";
     await delay(300);
     document.getElementById("userInfoUpdate").style.display="block";
 }
 
+// This changes the editable form back to the static profile
 function unToggleForm() {
     document.getElementById("userInfoUpdate").style.display="none";
     document.getElementById("userInfoStatic").style.display="grid";
 }
 
+// This runs when the save button is pressed
 async function saveForm(e) {
     e.preventDefault;
     saveLead(e);
@@ -122,28 +123,6 @@ function requestInformation(data) {
 
 function requestSignature() {
 
-    // if(true) {
-    //     eversign.open({
-    //         url: 'https://api.eversign.com/api/document',  //<----replace with correct url
-    //         containerID: "signature-area",
-    //         width: 600,
-    //         height: 600,
-    //         events: {
-    //           loaded: function () {
-    //             console.log("loaded Callback");
-    //           },
-    //           signed: function () {
-    //             console.log("signed Callback");
-    //           },
-    //           declined: function () {
-    //             console.log("declined Callback");
-    //           },
-    //           error: function () {
-    //             console.log("error Callback");
-    //           }
-    //         }
-    //     });
-    // }
     let data = { };
     fetch('/events/requestSig', {
         method: 'POST',
@@ -185,6 +164,7 @@ async function loadUser(email) {
     return user;
 }
 
+// Search the mongo DB for the current user data
 async function mongoSearch(email) {
     const data = {'email': email};
     const result = await fetch('mongoSearch', {
@@ -195,6 +175,7 @@ async function mongoSearch(email) {
     return result;
 }
 
+// Assign the user data to both the static form as well as the editable form
 function displayUserData(user) {
     document.getElementById('name').value = user.name;
     document.getElementById('userName').innerText = user.name;
@@ -386,7 +367,6 @@ window.onload = async ()=> {
     // Display relevant fields
     displayUserData(user);
     // Determine user stage
-    // Stages:
     if (user.stage) {
         displayVisualProgress(user.stage);
     } else {
