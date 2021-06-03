@@ -130,6 +130,20 @@ input {
     text-align: center;
 }
 
+.events-area {
+    padding: 10px;
+    background: #F5F3F5;
+    border: 1px solid #EF8354;
+
+}
+
+.events-area::before {
+    content: "Message:\A";
+    font-weight: 700;
+    font-size: 20px;
+    white-space: pre;
+}
+
 .separator {
     grid-column: span 2;
     height: 1.5px;

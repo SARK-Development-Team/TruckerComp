@@ -30,6 +30,7 @@ router.use(flash());
 
 
 // This function searches the sark DB for a client based on the DOT entered
+// Currently unused
 async function sqlSearch(number) {
   try {
       let pool = await sql.connect(process.env.SQL_CONNSTRING)
@@ -45,8 +46,6 @@ async function sqlSearch(number) {
 const renderLogin = (forwardAuthenticated, (req, res) => {
     res.render('login', {layout: "layouts/auth", errors: []})
 });
-
-// router.get('/login', forwardAuthenticated, (req, res) => );
 
 // Register Page
 // router.get('/register', forwardAuthenticated, (req, res) => res.render('register', {layout: "dashboard"}));

@@ -148,8 +148,23 @@ function displayMessages(messages) {
         if (key=="document") {
             addAlertIcon('progressButton')
             let block = document.createElement('div')
+            block.classList.add('events-area');
             block.innerText=value;
-            document.getElementById('messages-area').append(block)
+            document.getElementById('progress-messages').append(block)
+        }
+        if (key=="profile") {
+            addAlertIcon('profileButton')
+            let block = document.createElement('div')
+            block.classList.add('events-area');
+            block.innerText=value;
+            document.getElementById('profile-messages').append(block)
+        }
+        if (key=="contact") {
+            addAlertIcon('policyButton')
+            let block = document.createElement('div')
+            block.classList.add('events-area');
+            block.innerText=value;
+            document.getElementById('policy-messages').append(block)
         }
         // console.log(`${key}: ${value}`);
       }

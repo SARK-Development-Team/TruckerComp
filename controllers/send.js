@@ -52,12 +52,14 @@ async function sendEmail(data) {
         const htmlBody = `
             <h1>Hello ${data.email},<h1>
             <p>Based on the information you've provided, we estimate that we can provide a monthly worker's comp premium of ${(quote *0.8).toFixed(2)} &mdash; ${(quote *1.2).toFixed(2)} </p>
-            <h1>Please call 415 xxx xxxx to purchase a policy now!</h1>
+            <h1>Please call 415 xxx xxxx to purchase a policy now</h1>
+            <h2>or proceed to <a href='https://truckcompv1.herokuapp.com/users/register'>our registration page</a> to create your TruckerComp user profile</h2>
+            <h2>and one of our agents will reach out to you!</h2>
         `
         const mailOptions = {
             from: "wc@sarkinsurance.com",
             to: data.email,
-            subject: "Your workers' compensation insurance quote from Trucker Comp",
+            subject: "Your workers' compensation insurance quote from TruckerComp",
             text: 'Hello text version',
             html: htmlBody
         };
