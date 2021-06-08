@@ -21,8 +21,11 @@
 </head>
 
 <body>
-
-    <%- include ('../partials/authnavbar'); %>
+    <% if (typeof user !='undefined') { %>
+        <%- include ('../partials/authnavbar', {user: user}) %>
+    <% } else {%>
+        <%- include ('../partials/authnavbar', {user: null}) %>
+    <% } %>
 
 
     <div id="messageArea">

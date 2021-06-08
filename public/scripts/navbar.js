@@ -16,7 +16,7 @@ window.onscroll = () => {
     }
 };
 
-if (window.location.pathname=="/users/dashboard") {
+if (window.location.pathname=="/users/dashboard" || window.location.pathname=="/users/profile") {
     document.getElementById('login-button').innerText="Log Out";
     document.getElementById('login-button').setAttribute('href', '/users/logout');
 }

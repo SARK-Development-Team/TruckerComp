@@ -76,17 +76,12 @@ input {
     background: #1C2541;
 }
 
-.dashboard-section {
-    opacity: 0;
-    transition: opacity .5s ease;
-}
-
 .hidden {
     display: none;
 }
 
 .login-card {
-    margin: 20px 25% 0 25%;
+    margin: 20px 35% 0 35%;
     border: 2px solid #1C2541;
     border-radius: 5px;
     font-size: large;
@@ -175,7 +170,7 @@ input {
 }
 
 #bottom-line {
-    margin: 1vw 25% 0 25%;
+    margin: 1vw 35% 0 35%;
     padding: 0 1vw 6vw 1vw;
 }
 
@@ -269,7 +264,19 @@ input {
 /* ----------
 Media Queries
 ---------- */
+
+@media only screen and (max-width: 800px) {
+    .login-card {
+        margin: 20px 20% 0 20%;
+    }
+    #bottom-line {
+        margin: 1vw 20% 0 20%;
+    }
+}
+
 @media only screen and (max-width: 676px) {
+
+
     .separator {
         grid-column: unset;
         display: none;

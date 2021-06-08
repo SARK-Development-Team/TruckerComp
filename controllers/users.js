@@ -225,11 +225,26 @@ const updateUser = (req, res) => {
 
 // Dashboard
 const openDashboard = (ensureAuthenticated, (req, res) => {
-    user= req.user;
+    console.log(req._parsedUrl.pathname);
+    user = req.user;
     res.render('dashboard', {
         layout: "layouts/auth",
+        url: req._parsedUrl.pathname
     })
 });
+
+// Profile
+// Can only be viewed if the user is logged in
+const viewProfile = (ensureAuthenticated, (req, res) => {
+    console.log(req._parsedUrl.pathname);
+
+    user = req.user;
+    res.render('profile', {
+        layout: "layouts/auth",
+        url: req._parsedUrl.pathname
+    })
+})
+
 
 const azureSearch = async (req, res) => {
     return new Promise((resolve) => {
@@ -256,6 +271,7 @@ module.exports = {
     logoutUser,
     updateUser,
     openDashboard,
+    viewProfile,
     azureSearch,
     mongoSearch
 }
