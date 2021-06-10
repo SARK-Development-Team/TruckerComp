@@ -338,12 +338,23 @@ Media Queries
 }
 
 @media only screen and (max-width: 676px) {
+    #progress-graphic {
+        flex-direction: column;
+    }
 
-
-    .separator {
+    .progress-box {
+        width: 100%;
+        height: fit-content;
+    }
+    .arrow-head {
+        border-right: 14px solid transparent;
+        border-top: 20px solid rgb(214, 214, 214);
+        border-left: 14px solid transparent;
+    }
+    /* .separator {
         grid-column: unset;
         display: none;
-    }
+    } */
 
     #userInfo, #editForm {
         -ms-grid-columns: 1fr;
