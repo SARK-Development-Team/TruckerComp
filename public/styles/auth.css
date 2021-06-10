@@ -1,9 +1,53 @@
 
-hr {
+/* hr {
     height: 9px;
     background: white;
     border: 1px solid rgb(55, 147, 255);
     width: 20%;
+} */
+
+.arrow {
+    display: flex;
+    justify-content: center;
+    width: 3%;
+    align-items: center;
+}
+
+.arrow-head {
+    height: 30px;
+    border-top: 14px solid transparent;
+	border-left: 20px solid rgb(214, 214, 214);
+	border-bottom: 14px solid transparent;
+    width: 100%;
+}
+
+.arrow-body {
+    height: 18px;
+    background: #555;
+    width: 100%;
+}
+
+.progress-box {
+    height: 115px;
+    background: white;
+    /* border: 1px solid rgb(55, 147, 255); */
+    border: 1px solid rgb(186, 189, 192);
+    width: 17%;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.progress-text {
+    opacity: 0;
+}
+
+.progress-text h5 {
+    margin: 0;
+}
+
+.progress-text:hover {
+    opacity: 1;
 }
 
 input {
@@ -35,14 +79,18 @@ input {
 }
 
 .completed {
-    height: 15px;
-    background: #1C2541;
-    border: 1px solid #1C2541;
+    /* height: 15px; */
+    background: #1C2541!important;
+    border: 1px solid #1C2541!important;
+    color: white;
+
 }
 
 .current {
-    height: 25px;
-    border: 1px solid #1C2541;
+    /* height: 25px; */
+    /* border: 1px solid #1C2541; */
+    border: 1px solid white;
+    color: white;
     background: rgb(55, 147, 255);
 }
 
@@ -196,6 +244,14 @@ input {
     margin-top: 100px;
 }
 
+#progress-instructions {
+    padding: 10px;
+    background: #F5F3F5;
+    border: .5px solid #EF8354;
+    font-size: 18px;
+    margin: 20px 0 40px 0;
+}
+
 #progress-steps {
     margin-top: 30px;
     list-style: none;
@@ -264,6 +320,13 @@ input {
 /* ----------
 Media Queries
 ---------- */
+
+@media only screen and (max-width: 1100px) {
+    .progress-box {
+        height: 130px;
+    }
+}
+
 
 @media only screen and (max-width: 800px) {
     .login-card {

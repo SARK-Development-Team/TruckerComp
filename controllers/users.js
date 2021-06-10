@@ -225,7 +225,6 @@ const updateUser = (req, res) => {
 
 // Dashboard
 const openDashboard = (ensureAuthenticated, (req, res) => {
-    console.log(req._parsedUrl.pathname);
     user = req.user;
     res.render('dashboard', {
         layout: "layouts/auth",
@@ -236,7 +235,6 @@ const openDashboard = (ensureAuthenticated, (req, res) => {
 // Profile
 // Can only be viewed if the user is logged in
 const viewProfile = (ensureAuthenticated, (req, res) => {
-    console.log(req._parsedUrl.pathname);
 
     user = req.user;
     res.render('profile', {

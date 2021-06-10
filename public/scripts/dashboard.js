@@ -194,11 +194,15 @@ function removeAlertIcon(node) {
 // When the user logs in, the SARK DB is queried for any updates from the SARK side
 // queryEvents(userDOT);
 function displayVisualProgress(stage) {
-    let levels = document.getElementById('progress-graphic').children
+    let levels = document.getElementsByClassName('progress-box');
+    let arrows = document.getElementsByClassName('arrow-head');
     for (let i = 0; i<stage-1; i++) {
         levels[i].classList.add('completed');
+        levels[i].firstElementChild.style.opacity = 1;
+        if (arrows[i]) arrows[i].style.borderLeft = '20px solid #555';
     }
     levels[stage-1].classList.add('current');
+    levels[stage-1].firstElementChild.style.opacity = 1;
 }
 
 function giveInstructions(stage) {
