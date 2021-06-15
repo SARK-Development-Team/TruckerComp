@@ -65,9 +65,9 @@ const UserSchema = new mongoose.Schema({
   drivers: {
     type: Number,
   },
-  // stage: {
-  //   type: Number
-  // },
+  stage: {
+    type: Number
+  },
   operationType: {
     type: Array
   },

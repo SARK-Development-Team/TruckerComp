@@ -20,6 +20,9 @@ h3 {
 }
 
 .digits {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -333,6 +336,8 @@ h3 {
   padding-bottom: 5px;
   padding-right: 2vw;
   padding-left: 2vw;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
   flex-direction: column;
   align-items: center;
   align-self: stretch;
@@ -373,6 +378,7 @@ h3 {
 
 #manualInputForm {
   display: grid;
+  -ms-grid-columns: 1fr 8fr;
   grid-template-columns: 1fr 8fr;
   word-wrap: normal;
 }

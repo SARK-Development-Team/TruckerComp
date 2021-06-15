@@ -189,10 +189,14 @@
 }
 
 .move-left {
+    -webkit-transform: translateX(-100vw);
+    -ms-transform: translateX(-100vw);
     transform: translateX(-100vw);
 }
 
 .move-right {
+    -webkit-transform: translateX(100vw);
+    -ms-transform: translateX(100vw);
     transform: translateX(100vw);
 }
 
@@ -231,6 +235,7 @@
 }
 
 .progress-bar {
+    display: -ms-grid;
     display: grid;
     margin-right: 5vw;
     margin-left: 5vw;

@@ -1,6 +1,24 @@
 const userEmail = document.getElementById('dbScript').getAttribute('data-email');
 const userDOT = document.getElementById('DOT').value;
 
+var leadData = {
+    name: '',
+    email: '',
+    companyName: '',
+    phone: '',
+    DOT: '',
+    address: '',
+    mailingAddress: '',
+    powerUnits: '',
+    drivers: '',
+    totalPayroll: '',
+    mileage: '',
+    carrierOperation: '',
+    operationType: [],
+    cargoCarried: [],
+    stage: 1,
+    _id: ''
+}
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 

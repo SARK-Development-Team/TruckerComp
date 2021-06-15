@@ -193,6 +193,9 @@
     width: 200px;
     height: 200px;
     position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     align-items: center;
     margin: auto;
@@ -202,6 +205,8 @@
 
 .testimonial-image img {
     position: absolute;
+    -webkit-transform: scale(2);
+    -ms-transform: scale(2);
     transform: scale(2);
 }
 

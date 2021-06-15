@@ -26,24 +26,6 @@
 
 // let user = new Lead(user.name, 
 
-var leadData = {
-    name: '',
-    email: '',
-    companyName: '',
-    phone: '',
-    DOT: '',
-    address: '',
-    mailingAddress: '',
-    powerUnits: '',
-    drivers: '',
-    totalPayroll: '',
-    mileage: '',
-    carrierOperation: '',
-    operationType: [],
-    cargoCarried: [],
-    stage: 1,
-    _id: ''
-}
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
@@ -176,12 +158,12 @@ async function mongoSearch(email) {
     return result;
 }
 
-// This adds an alert to the button that is passed into it
-function addAlertIcon(buttonID) {
+// This adds an alert to the element that is passed into it
+function addAlertIcon(elementID) {
     const alertIcon = document.createElement('div');
     alertIcon.classList.add('alert');
     alertIcon.innerText="!";
-    document.getElementById(buttonID).append(alertIcon);
+    document.getElementById(elementID).append(alertIcon);
 }
 
 // This removes the alert from the button that is passed into it
@@ -194,13 +176,16 @@ function removeAlertIcon(node) {
 // When the user logs in, the SARK DB is queried for any updates from the SARK side
 // queryEvents(userDOT);
 function displayVisualProgress(stage) {
+
     let levels = document.getElementsByClassName('progress-box');
     let arrows = document.getElementsByClassName('arrow-head');
     for (let i = 0; i<stage-1; i++) {
         levels[i].classList.add('completed');
+        levels[i].classList.remove('current');
         levels[i].firstElementChild.style.opacity = 1;
-        if (arrows[i]) arrows[i].style.borderLeft = '20px solid #555';
+        arrows[i].classList.remove('blink');
     }
+    if (arrows[stage-2]) arrows[stage-2].classList.add('blink');
     levels[stage-1].classList.add('current');
     levels[stage-1].firstElementChild.style.opacity = 1;
 }
@@ -215,19 +200,26 @@ function giveInstructions(stage) {
             <p>click on Profile to review and update your profile.</p>`;
             break;
         case 2:
-            instructions = `<p>Thank you for signing up with TruckerComp.</p> 
+            instructions = `<p>Thank you for signing up with TruckerComp!</p> 
             <p>We can help you find the best possible rates for workers compensation.</p>
             <p>To move forward with your application, please</p>
             <p>click on Profile to view and update your profile.</p>`;
             break;
         case 3:
-            instructions = `<p>We have recieved your profile and </p> 
-            <p>We can help you find the best possible rates for workers compensation.</p>
-            <p>To move forward with your application, please</p>
-            <p>click on Profile to view and update your profile.</p>`;;
+            instructions = `<p>We have recieved your profile!</p> 
+            <p>In order to complete your application, please submit</p>
+            <p>the following documents:</p>
+            <ul>
+            <li>2020 W-2 Form</li>
+            <li>2020 1099 Form</li>
+            <li>XXXXXXX</li>
+            </ul>`;
             break;
         case 4:
-            instructions = '';
+            instructions = `<p>Thank you for your submission!</p>
+            <p>We are processing your documents and will reach out to you</p>
+            <p>with confirmation when all paperwork is complete.</p>
+            <p>We thank you for your patience</p>`;
             break;
         case 5:
             instructions = `<p>All documents have been received.</p> 
@@ -246,13 +238,15 @@ window.onload = async ()=> {
     let user = await loadUser(userEmail);
     // Determine user stage
     if (user.stage) {
+        console.log("loaded stage: ", user.stage);
+        
         displayVisualProgress(user.stage);
         giveInstructions(user.stage);
     } else {
         displayVisualProgress(1);
         giveInstructions(1);
     }
-
+    addAlertIcon('progress-instructions');
     // 1-- create profile
     // 2-- edit & submit profile
     // 3-- submit necessary docs
