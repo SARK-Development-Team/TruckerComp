@@ -25,6 +25,13 @@
             <a id="login-button" href="/users/login" class="btn-nav">Log in</a>
         </div>
 
-
+    <!-- xxxxxxxxxx -->
+    <% if (typeof url != 'undefined') { %> 
+        <% if (url !='/register' && url !='/login' ) { %>
+            <div id="chatbox">
+               <%- include ('../partials/chatbox', {user: user}) %>
+            </div>
+        <% } %>
+    <% } %>
 
     </nav>

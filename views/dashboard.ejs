@@ -1,121 +1,45 @@
-<!-- Text content, alerts, responsive -->
 
+<div id="dashboard">
+    <%- include ('./partials/dashboard-nav') %>
+    <section id="dashboard-header">
+        <h1>Policy Overview</h1>
 
-
-
-<script type="text/javascript" src="https://static.eversign.com/js/embedded-signing.js"></script>
-<script 
-    id="dbScript"
-    data-email="<%= user.email %>" 
-    defer src="../public/scripts/dashboard.js">
-</script>
-
-<section id="dashboard">
-    <% if (user) { %>
-        <h1>TruckerComp Dashboard for <%= user.name %></h1>
-    <% } else { %> 
-        <h1>TruckerComp Dashboard</h1>
-        <h4>Please create your profile</h4>
-    <% } %>
-    <!-- <div id="dashboard-nav">
-        <div id="progressButton" class="dashboard-nav-button left" onclick="dashboardToggle(event, 'progress-section')">
-            <h3 class="form-button-text">Progess</h3>
+        <div id="progress-display">
+            <h4>Progress: 50%</h4>
+            <div id="progress-graphic"></div>
         </div>
-        <div id="profileButton" class="dashboard-nav-button" onclick="dashboardToggle(event, 'profile-section')">
-            <h3 class="form-button-text">Profile</h3>
-        </div>
-        <div id="policyButton" class="dashboard-nav-button right" onclick="dashboardToggle(event, 'policy-section')">            
-            <h3 class="form-button-text">Policy Info</h3>
-        </div>
-    </div> -->
+    </section>
 
-    <div id="progress-section" >
-        <h2>Policy progress</h2>
-        <div id="progress-instructions"></div>
-
-        <!-- <div id="progress-steps">
-            <li id="step1" class="step">Step 1</li>
-            <li id="step2" class="step">Step 2</li>
-            <li id="step3" class="step">Step 3</li>
-            <li id="step4" class="step">Step 4</li>
-            <li id="step5" class="step">Step 5</li>
-
-        </div> -->
-        <div id="progress-graphic">
-            <!-- <hr class="completed"/>
-            <hr class="completed"/>
-            <hr class="current"/> -->
-            <div class="progress-box">
-                <div class="progress-text">
-                    <h5>Step 1</h5>
-                    <p>Create your TruckerComp profile</p>
-                </div>
-            </div>
-            <div class="arrow">
-                <!-- <div class="arrow-body"></div> -->
-                <div class="arrow-head"></div>
-            </div>
-            <div class="progress-box">
-                <div class="progress-text">
-                    <h5>Step 2</h5>
-                    <p>Provide information about your business</p>
-                </div>
-            </div>
-            <div class="arrow">
-                <!-- <div class="arrow-body"></div> -->
-                <div class="arrow-head"></div>
-            </div>
-            <div class="progress-box">
-                <div class="progress-text">
-                    <h5>Step 3</h5>
-                    <p>Submit the following documents: </p>
-                </div>
-            </div>
-            <div class="arrow">
-                <!-- <div class="arrow-body"></div> -->
-                <div class="arrow-head"></div>
-            </div>
-            <div class="progress-box">
-                <div class="progress-text">
-                    <h5>Step 4</h5>
-                    <p>SARK will process your documents and respond in 1-2 business days</p>
-                </div>
-            </div>
-            <div class="arrow">
-                <!-- <div class="arrow-body"></div> -->
-                <div class="arrow-head"></div>
-            </div>
-            <div class="progress-box">
-                <div class="progress-text">
-                    <h5>Step 5</h5>
-                    <p>View and provide your signature to purchase your policy </p>
-                </div>
-            </div>
-            <!-- <hr />
-            <hr />
-            <hr />
-            <hr />
-            <hr /> -->
-        </div>
-        <div id="progress-messages">
-
-        </div>
+    <div>
+        Paragraph concerning Policy Information
     </div>
 
+    <section id="dashboard-links">
+        <a href="previous-policies" class="dashboard-link-button">
+            <h3>Previous Policies</h3>
+            <div></div>
+        </a>
+        <a href="documents" class="dashboard-link-button">
+            <h3>Documents</h3>
+            <div></div>
+        </a>
+        <a href="application" class="dashboard-link-button">
+            <h3>Application</h3>
+            <div></div>
+        </a>
+        <a href="new-policy" class="dashboard-link-button">
+            <h3>Open New Policy</h3>
+            <div></div>
+        </a>
 
 
-    <div id="policy-section" >
-        <h2>Upload your 2020 1099 (pdf)</h2>
-        <input id="file-upload" type="file" >
+            <!-- <nav id="dashboard-nav">
+                <a href="overview">Overview</a>
 
-        <h4>Your uploaded files</h4>
-        <div id="file-preview"></div>
+            </nav> -->
 
-        <div id="signature-area">
-            <!-- <iframe src="" height="100px" width="400px"></iframe> -->
-        </div>
-        <div id="policy-messages">
 
-        </div>
-    </div>
-</section>
+    </section>
+
+
+</div>
