@@ -61,18 +61,8 @@ app.use('/public', express.static(path.join(__dirname, '/public')));
 const expressLayouts = require('express-ejs-layouts');
 app.use(expressLayouts);
 app.set('layout', 'layouts/index');
-
-// handlebars is the template engine for the site
-// const hbars = require('handlebars');
-// const handle = require('express-handlebars');
-// const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
-
-// app.engine('hbs', handle({
-//     defaultLayout: 'index',
-//     handlebars: allowInsecurePrototypeAccess(hbars),
-//     extname: '.hbs'
-// }));
 app.set('view engine', '.ejs');
+
 app.set('views', path.join(__dirname, 'views'));
 
 

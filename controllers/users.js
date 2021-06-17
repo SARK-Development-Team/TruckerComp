@@ -261,11 +261,6 @@ const mongoSearch = async (req, res) => {
     res.json(user);
 }
 
-// const dashboardNavigate = (req, res) => {
-//     let url = req._parsedUrl.pathname;
-//     res.render(url, layout= "layouts/auth",
-// }
-
 const showPreviousPolicies = (ensureAuthenticated, (req, res) => {
     res.render('previous-policies', {layout: "layouts/auth", errors: []})
 });
