@@ -17,38 +17,47 @@
         </div>
     </section>
     <div id="application-nav">
-        <li onclick="toggle-section()">Form Questions</li>
-        <li onclick="toggle-section()">Prepare Documents</li>
-        <li onclick="toggle-section()">Closing</li>
+        
+        <li onclick="toggleSection('application-overview')">Overview</li>
+        <li onclick="toggleSection('questions')">Form Questions</li>
+        <li onclick="toggleSection('prepare-docs')">Prepare Documents</li>
+        <li onclick="toggleSection('closing')">Closing</li>
     </div>
 
     <hr/>
 
-    <h3 id="application-progress-narrative" class="centered-header">You have completed your .... </h3>
+    <div id="application-overview" class="application-section visible">
+        <h3 id="application-progress-narrative" class="centered-header">You have completed your .... </h3>
 
-    <div id="resume-progress">
-        <div id="resume-progress-text">
-            <h4 style="margin: 0">Pick up where you left off</h4>
-            <p>It's easy to get back to where you were in your application.</p>
+        <div id="resume-progress">
+            <div id="resume-progress-text">
+                <h4 style="margin: 0">Pick up where you left off</h4>
+                <p>It's easy to get back to where you were in your application.</p>
+            </div>
+            <button id="continue-button" onclick="">Continue Application</button>
         </div>
-        <button id="continue-button" onclick="">Continue Application</button>
+
+        <section id="your-business">
+            <div class="section-heading">
+                <h2>You and Your Business</h2>
+            </div>
+            <div class="section-body">
+                <h3>Item 1</h3>
+                <p>Information about the first item</p>
+                <h3>Item 2</h3>
+                <p>Information about the second item</p>
+            </div>
+        </section>
+
+
     </div>
-
-    <section id="your-business">
-        <div class="section-heading">
-            <h2>You and Your Business</h2>
-        </div>
-        <div class="section-body">
-            <h3>Item 1</h3>
-            <p>Information about the first item</p>
-            <h3>Item 2</h3>
-            <p>Information about the second item</p>
-        </div>
-    </section>
-
     <section id="questions" class="application-section">
         <h3>Form Questions</h3>
-        <div></div>
+        <div>
+            <h4>Q1</h4>
+            <h4>Q2</h4>
+            <h4>Q3</h4>
+        </div>
         
     </section>
 

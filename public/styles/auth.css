@@ -32,10 +32,19 @@
     text-decoration: none;
     display: grid;
     grid-template-columns: 1fr 4fr;
-    margin: 50px 0;
     /* border: 1px solid gray; */
     background: #F5F3F5;
     overflow: hidden;
+    padding: 10px;
+}
+
+.visible {
+    height: 100%;
+    /* margin: 20px 0; */
+}
+
+#application-overview {
+    display:block;
 }
 
 #application-nav {
