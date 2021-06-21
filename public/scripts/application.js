@@ -1,3 +1,7 @@
+// Need:
+// a). question content
+// b). what is the current state of the application
+// c). 
 
 
 function toggleSection(sectionID) {

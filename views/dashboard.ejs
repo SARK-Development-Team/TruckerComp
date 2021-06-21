@@ -9,28 +9,46 @@
     <section id="dashboard-header">
         <div id="user-info-box">
             <h1>Policy Overview</h1>
-            <div style="display: grid; grid-template-columns: 1fr 1fr;">
-                <h4>Estimated Quote Amount</h4>
-                <p style="text-align: right;">$XXXXX.00</p>
+            <div style="display: grid; grid-template-columns: 1fr 3fr;">
+                <div >
+                    <h4>Name</h4>
+                    <p><%=user.name%></p>
+                </div>
+                <div >
+                    <h4>Estimated Quote Amount</h4>
+                    <p style="text-align: right;">$XXXXX.00</p>
+                </div>
+
             </div>
-            <p><%=user.name%></p>
+
             <div style="display: grid; grid-template-columns: 1fr 1fr;">
                 <div>
                     <h5>Application start date</h5>
-                    <p>date</p>
+                    <p><%= user.startDate %></p>
                 </div>    
                 <div>
                     <h5>Application number</h5>
                     <p><%= user._id %></p>
                 </div>    
             </div>
+            <div id="contact-us">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-envelope"></i>sark-email-address@sark.com</p>
+            </div>
 
         </div>
-        <div id="progress-display">
-            <h4>Progress: <span id="progress-value">0%</span></h4>
-            <div id="progress-graphic">
-                <div id="progress-bar"></div>
+
+        <div>        
+            <div id="progress-display">
+                <h4>Progress: <span id="progress-value">0%</span></h4>
+                <div id="progress-graphic">
+                    <div id="progress-bar"></div>
+                </div>
             </div>
+            <h2>Welcome back!</h2>
+            <h6>Pick up where you left off</h6>
+            <button id="continue-button" onclick="">Continue Application</button>
+
         </div>
     </section>
 
