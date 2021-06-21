@@ -6,6 +6,12 @@
     width: 20%;
 } */
 
+#user-info-box {
+    border: 1px solid #EF8354;
+    border-radius: 5px;
+    padding: 0 12px;
+}
+
 .section-heading {
     padding: 12px;
     background: rgb(55, 147, 255);
@@ -79,6 +85,7 @@
     display: grid;
     grid-template-columns: 2fr 3fr;
     margin: 50px 0;
+    grid-gap: 20px;
 }
 
 .dashboard-link-button {

@@ -1,3 +1,8 @@
+<script 
+    id="dbScript"
+    data-email="<%= user.email %>" 
+    defer src="../public/scripts/application.js">
+</script>
 
 <div id="dashboard">
     <%- include ('./partials/dashboard-nav') %>
@@ -5,16 +10,16 @@
         <h1>Policy Overview</h1>
 
         <div id="progress-display">
-            <h4>Progress: 50%</h4>
+            <h4>Progress: <span id="progress-value">0%</span></h4>
             <div id="progress-graphic">
                 <div id="progress-bar"></div>
             </div>
         </div>
     </section>
     <div id="application-nav">
-        <li href="">Form Questions</li>
-        <li href="">Prepare Documents</li>
-        <li href="">Closing</li>
+        <li onclick="toggle-section()">Form Questions</li>
+        <li onclick="toggle-section()">Prepare Documents</li>
+        <li onclick="toggle-section()">Closing</li>
     </div>
 
     <hr/>
@@ -59,3 +64,17 @@
         
     </section>
 </div>
+
+<!-- localhost link -->
+<!-- <script type='text/javascript'>(function() {
+	var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	po.src = '//traffic7.helponclick.com/assist?c=d82475b7-9b5b-4995-b358-e136e258b595';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();</script> -->
+
+<!-- heroku app link -->
+<script type='text/javascript'>(function() {
+	var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	po.src = '//traffic7.helponclick.com/assist?c=2f516762-1e9b-48ee-b219-7f4b878fb451';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();</script>

@@ -73,7 +73,14 @@ const UserSchema = new mongoose.Schema({
   },
   cargoCarried: {
     type: Array
+  },
+  previousPolicies: {
+    type: Array
+  },
+  documents: {
+    type: Array
   }
+
 
 });
 

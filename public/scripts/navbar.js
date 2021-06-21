@@ -16,7 +16,16 @@ window.onscroll = () => {
     }
 };
 
-if (window.location.pathname=="/users/dashboard" || window.location.pathname=="/users/profile") {
+const dbPathnames = ["/users/dashboard", 
+"/users/profile", 
+"/users/previous-policies", 
+"/users/documents",
+"/users/application",
+"/users/new-policy"]
+
+
+// if (window.location.pathname=="/users/dashboard" || window.location.pathname=="/users/profile") {
+if (dbPathnames.includes(window.location.pathname)) {
     document.getElementById('login-button').innerText="Log Out";
     document.getElementById('login-button').setAttribute('href', '/users/logout');
 }

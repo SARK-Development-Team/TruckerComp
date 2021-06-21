@@ -57,14 +57,14 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 
 
 // Upload files and display the title
-document.getElementById('file-upload').addEventListener("change", (event) => {
-    const file = URL.createObjectURL(event.target.files[0]);
-    const aTag = document.createElement('a');
-    aTag.setAttribute("href", file);
-    aTag.setAttribute("target", "_blank");
-    aTag.innerText = event.target.files[0].name;
-    document.getElementById('file-preview').append(aTag);
-});
+// document.getElementById('file-upload').addEventListener("change", (event) => {
+//     const file = URL.createObjectURL(event.target.files[0]);
+//     const aTag = document.createElement('a');
+//     aTag.setAttribute("href", file);
+//     aTag.setAttribute("target", "_blank");
+//     aTag.innerText = event.target.files[0].name;
+//     document.getElementById('file-preview').append(aTag);
+// });
 
 function addMessage(message) {
     const mess = document.createElement('div')
@@ -176,18 +176,9 @@ function removeAlertIcon(node) {
 // When the user logs in, the SARK DB is queried for any updates from the SARK side
 // queryEvents(userDOT);
 function displayVisualProgress(stage) {
-
-    let levels = document.getElementsByClassName('progress-box');
-    let arrows = document.getElementsByClassName('arrow-head');
-    for (let i = 0; i<stage-1; i++) {
-        levels[i].classList.add('completed');
-        levels[i].classList.remove('current');
-        levels[i].firstElementChild.style.opacity = 1;
-        arrows[i].classList.remove('blink');
-    }
-    if (arrows[stage-2]) arrows[stage-2].classList.add('blink');
-    levels[stage-1].classList.add('current');
-    levels[stage-1].firstElementChild.style.opacity = 1;
+    const progressValue = `${stage * 20}%`;
+    document.getElementById('progress-bar').style.width=progressValue;
+    document.getElementById('progress-value').innerText=progressValue;
 }
 
 function giveInstructions(stage) {
@@ -246,7 +237,7 @@ window.onload = async ()=> {
         displayVisualProgress(1);
         giveInstructions(1);
     }
-    addAlertIcon('progress-instructions');
+    // addAlertIcon('progress-instructions');
     // 1-- create profile
     // 2-- edit & submit profile
     // 3-- submit necessary docs

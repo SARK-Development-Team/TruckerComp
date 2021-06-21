@@ -1,16 +1,40 @@
+<script 
+    id="dbScript"
+    data-email="<%= user.email %>" 
+    defer src="../public/scripts/dashboard.js">
+</script>
 
 <div id="dashboard">
     <%- include ('./partials/dashboard-nav') %>
     <section id="dashboard-header">
-        <h1>Policy Overview</h1>
+        <div id="user-info-box">
+            <h1>Policy Overview</h1>
+            <div style="display: grid; grid-template-columns: 1fr 1fr;">
+                <h4>Estimated Quote Amount</h4>
+                <p style="text-align: right;">$XXXXX.00</p>
+            </div>
+            <p><%=user.name%></p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr;">
+                <div>
+                    <h5>Application start date</h5>
+                    <p>date</p>
+                </div>    
+                <div>
+                    <h5>Application number</h5>
+                    <p><%= user._id %></p>
+                </div>    
+            </div>
 
+        </div>
         <div id="progress-display">
-            <h4>Progress: 50%</h4>
-            <div id="progress-graphic"></div>
+            <h4>Progress: <span id="progress-value">0%</span></h4>
+            <div id="progress-graphic">
+                <div id="progress-bar"></div>
+            </div>
         </div>
     </section>
 
-    <div>
+    <div id = "progress-instructions">
         Paragraph concerning Policy Information
     </div>
 
