@@ -262,19 +262,35 @@ const mongoSearch = async (req, res) => {
 }
 
 const showPreviousPolicies = (ensureAuthenticated, (req, res) => {
-    res.render('previous-policies', {layout: "layouts/auth", errors: []})
+    res.render('previous-policies', {        
+        layout: "layouts/auth",         
+        url: req._parsedUrl.pathname,
+        errors: []
+    })
 });
 
 const showDocuments = (ensureAuthenticated, (req, res) => {
-    res.render('documents', {layout: "layouts/auth", errors: []})
+    res.render('documents', {
+        layout: "layouts/auth",         
+        url: req._parsedUrl.pathname,
+        errors: []
+    })
 });
 
 const showApplication = (ensureAuthenticated, (req, res) => {
-    res.render('application', {layout: "layouts/auth", errors: []})
+    res.render('application', {
+        layout: "layouts/auth",         
+        url: req._parsedUrl.pathname,
+        errors: []
+    })
 });
 
 const initiateNewPolicy = (ensureAuthenticated, (req, res) => {
-    res.render('new-policy', {layout: "layouts/auth", errors: []})
+    res.render('new-policy', {
+        layout: "layouts/auth",         
+        url: req._parsedUrl.pathname,
+        errors: []
+    })
 });
 
 

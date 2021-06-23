@@ -199,6 +199,10 @@ input {
     color: white;
 }
 
+.selected-nav-link {
+    border-bottom: 2px solid orange;
+}
+
 .separator {
     -ms-grid-columns: span 2;
     grid-column: span 2;

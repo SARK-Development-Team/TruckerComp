@@ -1,18 +1,39 @@
 
 <div id="dashboard-nav">
     <a href="dashboard" >
-        <p>Overview</p>
+        <% if (url.includes("dashboard")) { %> 
+            <p class="selected-nav-link">Overview</p>
+        <% } else {%>
+            <p>Overview</p>
+        <% } %>
     </a>
     <a href="previous-policies" >
-        <p>Previous Policies</p>
+        <% if (url.includes("previous-policies")) { %> 
+            <p class="selected-nav-link">Previous Policies</p>
+        <% } else {%>
+            <p>Previous Policies</p>
+        <% } %>
     </a>
     <a href="documents" >
-        <p>Documents</p>
+        <% if (url.includes("documents")) { %> 
+            <p class="selected-nav-link">Documents</p>
+        <% } else {%>
+            <p>Documents</p>
+        <% } %>
     </a>
     <a href="application" >
-        <p>Application</p>
+        <% if (url.includes("application")) { %> 
+            <p class="selected-nav-link">Application</p>
+        <% } else {%>
+            <p>Application</p>
+        <% } %>
     </a>
     <a href="new-policy" >
-        <p>Open New Policy</p>
+        <% if (url.includes("new-policy")) { %> 
+            <p class="selected-nav-link">Open New Policy</p>
+        <% } else {%>
+            <p>Open New Policy</p>
+        <% } %>
+        <p></p>
     </a>
 </div>
