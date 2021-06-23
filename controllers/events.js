@@ -7,6 +7,8 @@ const connString = process.env.SQL_CONNSTRING;
 const eversignAPI = process.env.EVERSIGN_ACCESS_KEY;
 const eversignBusinessID = process.env.EVERSIGN_BUSINESS_ID;
 
+const db = require('../models');
+
 const sql = require('mssql');
 
 

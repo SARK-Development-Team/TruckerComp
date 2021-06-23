@@ -24,14 +24,33 @@ async function mongoSearch(email) {
 
 const userEmail = document.getElementById('dbScript').getAttribute('data-email');
 
+function displayPolicies(policyArray, blockid) {
+    policyArray.forEach(e=> {
+        let policyDisplay = `
+        <div class="dashboard-link-button">
+            <h5>${e.title}</h5>
+            <p>${e.type}</p>
+        </div>
+    `;
+        document.getElementById(blockid).append(policyDisplay);
+    })
+}
+
+
 
 window.onload = async () => {
     let user = await loadUser(userEmail);
 
-    try {
-        let messages = await queryEvents(userDOT);
-        if (messages) displayMessages(messages);
-    } catch (err) {
-        console.log("no messages");
+    if (user.previousPolicies.length) {
+        displayPolicies(user.currentPolicies, "current-policies");
+    } else {
+        document.getElementById('current-policies').innerHTML = `<p>You do not currently have a policy with us.</p>`
+    }
+
+
+    if (user.expiredPolicies.length) {
+        displayDocs(user.expiredPolicies, "expired-policies");
+    } else {
+        document.getElementById('expired-policies-section').style.display = 'none';
     }
 }

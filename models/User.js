@@ -26,9 +26,6 @@ const UserSchema = new mongoose.Schema({
   carrierOperation: {
     type: String
   },
-  // employees: {
-  //   type: Array
-  // },
   totalPayroll: {
     type: Number
   },
@@ -41,9 +38,6 @@ const UserSchema = new mongoose.Schema({
   DOT: {
     type: Number,
   },
-  // MC: {
-  //   type: Number,
-  // },
   companyName: {
     type: String, 
   },
@@ -74,16 +68,16 @@ const UserSchema = new mongoose.Schema({
   cargoCarried: {
     type: Array
   },
-  submittedocuments: {
+  submittedDocuments: {
+    type: Array
+  },
+  neededDocuments: {
     type: Array
   },
   previousPolicies: {
     type: Array
   },
-  currentPolicies: {
-    type: Array
-  },
-  submittedDocuments: {
+  expiredPolicies: {
     type: Array
   },
   startDate: {
