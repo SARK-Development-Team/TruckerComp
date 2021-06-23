@@ -6,141 +6,6 @@
     width: 20%;
 } */
 
-#user-info-box {
-    border: 1px solid #EF8354;
-    border-radius: 5px;
-    padding: 0 12px;
-}
-
-.section-heading {
-    padding: 12px;
-    background: rgb(55, 147, 255);
-    color: white;
-}
-
-.section-body {
-    padding: 12px;
-}
-
-#your-business {
-    border: 1px solid grey;
-    margin: 30px 0;
-}
-
-.application-section {
-    height: 0;
-    text-decoration: none;
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    /* border: 1px solid gray; */
-    background: #F5F3F5;
-    overflow: hidden;
-    padding: 0 10px;
-}
-
-.visible {
-    height: 100%;
-    /* margin: 20px 0; */
-}
-
-#application-overview {
-    display:block;
-}
-
-#application-nav {
-    display: flex;
-    justify-content: space-around;
-}
-
-#application-nav li {
-    list-style: none;
-    text-decoration: none;
-    font-weight: 700;
-    color: #1C2541;
-    cursor: pointer;
-}
-
-.centered-header {
-    text-align: center;
-}
-
-#resume-progress {
-    border: 1px solid gray;
-    display: grid;
-    grid-template-columns: 5fr 2fr;
-    align-content: center;
-}
-
-#resume-progress > * {
-    padding: 10px;
-    margin: 15px;
-}
-
-#continue-button {
-    background: rgb(55, 147, 255);
-    color: white;
-}
-
-#chatbox {
-    position: fixed;
-    bottom: 70px;
-    right: 70px;
-    height: 50px;
-    width: 50px;
-    background: #EF8354;
-}
-
-#dashboard-header {
-    display: grid;
-    grid-template-columns: 2fr 3fr;
-    margin: 50px 0;
-    grid-gap: 20px;
-}
-
-.dashboard-link-button {
-    text-decoration: none;
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    margin: 50px 0;
-    height: 100px;
-    border: 1px solid gray;
-    background: #F5F3F5;
-}
-
-.dashboard-link-button h3, .dashboard-link-button h5 {
-    padding: 0 14px;
-    margin: auto 0;
-    align-self: center;
-}
-
-#dashboard-frame {
-    display: grid;
-    grid-template-columns: 2fr 3fr;
-}
-
-#dashboard-frame-left {
-    height: 100px;
-    border: 1px solid black;
-}
-
-#dashboard-frame-right {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    border: 1px solid black;
-
-}
-
-#dashboard-nav {
-    display: flex;
-    justify-content: space-evenly;
-    /* margin: 50px 10px 20px 120px; */
-}
-
-#dashboard-nav a {
-    text-decoration: none;
-    color: black;
-}
-
 input {
     margin-bottom: 10px;
     min-width: 60%;
@@ -159,33 +24,16 @@ input {
     color: white;
 }
 
-.arrow {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    justify-content: center;
-    width: 3%;
-    align-items: center;
-}
-
-.arrow-head {
-    height: 30px;
-    border-top: 14px solid transparent;
-	border-left: 20px solid rgb(214, 214, 214);
-	border-bottom: 14px solid transparent;
-    width: 100%;
-}
-
-.arrow-body {
-    height: 18px;
-    background: #555;
-    width: 100%;
-}
-
-.blink {
-    animation: blink 2s infinite;
-    border-left: 20px solid #EF8354;
+.application-section {
+    height: 0;
+    text-decoration: none;
+    display: -ms-grid;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    /* border: 1px solid gray; */
+    background: #F5F3F5;
+    overflow: hidden;
+    padding: 0 10px;
 }
 
 .card-body {
@@ -200,20 +48,26 @@ input {
     margin-block-end: 0;
 }
 
-.completed {
-    /* height: 15px; */
-    background: #1C2541!important;
-    border: 1px solid #1C2541!important;
-    color: white;
-
+.centered-header {
+    text-align: center;
 }
 
-.current {
-    /* height: 25px; */
-    /* border: 1px solid #1C2541; */
-    border: 1px solid white;
-    color: white;
-    background: rgb(55, 147, 255)!important;
+.dashboard-link-button {
+    text-decoration: none;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 4fr;
+    grid-template-columns: 1fr 4fr;
+    margin: 50px 0;
+    height: 100px;
+    border: 1px solid gray;
+    background: #F5F3F5;
+}
+
+.dashboard-link-button h3, .dashboard-link-button h5 {
+    padding: 0 14px;
+    margin: auto 0;
+    align-self: center;
 }
 
 .dashboard-nav {
@@ -335,6 +189,16 @@ input {
     opacity: 1;
 }
 
+.section-body {
+    padding: 12px;
+}
+
+.section-heading {
+    padding: 12px;
+    background: rgb(55, 147, 255);
+    color: white;
+}
+
 .separator {
     -ms-grid-columns: span 2;
     grid-column: span 2;
@@ -344,26 +208,34 @@ input {
     width: 80%;
 }
 
-.step {
-    text-decoration: none;
-    font-weight: bold;
-    position: relative;
-}
-
-.step:hover::before {
-    position: absolute;
-    color: white;
-    padding: 10px;
-    top: -100%;
-    left: -200%;
-    background: black;
-    opacity: 90%;
-    width: 300px;
-}
-
 .userProperty {
     float: right;
     font-weight: 400;
+}
+
+.visible {
+    height: 100%;
+    /* margin: 20px 0; */
+}
+
+#application-overview {
+    display:block;
+}
+
+#application-nav {
+    display: -webkit-box; 
+    display: -ms-flexbox;  
+    display: -webkit-flex; 
+    display: flex;
+    justify-content: space-around;
+}
+
+#application-nav li {
+    list-style: none;
+    text-decoration: none;
+    font-weight: 700;
+    color: #1C2541;
+    cursor: pointer;
 }
 
 #bottom-line {
@@ -381,8 +253,50 @@ input {
     margin: 15px 0 8px 0;
 }
 
+#chatbox {
+    position: fixed;
+    bottom: 70px;
+    right: 70px;
+    height: 50px;
+    width: 50px;
+    background: #EF8354;
+}
+
+#continue-button {
+    background: rgb(55, 147, 255);
+    color: white;
+}
+
 #dashboard { 
     margin: 10px 12% 80px 12%;
+}
+
+#dashboard-frame {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 2fr 3fr;
+    grid-template-columns: 2fr 3fr;
+}
+
+#dashboard-frame-left {
+    height: 100px;
+    border: 1px solid black;
+}
+
+#dashboard-frame-right {
+    display: -ms-grid;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    border: 1px solid black;
+}
+
+#dashboard-header {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 2fr 3fr;
+    grid-template-columns: 2fr 3fr;
+    margin: 50px 0;
+    grid-gap: 20px;
 }
 
 #dashboard-nav {
@@ -390,6 +304,25 @@ input {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+    justify-content: space-evenly;
+}
+
+#dashboard-nav a {
+    text-decoration: none;
+    color: black;
+}
+
+#editForm {
+    display: -ms-inline-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    background: #F5F3F5;
+    padding: 10px;
+}
+
+#editForm label {
+    font-size:  18px;
 }
 
 #messageArea {
@@ -419,34 +352,28 @@ input {
     display: flex;
     justify-content: space-between;
     align-items: center; */
-    border: 1px solid red;
+    border: 1px solid #EF8354;
     border-radius: 5000px;
     width: 100%;
     height: 14px;
 }
 
+#resume-progress {
+    border: 1px solid gray;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 5fr 2fr;
+    grid-template-columns: 5fr 2fr;
+    align-content: center;
+}
+
+#resume-progress > * {
+    padding: 10px;
+    margin: 15px;
+}
+
 #saveForm {
     cursor: pointer;
-}
-
-#step1:hover::before {
-    content: "First, create your TruckerComp profile";
-}
-
-#step2:hover::before {
-    content: "Next, provide information about your business";
-}
-
-#step3:hover::before {
-    content: "Then, submit the following documents: ";
-}
-
-#step4:hover::before {
-    content: "After this, we will process your documents and respond in 1-2 business days";
-}
-
-#step5:hover::before {
-    content: "Lastly, you can purchase your policy!";
 }
 
 #userInfo {
@@ -463,19 +390,15 @@ input {
     display: none;
 }
 
-#editForm {
-    display: -ms-inline-grid;
-    display: grid;
-    -ms-grid-columns: 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
-    background: #F5F3F5;
-    padding: 10px;
+#user-info-box {
+    border: 1px solid #EF8354;
+    border-radius: 5px;
+    padding: 0 12px;
 }
-
-#editForm label {
-    font-size:  18px;
+#your-business {
+    border: 1px solid grey;
+    margin: 30px 0;
 }
-
 
 @keyframes blink {
     33% {
@@ -492,9 +415,7 @@ Media Queries
 ---------- */
 
 @media only screen and (max-width: 1100px) {
-    .progress-box {
-        height: 130px;
-    }
+
 }
 
 
@@ -511,20 +432,6 @@ Media Queries
     #progress-graphic {
 
     }
-
-    .progress-box {
-        width: 100%;
-        height: fit-content;
-    }
-    .arrow-head {
-        border-right: 14px solid transparent;
-        border-top: 20px solid rgb(214, 214, 214);
-        border-left: 14px solid transparent;
-    }
-    /* .separator {
-        grid-column: unset;
-        display: none;
-    } */
 
     #userInfo, #editForm {
         -ms-grid-columns: 1fr;

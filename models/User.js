@@ -74,19 +74,25 @@ const UserSchema = new mongoose.Schema({
   cargoCarried: {
     type: Array
   },
+  submittedocuments: {
+    type: Array
+  },
   previousPolicies: {
     type: Array
   },
-  documents: {
+  currentPolicies: {
+    type: Array
+  },
+  submittedDocuments: {
     type: Array
   },
   startDate: {
     type: Date, 
     required: true, 
     default: Date.now 
-  }
-
-});
+  }},
+  { timestamps: true }
+);
 
 const User = mongoose.model('User', UserSchema);
 

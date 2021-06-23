@@ -247,11 +247,10 @@ window.onload = async ()=> {
     // if (user.stage) {
     // Show messages if any exist
     // if (user.DOT) {
-    requestSignature();
+    // requestSignature();
 
     try {
         let messages = await queryEvents(userDOT);
-    // }
         if (messages) displayMessages(messages);
     } catch (err) {
         console.log("no messages");
