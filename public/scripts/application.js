@@ -4,12 +4,15 @@
 // c). 
 
 
-function toggleSection(sectionID) {
+function toggleSection(sectionID, tab) {
     const appSections = Array.from(document.getElementsByClassName('application-section'));
-
+    const tabs = Array.from(document.getElementsByClassName('application-nav-tab'));
     appSections.forEach(element => {
         element.classList.remove('visible');    
     });
+    // tabs.forEach(element => {
+    //     element.classList.remove(''
+    // });
     document.getElementById(sectionID).classList.add('visible');
 
 }
