@@ -1,11 +1,11 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const session = require('express-session');
-const bcrypt = require('bcrypt');
+
+
 const routes = require('./routes');
 // const cors = require('cors');
-const flash = require('connect-flash');
+
 
 
 // for environment variables
@@ -13,43 +13,9 @@ require('dotenv').config()
 
 const app = express();
 
-// Passport is responsible for the user's login/logout behavior
-const passport = require('passport');
-require('./config/passport')(passport);
-
-
 
 
 // Middleware
-
-app.use(session({ secret: 'secret' }));
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.use(flash());
-
-app.use(function(req, res, next) {
-  res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  res.locals.error = req.flash('error');
-  next();
-});
-
-app.use(function(req, res, next){
-    var err = req.session.error,
-        msg = req.session.notice,
-        success = req.session.success;
-  
-    delete req.session.error;
-    delete req.session.success;
-    delete req.session.notice;
-  
-    if (err) res.locals.error = err;
-    if (msg) res.locals.notice = msg;
-    if (success) res.locals.success = success;
-  
-    next();
-});
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -66,14 +32,9 @@ app.set('view engine', '.ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 
-const db = require('./models');
-
 // Azure is where the completed client lead is stored
 const azure = require('azure-storage');
 const tableSvc = azure.createTableService(process.env.AZURE_STORAGE_ACCOUNT, process.env.AZURE_STORAGE_ACCESS_KEY);
-
-const { ensureAuthenticated, forwardAuthenticated } = require('./config/auth');
-const auth = require('./config/auth');
 
 
 // This function saves the new "lead" object in the Azure DB, using the DOT as the row key
@@ -149,140 +110,17 @@ app.get('/', (req, res) => {
 app.use('/quote', routes.quote);
 app.use('/send', routes.send);
 app.use('/dot', routes.dot);
-app.use('/purchase', routes.purchase);
-app.use('/users', routes.users);
-app.use('/events', routes.events);
 
+
+// Login Page
+app.get('/login', (req, res) => {
+    res.render('login')
+});
 /* --------------------------
    The following routes are 
    currently not being used
 -------------------------- */
 
-
-// // Show Login Page
-// app.get('/users/login', forwardAuthenticated, (req, res) => res.render('login'));
-
-// // Show Register Page
-// app.get('/users/register', forwardAuthenticated, (req, res) => res.render('register'));
-
-
-// // Register the user in the Mongo Database
-// app.post('/users/register', (req, res) => {
-//   const { name, email, password, password2, businessType, zipCode, mileage, totalPayroll } = req.body;
-//   var DOT, MC, companyName, address, mailingAddress, phone, powerUnits;
-//   DOT = MC = companyName = address = mailingAddress = phone = powerUnits = '';
-//   const stage = 1;
-//   if (req.body.employees) {
-//     employees = JSON.parse(req.body.employees);
-//   } else {
-//     employees = [];
-//   }
-//   let errors = [];
-
-//   if (!name || !email || !password || !password2) {
-//     errors.push({ msg: 'Please enter all fields' });
-//   }
-
-//   if (password != password2) {
-//     errors.push({ msg: 'Passwords do not match' });
-//   }
-
-//   if (password.length < 6) {
-//     errors.push({ msg: 'Password must be at least 6 characters' });
-//   }
-
-//   if (errors.length > 0) {
-//     res.render('register', {
-//       errors,
-//       name,
-//       email,
-//       password,
-//       password2
-//     });
-//   } else {
-//     db.User.findOne({ email: email }).then(user => {
-//       if (user) {
-//         errors.push({ msg: 'Email already exists' });
-//         res.render('register', {
-//           layout: 'auth',
-//           errors,
-//           name,
-//           email,
-//           password,
-//           password2
-//         });
-//       } else {
-//         const newUser = new db.User({
-//           name,
-//           email,
-//           password,
-//           businessType,
-//           employees,
-//           totalPayroll,
-//           mileage,
-//           zipCode,
-//           DOT,
-//           MC,
-//           companyName,
-//           address,
-//           mailingAddress,
-//           phone,
-//           powerUnits,
-//           stage
-//         });
-
-//         bcrypt.genSalt(10, (err, salt) => {
-//           bcrypt.hash(newUser.password, salt, (err, hash) => {
-//             if (err) throw err;
-//             newUser.password = hash;
-//             newUser
-//               .save()
-//               .then(user => {
-//                 req.flash(
-//                   'success_msg',
-//                   'You are now registered and can log in'
-//                 );
-//                 res.render('login', {
-//                   layout: 'auth',
-//                   email: email});
-//               })
-//               .catch(err => console.log(err));
-//           });
-//         });
-//       }
-//     }).catch(err => console.log(err));
-//   }
-// });
-
-// // Login
-// app.post('/users/login', (req, res, next) => {
-//   passport.authenticate('local', {
-//     successRedirect: 'dashboard',
-//     failureRedirect: 'login',
-//     failureFlash: true,
-//   })(req, res, next);
-// });
-
-// // Logout
-// app.get('/users/logout', (req, res) => {
-//   req.logout();
-//   req.flash('success_msg', 'You are logged out');
-//   res.redirect('login');
-// });
-
-// // Dashboard
-// app.get('/users/dashboard', ensureAuthenticated, (req, res) => {
-//   res.render('dashboard', {
-//     layout: 'auth',
-//     user: req.user
-//   })
-// });
-
-// // Search User
-// app.post('/user', async (req, res) => {
-//   const user = await azureSearch(req.body.id)
-//   return res.json({ user });
-// });
 
 // // This route saves the user input into the Azure Storage DB
 // app.post('/lead', (req, res) => {

@@ -631,7 +631,6 @@ function testEmail() {
         submit.onclick=function() {
             // this function sends the email
             sendQuote(formData);
-            purchasePolicy(formData);
             setCookie('clientData', JSON.stringify(formData));
         };
     } else {
@@ -643,15 +642,6 @@ function testEmail() {
 email.addEventListener('keyup', () => {
     testEmail();
 });
-
-function purchasePolicy(data) {
-    fetch('/purchase', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    }).then(response => response.json());
-}
-
 
 function sendQuote (data) {
     // const uri = uriRoot+'send';
