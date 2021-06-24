@@ -73,6 +73,48 @@ async function sendEmail(data) {
     }
 };
 
+async function sendToSark(data) {
+    try {
+        oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
+        const accessToken = await oAuth2Client.getAccessToken();
+        var transport = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 465,
+            secure: true,
+            auth: {
+                type: 'OAuth2',
+                user: "wc@sarkinsurance.com",
+                clientId: CLIENT_ID,
+                clientSecret: CLIENT_SECRET,
+                accessToken: accessToken.token
+            }
+        });
+
+        const quote = calculateQuote(data)
+        const htmlBody = `
+            <h1>Hello ${data.email},<h1>
+            <p>Based on the information you've provided, we estimate that we can provide a monthly worker's comp premium of ${(quote *0.8).toFixed(2)} &mdash; ${(quote *1.2).toFixed(2)} </p>
+            <h1>Please call 415 xxx xxxx to purchase a policy now</h1>
+            <h2>or proceed to <a href='https://truckcompv1.herokuapp.com/users/register'>our registration page</a> to create your TruckerComp user profile</h2>
+            <h2>and one of our agents will reach out to you!</h2>
+        `
+        const mailOptions = {
+            from: "wc@sarkinsurance.com",
+            to: "wc@sarkinsurance.com",
+            subject: "New customer quote from TruckerComp website",
+            text: 'Hello text version',
+            html: htmlBody
+        };
+
+        const result = await transport.sendMail(mailOptions);
+        return result;
+
+    } catch (error) {
+        console.log(error)
+        return error;
+    }
+};
+
 // This function is the basic quote calculation formula
 function calculateQuote(data) {
     const payrollFactor = 0.002;
@@ -81,9 +123,63 @@ function calculateQuote(data) {
     return ((data.totalPayroll*payrollFactor + data.mileage) * mileageFactor+purchaseBaseline);
 };
 
+// Azure is where the completed client lead is stored
+const azure = require('azure-storage');
+const tableSvc = azure.createTableService(process.env.AZURE_STORAGE_ACCOUNT, process.env.AZURE_STORAGE_ACCESS_KEY);
+
+
+// This function saves the new "lead" object in the Azure DB, using the DOT as the row key
+function saveInAzure(object) {
+    // Build the "lead" object from the data passed in
+    // const rowKey = object._ID.toString();
+    const empString = JSON.stringify(object.employees);
+    const userID = object._id.toString()
+    var stage;
+    if (object.stage==1) stage=2;
+    const lead = {
+        PartitionKey: {'_':'leads'},
+        RowKey: {'_': userID},
+        name: {'_': object.name},
+        email: {'_': object.email},
+        DOT: {'_': object.DOT},
+        MC: {'_': object.MC},
+        totalPayroll: {'_': object.totalPayroll},
+        mileage: {'_': object.mileage},
+        companyName: {'_': object.companyName},
+        address: {'_': object.address},
+        mailingAddress: {'_': object.mailingAddress},
+        phone: {'_': object.phone},
+        employees: {'_': empString},
+        powerUnits: {'_': object.powerUnits},
+        stage: {'_': stage}
+      };
+    //   Create the table if it does not exist already
+    tableSvc.createTableIfNotExists('sarkleads', function(err, result, response){
+    // If there is no error
+    if(!err){
+        // insert the "lead" object into the table
+        try {
+            tableSvc.insertOrReplaceEntity('sarkleads',lead, function (err, result, response) {
+                if(!err){
+                    return;
+                } else {
+                    console.log(err);
+                }
+            });
+        } catch(err) {
+            console.log(err)
+        }
+    } else {
+        console.log(err);
+    }
+  });
+};
+
 
 const generateEmail = (req, res) => {
     sendEmail(req.body);
+    sendToSark(req.body);
+    saveInAzure(req.body);
 }
 
 
