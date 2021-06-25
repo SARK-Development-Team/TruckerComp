@@ -376,13 +376,19 @@
         grid-template-columns: 0.25fr 1fr;
     }
     .tall {
-        height: 900px!important;
+        height: 1000px!important;
     }
     .taller {
         height: 1500px!important;
     }
     #hero {
         height: 780px;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .tall {
+        height: 1120px!important;
     }
 }
 
@@ -396,7 +402,7 @@
         flex: 0 auto;
     }
     .tall {
-        height: 1060px!important;
+        height: 1200px!important;
     }
     .taller {
         height: 1480px!important;

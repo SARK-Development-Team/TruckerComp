@@ -131,7 +131,6 @@ const tableSvc = azure.createTableService(process.env.AZURE_STORAGE_ACCOUNT, pro
 // This function saves the new "lead" object in the Azure DB, using the DOT as the row key
 function saveInAzure(object) {
     // Build the "lead" object from the data passed in
-    // const rowKey = object._ID.toString();
     const empString = JSON.stringify(object.employees);
     const userID = object._id.toString()
     var stage;

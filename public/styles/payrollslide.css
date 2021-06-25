@@ -301,6 +301,15 @@
     }
 }
 
+@media screen and (max-width: 560px) {
+    .colSalary {
+        max-width: 95px;
+    }
+    .remove-type {
+        margin-left: 10px;
+    }
+}
+
 @media screen and (max-width: 479px) {
     .colSalary {
         max-width: 80px;
@@ -309,7 +318,5 @@
         -ms-grid-columns: 40px 120px 80px 120px;
         grid-template-columns: 40px 120px 80px 120px;
     }
-    .remove-type {
-        margin-left: 10px;
-    }
+
 }
