@@ -1,3 +1,7 @@
+a {
+    text-decoration: none;
+    color: #EF8354;
+}
 
 p {
     margin-top: 20px;
@@ -19,6 +23,6 @@ p {
 }
 
 #main {
-    background: #F5F3F5;
+    /* background: #F5F3F5; */
     padding: 100px 10%;
 }
