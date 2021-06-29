@@ -1,0 +1,24 @@
+
+p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.centered {
+    text-align: center;
+}
+
+.accented {
+    color: rgb(55, 147, 255);
+}
+
+.mv-3 {
+    margin-top: 30px; 
+    margin-bottom: 30px; 
+}
+
+#main {
+    background: #F5F3F5;
+    padding: 100px 10%;
+}
