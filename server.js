@@ -45,35 +45,38 @@ app.use('/quote', routes.quote);
 app.use('/send', routes.send);
 app.use('/dot', routes.dot);
 
+// About Page
+app.get('/about', (req, res) => {
+    res.render('about');
+});
+
+// Contact Page
+app.get('/contact', (req, res) => {
+    res.render('contact');
+});
 
 // Login Page
 app.get('/login', (req, res) => {
-    res.render('login')
+    res.render('login');
 });
+
+// Privacy Policy Page
+app.get('/privacy', (req, res) => {
+    res.render('privacy');
+});
+
+// Terms of Use Page
+app.get('/terms', (req, res) => {
+    res.render('terms');
+});
+
+
+
 /* --------------------------
    The following routes are 
    currently not being used
 -------------------------- */
 
-
-// // This route saves the user input into the Azure Storage DB
-// app.post('/lead', (req, res) => {
-//   try {
-//     db.User.findOneAndUpdate({ _id: req.body._id }, req.body)
-//     .then(console.log("successfully updated"))
-//     .catch((err)=>console.log(err)); 
-
-//   } catch (err) {
-//     console.log("Db error:", err);
-//   }
-//   try {
-//     console.log("trying to save in Azure");
-//     azureSave(req.body);
-//   } catch (err) {
-//     console.log("Error Saving:", err);
-//   }
-//   res.send(`<p>Thank you for confirming! We will contact you shortly!</p>`);
-// });
 
 // // This route is not currently being used
 // app.post('/zip', cors(), (req, res) => {
