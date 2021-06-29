@@ -4,7 +4,7 @@
 <section id="main" class="dark">
     <div class="two-column-section">
         <div style="padding: 30px 5% 30px 20%">
-            <h2><b>Get a quote</b></h2>
+            <h2><b>Contact us</b></h2>
             <h4><b>Please answer these questions, and we'll get back to you ASAP.</b></h4>
             <p><b>Alternatively, you can send us an email or text to the following</b></p>
             <p>wc@sarkinsurance.com</p>
@@ -14,11 +14,14 @@
                 <input type="text" name="name" placeholder="Name">
                 <input type="text" name="email" placeholder="Email">
                 <input type="text" name="phone" placeholder="Phone">
-                <select>
-
+                <select name="type" id="dropdown">
+                    <option value="" selected disabled>What type of insurance are you interested in?</option>
+                    <option value="workers">Worker’s Compensation</option>
+                    <option value="homeowners">Homeowner's Insurance</option>
+                    <option value="commercial">Commercial Auto</option>
+                    <option value="business">Business Insurance</option>
                 </select>
-                <input type="text" name="insurance" placeholder="What type of insurance are you interested in?">
-                <textarea rows="6" cols= "36" name="message" placeholder="Please provide more information."></textarea>
+                <textarea placeholder="Please provide more information"></textarea>
                 <input id="submit-button" type="submit" value="Submit">
             </form>
         </div>

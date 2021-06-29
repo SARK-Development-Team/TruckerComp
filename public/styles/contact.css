@@ -4,21 +4,31 @@
     background: rgb(55, 147, 255);
 } */
 
-input, textarea {
+input, select, textarea {
     color: #1C2541;
     background: rgb(236,245,254);
     margin: 10px;
     display: block;
     width: 92%;
+    padding: 5px 3px;
+    border: 1px solid #1C2541;
+}
+
+option {
+    color: #1C2541;
+
 }
 
 .light {
     background: #F5F3F5;
     /* padding: 90px 5px 200px; */
     margin: 20px;
+    padding: 50px 0 100px;
 }   
 
-
+#dropdown {
+    margin: 30px 10px;
+}
 
 .two-column-section {
     display: grid;
@@ -39,8 +49,9 @@ input, textarea {
     border-radius: 2000px;
     border: none;
     transition: all .5s ease;
-    margin: 20px 5%;
-    padding: 5px;
+    margin: 20px 15%;
+    padding: 15px;
+    width: 68%;
 }
 
 #submit-button:hover {
