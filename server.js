@@ -44,16 +44,18 @@ app.get('/', (req, res) => {
 app.use('/quote', routes.quote);
 app.use('/send', routes.send);
 app.use('/dot', routes.dot);
+app.use('/contact', routes.contact);
+
 
 // About Page
 app.get('/about', (req, res) => {
     res.render('about');
 });
 
-// Contact Page
-app.get('/contact', (req, res) => {
-    res.render('contact');
-});
+// // Contact Page
+// app.get('/contact', (req, res) => {
+//     res.render('contact');
+// });
 
 // Login Page
 app.get('/login', (req, res) => {
@@ -70,7 +72,10 @@ app.get('/terms', (req, res) => {
     res.render('terms');
 });
 
+// // Send Contact Info
+// app.post('/contact', (req, res) => {
 
+// }
 
 /* --------------------------
    The following routes are 

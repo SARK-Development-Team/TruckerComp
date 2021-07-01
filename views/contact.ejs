@@ -1,5 +1,5 @@
 <link href="public/styles/contact.css" rel="stylesheet">
-
+<script src="public/scripts/contact.js"></script>
 
 <section id="main" class="dark">
     <div class="two-column-section">
@@ -12,18 +12,19 @@
         </div>
         <div class="light">
             <form>
-                <input type="text" name="name" placeholder="Name">
-                <input type="text" name="email" placeholder="Email">
-                <input type="text" name="phone" placeholder="Phone">
-                <select name="type" id="dropdown">
-                    <option value="" selected disabled>What type of insurance are you interested in?</option>
-                    <option value="workers">Worker’s Compensation</option>
-                    <option value="homeowners">Homeowner's Insurance</option>
-                    <option value="commercial">Commercial Auto</option>
-                    <option value="business">Business Insurance</option>
-                </select>
-                <textarea rows="5" placeholder="Please provide more information"></textarea>
-                <input id="submit-button" type="submit" value="Submit">
+                <input type="text" id="name" name="name" placeholder="Name">
+                <input type="text" id="email" name="email" placeholder="Email">
+                <input type="text" id="phone" name="phone" placeholder="Phone">
+                <input list="dropdown" id="type" type="text" placeholder="Type of insurance">
+                <datalist name="type" id="dropdown">
+                    <!-- <option value="" selected disabled></option> -->
+                    <option value="Worker’s Compensation"></option>
+                    <option value="Homeowner's Insurance"></option>
+                    <option value="Commercial Auto"></option>
+                    <option value="Business Insurance"></option>
+                </datalist>
+                <textarea id="comment" rows="5" placeholder="Please provide more information"></textarea>
+                <button id="submit-button" onclick="sendContact(event)">Submit</button>
             </form>
         </div>
     </div>
