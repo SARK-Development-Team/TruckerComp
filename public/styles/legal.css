@@ -4,9 +4,9 @@ a {
 }
 
 h4 {
-    line-height: 24px;
+    line-height: 28px;
     font-weight: 400;
-    font-size: 24px;
+    font-size: 22px;
 }
 
 p {
@@ -73,14 +73,15 @@ p {
 
 #toc_container {
     background: rgb(236,245,254);
-    padding: 15px 10%;
+    padding: 15px 4%;
     font-size: 16px;
     line-height: 18px;
-    margin: 0 -13%
+    /* margin: 0 -13% */
 }
 
 #toc_container *{
     margin: 10px 0;
+    list-style-type: none;
 }
 
 @media only screen and (max-width: 820px) {
