@@ -1,0 +1,59 @@
+<div class="form-page" id="slide4">
+
+    <!-- Progress bar component. Finalizes reset and additions. -->
+    <div class="progress-bar">
+        <div onclick="changeSlide(-1)">
+            <img src="/public/images/darkarrow.svg" loading="lazy" width="33" alt="" class="arrow">
+        </div>
+        <div class="progress-block fullscreen">
+            <img src="/public/images/darkfullcircle.svg" loading="lazy" alt="">
+            <img src="/public/images/darkfullcircle.svg" loading="lazy" alt="">
+            <img src="/public/images/darkfullcircle.svg" loading="lazy" alt="">
+            <img src="/public/images/darkemptycircle.svg" loading="lazy" alt="">
+            <img src="/public/images/lightemptycircle.svg" loading="lazy" alt="">
+        </div>
+        <div onclick="initializeForm()" class="form-button reset w-inline-block">
+            <h3 class="form-button-text reset">Reset</h3>
+        </div>
+    </div>
+
+    <div class="payroll-container w-container">
+        <h1 class="question-title">Please confirm your payroll.</h1>
+        <div class="payroll-table">
+            <div class="payroll-columns" id="payroll-columns">
+                <img src="" 
+                alt="" class="remove-type row1 colRemove">
+                <h3 id="typeHeader" class="table-header">Type</h3>
+                <h3 id="amountHeader" class="table-header">#</h3>
+                <h3 id="salaryHeader" class="table-header">Salary</h3>
+                <h3 id="totalHeader" class="table-header">Total</h3>
+                <select class="table-field row1 colType" id="empType1">
+                    <option value="" disabled >Employee Type</option>
+                    <option value="Driver" selected>Driver</option>
+                    <option value="Maintenance">Maintenance</option>
+                    <option value="Accounting">Accounting</option>
+                    <option value="Custodial">Custodial</option>
+                    <option value="Clerical">Clerical</option>
+                    <option value="Other">Other</option>
+                </select>
+                <!-- <input class="table-field row1 colType"></input> -->
+                <input type="number" class="table-field row1 colAmount" id="empAmount1" value=0 onfocusout="addPayrollUpdate()"></input>
+                <input type="number" class="table-field row1 colSalary" id="empSalary1" value=0 onfocusout="addPayrollUpdate()"></input>
+                <input type="number" class="table-field colTotal" id="empTotal1" value=0 onfocusout="addTotalUpdate()"></input>
+
+                <!-- <div class="payroll-total-column" id="total-column">
+
+                </div> -->
+            </div>
+
+
+        </div>
+        <div id="addRow" class="form-button payroll w-inline-block" onclick="addRow(event)">
+            <h4 class="form-button-text payroll">Add Type</h4>
+        </div>
+        <h2 class="total-payroll">Total Payroll<br>$<span class="total-payroll-gray" id="total-payroll"></span><br></h2>
+        <div onclick="savePayrollData()" class="form-button big w-inline-block">
+            <h3 class="form-button-text">Continue ></h3>
+        </div>
+    </div>
+</div>

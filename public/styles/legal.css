@@ -3,11 +3,23 @@ a {
     color: #EF8354;
 }
 
+h3 {
+    font-size: 26px;
+}
+
 h4 {
     line-height: 28px;
     font-weight: 400;
     font-size: 22px;
 }
+
+h5 {
+    font-size: 20px;
+}
+
+h5:not(.counter):before {
+    content: "-";
+}   
 
 p {
     margin-top: 20px;
@@ -28,16 +40,24 @@ p {
     text-align: center;
 }
 
+/* ol {
+    padding: 0;
+    counter-reset: outline;
+} */
+
+li {
+    list-style: none;
+}
+
 .counter {
-    counter-increment: css-counter 1;
     color: rgb(55, 147, 255);
     font-weight: 700;
 }
 
-.counter:before {
-    counter-increment: css-counters;
-    content: counter(css-counter) ". ";
-}
+/* li:first-child::before {
+    counter-increment: outline;
+    content: counters(outline, '.') ". ";
+} */
 
 .mv-3 {
     margin-top: 30px; 
@@ -68,7 +88,7 @@ p {
     /* background: #F5F3F5; */
     padding: 100px 10%;
     list-style-type: none;
-    counter-reset: css-counters 0;
+    /* counter-reset: counters; */
 }
 
 #toc_container {
