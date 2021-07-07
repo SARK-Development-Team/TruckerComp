@@ -279,7 +279,7 @@ function clearDOT() {
 function clearAllFields() {
     document.getElementById('companyName').innerText = '' ;
     document.getElementById('DBA').innerText = '';
-    document.getElementById('slide5Name').innerText = '';
+    document.getElementById('qName').innerText = '';
     document.getElementById('email').value = '';
     document.getElementById('slide5Email').value = '';
     document.getElementById('address').value = '';
@@ -320,7 +320,7 @@ async function searchDOT(e) {
     // Only searches if a value is entered
     if (dot['dot']) {
         try {
-            loadIcon.style.display = "block";
+            loadIcon.style.display = "flex";
             const client = await fetchDOT(dot);
             document.getElementById('DOT').innerText = parseInt(document.getElementById('slide3DOT').value);
             expandPageHeight();

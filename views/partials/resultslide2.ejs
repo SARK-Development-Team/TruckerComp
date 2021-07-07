@@ -1,0 +1,68 @@
+<div class="form-page" id="slide5">
+    <!-- Progress bar component. Finalizes reset and additions. -->
+    <div class="progress-bar">
+        <div onclick="changeSlide(-1)">
+            <img src="/public/images/darkarrow.svg" loading="lazy" width="33" alt="" class="arrow">
+        </div>
+        <div class="progress-block fullscreen">
+            <img src="/public/images/darkfullcircle.svg" loading="lazy" alt="">
+            <img src="/public/images/darkfullcircle.svg" loading="lazy" alt="">
+            <img src="/public/images/darkfullcircle.svg" loading="lazy" alt="">
+            <img src="/public/images/darkfullcircle.svg" loading="lazy" alt="">
+            <img src="/public/images/darkemptycircle.svg" loading="lazy" alt="">
+        </div>
+        <div onclick="initializeForm()" class="form-button reset w-inline-block">
+            <h3 class="form-button-text reset">Reset</h3>
+        </div>
+    </div>
+    <!-- <h1 class="question-title">Based on the following information</h1> -->
+    <div id="results">
+        <div id="quote-area">
+            <div id="quote-result">
+                <h1>We estimate a monthly worker's comp premium of</h1>
+                <h1>$<span id="low-end"></span> &mdash; $<span id="high-end"></span>/month</h1>
+            </div>
+
+        </div>
+
+        <div id="result-area">
+
+            <div id="confirmation">
+                <div>                
+                    <h6>Company Name</h6>
+                    <p id="qName"></p>
+                </div>
+                <div>
+                    <h6>DOT</h6>
+                    <p id="q0"></p>
+                </div>
+                <div>
+                    <h6>Business Type</h6>
+                    <p id="q1"></p>
+                </div>
+                <div>
+                    <h6>Mileage</h6>
+                    <p id="q2"></p>
+                </div>
+                <div>
+                    <h6>Zip Code</h6>
+                    <p id="q3"></p>
+                </div>
+                <div>
+                    <h6>Total Payroll</h6>
+                    <p id="q4"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="action-area">
+        <div>
+            <h4>Enter your email address to receive your quote <input type="email" name="slide5Email" id="slide5Email"></h4>
+            <p id='emailError' class="error">Please enter a valid email address</p>
+        </div>
+        <div id="submit" class="form-button big disabled w-inline-block">
+            <h3 class="form-button-text">Send</h3>
+        </div>
+    </div>
+</div>

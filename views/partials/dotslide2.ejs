@@ -1,0 +1,179 @@
+<div class="form-page" id="slide3">
+
+    <!-- Progress bar component. Finalizes reset and additions. -->
+    <div class="progress-bar">
+        <div onclick="initializeForm()">
+            <img src="/public/images/darkarrow.svg" loading="lazy" width="33" alt="" class="arrow">
+        </div>
+        <div class="progress-block fullscreen">
+            <img src="/public/images/darkfullcircle.svg" loading="lazy" alt="">
+            <img src="/public/images/darkfullcircle.svg" loading="lazy" alt="">
+            <img src="/public/images/darkemptycircle.svg" loading="lazy" alt="">
+            <img src="/public/images/lightemptycircle.svg" loading="lazy" alt="">
+            <img src="/public/images/lightemptycircle.svg" loading="lazy" alt="">
+        </div>
+        <div onclick="initializeForm()" class="form-button reset w-inline-block">
+            <h3 class="form-button-text reset">Reset</h3>
+        </div>
+    </div>
+
+    <div class="dot-block">
+
+        <h2 class="question-title">What&#x27;s your Department of Transportation (DOT) number?</h2>
+
+        <!-- Digits for entering in DOT number. -->
+        <div id="digit-area">
+            <div class="digits">
+                <input type="text" class="digit" name="digit1" maxlength="1" onpaste="pasteValues(event)" />
+                <input type="text" class="digit" name="digit2" maxlength="1" onpaste="pasteValues(event)"/>
+                <input type="text" class="digit" name="digit3" maxlength="1" onpaste="pasteValues(event)"/>
+                <input type="text" class="digit" name="digit4" maxlength="1" onpaste="pasteValues(event)"/>
+                <input type="text" class="digit" name="digit5" maxlength="1" onpaste="pasteValues(event)"/>
+                <input type="text" class="digit" name="digit6" maxlength="1" onpaste="pasteValues(event)"/>
+                <input type="text" class="digit" name="digit7" maxlength="1" onpaste="pasteValues(event)"/>
+            </div>
+            <div id="clear-button" onclick="clearDOT()"><i class="fas fa-times"></i></div>
+        </div>
+        <input type="number" id="slide3DOT" name="DOT" min="0">
+
+         <!-- Loading condition for DOT query. -->
+        <div id="loading-icon" class="dot-query">
+            <div class="query-heading">
+                <h3 class="dot-text-result">Searching records for DOT # <span id="searchingSpan"></span></h3>
+            </div>
+            <div>
+                <!-- <img class="center" src="/public/images/loadingIcon.svg" alt=""> -->
+                <div id="loader"></div>
+            </div>
+        </div>
+
+        <!-- Success condition for DOT query. -->
+        <div id="searchResult" class="dot-query expandable">
+            <div class="query-heading success">
+                <img src="/public/images/check.min.svg" loading="lazy" width="36" alt="" class="dot-check" id="DOT-check-icon">
+                <img src="/public/images/wrong.svg" loading="lazy" width="36" alt="" class="dot-check" id="DOT-wrong-icon">
+                <h3 id="result-header" class="dot-text-result"></h3>
+            </div>
+            <div class="query-form w-row">
+                <div class="basic-info w-col-stack">
+                    <div class="company-heading">
+                        <h2 id="companyName" class="company-name"><input name="companyName"/></h2>
+                        <h3 class="dba-subtitle"><span id="DBA" class="dba"></span><input name="dbaName" id="DBAfield"/></h3>
+                    </div>
+                    <div id="manualInputForm" class="contact-info">
+                        <fieldset>
+                            <div class="label dot">DOT #</div>
+                            <div id="DOT" class="field dot">{{DOT}}</div>
+                        </fieldset>
+                        <fieldset>
+                            <label for="email" class="label">Email</label>
+                            <input id="email" type="email" name="email" class="field"></input>
+                        </fieldset>
+                        <fieldset>
+                            <label for="phone" class="label">Phone #</label>
+                            <input id="phone" name="phone" type="tel" class="field"></input>
+                        </fieldset>
+                        <fieldset class="w-5">
+                            <label for="address" class="label">Address</label>
+                            <textarea id="address" name="address" type="text" cols="40" rows="2" class="field"></textarea>
+                        </fieldset>
+                        <fieldset class="w-5">
+                            <label for="mailingAddress" class="label">Mailing Address</label>
+                            <textarea class="field" id="mailingAddress" name="mailingAddress" type="text" cols="40"
+                                rows="2"></textarea>
+                        </fieldset>
+                        <fieldset class="w-5">
+                            <label class="label aside" for="operationType">Operation Type</label>
+                            <select name="operationType" class="field aside" id="operationType">
+                                <option value="1">Authorized for Hire</option>
+                                <option value="2">Private Passenger, Business</option>
+                                <option value="3">U.S. Mail</option>
+                                <option value="4">Exempt for Hire</option>
+                                <option value="5">Local Government</option>
+                                <option value="6">Private Passenger, Non-business</option>
+                                <option value="7">Federal Government</option>
+                                <option value="8">Indian Tribe</option>
+                                <option value="9">Private Property</option>
+                                <option value="10">Migrant</option>
+                                <option value="11">State Government</option>
+                                <option value="12">Dump Truck</option>
+                                <option value="13">Other</option>
+                            </select>
+                        </fieldset>
+                        <fieldset class="w-5">
+                            <label class="label aside" for="cargoCarried">Cargo Carried</label>
+                            <select name="cargoCarried" class="field aside" id="cargoCarried">
+                                <option value="1">General Freight</option>
+                                <option value="2">Motor Vehicles</option>
+                                <option value="3">Building Materials</option>
+                                <option value="4">Fresh Produce</option>
+                                <option value="5">Passengers</option>
+                                <option value="6">Grain, Feed, Hay</option>
+                                <option value="7">Garbage, Refuse, Trash</option>
+                                <option value="8">Commodities Dry Bulk</option>
+                                <option value="9">Paper Products</option>
+                                <option value="10">Construction</option>
+                                <option value="11">Household Goods</option>
+                                <option value="12">Drive away/Towaway</option>
+                                <option value="13">Mobile Homes</option>
+                                <option value="14">Liquids/Gases</option>
+                                <option value="15">Oil Field Equipment</option>
+                                <option value="16">Coal, Coke</option>
+                                <option value="17">U.S. Mail</option>
+                                <option value="18">Refrigerated Food</option>
+                                <option value="19">Utility</option>
+                                <option value="20">Water Well</option>
+                                <option value="21">Metal; Sheets, Coils, Rolls</option>
+                                <option value="22">Logs, Poles, Beams, Lumber</option>
+                                <option value="23">Machinery, Large Objects</option>
+                                <option value="24">Intermodal Containers</option>
+                                <option value="25">Livestock</option>
+                                <option value="26">Meat</option>
+                                <option value="27">Chemicals</option>
+                                <option value="28">Beverages</option>
+                                <option value="29">Farm Supply</option>
+                                <option value="30">Sand and Gravel</option>
+                                <option value="31">Office Furniture & Supplies</option>
+                                <option value="32">Other</option>
+                            </select>
+                        </fieldset>
+                        <fieldset class="w-25">
+                            <label for="carrierOperation" class="label aside">Carrier Operation</label>
+                            <select id="carrierOperation" name="carrierOperation" class="field aside">
+                                <option value="Interstate">Interstate</option>
+                                <option value="Intrastate (Hazardous)">Intrastate (Hazardous)</option>
+                                <option value="Intrastate (Non-Hazardous)">Intrastate (Non-Hazardous)</option>
+                            </select>
+                        </fieldset>
+                        <fieldset class="w-25">
+                            <label for="trucks" class="label aside">Trucks</label>
+                            <input id="powerUnits" name="trucks" type="number" class="field aside"></input>
+                        </fieldset>
+                        <fieldset class="w-25">
+                            <label for="drivers" class="label aside">Drivers</label>
+                            <input id="drivers" name="drivers" type="number" class="field aside"></input>
+                        </fieldset>
+                        <fieldset class="w-25">
+                            <label for="milesTraveled" class="label aside">Vehicle Miles Traveled</label>
+                            <input id="milesTraveled" name="milesTraveled" type="number" class="field aside"></input>
+                        </fieldset>
+
+                    </div>
+                </div>
+                <!-- <div class="truck-info w-col w-col-4 w-col-stack">
+
+                    <div class="aside-input">
+
+
+
+                    </div> -->
+
+
+                <!-- </div> -->
+            </div>
+            <div onclick="saveClientData()" class="form-button big w-inline-block">
+                <h3 class="form-button-text">Continue ></h3>
+            </div>
+        </div>
+    </div>
+</div>

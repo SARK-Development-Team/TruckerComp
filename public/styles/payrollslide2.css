@@ -93,6 +93,7 @@ input, select {
   grid-template-rows: auto auto;
   border-radius: 10px;
   background-color: #fff;
+  align-items: center;
 }
 
 .payroll-total-column {
