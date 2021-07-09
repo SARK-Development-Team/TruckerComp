@@ -499,7 +499,8 @@ h3 {
       padding-top: 2px;
     }
   }
-  
+
+
   @media screen and (max-width: 479px) {
     #digit-area {
       margin: 20px 8%;
