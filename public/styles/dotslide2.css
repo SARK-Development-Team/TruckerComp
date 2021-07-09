@@ -5,10 +5,21 @@ h3 {
     line-height: 30px;
     font-weight: 500;
   }
+
+  fieldset {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+  }
+
+  fieldset * {
+    /* display: inline-block; */
+  }   
   
   .basic-info {
     padding-top: 15px;
-    padding-right: 20px;
+    /* padding-right: 20px; */
   }
   
   .center {
@@ -75,7 +86,7 @@ h3 {
   .expandable {
     transition: all .5s ease-out;
     overflow: hidden;
-    max-height: 1100px;
+    max-height: 1120px;
   }
   
   .expandable-collapsed {
@@ -157,9 +168,7 @@ h3 {
   }
   
   .query-form {
-    margin-top: 0px;
-    margin-right: 2vw;
-    margin-left: 2vw;
+    margin: 0 2vw; 
   }
   
   .company-heading {
@@ -193,6 +202,8 @@ h3 {
     text-align: left;
     letter-spacing: 1px;
     text-indent: 0px;
+    font-size: 28px;
+    margin-bottom: 15px;
   }
   
   .dba-subtitle {
@@ -225,10 +236,9 @@ h3 {
   }
   
   .label {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin: 5px 5px 5px 0;
     color: #36579a;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 125%;
     font-weight: 700;
   }
@@ -244,7 +254,6 @@ h3 {
   .label.aside {
     margin-top: 5px;
     margin-bottom: 5px;
-    font-size: 16px;
   }
   
   .field {
@@ -278,6 +287,17 @@ h3 {
     background-color: #fff;
   }
   
+  .digit {
+    width: 54px;
+    text-align: center;
+  }
+  .long {
+    width: 200px;
+  }
+  .email {
+    width: 260px;
+  }
+
   .truck-info {
     min-height: 400px;
     padding: 10px;
@@ -354,6 +374,7 @@ h3 {
   
   #DBAfield {
     visibility: hidden;
+    width: 300px;
   }
   
   #digit-area {
@@ -402,25 +423,12 @@ h3 {
     -o-flex-wrap: wrap;
     flex-wrap: wrap;
     justify-content: space-between;
-  }
-  #manualInputForm fieldset{
-    margin-bottom: 1rem;
-    flex: 0 1 30%;
+    flex-direction: row;
   }
 
-  /* .w-25 {
-    flex: 1 1 21%;
-  }
-
-  .w-3 {
-    flex: 1 1 30%;
-    width:30%
-  } */
-
-  /* .w-5 {
-    flex: 1 1 47%;
+  #manualInputForm > div {
     width: 47%;
-  } */
+  }
   
   #slide3 {
     position: absolute; 
@@ -447,10 +455,28 @@ h3 {
     } */
   }
   
+  @media screen and (max-width: 970px) {
+    fieldset {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    #manualInputForm > div {
+      width: 100%;
+    }
+    #manualInputForm {
+      flex-direction: column;
+    }
+    .query-form {
+      margin: 0 5vw;
+    }
+  }
+
   @media screen and (max-width: 767px) {
     #digit-area {
       margin: 20px 20%;
     }
+
+
     .progress-block.fullscreen {
       padding-right: 0vw;
       padding-left: 0vw;

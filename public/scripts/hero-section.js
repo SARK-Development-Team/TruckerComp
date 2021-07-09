@@ -23,7 +23,7 @@ function initializeForm() {
     slideIndex = 3;
     // Resets the formData
     formData = {
-        totalPayroll: 0,
+        totalPayroll: '',
         businessType: 0,
         zipCode: 0,
         mileage: 0,
@@ -44,8 +44,8 @@ function initializeForm() {
     for (let i=0; i<digits.length; i++) {
         digits[i].value='';
     }
-    document.getElementById("hero").classList.remove('tall');
-    document.getElementById("hero").classList.remove('taller');
+    document.getElementById("hero").classList.remove('resultSlideHeight');
+    document.getElementById("hero").classList.remove('dotSlideHeight');
 
     // Places the slides correctly and removes any classes 
     document.getElementById("intro-image").classList.remove('move-left');
@@ -200,11 +200,11 @@ for (let i=0; i<digits.length-1; i++) {
 }
 
 function expandPageHeight() {
-    document.getElementById("hero").classList.add('taller');
+    document.getElementById("hero").classList.add('dotSlideHeight');
 }
 
 function useInitialPageHeight() {
-    document.getElementById("hero").classList.remove('taller');
+    document.getElementById("hero").classList.remove('dotSlideHeight');
 }
 
 // This is the function that allows the DOT input to come together from the 7 separate fields
@@ -301,10 +301,11 @@ function clearAllFields() {
     document.getElementById('empAmount1').value = 0;
     document.getElementById('q0').innerText = '';
     document.getElementById('q1').innerText = '';
-    document.getElementById('q2').innerText = '';
-    document.getElementById('q3').innerText = '';
+    // document.getElementById('q2').innerText = '';
+    // document.getElementById('q3').innerText = '';
     document.getElementById('q4').innerText = '';
     document.getElementById('low-end').innerText = '';
+    document.getElementById('mid-range').innerText = '';
     document.getElementById('high-end').innerText = '';
 }
 
@@ -357,7 +358,7 @@ async function searchDOT(e) {
                     document.getElementById('DBAfield').style.visibility = "hidden";
                 }
                 document.getElementById('companyName').innerText = client.result['name'] ?? '' ;
-                document.getElementById('slide5Name').innerText = client.result['name'] ?? '';
+                document.getElementById('qName').innerText = client.result['name'] ?? '';
                 document.getElementById('email').value = client.result['email'] ?? '';
                 document.getElementById('address').value = client.result['address'] ?? '';
                 document.getElementById('milesTraveled').value = client.result['milesTraveled'] ?? '';
@@ -432,8 +433,7 @@ function saveClientData() {
         }
     }
     document.getElementById('empAmount1').value = document.getElementById('drivers').value;
-
-    document.getElementById('slide5Email').value = formData.email;
+    if (formData.email) document.getElementById('slide5Email').value = formData.email;
     testEmail();
     changeSlide(1);
 }
@@ -456,44 +456,44 @@ function savePayrollData() {
     addPayrollUpdate();
     addTotalUpdate();
     try {
-        if (formData.totalPayroll) {
+        if (formData.totalPayroll*1 != 0) {
             fillInfo(formData);
             requestQuoteSlide(formData)
             changeSlide(1);
         }
-        document.getElementById('hero').classList.add('tall');
+        document.getElementById('hero').classList.add('resultSlideHeight');
     } catch(err) {
         console.log(err);
     }
 }
 
 function addPayrollUpdate() {
-    formData.totalPayroll=0;
-    var payrollValue=0;
+    formData.totalPayroll='';
+    var payrollValue=0.00;
     const payrollLines = document.getElementsByClassName('remove-type').length;
     for (let i =0; i<payrollLines; i++) {
         document.getElementById(`empTotal${i+1}`).addEventListener("change", (e) => {
-            document.getElementById(`empSalary${i+1}`).value =  parseInt(e.target.value)/ parseInt(document.getElementById(`empAmount${i+1}`).value);            
+            document.getElementById(`empSalary${i+1}`).value =  parseFloat(e.target.value)/ parseInt(document.getElementById(`empAmount${i+1}`).value);            
         });
-        payrollValue+=parseInt(document.getElementById(`empTotal${i+1}`).value);
+        payrollValue+=parseFloat(document.getElementById(`empTotal${i+1}`).value).toFixed(2);
 
     }
-    formData.totalPayroll=payrollValue;
+    formData.totalPayroll=parseFloat(payrollValue).toFixed(2);
     document.getElementById('total-payroll').innerText = formData.totalPayroll
 }
 
 function addTotalUpdate() {
-    formData.totalPayroll=0;
-    var payrollValue=0;
+    formData.totalPayroll='';
+    var payrollValue=0.00;
     const payrollLines = document.getElementsByClassName('remove-type').length;
     for (let i =0; i<payrollLines; i++) {
         document.getElementById(`empSalary${i+1}`).addEventListener("change", (e) => {  
-            document.getElementById(`empTotal${i+1}`).value =  parseInt(e.target.value) * parseInt(document.getElementById(`empAmount${i+1}`).value);            
+            document.getElementById(`empTotal${i+1}`).value =  parseFloat(e.target.value) * parseInt(document.getElementById(`empAmount${i+1}`).value);            
         });
 
-        payrollValue+=parseInt(document.getElementById(`empTotal${i+1}`).value);
+        payrollValue+=parseFloat(document.getElementById(`empTotal${i+1}`).value).toFixed(2);
     }
-    formData.totalPayroll=payrollValue;
+    formData.totalPayroll=parseFloat(payrollValue).toFixed(2);
     document.getElementById('total-payroll').innerText = formData.totalPayroll
 }
 
@@ -585,8 +585,8 @@ function fillInfo(data) {
 
     const q0 = document.getElementById('q0');
     const q1 = document.getElementById('q1');
-    const q2 = document.getElementById('q2');
-    const q3 = document.getElementById('q3');
+    // const q2 = document.getElementById('q2');
+    // const q3 = document.getElementById('q3');
     const q4 = document.getElementById('q4');
     
     q0.innerText = parseInt(document.getElementById('slide3DOT').value);
@@ -608,28 +608,28 @@ function fillInfo(data) {
             break;
     }
 
-    switch (data.mileage) {
-        case 0:
-            q2.innerText='Not provided';
-            break;
-        case 1:
-            q2.innerText='< 200 miles';
-            break;
-        case 2:
-            q2.innerText='200 - 500 miles';
-            break;
-        case 3:
-            q2.innerText='> 500 miles';
-            break;
-        default:
-            q2.innerText='Error';
-            break;
-    }
-    if (formData.zipcode) {
-        q3.innerText=data.zipCode;
-    } else {
-        q3.innerText='Not provided';
-    }
+    // switch (data.mileage) {
+    //     case 0:
+    //         q2.innerText='Not provided';
+    //         break;
+    //     case 1:
+    //         q2.innerText='< 200 miles';
+    //         break;
+    //     case 2:
+    //         q2.innerText='200 - 500 miles';
+    //         break;
+    //     case 3:
+    //         q2.innerText='> 500 miles';
+    //         break;
+    //     default:
+    //         q2.innerText='Error';
+    //         break;
+    // }
+    // if (formData.zipcode) {
+    //     q3.innerText=data.zipCode;
+    // } else {
+    //     q3.innerText='Not provided';
+    // }
 
     q4.innerText=data.totalPayroll;
 }
@@ -675,10 +675,12 @@ function sendQuote (data) {
 //This is the call for the quote
 async function requestQuoteSlide(data) {
     const lowEnd = document.getElementById("low-end");
+    const midRange = document.getElementById("mid-range");
     const highEnd = document.getElementById("high-end");
     let response = await fetchResult(data);
     let number = response.result;
     lowEnd.innerText=(number *0.8).toFixed(2);
+    midRange.innerText=number.toFixed(2);
     highEnd.innerText=(number *1.2).toFixed(2);
 }
 

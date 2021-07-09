@@ -272,11 +272,11 @@
     margin-left: 8vw;
 }
 
-.tall {
-    height: 780px!important;
+.resultSlideHeight {
+    height: 880px!important;
 }
 
-.taller {
+.dotSlideHeight {
     height: 970px!important;
 }
 
@@ -313,15 +313,21 @@
         background-image: url('../images/redtrucks.png');
         background-size: cover;
     }
-    .tall {
+    .resultSlideHeight {
         height: 820px!important;
     }
-    .taller {
-        height: 1300px!important;
+    .dotSlideHeight {
+        height: 1150px!important;
     }
     #slide1, #slide2 {
         left: 0;
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .resultSlideHeight {
+        height: 1170px!important;
     }
 }
 
@@ -375,21 +381,27 @@
         grid-column-gap: 0px;
         grid-template-columns: 0.25fr 1fr;
     }
-    .tall {
-        height: 1000px!important;
-    }
-    .taller {
-        height: 1500px!important;
+
+    .dotSlideHeight {
+        height: 1180px!important;
     }
     #hero {
         height: 780px;
     }
 }
 
-@media screen and (max-width: 560px) {
-    .tall {
-        height: 1120px!important;
+@media screen and (max-width: 670px) {
+
+    .dotSlideHeight {
+        height: 1420px!important;
     }
+}
+
+@media screen and (max-width: 570px) {
+    .resultSlideHeight {
+        height: 1360px!important;
+    }
+
 }
 
 @media screen and (max-width: 479px) {
@@ -401,10 +413,5 @@
         -ms-flex: 0 auto;
         flex: 0 auto;
     }
-    .tall {
-        height: 1200px!important;
-    }
-    .taller {
-        height: 1480px!important;
-    }
+
 }

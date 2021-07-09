@@ -38,6 +38,18 @@ input, select {
     grid-column-end: 6;
 }
 
+.currency {
+    position: relative;
+}
+
+.currency::after {
+    content: '$';
+    position: absolute;
+    top: 8px;
+    left: 5px;
+    font-size: 20px;
+}
+
 .form-button.payroll {
     margin: 20px 20vw 0;
     padding-top: 0px;
@@ -75,6 +87,7 @@ input, select {
 .payroll-container {
   margin-top: 20px;
   margin-bottom: 20px;
+  background: white;
 }
 
 .payroll-table {
@@ -180,6 +193,18 @@ input, select {
     grid-row-start: 10;
 }
 
+.select-container {
+    position: relative;
+  }
+  
+.select-container::after {
+    content: "⌄";
+    font-size: 38px;
+    top: 5px;
+    right: 10px;
+    position: absolute;
+}
+
 .table-header {
   /* margin-right: auto;
   margin-left: auto; */
@@ -201,6 +226,7 @@ input, select {
   line-height: 125%;
   text-align: center;
   padding: 5px;
+  width: 100%;
   /* margin: 0 12px; */
 }
 
@@ -296,6 +322,14 @@ input, select {
     .table-field {
         font-size: 18px;
     }
+    .currency::after {
+        top: 6px;
+        font-size: 18px;
+    }
+    .select-container::after {
+        font-size: 30px;
+        top: 4px;
+    }
     .form-button.payroll {
         padding-bottom: 0px;
     }
@@ -357,9 +391,17 @@ input, select {
     .table-field {
         font-size: 15px;
     }
+    .currency::after {
+        top: 4px;
+        font-size: 15px;
+    }
     .payroll-columns {
         -ms-grid-columns: 40px 120px 60px 120px 80px;
         grid-template-columns: 40px 120px 60px 120px 80px;
+    }
+    .select-container::after {
+        font-size: 24px;
+        top: 3px;
     }
 }
 

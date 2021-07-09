@@ -27,23 +27,26 @@
                 <h3 id="amountHeader" class="table-header">#</h3>
                 <h3 id="salaryHeader" class="table-header">Salary</h3>
                 <h3 id="totalHeader" class="table-header">Total</h3>
-                <select class="table-field row1 colType" id="empType1">
-                    <option value="" disabled >Employee Type</option>
-                    <option value="Driver" selected>Driver</option>
-                    <option value="Maintenance">Maintenance</option>
-                    <option value="Accounting">Accounting</option>
-                    <option value="Custodial">Custodial</option>
-                    <option value="Clerical">Clerical</option>
-                    <option value="Other">Other</option>
-                </select>
+                <div class="row1 colType select-container">
+                    <select class="table-field" style="appearance: none; width: 100%" id="empType1">
+                        <option value="" disabled >Employee Type</option>
+                        <option value="Driver" selected>Driver</option>
+                        <option value="Maintenance">Maintenance</option>
+                        <option value="Accounting">Accounting</option>
+                        <option value="Custodial">Custodial</option>
+                        <option value="Clerical">Clerical</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
                 <!-- <input class="table-field row1 colType"></input> -->
                 <input type="number" class="table-field row1 colAmount" id="empAmount1" value=0 onfocusout="addPayrollUpdate()"></input>
-                <input type="number" class="table-field row1 colSalary" id="empSalary1" value=0 onfocusout="addPayrollUpdate()"></input>
-                <input type="number" class="table-field colTotal" id="empTotal1" value=0 onfocusout="addTotalUpdate()"></input>
+                <div class="currency row1 colSalary">
+                    <input type="number" class=" table-field" step="0.01" id="empSalary1" value=0 onfocusout="addPayrollUpdate()"></input>
+                </div>
+                <div class="currency row1 colTotal">
+                    <input type="number" class="table-field" step="0.01" id="empTotal1" value=0 onfocusout="addTotalUpdate()"></input>
+                </div>
 
-                <!-- <div class="payroll-total-column" id="total-column">
-
-                </div> -->
             </div>
 
 
