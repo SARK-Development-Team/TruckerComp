@@ -91,6 +91,11 @@
     color: white;
     border-radius: 2000px;
     padding: 10px 40px;
+    
+}
+
+.select-button:hover {
+    background: #1C2541;
 }
 
 #result-area {
