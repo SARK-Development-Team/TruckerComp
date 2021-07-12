@@ -14,7 +14,7 @@ h3 {
   }
 
   fieldset * {
-    /* display: inline-block; */
+    display: inline-block;
   }   
   
   .basic-info {

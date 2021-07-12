@@ -39,12 +39,12 @@
                     </select>
                 </div>
                 <!-- <input class="table-field row1 colType"></input> -->
-                <input type="number" class="table-field row1 colAmount" id="empAmount1" value=0 onfocusout="addPayrollUpdate()"></input>
+                <input type="number" class="table-field row1 colAmount" id="empAmount1" value=0 min=0 onfocusout="addPayrollUpdate()"></input>
                 <div class="currency row1 colSalary">
-                    <input type="number" class=" table-field" step="0.01" id="empSalary1" value=0 onfocusout="addPayrollUpdate()"></input>
+                    <input type="number" class=" table-field" step="0.01" id="empSalary1" value=0 min=0.00 onfocusout="addPayrollUpdate()"></input>
                 </div>
                 <div class="currency row1 colTotal">
-                    <input type="number" class="table-field" step="0.01" id="empTotal1" value=0 onfocusout="addTotalUpdate()"></input>
+                    <input type="number" class="table-field" step="0.01" id="empTotal1" value=0 min=0.00 onfocusout="addTotalUpdate()"></input>
                 </div>
 
             </div>

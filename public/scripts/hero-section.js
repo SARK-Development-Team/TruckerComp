@@ -512,6 +512,11 @@ function fetchResult(data) {
 
 function removeLine(e, number) {
     e.preventDefault();
+    const thisRow = Array.from(document.getElementsByClassName(`row${number}`));
+    thisRow.forEach((e)=> {
+        e.classList.remove('currency');
+        e.classList.remove('select-container');
+    });
     document.getElementById(`removeLine${number}`).style.display="none";
     document.getElementById(`empType${number}`).style.display="none";
     document.getElementById(`empAmount${number}`).style.display="none";
@@ -531,41 +536,29 @@ function addRow(e) {
     const payrollLines = document.getElementsByClassName('remove-type').length;
     const lastLine = Array.from(document.getElementsByClassName(`table-field row${payrollLines}`));
     if (lastLine.every((e) => e.value)) {
-        // const line = `
-        //     <img src="public/images/wrong.svg" loading="lazy" onclick="removeLine(event, ${payrollLines+1})"
-        //     alt="" class="remove-type row${payrollLines+1}" id="removeLine${payrollLines+1}" >
-        //     <select class="table-field row${payrollLines+1} colType" id="empType${payrollLines+1}">
-        //         <option value="" disabled selected>Employee Type</option>
-        //         <option value="Driver" >Driver</option>
-        //         <option value="Maintenance">Maintenance</option>
-        //         <option value="Accounting">Accounting</option>
-        //         <option value="Custodial">Custodial</option>
-        //         <option value="Clerical">Clerical</option>
-        //         <option value="Other">Other</option>
-        //     </select>
-        //     <input type="number" class="table-field row${payrollLines+1} colAmount" id="empAmount${payrollLines+1}" value=0 onfocusout="addPayrollUpdate()"></input>
-        //     <input type="number" class="table-field row${payrollLines+1} colSalary" id="empSalary${payrollLines+1}" value=0 onfocusout="addPayrollUpdate()"></input>
-        //     `
-        // const totalBox = `
-        //     <input type="number" class="table-field total" id="empTotal${payrollLines+1}" value=0 onfocusout="addTotalUpdate()"></input>
-        // `
-        // document.getElementById("payroll-columns").insertAdjacentHTML('beforeend', line);
-        // document.getElementById("total-column").insertAdjacentHTML('beforeend', totalBox);
+     
         const line = `
             <img src="public/images/wrong.svg" loading="lazy" onclick="removeLine(event, ${payrollLines+1})"
             alt="" class="remove-type row${payrollLines+1}" id="removeLine${payrollLines+1}" >
-            <select class="table-field row${payrollLines+1} colType" id="empType${payrollLines+1}">
-                <option value="" disabled selected>Employee Type</option>
-                <option value="Driver" >Driver</option>
-                <option value="Maintenance">Maintenance</option>
-                <option value="Accounting">Accounting</option>
-                <option value="Custodial">Custodial</option>
-                <option value="Clerical">Clerical</option>
-                <option value="Other">Other</option>
-            </select>
-            <input type="number" class="table-field row${payrollLines+1} colAmount" id="empAmount${payrollLines+1}" value=0 onfocusout="addPayrollUpdate()"></input>
-            <input type="number" class="table-field row${payrollLines+1} colSalary" id="empSalary${payrollLines+1}" value=0 onfocusout="addPayrollUpdate()"></input>
-            <input type="number" class="table-field colTotal" id="empTotal${payrollLines+1}" value=0 onfocusout="addTotalUpdate()"></input>
+            <div class="row${payrollLines+1} colType select-container">
+                <select class="table-field" style="appearance: none; width: 100%" id="empType${payrollLines+1}">
+                    <option value="" disabled selected>Employee Type</option>
+                    <option value="Driver" >Driver</option>
+                    <option value="Maintenance">Maintenance</option>
+                    <option value="Accounting">Accounting</option>
+                    <option value="Custodial">Custodial</option>
+                    <option value="Clerical">Clerical</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <input type="number" class="table-field row${payrollLines+1} colAmount" id="empAmount${payrollLines+1}" value=0 min=0 onfocusout="addPayrollUpdate()"></input>
+            
+            <div class="currency row${payrollLines+1} colSalary">
+                <input type="number" class=" table-field" step="0.01" id="empSalary${payrollLines+1}" value=0 min=0.00 onfocusout="addPayrollUpdate()"></input>
+            </div>
+            <div class="currency row${payrollLines+1} colTotal">
+                <input type="number" class="table-field" step="0.01" id="empTotal${payrollLines+1}" value=0 min=0.00 onfocusout="addTotalUpdate()"></input>
+            </div>
         `
         document.getElementById("payroll-columns").insertAdjacentHTML('beforeend', line);
 

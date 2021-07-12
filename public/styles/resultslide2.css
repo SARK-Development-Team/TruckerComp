@@ -62,9 +62,9 @@
 
 #quotes-area {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 34px;
 }
 
 .quote-body {
