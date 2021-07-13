@@ -347,7 +347,7 @@ h3 {
   .form-button.big {
     display: block;
     margin: 10px 2vw;
-    padding-top: 5px 2vw;
+    padding: 5px 2vw;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
