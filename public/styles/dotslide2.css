@@ -8,8 +8,15 @@ h3 {
 
   fieldset {
     margin-bottom: 10px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     justify-content: flex-start;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
     flex-direction: row;
   }
 
@@ -24,10 +31,7 @@ h3 {
   
   .center {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin: 40px auto;
   }
   
   .digits {
@@ -96,9 +100,7 @@ h3 {
   .form-button.reset {
     margin-right: 2vw;
     margin-left: 2vw;
-    padding-top: 0px;
-    padding-right: 0.5vw;
-    padding-left: 0.5vw;
+    padding: 0px 0.5vw;
     -webkit-box-flex: 0;
     -webkit-flex: 0 auto;
     -ms-flex: 0 auto;
@@ -109,11 +111,14 @@ h3 {
   .form-button.reset:hover {
     background-color: #1c2243;
   }
+
+  .right-column {
+    border-left: 2px solid #9699ad;
+    padding: 0 20px;
+  }
   
   .progress-block.fullscreen {
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-left: 0px;
+    margin: 0px;
     padding-right: 14vw;
     padding-left: 14vw;
     -webkit-box-pack: stretch;
@@ -207,9 +212,7 @@ h3 {
   }
   
   .dba-subtitle {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
+    margin: 0;
     -webkit-box-flex: 1;
     -webkit-flex: 1;
     -ms-flex: 1;
@@ -244,6 +247,7 @@ h3 {
   }
   
   .label.dot {
+    min-width: 70px;
     margin-top: 0px;
     margin-bottom: 10px;
     padding-top: 0px;
@@ -264,6 +268,7 @@ h3 {
     border-radius: 5px;
     font-size: 16px;
     line-height: 125%;
+    width: -webkit-fill-available;
   }
   
   .field.dot {
@@ -341,23 +346,14 @@ h3 {
   
   .form-button.big {
     display: block;
-    margin-top: 10px;
-    margin-right: 2vw;
-    margin-bottom: 10px;
-    margin-left: 2vw;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-right: 2vw;
-    padding-left: 2vw;
+    margin: 10px 2vw;
+    padding-top: 5px 2vw;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
     align-items: center;
     align-self: stretch;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-radius: 5px;
   }
   
   
@@ -443,6 +439,10 @@ h3 {
     #digit-area {
       margin: 20px 28%;
     }
+    .right-column {
+      border-left: none;
+      padding: 0;
+    }
     .progress-block.fullscreen {
       padding-right: 5vw;
       padding-left: 5vw;
@@ -466,8 +466,9 @@ h3 {
     #manualInputForm {
       flex-direction: column;
     }
+
     .query-form {
-      margin: 0 5vw;
+      margin: 0 7vw;
     }
   }
 
@@ -475,8 +476,6 @@ h3 {
     #digit-area {
       margin: 20px 20%;
     }
-
-
     .progress-block.fullscreen {
       padding-right: 0vw;
       padding-left: 0vw;

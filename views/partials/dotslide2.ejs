@@ -61,7 +61,7 @@
                         <h3 class="dba-subtitle"><span id="DBA" class="dba"></span><input name="dbaName" id="DBAfield"/></h3>
                     </div>
                     <div id="manualInputForm" class="contact-info">
-                        <div>
+                        <div class="left-column">
                             <fieldset>
                                 <div class="label dot">DOT #</div>
                                 <div id="DOT" class="field dot">{{DOT}}</div>
@@ -74,19 +74,19 @@
                                 <label for="phone" class="label">Phone #</label>
                                 <input id="phone" name="phone" type="tel" class="field"></input>
                             </fieldset>
-                            <fieldset class="w-5">
+                            <fieldset >
                                 <label for="address" class="label">Address</label>
                                 <textarea id="address" name="address" type="text" cols="30" rows="2" class="field"></textarea>
                             </fieldset>
-                            <fieldset class="w-5">
+                            <fieldset >
                                 <label for="mailingAddress" class="label">Mailing Address</label>
                                 <textarea class="field" id="mailingAddress" name="mailingAddress" type="text" cols="30"
                                     rows="2"></textarea>
                             </fieldset>
 
                         </div>
-                        <div>
-                            <fieldset class="w-5">
+                        <div class="right-column">
+                            <fieldset >
                                 <label class="label aside" for="operationType">Operation Type</label>
                                 <select name="operationType" class="field aside" id="operationType">
                                     <option value="1">Authorized for Hire</option>
@@ -104,7 +104,7 @@
                                     <option value="13">Other</option>
                                 </select>
                             </fieldset>
-                            <fieldset class="w-5">
+                            <fieldset >
                                 <label class="label aside" for="cargoCarried">Cargo Carried</label>
                                 <select name="cargoCarried" class="field aside" id="cargoCarried">
                                     <option value="1">General Freight</option>
@@ -141,7 +141,7 @@
                                     <option value="32">Other</option>
                                 </select>
                             </fieldset>
-                            <fieldset class="w-25">
+                            <fieldset >
                                 <label for="carrierOperation" class="label aside">Carrier Operation</label>
                                 <select id="carrierOperation" name="carrierOperation" class="field aside" style="align-self: baseline;">
                                     <option value="Interstate">Interstate</option>
@@ -149,17 +149,17 @@
                                     <option value="Intrastate (Non-Hazardous)">Intrastate (Non-Hazardous)</option>
                                 </select>
                             </fieldset>
-                            <fieldset class="w-25">
+                            <fieldset >
                                 <div>
                                     <label for="trucks" class="label aside">Trucks</label>
                                     <input id="powerUnits" name="trucks" type="number" class="field digit"></input>
                                 </div>
                                 <div>
-                                    <label style="padding-left: 5px;" for="drivers" class="label aside">Drivers</label>
-                                    <input id="drivers" name="drivers" type="number" class="field digit"></input>
-                                </div>
+                                <label style="padding-left: 5px;" for="drivers" class="label aside">Drivers</label>
+                                <input id="drivers" name="drivers" type="number" class="field digit"></input>
+                            </div>
                             </fieldset>
-                            <fieldset class="w-25">
+                            <fieldset >
                                 <label for="milesTraveled" class="label aside">Vehicle Miles Traveled</label>
                                 <input id="milesTraveled" name="milesTraveled" type="number" class="field long"></input>
                             </fieldset>
