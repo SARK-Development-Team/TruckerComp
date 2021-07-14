@@ -25,7 +25,31 @@ fieldset {
 fieldset * {
     display: inline-block;
 }   
-  
+ 
+.aside-input {
+  display: -ms-grid;
+  display: grid;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  grid-auto-columns: 1fr;
+  grid-column-gap: 16px;
+  grid-row-gap: 9px;
+  -ms-grid-columns: 0.5fr 0.5fr;
+  grid-template-columns: 0.5fr 0.5fr;
+  -ms-grid-rows: auto auto auto;
+  grid-template-rows: auto auto auto;
+}
+
 .basic-info {
     padding-top: 15px;
 }
@@ -35,6 +59,16 @@ fieldset * {
     margin: 40px auto;
 }
   
+.combination-input {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 10px;
+  background-color: rgba(194, 222, 255, 0.31);
+  color: rgba(28, 34, 67, 0.72);
+  font-size: 15px;
+  text-transform: capitalize;
+}
+
 .company-heading {
   display: -webkit-box;
   display: -webkit-flex;
@@ -68,21 +102,32 @@ fieldset * {
   text-indent: 0px;
   font-size: 28px;
 }
-
-.dba {
-  margin: 0 10px 0 0;
-  color: #36579a;
-  font-weight: 700;
-}
-
-.dba-subtitle {
-  margin: 0;
+ 
+.contact-info {
+  margin-top: 20px;
+  margin-bottom: 20px;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  color: rgba(51, 51, 51, 0.4);
+}
+
+.dba-subtitle {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin: 0 10px 0 0;
+  color: #36579a;
+  font-weight: 700;
   text-align: left;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+
+.digit {
+  text-align: center;
 }
 
 .digits {
@@ -136,7 +181,11 @@ fieldset * {
     border-radius: 10px 10px 0px 0px;
     background-color: #fff;
 }
-  
+
+.email {
+  width: 260px;
+}
+
 .expandable {
     transition: all .5s ease-out;
     overflow: hidden;
@@ -146,7 +195,52 @@ fieldset * {
 .expandable-collapsed {
     max-height: 0!important;
 }
-  
+
+.field {
+  padding: 5px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  font-size: 16px;
+  line-height: 125%;
+  width: -webkit-fill-available;
+}
+
+.field.aside {
+  min-width: 5vw;
+  margin-left: 0px;
+  padding: 3px 5px;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  align-self: center;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.field.dot {
+  padding: 2px 0px;
+  border-style: none;
+  border-radius: 0px;
+  color: #1c2243;
+  font-size: 18px;
+  line-height: 125%;
+  text-align: left;
+}
+
+.form-button.big {
+  display: block;
+  margin: 10px 2vw;
+  padding: 5px 2vw;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 5px;
+}
+
 .form-button.reset {
     margin-right: 2vw;
     margin-left: 2vw;
@@ -161,142 +255,32 @@ fieldset * {
 .form-button.reset:hover {
     background-color: #1c2243;
 }
-
-
-  
-
-  
-  .contact-info {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    /* grid-row-gap: 21px; */
-
-  }
-  
-  .label {
+   
+.label {
     margin: 5px 5px 5px 0;
     color: #36579a;
     font-size: 16px;
     line-height: 125%;
     font-weight: 700;
-  }
-  
-  .label.dot {
+}
+ 
+.label.aside {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.label.dot {
     min-width: 70px;
-    /* margin-top: 0px;
-    margin-bottom: 10px; */
     padding-top: 0px;
     font-size: 20px;
     line-height: 125%;
-  }
-  
-  .label.aside {
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
-  
-  .field {
-    padding: 5px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
-    font-size: 16px;
-    line-height: 125%;
-    width: -webkit-fill-available;
-  }
-  
-  .field.dot {
-    padding: 2px 0px;
-    border-style: none;
-    border-radius: 0px;
-    color: #1c2243;
-    font-size: 18px;
-    line-height: 125%;
-    text-align: right;
-  }
-  
-  .field.aside {
-    min-width: 5vw;
-    margin-left: 0px;
-    padding: 3px 5px;
-    -webkit-align-self: center;
-    -ms-flex-item-align: center;
-    -ms-grid-row-align: center;
-    align-self: center;
-    border-radius: 5px;
-    background-color: #fff;
-  }
-  
-  .digit {
-    width: 54px;
-    text-align: center;
-  }
-  .long {
-    width: 100px;
-  }
-  .email {
-    width: 260px;
-  }
+}
 
-  .truck-info {
-    min-height: 400px;
-    padding: 10px;
-    background-color: rgba(194, 222, 255, 0.31);
-    color: #1c1d1f;
-  }
-  
-  .aside-input {
-    display: -ms-grid;
-    display: grid;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-    grid-auto-columns: 1fr;
-    grid-column-gap: 16px;
-    grid-row-gap: 9px;
-    -ms-grid-columns: 0.5fr 0.5fr;
-    grid-template-columns: 0.5fr 0.5fr;
-    -ms-grid-rows: auto auto auto;
-    grid-template-rows: auto auto auto;
-  }
-  
-  .combination-input {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 10px;
-    background-color: rgba(194, 222, 255, 0.31);
-    color: rgba(28, 34, 67, 0.72);
-    font-size: 15px;
-    text-transform: capitalize;
-  }
-  
-  .form-button.big {
-    display: block;
-    margin: 10px 2vw;
-    padding: 5px 2vw;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    align-items: center;
-    align-self: stretch;
-    border-radius: 5px;
-  }
+.long {
+    width: 100px;
+}
     
-  .progress-block.fullscreen {
+.progress-block.fullscreen {
     margin: 0px;
     padding-right: 14vw;
     padding-left: 14vw;
@@ -308,12 +292,13 @@ fieldset * {
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-  }
+}
   
 .query-form {
     margin: 0 2vw; 
 }  
-  .query-heading {
+
+.query-heading {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -332,7 +317,7 @@ fieldset * {
     color: #1c2243;
     text-align: center;
     width: 100%;
-  }
+}
   
 .query-heading.success {
     margin-right: 2vw;
@@ -358,7 +343,18 @@ fieldset * {
     border-left: 2px solid #9699ad;
     padding: 0 20px;
 }
-  
+
+.short {
+  width: 54px;
+}
+
+.truck-info {
+    min-height: 400px;
+    padding: 10px;
+    background-color: rgba(194, 222, 255, 0.31);
+    color: #1c1d1f;
+}
+
 #clear-button {
     border-radius: 5px;
     border: 1px solid rgb(193, 213, 219);
@@ -368,23 +364,23 @@ fieldset * {
     cursor: pointer;
     right: -30px;
     top: 5px;
-  }
+}
   
 #companyName {
-  font-size: x-large;
-  font-weight: 700;
+    font-size: x-large;
+    font-weight: 700;
 }
 
-  #DBAfield {
+#DBAfield {
     /* visibility: hidden; */
     width: 300px;
     color: rgb(51, 51, 51);
-  }
+}
   
-  #digit-area {
+#digit-area {
     position: relative;
     margin: 20px 33%;
-  }
+}
   
 #loader {
     border: 16px solid #f3f3f3;
@@ -396,27 +392,17 @@ fieldset * {
     -webkit-animation: spin 2s linear infinite; 
     animation: spin 2s linear infinite;
 }
-@-webkit-keyframes spin {
-    0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
-}
-  
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
 
-
-  #loading-icon {
+#loading-icon {
     display: none;
     align-items: center;
-  }
+}
   
-  #loading-icon i {
+#loading-icon i {
     font-size: 60px;
-  }
+}
   
-  #manualInputForm {
+#manualInputForm {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -428,22 +414,31 @@ fieldset * {
     flex-wrap: wrap;
     justify-content: space-between;
     flex-direction: row;
-  }
+}
 
-  #manualInputForm > div {
+#manualInputForm > div {
     width: 47%;
-  }
+}
   
-  #slide3 {
+#slide3 {
     position: absolute; 
-  }
+}
   
-  #slide3DOT {
+#slide3DOT {
     display: none;
-  }
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
   
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}  
   
-  @media screen and (max-width: 991px) {
+@media screen and (max-width: 991px) {
     #digit-area {
       margin: 20px 28%;
     }
@@ -458,29 +453,32 @@ fieldset * {
     .truck-info {
       min-height: 0px;
     }
-    /* .expandable {
-      max-height: 1000px;
-    } */
-  }
+}
   
-  @media screen and (max-width: 970px) {
+@media screen and (max-width: 970px) {
     fieldset {
       flex-direction: row;
       justify-content: space-between;
     }
+    .field.dot {
+      text-align: right;
+    }
+    .query-form {
+      margin: 0 7vw;
+    }
+    #DBAfield {
+      /* text-align: right; */
+    }
+
     #manualInputForm > div {
       width: 100%;
     }
     #manualInputForm {
       flex-direction: column;
     }
+}
 
-    .query-form {
-      margin: 0 7vw;
-    }
-  }
-
-  @media screen and (max-width: 767px) {
+@media screen and (max-width: 767px) {
     #digit-area {
       margin: 20px 20%;
     }
@@ -505,10 +503,9 @@ fieldset * {
       padding-bottom: 2px;
       padding-top: 2px;
     }
-  }
+}
 
-
-  @media screen and (max-width: 479px) {
+@media screen and (max-width: 479px) {
     #digit-area {
       margin: 20px 8%;
     }
@@ -547,4 +544,4 @@ fieldset * {
       border-bottom-left-radius: 0px;
       border-bottom-right-radius: 0px;
     }
-  }
+}
