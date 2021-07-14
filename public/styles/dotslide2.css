@@ -369,11 +369,12 @@ fieldset * {
 #companyName {
     font-size: x-large;
     font-weight: 700;
+    width: 500px;
 }
 
 #DBAfield {
     /* visibility: hidden; */
-    width: 300px;
+    width: 500px;
     color: rgb(51, 51, 51);
 }
   
@@ -466,8 +467,9 @@ fieldset * {
     .query-form {
       margin: 0 7vw;
     }
-    #DBAfield {
-      /* text-align: right; */
+    #companyName, #DBAfield {
+      width: 300px;
+      text-overflow: ellipsis;
     }
 
     #manualInputForm > div {
