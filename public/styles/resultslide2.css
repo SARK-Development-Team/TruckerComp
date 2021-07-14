@@ -67,7 +67,7 @@
 }
 
 .quote-body {
-    padding: 20px;
+    padding: 20px 20px 5px 20px;
 }
 
 .quote-header {
@@ -75,7 +75,7 @@
     background: #1C2541;
     color: white;
     margin: 0;
-    font-size: 18px;
+    font-size: 23px;
 }
 
 .quote-result {

@@ -131,24 +131,23 @@ const tableSvc = azure.createTableService(process.env.AZURE_STORAGE_ACCOUNT, pro
 // This function saves the new "lead" object in the Azure DB, using the DOT as the row key
 function saveInAzure(object) {
     // Build the "lead" object from the data passed in
-    const empString = JSON.stringify(object.employees);
-    const userID = object._id.toString()
+    // const empString = JSON.stringify(object.employees);
+    const row = object.DOT.toString()
     var stage;
     if (object.stage==1) stage=2;
     const lead = {
         PartitionKey: {'_':'leads'},
-        RowKey: {'_': userID},
+        RowKey: {'_': row},
         name: {'_': object.name},
         email: {'_': object.email},
         DOT: {'_': object.DOT},
-        MC: {'_': object.MC},
         totalPayroll: {'_': object.totalPayroll},
         mileage: {'_': object.mileage},
         companyName: {'_': object.companyName},
         address: {'_': object.address},
         mailingAddress: {'_': object.mailingAddress},
         phone: {'_': object.phone},
-        employees: {'_': empString},
+        // employees: {'_': empString},
         powerUnits: {'_': object.powerUnits},
         stage: {'_': stage}
       };
@@ -176,6 +175,7 @@ function saveInAzure(object) {
 
 
 const generateEmail = (req, res) => {
+    console.log(req.body);
     sendEmail(req.body);
     sendToSark(req.body);
     saveInAzure(req.body);
