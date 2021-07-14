@@ -57,8 +57,15 @@
             <div class="query-form w-row">
                 <div class="basic-info w-col-stack">
                     <div class="company-heading">
-                        <h2 id="companyName" class="company-name"><input name="companyName"/></h2>
-                        <h3 class="dba-subtitle"><span id="DBA" class="dba"></span><input name="dbaName" id="DBAfield"/></h3>
+                        <div>
+                            <fieldset>
+                                <label class="label dot" for="companyName">Company Name</label>
+                                <h2 class="company-name"><input class="field" id="companyName" type="text" name="companyName"/></h2>
+                            </fieldset>
+                        </div>
+                        <fieldset>
+                            <h3 class="dba-subtitle"><span id="DBA" class="dba ">DBA </span><input name="dbaName" id="DBAfield" class="field"/></h3>
+                        </fieldset>
                     </div>
                     <div id="manualInputForm" class="contact-info">
                         <div class="left-column">

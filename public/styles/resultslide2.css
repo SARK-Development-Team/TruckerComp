@@ -46,7 +46,6 @@
     padding: 10px;
     width: 100%;
     height: 100%;
-    /* border: 1px solid rgba(0,0,0, .2); */
     font-size: 16px;
     display: inline-block;
 }
@@ -73,7 +72,7 @@
 
 .quote-header {
     padding: 20px;
-    background: rgb(55, 147, 255);
+    background: #1C2541;
     color: white;
     margin: 0;
     font-size: 18px;
@@ -130,4 +129,8 @@
 
 #slide5Name {
     text-align: left;
+}
+
+#submit {
+    background: #1C2541;
 }

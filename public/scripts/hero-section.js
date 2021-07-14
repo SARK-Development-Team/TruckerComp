@@ -278,7 +278,7 @@ function clearDOT() {
 // This assures that all fields in the form (after the DOT entry fields) are returned to initial conditions
 function clearAllFields() {
     document.getElementById('companyName').innerText = '' ;
-    document.getElementById('DBA').innerText = '';
+    // document.getElementById('DBA').innerText = '';
     document.getElementById('qName').innerText = '';
     document.getElementById('email').value = '';
     document.getElementById('slide5Email').value = '';
@@ -305,7 +305,6 @@ function clearAllFields() {
     // document.getElementById('q3').innerText = '';
     document.getElementById('q4').innerText = '';
     document.getElementById('low-end').innerText = '';
-    document.getElementById('mid-range').innerText = '';
     document.getElementById('high-end').innerText = '';
 }
 
@@ -350,14 +349,14 @@ async function searchDOT(e) {
                 }
                 // If a DBA name is returned, add a section that displays it
                 if (client.result['DBA']) {
-                    document.getElementById('DBA').innerText = "DBA";
+                    // document.getElementById('DBA').innerText = "DBA";
                     document.getElementById('DBAfield').value = client.result['DBA'];
-                    document.getElementById('DBAfield').style.visibility = "visible";
+                    // document.getElementById('DBAfield').style.visibility = "visible";
                 } else {
-                    document.getElementById('DBA').innerText = "";
-                    document.getElementById('DBAfield').style.visibility = "hidden";
+                    // document.getElementById('DBA').innerText = "";
+                    // document.getElementById('DBAfield').style.visibility = "hidden";
                 }
-                document.getElementById('companyName').innerText = client.result['name'] ?? '' ;
+                document.getElementById('companyName').value = client.result['name'] ?? '' ;
                 document.getElementById('qName').innerText = client.result['name'] ?? '';
                 document.getElementById('email').value = client.result['email'] ?? '';
                 document.getElementById('address').value = client.result['address'] ?? '';
@@ -673,7 +672,6 @@ async function requestQuoteSlide(data) {
     let response = await fetchResult(data);
     let number = response.result;
     lowEnd.innerText=(number *0.8).toFixed(2);
-    midRange.innerText=number.toFixed(2);
     highEnd.innerText=(number *1.2).toFixed(2);
 }
 

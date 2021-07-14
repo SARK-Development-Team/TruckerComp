@@ -18,6 +18,8 @@ h3 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
+    margin-bottom: 5px;
+    align-items: center;
   }
 
   fieldset * {
@@ -193,7 +195,7 @@ h3 {
   }
   
   .company-name {
-    margin-bottom: 5px;
+    margin: 0;
     -webkit-align-self: auto;
     -ms-flex-item-align: auto;
     -ms-grid-row-align: auto;
@@ -208,7 +210,6 @@ h3 {
     letter-spacing: 1px;
     text-indent: 0px;
     font-size: 28px;
-    margin-bottom: 15px;
   }
   
   .dba-subtitle {
@@ -222,9 +223,9 @@ h3 {
   }
   
   .dba {
-    margin: 0 10px;
+    margin: 0 10px 0 0;
     color: #36579a;
-    font-weight: 400;
+    font-weight: 700;
   }
   
   .contact-info {
@@ -248,8 +249,8 @@ h3 {
   
   .label.dot {
     min-width: 70px;
-    margin-top: 0px;
-    margin-bottom: 10px;
+    /* margin-top: 0px;
+    margin-bottom: 10px; */
     padding-top: 0px;
     font-size: 20px;
     line-height: 125%;
@@ -369,8 +370,9 @@ h3 {
   }
   
   #DBAfield {
-    visibility: hidden;
+    /* visibility: hidden; */
     width: 300px;
+    color: rgb(51, 51, 51);
   }
   
   #digit-area {
