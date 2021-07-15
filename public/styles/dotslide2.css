@@ -124,6 +124,24 @@ fieldset * {
   display: flex;
   align-items: center;
   font-size: 18px;
+  position: relative;
+}
+
+.dba-subtitle:hover .dba-tooltip{
+  visibility: visible;
+}
+
+.dba-subtitle .dba-tooltip {
+  visibility: hidden;
+  width: 200px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  bottom: -33px;
+  z-index: 1;
 }
 
 .digit {
