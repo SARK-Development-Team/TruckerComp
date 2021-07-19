@@ -406,7 +406,7 @@ document.getElementById('milesTraveled').addEventListener('keydown', (e) => {
 function saveClientData() {
     // If an email address is given on the DOT slide, save it in the formData and add it to the input on slide 5
     formData.DOT=document.getElementById('slide3DOT').value;
-    formData.email = document.getElementById('email').value;
+    formData.email=document.getElementById('email').value;
     formData.phone=document.getElementById('phone').value;
     formData.address=document.getElementById('address').value;
     formData.mailingAddress=document.getElementById('mailingAddress').value;
@@ -459,6 +459,7 @@ function savePayrollData() {
             fillInfo(formData);
             requestQuoteSlide(formData)
             changeSlide(1);
+            document.getElementById('emailError').style.visibility='hidden';
         }
         document.getElementById('hero').classList.add('resultSlideHeight');
     } catch(err) {
@@ -671,8 +672,8 @@ async function requestQuoteSlide(data) {
     const highEnd = document.getElementById("high-end");
     let response = await fetchResult(data);
     let number = response.result;
-    lowEnd.innerText=(number *0.8).toFixed(2);
-    highEnd.innerText=(number *1.2).toFixed(2);
+    lowEnd.innerText=(number *0.95).toFixed(2);
+    highEnd.innerText=(number *1.05).toFixed(2);
 }
 
 // This saves the formData as a cookie in the browser

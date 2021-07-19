@@ -4,6 +4,7 @@
   "description": "A website to provide Worker's Compensation Insurance Services",
   "main": "server.js",
   "dependencies": {
+
     "axios": "^0.21.1",
     "azure-storage": "^2.10.3",
     "bcrypt": "^5.0.0",
@@ -12,6 +13,7 @@
     "connect-flash": "^0.1.1",
     "connect-mongo": "^4.2.2",
     "cors": "^2.8.5",
+    "docxtemplater": "^3.22.3",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
@@ -19,6 +21,7 @@
     "express-session": "^1.17.1",
     "fs": "^0.0.1-security",
     "googleapis": "^67.1.0",
+    "html-pdf": "^3.0.1",
     "jquery": "^3.6.0",
     "mongoose": "^5.11.18",
     "mssql": "^6.3.1",
@@ -26,7 +29,8 @@
     "nodemailer": "^6.4.18",
     "nodemon": "^2.0.7",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "pizzip": "^3.0.6"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

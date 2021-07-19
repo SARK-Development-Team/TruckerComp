@@ -1,0 +1,40 @@
+.accent {
+    color: rgb(55, 147, 255);
+}
+
+.disclaimer {
+    font-size: 14px;
+    color: rgb(177, 177, 177);
+}
+
+.header-area {
+    display: grid;
+    grid-template-columns: 9fr 5fr 1fr;
+}
+
+.left-side {
+    font-weight: 700;
+    line-height: 30px;
+    text-decoration: underline;
+    
+}
+
+.right-side {
+    text-align: right;
+}
+
+#headline {
+
+}
+
+#partners {
+
+}
+
+#premium-schedules {
+
+}
+
+#schedule-table {
+
+}
