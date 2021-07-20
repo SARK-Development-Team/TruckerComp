@@ -6,22 +6,8 @@ const fs = require('fs');
 const path = require('path');
 let pdf = require("html-pdf");
 
-// const docxConverter = require('docx-pdf');
-// const docxConverter = require("@nativedocuments/docx-wasm");
 
-// const libre = require('libreoffice-convert');
-
-// const enterPath = path.join(__dirname, 'templates/output.docx');
-// const outputPath = path.join(__dirname, 'templates/output.pdf');
-// const { PDFNet } = require('@pdftron/pdfnet-node');
-
-
-// const WebViewer =require('@pdftron/webviewer');
-// const dynamic = require('next/dynamic');
-// const WebViewer = dynamic(() => import('@pdftron/webviewer'), {ssr: false});
-
-
-const PizZip = require('pizzip');
+// const PizZip = require('pizzip');
 const Docxtemplater = require('docxtemplater');
 
 
@@ -55,6 +41,7 @@ const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_U
 */
 
 async function sendEmail(userData) {
+    // fs.unlink(__dirname + "/templates/output.pdf", () => console.log("file deleted"))
     try {
         oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
         const accessToken = await oAuth2Client.getAccessToken();
@@ -71,43 +58,65 @@ async function sendEmail(userData) {
             }
         });
 
-        const quote = await calculateQuote(userData);
+        await calculateQuote(userData);
 
 
         // this sends controllers/templates/truckercomp.ejs to the client with the relevant fields filled in.
-        ejs.renderFile(__dirname + "/templates/truckercomp.ejs", { client: userData, date: new Date().getFullYear() }, function (err, data) {
-            if (err) {
-                console.log(err);
-            } else {
-                var mainOptions = {
-                    from: '"TruckerComp by SARK" wc@sarkinsurance.com',
-                    to: userData.email,
-                    subject: "Your workers' compensation insurance quote from TruckerComp",
-                    html: data,
-                    attachments: [
-                        {   // filename and content type is derived from path
-                            path: __dirname + "/templates/output.pdf"
-                        }
-                    ]
-                };
-                // console.log("html data ======================>", mainOptions.html);
-                transport.sendMail(mainOptions, function (err, info) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        console.log('Message sent: ' + info.response);
-                    }
-                });
-            }
-        })
-
+        await checkForFile(__dirname + "/templates/output.pdf", 2000, userData, transport);
+        
+        setTimeout(fs.unlink(__dirname + "/templates/output.pdf", function() {console.log("file deleted")}), 30000);
         return;
 
-    } catch (error) {
-        console.log(error)
-        return error;
-    }
+        } catch (error) {
+            console.log(error)
+            return error;
+        }
 };
+
+function checkForFile(path, timeout=2000, userData, transport) {
+    const intervalObj = setInterval(function() {
+
+        const file = path;
+        const fileExists = fs.existsSync(file);
+
+        console.log('Checking for: ', file);
+        console.log('Exists: ', fileExists);
+
+        if (fileExists) {
+            clearInterval(intervalObj);
+
+            createEmail(userData, transport);
+        }
+    }, timeout);
+};
+
+function createEmail(userData, transport) {
+    ejs.renderFile(__dirname + "/templates/truckercomp.ejs", { client: userData, date: new Date().getFullYear() }, function (err, data) {
+        if (err) {
+            console.log(err);
+        } else {
+            var mainOptions = {
+                from: '"TruckerComp by SARK" wc@sarkinsurance.com',
+                to: userData.email,
+                subject: "Your workers' compensation insurance quote from TruckerComp",
+                html: data,
+                attachments: [
+                    {   // filename and content type is derived from path
+                        path: __dirname + "/templates/output.pdf"
+                    }
+                ]
+            };
+            transport.sendMail(mainOptions, function (err, info) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log('Message sent: ' + info.response);
+                }
+            });
+        }
+    })
+}
+
 
 async function sendToSark(data) {
     try {
@@ -126,7 +135,7 @@ async function sendToSark(data) {
             }
         });
 
-        const quote = calculateQuote(data)
+        const quote = await calculateQuote(data);
 
         const htmlBody = `
             <h1>Hello ${data.email},<h1>
@@ -170,7 +179,7 @@ function establishValues(data) {
     } else {
         manualPremium = Math.round(payroll * 0.1248 * 1e2) / 1e2;
     }
-    const scheduleRating = parseFloat(increasedLimitsForLiability) + parseFloat(expenseConstant) + parseFloat(terrorism) + parseFloat(catastrophe) + parseFloat(manualPremium) - parseFloat(estimatedAnnualPremium);
+    const scheduleRating = Math.round((parseFloat(increasedLimitsForLiability) + parseFloat(expenseConstant) + parseFloat(terrorism) + parseFloat(catastrophe) + parseFloat(manualPremium) - parseFloat(estimatedAnnualPremium)) * 1e2) / 1e2;
 
     const wcarf = Math.round(estimatedAnnualPremium * 0.02246 * 1e2) / 1e2;
     const uebtf = Math.round(estimatedAnnualPremium * 0.000775 * 1e2) / 1e2;
@@ -179,7 +188,7 @@ function establishValues(data) {
     const lecf = Math.round(estimatedAnnualPremium * 0.002272 * 1e2) / 1e2;
     const fraud = Math.round(estimatedAnnualPremium * 0.004734 * 1e2) / 1e2;
     const policyAdminFee = 200;
-    const quote = parseFloat(estimatedAnnualPremium) + parseFloat(wcarf) + parseFloat(uebtf) + parseFloat(sibtf) + parseFloat(oshaf) + parseFloat(lecf) + parseFloat(fraud) + parseFloat(policyAdminFee);
+    const quote = Math.round((parseFloat(estimatedAnnualPremium) + parseFloat(wcarf) + parseFloat(uebtf) + parseFloat(sibtf) + parseFloat(oshaf) + parseFloat(lecf) + parseFloat(fraud) + parseFloat(policyAdminFee)) * 1e2) / 1e2;
     const dataValues = {
         name: data.companyName,
         payroll, estimatedAnnualPremium, terrorism, catastrophe, expenseConstant, 
@@ -193,21 +202,23 @@ function establishValues(data) {
 
 // This function is the basic quote calculation formula
 async function calculateQuote(data) {
+    return new Promise((res, rej) => {
+        const dataValues = establishValues(data);
 
-    const dataValues = establishValues(data);
+        // setTimeout(()=> writeToPDFTemplate(data.name, payroll, estimatedAnnualPremium, terrorism, catastrophe, expenseConstant, 
+        //     increasedLimitsForLiability, manualPremium, scheduleRating, wcarf, uebtf, sibtf, oshaf, lecf, fraud, policyAdminFee), 1000);
+        // await writeToTemplate(dataValues);
+        writeToTemplate(dataValues);
+        res();
 
-    // setTimeout(()=> writeToPDFTemplate(data.name, payroll, estimatedAnnualPremium, terrorism, catastrophe, expenseConstant, 
-    //     increasedLimitsForLiability, manualPremium, scheduleRating, wcarf, uebtf, sibtf, oshaf, lecf, fraud, policyAdminFee), 1000);
-    // await writeToTemplate(dataValues);
-    setTimeout(()=> writeToTemplate(dataValues), 1000);
-
-
-    return dataValues.quote;
+        // return dataValues.quote;
+    });
     // return ((data.totalPayroll*payrollFactor + data.mileage) * mileageFactor+purchaseBaseline);
 };
 
 // Azure is where the completed client lead is stored
 const azure = require('azure-storage');
+
 const tableSvc = azure.createTableService(process.env.AZURE_STORAGE_ACCOUNT, process.env.AZURE_STORAGE_ACCESS_KEY);
 
 
@@ -259,6 +270,8 @@ function saveInAzure(object) {
 // function  writeToPDFTemplate(clientName, payroll, estimatedAnnualPremium, terrorism, catastrophe, expenseConstant, 
 //     increasedLimitsForLiability, manualPremium, scheduleRating, wcarf, uebtf, sibtf, oshaf, lecf, fraud, policyAdminFee, quote) {
 function writeToTemplate(dv) {
+    // insert the values into the template
+
     ejs.renderFile(path.join(__dirname, "templates/estimateTemplate.ejs"), {dv}, (err, data) => {
         if (err) {
               console.log(err);
@@ -273,6 +286,7 @@ function writeToTemplate(dv) {
                     "height": "5mm",
                 },
             };
+            // now convert the file to a pdf
             pdf.create(data, options).toFile(path.join(__dirname, "templates/output.pdf"), function (err, data) {
                 if (err) {
                     console.log(err);
@@ -284,100 +298,21 @@ function writeToTemplate(dv) {
 
     });
 
-    // var content = fs
-    // .readFileSync(path.resolve(__dirname, 'templates/pdfTemplate.docx'), 'binary');
-
-    // var zip = new PizZip(content);
-    // var doc;
-    // try {
-    //     doc = new Docxtemplater(zip, { paragraphLoop: true, linebreaks: true });
-    // } catch(error) {
-    //     console.log(error.properties.errors)
-    //     // // Catch compilation errors (errors caused by the compilation of the template: misplaced tags)
-    //     // errorHandler(error);
-    // }
-    // const { clientName, payroll, estimatedAnnualPremium, terrorism, catastrophe, 
-    //     expenseConstant, increasedLimitsForLiability, manualPremium, 
-    //     scheduleRating, wcarf, uebtf, sibtf, oshaf, lecf, fraud, 
-    //     policyAdminFee } = dataValues;
-
-    // //set the templateVariables
-    // doc.setData({
-    //     clientName,
-    //     payroll, estimatedAnnualPremium, terrorism, catastrophe, 
-    //     expenseConstant, increasedLimitsForLiability, manualPremium, 
-    //     scheduleRating, wcarf, uebtf, sibtf, oshaf, lecf, fraud, 
-    //     policyAdminFee
-    // });
-
-    // try {
-    //     // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
-    //     doc.render()
-    // }
-    // catch (error) {
-    //     // Catch rendering errors (errors relating to the rendering of the template: angularParser throws an error)
-    //     errorHandler(error);
-    // }
-
-    // var buf = doc.getZip().generate({type: 'nodebuffer'});
-
-    // // buf is a nodejs buffer, you can either write it to a file or do anything else with it.
-    // fs.writeFileSync(path.resolve(__dirname, 'templates/output.docx'), buf);
 }
 
 
-// WebViewer({
-//   path: '/public/webviewer',
-// }, document.getElementById('viewer'))
-//   .then(instance => {
-//     const docViewer = instance.docViewer;
-//     const annotManager = instance.annotManager;
-//     // call methods from instance, docViewer and annotManager as needed
+// async function writeToPDF() {
+//     // const file = fs.readFileSync(path.resolve(__dirname, 'templates/output.docx'), 'utf8');
+//     docxConverter(path.resolve(__dirname, 'templates/output.docx'), path.resolve(__dirname, 'templates/output.pdf'), (err, result) => {
+//         if (err) console.log(err);
+//         else console.log(result); 
+//       });;
+//       async () => {
+//         const data = await docxConverter(path.resolve(__dirname, 'templates/output.docx'))
+//         fs.writeFileSync(path.resolve(__dirname, 'templates/output.pdf'), data);
+//       }
 
-//     // you can also access major namespaces from the instance as follows:
-//     // const Tools = instance.Tools;
-//     // const Annotations = instance.Annotations;
-
-//     docViewer.on('documentLoaded', () => {
-//       // call methods relating to the loaded document
-//     });
-//   })
-
-
-
-async function writeToPDF() {
-    console.log('made it here');
-    // const file = fs.readFileSync(path.resolve(__dirname, 'templates/output.docx'), 'utf8');
-    docxConverter(path.resolve(__dirname, 'templates/output.docx'), path.resolve(__dirname, 'templates/output.pdf'), (err, result) => {
-        if (err) console.log(err);
-        else console.log(result); 
-      });;
-      async () => {
-        const data = await docxConverter(path.resolve(__dirname, 'templates/output.docx'))
-        fs.writeFileSync(path.resolve(__dirname, 'templates/output.pdf'), data);
-      }
-    // const pdfdoc = await PDFNet.PDFDoc.create();
-    // console.log('also here');
-
-    // await pdfdoc.initSecurityHandler();
-    // await PDFNet.Convert.toPdf(pdfdoc, path.resolve(__dirname, 'templates/output.docx'));
-    // pdfdoc.save(
-    //     path.resolve(__dirname, 'templates/output.pdf'),
-    //     PDFNet.SDFDoc.SaveOptions.e_linearized,
-    // );
-    // ext = '.pdf';
-    // const file = fs.readFileSync(enterPath);
-    // Convert it to pdf format with undefined filter (see Libreoffice doc about filter)
-    // libre.convert(file, '.pdf', undefined, (err, done) => {
-    //     console.log(typeof done);
-    //     if (err) {
-    //         console.log(`Error converting file: ${err}`);
-    //     }
-        
-    //     // Here in done you have pdf file which you can save or transfer in another stream
-    //     fs.writeFileSync(outputPath, done);
-    // });
-};
+// };
 
 const generateEmail = (req, res) => {
     sendEmail(req.body);

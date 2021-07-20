@@ -413,6 +413,8 @@ function saveClientData() {
     formData.powerUnits=document.getElementById('powerUnits').value;
     formData.drivers=document.getElementById('drivers').value;
     formData.carrierOperation=document.getElementById('carrierOperation').value;
+    formData.companyName=document.getElementById('companyName').value;
+    document.getElementById('qName').innerText = document.getElementById('companyName').value;
 
     // These lines establish the contents of the dropdown boxes 
     const operationTypeChoices = Array.from(document.querySelectorAll('.drop-display')[0].childNodes[0].childNodes);

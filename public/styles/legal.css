@@ -59,6 +59,10 @@ li {
     content: counters(outline, '.') ". ";
 } */
 
+.list-style-on li {
+    list-style: unset;
+}
+
 .mv-3 {
     margin-top: 30px; 
     margin-bottom: 30px; 

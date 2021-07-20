@@ -1886,7 +1886,7 @@ line-height:115%">: ___________<u><%= dv.name %></u>______________________<o:p><
 <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
 150%;mso-outline-level:1;tab-stops:133.85pt"><b style="mso-bidi-font-weight:
 normal"><span style="font-size:12.0pt;mso-bidi-font-size:11.0pt;line-height:
-150%;font-family:&quot;Bahnschrift&quot;,sans-serif">NAME INSURED: </span></b><span style="mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin">_______________________________________</span><b style="mso-bidi-font-weight:normal"><span style="font-size:12.0pt;mso-bidi-font-size:
+150%;font-family:&quot;Bahnschrift&quot;,sans-serif">NAME INSURED: </span></b><span style="mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin">____________<u><%= dv.name %></u>___________________________</span><b style="mso-bidi-font-weight:normal"><span style="font-size:12.0pt;mso-bidi-font-size:
 11.0pt;line-height:150%;font-family:&quot;Bahnschrift&quot;,sans-serif"><o:p></o:p></span></b></p>
 
 <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
@@ -2674,8 +2674,8 @@ BADzAAAA6gUAAAAA
   color:black"><o:p></o:p></span></b></p>
   <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
   normal;mso-layout-grid-align:none;text-autospace:none"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Bahnschrift&quot;,sans-serif;
-  mso-bidi-font-family:Arial;color:#231F20">$5,147.50 deposit due on or before
-  policy inception with remaining $5,147.50 due 30 days from policy inception.<o:p></o:p></span></p>
+  mso-bidi-font-family:Arial;color:#231F20">$<%= Math.round((dv.quote+10)/2 * 1e2) / 1e2 %> deposit due on or before
+  policy inception with remaining $<%= Math.round((dv.quote+10)/2 * 1e2) / 1e2 %> due 30 days from policy inception.<o:p></o:p></span></p>
   </td>
  </tr>
  <tr style="mso-yfti-irow:2">
@@ -2735,8 +2735,8 @@ BADzAAAA6gUAAAAA
   mso-bidi-font-family:Arial;color:#002060">4-Pay<o:p></o:p></span></b></p>
   <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
   normal;mso-layout-grid-align:none;text-autospace:none"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Bahnschrift&quot;,sans-serif;
-  mso-bidi-font-family:Arial;color:#231F20">$3,050.70 deposit due on or before
-  policy inception date with $2,478.70 due 30, 60, and 90 days from policy inception.<o:p></o:p></span></p>
+  mso-bidi-font-family:Arial;color:#231F20">$<%= Math.round(((dv.quote - 572)/4 + 572) * 1e2) / 1e2 %> deposit due on or before
+  policy inception date with $<%= Math.round((dv.quote - 572)/4 * 1e2) / 1e2 %> due 30, 60, and 90 days from policy inception.<o:p></o:p></span></p>
   </td>
  </tr>
  <tr style="mso-yfti-irow:3">
@@ -2796,8 +2796,8 @@ AAQA8wAAAOsFAAAAAA==
   mso-bidi-font-family:Arial;color:#002060">10-Pay<o:p></o:p></span></b></p>
   <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
   normal;mso-layout-grid-align:none;text-autospace:none"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Bahnschrift&quot;,sans-serif;
-  mso-bidi-font-family:Arial;color:#231F20">$1,563.50 deposit due on or before
-  policy inception date followed by 9 equal installments of $991.50 due monthly
+  mso-bidi-font-family:Arial;color:#231F20">$<%= Math.round(((dv.quote - 572)/10 + 572) * 1e2) / 1e2 %> deposit due on or before
+  policy inception date followed by 9 equal installments of $<%= Math.round((dv.quote - 572)/10 * 1e2) / 1e2 %> due monthly
   from effective date.<o:p></o:p></span></p>
   </td>
  </tr>
@@ -2858,8 +2858,8 @@ AAQA8wAAAOsFAAAAAA==
   mso-bidi-font-family:Arial;color:#002060">12-Pay<o:p></o:p></span></b></p>
   <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
   normal;mso-layout-grid-align:none;text-autospace:none"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Bahnschrift&quot;,sans-serif;
-  mso-bidi-font-family:Arial;color:#231F20">$1,398.25 deposit due on or before
-  policy inception date followed by 11 equal installments of $826.25 due monthly
+  mso-bidi-font-family:Arial;color:#231F20">$<%= Math.round(((dv.quote - 572)/12 + 572) * 1e2) / 1e2 %> deposit due on or before
+  policy inception date followed by 11 equal installments of $<%= Math.round((dv.quote - 572)/12 * 1e2) / 1e2 %> due monthly
   from the effective date.<o:p></o:p></span></p>
   </td>
  </tr>
