@@ -7,107 +7,160 @@ const digits = document.querySelector(".digits").children;
 // const digits = Array.from(document.querySelectorAll(".digit"));
 
 initializeForm();
+let errorInstance;
+function logError(data) {
+    fetch('/logger', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    }).then(response => response.json());
+}
+
 
 // Sets all formData to initial values 
 // Arranges slides so that all but the first start off screen on the right
 // This function is also called when the reset button is pressed
 function initializeForm() {
+    try {
+        // Tabbing through the form breaks it, so this makes the form items untabbable
+        let formContents = document.getElementById("hero").querySelectorAll("*");
+        for (let i =0; i<formContents.length; i++){
+            formContents[i].setAttribute("tabindex", "-1");      
+        }
+        // Resets the current slide displayed in the carousel
+        // It starts at 3 because slides 1 and 2 are outside of the carousel
+        slideIndex = 3;
+        // Resets the formData
+        formData = {
+            totalPayroll: '',
+            businessType: 0,
+            zipCode: 0,
+            mileage: 0,
+            email: '',
+            DOT: '',
+            companyName: '',
+            DBA: '',
+            address: '',
+            mailingAddress: '',
+            phone: '',
+            powerUnits: '',
+            drivers: '',
+            carrierOperation: '',
+            operationType: [],
+            cargoCarried: [],
+        }
+        // Resets the DOT digits input area on slide 3
+        for (let i=0; i<digits.length; i++) {
+            digits[i].value='';
+        }
+        document.getElementById("hero").classList.remove('resultSlideHeight');
+        document.getElementById("hero").classList.remove('dotSlideHeight');
 
-    // Tabbing through the form breaks it, so this makes the form items untabbable
-    let formContents = document.getElementById("hero").querySelectorAll("*");
-    for (let i =0; i<formContents.length; i++){
-        formContents[i].setAttribute("tabindex", "-1");      
+        // Places the slides correctly and removes any classes 
+        document.getElementById("intro-image").classList.remove('move-left');
+        document.getElementById("intro-image").classList.add('visible');
+        
+        document.getElementById("slide1").classList.remove('move-right');
+        document.getElementById("slide1").classList.add('visible');
+
+        document.getElementById("slide2").classList.remove('move-right');
+        document.getElementById("slide2").classList.add('visible');
+
+        document.getElementById("slide3").classList.add("visible");
+        document.querySelector(".slide-area").style.opacity=0;
+        document.getElementById("slide3").classList.remove("move-left");
+        document.getElementById("searchResult").classList.add("expandable-collapsed");
+        
+        document.getElementById("slide4").classList.remove("move-left");
+        document.getElementById("slide4").classList.add("move-right");
+        document.getElementById("slide4").classList.remove("visible");
+
+        document.getElementById("slide5").classList.add("move-right");
+        document.getElementById("slide5").classList.remove("visible");
+    } catch (err) {
+        errorInstance = {
+            'function': 'initializeForm',
+            'parameters': [], 
+            'error': err
+        }
+        logError(errorInstance);
     }
-    // Resets the current slide displayed in the carousel
-    // It starts at 3 because slides 1 and 2 are outside of the carousel
-    slideIndex = 3;
-    // Resets the formData
-    formData = {
-        totalPayroll: '',
-        businessType: 0,
-        zipCode: 0,
-        mileage: 0,
-        email: '',
-        DOT: '',
-        companyName: '',
-        DBA: '',
-        address: '',
-        mailingAddress: '',
-        phone: '',
-        powerUnits: '',
-        drivers: '',
-        carrierOperation: '',
-        operationType: [],
-        cargoCarried: [],
-    }
-    // Resets the DOT digits input area on slide 3
-    for (let i=0; i<digits.length; i++) {
-        digits[i].value='';
-    }
-    document.getElementById("hero").classList.remove('resultSlideHeight');
-    document.getElementById("hero").classList.remove('dotSlideHeight');
-
-    // Places the slides correctly and removes any classes 
-    document.getElementById("intro-image").classList.remove('move-left');
-    document.getElementById("intro-image").classList.add('visible');
-    
-    document.getElementById("slide1").classList.remove('move-right');
-    document.getElementById("slide1").classList.add('visible');
-
-    document.getElementById("slide2").classList.remove('move-right');
-    document.getElementById("slide2").classList.add('visible');
-
-    document.getElementById("slide3").classList.add("visible");
-    document.querySelector(".slide-area").style.opacity=0;
-    document.getElementById("slide3").classList.remove("move-left");
-    document.getElementById("searchResult").classList.add("expandable-collapsed");
-    
-    document.getElementById("slide4").classList.remove("move-left");
-    document.getElementById("slide4").classList.add("move-right");
-    document.getElementById("slide4").classList.remove("visible");
-
-    document.getElementById("slide5").classList.add("move-right");
-    document.getElementById("slide5").classList.remove("visible");
 }
 
 // ---- General Functionality ---- //
 
 // When the slides advance, the next slide moves in from the right and the old moves out to the left
 function changeSlide(n) {
-    // hide the search result
-    document.getElementById("searchResult").classList.add("expandable-collapsed");
-    useInitialPageHeight();
-    window.scrollTo(0,0);
-    // When the back button is pressed, the parameter is -1
-    if (n<0) {
-        moveSlideRight(slideIndex);
-        moveSlideIn(slideIndex-1);
-        slideIndex-=1;
-    // When the continue button is pressed, the parameter is 1
-    } else if (n>0) {
-        moveSlideLeft(slideIndex);
-        moveSlideIn(slideIndex+1);
-        slideIndex+=1;
+    try {
+        // hide the search result
+        document.getElementById("searchResult").classList.add("expandable-collapsed");
+        useInitialPageHeight();
+        window.scrollTo(0,0);
+        // When the back button is pressed, the parameter is -1
+        if (n<0) {
+            moveSlideRight(slideIndex);
+            moveSlideIn(slideIndex-1);
+            slideIndex-=1;
+        // When the continue button is pressed, the parameter is 1
+        } else if (n>0) {
+            moveSlideLeft(slideIndex);
+            moveSlideIn(slideIndex+1);
+            slideIndex+=1;
+        }
+    } catch (err) {
+        errorInstance = {
+            'function': 'changeSlide',
+            'parameters': [`slide ${n}`], 
+            'error': err
+        }
+        logError(errorInstance);
     }
 }
 
 // moving a slide in the carousel off the left side of the screen
 function moveSlideLeft(n) {
-    document.getElementById(`slide${n}`).classList.add("move-left");
-    document.getElementById(`slide${n}`).classList.remove("visible");
+    try {
+        document.getElementById(`slide${n}`).classList.add("move-left");
+        document.getElementById(`slide${n}`).classList.remove("visible");
+    } catch (err) {
+        errorInstance = {
+            'function': 'moveSlideLeft',
+            'parameters': [`slide ${n}`], 
+            'error': err
+        }
+        logError(errorInstance);
+    }
 }
 
 // moving a slide in the carousel off the right side of the screen
 function moveSlideRight(n) {
-    document.getElementById(`slide${n}`).classList.add("move-right");
-    document.getElementById(`slide${n}`).classList.remove("visible");
+    try {
+        document.getElementById(`slide${n}`).classList.add("move-right");
+        document.getElementById(`slide${n}`).classList.remove("visible");
+    } catch (err) {
+        errorInstance = {
+            'function': 'moveSlideRight',
+            'parameters': [`slide ${n}`], 
+            'error': err
+        }
+        logError(errorInstance);
+    }
 }
 
 // moving a slide in the right margin into view
 function moveSlideIn(n) {
-    document.getElementById(`slide${n}`).classList.remove("move-right");
-    document.getElementById(`slide${n}`).classList.remove("move-left");
-    document.getElementById(`slide${n}`).classList.add("in-view");
+    try {
+        document.getElementById(`slide${n}`).classList.remove("move-right");
+        document.getElementById(`slide${n}`).classList.remove("move-left");
+        document.getElementById(`slide${n}`).classList.add("in-view");
+    } catch (err) {
+        errorInstance = {
+            'function': 'moveSlideIn',
+            'parameters': [`slide ${n}`], 
+            'error': err
+        }
+        logError(errorInstance);
+    }
 }
 
 
@@ -119,8 +172,17 @@ const longhaul = document.getElementById('slide1LongHaul');
 const local = document.getElementById('slide1Local');
 
 function moveSlide(number) {
-    document.getElementById(`slide${number}`).classList.add('move-right');
-    document.getElementById(`slide${number}`).classList.remove('visible');
+    try {
+        document.getElementById(`slide${number}`).classList.add('move-right');
+        document.getElementById(`slide${number}`).classList.remove('visible');
+    } catch (err) {
+        errorInstance = {
+            'function': 'moveSlide',
+            'parameters': [`slide ${number}`], 
+            'error': err
+        }
+        logError(errorInstance);
+    }
 }
 
 towing.addEventListener("click", () => {
@@ -149,9 +211,18 @@ local.addEventListener("click", () => {
 // ---- Slide 2 ---- //
 
 function removeIntroImage() {
-    document.getElementById('intro-image').classList.remove('visible');
-    document.getElementById('intro-image').classList.add('move-left');
-    document.querySelector('.slide-area').style.opacity=1;
+    try {
+        document.getElementById('intro-image').classList.remove('visible');
+        document.getElementById('intro-image').classList.add('move-left');
+        document.querySelector('.slide-area').style.opacity=1;
+    } catch (err) {
+        errorInstance = {
+            'function': 'removeIntroImage',
+            'parameters': [], 
+            'error': err
+        }
+        logError(errorInstance);
+    }
 }
 
 const lowMileage = document.getElementById('slide2Low');
@@ -177,7 +248,7 @@ highMileage.addEventListener("click", () => {
 
 // ---- Slide 3 ---- //
 
-// This function allows the user to backspace through the 7 separate fields
+// This loop allows the user to backspace through the 7 separate fields
 for (let i=1; i<digits.length; i++) {
     digits[i].addEventListener('keydown', (e) => {
         if (e.key=="Backspace") {
@@ -188,7 +259,7 @@ for (let i=1; i<digits.length; i++) {
         if (e.target.value && intRegex.test(e.key)) e.target.value = e.key
     })
 }
-// This function allows the user to overwrite existing field inputs 
+// This loop allows the user to overwrite existing field inputs 
 for (let i=0; i<digits.length-1; i++) {
     digits[i].addEventListener('keydown', (e) => {
         const intRegex = /[0-9]/
@@ -200,14 +271,32 @@ for (let i=0; i<digits.length-1; i++) {
 }
 
 function expandPageHeight() {
-    document.getElementById("hero").classList.add('dotSlideHeight');
+    try {
+        document.getElementById("hero").classList.add('dotSlideHeight');
+    } catch (err) {
+        errorInstance = {
+            'function': 'expandPageHeight',
+            'parameters': [], 
+            'error': err
+        }
+        logError(errorInstance);
+    }
 }
 
 function useInitialPageHeight() {
-    document.getElementById("hero").classList.remove('dotSlideHeight');
+    try {
+        document.getElementById("hero").classList.remove('dotSlideHeight');
+    } catch (err) {
+        errorInstance = {
+            'function': 'useInitialPageHeight',
+            'parameters': [], 
+            'error': err
+        }
+        logError(errorInstance);
+    }
 }
 
-// This is the function that allows the DOT input to come together from the 7 separate fields
+// This event listener allows the DOT input to come together from the 7 separate fields
 document.querySelector(".digits").addEventListener("input", (e) => {
     if (e.target.value) e.target.value ='';
     try {
@@ -255,6 +344,12 @@ function pasteValues(e) {
         }
     } catch(err) {
         console.log(err);
+        errorInstance = {
+            'function': 'pasteValues',
+            'parameters': [`event ${e}`], 
+            'error': err
+        }
+        logError(errorInstance);
     }
 
 }
@@ -268,44 +363,62 @@ const failureHeader = `
 
 // This clears the DOT input fields
 function clearDOT() {
-    document.getElementById("searchResult").classList.add("expandable-collapsed")
-    for (let i=0; i<digits.length; i++) {
-        digits[i].value = '';
+    try {
+        document.getElementById("searchResult").classList.add("expandable-collapsed")
+        for (let i=0; i<digits.length; i++) {
+            digits[i].value = '';
+        }
+    } catch (err) {
+        errorInstance = {
+            'function': 'clearDOT',
+            'parameters': [], 
+            'error': err
+        }
+        logError(errorInstance);
     }
 }
 
 
 // This assures that all fields in the form (after the DOT entry fields) are returned to initial conditions
 function clearAllFields() {
-    document.getElementById('companyName').innerText = '' ;
-    // document.getElementById('DBA').innerText = '';
-    document.getElementById('qName').innerText = '';
-    document.getElementById('email').value = '';
-    document.getElementById('slide5Email').value = '';
-    document.getElementById('address').value = '';
-    document.getElementById('mailingAddress').value = '';
-    document.getElementById('milesTraveled').value = '';
-    document.getElementById('phone').value = '';
-    document.getElementById('powerUnits').value = '';
-    document.getElementById('drivers').value = '';
-    document.getElementById('carrierOperation').value = '';
-    // Clears out the drop-down menus
-    const operationTypeChoices = Array.from(document.querySelectorAll('.drop-options')[0].childNodes[0].childNodes);
-    const cargoCarriedChoices = Array.from(document.querySelectorAll('.drop-options')[1].childNodes[0].childNodes);
-    for (const el of operationTypeChoices) {
-        opTypeDrop.removeOption(event, el)
-    }                 
-    for (const el of cargoCarriedChoices) {
-        cargoDrop.removeOption(event, el)
-    }       
-    document.getElementById('empAmount1').value = 0;
-    document.getElementById('q0').innerText = '';
-    document.getElementById('q1').innerText = '';
-    // document.getElementById('q2').innerText = '';
-    // document.getElementById('q3').innerText = '';
-    document.getElementById('q4').innerText = '';
-    document.getElementById('low-end').innerText = '';
-    document.getElementById('high-end').innerText = '';
+    try {
+        document.getElementById('companyName').innerText = '' ;
+        // document.getElementById('DBA').innerText = '';
+        document.getElementById('qName').innerText = '';
+        document.getElementById('email').value = '';
+        document.getElementById('slide5Email').value = '';
+        document.getElementById('address').value = '';
+        document.getElementById('mailingAddress').value = '';
+        document.getElementById('milesTraveled').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('powerUnits').value = '';
+        document.getElementById('drivers').value = '';
+        document.getElementById('carrierOperation').value = '';
+        // Clears out the drop-down menus
+        const operationTypeChoices = Array.from(document.querySelectorAll('.drop-options')[0].childNodes[0].childNodes);
+        const cargoCarriedChoices = Array.from(document.querySelectorAll('.drop-options')[1].childNodes[0].childNodes);
+        for (const el of operationTypeChoices) {
+            opTypeDrop.removeOption(event, el)
+        }                 
+        for (const el of cargoCarriedChoices) {
+            cargoDrop.removeOption(event, el)
+        }       
+        document.getElementById('empAmount1').value = 0;
+        document.getElementById('q0').innerText = '';
+        document.getElementById('q1').innerText = '';
+        // document.getElementById('q2').innerText = '';
+        // document.getElementById('q3').innerText = '';
+        document.getElementById('q4').innerText = '';
+        document.getElementById('low-end').innerText = '';
+        document.getElementById('high-end').innerText = '';
+    } catch (err) {
+        errorInstance = {
+            'function': 'clearAllFields',
+            'parameters': [], 
+            'error': err
+        }
+        logError(errorInstance);
+    }
 }
 
 
@@ -386,7 +499,13 @@ async function searchDOT(e) {
             }
         } catch (err) {
             console.log(err);
-        }           
+            errorInstance = {
+                'function': 'searchDOT',
+                'parameters': [`event ${e}`], 
+                'error': err
+            }
+            logError(errorInstance);
+        }         
     }
 }
 
@@ -404,51 +523,67 @@ document.getElementById('milesTraveled').addEventListener('keydown', (e) => {
 
 // This function saves the client data into the formData object when the users progresses from the dotslide to the payrollslide
 function saveClientData() {
-    // If an email address is given on the DOT slide, save it in the formData and add it to the input on slide 5
-    formData.DOT=document.getElementById('slide3DOT').value;
-    formData.email=document.getElementById('email').value;
-    formData.phone=document.getElementById('phone').value;
-    formData.address=document.getElementById('address').value;
-    formData.mailingAddress=document.getElementById('mailingAddress').value;
-    formData.powerUnits=document.getElementById('powerUnits').value;
-    formData.drivers=document.getElementById('drivers').value;
-    formData.carrierOperation=document.getElementById('carrierOperation').value;
-    formData.companyName=document.getElementById('companyName').value;
-    document.getElementById('qName').innerText = document.getElementById('companyName').value;
+    try {
+        // If an email address is given on the DOT slide, save it in the formData and add it to the input on slide 5
+        formData.DOT=document.getElementById('slide3DOT').value;
+        formData.email=document.getElementById('email').value;
+        formData.phone=document.getElementById('phone').value;
+        formData.address=document.getElementById('address').value;
+        formData.mailingAddress=document.getElementById('mailingAddress').value;
+        formData.powerUnits=document.getElementById('powerUnits').value;
+        formData.drivers=document.getElementById('drivers').value;
+        formData.carrierOperation=document.getElementById('carrierOperation').value;
+        formData.companyName=document.getElementById('companyName').value;
+        document.getElementById('qName').innerText = document.getElementById('companyName').value;
 
-    // These lines establish the contents of the dropdown boxes 
-    const operationTypeChoices = Array.from(document.querySelectorAll('.drop-display')[0].childNodes[0].childNodes);
-    const cargoCarriedChoices = Array.from(document.querySelectorAll('.drop-display')[1].childNodes[0].childNodes);
+        // These lines establish the contents of the dropdown boxes 
+        const operationTypeChoices = Array.from(document.querySelectorAll('.drop-display')[0].childNodes[0].childNodes);
+        const cargoCarriedChoices = Array.from(document.querySelectorAll('.drop-display')[1].childNodes[0].childNodes);
 
-    // These lines save their contents into the formData as arrays
-    for (let i=0; i<operationTypeChoices.length; i++) {
-        // nodes with the "hide" class get ignored
-        if (!operationTypeChoices[i].classList.contains('hide')) {
-            formData.operationType.push(operationTypeChoices[i].innerText.slice(0, -2));
+        // These lines save their contents into the formData as arrays
+        for (let i=0; i<operationTypeChoices.length; i++) {
+            // nodes with the "hide" class get ignored
+            if (!operationTypeChoices[i].classList.contains('hide')) {
+                formData.operationType.push(operationTypeChoices[i].innerText.slice(0, -2));
+            }
         }
-    }
-    for (let j=0; j<cargoCarriedChoices.length; j++) {
-        // nodes with the "hide" class get ignored
-        if (!cargoCarriedChoices[j].classList.contains('hide')) {
-            formData.cargoCarried.push(cargoCarriedChoices[j].innerText.slice(0, -2));
+        for (let j=0; j<cargoCarriedChoices.length; j++) {
+            // nodes with the "hide" class get ignored
+            if (!cargoCarriedChoices[j].classList.contains('hide')) {
+                formData.cargoCarried.push(cargoCarriedChoices[j].innerText.slice(0, -2));
+            }
         }
-    }
-    document.getElementById('empAmount1').value = document.getElementById('drivers').value;
-    if (formData.email) document.getElementById('slide5Email').value = formData.email;
-    testEmail();
-    changeSlide(1);
+        document.getElementById('empAmount1').value = document.getElementById('drivers').value;
+        if (formData.email) document.getElementById('slide5Email').value = formData.email;
+        testEmail();
+        changeSlide(1);
+    } catch (err) {
+        errorInstance = {
+            'function': 'saveClientData',
+            'parameters': [], 
+            'error': err
+        }
+        logError(errorInstance);
+    }         
 }
 
 // This function makes the API call to the server, searching for the DOT number in the FMCSA website and returning one client that matches that number 
 async function fetchDOT(dotObject) {
-    // const uri = uriRoot+'dot';
-
-    const result = fetch('/dot', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(dotObject)
-    }).then(response => response.json()).catch(err=>console.log(err));
-    return result;
+    try {
+        const result = fetch('/dot', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dotObject)
+        }).then(response => response.json()).catch(err=>console.log(err));
+        return result;
+    } catch (err) {
+        errorInstance = {
+            'function': 'fetchDOT',
+            'parameters': [`DOT: ${dotObject}`], 
+            'error': err
+        }
+        logError(errorInstance);
+    }         
 }
 
 // ---- Slide 4 ---- //
@@ -466,110 +601,158 @@ function savePayrollData() {
         document.getElementById('hero').classList.add('resultSlideHeight');
     } catch(err) {
         console.log(err);
+        errorInstance = {
+            'function': 'savePayrollData',
+            'parameters': [], 
+            'error': err
+        }
+        logError(errorInstance);   
     }
 }
 
 function addPayrollUpdate() {
-    formData.totalPayroll='';
-    var payrollValue=0.00;
-    const payrollLines = document.getElementsByClassName('remove-type').length;
-    for (let i =0; i<payrollLines; i++) {
-        document.getElementById(`empTotal${i+1}`).addEventListener("change", (e) => {
-            document.getElementById(`empSalary${i+1}`).value =  parseFloat(e.target.value)/ parseInt(document.getElementById(`empAmount${i+1}`).value);            
-        });
-        payrollValue+=parseFloat(document.getElementById(`empTotal${i+1}`).value).toFixed(2);
+    try {
+        formData.totalPayroll='';
+        var payrollValue=0.00;
+        const payrollLines = document.getElementsByClassName('remove-type').length;
+        for (let i =0; i<payrollLines; i++) {
+            document.getElementById(`empTotal${i+1}`).addEventListener("change", (e) => {
+                document.getElementById(`empSalary${i+1}`).value =  parseFloat(e.target.value)/ parseInt(document.getElementById(`empAmount${i+1}`).value);            
+            });
+            payrollValue+=parseFloat(document.getElementById(`empTotal${i+1}`).value).toFixed(2);
 
-    }
-    formData.totalPayroll=parseFloat(payrollValue).toFixed(2);
-    document.getElementById('total-payroll').innerText = formData.totalPayroll
+        }
+        formData.totalPayroll=parseFloat(payrollValue).toFixed(2);
+        document.getElementById('total-payroll').innerText = formData.totalPayroll
+    } catch (err) {
+        errorInstance = {
+            'function': 'addPayrollUpdate',
+            'parameters': [], 
+            'error': err
+        }
+        logError(errorInstance);
+    }         
 }
 
 function addTotalUpdate() {
-    formData.totalPayroll='';
-    var payrollValue=0.00;
-    const payrollLines = document.getElementsByClassName('remove-type').length;
-    for (let i =0; i<payrollLines; i++) {
-        document.getElementById(`empSalary${i+1}`).addEventListener("change", (e) => {  
-            document.getElementById(`empTotal${i+1}`).value =  parseFloat(e.target.value) * parseInt(document.getElementById(`empAmount${i+1}`).value);            
-        });
+    try {
+        formData.totalPayroll='';
+        var payrollValue=0.00;
+        const payrollLines = document.getElementsByClassName('remove-type').length;
+        for (let i =0; i<payrollLines; i++) {
+            document.getElementById(`empSalary${i+1}`).addEventListener("change", (e) => {  
+                document.getElementById(`empTotal${i+1}`).value =  parseFloat(e.target.value) * parseInt(document.getElementById(`empAmount${i+1}`).value);            
+            });
 
-        payrollValue+=parseFloat(document.getElementById(`empTotal${i+1}`).value).toFixed(2);
-    }
-    formData.totalPayroll=parseFloat(payrollValue).toFixed(2);
-    document.getElementById('total-payroll').innerText = formData.totalPayroll
+            payrollValue+=parseFloat(document.getElementById(`empTotal${i+1}`).value).toFixed(2);
+        }
+        formData.totalPayroll=parseFloat(payrollValue).toFixed(2);
+        document.getElementById('total-payroll').innerText = formData.totalPayroll
+    } catch (err) {
+        errorInstance = {
+            'function': 'addTotalUpdate',
+            'parameters': [], 
+            'error': err
+        }
+        logError(errorInstance);
+    }         
 }
 
 // This sends the data to the backend and returns with a number for the quote
 function fetchResult(data) {
+    try {
+        const result = fetch('/quote', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        }).then(response => response.json());
 
-    const result = fetch('/quote', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    }).then(response => response.json());
-
-    let number = result;
-    return number;
+        let number = result;
+        return number;
+    } catch (err) {
+        errorInstance = {
+            'function': 'fetchResult',
+            'parameters': [data], 
+            'error': err
+        }
+        logError(errorInstance);
+    }         
 }
 
 function removeLine(e, number) {
-    e.preventDefault();
-    const thisRow = Array.from(document.getElementsByClassName(`row${number}`));
-    thisRow.forEach((e)=> {
-        e.classList.remove('currency');
-        e.classList.remove('select-container');
-    });
-    document.getElementById(`removeLine${number}`).style.display="none";
-    document.getElementById(`empType${number}`).style.display="none";
-    document.getElementById(`empAmount${number}`).style.display="none";
-    document.getElementById(`empSalary${number}`).style.display="none";
-    document.getElementById(`empTotal${number}`).style.display="none";
-    document.getElementById(`empType${number}`).value="Other";
-    document.getElementById(`empAmount${number}`).value=0.000001;
-    document.getElementById(`empSalary${number}`).value=0.000001;
-    document.getElementById(`empTotal${number}`).value=0.000001;
-    addPayrollUpdate();
-    addTotalUpdate();
+    try {
+        e.preventDefault();
+        const thisRow = Array.from(document.getElementsByClassName(`row${number}`));
+        thisRow.forEach((e)=> {
+            e.classList.remove('currency');
+            e.classList.remove('select-container');
+        });
+        document.getElementById(`removeLine${number}`).style.display="none";
+        document.getElementById(`empType${number}`).style.display="none";
+        document.getElementById(`empAmount${number}`).style.display="none";
+        document.getElementById(`empSalary${number}`).style.display="none";
+        document.getElementById(`empTotal${number}`).style.display="none";
+        document.getElementById(`empType${number}`).value="Other";
+        document.getElementById(`empAmount${number}`).value=0.000001;
+        document.getElementById(`empSalary${number}`).value=0.000001;
+        document.getElementById(`empTotal${number}`).value=0.000001;
+        addPayrollUpdate();
+        addTotalUpdate();
+    } catch (err) {
+        errorInstance = {
+            'function': 'removeLine',
+            'parameters': [`event ${e}`, `line number ${number}`], 
+            'error': err
+        }
+        logError(errorInstance);
+    }         
 }
 
 // This function adds another row to the employee info table only when the most recent line is completely filled in
 function addRow(e) {
-    e.preventDefault();
-    const payrollLines = document.getElementsByClassName('remove-type').length;
-    const lastLine = Array.from(document.getElementsByClassName(`table-field row${payrollLines}`));
-    if (lastLine.every((e) => e.value)) {
-     
-        const line = `
-            <img src="public/images/wrong.svg" loading="lazy" onclick="removeLine(event, ${payrollLines+1})"
-            alt="" class="remove-type row${payrollLines+1}" id="removeLine${payrollLines+1}" >
-            <div class="row${payrollLines+1} colType select-container">
-                <select class="table-field" style="appearance: none; width: 100%" id="empType${payrollLines+1}">
-                    <option value="" disabled selected>Employee Type</option>
-                    <option value="Driver" >Driver</option>
-                    <option value="Maintenance">Maintenance</option>
-                    <option value="Accounting">Accounting</option>
-                    <option value="Custodial">Custodial</option>
-                    <option value="Clerical">Clerical</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
-            <input type="number" class="table-field row${payrollLines+1} colAmount" id="empAmount${payrollLines+1}" value=0 min=0 onfocusout="addPayrollUpdate()"></input>
-            
-            <div class="currency row${payrollLines+1} colSalary">
-                <input type="number" class=" table-field" step="0.01" id="empSalary${payrollLines+1}" value=0 min=0.00 onfocusout="addPayrollUpdate()"></input>
-            </div>
-            <div class="currency row${payrollLines+1} colTotal">
-                <input type="number" class="table-field" step="0.01" id="empTotal${payrollLines+1}" value=0 min=0.00 onfocusout="addTotalUpdate()"></input>
-            </div>
-        `
-        document.getElementById("payroll-columns").insertAdjacentHTML('beforeend', line);
+    try {
+        e.preventDefault();
+        const payrollLines = document.getElementsByClassName('remove-type').length;
+        const lastLine = Array.from(document.getElementsByClassName(`table-field row${payrollLines}`));
+        if (lastLine.every((e) => e.value)) {
+        
+            const line = `
+                <img src="public/images/wrong.svg" loading="lazy" onclick="removeLine(event, ${payrollLines+1})"
+                alt="" class="remove-type row${payrollLines+1}" id="removeLine${payrollLines+1}" >
+                <div class="row${payrollLines+1} colType select-container">
+                    <select class="table-field" style="appearance: none; width: 100%" id="empType${payrollLines+1}">
+                        <option value="" disabled selected>Employee Type</option>
+                        <option value="Driver" >Driver</option>
+                        <option value="Maintenance">Maintenance</option>
+                        <option value="Accounting">Accounting</option>
+                        <option value="Custodial">Custodial</option>
+                        <option value="Clerical">Clerical</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <input type="number" class="table-field row${payrollLines+1} colAmount" id="empAmount${payrollLines+1}" value=0 min=0 onfocusout="addPayrollUpdate()"></input>
+                
+                <div class="currency row${payrollLines+1} colSalary">
+                    <input type="number" class=" table-field" step="0.01" id="empSalary${payrollLines+1}" value=0 min=0.00 onfocusout="addPayrollUpdate()"></input>
+                </div>
+                <div class="currency row${payrollLines+1} colTotal">
+                    <input type="number" class="table-field" step="0.01" id="empTotal${payrollLines+1}" value=0 min=0.00 onfocusout="addTotalUpdate()"></input>
+                </div>
+            `
+            document.getElementById("payroll-columns").insertAdjacentHTML('beforeend', line);
 
-    }
-    else {
-        lastLine.every((e) => console.log("e= ", e, " evalue= ", e.value))
-    }
-    // addPayrollUpdate();
-    // addTotalUpdate();
+        }
+        else {
+            lastLine.every((e) => console.log("e= ", e, " evalue= ", e.value))
+        }
+    } catch (err) {
+        errorInstance = {
+            'function': 'addRow',
+            'parameters': [`event ${e}`], 
+            'error': err
+        }
+        logError(errorInstance);
+    }         
 }
 
 // ---- Slide 5 ---- //
@@ -577,79 +760,72 @@ function addRow(e) {
 
 // Fills in the data area on slide 5 for confirmation
 function fillInfo(data) {
-
-    const q0 = document.getElementById('q0');
-    const q1 = document.getElementById('q1');
-    // const q2 = document.getElementById('q2');
-    // const q3 = document.getElementById('q3');
-    const q4 = document.getElementById('q4');
-    
-    q0.innerText = parseInt(document.getElementById('slide3DOT').value);
-    switch (data.businessType) {
-        case 1:
-            q1.innerText='Long-Haul Trucking';
-            break;
-        case 2:
-            q1.innerText='Sand & Gravel Trucking';
-            break;
-        case 3:
-            q1.innerText='Local Trucking';
-            break;
-        case 4:
-            q1.innerText='Towing Services';
-            break;
-        default:
-            q1.innerText='Error';
-            break;
-    }
-
-    // switch (data.mileage) {
-    //     case 0:
-    //         q2.innerText='Not provided';
-    //         break;
-    //     case 1:
-    //         q2.innerText='< 200 miles';
-    //         break;
-    //     case 2:
-    //         q2.innerText='200 - 500 miles';
-    //         break;
-    //     case 3:
-    //         q2.innerText='> 500 miles';
-    //         break;
-    //     default:
-    //         q2.innerText='Error';
-    //         break;
-    // }
-    // if (formData.zipcode) {
-    //     q3.innerText=data.zipCode;
-    // } else {
-    //     q3.innerText='Not provided';
-    // }
-
-    q4.innerText=data.totalPayroll;
+    try {
+        const q0 = document.getElementById('q0');
+        const q1 = document.getElementById('q1');
+        // const q2 = document.getElementById('q2');
+        // const q3 = document.getElementById('q3');
+        const q4 = document.getElementById('q4');
+        
+        q0.innerText = parseInt(document.getElementById('slide3DOT').value);
+        switch (data.businessType) {
+            case 1:
+                q1.innerText='Long-Haul Trucking';
+                break;
+            case 2:
+                q1.innerText='Sand & Gravel Trucking';
+                break;
+            case 3:
+                q1.innerText='Local Trucking';
+                break;
+            case 4:
+                q1.innerText='Towing Services';
+                break;
+            default:
+                q1.innerText='Error';
+                break;
+        }
+        q4.innerText=data.totalPayroll;
+    } catch (err) {
+        errorInstance = {
+            'function': 'fillInfo',
+            'parameters': [data], 
+            'error': err
+        }
+        logError(errorInstance);
+    }         
 }
 
 const email = document.getElementById('slide5Email');
 
 function testEmail() {
-    const input = email.value;
-    const submit = document.getElementById('submit');
-    // this regex tests for an email address
-    const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    const emailError = document.getElementById('emailError');
-    emailError.style.visibility = 'hidden';
-    if (input!='' && regex.test(input)) {
-        formData.email = input;
-        submit.classList.remove('disabled');
-        submit.onclick=function() {
-            // this function sends the email
-            sendQuote(formData);
-            setCookie('clientData', JSON.stringify(formData));
-        };
-    } else {
-        submit.classList.add('disabled');
-        emailError.style.visibility = 'visible';
-    }
+    try {
+        const input = email.value;
+        const submit = document.getElementById('submit');
+        // this regex tests for an email address
+        const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        const emailError = document.getElementById('emailError');
+        emailError.style.visibility = 'hidden';
+        if (input!='' && regex.test(input)) {
+            formData.email = input;
+            submit.classList.remove('disabled');
+            submit.onclick=function() {
+                alert("Thank you for your submission! We've sent an email to the address listed with more information!");
+                sendQuote(formData);
+                setCookie('clientData', JSON.stringify(formData));
+            };
+        } else {
+            submit.classList.add('disabled');
+            emailError.style.visibility = 'visible';
+        }
+    } catch (err) {
+        errorInstance = {
+            'function': 'testEmail',
+            'parameters': [], 
+            'error': err
+        }
+        logError(errorInstance);
+    }         
 }
 
 email.addEventListener('keyup', () => {
@@ -657,35 +833,61 @@ email.addEventListener('keyup', () => {
 });
 
 function sendQuote (data) {
-    // const uri = uriRoot+'send';
+    try {
+        // const uri = uriRoot+'send';
 
-    fetch('/send', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    }).then(response => response.json());
+        fetch('/send', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        }).then(response => response.json());
+    } catch (err) {
+        errorInstance = {
+            'function': 'sendQuote',
+            'parameters': [data], 
+            'error': err
+        }
+        logError(errorInstance);
+    }         
 }
 
 
 //This is the call for the quote
 async function requestQuoteSlide(data) {
-    const lowEnd = document.getElementById("low-end");
-    const midRange = document.getElementById("mid-range");
-    const highEnd = document.getElementById("high-end");
-    let response = await fetchResult(data);
-    let number = response.result;
-    lowEnd.innerText=(number *0.95).toFixed(2);
-    highEnd.innerText=(number *1.05).toFixed(2);
+    try {
+        const lowEnd = document.getElementById("low-end");
+        const highEnd = document.getElementById("high-end");
+        let response = await fetchResult(data);
+        let number = response.result;
+        lowEnd.innerText=(number *0.95).toFixed(2);
+        highEnd.innerText=(number *1.05).toFixed(2);
+    } catch (err) {
+        errorInstance = {
+            'function': 'requestQuoteSlide',
+            'parameters': [data], 
+            'error': err
+        }
+        logError(errorInstance);
+    }   
 }
 
 // This saves the formData as a cookie in the browser
+// Currently the cookie is not being used
 function setCookie(name, value) {
-    const today = new Date();
-    const expiry = new Date(today.getTime() + 24 * 3600000); // saves cookie for 24 hours
-    document.cookie=name + "=" + value + "; path=/; expires=" + expiry.toGMTString();
+    try {
+        const today = new Date();
+        const expiry = new Date(today.getTime() + 24 * 3600000); // saves cookie for 24 hours
+        document.cookie=name + "=" + value + "; path=/; expires=" + expiry.toGMTString();
+    } catch (err) {
+        errorInstance = {
+            'function': 'setCookie',
+            'parameters': [name, value], 
+            'error': err
+        }
+        logError(errorInstance);
+    }   
   }
 
 // On page load //
-
 addPayrollUpdate();
 addTotalUpdate();

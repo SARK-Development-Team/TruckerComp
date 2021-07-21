@@ -52,11 +52,6 @@ app.get('/about', (req, res) => {
     res.render('about');
 });
 
-// // Contact Page
-// app.get('/contact', (req, res) => {
-//     res.render('contact');
-// });
-
 // Login Page
 app.get('/login', (req, res) => {
     res.render('login');
@@ -71,6 +66,10 @@ app.get('/privacy', (req, res) => {
 app.get('/terms', (req, res) => {
     res.render('terms');
 });
+
+// Logging
+app.use('/contact', routes.contact);
+
 
 // // Send Contact Info
 // app.post('/contact', (req, res) => {

@@ -205,15 +205,9 @@ async function calculateQuote(data) {
     return new Promise((res, rej) => {
         const dataValues = establishValues(data);
 
-        // setTimeout(()=> writeToPDFTemplate(data.name, payroll, estimatedAnnualPremium, terrorism, catastrophe, expenseConstant, 
-        //     increasedLimitsForLiability, manualPremium, scheduleRating, wcarf, uebtf, sibtf, oshaf, lecf, fraud, policyAdminFee), 1000);
-        // await writeToTemplate(dataValues);
         writeToTemplate(dataValues);
         res();
-
-        // return dataValues.quote;
     });
-    // return ((data.totalPayroll*payrollFactor + data.mileage) * mileageFactor+purchaseBaseline);
 };
 
 // Azure is where the completed client lead is stored
