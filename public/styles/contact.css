@@ -23,8 +23,16 @@ option {
     padding: 30px 5% 30px 20%;
 }
 
+.left-side p {
+    font-size: 18px;
+}
+
+.left-side h3 {
+    margin-bottom: 15px;
+}
+
 .light {
-    background: #F5F3F5;
+    /* background: rgb(236,245,254); */
     margin: 20px;
     padding: 50px 0 100px;
 }   
@@ -45,6 +53,8 @@ option {
 }
 
 .two-column-section {
+    background-color: rgba(194, 222, 255, 0.15);
+
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 1fr 1fr;
@@ -53,10 +63,12 @@ option {
 }
 
 #main {
-    background: rgb(55, 147, 255);
+    /* background: rgb(55, 147, 255); */
+    background: white;
+    
     color: #1C2541;
     margin-top: 70px;
-    padding: 0 13%;
+    padding: 0 10%;
 }
 
 #submit-button {

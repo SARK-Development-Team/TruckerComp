@@ -1,6 +1,7 @@
 
 .accent {
-    color: #1C2541;
+    /* color: #1C2541; */
+    color: #EF8354;
 }
 
 
@@ -33,12 +34,14 @@
 }
 
 .dark {
-    background: rgb(55, 147, 255);
-    color: #F5F3F5;
+    /* background: rgb(55, 147, 255);
+    color: #F5F3F5; */
+    /* background: rgba(194, 222, 255, 0.15); */
+    color: #1C2541;
 }
 
 .indented {
-    margin: 40px 20%;
+    margin: 10px 20% 20px;
 }
 
 .lt-blue {
@@ -68,7 +71,7 @@
 }
 
 .two-column-section p {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .wide-section {
@@ -82,7 +85,7 @@
 }
 
 #about-image img {
-    height: 300px; 
+    height: 350px; 
     text-align: center; 
     margin: 30px 0;
 }
@@ -90,15 +93,22 @@
 #inset {
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
-    background: #F5F3F5;
+    /* background: #F5F3F5; */
     color: #1C2541;
     margin: 20px 5% 0;
     text-align: center;
     padding: 8px 0;
 }
 
+#lower-portion {
+    /* background: rgb(55, 147, 255); */
+    background: rgb(236,245,254);
+    padding: 20px 0 50px;
+    color: #1C2541;
+}
+
 #main {
-    background: #F5F3F5;
+    /* background: #F5F3F5; */
     margin-top: 70px;
     margin-bottom: 0;
     padding-bottom: 100px;
