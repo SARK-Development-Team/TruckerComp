@@ -181,7 +181,7 @@
 
 .testimonial-body {
     font-size: 16px;
-    font-style: italic;
+    /* font-style: italic; */
 }
 
 .testimonial-header {
@@ -222,6 +222,12 @@
     margin-top: 60px;
     margin-bottom: 0px;
     color: #3793ff;
+    text-align: center;
+}
+
+.title.center-2 {
+    margin-bottom: 0px;
+    color: rgb(236,245,254);
     text-align: center;
 }
 
@@ -275,10 +281,11 @@
 
 #testimonials-area {
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
     margin: -30px 5% 30px 5%;
+    background: rgb(55, 147, 255);
     /* background: rgb(236, 245, 254); */
-    background: linear-gradient(rgba(22, 23, 61, 0.8), rgba(22, 23, 61, 0.8)),url(../../public/images/truckbgd2.jpg);
+    /* background: linear-gradient(rgba(22, 23, 61, 0.8), rgba(22, 23, 61, 0.8)),url(../../public/images/truckbgd2.jpg); */
     /* background: url(../../public/images/truckbgd2.jpg), rgba(236, 245, 254, 0.9); */
     background-size: cover;
 }

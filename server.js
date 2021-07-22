@@ -68,7 +68,7 @@ app.get('/terms', (req, res) => {
 });
 
 // Logging
-app.use('/contact', routes.contact);
+app.use('/logging', routes.logging);
 
 
 // // Send Contact Info

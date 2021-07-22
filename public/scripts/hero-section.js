@@ -9,7 +9,7 @@ const digits = document.querySelector(".digits").children;
 initializeForm();
 let errorInstance;
 function logError(data) {
-    fetch('/logger', {
+    fetch('/logging', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
