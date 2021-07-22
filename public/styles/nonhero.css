@@ -219,7 +219,8 @@
     margin: 0 5px;
     font-size: 30px;
     font-weight: 900;
-    vertical-align: -3px;
+    vertical-align: -5px;
+    line-height: 100%;
     color: salmon;
 
 }
