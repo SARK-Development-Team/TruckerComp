@@ -15,8 +15,13 @@
     width: 210px;
     max-width: 210px;
     border-radius: 100%;
-    border: 2px solid #182FA5;
-    color: #182FA5;
+    /* border: 2px solid #182FA5; */
+    border: 2px solid white;
+    /* background: white; */
+    background: #1C2541;
+    /* color: #182FA5; */
+    /* color: #1C2541; */
+    color: white;
     -webkit-display: flex;
     -moz-display: flex;
     -ms-display: flex;
@@ -31,6 +36,10 @@
     flex-direction: column;
     font-size: 30px;
     font-weight: 400;
+}
+
+.circle p {
+    margin: 10px;
 }
 
 .dark {
