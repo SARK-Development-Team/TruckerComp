@@ -198,11 +198,14 @@ input, select {
   }
   
 .select-container::after {
-    content: "⌄";
+    /* content: "⌄"; */
+    content: url('../images/chevron-down.svg');
     font-size: 38px;
-    top: 5px;
+    top: 4px;
     right: 10px;
     position: absolute;
+    padding: 0;
+    margin: 0;
 }
 
 .table-header {
