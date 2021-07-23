@@ -27,6 +27,7 @@ function initializeForm() {
         for (let i =0; i<formContents.length; i++){
             formContents[i].setAttribute("tabindex", "-1");      
         }
+        clearAllFields();
         // Resets the current slide displayed in the carousel
         // It starts at 3 because slides 1 and 2 are outside of the carousel
         slideIndex = 3;
@@ -364,6 +365,7 @@ const failureHeader = `
 // This clears the DOT input fields
 function clearDOT() {
     try {
+        clearAllFields()
         document.getElementById("searchResult").classList.add("expandable-collapsed")
         for (let i=0; i<digits.length; i++) {
             digits[i].value = '';
@@ -382,8 +384,8 @@ function clearDOT() {
 // This assures that all fields in the form (after the DOT entry fields) are returned to initial conditions
 function clearAllFields() {
     try {
-        document.getElementById('companyName').innerText = '' ;
-        // document.getElementById('DBA').innerText = '';
+        document.getElementById('companyName').value = '' ;
+        document.getElementById('DBAfield').value = '';
         document.getElementById('qName').innerText = '';
         document.getElementById('email').value = '';
         document.getElementById('slide5Email').value = '';
@@ -462,11 +464,10 @@ async function searchDOT(e) {
                 }
                 // If a DBA name is returned, add a section that displays it
                 if (client.result['DBA']) {
-                    // document.getElementById('DBA').innerText = "DBA";
                     document.getElementById('DBAfield').value = client.result['DBA'];
                     // document.getElementById('DBAfield').style.visibility = "visible";
                 } else {
-                    // document.getElementById('DBA').innerText = "";
+                    document.getElementById('DBAfield').value = "";
                     // document.getElementById('DBAfield').style.visibility = "hidden";
                 }
                 document.getElementById('companyName').value = client.result['name'] ?? '' ;
